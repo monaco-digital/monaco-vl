@@ -45,25 +45,44 @@ const getData = async (): Promise<any>  => {
 export const Main: React.FC<Props>= (props: Props) => {
     const classes = useStyles();
     const [data, setData] = useState(null);
+    const [filteredData, setFilteredData] = useState(null);
+    const [filter, setFilter] = useState(null);
+
+    const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => (setFilter(event.target.value));
 
     useEffect(() => {
         async function captureData () {
             const data = await getData();
             setData(data);
+            setFilteredData(data);
         }
         captureData();
     }, []);
+
+    useEffect(() => {
+        if (!filter) {
+            setFilteredData(data)
+            return;
+        }
+        const newData = data.filter(value => value.topic === filter)
+        setFilteredData(newData)
+    }, [filter]);
 
     return (
         <>
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
-                        <TextField id="topic-filter" label="Topic Filter" variant="outlined" />
+                        <TextField
+                            id="topic-filter"
+                            label="Topic Filter"
+                            variant="outlined"
+                            onChange={onFilterChange}
+                        />
                     </Paper>
                 </Grid>
                 <Grid item xs={12}>
-                    <LetterParagraph data={data}/>
+                    <LetterParagraph data={filteredData}/>
                 </Grid>
             </Grid>
         </>

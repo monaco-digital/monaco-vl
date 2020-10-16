@@ -4,7 +4,7 @@ import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {Paragraph} from './Paragraph';
-import {Box, Paper} from '@material-ui/core';
+import {Box, Grid, Paper} from '@material-ui/core';
 
 interface Props {
     data: any
@@ -60,16 +60,17 @@ const getItemStyle = (isDragging, draggableStyle) => ({
     margin: `0 0 ${grid}px 0`,
 
     // change background colour if dragging
-    background: isDragging ? 'lightgreen' : 'grey',
+    background: isDragging ? 'lightblue' : 'white',
 
     // styles we need to apply on draggables
     ...draggableStyle
 });
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightblue' : 'lightgrey',
+    background: isDraggingOver ? 'lightgreen' : 'lightgreen',
     padding: '5px',
-    width: 400
+    width: 400,
+    minHeight: 400
 });
 
 
@@ -84,7 +85,7 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
     console.log('the props passed to Letter Paragraph are :  ' , data );
 
     const [items, setItems] = useState(data ?? []);
-    const [selected, setSelected] = useState([{id:"1000", paragraph:"test", verticalHeight: "9", topic: "All"}]);
+    const [selected, setSelected] = useState([]);
 
     console.log('the items are :  ' ,  items );
     console.log('the selected are :  ' , selected );
@@ -92,7 +93,7 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
 
     useEffect(() => {
             setItems(data ?? []);
-            setSelected([{id:"100000", paragraph:"test", verticalHeight: "9", topic: "All"}])
+            setSelected([])
 
         }, [data])
 
@@ -139,7 +140,8 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
     return (
         <>
             <DragDropContext onDragEnd={onDragEnd}>
-               <Box component="div" display="inline" p={1} m={1}>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
                     <Droppable droppableId="droppable">
                         {(provided, snapshot) => (
                             <div
@@ -170,6 +172,8 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
                             </div>
                         )}
                     </Droppable>
+                    </Grid>
+                    <Grid item xs={6}>
                     <Droppable droppableId="droppable2">
                         {(provided, snapshot) => (
                             <div
@@ -200,7 +204,8 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
                             </div>
                         )}
                     </Droppable>
-                </Box>
+                    </Grid>
+                </Grid>
             </DragDropContext>
 
         </>

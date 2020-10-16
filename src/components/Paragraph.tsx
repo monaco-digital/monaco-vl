@@ -27,10 +27,10 @@ export const Paragraph: React.FC<Props>= (props: Props) => {
                 <Typography variant="body2"  component="p"  gutterBottom>
                     { paragraph }
                 </Typography>
-                <Typography variant="h5" component="h5" color="textSecondary">
-                    Vertical Height: {verticalHeight}
+                <Typography variant="subtitle1" style={{fontWeight: "bold", color: "#000000" }} >
+                Vertical Height: {verticalHeight}
                 </Typography>
-                <Typography variant="h5" component="h5" color="textSecondary">
+                <Typography variant="subtitle1"  style={{fontWeight: "bold", color: "#000000" }} >
                     Topic: {topic}
                 </Typography>
             </CardContent>
