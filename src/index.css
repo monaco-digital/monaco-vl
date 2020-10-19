@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.subtitle1 {
+  font-size: 0.6em;
+  color: red
+}

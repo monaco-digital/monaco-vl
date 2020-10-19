@@ -1,55 +1,40 @@
 //@ts-nocheck
 
-import React, {useEffect, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import {Paragraph} from './Paragraph';
-import {Box, Grid, Paper} from '@material-ui/core';
+import { Paragraph } from './Paragraph';
+import { Box, Grid, Button } from '@material-ui/core';
+import { getFilteredParagraphs, getSelectedParagraphs, setSelectedParagraphs, setFilteredParagraphs } from '../data/paragraphsDataSlice'
+import { useSelector, useDispatch } from 'react-redux';
+import { reorder, move } from '../utils/paragraphUtils'
+import { RSA_PSS_SALTLEN_AUTO } from 'constants';
 
 interface Props {
     data: any
-
 }
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+    },
+    letterContainer: {
+        padding: '10px',
+        width: '94%',
+        overflowY: 'scroll',
+        background: '#eee',
+        height: '85vh'
+    },
+    letterStyle: {
+        border: '1px solid gray',
+        margin: 'auto',
+        padding: '10px',
+        borderRadius: '5px',
+        background: 'white',
+        width: '94%',
+        minHeight: window.innerHeight - 250
     }
 }));
-
-
-// fake data generator
-const getItems = (count, offset = 0) =>
-    Array.from({ length: count }, (v, k) => k).map(k => ({
-        id: `item-${k + offset}`,
-        content: `item ${k + offset}`
-    }));
-
-// a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-};
-
-/**
- * Moves an item from one list to another list.
- */
-const move = (source, destination, droppableSource, droppableDestination) => {
-    const sourceClone = Array.from(source);
-    const destClone = Array.from(destination);
-    const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-    destClone.splice(droppableDestination.index, 0, removed);
-
-    const result = {} as any ;
-    result[droppableSource.droppableId] = sourceClone;
-    result[droppableDestination.droppableId] = destClone;
-
-    return result;
-};
 
 const grid = 8;
 
@@ -67,41 +52,41 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 });
 
 const getListStyle = isDraggingOver => ({
-    background: isDraggingOver ? 'lightgreen' : 'lightgreen',
-    padding: '5px',
-    width: 400,
-    minHeight: 400
+    borderRight: '1px solid gray',
+    background: isDraggingOver ? '#bbb' : '#aaa',
+    padding: '30px',
+    width: '90%',
+    height: '85vh',
+    overflowY: 'scroll'
+});
+
+const getLetterContentStyle = isDraggingOver => ({
+    padding: '4px',
+    backgroundColor: isDraggingOver ? '#ccc' : '#efefef',
+    minHeight: 250,
+    paddingBottom: '40px'
 });
 
 
-
-
-export const LetterParagraph: React.FC<Props>= (props: Props) => {
+export const LetterParagraph: React.FC<Props> = (props: Props) => {
 
     const classes = useStyles();
 
-    const { data } = props;
+    const filteredParagraphs = useSelector(getFilteredParagraphs)
+    const selectedParagraphs = useSelector(getSelectedParagraphs)
+    // const selectedIds = selectedParagraphs.map((p) => p.id)
+    const dispatch = useDispatch()
 
-    console.log('the props passed to Letter Paragraph are :  ' , data );
-
-    const [items, setItems] = useState(data ?? []);
-    const [selected, setSelected] = useState([]);
-
-    console.log('the items are :  ' ,  items );
-    console.log('the selected are :  ' , selected );
-
-
-    useEffect(() => {
-            setItems(data ?? []);
-            setSelected([])
-
-        }, [data])
+    const copyParasToText = () => {
+        const x = selectedParagraphs.map((item) => (item.paragraph)).join('\n\n')
+        navigator.clipboard.writeText(x)
+    }
 
     const getList = (id) => {
-        if (id === 'droppable') {
-            return items;
-        } else if (id === 'droppable2') {
-            return selected;
+        if (id === 'paragraphList') {
+            return filteredParagraphs;
+        } else if (id === 'letterList') {
+            return selectedParagraphs;
         }
     }
 
@@ -112,98 +97,109 @@ export const LetterParagraph: React.FC<Props>= (props: Props) => {
             return;
         }
         if (source.droppableId === destination.droppableId) {
-            const items = reorder(
+            const reordered = reorder(
                 getList(source.droppableId),
                 source.index,
                 destination.index
             );
 
-            if (source.droppableId === 'droppable2') {
-                //@ts-ignore
-                setSelected(items);
+            if (source.droppableId === 'letterList') {
+                dispatch(setSelectedParagraphs(reordered))
+            } else {
+                dispatch(setFilteredParagraphs(reordered))
             }
-            setItems(items);
-
         } else {
-            const result = move(
+            const updatedLists = move(
                 getList(source.droppableId),
                 getList(destination.droppableId),
                 source,
                 destination
             );
-            setItems(result.droppable);
-            setSelected(result.droppable2);
-
+            dispatch(setFilteredParagraphs(updatedLists.paragraphList))
+            dispatch(setSelectedParagraphs(updatedLists.letterList))
         }
     };
 
     return (
         <>
             <DragDropContext onDragEnd={onDragEnd}>
-                <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                    <Droppable droppableId="droppable">
+                <Grid container spacing={0} xs={12}>
+                    <Droppable droppableId="paragraphList">
                         {(provided, snapshot) => (
-                            <div
-                                ref={provided.innerRef}
-                                style={getListStyle(snapshot.isDraggingOver)}>
-                                {items?.map((item, index) => (
-                                    <Draggable
-                                        key={item.id}
-                                        draggableId={item.id}
-                                        index={index}
-                                    >
-                                        {(provided, snapshot) => (
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                style={getItemStyle(
-                                                    snapshot.isDragging,
-                                                    provided.draggableProps.style
-                                                )}
+                            <Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
+                                <div
+                                    style={{ margin: 'auto' }}
+                                    ref={provided.innerRef}>
+                                    {filteredParagraphs?.map((item, index) => {
+                                        return (
+                                            <Draggable
+                                                key={item.id}
+                                                draggableId={item.id}
+                                                index={index}
                                             >
-                                                <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        {...provided.dragHandleProps}
+                                                        style={getItemStyle(
+                                                            snapshot.isDragging,
+                                                            provided.draggableProps.style
+                                                        )}
+                                                    >
+                                                        <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
+                                                    </div>
+                                                )}
+                                            </Draggable>
+                                        )
+                                    })}
+                                    {provided.placeholder}
+                                </div>
+                            </Grid>
                         )}
                     </Droppable>
-                    </Grid>
-                    <Grid item xs={6}>
-                    <Droppable droppableId="droppable2">
-                        {(provided, snapshot) => (
-                            <div
-                                ref={provided.innerRef}
-                                style={getListStyle(snapshot.isDraggingOver)}>
-                                {selected?.map((item, index) => (
-                                    <Draggable
-                                        key={item.id}
-                                        draggableId={item.id}
-                                        index={index}
-                                    >
-                                        {(provided, snapshot) => (
-                                            <div
-                                                ref={provided.innerRef}
-                                                {...provided.draggableProps}
-                                                {...provided.dragHandleProps}
-                                                style={getItemStyle(
-                                                    snapshot.isDragging,
-                                                    provided.draggableProps.style
+                    <Grid item xs={6} className={classes.letterContainer}>
+                        <Box className={classes.letterStyle}>
+                            <div>
+                                <div style={{ textAlign: 'right', marginBottom: '10px' }}>[Address]</div>
+                                <div style={{ textAlign: 'left', marginBottom: '10px' }}>[Address]</div>
+                                <div style={{ textAlign: 'left', marginBottom: '10px', fontWeight: 'bold' }}>Without prejudice</div>    
+                            </div>                            
+                            <Droppable droppableId="letterList">
+                                {(provided, snapshot) => (
+                                    <div
+                                        ref={provided.innerRef}
+                                        style={getLetterContentStyle(snapshot.isDraggingOver)}>
+                                        {selectedParagraphs?.map((item, index) => (
+                                            <Draggable
+                                                key={item.id}
+                                                draggableId={item.id}
+                                                index={index}>
+                                                {(provided, snapshot) => (
+                                                    <div
+                                                        ref={provided.innerRef}
+                                                        {...provided.draggableProps}
+                                                        {...provided.dragHandleProps}
+                                                        style={getItemStyle(
+                                                            snapshot.isDragging,
+                                                            provided.draggableProps.style
+                                                        )}
+                                                    >
+                                                        <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
+                                                    </div>
                                                 )}
-                                            >
-                                                <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
-                                            </div>
-                                        )}
-                                    </Draggable>
-                                ))}
-                                {provided.placeholder}
-                            </div>
-                        )}
-                    </Droppable>
+                                            </Draggable>
+                                        ))}
+                                        {provided.placeholder}
+                                    </div>
+                                )}
+                            </Droppable>
+                        </Box>
+                        <Box style={{ marginTop: '10px' }}>
+                            <Button variant="contained" color="primary"  onClick={() => { copyParasToText() }}>
+                            Copy text
+                            </Button>
+                        </Box>
                     </Grid>
                 </Grid>
             </DragDropContext>

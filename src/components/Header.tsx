@@ -1,7 +1,7 @@
 //@ts-nocheck
 
 import React from 'react';
-import {Typography, Box} from '@material-ui/core';
+import {Card, CardContent, Typography, Box} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        margin: 2,
+        margin: 3,
         padding: 6,
         backgroundColor: '#eee'
     },
