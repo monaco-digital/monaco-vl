@@ -53,7 +53,7 @@ export const incrementAsync = amount => dispatch => {
 
 export const fetchAllParagraphs = () => (dispatch: Function) => {
   console.log("Fetch all paragraphs called")
-    const sheetsUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!F6:H?key=AIzaSyCbRwifccXG8NxW4zIK_wbbHSgEskoSkp4'
+    const sheetsUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!F6:I?key=AIzaSyCbRwifccXG8NxW4zIK_wbbHSgEskoSkp4'
     axios.get(sheetsUrl)
         .then((response) => {
             const { data: {values = [] } } = response;
@@ -62,8 +62,8 @@ export const fetchAllParagraphs = () => (dispatch: Function) => {
                 const dataPoint = {
                     id: index.toString(10),
                     paragraph: value[0],
-                    verticalHeight: value[1],
-                    topic: value[2] && value[2].split(',')
+                    verticalHeight: value[2],
+                    topic: value[3] && value[3].split(',')
                 }
                 return dataPoint;
             })
