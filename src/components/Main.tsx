@@ -1,16 +1,19 @@
 //@ts-nocheck
 import React, {useEffect, useState} from 'react';
-import {Grid, Paper, TextField, Box} from '@material-ui/core';
+import {Grid, Paper, TextField, Box, createStyles, Theme} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import {LetterParagraph} from './LetterParagraph';
-import { setFilter, fetchAllParagraphs, getFilteredParagraphs } from '../data/paragraphsDataSlice'
+import { updateAll } from '../data/paragraphsDataSlice'
 import { useSelector, useDispatch } from 'react-redux';
+import {getData} from '../api/vlmasersheet';
+import AppState from '../data/AppState';
+import {Paragraph} from '../data/types';
 
 interface Props {
 
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
     },
@@ -25,15 +28,38 @@ const useStyles = makeStyles((theme) => ({
 
 export const Main: React.FC<Props>= (props: Props) => {
     const classes = useStyles();
-    const dispatch = useDispatch()
-    
-    const filteredParagraphs = useSelector(getFilteredParagraphs)
-    const matches = filteredParagraphs && filteredParagraphs.length
-    const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => (dispatch(setFilter(event.target.value)));
+    const dispatch = useDispatch();
+    const data  = useSelector<AppState>((state) => state.paragraphs.all);
+    const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? []);
+    console.log('The  filtered data  is:  ' ,  filteredData);
+
+    const [filter, setFilter] = useState(null);
+
+    const matches = filteredData?.length
+
+    const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => (setFilter(event.target.value));
 
     useEffect(() => {
-        dispatch(fetchAllParagraphs())
+        async function captureData () {
+            const data = await getData();
+            dispatch(updateAll(data))
+        }
+        captureData();
+
       }, []);
+
+    useEffect(() => {
+        setFilteredData(data);
+    }, [data]);
+
+    useEffect(() => {
+        if (!filter) {
+            setFilteredData(data)
+            return;
+        }
+        const newData = data.filter(value => value.topic === filter)
+        setFilteredData(newData)
+    }, [filter]);
 
     return (
         <>
@@ -54,7 +80,7 @@ export const Main: React.FC<Props>= (props: Props) => {
                     </Paper>
                 </Grid>
                 <Grid item spacing={2} xs={12}>
-                    <LetterParagraph data={filteredParagraphs}/>
+                    <LetterParagraph paragraphs={filteredData}/>
                 </Grid>
             </Grid>
         </>

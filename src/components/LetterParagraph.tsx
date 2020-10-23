@@ -1,20 +1,44 @@
 //@ts-nocheck
-
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, {useEffect, useState} from 'react';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Paragraph } from './Paragraph';
 import { Box, Grid, Button } from '@material-ui/core';
-import { getFilteredParagraphs, getSelectedParagraphs, setSelectedParagraphs, setFilteredParagraphs } from '../data/paragraphsDataSlice'
 import { useSelector, useDispatch } from 'react-redux';
-import { reorder, move } from '../utils/paragraphUtils'
 import { RSA_PSS_SALTLEN_AUTO } from 'constants';
 
 interface Props {
-    data: any
+    paragraphs: Paragraph[]
 }
 
-const useStyles = makeStyles((theme) => ({
+// a little function to help us with reordering the result
+const reorder = (list: any, startIndex: number, endIndex: number) => {
+    const result = Array.from(list);
+    const [removed] = result.splice(startIndex, 1);
+    result.splice(endIndex, 0, removed);
+
+    return result;
+};
+
+/**
+ * Moves an item from one list to another list.
+ */
+const move = (source: any, destination: any, droppableSource: any, droppableDestination: any) => {
+    const sourceClone = Array.from(source);
+    const destClone = Array.from(destination);
+    const [removed] = sourceClone.splice(droppableSource.index, 1);
+
+    destClone.splice(droppableDestination.index, 0, removed);
+
+    const result = {} as any;
+    result[droppableSource.droppableId] = sourceClone;
+    result[droppableDestination.droppableId] = destClone;
+
+    return result;
+};
+
+
+const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
     },
@@ -72,10 +96,17 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 
     const classes = useStyles();
 
-    const filteredParagraphs = useSelector(getFilteredParagraphs)
-    const selectedParagraphs = useSelector(getSelectedParagraphs)
-    // const selectedIds = selectedParagraphs.map((p) => p.id)
-    const dispatch = useDispatch()
+    const { paragraphs } = props;
+
+    const [paragraphOptions, setParagraphOptions] = useState(paragraphs ?? []);
+    const [selectedParagraphs, setSelectedParagraphs] = useState([]);
+
+    useEffect(() => {
+        setParagraphOptions(paragraphs);
+    }, [paragraphs]);
+
+
+    console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions);
 
     const copyParasToText = () => {
         const x = selectedParagraphs.map((item) => (item.paragraph)).join('\n\n')
@@ -84,7 +115,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 
     const getList = (id) => {
         if (id === 'paragraphList') {
-            return filteredParagraphs;
+            return paragraphOptions;
         } else if (id === 'letterList') {
             return selectedParagraphs;
         }
@@ -104,10 +135,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
             );
 
             if (source.droppableId === 'letterList') {
-                dispatch(setSelectedParagraphs(reordered))
-            } else {
-                dispatch(setFilteredParagraphs(reordered))
+                setSelectedParagraphs(reordered)
             }
+
         } else {
             const updatedLists = move(
                 getList(source.droppableId),
@@ -115,8 +145,8 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                 source,
                 destination
             );
-            dispatch(setFilteredParagraphs(updatedLists.paragraphList))
-            dispatch(setSelectedParagraphs(updatedLists.letterList))
+            setParagraphOptions(updatedLists.paragraphList)
+            setSelectedParagraphs(updatedLists.letterList)
         }
     };
 
@@ -130,7 +160,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                                 <div
                                     style={{ margin: 'auto' }}
                                     ref={provided.innerRef}>
-                                    {filteredParagraphs?.map((item, index) => {
+                                    {paragraphOptions?.map((item, index) => {
                                         return (
                                             <Draggable
                                                 key={item.id}
@@ -163,8 +193,8 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                             <div>
                                 <div style={{ textAlign: 'right', marginBottom: '10px' }}>[Address]</div>
                                 <div style={{ textAlign: 'left', marginBottom: '10px' }}>[Address]</div>
-                                <div style={{ textAlign: 'left', marginBottom: '10px', fontWeight: 'bold' }}>Without prejudice</div>    
-                            </div>                            
+                                <div style={{ textAlign: 'left', marginBottom: '10px', fontWeight: 'bold' }}>Without prejudice</div>
+                            </div>
                             <Droppable droppableId="letterList">
                                 {(provided, snapshot) => (
                                     <div
