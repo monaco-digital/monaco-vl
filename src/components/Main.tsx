@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {getData} from '../api/vlmasersheet';
 import AppState from '../data/AppState';
 import {Paragraph} from '../data/types';
+import {Filter} from './Filter';
 
 interface Props {
 
@@ -16,13 +17,15 @@ interface Props {
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
+        background: theme.palette.background.default,
+        padding: '1rem',
+        paddingTop:'2rem'
     },
     paper: {
         height: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
-        backgroundColor: 'yellow'
+        color: theme.palette.text.secondary
     },
 }));
 
@@ -63,21 +66,9 @@ export const Main: React.FC<Props>= (props: Props) => {
 
     return (
         <>
-            <Grid container spacing={0}>
-                <Grid item spacing={0} xs={12} style={{ height: "15vh" }}>
-                    <Paper className={classes.paper}>
-                        <TextField
-                            id="topic-filter"
-                            label="Topic Filter"
-                            type="search"
-                            variant="outlined"
-                            style={{ background: 'white'}}
-                            onChange={onFilterChange}
-                        />
-                        <Box>
-                        {matches} matches...
-                        </Box>
-                    </Paper>
+            <Grid container spacing={2} className={classes.root}>
+                <Grid item spacing={0} xs={12}>
+                    <Filter onFilterChange={onFilterChange}/>
                 </Grid>
                 <Grid item spacing={2} xs={12}>
                     <LetterParagraph paragraphs={filteredData}/>

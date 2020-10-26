@@ -102,7 +102,10 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
     const [selectedParagraphs, setSelectedParagraphs] = useState([]);
 
     useEffect(() => {
-        setParagraphOptions(paragraphs);
+        const selectedParagraphsIds = selectedParagraphs.map(paragraph => paragraph.id);
+        //filter out already selcted paragraphs
+        const uParagraphs = paragraphs.filter(({ id }) => !selectedParagraphsIds.includes(id));
+        setParagraphOptions(uParagraphs);
     }, [paragraphs]);
 
 
