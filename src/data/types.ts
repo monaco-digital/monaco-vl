@@ -37,33 +37,42 @@ export const ParagraphTopics = {
   POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL'
 }
 
-export const ParagraphTopicMapping =  {
-  E: ParagraphTopics.EMPLOYED,
-  T: ParagraphTopics.DISMISSED,
-  R: ParagraphTopics.REDUNDANCY,
-  D: ParagraphTopics.DISCRIMINATION,
-  B: ParagraphTopics.BULLYING,
-  P: ParagraphTopics.PERFORMANCE,
-  C: ParagraphTopics.CORONAVIRUS,
-  H: ParagraphTopics.HEALTH_SAFETY,
-  W: ParagraphTopics.WHISTLEBLOWING,
-  S: ParagraphTopics.SICKNESS,
-  Mh: ParagraphTopics.MENTAL_HEALTH,
-  M: ParagraphTopics.MONEY_OWED,
-  Rd: ParagraphTopics.RESIGNED,
-  Sn: ParagraphTopics.SUSPENSION,
-  Mt: ParagraphTopics.MISCONDUCT,
-  F: ParagraphTopics.FAILURE_TO_PROVIDE_PARTCULARS,
-  G: ParagraphTopics.GRIEVANCE,
-  DP: ParagraphTopics.PREGNANCY,
-  DM: ParagraphTopics.MATERNITY,
-  DS: ParagraphTopics.SEX,
-  DSy: ParagraphTopics.SEXUALITY,
-  DR: ParagraphTopics.RACE,
-  DRn: ParagraphTopics.RELIGION_BELIEF,
-  DA: ParagraphTopics.AGE,
-  DD: ParagraphTopics.DISABILITY,
-  DMe: ParagraphTopics.MARRIAGE_CIVIL_PARTNERSHIP,
-  DG: ParagraphTopics.GENDER_REASSIGNMENT,
-  DPp: ParagraphTopics.POLITICAL_PHILOSOPHICAL
+export const ParagraphTopicMapping = {
+
+  EMPLOYED: 'E',
+  DISMISSED: 'T',
+  REDUNDANCY:  'R',
+  DISCRIMINATION: 'D',
+  BULLYING:  'B',
+  PERFORMANCE: 'P',
+  CORONAVIRUS:  'C',
+  HEALTH_SAFETY: 'H',
+  WHISTLEBLOWING: 'W',
+  SICKNESS: 'S',
+  MENTAL_HEALTH: 'Mh',
+  MONEY_OWED:  'M',
+  RESIGNED:  'Rd',
+  SUSPENSION:  'Sn',
+  MISCONDUCT:  'Mt',
+  FAILURE_TO_PROVIDE_PARTCULARS: 'F',
+  GRIEVANCE:  'G',
+  PREGNANCY: 'DP',
+  MATERNITY:  'DM',
+  SEX: 'DS',
+  SEXUALITY: 'DSy',
+  RACE: 'DR',
+  RELIGION_BELIEF: 'DRn',
+  AGE: 'DA',
+  DISABILITY: 'DD',
+  MARRIAGE_CIVIL_PARTNERSHIP: 'DMe',
+  GENDER_REASSIGNMENT: 'DG',
+  POLITICAL_PHILOSOPHICAL:  'DPI'
+
+}
+export const TopicAlgebraOperators = {
+  AND: '+',
+  OR: ',',
+  OPEN_ENCLOSURE: '(',
+  CLOSE_ENCLOSURE: ')',
+  NOT: '!'
 }

@@ -9,6 +9,7 @@ import {getData} from '../api/vlmasersheet';
 import AppState from '../data/AppState';
 import {Paragraph} from '../data/types';
 import {Filter} from './Filter';
+import {filterByExactTopicMatch, filterByOrMatch} from '../filters';
 
 interface Props {
 
@@ -30,17 +31,26 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 }));
 
 export const Main: React.FC<Props>= (props: Props) => {
+
     const classes = useStyles();
     const dispatch = useDispatch();
     const data  = useSelector<AppState>((state) => state.paragraphs.all);
     const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? []);
     console.log('The  filtered data  is:  ' ,  filteredData);
 
-    const [filter, setFilter] = useState(null);
+    // filter for exact match
+    const [filter, setFilter] = useState<string>(null);
+    const [orFitler, setOrFitler] = useState<string[]>([] );
 
     const matches = filteredData?.length
 
-    const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => (setFilter(event.target.value));
+    const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        setFilter(event.target.value);
+    }
+
+    const onOrFilterChange = (topics: string[]): void => {
+        setOrFitler(topics);
+    }
 
     useEffect(() => {
         async function captureData () {
@@ -56,19 +66,20 @@ export const Main: React.FC<Props>= (props: Props) => {
     }, [data]);
 
     useEffect(() => {
-        if (!filter) {
-            setFilteredData(data)
-            return;
-        }
-        const newData = data.filter(value => value.topic === filter)
-        setFilteredData(newData)
-    }, [filter]);
+
+            //run filter 1
+            const newData1 = filterByExactTopicMatch(data,filter);
+            //run filter 2 for or logic
+            const newData2 = filterByOrMatch(newData1,orFitler);
+            setFilteredData(newData2)
+
+    }, [filter, orFitler]);
 
     return (
         <>
             <Grid container spacing={2} className={classes.root}>
                 <Grid item spacing={0} xs={12}>
-                    <Filter onFilterChange={onFilterChange}/>
+                    <Filter onFilterChange={onFilterChange} onOrFilterChange={onOrFilterChange} matches={matches}/>
                 </Grid>
                 <Grid item spacing={2} xs={12}>
                     <LetterParagraph paragraphs={filteredData}/>
