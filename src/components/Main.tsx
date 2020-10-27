@@ -77,7 +77,7 @@ export const Main: React.FC<Props>= (props: Props) => {
 
     return (
         <>
-            <Grid container spacing={2} className={classes.root}>
+            <Grid container spacing={2} className={classes.root} >
                 <Grid item spacing={0} xs={12}>
                     <Filter onFilterChange={onFilterChange} onOrFilterChange={onOrFilterChange} matches={matches}/>
                 </Grid>

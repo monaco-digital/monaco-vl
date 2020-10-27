@@ -17,3 +17,15 @@ export const filterByOrMatch = (data: Paragraph[], topic: string[]): Paragraph[]
         return topic.some(r => topicList?.indexOf(r) >= 0 )
     })
 }
+
+
+//export const filterByGeneralMatch = (data: Paragraph[], topics: string []): Paragraph[] => {
+//    if (!(topics?.length > 0)) {
+//        return data;
+//    }
+
+    //filter from must data
+    //filter from
+    //return null;
+
+//}
