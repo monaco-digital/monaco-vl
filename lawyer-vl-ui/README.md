@@ -37,6 +37,20 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `amplify publish`
+
+To publish the app - "amplify publish" will build all your local backend and frontend resources (if you have hosting category added) and provision it in the cloud
+
+
+### Other Amplify CLI commands
+"amplify console" to open the Amplify Console and view your project status
+"amplify status" will show you what you've added already and if it's locally configured or deployed
+"amplify add <category>" will allow you to add features like user login or a backend API
+"amplify push" will build all your local backend resources and provision it in the cloud
+Pro tip:
+Try "amplify add api" to create a backend API and then "amplify publish" to deploy everything
+
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).

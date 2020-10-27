@@ -1,0 +1,6 @@
+export const primary: string  = '#2962ff'
+export const primaryDark: string = '#0d47a1'
+export const secondary: string = '#ffb300'
+export const secondaryDark: string = '#ef6c00'
+export const background: string = '#42a5f5'
+export const paper: string = '#fafafa'
