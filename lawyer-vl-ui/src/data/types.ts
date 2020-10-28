@@ -4,6 +4,10 @@ export interface Paragraph {
   verticalHeight: number,
   topic: string[]
   topicList: string[]
+  eitherTopics?: string[]
+  mustTopics?: string[]
+  notTopics?: string[]
+
 }
 
 export const ParagraphTopics = {
