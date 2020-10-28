@@ -39,6 +39,7 @@ export const ParagraphTopics = {
   POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL'
 }
 
+
 export const ParagraphTopicMapping = {
 
   EMPLOYED: 'E',
