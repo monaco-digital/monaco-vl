@@ -33,12 +33,14 @@ export const Paragraph: React.FC<Props>= (props: Props) => {
 
     return (
         <Box className={classes.cardcontent}>
-            <Typography variant="body2"  component="p" style={{ textAlign: 'left' }} >
+            <Typography variant="body1"  component="p" style={{ textAlign: 'left' }} >
                 { paragraph }
             </Typography>
+            <Typography variant="caption"  component="p" style={{ textAlign: 'left' , padding: '1px'}} >
             <div style={{ textAlign: 'right', fontSize: '8px' }}>
-            {verticalHeight}  {topic}
+                <b>Vertical Height:</b> {verticalHeight} | <b>Topic:</b>  {topic}
             </div>
+            </Typography>
         </Box>
     )
 }

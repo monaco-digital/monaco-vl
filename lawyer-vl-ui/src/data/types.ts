@@ -2,12 +2,10 @@ export interface Paragraph {
   id: string,
   paragraph: string,
   verticalHeight: number,
-  topic: string[]
-  topicList: string[]
-  eitherTopics?: string[]
-  mustTopics?: string[]
-  notTopics?: string[]
-
+  topic: string,
+  topicsOneOf: string[]
+  topicsAllOf: string[]
+  topicsNoneOf: string[]
 }
 
 export const ParagraphTopics = {

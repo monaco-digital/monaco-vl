@@ -9,7 +9,7 @@ import {getData} from '../api/vlmasersheet';
 import AppState from '../data/AppState';
 import {Paragraph} from '../data/types';
 import {Filter} from './Filter';
-import {filterByExactTopicMatch, filterByOrMatch} from '../filters';
+import {filterByExactTopicMatch, filterByGeneralMatch, filterByOrMatch} from '../filters';
 
 interface Props {
 
@@ -69,8 +69,9 @@ export const Main: React.FC<Props>= (props: Props) => {
 
             //run filter 1
             const newData1 = filterByExactTopicMatch(data,filter);
+
             //run filter 2 for or logic
-            const newData2 = filterByOrMatch(newData1,orFitler);
+            const newData2 = filterByGeneralMatch(newData1,orFitler);
             setFilteredData(newData2)
 
     }, [filter, orFitler]);
