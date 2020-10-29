@@ -15,11 +15,11 @@ export const getData = async (): Promise<any>  => {
 
         //disjoin by , trim and convert into an array and convert D to an array to subsets
 
-        const topicsOneOf = replaceDInArrayOfTopics(topicOneOfValue?.split(',')?.map(topic => topic.trim()))
+        const topicsOneOf = replaceDInArrayOfTopics((topicOneOfValue?topicOneOfValue.split(','):[])?.map(topic => topic.trim()))
 
-        const topicsAllOf = replaceDInArrayOfTopics(topicAllOfValue?.split(',')?.map(topic => topic.trim()))
+        const topicsAllOf = replaceDInArrayOfTopics((topicAllOfValue?topicAllOfValue.split(','):[])?.map(topic => topic.trim()))
 
-        const topicsNoneOf = replaceDInArrayOfTopics(topicNoneOfValue?.split(',')?.map(topic => topic.trim()))
+        const topicsNoneOf = replaceDInArrayOfTopics((topicNoneOfValue?topicNoneOfValue.split(','):[])?.map(topic => topic.trim()))
 
         const topic = `(${topicOneOfValue ?? ''}) + allOf(${topicAllOfValue ?? ''}) + !(${topicNoneOfValue ?? ''})`
 
