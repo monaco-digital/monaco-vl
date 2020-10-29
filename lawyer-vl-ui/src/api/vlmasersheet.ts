@@ -33,6 +33,6 @@ export const getData = async (): Promise<any>  => {
             topicsNoneOf
         }
         return dataPoint;
-    })
+    }).filter(paragraph => !!paragraph.paragraph)
     return data;
 }
