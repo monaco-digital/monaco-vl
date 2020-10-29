@@ -62,11 +62,11 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 const grid = 8;
 
-const getItemStyle = (isDragging, draggableStyle) => ({
+const getItemStyle = (side: 'pList' | 'letter',isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: 'none',
-    padding: grid * 2,
-    margin: `0 0 ${grid}px 0`,
+    padding: (side === 'pList')?grid * 2:grid * 1,
+    margin: `0 0 ${(side === 'pList')?grid:(grid / 2)}px 0`,
 
     // change background colour if dragging
     background: isDragging ? 'lightblue' : 'white',
@@ -83,6 +83,11 @@ const getListStyle = isDraggingOver => ({
     height: '85vh',
     overflowY: 'scroll'
 });
+
+const getParagraphContentStyle = () => ({
+    margin: 'auto',
+    minHeight: '100%'
+})
 
 const getLetterContentStyle = isDraggingOver => ({
     padding: '4px',
@@ -161,7 +166,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                         {(provided, snapshot) => (
                             <Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
                                 <div
-                                    style={{ margin: 'auto' }}
+                                    style={getParagraphContentStyle()}
                                     ref={provided.innerRef}>
                                     {paragraphOptions?.map((item, index) => {
                                         return (
@@ -176,6 +181,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
+                                                            'pList',
                                                             snapshot.isDragging,
                                                             provided.draggableProps.style
                                                         )}
@@ -214,6 +220,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
                                                         {...provided.draggableProps}
                                                         {...provided.dragHandleProps}
                                                         style={getItemStyle(
+                                                            'letter',
                                                             snapshot.isDragging,
                                                             provided.draggableProps.style
                                                         )}
