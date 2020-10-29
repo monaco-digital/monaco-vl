@@ -1,12 +1,12 @@
-import React from 'react';
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom"
 import './App.css'
-import DesktopApp from './apps/DesktopApp';
-import MobileApp from './apps/MobileApp';
+import DesktopApp from './apps/DesktopApp'
+import MobileApp from './apps/MobileApp'
 
 function App() {
   return (
@@ -23,4 +23,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
