@@ -1,11 +1,9 @@
-import {Paragraph} from './types';
+import { Paragraph } from './types'
 
 export type AppState = {
-    paragraphs: {
-        all: Paragraph[]
-    }
+	paragraphs: {
+		all: Paragraph[]
+	}
 }
 
-
-export default AppState;
-
+export default AppState
