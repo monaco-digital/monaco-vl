@@ -1,0 +1,41 @@
+.footer {
+	@apply .w-full .shadow-2xl .fixed .bottom-0 .py-2 .border-t .border-gray-light;
+
+	.footer__actions {
+		@apply .flex .flex-wrap .justify-between;
+
+		button {
+			@apply .text-4xl;
+		}
+
+		.footer__actions-back,
+		.footer__actions-forward {
+			@apply .text-black;
+		}
+
+		.footer__actions-info {
+			@apply .text-ms-blue;
+		}
+
+		.footer__actions-info,
+		.footer__actions-back,
+		.footer__actions-forward {
+			transition: opacity 0.3s;
+			&:hover,
+			&:active,
+			&:focus {
+				@apply .opacity-75;
+			}
+		}
+
+		.footer__actions--disabled {
+			@apply .cursor-not-allowed .opacity-50 .text-black;
+
+			&:hover,
+			&:active,
+			&:focus {
+				@apply .opacity-25;
+			}
+		}
+	}
+}

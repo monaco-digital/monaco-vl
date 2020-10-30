@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../Header'
-import logo from './../../../../img/monaco-solicitors-logo.svg'
+import Footer from '../Footer'
+import Screen from '../Screen'
+import ScreenContext from '../../context'
+import filters from '../../data/filters'
 
 const Main = () => {
+	const [screen, setScreen] = useState(0)
+
 	return (
-		<Header className="header">
-			<img src={logo} />
-		</Header>
+		<ScreenContext.Provider value={{ screen, setScreen, filters }}>
+			<main className="main">
+				<Header />
+				<Screen />
+				<Footer />
+			</main>
+		</ScreenContext.Provider>
 	)
 }
 

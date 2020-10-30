@@ -1,0 +1,28 @@
+.filter {
+	@apply .w-1/2 .p-2;
+
+	.filter__text {
+		transition: all 0.3s;
+		@apply .font-serif .text-sm .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .h-20 .max-w-md .items-center .justify-center .flex;
+	}
+
+	.filter__text--active {
+		@apply .text-green .border-green-light .bg-green-lighter;
+	}
+
+	&:hover {
+		.filter__text--active {
+			@apply .bg-green-lighter !important;
+		}
+		.filter__text {
+			@apply .bg-gray-light;
+		}
+	}
+
+	&:active,
+	&:focus {
+		.filter__text {
+			@apply .shadow-inner;
+		}
+	}
+}

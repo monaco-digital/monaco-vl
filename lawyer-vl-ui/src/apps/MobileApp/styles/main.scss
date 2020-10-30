@@ -1,6 +1,11 @@
 @import 'tailwindcss/base';
+@import './typography.scss';
 @import './general.scss';
+@import './screen.scss';
+@import './filters.scss';
+@import './filter.scss';
 @import './navigation/header.scss';
+@import './navigation/footer.scss';
 
 @import 'tailwindcss/components';
 

@@ -1,3 +1,7 @@
 .header {
-	@apply .shadow;
+	@apply .py-4 .shadow;
+
+	.header__logo {
+		@apply .h-8;
+	}
 }
