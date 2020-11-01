@@ -1,24 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ScreenContext from '../../context'
 import Filters from '../Filters'
 import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 
 const Screen = () => {
+	const {
+		startFilterFlow,
+		startParagraphPreviewFlow,
+		startParagraphsEditMode,
+	} = useContext(ScreenContext)
+
 	return (
-		<ScreenContext.Consumer>
-			{({
-				startFilterFlow,
-				startParagraphPreviewFlow,
-				startParagraphsEditMode,
-			}) => (
-				<div className="screen container">
-					{startFilterFlow && <Filters />}
-					{startParagraphPreviewFlow && <ParagraphsPreview />}
-					{startParagraphsEditMode && <ParagraphsEditMode />}
-				</div>
-			)}
-		</ScreenContext.Consumer>
+		<div className="screen container">
+			{startFilterFlow && <Filters />}
+			{startParagraphPreviewFlow && <ParagraphsPreview />}
+			{startParagraphsEditMode && <ParagraphsEditMode />}
+		</div>
 	)
 }
 

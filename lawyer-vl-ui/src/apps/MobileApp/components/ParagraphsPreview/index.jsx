@@ -6,7 +6,12 @@ import Button from '../Button'
 import paragraphs from '../../data/paragraphs'
 
 const ParagraphsPreview = () => {
-	const { activeFilters, setFilteredParagraphs } = useContext(ScreenContext)
+	const {
+		activeParagraphs,
+		activeFilters,
+		filteredParagraphs,
+		setFilteredParagraphs,
+	} = useContext(ScreenContext)
 	const aggregateAndSetParagraphs = () => {
 		const aggregatedActiveParagraphs = []
 
@@ -26,19 +31,19 @@ const ParagraphsPreview = () => {
 	}
 
 	return (
-		<ScreenContext.Consumer>
-			{({ filteredParagraphs }) => (
-				<>
-					<Title title="Tap accordingly." />
-					<Button type="neutral" text="Selected:" fn={() => test('hello')} />
-					<div className="paragraphs">
-						{filteredParagraphs.map(paragraphText => (
-							<Paragraph paragraphText={paragraphText} />
-						))}
-					</div>
-				</>
-			)}
-		</ScreenContext.Consumer>
+		<>
+			<Title title="Tap accordingly." />
+			<Button
+				type="neutral"
+				text={`Selected: ${activeParagraphs.length}`}
+				fn={() => test('hello')}
+			/>
+			<div className="paragraphs">
+				{filteredParagraphs.map(paragraphText => (
+					<Paragraph paragraphText={paragraphText} />
+				))}
+			</div>
+		</>
 	)
 }
 
