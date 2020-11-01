@@ -1,0 +1,22 @@
+.button {
+	transition: all 0.3s;
+	@apply .font-medium .text-white .font-sans .shadow-xl .rounded .p-2;
+
+	&:hover,
+	&:active,
+	&:focus {
+		@apply .shadow-2xl .opacity-75;
+	}
+}
+
+.button--main {
+	@apply .bg-ms-orange;
+}
+
+.button--secondary {
+	@apply .bg-ms-blue;
+}
+
+.button--neutral {
+	@apply .bg-black;
+}

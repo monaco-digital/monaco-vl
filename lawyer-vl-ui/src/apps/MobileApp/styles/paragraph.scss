@@ -1,0 +1,23 @@
+.paragraph {
+	@apply .mb-6;
+
+	.paragraph__text {
+		transition: all 0.3s;
+		min-height: 4rem;
+		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block   .items-center .justify-center .flex;
+	}
+
+	.paragraph__text--active {
+		@apply .text-green .border-green-light .bg-green-lighter;
+	}
+
+	&:hover {
+		.paragraph__text--active {
+			@apply .bg-green-lighter !important;
+		}
+
+		.paragraph__text {
+			@apply .bg-gray-light .shadow-2xl;
+		}
+	}
+}

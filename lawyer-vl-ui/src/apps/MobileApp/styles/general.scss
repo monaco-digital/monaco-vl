@@ -14,6 +14,10 @@ button {
 	}
 }
 
+.main {
+	@apply .pb-12;
+}
+
 /* Containers */
 .container {
 	@apply .w-full .mx-auto .px-4;

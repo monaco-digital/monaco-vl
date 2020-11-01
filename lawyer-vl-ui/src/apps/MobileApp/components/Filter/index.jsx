@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
 
 const Filter = ({ filterValue }) => {
-	const [active, setActive] = useState(false)
-	const handleOnClick = setActiveFilters => {
+	const { activeFilters, setActiveFilters } = useContext(ScreenContext)
+	const handleOnClick = () => {
 		setActiveFilters(filters => {
 			const isAlreadyActive = filters.includes(filterValue)
 
@@ -14,28 +14,19 @@ const Filter = ({ filterValue }) => {
 				return [...filters, filterValue]
 			}
 		})
-		setActive(!active)
 	}
+	const classes = classNames('filter__text', {
+		'filter__text--active': activeFilters.find(value => value === filterValue),
+	})
 	return (
-		<ScreenContext.Consumer>
-			{({ activeFilters, setActiveFilters }) => {
-				const classes = classNames('filter__text', {
-					'filter__text--active': activeFilters.find(
-						value => value === filterValue
-					),
-				})
-				return (
-					<button
-						type="button"
-						aria-label={filterValue}
-						className="filter"
-						onClick={() => handleOnClick(setActiveFilters)}
-					>
-						<span className={classes}>{filterValue}</span>
-					</button>
-				)
-			}}
-		</ScreenContext.Consumer>
+		<button
+			type="button"
+			aria-label={filterValue}
+			className="filter"
+			onClick={() => handleOnClick()}
+		>
+			<span className={classes}>{filterValue}</span>
+		</button>
 	)
 }
 

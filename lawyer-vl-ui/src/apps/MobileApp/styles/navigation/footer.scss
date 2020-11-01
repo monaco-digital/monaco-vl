@@ -1,5 +1,5 @@
 .footer {
-	@apply .w-full .shadow-2xl .fixed .bottom-0 .py-2 .border-t .border-gray-light;
+	@apply .bg-white .w-full .shadow-2xl .fixed .bottom-0 .py-2 .border-t .border-gray-light;
 
 	.footer__actions {
 		@apply .flex .flex-wrap .justify-between;
