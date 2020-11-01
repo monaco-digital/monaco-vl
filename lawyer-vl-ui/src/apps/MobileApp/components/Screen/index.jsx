@@ -1,13 +1,20 @@
 import React from 'react'
-import Filters from '../Filters'
+import ScreenContext from '../../context'
 import Title from '../Title'
+import Filters from '../Filters'
+import ParagraphsPreview from '../ParagraphsPreview'
 
 const Screen = () => {
 	return (
-		<div className="screen container">
-			<Title title="Tap all that apply" />
-			<Filters />
-		</div>
+		<ScreenContext.Consumer>
+			{({ startFilterFlow, startParagraphPreviewFlow }) => (
+				<div className="screen container">
+					<Title title="Tap all that apply" />
+					{startFilterFlow && <Filters />}
+					{startParagraphPreviewFlow && <ParagraphsPreview />}
+				</div>
+			)}
+		</ScreenContext.Consumer>
 	)
 }
 

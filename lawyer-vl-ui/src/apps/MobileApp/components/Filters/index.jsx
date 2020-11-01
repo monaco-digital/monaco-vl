@@ -7,9 +7,8 @@ const Filters = () => {
 		<ScreenContext.Consumer>
 			{({ screen, filters }) => (
 				<div className="filters">
-					{console.log(screen)}
-					{filters[screen].map(filter => (
-						<Filter filter={filter} />
+					{filters[screen].map((filterValue, i) => (
+						<Filter key={`${filterValue}-${i}`} filterValue={filterValue} />
 					))}
 				</div>
 			)}

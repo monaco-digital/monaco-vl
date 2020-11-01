@@ -7,9 +7,26 @@ import filters from '../../data/filters'
 
 const Main = () => {
 	const [screen, setScreen] = useState(0)
+	const [activeFilters, setActiveFilters] = useState([])
+	const [startFilterFlow, setStartFilterFlow] = useState(true)
+	const [startParagraphPreviewFlow, setStartParagraphPreviewFlow] = useState(
+		false
+	)
 
 	return (
-		<ScreenContext.Provider value={{ screen, setScreen, filters }}>
+		<ScreenContext.Provider
+			value={{
+				screen,
+				setScreen,
+				filters,
+				activeFilters,
+				setActiveFilters,
+				startFilterFlow,
+				setStartFilterFlow,
+				startParagraphPreviewFlow,
+				setStartParagraphPreviewFlow,
+			}}
+		>
 			<main className="main">
 				<Header />
 				<Screen />

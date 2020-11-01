@@ -3,24 +3,45 @@ import classNames from 'classnames'
 import ScreenContext from '../../context'
 
 const Footer = () => {
-	const handleGoBack = setScreen => {
-		console.log('handleGoBack')
+	const handleGoBack = (screen, setScreen) => {
+		const isFistFilterScreen = screen === 0
+
+		if (isFistFilterScreen) {
+			return
+		}
+
 		setScreen(screen => (screen -= 1))
 	}
 	const handleMoreInfo = () => {}
-	const handleGoForward = setScreen => {
-		console.log('handleGoForward')
+	const handleGoForward = (
+		screen,
+		setScreen,
+		setStartFilterFlow,
+		setStartParagraphPreviewFlow
+	) => {
+		const isLastFilterScreen = screen === 2
+
+		if (isLastFilterScreen) {
+			setStartFilterFlow(false)
+			setStartParagraphPreviewFlow(true)
+		}
+
 		setScreen(screen => (screen += 1))
 	}
 
 	return (
 		<ScreenContext.Consumer>
-			{({ setScreen, screen }) => {
+			{({
+				screen,
+				setScreen,
+				setStartFilterFlow,
+				setStartParagraphPreviewFlow,
+			}) => {
 				const classBack = classNames('footer__actions-back', {
 					'footer__actions--disabled': screen === 0,
 				})
 				const classForward = classNames('footer__actions-forward', {
-					'footer__actions--disabled': screen === 2,
+					'footer__actions--disabled': false, // for now hardcode to false,
 				})
 				return (
 					<footer className="footer">
@@ -30,8 +51,9 @@ const Footer = () => {
 									className={classBack}
 									aria-label="Go back"
 									type="button"
-									onClick={() => handleGoBack(setScreen)}
+									onClick={() => handleGoBack(screen, setScreen)}
 								>
+									{'<'}
 									<i className="fas fa-chevron-left"></i>
 								</button>
 								<button
@@ -40,21 +62,27 @@ const Footer = () => {
 									type="button"
 									onClick={handleMoreInfo}
 								>
+									info
 									<i className="far fa-question-circle"></i>
 								</button>
 								<button
 									className={classForward}
 									aria-label="Go forward"
 									type="button"
-									onClick={() => handleGoForward(setScreen)}
+									onClick={() =>
+										handleGoForward(
+											screen,
+											setScreen,
+											setStartFilterFlow,
+											setStartParagraphPreviewFlow
+										)
+									}
 								>
+									{'>'}
 									<i className="fas fa-chevron-right"></i>
 								</button>
 							</div>
 						</div>
-						{
-							//JSON.stringify(screen)
-						}
 					</footer>
 				)
 			}}
