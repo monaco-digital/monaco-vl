@@ -40,4 +40,4 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 
 ## compiled/generated files
-tailwind.output.css
+main.output.css
