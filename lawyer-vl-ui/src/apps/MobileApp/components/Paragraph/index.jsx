@@ -8,7 +8,8 @@ const Paragraph = ({ paragraphText }) => {
 		activeParagraphs,
 		setActiveParagraphs,
 		startParagraphsEditMode,
-		startParagraphDeleteMode,
+		startParagraphsDeleteMode,
+		startParagraphsReorderMode,
 	} = useContext(ScreenContext)
 	const handleOnClick = () => {
 		// avoid direct dlicks in the paragraphs during edit mode
@@ -31,6 +32,7 @@ const Paragraph = ({ paragraphText }) => {
 			return paragraphs.filter(value => value !== paragraphText)
 		})
 	}
+	const reorderParagraph = () => {}
 	const classes = classNames('paragraph__text', {
 		'paragraph__text--active':
 			!startParagraphsEditMode &&
@@ -39,10 +41,18 @@ const Paragraph = ({ paragraphText }) => {
 
 	return (
 		<div className="paragraph">
+			{startParagraphsReorderMode && (
+				<Button
+					type="secondary"
+					text="="
+					extraClasses="paragraph__reorder"
+					fn={() => reorderParagraph()}
+				/>
+			)}
 			<button className="paragraph__box" onClick={() => handleOnClick()}>
 				<span className={classes}>{paragraphText}</span>
 			</button>
-			{startParagraphDeleteMode && (
+			{startParagraphsDeleteMode && (
 				<Button
 					type="danger"
 					text="x"

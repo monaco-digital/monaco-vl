@@ -5,7 +5,11 @@
 
 	.paragraphs-edit-mode--delete {
 		.paragraph {
-			// @apply .-ml-16 .mr-16;
+			&:hover {
+				.paragraph__text {
+					@apply .text-ms-red .bg-ms-red-lighter .border-ms-red-light;
+				}
+			}
 		}
 	}
 }

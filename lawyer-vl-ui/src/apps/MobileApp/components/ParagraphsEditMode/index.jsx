@@ -7,19 +7,20 @@ import Button from '../Button'
 const ParagraphsEditMode = () => {
 	const {
 		activeParagraphs,
-		startParagraphDeleteMode,
+		startParagraphsDeleteMode,
 		setStartParagraphReorderMode,
-		startParagraphReorderMode,
+		startParagraphsReorderMode,
 		setStartParagraphDeleteMode,
 	} = useContext(ScreenContext)
 	const toggleReorderMode = () => {
-		setStartParagraphReorderMode(true)
+		setStartParagraphReorderMode(!startParagraphsReorderMode)
 	}
 	const toggleDeleteMode = () => {
-		setStartParagraphDeleteMode(!startParagraphDeleteMode)
+		setStartParagraphDeleteMode(!startParagraphsDeleteMode)
 	}
 	const paragraphsClasses = classNames('paragraphs', {
-		'paragraphs-edit-mode--delete': startParagraphDeleteMode,
+		'paragraphs-edit-mode--delete': startParagraphsDeleteMode,
+		'paragraphs-edit-mode--reorder': startParagraphsReorderMode,
 	})
 
 	return (

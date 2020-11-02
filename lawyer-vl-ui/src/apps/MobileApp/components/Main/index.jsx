@@ -15,10 +15,10 @@ const Main = () => {
 	const [startParagraphsEditMode, setStartParagraphsEditMode] = useState(false)
 	const [filteredParagraphs, setFilteredParagraphs] = useState([])
 	const [activeParagraphs, setActiveParagraphs] = useState([])
-	const [startParagraphDeleteMode, setStartParagraphDeleteMode] = useState(
+	const [startParagraphsDeleteMode, setStartParagraphDeleteMode] = useState(
 		false
 	)
-	const [startParagraphReorderMode, setStartParagraphReorderMode] = useState(
+	const [startParagraphsReorderMode, setStartParagraphReorderMode] = useState(
 		false
 	)
 
@@ -40,9 +40,9 @@ const Main = () => {
 				setStartParagraphsEditMode,
 				activeParagraphs,
 				setActiveParagraphs,
-				startParagraphDeleteMode,
+				startParagraphsDeleteMode,
 				setStartParagraphDeleteMode,
-				startParagraphReorderMode,
+				startParagraphsReorderMode,
 				setStartParagraphReorderMode,
 			}}
 		>
