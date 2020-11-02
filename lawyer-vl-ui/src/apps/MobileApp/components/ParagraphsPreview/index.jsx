@@ -11,6 +11,8 @@ const ParagraphsPreview = () => {
 		activeFilters,
 		filteredParagraphs,
 		setFilteredParagraphs,
+		setStartParagraphPreviewFlow,
+		setStartParagraphsEditMode,
 	} = useContext(ScreenContext)
 	const aggregateAndSetParagraphs = () => {
 		const aggregatedActiveParagraphs = []
@@ -21,14 +23,14 @@ const ParagraphsPreview = () => {
 
 		setFilteredParagraphs(aggregatedActiveParagraphs)
 	}
+	const enterParagraphEditMode = () => {
+		setStartParagraphPreviewFlow(false)
+		setStartParagraphsEditMode(true)
+	}
 
 	useEffect(() => {
 		aggregateAndSetParagraphs()
 	}, [])
-
-	const test = text => {
-		console.log(`This is the text ${text}`)
-	}
 
 	return (
 		<>
@@ -36,11 +38,14 @@ const ParagraphsPreview = () => {
 			<Button
 				type="neutral"
 				text={`Selected: ${activeParagraphs.length}`}
-				fn={() => test('hello')}
+				fn={() => enterParagraphEditMode()}
 			/>
 			<div className="paragraphs">
-				{filteredParagraphs.map(paragraphText => (
-					<Paragraph paragraphText={paragraphText} />
+				{filteredParagraphs.map((paragraphText, i) => (
+					<Paragraph
+						key={`${paragraphText}-${i}`}
+						paragraphText={paragraphText}
+					/>
 				))}
 			</div>
 		</>

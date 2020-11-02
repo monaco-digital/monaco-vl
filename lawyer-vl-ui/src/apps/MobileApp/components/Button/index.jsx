@@ -1,9 +1,9 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const Button = ({ type = 'main', text, fn }) => {
+const Button = ({ type = 'main', text, fn, extraClasses }) => {
 	const classes = classNames(
-		'button',
+		`${extraClasses} button`,
 		{
 			'button--main': type === 'main',
 		},
@@ -12,6 +12,9 @@ const Button = ({ type = 'main', text, fn }) => {
 		},
 		{
 			'button--neutral': type === 'neutral',
+		},
+		{
+			'button--danger': type === 'danger',
 		}
 	)
 	return (

@@ -15,6 +15,12 @@ const Main = () => {
 	const [startParagraphsEditMode, setStartParagraphsEditMode] = useState(false)
 	const [filteredParagraphs, setFilteredParagraphs] = useState([])
 	const [activeParagraphs, setActiveParagraphs] = useState([])
+	const [startParagraphDeleteMode, setStartParagraphDeleteMode] = useState(
+		false
+	)
+	const [startParagraphReorderMode, setStartParagraphReorderMode] = useState(
+		false
+	)
 
 	return (
 		<ScreenContext.Provider
@@ -34,6 +40,10 @@ const Main = () => {
 				setStartParagraphsEditMode,
 				activeParagraphs,
 				setActiveParagraphs,
+				startParagraphDeleteMode,
+				setStartParagraphDeleteMode,
+				startParagraphReorderMode,
+				setStartParagraphReorderMode,
 			}}
 		>
 			<main className="main">

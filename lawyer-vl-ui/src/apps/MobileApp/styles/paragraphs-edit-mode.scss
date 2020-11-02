@@ -1,0 +1,11 @@
+.paragraphs-edit-mode {
+	.paragraphs-edit-mode__actions {
+		@apply .flex .flex-wrap .justify-between .mb-8;
+	}
+
+	.paragraphs-edit-mode--delete {
+		.paragraph {
+			// @apply .-ml-16 .mr-16;
+		}
+	}
+}

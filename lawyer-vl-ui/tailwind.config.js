@@ -14,6 +14,7 @@ module.exports = {
       'green-lighter': '#DFFFD8',
       'ms-orange': '#FF9553',
       'ms-blue': '#4692B4',
+      'ms-red': '#E03131',
       'gray-light': '#eaedf1',
       gray: '#a0aec0',
       'black': '#414141'
