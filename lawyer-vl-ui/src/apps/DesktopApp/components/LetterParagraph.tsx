@@ -3,9 +3,30 @@ import React, {useEffect, useState} from 'react';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Paragraph } from './Paragraph';
-import { Box, Grid, Button } from '@material-ui/core';
+import {
+    Box,
+    Grid,
+    Button,
+    AccordionDetails,
+    Accordion,
+    AccordionSummary,
+    Typography,
+    TextField, Tab, Tabs, Paper
+} from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { RSA_PSS_SALTLEN_AUTO } from 'constants';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import {FilterButton} from './FilterButton';
+import {ParagraphTopics} from '../../../data/types';
+import PhoneIcon from '@material-ui/icons/Phone';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import PersonPinIcon from '@material-ui/icons/PersonPin'
+import {convertParagraphsForEditor, getEData} from './editor/convertParagraphs';
+import {SimpleEditor} from './editor/SimpleEditor';
+import AppState from '../../../data/AppState';
+import {LetterTop} from './letter/LetterTop';
+import {LetterBottom} from './letter/LetterBottom';
+import {CustomParagraphs} from '../../../data/static';
 
 interface Props {
     paragraphs: Paragraph[]
@@ -37,6 +58,33 @@ const move = (source: any, destination: any, droppableSource: any, droppableDest
     return result;
 };
 
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: any;
+    value: any;
+}
+
+function TabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box >
+                    {children}
+                </Box>
+            )}
+        </div>
+    );
+}
+
+
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
     root: {
@@ -57,7 +105,17 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
         background: 'white',
         width: '94%',
         minHeight: window.innerHeight - 250
-    }
+    },
+    heading: {
+        fontSize: theme.typography.pxToRem(15),
+        fontWeight: theme.typography.fontWeightBold,
+    },
+    button: {
+            margin: 2,
+            width: '10rem',
+            color: 'black',
+            background: theme.palette.secondary.light
+        }
 }));
 
 const grid = 8;
@@ -102,9 +160,31 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
     const classes = useStyles();
 
     const { paragraphs } = props;
-
     const [paragraphOptions, setParagraphOptions] = useState(paragraphs ?? []);
     const [selectedParagraphs, setSelectedParagraphs] = useState([]);
+    const [editorData, setEditorData]  = useState<any>([])
+    const [tabValue, setTabValue] = React.useState(0);
+
+    //top paragraphs
+
+
+
+    //bottom paragraphs
+
+
+
+    const handleChange = (event, newValue) => {
+        setTabValue(newValue);
+    };
+
+    const onSelectedParagraphChange = (paragraphs: Paragraphp[]): void => {
+        //add paragraphs to the top and bottom of the letter
+        const combinedParagraphs = [...CustomParagraphs.top, ...paragraphs, ...CustomParagraphs.bottom]
+        const eParagraphs = convertParagraphsForEditor(combinedParagraphs);
+        const eData = getEData(eParagraphs);
+        setEditorData(eData);
+    }
+
 
     useEffect(() => {
         const selectedParagraphsIds = selectedParagraphs.map(paragraph => paragraph.id);
@@ -112,6 +192,12 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
         const uParagraphs = paragraphs.filter(({ id }) => !selectedParagraphsIds.includes(id));
         setParagraphOptions(uParagraphs);
     }, [paragraphs]);
+
+    useEffect(() => {
+        console.log('Effect to call on select paragraphs change has been caleed with: ', selectedParagraphs);
+        onSelectedParagraphChange(selectedParagraphs);
+    }, [selectedParagraphs]);
+
 
 
     console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions);
@@ -160,90 +246,115 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 
     return (
         <>
-            <DragDropContext onDragEnd={onDragEnd}>
-                <Grid container spacing={0} xs={12}>
-                    <Droppable droppableId="paragraphList">
-                        {(provided, snapshot) => (
-                            <Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
-                                <div
-                                    style={getParagraphContentStyle()}
-                                    ref={provided.innerRef}>
-                                    {paragraphOptions?.map((item, index) => {
-                                        return (
-                                            <Draggable
-                                                key={item.id}
-                                                draggableId={item.id}
-                                                index={index}
-                                            >
-                                                {(provided, snapshot) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        style={getItemStyle(
-                                                            'pList',
-                                                            snapshot.isDragging,
-                                                            provided.draggableProps.style
-                                                        )}
-                                                    >
-                                                        <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        )
-                                    })}
-                                    {provided.placeholder}
-                                </div>
-                            </Grid>
-                        )}
-                    </Droppable>
-                    <Grid item xs={6} className={classes.letterContainer}>
-                        <Box className={classes.letterStyle}>
-                            <div>
-                                <div style={{ textAlign: 'right', marginBottom: '10px' }}>[Address]</div>
-                                <div style={{ textAlign: 'left', marginBottom: '10px' }}>[Address]</div>
-                                <div style={{ textAlign: 'left', marginBottom: '10px', fontWeight: 'bold' }}>Without prejudice</div>
-                            </div>
-                            <Droppable droppableId="letterList">
+            <Paper>
+                <Tabs
+                    variant="fullWidth"
+                    indicatorColor="secondary"
+                    textColor="secondary"
+                    aria-label="icon label tabs example"
+                    value={tabValue}
+                    onChange={handleChange}
+                >
+                    <Tab label="Paragraph Select"  wrapped={false}/>
+                    <Tab label="Editor"  wrapped={false}/>
+                </Tabs>
+                <TabPanel value={tabValue} index={0}>
+                    <DragDropContext onDragEnd={onDragEnd}>
+                        <Grid container spacing={0} xs={12}>
+                            <Droppable droppableId="paragraphList">
                                 {(provided, snapshot) => (
-                                    <div
-                                        ref={provided.innerRef}
-                                        style={getLetterContentStyle(snapshot.isDraggingOver)}>
-                                        {selectedParagraphs?.map((item, index) => (
-                                            <Draggable
-                                                key={item.id}
-                                                draggableId={item.id}
-                                                index={index}>
-                                                {(provided, snapshot) => (
-                                                    <div
-                                                        ref={provided.innerRef}
-                                                        {...provided.draggableProps}
-                                                        {...provided.dragHandleProps}
-                                                        style={getItemStyle(
-                                                            'letter',
-                                                            snapshot.isDragging,
-                                                            provided.draggableProps.style
-                                                        )}
+                                    <Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
+                                        <div
+                                            style={getParagraphContentStyle()}
+                                            ref={provided.innerRef}>
+                                            {paragraphOptions?.map((item, index) => {
+                                                return (
+                                                    <Draggable
+                                                        key={item.id}
+                                                        draggableId={item.id}
+                                                        index={index}
                                                     >
-                                                        <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
-                                                    </div>
-                                                )}
-                                            </Draggable>
-                                        ))}
-                                        {provided.placeholder}
-                                    </div>
+                                                        {(provided, snapshot) => (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={getItemStyle(
+                                                                    'pList',
+                                                                    snapshot.isDragging,
+                                                                    provided.draggableProps.style
+                                                                )}
+                                                            >
+                                                                <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                )
+                                            })}
+                                            {provided.placeholder}
+                                        </div>
+                                    </Grid>
                                 )}
                             </Droppable>
-                        </Box>
-                        <Box style={{ marginTop: '10px' }}>
-                            <Button variant="contained" color="primary"  onClick={() => { copyParasToText() }}>
-                            Copy text
-                            </Button>
-                        </Box>
-                    </Grid>
-                </Grid>
-            </DragDropContext>
+                            <Grid item xs={6} className={classes.letterContainer}>
+                                <Box className={classes.letterStyle}>
+                                    <div>
+                                        <LetterTop />
+                                    </div>
+                                    <Droppable droppableId="letterList">
+                                        {(provided, snapshot) => (
+                                            <div
+                                                ref={provided.innerRef}
+                                                style={getLetterContentStyle(snapshot.isDraggingOver)}>
+                                                {(selectedParagraphs.length === 0) && `[Note to user - drag and drop paragraphs here]`}
+                                                {selectedParagraphs?.map((item, index) => (
+                                                    <Draggable
+                                                        key={item.id}
+                                                        draggableId={item.id}
+                                                        index={index}>
+                                                        {(provided, snapshot) => (
+                                                            <div
+                                                                ref={provided.innerRef}
+                                                                {...provided.draggableProps}
+                                                                {...provided.dragHandleProps}
+                                                                style={getItemStyle(
+                                                                    'letter',
+                                                                    snapshot.isDragging,
+                                                                    provided.draggableProps.style
+                                                                )}
+                                                            >
+                                                                <Paragraph paragraph={item.paragraph} verticalHeight={item.verticalHeight} topic={item.topic} />
+                                                            </div>
+                                                        )}
+                                                    </Draggable>
+                                                ))}
+                                                {provided.placeholder}
+                                            </div>
+                                        )}
 
+                                    </Droppable>
+                                    <div>
+                                        <br/>
+                                        <LetterBottom/>
+                                    </div>
+                                </Box>
+                                <Box style={{ marginTop: '10px' }}>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        className={classes.button}
+                                        onClick={() => { copyParasToText() }}>
+                                        Copy text
+                                    </Button>
+                                </Box>
+                            </Grid>
+                        </Grid>
+                    </DragDropContext>
+                </TabPanel>
+                <TabPanel value={tabValue} index={1}>
+                    <SimpleEditor data={editorData}  />
+                </TabPanel>
+            </Paper>
         </>
     );
 

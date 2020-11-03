@@ -2,10 +2,11 @@ export interface Paragraph {
   id: string,
   paragraph: string,
   verticalHeight: number,
-  topic: string,
+  topic?: string,
   topicsOneOf: string[]
   topicsAllOf: string[]
   topicsNoneOf: string[]
+  bold?: boolean
 }
 
 export const ParagraphTopics = {
@@ -36,7 +37,8 @@ export const ParagraphTopics = {
   DISABILITY: 'DISABILITY',
   MARRIAGE_CIVIL_PARTNERSHIP: 'MARRIAGE_CIVIL_PARTNERSHIP',
   GENDER_REASSIGNMENT: 'GENDER_REASSIGNMENT',
-  POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL'
+  POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL',
+  ALL: 'All'
 }
 
 
@@ -57,7 +59,7 @@ export const ParagraphTopicMapping = {
   RESIGNED:  'Rd',
   SUSPENSION:  'Sn',
   MISCONDUCT:  'Mt',
-  FAILURE_TO_PROVIDE_PARTCULARS: 'F',
+  FAILURE_TO_PROVIDE_PARTICULARS: 'F',
   GRIEVANCE:  'G',
   PREGNANCY: 'DP',
   MATERNITY:  'DM',
@@ -69,7 +71,8 @@ export const ParagraphTopicMapping = {
   DISABILITY: 'DD',
   MARRIAGE_CIVIL_PARTNERSHIP: 'DMe',
   GENDER_REASSIGNMENT: 'DG',
-  POLITICAL_PHILOSOPHICAL:  'DPI'
+  POLITICAL_PHILOSOPHICAL:  'DPI',
+  ALL: 'All'
 
 }
 export const TopicAlgebraOperators = {

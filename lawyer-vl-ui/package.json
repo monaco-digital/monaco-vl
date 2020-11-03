@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@editorjs/editorjs": "^2.19.0",
+    "@editorjs/paragraph": "^2.8.0",
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -14,13 +17,16 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "axios": "^0.20.0",
+    "editorjs-paragraph-with-alignment": "^1.1.0",
     "react": "^16.14.0",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.14.0",
+    "react-editor-js": "^1.6.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "react-window": "^1.8.5",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "underscore": "^1.11.0"
   },
   "scripts": {
     "start": "react-scripts start",
