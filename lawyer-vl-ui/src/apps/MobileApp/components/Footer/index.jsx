@@ -51,7 +51,6 @@ const Footer = () => {
 						type="button"
 						onClick={() => handleGoBack(screen, setScreen)}
 					>
-						{'<'}
 						<i className="fas fa-chevron-left"></i>
 					</button>
 					<button
@@ -60,7 +59,6 @@ const Footer = () => {
 						type="button"
 						onClick={handleMoreInfo}
 					>
-						info
 						<i className="far fa-question-circle"></i>
 					</button>
 					<button
@@ -76,7 +74,6 @@ const Footer = () => {
 							)
 						}
 					>
-						{'>'}
 						<i className="fas fa-chevron-right"></i>
 					</button>
 				</div>
