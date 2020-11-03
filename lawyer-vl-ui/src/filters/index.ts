@@ -38,6 +38,10 @@ export const filterByGeneralMatch = (
 
 	const utopics = [...new Set(replaceDInArrayOfTopics(topics))]
 
+	console.log('The utopics in the filter are : ', utopics)
+
+	console.log('The data in the filter is: ', data)
+
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
 
