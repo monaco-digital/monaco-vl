@@ -1,0 +1,36 @@
+.paragraph {
+	transition: all 0.3s;
+	@apply .flex .mb-6;
+
+	.paragraph__box {
+		@apply .flex-grow;
+	}
+
+	.paragraph__text {
+		transition: all 0.3s;
+		min-height: 4rem;
+		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .items-center .justify-center .flex;
+	}
+
+	.paragraph__text--active {
+		@apply .text-green .border-green-light .bg-green-lighter;
+	}
+
+	&:hover {
+		.paragraph__text--active {
+			@apply .bg-green-lighter !important;
+		}
+
+		.paragraph__text {
+			@apply .bg-gray-light .shadow-2xl;
+		}
+	}
+
+	.paragraph__delete {
+		@apply .ml-4;
+	}
+
+	.paragraph__reorder {
+		@apply .mr-4;
+	}
+}

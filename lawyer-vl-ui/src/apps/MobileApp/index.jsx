@@ -1,23 +1,21 @@
-import React from 'react';
-import Main from './components/Main';
-import { Provider } from 'react-redux';
-import store from '../../data/store'
-import theme from '../../theme';
-import { MuiThemeProvider } from '@material-ui/core/styles';
-import { CssBaseline } from '@material-ui/core';
+import React from 'react'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
+import Main from './components/Main'
+import './styles/main.output.css'
 
 const MobileApp = () => {
-  return (
-    <Provider store={store}>
-      <div className="App">
-        <MuiThemeProvider theme={theme}>
-          <CssBaseline >
-            <Main />
-          </CssBaseline>
-        </MuiThemeProvider>
-      </div>
-    </Provider>
-  )
+	return (
+		<HelmetProvider>
+			<Helmet>
+				<script
+					defer
+					src="https://kit.fontawesome.com/5bf6b27f09.js"
+					crossorigin="anonymous"
+				></script>
+			</Helmet>
+			<Main />
+		</HelmetProvider>
+	)
 }
 
 export default MobileApp

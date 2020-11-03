@@ -19,6 +19,12 @@
     "@types/react-redux": "^7.1.9",
     "axios": "^0.20.0",
     "editorjs-paragraph-with-alignment": "^1.1.0",
+    "chokidar-cli": "^2.1.0",
+    "classnames": "^2.2.6",
+    "lint-staged": "^10.5.0",
+    "npm-run-all": "^4.1.5",
+    "postcss-extend": "^1.0.5",
+    "prettier": "^2.1.2",
     "react": "^16.14.0",
     "react-beautiful-dnd": "^13.0.0",
     "react-dom": "^16.14.0",
@@ -27,14 +33,19 @@
     "react-scripts": "3.4.3",
     "react-window": "^1.8.5",
     "typescript": "^4.0.3",
-    "underscore": "^1.11.0"
+    "underscore": "^1.11.0",
+    "tailwindcss": "^1.9.6"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "build:tailwind": "postcss src/apps/MobileApp/styles/main.scss -o src/apps/MobileApp/styles/main.output.css",
+    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/apps/MobileApp/styles/main.output.css -c 'npm run build:tailwind'",
+    "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
+    "start:react": "react-scripts start",
+    "prebuild": "run-s build:tailwind",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "deploy": "aws s3 sync build/ s3://monacosolicitors-vl-lawyer-ui --acl public-read",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "aws s3 sync build/ s3://monacosolicitors-vl-lawyer-ui --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -50,5 +61,24 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "husky": "^4.3.0",
+    "postcss-cli": "^7.1.1",
+    "postcss-comment": "^2.0.0",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.3",
+    "react-helmet-async": "^1.0.7"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }

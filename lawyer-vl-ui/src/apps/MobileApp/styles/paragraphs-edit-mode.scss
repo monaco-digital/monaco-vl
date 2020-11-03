@@ -1,0 +1,15 @@
+.paragraphs-edit-mode {
+	.paragraphs-edit-mode__actions {
+		@apply .flex .flex-wrap .justify-between .mb-8;
+	}
+
+	.paragraphs-edit-mode--delete {
+		.paragraph {
+			&:hover {
+				.paragraph__text {
+					@apply .text-ms-red .bg-ms-red-lighter .border-ms-red-light;
+				}
+			}
+		}
+	}
+}
