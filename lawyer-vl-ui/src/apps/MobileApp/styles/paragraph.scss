@@ -9,11 +9,7 @@
 	.paragraph__text {
 		transition: all 0.3s;
 		min-height: 4rem;
-		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .items-center .justify-center .flex;
-	}
-
-	.paragraph__text--active {
-		@apply .text-green .border-green-light .bg-green-lighter;
+		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .items-center .flex;
 	}
 
 	&:hover {
@@ -27,10 +23,20 @@
 	}
 
 	.paragraph__delete {
-		@apply .ml-4;
+		@apply .text-xl .text-ms-red .ml-4;
 	}
 
-	.paragraph__reorder {
-		@apply .mr-4;
+	.paragraph__draghandle {
+		@apply .text-gray .text-xl .mr-4;
 	}
+}
+
+.paragraph--reorder {
+	.paragraph__box {
+		@apply .pointer-events-none;
+	}
+}
+
+.paragraph--active {
+	@apply .text-green .border-green-light .bg-green-lighter;
 }
