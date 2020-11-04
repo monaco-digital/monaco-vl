@@ -7,6 +7,10 @@ import {
 	Box,
 	createStyles,
 	Theme,
+	Accordion,
+	AccordionSummary,
+	Typography,
+	AccordionDetails,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { LetterParagraph } from './LetterParagraph'
@@ -21,6 +25,12 @@ import {
 	filterByGeneralMatch,
 	filterByOrMatch,
 } from '../../../filters'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import { SimpleEditor } from './editor/SimpleEditor'
+import {
+	convertParagraphsForEditor,
+	getEData,
+} from './editor/convertParagraphs'
 
 interface Props {}
 
@@ -46,7 +56,6 @@ export const Main: React.FC<Props> = (props: Props) => {
 	const dispatch = useDispatch()
 	const data = useSelector<AppState>(state => state.paragraphs.all)
 	const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? [])
-	console.log('The  filtered data  is:  ', filteredData)
 
 	// filter for exact match
 	const [filter, setFilter] = useState<string>(null)
@@ -65,6 +74,7 @@ export const Main: React.FC<Props> = (props: Props) => {
 	useEffect(() => {
 		async function captureData() {
 			const data = await getData()
+			console.log('Adding the data 6666 : ', data)
 			dispatch(updateAll(data))
 		}
 		captureData()
