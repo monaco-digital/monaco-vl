@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles'
 type Props = {
 	addTopic: () => void
 	removeTopic: () => void
+	color?: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,7 +37,15 @@ const useStyles = makeStyles((theme: Theme) =>
 export const FilterButton: React.FC<Props> = (props: Props) => {
 	const theme = useTheme()
 	const classes = useStyles()
-	const { size, children, onClick, topic, addTopic, removeTopic } = props
+	const {
+		size,
+		children,
+		onClick,
+		topic,
+		addTopic,
+		removeTopic,
+		color = 'secondary',
+	} = props
 	const [clicked, setClicked] = useState(false)
 
 	return (
@@ -44,7 +53,7 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 			{!clicked && (
 				<Button
 					size={size}
-					color="secondary"
+					color={color}
 					variant="contained"
 					onClick={() => {
 						setClicked(true)

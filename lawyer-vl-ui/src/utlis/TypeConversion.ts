@@ -17,6 +17,8 @@ export const replaceDInArrayOfTopics = (topics: string[]): string[] => {
 			ParagraphTopicMapping.MARRIAGE_CIVIL_PARTNERSHIP,
 			ParagraphTopicMapping.GENDER_REASSIGNMENT,
 			ParagraphTopicMapping.POLITICAL_PHILOSOPHICAL,
+			ParagraphTopicMapping.MENTAL_HEALTH_DISCRIMINATION,
+			ParagraphTopicMapping.VEGAN,
 		]
 		return utopics
 	} else {

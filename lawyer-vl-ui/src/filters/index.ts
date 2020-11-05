@@ -38,10 +38,6 @@ export const filterByGeneralMatch = (
 
 	const utopics = [...new Set(replaceDInArrayOfTopics(topics))]
 
-	console.log('The utopics in the filter are : ', utopics)
-
-	console.log('The data in the filter is: ', data)
-
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
 
@@ -64,4 +60,21 @@ export const filterByGeneralMatch = (
 	})
 
 	return newData
+}
+
+const matchAllOfTopics = (ptopics: string[], utopics: string[]): boolean => {
+	if (!(ptopics?.length > 0)) {
+		return true
+	}
+	//separate the array and apply logic to D and Rest
+
+	ptopics.every(r => utopics?.indexOf(r) >= 0)
+}
+
+const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
+	if (!(ptopics?.length > 0)) {
+		return true
+	}
+	//separate the array and apply logic to D and Rest
+	ptopics.every(r => utopics?.indexOf(r) < 0)
 }
