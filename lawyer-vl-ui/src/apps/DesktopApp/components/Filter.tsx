@@ -92,6 +92,13 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									</FilterButton>
 									<FilterButton
 										size="small"
+										addTopic={addTopic(ParagraphTopics.BULLYING)}
+										removeTopic={removeTopic(ParagraphTopics.BULLYING)}
+									>
+										Bullying
+									</FilterButton>
+									<FilterButton
+										size="small"
 										addTopic={addTopic(ParagraphTopics.DISMISSED)}
 										removeTopic={removeTopic(ParagraphTopics.DISMISSED)}
 									>

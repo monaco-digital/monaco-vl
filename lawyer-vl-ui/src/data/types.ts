@@ -42,7 +42,7 @@ export const ParagraphTopics = {
 	POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL',
 	MENTAL_HEALTH_DISCRIMINATION: 'MENTAL_HEALTH_DISCRIMINATION',
 	VEGAN: 'VEGAN',
-	ALL: 'All',
+	ALL: 'ALL',
 }
 
 export const ParagraphTopicMapping = {

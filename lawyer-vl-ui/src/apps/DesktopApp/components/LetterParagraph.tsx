@@ -119,8 +119,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 		fab: {
 			position: 'absolute',
-			bottom: theme.spacing(1),
-			right: theme.spacing(10),
+			bottom: theme.spacing(5),
+			right: theme.spacing(14),
 		},
 		tooltip: {
 			fontSize: '14px',
@@ -372,6 +372,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 									</Droppable>
 									<div>
 										<br />
+										<LetterBottom />
 										<Tooltip
 											title="Copy Text"
 											aria-label="add"
@@ -389,7 +390,6 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 												<FileCopyIcon />
 											</Fab>
 										</Tooltip>
-										<LetterBottom />
 									</div>
 								</Box>
 							</Grid>
