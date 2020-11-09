@@ -12,6 +12,7 @@ import {
 	ButtonGroup,
 	Button,
 	styled,
+	Divider,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { FilterButton } from './FilterButton'
@@ -80,7 +81,7 @@ export const Filter: React.FC<Props> = (props: Props) => {
 						</AccordionSummary>
 						<AccordionDetails>
 							<Grid container spacing={1} className={classes.root}>
-								<Grid item xs={5}>
+								<Grid item xs={6}>
 									{/* eslint-disable-next-line react/jsx-no-undef */}
 									<FilterButton
 										size="small"
@@ -88,6 +89,13 @@ export const Filter: React.FC<Props> = (props: Props) => {
 										removeTopic={removeTopic(ParagraphTopics.EMPLOYED)}
 									>
 										Employed
+									</FilterButton>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.BULLYING)}
+										removeTopic={removeTopic(ParagraphTopics.BULLYING)}
+									>
+										Bullying
 									</FilterButton>
 									<FilterButton
 										size="small"
@@ -123,6 +131,13 @@ export const Filter: React.FC<Props> = (props: Props) => {
 										removeTopic={removeTopic(ParagraphTopics.WHISTLEBLOWING)}
 									>
 										Whistleblowing
+									</FilterButton>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.HEALTH_SAFETY)}
+										removeTopic={removeTopic(ParagraphTopics.HEALTH_SAFETY)}
+									>
+										Health & Safety
 									</FilterButton>
 									<FilterButton
 										size="small"
@@ -177,8 +192,13 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									>
 										Grievance
 									</FilterButton>
-								</Grid>
-								<Grid item xs={5}>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.EQUAL_PAY)}
+										removeTopic={removeTopic(ParagraphTopics.EQUAL_PAY)}
+									>
+										Equal Pay
+									</FilterButton>
 									<FilterButton
 										size="small"
 										addTopic={addTopic(ParagraphTopics.DISCRIMINATION)}
@@ -186,6 +206,15 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									>
 										Discrimination
 									</FilterButton>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.STAY_EMPLOYED)}
+										removeTopic={removeTopic(ParagraphTopics.STAY_EMPLOYED)}
+									>
+										Stay Employed
+									</FilterButton>
+								</Grid>
+								<Grid item xs={6}>
 									<FilterButton
 										size="small"
 										addTopic={addTopic(ParagraphTopics.PREGNANCY)}
@@ -262,15 +291,38 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									>
 										GR
 									</FilterButton>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.GENDER_REASSIGNMENT)}
+										removeTopic={removeTopic(
+											ParagraphTopics.GENDER_REASSIGNMENT
+										)}
+									>
+										Mental Health
+									</FilterButton>
+									<FilterButton
+										size="small"
+										addTopic={addTopic(ParagraphTopics.VEGAN)}
+										removeTopic={removeTopic(ParagraphTopics.VEGAN)}
+									>
+										Vegan
+									</FilterButton>
 								</Grid>
-								<Grid item xs={2}>
-									<Box display="flex" p={1} justifyContent="flex-end">
+								<Grid item xs={12}>
+									<Box display="flex" p={1} m={2} justifyContent="center">
+										<FilterButton
+											size="small"
+											addTopic={addTopic(ParagraphTopics.ALL)}
+											removeTopic={removeTopic(ParagraphTopics.ALL)}
+										>
+											All
+										</FilterButton>
 										<TextField
 											id="topic-filter"
 											label="Exact Topic Filter"
 											type="search"
 											variant="outlined"
-											color="secondary"
+											color="primary"
 											onChange={onFilterChange}
 										/>
 									</Box>

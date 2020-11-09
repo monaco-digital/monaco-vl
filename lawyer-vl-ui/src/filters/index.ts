@@ -3,7 +3,7 @@ import {
 	ParagraphTopicMapping,
 	ParagraphTopics,
 } from '../data/types'
-import { replaceDInArrayOfTopics } from '../utlis/TypeConversion'
+import { DSubTopics } from '../data/types'
 
 export const filterByExactTopicMatch = (
 	data: Paragraph[],
@@ -26,6 +26,59 @@ export const filterByExactTopicMatch = (
 //     })
 // }
 
+const matchAllOfTopics = (ptopics: string[], utopics: string[]): boolean => {
+	if (!(ptopics?.length > 0)) {
+		return true
+	}
+	//separate the array and apply logic to D and Rest
+	return ptopics.every(r => {
+		if (utopics?.indexOf(r) >= 0) {
+			return true
+		}
+
+		if (utopics.includes[ParagraphTopicMapping.DISCRIMINATION]) {
+			if (DSubTopics.includes(r)) {
+				return true
+			}
+		}
+
+		if (r === ParagraphTopicMapping.DISCRIMINATION) {
+			if (DSubTopics.some(x => utopics?.indexOf(x) >= 0)) {
+				return true
+			}
+		}
+
+		return false
+	})
+}
+
+const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
+	if (!(ptopics?.length > 0)) {
+		return true
+	}
+
+	//separate the array and apply logic to D and Rest
+	return ptopics.every(r => {
+		if (utopics?.indexOf(r) >= 0) {
+			return false
+		}
+
+		if (utopics.includes[ParagraphTopicMapping.DISCRIMINATION]) {
+			if (DSubTopics.includes(r)) {
+				return false
+			}
+		}
+
+		if (r === ParagraphTopicMapping.DISCRIMINATION) {
+			if (DSubTopics.some(x => utopics?.indexOf(x) >= 0)) {
+				return false
+			}
+		}
+
+		return true
+	})
+}
+
 export const filterByGeneralMatch = (
 	data: Paragraph[],
 	topics: string[]
@@ -34,13 +87,9 @@ export const filterByGeneralMatch = (
 		return data
 	}
 
-	//if D has been passed in as list of topics then expand to [DP, DM, DS, DSy, DR, DRn, DA, DD, DMe, DG, DPI, DMI, DV]
+	//removing any duplication
 
-	const utopics = [...new Set(replaceDInArrayOfTopics(topics))]
-
-	console.log('The utopics in the filter are : ', utopics)
-
-	console.log('The data in the filter is: ', data)
+	const utopics = [...new Set(topics)]
 
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
@@ -50,15 +99,9 @@ export const filterByGeneralMatch = (
 				? topicsOneOf.some(r => utopics?.indexOf(r) >= 0)
 				: true
 
-		const mustFlag =
-			topicsAllOf.length > 0
-				? topicsAllOf.every(r => utopics?.indexOf(r) >= 0)
-				: true
+		const mustFlag = matchAllOfTopics(topicsAllOf, utopics)
 
-		const notFlag =
-			topicsNoneOf.length > 0
-				? topicsNoneOf.every(r => utopics?.indexOf(r) < 0)
-				: true
+		const notFlag = matchNoneOfTopics(topicsNoneOf, utopics)
 
 		return eitherFlag && mustFlag && notFlag
 	})

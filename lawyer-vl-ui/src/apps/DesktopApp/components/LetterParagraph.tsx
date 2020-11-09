@@ -15,24 +15,18 @@ import {
 	Tab,
 	Tabs,
 	Paper,
+	Fab,
+	Tooltip,
 } from '@material-ui/core'
-import { useSelector, useDispatch } from 'react-redux'
-import { RSA_PSS_SALTLEN_AUTO } from 'constants'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { FilterButton } from './FilterButton'
-import { ParagraphTopics } from '../../../data/types'
-import PhoneIcon from '@material-ui/icons/Phone'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import PersonPinIcon from '@material-ui/icons/PersonPin'
 import {
 	convertParagraphsForEditor,
 	getEData,
 } from './editor/convertParagraphs'
 import { SimpleEditor } from './editor/SimpleEditor'
-import AppState from '../../../data/AppState'
 import { LetterTop } from './letter/LetterTop'
 import { LetterBottom } from './letter/LetterBottom'
 import { CustomParagraphs } from '../../../data/static'
+import FileCopyIcon from '@material-ui/icons/FileCopy'
 
 interface Props {
 	paragraphs: Paragraph[]
@@ -121,6 +115,15 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '10rem',
 			color: 'black',
 			background: theme.palette.secondary.light,
+		},
+
+		fab: {
+			position: 'absolute',
+			bottom: theme.spacing(5),
+			right: theme.spacing(14),
+		},
+		tooltip: {
+			fontSize: '14px',
 		},
 	})
 )
@@ -216,8 +219,15 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 	console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions)
 
 	const copyParasToText = () => {
-		const x = selectedParagraphs.map(item => item.paragraph).join('\n\n')
-		navigator.clipboard.writeText(x)
+		const top = CustomParagraphs.top
+			.map(({ paragraph }) => paragraph)
+			.join('\n\n')
+		const middle = selectedParagraphs.map(item => item.paragraph).join('\n\n')
+		const bottom = CustomParagraphs.bottom
+			.map(({ paragraph }) => paragraph)
+			.join('\n\n')
+		const text = top.concat(middle).concat(bottom)
+		navigator.clipboard.writeText(text)
 	}
 
 	const getList = id => {
@@ -363,19 +373,24 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 									<div>
 										<br />
 										<LetterBottom />
+										<Tooltip
+											title="Copy Text"
+											aria-label="add"
+											placement="top"
+											classes={{ tooltip: classes.tooltip }}
+										>
+											<Fab
+												color="secondary"
+												className={classes.fab}
+												aria-label="copy"
+												onClick={() => {
+													copyParasToText()
+												}}
+											>
+												<FileCopyIcon />
+											</Fab>
+										</Tooltip>
 									</div>
-								</Box>
-								<Box style={{ marginTop: '10px' }}>
-									<Button
-										variant="contained"
-										color="secondary"
-										className={classes.button}
-										onClick={() => {
-											copyParasToText()
-										}}
-									>
-										Copy text
-									</Button>
 								</Box>
 							</Grid>
 						</Grid>

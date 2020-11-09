@@ -11,6 +11,7 @@ export interface Paragraph {
 
 export const ParagraphTopics = {
 	EMPLOYED: 'EMPLOYED',
+	EQUAL_PAY: 'EQUAL_PAY',
 	DISMISSED: 'DISMISSED',
 	REDUNDANCY: 'REDUNDANCY',
 	DISCRIMINATION: 'DISCRIMINATION',
@@ -22,6 +23,7 @@ export const ParagraphTopics = {
 	SICKNESS: 'SICKNESS',
 	MENTAL_HEALTH: 'MENTAL_HEALTH',
 	MONEY_OWED: 'MONEY_OWED',
+	STAY_EMPLOYED: 'STAY_EMPLOYED',
 	RESIGNED: 'RESIGNED',
 	SUSPENSION: 'SUSPENSION',
 	MISCONDUCT: 'MISCONDUCT',
@@ -38,11 +40,14 @@ export const ParagraphTopics = {
 	MARRIAGE_CIVIL_PARTNERSHIP: 'MARRIAGE_CIVIL_PARTNERSHIP',
 	GENDER_REASSIGNMENT: 'GENDER_REASSIGNMENT',
 	POLITICAL_PHILOSOPHICAL: 'POLITICAL_PHILOSOPHICAL',
-	ALL: 'All',
+	MENTAL_HEALTH_DISCRIMINATION: 'MENTAL_HEALTH_DISCRIMINATION',
+	VEGAN: 'VEGAN',
+	ALL: 'ALL',
 }
 
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
+	EQUAL_PAY: 'EP',
 	DISMISSED: 'T',
 	REDUNDANCY: 'R',
 	DISCRIMINATION: 'D',
@@ -52,7 +57,8 @@ export const ParagraphTopicMapping = {
 	HEALTH_SAFETY: 'H',
 	WHISTLEBLOWING: 'W',
 	SICKNESS: 'S',
-	MENTAL_HEALTH: 'Mh',
+	STAY_EMPLOYED: 'S1',
+	MENTAL_HEALTH: 'Ml',
 	MONEY_OWED: 'M',
 	RESIGNED: 'Rd',
 	SUSPENSION: 'Sn',
@@ -70,6 +76,8 @@ export const ParagraphTopicMapping = {
 	MARRIAGE_CIVIL_PARTNERSHIP: 'DMe',
 	GENDER_REASSIGNMENT: 'DG',
 	POLITICAL_PHILOSOPHICAL: 'DPI',
+	MENTAL_HEALTH_DISCRIMINATION: 'DMl',
+	VEGAN: 'DV',
 	ALL: 'All',
 }
 export const TopicAlgebraOperators = {
@@ -79,3 +87,19 @@ export const TopicAlgebraOperators = {
 	CLOSE_ENCLOSURE: ')',
 	NOT: '!',
 }
+
+export const DSubTopics = [
+	ParagraphTopicMapping.PREGNANCY,
+	ParagraphTopicMapping.MATERNITY,
+	ParagraphTopicMapping.SEX,
+	ParagraphTopicMapping.SEXUALITY,
+	ParagraphTopicMapping.RACE,
+	ParagraphTopicMapping.RELIGION_BELIEF,
+	ParagraphTopicMapping.AGE,
+	ParagraphTopicMapping.DISABILITY,
+	ParagraphTopicMapping.MARRIAGE_CIVIL_PARTNERSHIP,
+	ParagraphTopicMapping.GENDER_REASSIGNMENT,
+	ParagraphTopicMapping.POLITICAL_PHILOSOPHICAL,
+	ParagraphTopicMapping.MENTAL_HEALTH_DISCRIMINATION,
+	ParagraphTopicMapping.VEGAN,
+]

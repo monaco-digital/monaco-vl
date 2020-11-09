@@ -19,5 +19,26 @@
                 }
             }
         }
+    },
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-vlui-prod-180418-authRole",
+            "UnauthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-authRole",
+            "Region": "eu-west-2",
+            "DeploymentBucketName": "amplify-vlui-prod-180418-deployment",
+            "UnauthRoleName": "amplify-vlui-prod-180418-unauthRole",
+            "StackName": "amplify-vlui-prod-180418",
+            "StackId": "arn:aws:cloudformation:eu-west-2:001299187094:stack/amplify-vlui-prod-180418/ffe10dd0-1dfe-11eb-98b4-0614a2806fe4",
+            "AmplifyAppId": "dksl15jm1ov24"
+        },
+        "categories": {
+            "hosting": {
+                "amplifyhosting": {
+                    "appId": "dksl15jm1ov24",
+                    "type": "manual"
+                }
+            }
+        }
     }
 }

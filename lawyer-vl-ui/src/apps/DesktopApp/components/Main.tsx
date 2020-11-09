@@ -90,6 +90,7 @@ export const Main: React.FC<Props> = (props: Props) => {
 
 		//run filter 2 for or logic
 		const newData2 = filterByGeneralMatch(newData1, orFitler)
+		console.log('setting filtered data: ', newData2)
 		setFilteredData(newData2)
 	}, [filter, orFitler])
 
