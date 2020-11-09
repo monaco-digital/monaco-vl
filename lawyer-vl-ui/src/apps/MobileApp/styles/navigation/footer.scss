@@ -4,7 +4,7 @@
 	.footer__actions {
 		@apply .flex .flex-wrap .justify-between;
 
-		button {
+		.footer_actions-btn {
 			@apply .text-4xl;
 		}
 

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, forwardRef } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
 import Button from '../Button'
@@ -33,32 +33,27 @@ const Paragraph = ({ paragraphText }) => {
 		})
 	}
 	const reorderParagraph = () => {}
-	const classes = classNames('paragraph__text', {
-		'paragraph__text--active':
+	const paragraphClasses = classNames('paragraph', {
+		'paragraph--reorder': startParagraphsReorderMode,
+		'paragraph--active':
 			!startParagraphsEditMode &&
 			activeParagraphs.find(value => value === paragraphText),
 	})
 
 	return (
-		<div className="paragraph">
-			{startParagraphsReorderMode && (
-				<Button
-					type="secondary"
-					text="="
-					extraClasses="paragraph__reorder"
-					fn={() => reorderParagraph()}
-				/>
-			)}
+		<div className={paragraphClasses}>
 			<button className="paragraph__box" onClick={() => handleOnClick()}>
-				<span className={classes}>{paragraphText}</span>
+				<span className="paragraph__text">
+					{startParagraphsReorderMode && (
+						<i className="paragraph__draghandle fas fa-ellipsis-v"></i>
+					)}
+					{paragraphText}
+				</span>
 			</button>
 			{startParagraphsDeleteMode && (
-				<Button
-					type="danger"
-					text="x"
-					extraClasses="paragraph__delete"
-					fn={() => deleteParagraph()}
-				/>
+				<button onClick={() => deleteParagraph()}>
+					<i class="paragraph__delete fas fa-minus-circle"></i>
+				</button>
 			)}
 		</div>
 	)

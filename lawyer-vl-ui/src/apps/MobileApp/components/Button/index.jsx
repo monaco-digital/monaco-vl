@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const Button = ({ type = 'main', text, fn, extraClasses }) => {
+const Button = ({ type = 'main', text, fn, extraClasses = '' }) => {
 	const classes = classNames(
 		`${extraClasses} button`,
 		{

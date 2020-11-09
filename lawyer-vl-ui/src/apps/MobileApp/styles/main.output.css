@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat&display=swap');
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
@@ -660,6 +660,7 @@ button:hover {
 
 .title {
 	display: inline-block;
+	padding-right: 1rem;
 }
 
 .button {
@@ -813,20 +814,7 @@ button:hover {
 	padding-bottom: 0.5rem;
 	display: block;
 	align-items: center;
-	justify-content: center;
 	display: flex;
-}
-
-.paragraph .paragraph__text--active {
-	--text-opacity: 1;
-	color: #38693a;
-	color: rgba(56, 105, 58, var(--text-opacity));
-	--border-opacity: 1;
-	border-color: #61de66;
-	border-color: rgba(97, 222, 102, var(--border-opacity));
-	--bg-opacity: 1;
-	background-color: #dfffd8;
-	background-color: rgba(223, 255, 216, var(--bg-opacity));
 }
 
 .paragraph:hover .paragraph__text--active {
@@ -843,16 +831,63 @@ button:hover {
 }
 
 .paragraph .paragraph__delete {
+	font-size: 1.25rem;
+	--text-opacity: 1;
+	color: #e03131;
+	color: rgba(224, 49, 49, var(--text-opacity));
 	margin-left: 1rem;
 }
 
-.paragraph .paragraph__reorder {
+.paragraph .paragraph__draghandle {
+	--text-opacity: 1;
+	color: #a0aec0;
+	color: rgba(160, 174, 192, var(--text-opacity));
+	font-size: 1.25rem;
 	margin-right: 1rem;
+}
+
+.paragraph--reorder .paragraph__box {
+	pointer-events: none;
+}
+
+.paragraph--active {
+	--text-opacity: 1;
+	color: #38693a;
+	color: rgba(56, 105, 58, var(--text-opacity));
+	--border-opacity: 1;
+	border-color: #61de66;
+	border-color: rgba(97, 222, 102, var(--border-opacity));
+	--bg-opacity: 1;
+	background-color: #dfffd8;
+	background-color: rgba(223, 255, 216, var(--bg-opacity));
 }
 
 .paragraphs {
 	display: flex;
 	flex-direction: column;
+}
+
+.letter-preview {
+	padding: 1rem;
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+	font-family: Merriweather, Constantia, Lucida Bright, Lucidabright,
+		Lucida Serif, Lucida, DejaVu Serif, Bitstream Vera Serif, Liberation Serif,
+		Georgia, serif;
+	font-weight: 400;
+	border-width: 1px;
+	--border-opacity: 1;
+	border-color: #eaedf1;
+	border-color: rgba(234, 237, 241, var(--border-opacity));
+}
+
+.letter-preview .letter-preview__title {
+	font-size: 1.5rem;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.letter-preview p {
+	padding-bottom: 1rem;
 }
 
 .paragraphs-edit-mode .paragraphs-edit-mode__actions {
@@ -909,7 +944,7 @@ button:hover {
 	justify-content: space-between;
 }
 
-.footer .footer__actions button {
+.footer .footer__actions .footer_actions-btn {
 	font-size: 2.25rem;
 }
 

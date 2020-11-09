@@ -21,6 +21,7 @@ const Main = () => {
 	const [startParagraphsReorderMode, setStartParagraphReorderMode] = useState(
 		false
 	)
+	const [startLetterPreviewMode, setStartLetterPreviewMode] = useState(false)
 
 	return (
 		<ScreenContext.Provider
@@ -44,6 +45,8 @@ const Main = () => {
 				setStartParagraphDeleteMode,
 				startParagraphsReorderMode,
 				setStartParagraphReorderMode,
+				startLetterPreviewMode,
+				setStartLetterPreviewMode,
 			}}
 		>
 			<main className="main">
