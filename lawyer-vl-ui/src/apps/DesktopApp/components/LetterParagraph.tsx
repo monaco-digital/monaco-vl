@@ -373,24 +373,19 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 									<div>
 										<br />
 										<LetterBottom />
-										<Tooltip
-											title="Copy Text"
-											aria-label="add"
-											placement="top"
-											classes={{ tooltip: classes.tooltip }}
-										>
-											<Fab
-												color="secondary"
-												className={classes.fab}
-												aria-label="copy"
-												onClick={() => {
-													copyParasToText()
-												}}
-											>
-												<FileCopyIcon />
-											</Fab>
-										</Tooltip>
 									</div>
+								</Box>
+								<Box style={{ marginTop: '10px' }}>
+									<Button
+										variant="contained"
+										color="secondary"
+										className={classes.button}
+										onClick={() => {
+											copyParasToText()
+										}}
+									>
+										Copy text
+									</Button>
 								</Box>
 							</Grid>
 						</Grid>

@@ -51,6 +51,7 @@ export const Filter: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
 	const { onFilterChange, onOrFilterChange, matches } = props
 	const [topics, setTopics] = useState<string[]>([])
+	const [filterExpanded, setFilterExpanded] = useState(true)
 
 	const addTopic = (topic: string) => () => {
 		const updatedTopics = [...topics, topic]
@@ -67,11 +68,15 @@ export const Filter: React.FC<Props> = (props: Props) => {
 		onOrFilterChange(mapToTopicList)
 	}, [topics])
 
+	const handleFilterToggle = () => {
+		setFilterExpanded(prevValue => !prevValue)
+	}
+
 	return (
 		<Paper className={classes.root}>
 			<Grid item xs={12}>
 				<div className={classes.root}>
-					<Accordion>
+					<Accordion expanded={filterExpanded} onChange={handleFilterToggle}>
 						<AccordionSummary
 							expandIcon={<ExpandMoreIcon />}
 							aria-controls="panel1a-content"
