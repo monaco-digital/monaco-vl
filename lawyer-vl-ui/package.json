@@ -44,7 +44,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"deploy": "aws s3 sync build/ s3://monacosolicitors-vl-lawyer-ui --acl public-read"
+		"deploy-dev": "amplify env checkout dev && amplify publish",
+		"deploy-prod": "amplify env checkout prod && amplify publish"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
