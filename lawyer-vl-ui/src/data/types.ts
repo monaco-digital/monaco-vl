@@ -45,6 +45,40 @@ export const ParagraphTopics = {
 	ALL: 'ALL',
 }
 
+export type Topic =
+	| 'E'
+	| 'EP'
+	| 'T'
+	| 'R'
+	| 'D'
+	| 'B'
+	| 'P'
+	| 'C'
+	| 'H'
+	| 'W'
+	| 'S'
+	| 'S1'
+	| 'Ml'
+	| 'M'
+	| 'Rd'
+	| 'Sn'
+	| 'Mt'
+	| 'F'
+	| 'G'
+	| 'DP'
+	| 'DM'
+	| 'DS'
+	| 'DSy'
+	| 'DR'
+	| 'DRn'
+	| 'DA'
+	| 'DD'
+	| 'DMe'
+	| 'DG'
+	| 'DPI'
+	| 'DMl'
+	| 'DV'
+
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
 	EQUAL_PAY: 'EP',
