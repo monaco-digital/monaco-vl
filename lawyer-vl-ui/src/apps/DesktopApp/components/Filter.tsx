@@ -182,10 +182,10 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									<FilterButton
 										size="small"
 										addTopic={addTopic(
-											ParagraphTopics.FAILURE_TO_PROVIDE_PARTCULARS
+											ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS
 										)}
 										removeTopic={removeTopic(
-											ParagraphTopics.FAILURE_TO_PROVIDE_PARTCULARS
+											ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS
 										)}
 									>
 										FPP
@@ -298,19 +298,23 @@ export const Filter: React.FC<Props> = (props: Props) => {
 									</FilterButton>
 									<FilterButton
 										size="small"
-										addTopic={addTopic(ParagraphTopics.GENDER_REASSIGNMENT)}
+										addTopic={addTopic(
+											ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION
+										)}
 										removeTopic={removeTopic(
-											ParagraphTopics.GENDER_REASSIGNMENT
+											ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION
 										)}
 									>
 										Mental Health
 									</FilterButton>
 									<FilterButton
 										size="small"
-										addTopic={addTopic(ParagraphTopics.VEGAN)}
-										removeTopic={removeTopic(ParagraphTopics.VEGAN)}
+										addTopic={addTopic(ParagraphTopics.POLITICAL_PHILOSOPHICAL)}
+										removeTopic={removeTopic(
+											ParagraphTopics.POLITICAL_PHILOSOPHICAL
+										)}
 									>
-										Vegan
+										Philosophy/Belief
 									</FilterButton>
 								</Grid>
 								<Grid item xs={12}>
