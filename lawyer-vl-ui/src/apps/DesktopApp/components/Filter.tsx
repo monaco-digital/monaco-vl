@@ -81,9 +81,7 @@ export const Filter: React.FC<Props> = (props: Props) => {
 							expandIcon={<ExpandMoreIcon />}
 							aria-controls="panel1a-content"
 							id="panel1a-header"
-						>
-							<Typography className={classes.heading}>Filters</Typography>
-						</AccordionSummary>
+						></AccordionSummary>
 						<AccordionDetails>
 							<Grid container spacing={1} className={classes.root}>
 								<Grid item xs={6}>

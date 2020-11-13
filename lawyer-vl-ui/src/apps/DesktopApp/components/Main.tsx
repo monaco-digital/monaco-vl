@@ -106,8 +106,9 @@ export const Main: React.FC<Props> = (props: Props) => {
 			<Grid container spacing={2} className={classes.root}>
 				<Grid item spacing={0} xs={12}>
 					<Paper className={classes.proot}>
-						<Box style={{ textAlign: 'left', padding: '1rem' }}>
+						<Box style={{ textAlign: 'left', padding: '1rem' }} width="50%">
 							<Typography variant="h4">Virtual Lawyer</Typography>
+							<br />
 							<Typography variant="subtitle1">
 								Select all keywords that are relevant to your case. Scan the
 								suggested paragraphs on the left of your screen and drag the
