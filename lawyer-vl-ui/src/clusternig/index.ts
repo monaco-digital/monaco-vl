@@ -17,9 +17,9 @@ export type ScreenSelection = {
 
 export class ViewLogic {
 	#screens = []
-	#topicsSelected: (Topic | Topic[])[]
+	#topicsSelected?: (Topic | Topic[])[]
 
-	constructor(topicsSelected: (Topic | Topic[])[]) {
+	constructor(topicsSelected?: (Topic | Topic[])[]) {
 		this.#topicsSelected = topicsSelected
 	}
 
