@@ -106,15 +106,57 @@ export const Main: React.FC<Props> = (props: Props) => {
 			<Grid container spacing={2} className={classes.root}>
 				<Grid item spacing={0} xs={12}>
 					<Paper className={classes.proot}>
-						<Box style={{ textAlign: 'left', padding: '1rem' }} width="50%">
+						<Box style={{ textAlign: 'left', padding: '1rem' }} width="65%">
 							<Typography variant="h4">Virtual Lawyer</Typography>
 							<br />
 							<Typography variant="subtitle1">
-								Select all keywords that are relevant to your case. Scan the
-								suggested paragraphs on the left of your screen and drag the
-								relevant ones to the right of the screen. Choose editor mode to
-								perfect your letter. Return to paragraph select and click copy
-								text. Place text in a document of your choice.
+								<div style={{ fontSize: '12' }}>
+									Instructions for use:
+									<br />
+									[1] Select the case features which apply to your case by
+									clicking the orange buttons below. This populates paragraphs
+									for you to choose from, on the left hand side of the screen.
+									<br />
+									[2] Drag and drop the relevant paragraphs from the left hand
+									side to the grey space on the right. Try not to use duplicate
+									paragraphs.
+									<br />
+									[3] When you’re happy with your chosen paragraphs, copy and
+									paste the contents (use the yellow ‘Copy Text’ button below
+									the template letter) onto a Word doc Google doc.
+									<br />
+									[4] Edit your draft letter, by filling in the gaps in square
+									brackets. When filling in the gaps, do not exceed 3 short
+									bullet points for each piece of information requested. Try to
+									focus only on the very strongest points of your case.
+									<br />
+									[5] For the amount of money requested, use{' '}
+									<a
+										style={{ color: '#2962ff' }}
+										href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
+										target="_blank"
+									>
+										our settlement calculator
+									</a>
+									<br />
+									[6] To apply for our lawyer backed no win no fee service
+									(terms and conditions{' '}
+									<a
+										style={{ color: '#2962ff' }}
+										href="https://www.monacosolicitors.co.uk/virtual-lawyer-plus-terms-of-use/"
+										target="_blank"
+									>
+										here
+									</a>
+									), send your completed letter to us at{' '}
+									<a
+										style={{ color: '#2962ff' }}
+										href="mailto:communications@monacosolicitors.co.uk"
+										target="_blank"
+									>
+										communications@monacosolicitors.co.uk
+									</a>
+								</div>
 							</Typography>
 						</Box>
 						<Filter
