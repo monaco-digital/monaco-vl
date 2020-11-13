@@ -43,6 +43,7 @@ export const ParagraphTopics = {
 	MENTAL_HEALTH_DISCRIMINATION: 'MENTAL_HEALTH_DISCRIMINATION',
 	VEGAN: 'VEGAN',
 	ALL: 'ALL',
+	LESS_THAN_2_YEARS: 'LESS_THAN_2_YEARS',
 }
 
 export type Topic =
@@ -78,6 +79,7 @@ export type Topic =
 	| 'DPI'
 	| 'DMl'
 	| 'DV'
+	| '2y'
 
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
@@ -113,6 +115,7 @@ export const ParagraphTopicMapping = {
 	MENTAL_HEALTH_DISCRIMINATION: 'DMl',
 	VEGAN: 'DV',
 	ALL: 'All',
+	LESS_THAN_2_YEARS: '2y',
 }
 export const TopicAlgebraOperators = {
 	AND: '+',
