@@ -12,8 +12,11 @@ export type View = {
 
 export type ScreenSelection = {
 	screen: number
-	options?: string[]
+	options?: Topic[]
 }
+
+const viewLogic = new ViewLogic()
+const view = viewLogic.getNextView()
 
 export class ViewLogic {
 	#screens = []
@@ -43,7 +46,7 @@ export class ViewLogic {
 			}
 
 			case 1:
-				if (selectedOptions.includes['E']) {
+				if (selectedOptions?.includes['E']) {
 					return {
 						screen: 2,
 						uiTopics: [
