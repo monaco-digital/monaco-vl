@@ -73,7 +73,7 @@ export const Filter: React.FC<Props> = (props: Props) => {
 	}
 
 	return (
-		<Paper className={classes.root}>
+		<>
 			<Grid item xs={12}>
 				<div className={classes.root}>
 					<Accordion expanded={filterExpanded} onChange={handleFilterToggle}>
@@ -348,6 +348,6 @@ export const Filter: React.FC<Props> = (props: Props) => {
 					</Typography>
 				</Box>
 			</Grid>
-		</Paper>
+		</>
 	)
 }
