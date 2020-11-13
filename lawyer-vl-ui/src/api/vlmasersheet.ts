@@ -7,13 +7,14 @@ import {
 } from '../data/types'
 import { replaceDInArrayOfTopics } from '../utlis/TypeConversion'
 import { CustomParagraphs } from '../data/static'
+import * as response from './response.json'
 
 export const getData = async (): Promise<any> => {
-	const sheetsUrl =
-		'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!F6:L?key=AIzaSyCbRwifccXG8NxW4zIK_wbbHSgEskoSkp4'
-	const response = await axios.get(sheetsUrl)
+	//const sheetsUrl =
+	//	'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!F6:L?key=AIzaSyCnMRMK2SDglZY5UF__dcUfMC1mGiQnZcQ'
+	//const response = await axios.get(sheetsUrl)
 	const {
-		data: { values = [] },
+		default: { values = [] },
 	} = response
 	const filteredValues = values.filter(value => value.length > 0)
 

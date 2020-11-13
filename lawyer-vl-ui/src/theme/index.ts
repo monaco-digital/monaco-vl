@@ -18,6 +18,16 @@ const theme = createMuiTheme({
 			paper: COLORS.paper,
 		},
 	},
+
+	typography: {
+		h4: {
+			fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif"',
+			fontWeight: 800,
+			fontSize: '2.2rem',
+			lineHeight: 1.235,
+			letterSpacing: '0.007em',
+		},
+	},
 })
 
 export default theme
