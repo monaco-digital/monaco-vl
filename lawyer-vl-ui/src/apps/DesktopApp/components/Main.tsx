@@ -42,6 +42,13 @@ const useStyles = makeStyles((theme: Theme) =>
 			padding: '1rem',
 			paddingTop: '2rem',
 		},
+		proot: {
+			width: '100%',
+		},
+		heading4: {
+			fontSize: theme.typography.h4.fontSize,
+			fontWeight: theme.typography.subtitle,
+		},
 		paper: {
 			height: '100%',
 			padding: theme.spacing(2),
@@ -98,11 +105,24 @@ export const Main: React.FC<Props> = (props: Props) => {
 		<>
 			<Grid container spacing={2} className={classes.root}>
 				<Grid item spacing={0} xs={12}>
-					<Filter
-						onFilterChange={onFilterChange}
-						onOrFilterChange={onOrFilterChange}
-						matches={matches}
-					/>
+					<Paper className={classes.proot}>
+						<Box style={{ textAlign: 'left', padding: '1rem' }} width="50%">
+							<Typography variant="h4">Virtual Lawyer</Typography>
+							<br />
+							<Typography variant="subtitle1">
+								Select all keywords that are relevant to your case. Scan the
+								suggested paragraphs on the left of your screen and drag the
+								relevant ones to the right of the screen. Choose editor mode to
+								perfect your letter. Return to paragraph select and click copy
+								text. Place text in a document of your choice.
+							</Typography>
+						</Box>
+						<Filter
+							onFilterChange={onFilterChange}
+							onOrFilterChange={onOrFilterChange}
+							matches={matches}
+						/>
+					</Paper>
 				</Grid>
 				<Grid item spacing={2} xs={12}>
 					<LetterParagraph paragraphs={filteredData} />
