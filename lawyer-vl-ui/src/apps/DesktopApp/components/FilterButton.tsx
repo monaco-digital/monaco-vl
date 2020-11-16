@@ -20,23 +20,27 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		clicked: {
-			margin: 2,
+			margin: 3,
 			width: '10rem',
 			color: 'white',
-			background: theme.palette.secondary.dark,
+			borderRadius: 15,
+			borderColor: theme.palette.primary.main,
+			backgroundColor: theme.palette.primary.main,
 		},
 		notClicked: {
-			margin: 2,
+			margin: 3,
 			width: '10rem',
-			color: 'black',
-			background: theme.palette.secondary.light,
+			borderRadius: 15,
+			color: theme.palette.primary.main,
+			borderColor: theme.palette.primary.main,
+			backgroundColor: 'white',
 		},
 	})
 )
 
 export const FilterButton: React.FC<Props> = (props: Props) => {
 	const theme = useTheme()
-	const classes = useStyles()
+	const classes = useStyles(theme)
 	const {
 		size,
 		children,
@@ -53,12 +57,11 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 			{!clicked && (
 				<Button
 					size={size}
-					color={color}
-					variant="contained"
 					onClick={() => {
 						setClicked(true)
 						addTopic()
 					}}
+					variant="outlined"
 					className={classes.notClicked}
 				>
 					{children}
@@ -67,12 +70,11 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 			{clicked && (
 				<Button
 					size={size}
-					color="secondary"
-					variant="contained"
 					onClick={() => {
 						setClicked(false)
 						removeTopic()
 					}}
+					variant="contained"
 					className={classes.clicked}
 				>
 					{children}
