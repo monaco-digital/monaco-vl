@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
 import { ReviewParagraphView } from './ReviewParagraphView'
-import { Grid } from '@material-ui/core'
+import { Box, Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { Paragraph } from '../../../data/types'
 import { getData } from '../../../api/vlmasersheet'
@@ -178,54 +178,59 @@ export default function HorizontalLinearStepper() {
 					</div>
 				</Grid>
 				<Grid item xs={6}>
-					<Stepper activeStep={activeStep}>
-						{steps.map((label, index) => {
-							const stepProps: any = {}
-							const labelProps: any = {}
-							if (isStepOptional(index)) {
-								labelProps.optional = (
-									<Typography variant="caption">Optional</Typography>
+					<Box p={2}>
+						<Stepper activeStep={activeStep}>
+							{steps.map((label, index) => {
+								const stepProps: any = {}
+								const labelProps: any = {}
+								if (isStepOptional(index)) {
+									labelProps.optional = (
+										<Typography variant="caption">Optional</Typography>
+									)
+								}
+								if (isStepSkipped(index)) {
+									stepProps.completed = false
+								}
+								return (
+									<Step key={label} {...stepProps}>
+										<StepLabel {...labelProps}>{label}</StepLabel>
+									</Step>
 								)
-							}
-							if (isStepSkipped(index)) {
-								stepProps.completed = false
-							}
-							return (
-								<Step key={label} {...stepProps}>
-									<StepLabel {...labelProps}>{label}</StepLabel>
-								</Step>
-							)
-						})}
-					</Stepper>
-					<div>
-						<Button
-							disabled={activeStep === 0}
-							onClick={handleBack}
-							className={classes.button}
-						>
-							Back
-						</Button>
-						{isStepOptional(activeStep) && (
+							})}
+						</Stepper>
+						<div style={{ padding: '1rem' }}>
 							<Button
-								variant="contained"
-								color="primary"
-								onClick={handleSkip}
+								size="large"
+								disabled={activeStep === 0}
+								onClick={handleBack}
 								className={classes.button}
 							>
-								Skip
+								Back
 							</Button>
-						)}
-						{activeStep < steps.length - 1 && (
-							<Button
-								variant="contained"
-								color="primary"
-								onClick={handleNext}
-								className={classes.button}
-							>
-								{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-							</Button>
-						)}
-					</div>
+							{isStepOptional(activeStep) && (
+								<Button
+									size="large"
+									variant="contained"
+									color="primary"
+									onClick={handleSkip}
+									className={classes.button}
+								>
+									Skip
+								</Button>
+							)}
+							{activeStep < steps.length - 1 && (
+								<Button
+									size="large"
+									variant="contained"
+									color="primary"
+									onClick={handleNext}
+									className={classes.button}
+								>
+									{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+								</Button>
+							)}
+						</div>
+					</Box>
 				</Grid>
 				<Grid item xs={12}>
 					<Grid container spacing={2} className={classes.root}>
@@ -234,7 +239,11 @@ export default function HorizontalLinearStepper() {
 								<Typography className={classes.instructions}>
 									All steps completed - you&apos;re finished
 								</Typography>
-								<Button onClick={handleReset} className={classes.button}>
+								<Button
+									size="large"
+									nClick={handleReset}
+									className={classes.button}
+								>
 									Reset
 								</Button>
 							</div>
