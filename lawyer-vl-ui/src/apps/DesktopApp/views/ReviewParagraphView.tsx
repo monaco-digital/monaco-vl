@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		},
 		button: {
 			margin: 2,
-			width: '10rem',
+			width: '12rem',
 			color: 'black',
 			background: theme.palette.secondary.light,
 		},
@@ -85,7 +85,6 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 				</Grid>
 				<Grid item xs={3}>
 					<Box style={{ marginTop: '50px' }}>
-						<Typography>Please Press to Copy Text</Typography>
 						<Button
 							variant="contained"
 							color="secondary"
@@ -94,7 +93,7 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 								copyParasToText()
 							}}
 						>
-							Copy text
+							Copy Letter Text
 						</Button>
 					</Box>
 				</Grid>
