@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
+import { ReviewParagraphView } from './ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { Paragraph } from '../../../data/types'
@@ -49,7 +50,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function getSteps() {
-	return ['Get started', 'Tell us about your case', 'Build your letter']
+	return [
+		'Get started',
+		'Tell us about your case',
+		'Build your letter',
+		'Review final letter',
+	]
 }
 
 export default function HorizontalLinearStepper() {
@@ -155,6 +161,8 @@ export default function HorizontalLinearStepper() {
 				return <FilterView />
 			case 2:
 				return <LetterParagraph paragraphs={filteredData} />
+			case 3:
+				return <ReviewParagraphView paragraphs={filteredData} />
 			default:
 				return 'Unknown step'
 		}
@@ -207,15 +215,16 @@ export default function HorizontalLinearStepper() {
 								Skip
 							</Button>
 						)}
-
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={handleNext}
-							className={classes.button}
-						>
-							{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-						</Button>
+						{activeStep < steps.length - 1 && (
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={handleNext}
+								className={classes.button}
+							>
+								{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+							</Button>
+						)}
 					</div>
 				</Grid>
 				<Grid item xs={12}>

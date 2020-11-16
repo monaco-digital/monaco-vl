@@ -81,6 +81,18 @@ export type Topic =
 	| 'DV'
 	| '2y'
 
+/*
+
+topics = {
+	EMPLOYED: {
+		identifierf: 'E',
+		text: 'Employed'
+		uilabel: 'I am out of the job'
+		subtopics: ['2y', 'n2y']
+	}
+
+} */
+
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
 	EQUAL_PAY: 'EP',
