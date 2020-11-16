@@ -43,7 +43,43 @@ export const ParagraphTopics = {
 	MENTAL_HEALTH_DISCRIMINATION: 'MENTAL_HEALTH_DISCRIMINATION',
 	VEGAN: 'VEGAN',
 	ALL: 'ALL',
+	LESS_THAN_2_YEARS: 'LESS_THAN_2_YEARS',
 }
+
+export type Topic =
+	| 'E'
+	| 'EP'
+	| 'T'
+	| 'R'
+	| 'D'
+	| 'B'
+	| 'P'
+	| 'C'
+	| 'H'
+	| 'W'
+	| 'S'
+	| 'S1'
+	| 'Ml'
+	| 'M'
+	| 'Rd'
+	| 'Sn'
+	| 'Mt'
+	| 'F'
+	| 'G'
+	| 'DP'
+	| 'DM'
+	| 'DS'
+	| 'DSy'
+	| 'DR'
+	| 'DRn'
+	| 'DA'
+	| 'DD'
+	| 'DMe'
+	| 'DG'
+	| 'DPI'
+	| 'DMl'
+	| 'DV'
+	| '2y'
 
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
@@ -79,6 +115,7 @@ export const ParagraphTopicMapping = {
 	MENTAL_HEALTH_DISCRIMINATION: 'DMl',
 	VEGAN: 'DV',
 	ALL: 'All',
+	LESS_THAN_2_YEARS: '2y',
 }
 export const TopicAlgebraOperators = {
 	AND: '+',

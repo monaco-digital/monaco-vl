@@ -278,7 +278,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 					onChange={handleChange}
 				>
 					<Tab label="Paragraph Select" wrapped={false} />
-					<Tab label="Editor" wrapped={false} />
+					{/*<Tab label="Editor" wrapped={false} /> */}
 				</Tabs>
 				<TabPanel value={tabValue} index={0}>
 					<DragDropContext onDragEnd={onDragEnd}>
@@ -391,9 +391,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 						</Grid>
 					</DragDropContext>
 				</TabPanel>
-				<TabPanel value={tabValue} index={1}>
+				{/*<TabPanel value={tabValue} index={1}>
 					<SimpleEditor data={editorData} />
-				</TabPanel>
+				</TabPanel> */}
 			</Paper>
 		</>
 	)
