@@ -31,7 +31,9 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: 'row',
 	},
 	headerTitle: {
+		fontSize: '20px',
 		margin: '10px',
+		fontWeight: '550',
 	},
 	headerTag: {
 		color: 'red',
@@ -157,77 +159,84 @@ export default function HorizontalLinearStepper() {
 	}
 
 	return (
-		<div className={classes.root}>
-			<div className={classes.header}>
-				<img src="https://www.monacosolicitors.co.uk/app/themes/monacosolicitors/public/img/ms-logo-blue-black.svg" />
-				<h2 className={classes.headerTitle}>VIRTUAL LAWYER</h2>
-				<b className={classes.headerTag}>BETA</b>
-			</div>
-			<Stepper activeStep={activeStep}>
-				{steps.map((label, index) => {
-					const stepProps: any = {}
-					const labelProps: any = {}
-					if (isStepOptional(index)) {
-						labelProps.optional = (
-							<Typography variant="caption">Optional</Typography>
-						)
-					}
-					if (isStepSkipped(index)) {
-						stepProps.completed = false
-					}
-					return (
-						<Step key={label} {...stepProps}>
-							<StepLabel {...labelProps}>{label}</StepLabel>
-						</Step>
-					)
-				})}
-			</Stepper>
+		<>
 			<Grid container spacing={2} className={classes.root}>
-				{activeStep === steps.length ? (
-					<div>
-						<Typography className={classes.instructions}>
-							All steps completed - you&apos;re finished
-						</Typography>
-						<Button onClick={handleReset} className={classes.button}>
-							Reset
-						</Button>
+				<Grid intem xs={6}>
+					<div className={classes.header}>
+						<h2 className={classes.headerTitle}>VIRTUAL LAWYER</h2>
+						<b className={classes.headerTag}>BETA</b>
 					</div>
-				) : (
+				</Grid>
+				<Grid item xs={6}>
+					<Stepper activeStep={activeStep}>
+						{steps.map((label, index) => {
+							const stepProps: any = {}
+							const labelProps: any = {}
+							if (isStepOptional(index)) {
+								labelProps.optional = (
+									<Typography variant="caption">Optional</Typography>
+								)
+							}
+							if (isStepSkipped(index)) {
+								stepProps.completed = false
+							}
+							return (
+								<Step key={label} {...stepProps}>
+									<StepLabel {...labelProps}>{label}</StepLabel>
+								</Step>
+							)
+						})}
+					</Stepper>
 					<div>
-						<Typography className={classes.instructions}>
-							{getStepContent(activeStep)}
-						</Typography>
-						<div>
-							<Button
-								disabled={activeStep === 0}
-								onClick={handleBack}
-								className={classes.button}
-							>
-								Back
-							</Button>
-							{isStepOptional(activeStep) && (
-								<Button
-									variant="contained"
-									color="primary"
-									onClick={handleSkip}
-									className={classes.button}
-								>
-									Skip
-								</Button>
-							)}
-
+						<Button
+							disabled={activeStep === 0}
+							onClick={handleBack}
+							className={classes.button}
+						>
+							Back
+						</Button>
+						{isStepOptional(activeStep) && (
 							<Button
 								variant="contained"
 								color="primary"
-								onClick={handleNext}
+								onClick={handleSkip}
 								className={classes.button}
 							>
-								{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+								Skip
 							</Button>
-						</div>
+						)}
+
+						<Button
+							variant="contained"
+							color="primary"
+							onClick={handleNext}
+							className={classes.button}
+						>
+							{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+						</Button>
 					</div>
-				)}
+				</Grid>
+				<Grid item xs={12}>
+					<Grid container spacing={2} className={classes.root}>
+						{activeStep === steps.length ? (
+							<div>
+								<Typography className={classes.instructions}>
+									All steps completed - you&apos;re finished
+								</Typography>
+								<Button onClick={handleReset} className={classes.button}>
+									Reset
+								</Button>
+							</div>
+						) : (
+							<div>
+								<Typography className={classes.instructions}>
+									{getStepContent(activeStep)}
+								</Typography>
+							</div>
+						)}
+					</Grid>
+				</Grid>
 			</Grid>
-		</div>
+		</>
 	)
 }
