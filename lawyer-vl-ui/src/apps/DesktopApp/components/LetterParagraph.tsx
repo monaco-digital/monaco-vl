@@ -27,6 +27,9 @@ import { LetterTop } from './letter/LetterTop'
 import { LetterBottom } from './letter/LetterBottom'
 import { CustomParagraphs } from '../../../data/static'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
+import { useDispatch, useSelector } from 'react-redux'
+import { updateSelectedParagraphs } from '../../../data/paragraphsDataSlice'
+import AppState from '../../../data/AppState'
 
 interface Props {
 	paragraphs: Paragraph[]
@@ -170,14 +173,17 @@ const getLetterContentStyle = isDraggingOver => ({
 
 export const LetterParagraph: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
-
+	const dispatch = useDispatch()
+	const selectedParagraphStore = useSelector<AppState, Paragraph[]>(
+		state => state.paragraphs.selected
+	)
 	const { paragraphs } = props
 	const [paragraphOptions, setParagraphOptions] = useState(paragraphs ?? [])
-	const [selectedParagraphs, setSelectedParagraphs] = useState([])
+	const [selectedParagraphs, setSelectedParagraphs] = useState(
+		selectedParagraphStore ?? []
+	)
 	const [editorData, setEditorData] = useState<any>([])
 	const [tabValue, setTabValue] = React.useState(0)
-
-	//top paragraphs
 
 	//bottom paragraphs
 
@@ -214,6 +220,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 			selectedParagraphs
 		)
 		onSelectedParagraphChange(selectedParagraphs)
+		dispatch(updateSelectedParagraphs(selectedParagraphs))
 	}, [selectedParagraphs])
 
 	console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions)

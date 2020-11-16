@@ -18,6 +18,7 @@ import { filterByExactTopicMatch, filterByGeneralMatch } from '../../../filters'
 import { LetterParagraph } from '../components/LetterParagraph'
 import AppState from '../../../data/AppState'
 import App from '../../../App'
+import { ReviewParagraphView } from './ReviewParagraphView'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -49,7 +50,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 function getSteps() {
-	return ['Get started', 'Tell us about your case', 'Build your letter']
+	return [
+		'Get started',
+		'Tell us about your case',
+		'Build your letter',
+		'Review',
+	]
 }
 
 export default function HorizontalLinearStepper() {
@@ -82,7 +88,6 @@ export default function HorizontalLinearStepper() {
 	useEffect(() => {
 		async function captureData() {
 			const data = await getData()
-			console.log('Adding the data 6666 : ', data)
 			dispatch(updateAll(data))
 		}
 		captureData()
@@ -155,6 +160,8 @@ export default function HorizontalLinearStepper() {
 				return <FilterView />
 			case 2:
 				return <LetterParagraph paragraphs={filteredData} />
+			case 3:
+				return <ReviewParagraphView />
 			default:
 				return 'Unknown step'
 		}
