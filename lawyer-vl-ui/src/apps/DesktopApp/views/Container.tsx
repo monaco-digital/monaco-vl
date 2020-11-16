@@ -17,6 +17,7 @@ import { updateAll } from '../../../data/paragraphsDataSlice'
 import { filterByExactTopicMatch, filterByGeneralMatch } from '../../../filters'
 import { LetterParagraph } from '../components/LetterParagraph'
 import AppState from '../../../data/AppState'
+import App from '../../../App'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -56,6 +57,7 @@ export default function HorizontalLinearStepper() {
 	//code from Main
 	const dispatch = useDispatch()
 	const data = useSelector<AppState>(state => state.paragraphs.all)
+	const selectedTopics = useSelector<AppState>(state => state.topics.selected)
 
 	const [activeStep, setActiveStep] = React.useState(0)
 	const [skipped, setSkipped] = React.useState(new Set())
@@ -64,18 +66,18 @@ export default function HorizontalLinearStepper() {
 	const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? [])
 
 	// filter for exact match
-	const [filter, setFilter] = useState<string>(null)
-	const [orFitler, setOrFitler] = useState<string[]>([])
+	// const [filter, setFilter] = useState<string>(null)
+	// const [orFitler, setOrFitler] = useState<string[]>([])
 
 	const matches = filteredData?.length
 
-	const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-		setFilter(event.target.value)
-	}
-
-	const onOrFilterChange = (topics: string[]): void => {
-		setOrFitler(topics)
-	}
+	// const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+	// 	setFilter(event.target.value)
+	// }
+	//
+	// const onOrFilterChange = (topics: string[]): void => {
+	// 	setOrFitler(topics)
+	// }
 
 	useEffect(() => {
 		async function captureData() {
@@ -92,13 +94,13 @@ export default function HorizontalLinearStepper() {
 
 	useEffect(() => {
 		//run filter 1
-		const newData1 = filterByExactTopicMatch(data, filter)
+		//const newData1 = filterByExactTopicMatch(data, filter)
 
 		//run filter 2 for or logic
-		const newData2 = filterByGeneralMatch(newData1, orFitler)
+		const newData2 = filterByGeneralMatch(data, selectedTopics)
 		console.log('setting filtered data: ', newData2)
 		setFilteredData(newData2)
-	}, [filter, orFitler])
+	}, [selectedTopics])
 
 	const isStepOptional = step => {
 		// return step === 1;
