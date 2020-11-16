@@ -37,6 +37,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			width: '10rem',
 			color: 'white',
 		},
+		sectionHeader: {
+			fontSize: '1.5em',
+			textAlign: 'left',
+			paddingLeft: '30px',
+			marginTop: '30px',
+		},
 	})
 )
 
@@ -46,92 +52,27 @@ const SubFilters = props => {
 		return ''
 	}
 
+	const subfilterList = [
+		ParagraphTopics.PREGNANCY,
+		ParagraphTopics.MATERNITY,
+		ParagraphTopics.SEX,
+		ParagraphTopics.SEXUALITY,
+		ParagraphTopics.RACE,
+		ParagraphTopics.RELIGION_BELIEF,
+		ParagraphTopics.AGE,
+		ParagraphTopics.DISABILITY,
+		ParagraphTopics.MARRIAGE_CIVIL_PARTNERSHIP,
+		ParagraphTopics.GENDER_REASSIGNMENT,
+		ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION,
+		ParagraphTopics.POLITICAL_PHILOSOPHICAL,
+	]
+
 	return (
 		<Grid item xs={6}>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.PREGNANCY)}
-				removeTopic={removeTopic(ParagraphTopics.PREGNANCY)}
-			>
-				Pregnancy
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.MATERNITY)}
-				removeTopic={removeTopic(ParagraphTopics.MATERNITY)}
-			>
-				Maternity
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.SEX)}
-				removeTopic={removeTopic(ParagraphTopics.SEX)}
-			>
-				Sex
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.SEXUALITY)}
-				removeTopic={removeTopic(ParagraphTopics.SEXUALITY)}
-			>
-				Sexuality
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.RACE)}
-				removeTopic={removeTopic(ParagraphTopics.RACE)}
-			>
-				Race
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.RELIGION_BELIEF)}
-				removeTopic={removeTopic(ParagraphTopics.RELIGION_BELIEF)}
-			>
-				Religion/Belief
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.AGE)}
-				removeTopic={removeTopic(ParagraphTopics.AGE)}
-			>
-				Age
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.DISABILITY)}
-				removeTopic={removeTopic(ParagraphTopics.DISABILITY)}
-			>
-				Disability
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.MARRIAGE_CIVIL_PARTNERSHIP)}
-				removeTopic={removeTopic(ParagraphTopics.MARRIAGE_CIVIL_PARTNERSHIP)}
-			>
-				Marriage
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.GENDER_REASSIGNMENT)}
-				removeTopic={removeTopic(ParagraphTopics.GENDER_REASSIGNMENT)}
-			>
-				GR
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION)}
-				removeTopic={removeTopic(ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION)}
-			>
-				Mental Health
-			</FilterButton>
-			<FilterButton
-				size="small"
-				addTopic={addTopic(ParagraphTopics.POLITICAL_PHILOSOPHICAL)}
-				removeTopic={removeTopic(ParagraphTopics.POLITICAL_PHILOSOPHICAL)}
-			>
-				Philosophy/Belief
-			</FilterButton>
+			<div>Types of discrimination that affect me:</div>
+			{subfilterList.map(function (label, idx) {
+				return <FilterButton key={idx} topicLabel={label} />
+			})}
 		</Grid>
 	)
 }
@@ -151,147 +92,53 @@ export const Filter: React.FC<Props> = props => {
 		dispatch(setTopics(updatedTopics))
 	}
 
+	const employmentStatusTopics = [ParagraphTopics.EMPLOYED]
+	const caseTopics = [
+		ParagraphTopics.BULLYING,
+		ParagraphTopics.DISMISSED,
+		ParagraphTopics.REDUNDANCY,
+		ParagraphTopics.PERFORMANCE,
+		ParagraphTopics.CORONAVIRUS,
+		ParagraphTopics.WHISTLEBLOWING,
+		ParagraphTopics.HEALTH_SAFETY,
+		ParagraphTopics.SICKNESS,
+		ParagraphTopics.MONEY_OWED,
+		ParagraphTopics.RESIGNED,
+		ParagraphTopics.SUSPENSION,
+		ParagraphTopics.MISCONDUCT,
+		ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS,
+		ParagraphTopics.GRIEVANCE,
+		ParagraphTopics.EQUAL_PAY,
+		ParagraphTopics.DISCRIMINATION,
+		ParagraphTopics.STAY_EMPLOYED,
+	]
+
 	return (
 		<>
 			<Grid container spacing={1} className={classes.root}>
 				<Grid item xs={12}>
-					<div>Employment status</div>
+					<div className={classes.sectionHeader}>Employment status</div>
 				</Grid>
 				<Grid item xs={6}>
-					{/* eslint-disable-next-line react/jsx-no-undef */}
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.EMPLOYED)}
-						removeTopic={removeTopic(ParagraphTopics.EMPLOYED)}
-					>
-						Employed
-					</FilterButton>
+					{employmentStatusTopics.map((label, idx) => {
+						return (
+							<FilterButton key={idx} size="small" topicLabel={label}>
+								{label}
+							</FilterButton>
+						)
+					})}
 				</Grid>
 				<Grid item xs={12}>
-					<div>Topics that affect me</div>
+					<div className={classes.sectionHeader}>Topics that affect me</div>
 				</Grid>
 				<Grid item xs={6}>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.BULLYING)}
-						removeTopic={removeTopic(ParagraphTopics.BULLYING)}
-					>
-						Bullying
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.DISMISSED)}
-						removeTopic={removeTopic(ParagraphTopics.DISMISSED)}
-					>
-						Dismissed
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.REDUNDANCY)}
-						removeTopic={removeTopic(ParagraphTopics.REDUNDANCY)}
-					>
-						Redundancy
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.PERFORMANCE)}
-						removeTopic={removeTopic(ParagraphTopics.PERFORMANCE)}
-					>
-						Performance
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.CORONAVIRUS)}
-						removeTopic={removeTopic(ParagraphTopics.CORONAVIRUS)}
-					>
-						Coronavirus
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.WHISTLEBLOWING)}
-						removeTopic={removeTopic(ParagraphTopics.WHISTLEBLOWING)}
-					>
-						Whistleblowing
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.HEALTH_SAFETY)}
-						removeTopic={removeTopic(ParagraphTopics.HEALTH_SAFETY)}
-					>
-						Health & Safety
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.SICKNESS)}
-						removeTopic={removeTopic(ParagraphTopics.SICKNESS)}
-					>
-						Sickness
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.MONEY_OWED)}
-						removeTopic={removeTopic(ParagraphTopics.MONEY_OWED)}
-					>
-						Money owed
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.RESIGNED)}
-						removeTopic={removeTopic(ParagraphTopics.RESIGNED)}
-					>
-						Resigned
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.SUSPENSION)}
-						removeTopic={removeTopic(ParagraphTopics.SUSPENSION)}
-					>
-						Suspension
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.MISCONDUCT)}
-						removeTopic={removeTopic(ParagraphTopics.MISCONDUCT)}
-					>
-						Misconduct
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS)}
-						removeTopic={removeTopic(
-							ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS
-						)}
-					>
-						FPP
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.GRIEVANCE)}
-						removeTopic={removeTopic(ParagraphTopics.GRIEVANCE)}
-					>
-						Grievance
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.EQUAL_PAY)}
-						removeTopic={removeTopic(ParagraphTopics.EQUAL_PAY)}
-					>
-						Equal Pay
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.DISCRIMINATION)}
-						removeTopic={removeTopic(ParagraphTopics.DISCRIMINATION)}
-					>
-						Discrimination
-					</FilterButton>
-					<FilterButton
-						size="small"
-						addTopic={addTopic(ParagraphTopics.STAY_EMPLOYED)}
-						removeTopic={removeTopic(ParagraphTopics.STAY_EMPLOYED)}
-					>
-						Stay Employed
-					</FilterButton>
+					{caseTopics.map((label, idx) => {
+						return (
+							<FilterButton key={idx} size="small" topicLabel={label}>
+								{label}
+							</FilterButton>
+						)
+					})}
 				</Grid>
 				<SubFilters
 					display={topics.includes(ParagraphTopics.DISCRIMINATION)}

@@ -9,6 +9,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
+import { ReviewParagraphView } from './ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { Paragraph } from '../../../data/types'
@@ -18,7 +19,6 @@ import { filterByExactTopicMatch, filterByGeneralMatch } from '../../../filters'
 import { LetterParagraph } from '../components/LetterParagraph'
 import AppState from '../../../data/AppState'
 import App from '../../../App'
-import { ReviewParagraphView } from './ReviewParagraphView'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -54,7 +54,7 @@ function getSteps() {
 		'Get started',
 		'Tell us about your case',
 		'Build your letter',
-		'Review',
+		'Review final letter',
 	]
 }
 
@@ -88,6 +88,7 @@ export default function HorizontalLinearStepper() {
 	useEffect(() => {
 		async function captureData() {
 			const data = await getData()
+			console.log('Adding the data 6666 : ', data)
 			dispatch(updateAll(data))
 		}
 		captureData()
@@ -161,7 +162,7 @@ export default function HorizontalLinearStepper() {
 			case 2:
 				return <LetterParagraph paragraphs={filteredData} />
 			case 3:
-				return <ReviewParagraphView />
+				return <ReviewParagraphView paragraphs={filteredData} />
 			default:
 				return 'Unknown step'
 		}
@@ -214,15 +215,16 @@ export default function HorizontalLinearStepper() {
 								Skip
 							</Button>
 						)}
-
-						<Button
-							variant="contained"
-							color="primary"
-							onClick={handleNext}
-							className={classes.button}
-						>
-							{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-						</Button>
+						{activeStep < steps.length - 1 && (
+							<Button
+								variant="contained"
+								color="primary"
+								onClick={handleNext}
+								className={classes.button}
+							>
+								{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+							</Button>
+						)}
 					</div>
 				</Grid>
 				<Grid item xs={12}>

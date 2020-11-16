@@ -10,11 +10,14 @@ import {
 	createStyles,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { useSelector, useDispatch } from 'react-redux'
+import AppState from '../../../data/AppState'
+import { ParagraphProperties } from 'docx'
+import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
+import { setTopics } from '../../../data/topicDataSlice'
 
 type Props = {
-	addTopic: () => void
-	removeTopic: () => void
-	color?: string
+	topicLabel: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,16 +44,22 @@ const useStyles = makeStyles((theme: Theme) =>
 export const FilterButton: React.FC<Props> = (props: Props) => {
 	const theme = useTheme()
 	const classes = useStyles(theme)
-	const {
-		size,
-		children,
-		onClick,
-		topic,
-		addTopic,
-		removeTopic,
-		color = 'secondary',
-	} = props
-	const [clicked, setClicked] = useState(false)
+	const { topicLabel, size = 'small' } = props
+
+	const dispatch = useDispatch()
+	const topics = useSelector<AppState>(state => state.topics.selected)
+	const clicked = topics.includes(topicLabel)
+
+	const addTopic = () => {
+		const updatedTopics = [...topics, topicLabel]
+		console.log('Updated topics to', updatedTopics)
+		dispatch(setTopics(updatedTopics))
+	}
+
+	const removeTopic = () => {
+		const updatedTopics = topics.filter(t => t !== topicLabel)
+		dispatch(setTopics(updatedTopics))
+	}
 
 	return (
 		<>
@@ -58,26 +67,24 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 				<Button
 					size={size}
 					onClick={() => {
-						setClicked(true)
 						addTopic()
 					}}
 					variant="outlined"
 					className={classes.notClicked}
 				>
-					{children}
+					{topicLabel}
 				</Button>
 			)}
 			{clicked && (
 				<Button
 					size={size}
 					onClick={() => {
-						setClicked(false)
 						removeTopic()
 					}}
 					variant="contained"
 					className={classes.clicked}
 				>
-					{children}
+					{topicLabel}
 				</Button>
 			)}
 		</>
