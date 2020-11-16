@@ -1,11 +1,19 @@
 import React from 'react'
-import { Typography, Box, Theme, Breadcrumbs, Grid } from '@material-ui/core'
+import {
+	Typography,
+	Box,
+	Theme,
+	Breadcrumbs,
+	Grid,
+	Button,
+} from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { LetterBottom } from '../components/letter/LetterBottom'
 import { LetterTop } from '../components/letter/LetterTop'
 import { Paragraph } from '../../../data/types'
 import { useSelector } from 'react-redux'
 import AppState from '../../../data/AppState'
+import { CustomParagraphs } from '../../../data/static'
 
 interface Props {}
 
@@ -22,6 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
 			minHeight: window.innerHeight - 250,
 			textAlign: 'left',
 		},
+		button: {
+			margin: 2,
+			width: '10rem',
+			color: 'black',
+			background: theme.palette.secondary.light,
+		},
 	})
 )
 
@@ -30,7 +44,19 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 	const paragraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected ?? []
 	)
-	console.log('the paragraphs in review are: ', paragraphs)
+
+	const copyParasToText = () => {
+		const top = CustomParagraphs.top
+			.map(({ paragraph }) => paragraph)
+			.join('\n\n')
+		const middle = paragraphs.map(item => item.paragraph).join('\n\n')
+		const bottom = CustomParagraphs.bottom
+			.map(({ paragraph }) => paragraph)
+			.join('\n\n')
+		const text = top.concat(middle).concat(bottom)
+		navigator.clipboard.writeText(text)
+	}
+
 	const getLetterMiddle = () => {
 		return (
 			<>
@@ -48,12 +74,30 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 
 	return (
 		<>
-			<Grid item xs={12}>
-				<Box className={classes.letterStyle}>
-					<LetterTop />
-					{getLetterMiddle()}
-					<LetterBottom />
-				</Box>
+			<Grid container>
+				<Grid item xs={3}></Grid>
+				<Grid item xs={6}>
+					<Box className={classes.letterStyle}>
+						<LetterTop />
+						{getLetterMiddle()}
+						<LetterBottom />
+					</Box>
+				</Grid>
+				<Grid item xs={3}>
+					<Box style={{ marginTop: '50px' }}>
+						<Typography>Please Press to Copy Text</Typography>
+						<Button
+							variant="contained"
+							color="secondary"
+							className={classes.button}
+							onClick={() => {
+								copyParasToText()
+							}}
+						>
+							Copy text
+						</Button>
+					</Box>
+				</Grid>
 			</Grid>
 		</>
 	)

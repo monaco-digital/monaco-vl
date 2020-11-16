@@ -225,18 +225,6 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 
 	console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions)
 
-	const copyParasToText = () => {
-		const top = CustomParagraphs.top
-			.map(({ paragraph }) => paragraph)
-			.join('\n\n')
-		const middle = selectedParagraphs.map(item => item.paragraph).join('\n\n')
-		const bottom = CustomParagraphs.bottom
-			.map(({ paragraph }) => paragraph)
-			.join('\n\n')
-		const text = top.concat(middle).concat(bottom)
-		navigator.clipboard.writeText(text)
-	}
-
 	const getList = id => {
 		if (id === 'paragraphList') {
 			return paragraphOptions
@@ -379,18 +367,6 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 										<br />
 										<LetterBottom />
 									</div>
-								</Box>
-								<Box style={{ marginTop: '10px' }}>
-									<Button
-										variant="contained"
-										color="secondary"
-										className={classes.button}
-										onClick={() => {
-											copyParasToText()
-										}}
-									>
-										Copy text
-									</Button>
 								</Box>
 							</Grid>
 						</Grid>
