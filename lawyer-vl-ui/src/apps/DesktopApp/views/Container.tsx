@@ -1,4 +1,6 @@
-import React from 'react'
+//@ts-nocheck
+
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
@@ -8,6 +10,13 @@ import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
 import { Grid } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { Paragraph } from '../../../data/types'
+import { getData } from '../../../api/vlmasersheet'
+import { updateAll } from '../../../data/paragraphsDataSlice'
+import { filterByExactTopicMatch, filterByGeneralMatch } from '../../../filters'
+import { LetterParagraph } from '../components/LetterParagraph'
+import AppState from '../../../data/AppState'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -40,24 +49,54 @@ function getSteps() {
 	return ['Get started', 'Tell us about your case', 'Build your letter']
 }
 
-function getStepContent(step) {
-	switch (step) {
-		case 0:
-			return <GetStarted />
-		case 1:
-			return <FilterView />
-		case 2:
-			return 'Build your letter'
-		default:
-			return 'Unknown step'
-	}
-}
-
 export default function HorizontalLinearStepper() {
 	const classes = useStyles()
+	//code from Main
+	const dispatch = useDispatch()
+	const data = useSelector<AppState>(state => state.paragraphs.all)
+
 	const [activeStep, setActiveStep] = React.useState(0)
 	const [skipped, setSkipped] = React.useState(new Set())
 	const steps = getSteps()
+
+	const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? [])
+
+	// filter for exact match
+	const [filter, setFilter] = useState<string>(null)
+	const [orFitler, setOrFitler] = useState<string[]>([])
+
+	const matches = filteredData?.length
+
+	const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+		setFilter(event.target.value)
+	}
+
+	const onOrFilterChange = (topics: string[]): void => {
+		setOrFitler(topics)
+	}
+
+	useEffect(() => {
+		async function captureData() {
+			const data = await getData()
+			console.log('Adding the data 6666 : ', data)
+			dispatch(updateAll(data))
+		}
+		captureData()
+	}, [])
+
+	useEffect(() => {
+		setFilteredData(data)
+	}, [data])
+
+	useEffect(() => {
+		//run filter 1
+		const newData1 = filterByExactTopicMatch(data, filter)
+
+		//run filter 2 for or logic
+		const newData2 = filterByGeneralMatch(newData1, orFitler)
+		console.log('setting filtered data: ', newData2)
+		setFilteredData(newData2)
+	}, [filter, orFitler])
 
 	const isStepOptional = step => {
 		// return step === 1;
@@ -100,6 +139,21 @@ export default function HorizontalLinearStepper() {
 
 	const handleReset = () => {
 		setActiveStep(0)
+	}
+
+	//defining get content
+
+	const getStepContent = step => {
+		switch (step) {
+			case 0:
+				return <GetStarted />
+			case 1:
+				return <FilterView />
+			case 2:
+				return <LetterParagraph paragraphs={filteredData} />
+			default:
+				return 'Unknown step'
+		}
 	}
 
 	return (
