@@ -12,8 +12,8 @@ export const GetStarted: React.FC<Props> = (props: Props) => {
 
 	return (
 		<>
-			<div style={{ fontSize: '12', textAlign: 'left' }}>
-				Instructions for use:
+			<div style={{ fontSize: '12', textAlign: 'left', padding: '50px' }}>
+				<h1>Welcome to virtual lawyer</h1>
 				<br />
 				[1] Ensure you are using a desktop or laptop, as this doesn't yet work
 				on mobiles.

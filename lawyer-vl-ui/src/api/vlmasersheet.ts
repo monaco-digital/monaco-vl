@@ -47,6 +47,7 @@ export const getData = async (): Promise<any> => {
 
 			const dataPoint: Paragraph = {
 				id: index.toString(10),
+				summary: value[0],
 				paragraph: value[1],
 				verticalHeight: value[6],
 				topic,

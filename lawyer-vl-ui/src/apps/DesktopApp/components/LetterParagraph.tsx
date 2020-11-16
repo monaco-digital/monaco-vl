@@ -313,9 +313,8 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																)}
 															>
 																<Paragraph
-																	paragraph={item.paragraph}
-																	verticalHeight={item.verticalHeight}
-																	topic={item.topic}
+																	paragraph={item}
+																	displayStyle="summary"
 																/>
 															</div>
 														)}
@@ -358,9 +357,8 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																)}
 															>
 																<Paragraph
-																	paragraph={item.paragraph}
-																	verticalHeight={item.verticalHeight}
-																	topic={item.topic}
+																	paragraph={item}
+																	displayStyle="summary"
 																/>
 															</div>
 														)}
