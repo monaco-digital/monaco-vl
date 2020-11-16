@@ -19,10 +19,6 @@ import { FilterButton } from './FilterButton'
 import { getData } from '../../../api/vlmasersheet'
 import { updateAll } from '../../../data/paragraphsDataSlice'
 import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 type Props = {
 	onFilterChange: (event: React.ChangeEvent<HTMLInputElement>) => void
@@ -47,8 +43,9 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 )
 
-const SubFilters = (display: boolean) => {
-	if (display) {
+const SubFilters = props => {
+	const { display, addTopic, removeTopic } = props
+	if (!display) {
 		return ''
 	}
 
@@ -170,6 +167,9 @@ export const Filter: React.FC<Props> = (props: Props) => {
 	return (
 		<>
 			<Grid container spacing={1} className={classes.root}>
+				<Grid item xs={12}>
+					<div>Employment status</div>
+				</Grid>
 				<Grid item xs={6}>
 					{/* eslint-disable-next-line react/jsx-no-undef */}
 					<FilterButton
@@ -179,6 +179,11 @@ export const Filter: React.FC<Props> = (props: Props) => {
 					>
 						Employed
 					</FilterButton>
+				</Grid>
+				<Grid item xs={12}>
+					<div>Topics that affect me</div>
+				</Grid>
+				<Grid item xs={6}>
 					<FilterButton
 						size="small"
 						addTopic={addTopic(ParagraphTopics.BULLYING)}
@@ -302,7 +307,9 @@ export const Filter: React.FC<Props> = (props: Props) => {
 					</FilterButton>
 				</Grid>
 				<SubFilters
-					display={topics?.includes(ParagraphTopics.DISCRIMINATION)}
+					display={topics.includes(ParagraphTopics.DISCRIMINATION)}
+					addTopic={addTopic}
+					removeTopic={removeTopic}
 				/>
 				{/*
 				<Grid item xs={12}>
