@@ -18,13 +18,10 @@ import { makeStyles } from '@material-ui/core/styles'
 import { FilterButton } from './FilterButton'
 import { getData } from '../../../api/vlmasersheet'
 import { updateAll } from '../../../data/paragraphsDataSlice'
+import { setTopics } from '../../../data/topicDataSlice'
 import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
-
-type Props = {
-	onFilterChange: (event: React.ChangeEvent<HTMLInputElement>) => void
-	onOrFilterChange: (topics: stringp[]) => void
-	matches: number
-}
+import { useSelector, useDispatch } from 'react-redux'
+import AppState from '../../../data/AppState'
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -139,29 +136,19 @@ const SubFilters = props => {
 	)
 }
 
-export const Filter: React.FC<Props> = (props: Props) => {
+export const Filter: React.FC<Props> = props => {
 	const classes = useStyles()
-	const { onFilterChange, onOrFilterChange, matches } = props
-	const [topics, setTopics] = useState<string[]>([])
-	const [filterExpanded, setFilterExpanded] = useState(true)
+	const dispatch = useDispatch()
+	const topics = useSelector<AppState>(state => state.topics.selected)
 
 	const addTopic = (topic: string) => () => {
 		const updatedTopics = [...topics, topic]
-		setTopics(updatedTopics)
+		dispatch(setTopics(updatedTopics))
 	}
 
 	const removeTopic = (topic: string) => () => {
 		const updatedTopics = topics.filter(tpc => tpc !== topic)
-		setTopics(updatedTopics)
-	}
-
-	useEffect(() => {
-		const mapToTopicList = topics.map(tpc => ParagraphTopicMapping[tpc])
-		onOrFilterChange(mapToTopicList)
-	}, [topics])
-
-	const handleFilterToggle = () => {
-		setFilterExpanded(prevValue => !prevValue)
+		dispatch(setTopics(updatedTopics))
 	}
 
 	return (
@@ -311,35 +298,7 @@ export const Filter: React.FC<Props> = (props: Props) => {
 					addTopic={addTopic}
 					removeTopic={removeTopic}
 				/>
-				{/*
-				<Grid item xs={12}>
-					<Box display="flex" p={1} m={2} justifyContent="center">
-						<FilterButton
-							size="small"
-							addTopic={addTopic(ParagraphTopics.ALL)}
-							removeTopic={removeTopic(ParagraphTopics.ALL)}
-						>
-							All
-						</FilterButton>
-						<TextField
-							id="topic-filter"
-							label="Exact Topic Filter"
-							type="search"
-							variant="outlined"
-							color="primary"
-							onChange={onFilterChange}
-						/>
-					</Box>
-				</Grid> */}
 			</Grid>
-			{/*
-			<Grid item xs={12}>
-				<Box display="flex" p={2} justifyContent="center">
-					<Typography className={classes.heading} variant="h6">
-						Matches: {matches}
-					</Typography>
-				</Box>
-			</Grid> */}
 		</>
 	)
 }
