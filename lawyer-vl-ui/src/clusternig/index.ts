@@ -15,9 +15,6 @@ export type ScreenSelection = {
 	options?: Topic[]
 }
 
-const viewLogic = new ViewLogic()
-const view = viewLogic.getNextView()
-
 export class ViewLogic {
 	#screens = []
 	#topicsSelected?: (Topic | Topic[])[]
