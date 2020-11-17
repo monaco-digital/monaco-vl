@@ -4,20 +4,13 @@ import React, { useEffect, useState } from 'react'
 import {
 	Typography,
 	Box,
-	Paper,
 	TextField,
 	Grid,
 	Theme,
 	createStyles,
-	ButtonGroup,
-	Button,
-	styled,
-	Divider,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { FilterButton } from './FilterButton'
-import { getData } from '../../../api/vlmasersheet'
-import { updateAll } from '../../../data/paragraphsDataSlice'
 import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
