@@ -1,13 +1,17 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
+import actionType from '../../state/actionType'
 
 const Filter = ({ filterValue }) => {
 	const { state, dispatch } = useContext(ScreenContext)
 	const { activeFilters } = state
 
 	const handleOnClick = () => {
-		dispatch({ type: 'SET_ACTIVE_FILTERS', payload: { value: filterValue } })
+		dispatch({
+			type: actionType.SET_ACTIVE_FILTERS,
+			payload: { value: filterValue },
+		})
 	}
 	const classes = classNames('filter__text', {
 		'filter__text--active': activeFilters.find(value => value === filterValue),

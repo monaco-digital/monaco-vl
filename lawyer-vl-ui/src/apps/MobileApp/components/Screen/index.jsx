@@ -5,14 +5,15 @@ import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import LetterPreview from '../LetterPreview'
 import modes from '../../state/modes'
+import actionType from '../../state/actionType'
 
 const Screen = () => {
 	const { state, dispatch } = useContext(ScreenContext)
 	const { mode } = state
 
 	useEffect(() => {
-		dispatch({ type: 'SET_MODE', payload: { mode: modes.FILTERS } })
-		dispatch({ type: 'SET_DEFAULT_FILTERS' })
+		dispatch({ type: actionType.SET_MODE, payload: { mode: modes.FILTERS } })
+		dispatch({ type: actionType.SET_DEFAULT_FILTERS })
 	}, [])
 
 	return (

@@ -1,5 +1,6 @@
 import defaultFilters from '../data/defaultFilters'
 import paragraphs from '../data/paragraphs'
+import actionType from '../state/actionType'
 
 type Action = {
 	type: string
@@ -20,43 +21,43 @@ const reducer = (state, action: Action) => {
 	const modeModifier = payload?.modeModifier
 
 	switch (action.type) {
-		case 'SET_DEFAULT_FILTERS':
+		case actionType.SET_DEFAULT_FILTERS:
 			return {
 				...state,
 				defaultFilters: defaultFilters,
 			}
 
-		case 'SET_SCREEN':
+		case actionType.SET_SCREEN:
 			return {
 				...state,
 				screen: value,
 			}
 
-		case 'INCREMENT_SCREEN':
+		case actionType.INCREMENT_SCREEN:
 			return {
 				...state,
 				screen: state.screen += 1,
 			}
 
-		case 'DECREMENT_SCREEN':
+		case actionType.DECREMENT_SCREEN:
 			return {
 				...state,
 				screen: state.screen -= 1,
 			}
 
-		case 'SET_MODE':
+		case actionType.SET_MODE:
 			return {
 				...state,
 				mode,
 			}
 
-		case 'SET_MODE_MODIFIER':
+		case actionType.SET_MODE_MODIFIER:
 			return {
 				...state,
 				modeModifier,
 			}
 
-		case 'SET_ACTIVE_FILTERS':
+		case actionType.SET_ACTIVE_FILTERS:
 			const filterValue = value
 			const isAlreadyActiveFilter = state.activeFilters.includes(filterValue)
 
@@ -74,7 +75,7 @@ const reducer = (state, action: Action) => {
 				activeFilters: [...state.activeFilters, filterValue],
 			}
 
-		case 'SET_ACTIVE_PARAGRAPHS':
+		case actionType.SET_ACTIVE_PARAGRAPHS:
 			const isAlreadyActiveParagraph = state.activeParagraphs.includes(value)
 
 			if (isAlreadyActiveParagraph) {
@@ -91,7 +92,18 @@ const reducer = (state, action: Action) => {
 				activeParagraphs: [...state.activeParagraphs, value],
 			}
 
-		case 'REORDER_PARAGRAPHS':
+		case actionType.SET_FILTERED_PARAGRAPHS:
+			const filteredParagraphs = []
+
+			for (const filter of state.activeFilters) {
+				filteredParagraphs.push(...paragraphs[filter])
+			}
+			return {
+				...state,
+				filteredParagraphs,
+			}
+
+		case actionType.REORDER_PARAGRAPHS:
 			const { source, destination } = value
 			const { index: sourceIndex } = source
 			const { index: destinationIndex } = destination
@@ -104,18 +116,7 @@ const reducer = (state, action: Action) => {
 				activeParagraphs: tempActiveParagraphs,
 			}
 
-		case 'SET_FILTERED_PARAGRAPHS':
-			const filteredParagraphs = []
-
-			for (const filter of state.activeFilters) {
-				filteredParagraphs.push(...paragraphs[filter])
-			}
-			return {
-				...state,
-				filteredParagraphs,
-			}
-
-		case 'DELETE_PARAGRAPH':
+		case actionType.DELETE_PARAGRAPH:
 			return {
 				...state,
 				paragraphs: state.paragraphs.filter(value => value !== value),

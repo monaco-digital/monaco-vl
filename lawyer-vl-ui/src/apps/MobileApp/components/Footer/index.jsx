@@ -5,6 +5,7 @@ import ScreenContext from '../../context'
 import Button from '../Button'
 import createLetterDocx from '../../utils/createLetterDocx'
 import modes from '../../state/modes'
+import actionType from '../../state/actionType'
 
 const Footer = () => {
 	const { state, dispatch } = useContext(ScreenContext)
@@ -19,13 +20,13 @@ const Footer = () => {
 
 		if ((mode === modes.LETTER_PREVIEW) | (mode === modes.PARAGRAPHS_EDIT)) {
 			dispatch({
-				type: 'SET_MODE',
+				type: actionType.SET_MODE,
 				payload: { mode: modes.PARAGRAPHS_PREVIEW },
 			})
 		}
 
 		if (mode === modes.FILTERS) {
-			dispatch({ type: 'DECREMENT_SCREEN' })
+			dispatch({ type: actionType.DECREMENT_SCREEN })
 		}
 	}
 	const handleMoreInfo = () => {}
@@ -34,19 +35,22 @@ const Footer = () => {
 
 		if (isLastFilterScreen) {
 			dispatch({
-				type: 'SET_MODE',
+				type: actionType.SET_MODE,
 				payload: { mode: modes.PARAGRAPHS_PREVIEW },
 			})
 		} else {
-			dispatch({ type: 'INCREMENT_SCREEN' })
+			dispatch({ type: actionType.INCREMENT_SCREEN })
 		}
 	}
 	const enterLetterPreviewMode = () => {
-		dispatch({ type: 'SET_MODE', payload: { mode: modes.LETTER_PREVIEW } })
+		dispatch({
+			type: actionType.SET_MODE,
+			payload: { mode: modes.LETTER_PREVIEW },
+		})
 	}
 	const enterFilterFlow = () => {
-		dispatch({ type: 'SET_MODE', payload: { mode: modes.FILTERS } })
-		dispatch({ type: 'SET_SCREEN', payload: { value: 0 } })
+		dispatch({ type: actionType.SET_MODE, payload: { mode: modes.FILTERS } })
+		dispatch({ type: actionType.SET_SCREEN, payload: { value: 0 } })
 	}
 
 	const classBack = classNames('footer_actions-btn footer__actions-back', {

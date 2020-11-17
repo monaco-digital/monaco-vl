@@ -15,8 +15,7 @@
 	&:hover,
 	&:active,
 	&:focus {
-		@apply .bg-gray-light;
-		@apply .shadow-2xl;
+		@apply .bg-gray-light .shadow-2xl;
 	}
 
 	.paragraph__delete {
@@ -36,4 +35,12 @@
 
 .paragraph--active {
 	@apply .text-green .border-green-light .bg-green-lighter;
+
+	&:hover,
+	&:active,
+	&:focus {
+		.paragraph__text {
+			@apply .bg-green-lighter !important;
+		}
+	}
 }
