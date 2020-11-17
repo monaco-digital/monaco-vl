@@ -40,7 +40,7 @@
 	&:active,
 	&:focus {
 		.paragraph__text {
-			@apply .bg-green-lighter !important;
+			@apply .bg-green-lighter;
 		}
 	}
 }
