@@ -1,4 +1,4 @@
-const filters = {
+const defaultFilters = {
 	0: [
 		'Redundancy',
 		'Discrimination',
@@ -15,4 +15,4 @@ const filters = {
 	2: ['Even more', 'Random stuff', 'Goes in this', 'Third screen'],
 }
 
-export default filters
+export default defaultFilters

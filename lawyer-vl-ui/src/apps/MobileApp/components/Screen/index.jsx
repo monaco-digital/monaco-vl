@@ -1,24 +1,26 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import ScreenContext from '../../context'
 import Filters from '../Filters'
 import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import LetterPreview from '../LetterPreview'
+import modes from '../../state/modes'
 
 const Screen = () => {
-	const {
-		startFilterFlow,
-		startParagraphPreviewFlow,
-		startParagraphsEditMode,
-		startLetterPreviewMode,
-	} = useContext(ScreenContext)
+	const { state, dispatch } = useContext(ScreenContext)
+	const { mode } = state
+
+	useEffect(() => {
+		dispatch({ type: 'SET_MODE', payload: { mode: modes.FILTERS } })
+		dispatch({ type: 'SET_DEFAULT_FILTERS' })
+	}, [])
 
 	return (
 		<div className="screen container">
-			{startFilterFlow && <Filters />}
-			{startParagraphPreviewFlow && <ParagraphsPreview />}
-			{startParagraphsEditMode && <ParagraphsEditMode />}
-			{startLetterPreviewMode && <LetterPreview />}
+			{mode === modes.FILTERS && <Filters />}
+			{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
+			{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
+			{mode === modes.LETTER_PREVIEW && <LetterPreview />}
 		</div>
 	)
 }

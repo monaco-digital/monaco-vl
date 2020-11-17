@@ -1,42 +1,30 @@
-import React, { useContext, forwardRef } from 'react'
+import React, { useContext } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
-import Button from '../Button'
+import modes from '../../state/modes'
 
 const Paragraph = ({ paragraphText }) => {
-	const {
-		activeParagraphs,
-		setActiveParagraphs,
-		startParagraphsEditMode,
-		startParagraphsDeleteMode,
-		startParagraphsReorderMode,
-	} = useContext(ScreenContext)
+	const { state, dispatch } = useContext(ScreenContext)
+	const { mode, modeModifier, activeParagraphs } = state
 	const handleOnClick = () => {
 		// avoid direct dlicks in the paragraphs during edit mode
-		if (startParagraphsEditMode) {
+		if (mode === modes.PARAGRAPHS_EDIT) {
 			return
 		}
 
-		setActiveParagraphs(paragraphs => {
-			const isAlreadyActive = paragraphs.includes(paragraphText)
-
-			if (isAlreadyActive) {
-				return paragraphs.filter(value => value !== paragraphText)
-			} else {
-				return [...paragraphs, paragraphText]
-			}
+		dispatch({
+			type: 'SET_ACTIVE_PARAGRAPHS',
+			payload: { value: paragraphText },
 		})
 	}
 	const deleteParagraph = () => {
-		setActiveParagraphs(paragraphs => {
-			return paragraphs.filter(value => value !== paragraphText)
-		})
+		dispatch({ type: 'DELETE_PARAGRAPH', payload: { value: paragraphText } })
 	}
-	const reorderParagraph = () => {}
 	const paragraphClasses = classNames('paragraph', {
-		'paragraph--reorder': startParagraphsReorderMode,
+		'paragraph--reorder': modeModifier === 'PARAGRAPHS_REORDER',
 		'paragraph--active':
-			!startParagraphsEditMode &&
+			(modeModifier !== 'PARAGRAPHS_REORDER' ||
+				modeModifier !== 'PARAGRAPHS_DELETION') &&
 			activeParagraphs.find(value => value === paragraphText),
 	})
 
@@ -44,15 +32,15 @@ const Paragraph = ({ paragraphText }) => {
 		<div className={paragraphClasses}>
 			<button className="paragraph__box" onClick={() => handleOnClick()}>
 				<span className="paragraph__text">
-					{startParagraphsReorderMode && (
+					{modeModifier === 'PARAGRAPHS_REORDER' && (
 						<i className="paragraph__draghandle fas fa-ellipsis-v"></i>
 					)}
 					{paragraphText}
 				</span>
 			</button>
-			{startParagraphsDeleteMode && (
+			{modeModifier === 'PARAGRAPHS_DELETION' && (
 				<button onClick={() => deleteParagraph()}>
-					<i class="paragraph__delete fas fa-minus-circle"></i>
+					<i className="paragraph__delete fas fa-minus-circle"></i>
 				</button>
 			)}
 		</div>

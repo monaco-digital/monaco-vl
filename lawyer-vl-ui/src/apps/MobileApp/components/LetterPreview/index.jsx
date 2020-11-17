@@ -3,7 +3,8 @@ import ScreenContext from './../../context'
 import letter from './../../data/letter'
 
 const LetterPreview = () => {
-	const { activeParagraphs } = useContext(ScreenContext)
+	const { state } = useContext(ScreenContext)
+	const { activeParagraphs } = state
 	return (
 		<div className="letter-preview">
 			<div className="letter-preview__title">{letter.title}</div>
