@@ -28,12 +28,13 @@ const useStyles = makeStyles({
 
 export const Paragraph: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
-	const { paragraph, verticalHeight, topic } = props
+	const { summary, paragraph, verticalHeight, topic } = props.paragraph
+	const displayText = props.displayStyle === 'summary' ? summary : paragraph
 
 	return (
 		<Box className={classes.cardcontent}>
 			<Typography variant="body1" component="p" style={{ textAlign: 'left' }}>
-				{paragraph}
+				{displayText}
 			</Typography>
 			<Typography
 				variant="caption"
