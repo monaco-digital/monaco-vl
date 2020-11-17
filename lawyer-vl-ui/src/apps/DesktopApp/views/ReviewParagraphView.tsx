@@ -65,6 +65,7 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 						<div>
 							{paragraph.paragraph}
 							<br />
+							<br />
 						</div>
 					)
 				})}

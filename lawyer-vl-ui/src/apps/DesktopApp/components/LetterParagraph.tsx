@@ -3,21 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import { Paragraph } from './Paragraph'
-import {
-	Box,
-	Grid,
-	Button,
-	AccordionDetails,
-	Accordion,
-	AccordionSummary,
-	Typography,
-	TextField,
-	Tab,
-	Tabs,
-	Paper,
-	Fab,
-	Tooltip,
-} from '@material-ui/core'
+import { Box, Grid, Tab, Tabs, Paper, Button } from '@material-ui/core'
 import {
 	convertParagraphsForEditor,
 	getEData,
@@ -30,6 +16,12 @@ import FileCopyIcon from '@material-ui/icons/FileCopy'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedParagraphs } from '../../../data/paragraphsDataSlice'
 import AppState from '../../../data/AppState'
+import { getSuggestedParagraphs } from '../../../filters'
+import Collapse from '@material-ui/core/Collapse'
+import IconButton from '@material-ui/core/IconButton'
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
+import { generateKeyPair } from 'crypto'
 
 interface Props {
 	paragraphs: Paragraph[]
@@ -119,7 +111,16 @@ const useStyles = makeStyles((theme: Theme) =>
 			color: 'black',
 			background: theme.palette.secondary.light,
 		},
-
+		note: {
+			color: 'gray',
+			fontSize: '0.7em',
+			marginBottom: '20px',
+		},
+		expandToggle: {
+			display: 'flex',
+			justifyContent: 'flex-end',
+			color: 'blue',
+		},
 		fab: {
 			position: 'absolute',
 			bottom: theme.spacing(5),
@@ -174,14 +175,26 @@ const getLetterContentStyle = isDraggingOver => ({
 export const LetterParagraph: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-	const selectedParagraphStore = useSelector<AppState, Paragraph[]>(
+
+	const allParagraphs = useSelector<AppState, Paragraph[]>(
+		state => state.paragraphs.all
+	)
+
+	const selectedTopics = useSelector<AppState, Paragraph[]>(
+		state => state.topics.selected
+	)
+
+	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected
 	)
-	const { paragraphs } = props
-	const [paragraphOptions, setParagraphOptions] = useState(paragraphs ?? [])
-	const [selectedParagraphs, setSelectedParagraphs] = useState(
-		selectedParagraphStore ?? []
+
+	const suggestedParagraphs = getSuggestedParagraphs(
+		allParagraphs,
+		selectedTopics,
+		selectedParagraphs
 	)
+	console.log('UPDATED SEGGGESTED PARGAPH', suggestedParagraphs)
+
 	const [editorData, setEditorData] = useState<any>([])
 	const [tabValue, setTabValue] = React.useState(0)
 
@@ -191,7 +204,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		setTabValue(newValue)
 	}
 
-	const onSelectedParagraphChange = (paragraphs: Paragraphp[]): void => {
+	const onSelectedParagraphChange = (paragraphs: Paragraph[]): void => {
 		//add paragraphs to the top and bottom of the letter
 		const combinedParagraphs = [
 			...CustomParagraphs.top,
@@ -203,7 +216,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		setEditorData(eData)
 	}
 
-	useEffect(() => {
+	/* useEffect(() => {
 		const selectedParagraphsIds = selectedParagraphs.map(
 			paragraph => paragraph.id
 		)
@@ -212,22 +225,19 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 			({ id }) => !selectedParagraphsIds.includes(id)
 		)
 		setParagraphOptions(uParagraphs)
-	}, [paragraphs])
+	}, [paragraphs]) */
 
 	useEffect(() => {
 		console.log(
 			'Effect to call on select paragraphs change has been caleed with: ',
 			selectedParagraphs
 		)
-		onSelectedParagraphChange(selectedParagraphs)
 		dispatch(updateSelectedParagraphs(selectedParagraphs))
 	}, [selectedParagraphs])
 
-	console.log('the paragraphs in Letter paragraphs are: ', paragraphOptions)
-
 	const getList = id => {
 		if (id === 'paragraphList') {
-			return paragraphOptions
+			return suggestedParagraphs
 		} else if (id === 'letterList') {
 			return selectedParagraphs
 		}
@@ -247,7 +257,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 			)
 
 			if (source.droppableId === 'letterList') {
-				setSelectedParagraphs(reordered)
+				dispatch(updateSelectedParagraphs(reordered))
 			}
 		} else {
 			const updatedLists = move(
@@ -256,125 +266,142 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 				source,
 				destination
 			)
-			setParagraphOptions(updatedLists.paragraphList)
-			setSelectedParagraphs(updatedLists.letterList)
+			dispatch(updateSelectedParagraphs(updatedLists.letterList))
 		}
 	}
+
+	const [expanded, setExpanded] = useState(true)
 
 	return (
 		<>
 			<Paper>
-				<Tabs
-					variant="fullWidth"
-					indicatorColor="secondary"
-					textColor="secondary"
-					aria-label="icon label tabs example"
-					value={tabValue}
-					onChange={handleChange}
-				>
-					<Tab label="Paragraph Select" wrapped={false} />
-					{/*<Tab label="Editor" wrapped={false} /> */}
-				</Tabs>
-				<TabPanel value={tabValue} index={0}>
-					<DragDropContext onDragEnd={onDragEnd}>
-						<Grid container spacing={0} xs={12}>
-							<Droppable droppableId="paragraphList">
-								{(provided, snapshot) => (
-									<Grid
-										item
-										xs={6}
-										style={getListStyle(snapshot.isDraggingOver)}
+				<DragDropContext onDragEnd={onDragEnd}>
+					<Grid container spacing={0} xs={12}>
+						<Droppable droppableId="paragraphList">
+							{(provided, snapshot) => (
+								<Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
+									<div
+										style={getParagraphContentStyle()}
+										ref={provided.innerRef}
 									>
-										<div
-											style={getParagraphContentStyle()}
-											ref={provided.innerRef}
-										>
-											{paragraphOptions?.map((item, index) => {
-												return (
-													<Draggable
-														key={item.id}
-														draggableId={item.id}
-														index={index}
-													>
-														{(provided, snapshot) => (
-															<div
-																ref={provided.innerRef}
-																{...provided.draggableProps}
-																{...provided.dragHandleProps}
-																style={getItemStyle(
-																	'pList',
-																	snapshot.isDragging,
-																	provided.draggableProps.style
-																)}
-															>
-																<Paragraph
-																	paragraph={item}
-																	displayStyle="summary"
-																/>
-															</div>
-														)}
-													</Draggable>
-												)
-											})}
-											{provided.placeholder}
-										</div>
-									</Grid>
-								)}
-							</Droppable>
-							<Grid item xs={6} className={classes.letterContainer}>
-								<Box className={classes.letterStyle}>
-									<div>
-										<LetterTop />
+										{suggestedParagraphs?.map((item, index) => {
+											return (
+												<Draggable
+													key={item.id}
+													draggableId={item.id}
+													index={index}
+												>
+													{(provided, snapshot) => (
+														<div
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															style={getItemStyle(
+																'pList',
+																snapshot.isDragging,
+																provided.draggableProps.style
+															)}
+														>
+															<Paragraph
+																paragraph={item}
+																displayStyle="summary"
+															/>
+														</div>
+													)}
+												</Draggable>
+											)
+										})}
+										{provided.placeholder}
 									</div>
-									<Droppable droppableId="letterList">
-										{(provided, snapshot) => (
-											<div
-												ref={provided.innerRef}
-												style={getLetterContentStyle(snapshot.isDraggingOver)}
-											>
-												{selectedParagraphs.length === 0 &&
-													`[Note to user - drag and drop paragraphs here]`}
-												{selectedParagraphs?.map((item, index) => (
-													<Draggable
-														key={item.id}
-														draggableId={item.id}
-														index={index}
-													>
-														{(provided, snapshot) => (
-															<div
-																ref={provided.innerRef}
-																{...provided.draggableProps}
-																{...provided.dragHandleProps}
-																style={getItemStyle(
-																	'letter',
-																	snapshot.isDragging,
-																	provided.draggableProps.style
-																)}
-															>
-																<Paragraph
-																	paragraph={item}
-																	displayStyle="summary"
-																/>
-															</div>
-														)}
-													</Draggable>
-												))}
-												{provided.placeholder}
+								</Grid>
+							)}
+						</Droppable>
+						<Grid item xs={6} className={classes.letterContainer}>
+							<Box className={classes.letterStyle}>
+								<div>
+									<Collapse in={expanded} collapsedHeight={70}>
+										{expanded && (
+											<div className={classes.expandToggle}>
+												<Button
+													onClick={() => setExpanded(false)}
+													size="small"
+													variant="outlined"
+													className={classes.button}
+													endIcon={<ArrowUpwardIcon />}
+												>
+													hide&nbsp;boilerplate
+												</Button>
 											</div>
 										)}
-									</Droppable>
-									<div>
-										<br />
+										{!expanded && (
+											<div className={classes.expandToggle}>
+												<Button
+													onClick={() => setExpanded(true)}
+													size="small"
+													variant="outlined"
+													className={classes.button}
+													endIcon={<ArrowDownwardIcon />}
+												>
+													show&nbsp;boilerplate
+												</Button>
+											</div>
+										)}
+										<LetterTop />
+									</Collapse>
+									{!expanded && (
+										<div className={classes.note}>expand to see more</div>
+									)}
+								</div>
+								<Droppable droppableId="letterList">
+									{(provided, snapshot) => (
+										<div
+											ref={provided.innerRef}
+											style={getLetterContentStyle(snapshot.isDraggingOver)}
+										>
+											{selectedParagraphs.length === 0 &&
+												`[Note to user - drag and drop paragraphs here]`}
+											{selectedParagraphs?.map((item, index) => (
+												<Draggable
+													key={item.id}
+													draggableId={item.id}
+													index={index}
+												>
+													{(provided, snapshot) => (
+														<div
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															style={getItemStyle(
+																'letter',
+																snapshot.isDragging,
+																provided.draggableProps.style
+															)}
+														>
+															<Paragraph
+																paragraph={item}
+																displayStyle="summary"
+															/>
+														</div>
+													)}
+												</Draggable>
+											))}
+											{provided.placeholder}
+										</div>
+									)}
+								</Droppable>
+								<div>
+									<br />
+									<Collapse in={expanded} collapsedHeight={70}>
 										<LetterBottom />
-									</div>
-								</Box>
-							</Grid>
+									</Collapse>
+									{!expanded && (
+										<div className={classes.note}>expand to see more</div>
+									)}
+								</div>
+							</Box>
 						</Grid>
-					</DragDropContext>
-				</TabPanel>
-				{/*<TabPanel value={tabValue} index={1}>
-					<SimpleEditor data={editorData} />
-				</TabPanel> */}
+					</Grid>
+				</DragDropContext>
 			</Paper>
 		</>
 	)

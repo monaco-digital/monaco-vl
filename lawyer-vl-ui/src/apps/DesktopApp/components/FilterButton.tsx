@@ -44,20 +44,20 @@ const useStyles = makeStyles((theme: Theme) =>
 export const FilterButton: React.FC<Props> = (props: Props) => {
 	const theme = useTheme()
 	const classes = useStyles(theme)
-	const { topicLabel, size = 'small' } = props
+	const { topic, size = 'small' } = props
 
 	const dispatch = useDispatch()
 	const topics = useSelector<AppState>(state => state.topics.selected)
-	const clicked = topics.includes(topicLabel)
+	const clicked = topics.map(t => t.id).includes(topic.id)
 
 	const addTopic = () => {
-		const updatedTopics = [...topics, topicLabel]
+		const updatedTopics = [...topics, topic]
 		console.log('Updated topics to', updatedTopics)
 		dispatch(setTopics(updatedTopics))
 	}
 
 	const removeTopic = () => {
-		const updatedTopics = topics.filter(t => t !== topicLabel)
+		const updatedTopics = topics.filter(t => t.id !== topic.id)
 		dispatch(setTopics(updatedTopics))
 	}
 
@@ -72,7 +72,7 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 					variant="outlined"
 					className={classes.notClicked}
 				>
-					{topicLabel}
+					{topic.text}
 				</Button>
 			)}
 			{clicked && (
@@ -84,7 +84,7 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 					variant="contained"
 					className={classes.clicked}
 				>
-					{topicLabel}
+					{topic.text}
 				</Button>
 			)}
 		</>

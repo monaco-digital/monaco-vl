@@ -10,15 +10,11 @@ import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
 import { ReviewParagraphView } from './ReviewParagraphView'
-import { Box, Grid } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { Paragraph } from '../../../data/types'
+import { LetterParagraph } from '../components/LetterParagraph'
 import { getData } from '../../../api/vlmasersheet'
 import { updateAll } from '../../../data/paragraphsDataSlice'
-import { filterByExactTopicMatch, filterByGeneralMatch } from '../../../filters'
-import { LetterParagraph } from '../components/LetterParagraph'
-import AppState from '../../../data/AppState'
-import App from '../../../App'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -40,6 +36,19 @@ const useStyles = makeStyles(theme => ({
 	headerTag: {
 		color: 'red',
 	},
+	navHeaderBar: {
+		padding: '10px',
+		paddingLeft: '40px',
+		paddingRight: '40px',
+		display: 'flex',
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		fontSize: '1.2em',
+		fontWeight: 'bold',
+		borderTop: '1px solid gray',
+		borderBottom: '1px solid gray',
+	},
 	button: {
 		marginRight: theme.spacing(1),
 	},
@@ -54,7 +63,7 @@ function getSteps() {
 		'Get started',
 		'Tell us about your case',
 		'Build your letter',
-		'Review final letter',
+		'Review',
 	]
 }
 
@@ -62,51 +71,10 @@ export default function HorizontalLinearStepper() {
 	const classes = useStyles()
 	//code from Main
 	const dispatch = useDispatch()
-	const data = useSelector<AppState>(state => state.paragraphs.all)
-	const selectedTopics = useSelector<AppState>(state => state.topics.selected)
 
 	const [activeStep, setActiveStep] = React.useState(0)
 	const [skipped, setSkipped] = React.useState(new Set())
 	const steps = getSteps()
-
-	const [filteredData, setFilteredData] = useState<Paragraph[]>(data ?? [])
-
-	// filter for exact match
-	// const [filter, setFilter] = useState<string>(null)
-	// const [orFitler, setOrFitler] = useState<string[]>([])
-
-	const matches = filteredData?.length
-
-	// const onFilterChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-	// 	setFilter(event.target.value)
-	// }
-	//
-	// const onOrFilterChange = (topics: string[]): void => {
-	// 	setOrFitler(topics)
-	// }
-
-	useEffect(() => {
-		async function captureData() {
-			const data = await getData()
-			console.log('Adding the data 6666 : ', data)
-			dispatch(updateAll(data))
-		}
-		captureData()
-	}, [])
-
-	useEffect(() => {
-		setFilteredData(data)
-	}, [data])
-
-	useEffect(() => {
-		//run filter 1
-		//const newData1 = filterByExactTopicMatch(data, filter)
-
-		//run filter 2 for or logic
-		const newData2 = filterByGeneralMatch(data, selectedTopics)
-		console.log('setting filtered data: ', newData2)
-		setFilteredData(newData2)
-	}, [selectedTopics])
 
 	const isStepOptional = step => {
 		// return step === 1;
@@ -160,13 +128,22 @@ export default function HorizontalLinearStepper() {
 			case 1:
 				return <FilterView />
 			case 2:
-				return <LetterParagraph paragraphs={filteredData} />
+				return <LetterParagraph />
 			case 3:
-				return <ReviewParagraphView paragraphs={filteredData} />
+				return <ReviewParagraphView />
 			default:
 				return 'Unknown step'
 		}
 	}
+
+	useEffect(() => {
+		async function captureData() {
+			const data = await getData()
+			console.log('Adding the data 6666 : ', data)
+			dispatch(updateAll(data))
+		}
+		captureData()
+	}, [])
 
 	return (
 		<>
@@ -178,59 +155,25 @@ export default function HorizontalLinearStepper() {
 					</div>
 				</Grid>
 				<Grid item xs={6}>
-					<Box p={2}>
-						<Stepper activeStep={activeStep}>
-							{steps.map((label, index) => {
-								const stepProps: any = {}
-								const labelProps: any = {}
-								if (isStepOptional(index)) {
-									labelProps.optional = (
-										<Typography variant="caption">Optional</Typography>
-									)
-								}
-								if (isStepSkipped(index)) {
-									stepProps.completed = false
-								}
-								return (
-									<Step key={label} {...stepProps}>
-										<StepLabel {...labelProps}>{label}</StepLabel>
-									</Step>
+					<Stepper activeStep={activeStep}>
+						{steps.map((label, index) => {
+							const stepProps: any = {}
+							const labelProps: any = {}
+							if (isStepOptional(index)) {
+								labelProps.optional = (
+									<Typography variant="caption">Optional</Typography>
 								)
-							})}
-						</Stepper>
-						<div style={{ padding: '1rem' }}>
-							<Button
-								size="large"
-								disabled={activeStep === 0}
-								onClick={handleBack}
-								className={classes.button}
-							>
-								Back
-							</Button>
-							{isStepOptional(activeStep) && (
-								<Button
-									size="large"
-									variant="contained"
-									color="primary"
-									onClick={handleSkip}
-									className={classes.button}
-								>
-									Skip
-								</Button>
-							)}
-							{activeStep < steps.length - 1 && (
-								<Button
-									size="large"
-									variant="contained"
-									color="primary"
-									onClick={handleNext}
-									className={classes.button}
-								>
-									{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-								</Button>
-							)}
-						</div>
-					</Box>
+							}
+							if (isStepSkipped(index)) {
+								stepProps.completed = false
+							}
+							return (
+								<Step key={label} {...stepProps}>
+									<StepLabel {...labelProps}>{label}</StepLabel>
+								</Step>
+							)
+						})}
+					</Stepper>
 				</Grid>
 				<Grid item xs={12}>
 					<Grid container spacing={2} className={classes.root}>
@@ -239,16 +182,34 @@ export default function HorizontalLinearStepper() {
 								<Typography className={classes.instructions}>
 									All steps completed - you&apos;re finished
 								</Typography>
-								<Button
-									size="large"
-									nClick={handleReset}
-									className={classes.button}
-								>
+								<Button onClick={handleReset} className={classes.button}>
 									Reset
 								</Button>
 							</div>
 						) : (
 							<div>
+								<div className={classes.navHeaderBar}>
+									<Button
+										disabled={activeStep === 0}
+										onClick={handleBack}
+										className={classes.button}
+									>
+										Back
+									</Button>
+									<div>{steps[activeStep]}</div>
+									{activeStep < steps.length - 1 && (
+										<Button
+											variant="contained"
+											color="primary"
+											onClick={handleNext}
+											className={classes.button}
+										>
+											{activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+										</Button>
+									)}
+									{activeStep === steps.length - 1 && <div></div>}
+								</div>
+
 								<Typography className={classes.instructions}>
 									{getStepContent(activeStep)}
 								</Typography>

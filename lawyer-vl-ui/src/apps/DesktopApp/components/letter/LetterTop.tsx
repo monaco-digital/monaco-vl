@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Typography, Box, Theme, createStyles } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { CustomParagraphs } from '../../../../data/static'
@@ -17,6 +17,7 @@ export const LetterTop: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
 
 	const paragraphsText = CustomParagraphs.top.map(({ paragraph }) => paragraph)
+	const [expanded, setExpanded] = useState(true)
 
 	return (
 		<Box className={classes.root}>

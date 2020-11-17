@@ -1,25 +1,11 @@
 //@ts-nocheck
 
 import React, { useEffect, useState } from 'react'
-import {
-	Typography,
-	Box,
-	Paper,
-	TextField,
-	Grid,
-	Theme,
-	createStyles,
-	ButtonGroup,
-	Button,
-	styled,
-	Divider,
-} from '@material-ui/core'
+import { Grid, Theme, createStyles } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { FilterButton } from './FilterButton'
-import { getData } from '../../../api/vlmasersheet'
-import { updateAll } from '../../../data/paragraphsDataSlice'
 import { setTopics } from '../../../data/topicDataSlice'
-import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
+import { ParagraphTopics, Topics } from '../../../data/types'
 import { useSelector, useDispatch } from 'react-redux'
 import AppState from '../../../data/AppState'
 
@@ -47,31 +33,16 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 const SubFilters = props => {
-	const { display, addTopic, removeTopic } = props
-	if (!display) {
+	const { topics } = props
+	if (!topics || topics.length === 0) {
 		return ''
 	}
-
-	const subfilterList = [
-		ParagraphTopics.PREGNANCY,
-		ParagraphTopics.MATERNITY,
-		ParagraphTopics.SEX,
-		ParagraphTopics.SEXUALITY,
-		ParagraphTopics.RACE,
-		ParagraphTopics.RELIGION_BELIEF,
-		ParagraphTopics.AGE,
-		ParagraphTopics.DISABILITY,
-		ParagraphTopics.MARRIAGE_CIVIL_PARTNERSHIP,
-		ParagraphTopics.GENDER_REASSIGNMENT,
-		ParagraphTopics.MENTAL_HEALTH_DISCRIMINATION,
-		ParagraphTopics.POLITICAL_PHILOSOPHICAL,
-	]
 
 	return (
 		<Grid item xs={6}>
 			<div>Types of discrimination that affect me:</div>
-			{subfilterList.map(function (label, idx) {
-				return <FilterButton key={idx} topicLabel={label} />
+			{topics.map(function (topic, idx) {
+				return <FilterButton key={idx} topic={topic} />
 			})}
 		</Grid>
 	)
@@ -80,38 +51,26 @@ const SubFilters = props => {
 export const Filter: React.FC<Props> = props => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-	const topics = useSelector<AppState>(state => state.topics.selected)
+	const selectedTopics = useSelector<AppState>(state => state.topics.selected)
 
 	const addTopic = (topic: string) => () => {
-		const updatedTopics = [...topics, topic]
+		const updatedTopics = [...selectedTopics, topic]
 		dispatch(setTopics(updatedTopics))
 	}
 
 	const removeTopic = (topic: string) => () => {
-		const updatedTopics = topics.filter(tpc => tpc !== topic)
+		const updatedTopics = selectedTopics.filter(tpc => tpc !== topic)
 		dispatch(setTopics(updatedTopics))
 	}
 
-	const employmentStatusTopics = [ParagraphTopics.EMPLOYED]
-	const caseTopics = [
-		ParagraphTopics.BULLYING,
-		ParagraphTopics.DISMISSED,
-		ParagraphTopics.REDUNDANCY,
-		ParagraphTopics.PERFORMANCE,
-		ParagraphTopics.CORONAVIRUS,
-		ParagraphTopics.WHISTLEBLOWING,
-		ParagraphTopics.HEALTH_SAFETY,
-		ParagraphTopics.SICKNESS,
-		ParagraphTopics.MONEY_OWED,
-		ParagraphTopics.RESIGNED,
-		ParagraphTopics.SUSPENSION,
-		ParagraphTopics.MISCONDUCT,
-		ParagraphTopics.FAILURE_TO_PROVIDE_PARTICULARS,
-		ParagraphTopics.GRIEVANCE,
-		ParagraphTopics.EQUAL_PAY,
-		ParagraphTopics.DISCRIMINATION,
-		ParagraphTopics.STAY_EMPLOYED,
-	]
+	const employmentStatusTopics = Topics.filter(
+		t => t.type === 'employment_situation'
+	)
+	const caseTopics = Topics.filter(t => t.type === 'case')
+	let subCaseTopics = []
+	if (selectedTopics.some(t => t.id === 'D')) {
+		subCaseTopics = Topics.filter(t => t.type === 'subcase')
+	}
 
 	return (
 		<>
@@ -120,31 +79,19 @@ export const Filter: React.FC<Props> = props => {
 					<div className={classes.sectionHeader}>Employment status</div>
 				</Grid>
 				<Grid item xs={6}>
-					{employmentStatusTopics.map((label, idx) => {
-						return (
-							<FilterButton key={idx} size="small" topicLabel={label}>
-								{label}
-							</FilterButton>
-						)
+					{employmentStatusTopics.map((topic, idx) => {
+						return <FilterButton key={idx} size="small" topic={topic} />
 					})}
 				</Grid>
 				<Grid item xs={12}>
 					<div className={classes.sectionHeader}>Topics that affect me</div>
 				</Grid>
 				<Grid item xs={6}>
-					{caseTopics.map((label, idx) => {
-						return (
-							<FilterButton key={idx} size="small" topicLabel={label}>
-								{label}
-							</FilterButton>
-						)
+					{caseTopics.map((topic, idx) => {
+						return <FilterButton key={idx} size="small" topic={topic} />
 					})}
 				</Grid>
-				<SubFilters
-					display={topics.includes(ParagraphTopics.DISCRIMINATION)}
-					addTopic={addTopic}
-					removeTopic={removeTopic}
-				/>
+				<SubFilters topics={subCaseTopics} />
 			</Grid>
 		</>
 	)
