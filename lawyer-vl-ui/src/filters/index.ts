@@ -2,8 +2,78 @@ import {
 	Paragraph,
 	ParagraphTopicMapping,
 	ParagraphTopics,
+	CaseTopic,
+	Topics,
 } from '../data/types'
 import { DSubTopics } from '../data/types'
+
+export const getSuggestedParagraphs = (
+	allParagraphs: Paragraph[],
+	selectedTopics: CaseTopic[],
+	selectedParagraphs: Paragraph[]
+): Paragraph[] => {
+	if (!selectedTopics || selectedTopics.length === 0) {
+		return allParagraphs
+	}
+
+	const selectedParagraphIds = selectedParagraphs.map(p => p.id)
+	const selectedTopicIds = selectedTopics.map(t => t.id)
+	console.log('selectedTopicIds', selectedTopicIds, selectedTopics)
+	const scoredAndFilteredParas = []
+	allParagraphs.forEach(paragraph => {
+		//score to rank how relevant the paragraph is
+		const allOf = matchesAllOf(paragraph, selectedTopicIds)
+		const oneOf = matchesOneOf(paragraph, selectedTopicIds)
+		const noneOf = matchesNoneOf(paragraph, selectedTopicIds)
+		let score = (allOf || oneOf) && !noneOf ? 1 : 0
+		console.log('score', score, allOf, oneOf, !noneOf)
+
+		if (score > 0 && !selectedParagraphIds.includes(paragraph.id)) {
+			scoredAndFilteredParas.push({
+				paragraph,
+				score,
+			})
+		}
+	})
+	console.log(
+		'getSuggestedParagraphs',
+		scoredAndFilteredParas.length,
+		allParagraphs.length
+	)
+
+	return scoredAndFilteredParas.map(p => p.paragraph)
+}
+
+const matchesAllOf = (paragraph: Paragraph, selectedTopicIds) => {
+	let matchCount = 0
+	paragraph.topicsAllOf.forEach(topicId => {
+		if (selectedTopicIds.includes(topicId)) {
+			matchCount++
+		}
+	})
+	// return matchCount === paragraph.topicsAllOf.length
+	return matchCount > 0
+}
+
+const matchesOneOf = (paragraph: Paragraph, selectedTopicIds) => {
+	let matchCount = 0
+	paragraph.topicsOneOf.forEach(topicId => {
+		if (selectedTopicIds.includes(topicId)) {
+			matchCount++
+		}
+	})
+	return matchCount > 0
+}
+
+const matchesNoneOf = (paragraph: Paragraph, selectedTopicIds) => {
+	let matchCount = 0
+	paragraph.topicsNoneOf.forEach(topicId => {
+		if (selectedTopicIds.includes(topicId)) {
+			matchCount++
+		}
+	})
+	return matchCount > 0
+}
 
 export const filterByExactTopicMatch = (
 	data: Paragraph[],

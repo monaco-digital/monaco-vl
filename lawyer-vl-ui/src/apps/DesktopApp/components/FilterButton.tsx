@@ -10,72 +10,81 @@ import {
 	createStyles,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { useSelector, useDispatch } from 'react-redux'
+import AppState from '../../../data/AppState'
+import { ParagraphProperties } from 'docx'
+import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
+import { setTopics } from '../../../data/topicDataSlice'
 
 type Props = {
-	addTopic: () => void
-	removeTopic: () => void
-	color?: string
+	topicLabel: string
 }
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		clicked: {
-			margin: 2,
+			margin: 3,
 			width: '10rem',
 			color: 'white',
-			background: theme.palette.secondary.dark,
+			borderRadius: 15,
+			borderColor: theme.palette.primary.main,
+			backgroundColor: theme.palette.primary.main,
 		},
 		notClicked: {
-			margin: 2,
+			margin: 3,
 			width: '10rem',
-			color: 'black',
-			background: theme.palette.secondary.light,
+			borderRadius: 15,
+			color: theme.palette.primary.main,
+			borderColor: theme.palette.primary.main,
+			backgroundColor: 'white',
 		},
 	})
 )
 
 export const FilterButton: React.FC<Props> = (props: Props) => {
 	const theme = useTheme()
-	const classes = useStyles()
-	const {
-		size,
-		children,
-		onClick,
-		topic,
-		addTopic,
-		removeTopic,
-		color = 'secondary',
-	} = props
-	const [clicked, setClicked] = useState(false)
+	const classes = useStyles(theme)
+	const { topic, size = 'small' } = props
+
+	const dispatch = useDispatch()
+	const topics = useSelector<AppState>(state => state.topics.selected)
+	const clicked = topics.map(t => t.id).includes(topic.id)
+
+	const addTopic = () => {
+		const updatedTopics = [...topics, topic]
+		console.log('Updated topics to', updatedTopics)
+		dispatch(setTopics(updatedTopics))
+	}
+
+	const removeTopic = () => {
+		const updatedTopics = topics.filter(t => t.id !== topic.id)
+		dispatch(setTopics(updatedTopics))
+	}
 
 	return (
 		<>
 			{!clicked && (
 				<Button
 					size={size}
-					color={color}
-					variant="contained"
 					onClick={() => {
-						setClicked(true)
 						addTopic()
 					}}
+					variant="outlined"
 					className={classes.notClicked}
 				>
-					{children}
+					{topic.text}
 				</Button>
 			)}
 			{clicked && (
 				<Button
 					size={size}
-					color="secondary"
-					variant="contained"
 					onClick={() => {
-						setClicked(false)
 						removeTopic()
 					}}
+					variant="contained"
 					className={classes.clicked}
 				>
-					{children}
+					{topic.text}
 				</Button>
 			)}
 		</>

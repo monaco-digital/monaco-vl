@@ -1,44 +1,44 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-vlui-dev-123831-authRole",
-            "UnauthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-dev-123831-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-dev-123831-authRole",
-            "Region": "eu-west-2",
-            "DeploymentBucketName": "amplify-vlui-dev-123831-deployment",
-            "UnauthRoleName": "amplify-vlui-dev-123831-unauthRole",
-            "StackName": "amplify-vlui-dev-123831",
-            "StackId": "arn:aws:cloudformation:eu-west-2:001299187094:stack/amplify-vlui-dev-123831/9eb7cb30-11ff-11eb-a18a-0a321082c1e4",
-            "AmplifyAppId": "dksl15jm1ov24"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "dksl15jm1ov24",
-                    "type": "manual"
-                }
-            }
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vlui-dev-123831-authRole",
+      "UnauthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-dev-123831-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-dev-123831-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-vlui-dev-123831-deployment",
+      "UnauthRoleName": "amplify-vlui-dev-123831-unauthRole",
+      "StackName": "amplify-vlui-dev-123831",
+      "StackId": "arn:aws:cloudformation:eu-west-2:001299187094:stack/amplify-vlui-dev-123831/9eb7cb30-11ff-11eb-a18a-0a321082c1e4",
+      "AmplifyAppId": "dksl15jm1ov24"
     },
-    "prod": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-vlui-prod-180418-authRole",
-            "UnauthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-authRole",
-            "Region": "eu-west-2",
-            "DeploymentBucketName": "amplify-vlui-prod-180418-deployment",
-            "UnauthRoleName": "amplify-vlui-prod-180418-unauthRole",
-            "StackName": "amplify-vlui-prod-180418",
-            "StackId": "arn:aws:cloudformation:eu-west-2:001299187094:stack/amplify-vlui-prod-180418/ffe10dd0-1dfe-11eb-98b4-0614a2806fe4",
-            "AmplifyAppId": "dksl15jm1ov24"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "dksl15jm1ov24",
-                    "type": "manual"
-                }
-            }
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dksl15jm1ov24",
+          "type": "manual"
         }
+      }
     }
+  },
+  "prod": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-vlui-prod-180418-authRole",
+      "UnauthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::001299187094:role/amplify-vlui-prod-180418-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-vlui-prod-180418-deployment",
+      "UnauthRoleName": "amplify-vlui-prod-180418-unauthRole",
+      "StackName": "amplify-vlui-prod-180418",
+      "StackId": "arn:aws:cloudformation:eu-west-2:001299187094:stack/amplify-vlui-prod-180418/ffe10dd0-1dfe-11eb-98b4-0614a2806fe4",
+      "AmplifyAppId": "dksl15jm1ov24"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dksl15jm1ov24",
+          "type": "manual"
+        }
+      }
+    }
+  }
 }

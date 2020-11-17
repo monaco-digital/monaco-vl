@@ -1,16 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Title from '../Title'
 import Filter from '../Filter'
 import ScreenContext from '../../context'
 
 const Filters = () => {
-	const { screen, filters } = useContext(ScreenContext)
+	const { state } = useContext(ScreenContext)
+	const { defaultFilters, screen } = state
 
 	return (
 		<>
 			<Title title="Tap all options that apply." />
 			<div className="filters">
-				{filters[screen].map((filterValue, i) => (
+				{defaultFilters[screen].map((filterValue, i) => (
 					<Filter key={`${filterValue}-${i}`} filterValue={filterValue} />
 				))}
 			</div>

@@ -6,34 +6,34 @@ import ScreenContext from '../../context'
 import Button from '../Button'
 
 const ParagraphsEditMode = () => {
-	const {
-		activeParagraphs,
-		setActiveParagraphs,
-		startParagraphsDeleteMode,
-		setStartParagraphReorderMode,
-		startParagraphsReorderMode,
-		setStartParagraphDeleteMode,
-	} = useContext(ScreenContext)
+	const { state, dispatch } = useContext(ScreenContext)
+	const { modeModifier, activeParagraphs } = state
 	const toggleReorderMode = () => {
-		setStartParagraphDeleteMode(false)
-		setStartParagraphReorderMode(!startParagraphsReorderMode)
+		const toggleModeModifier =
+			modeModifier === 'PARAGRAPHS_REORDER'
+				? 'PARAGRAPHS_EDIT'
+				: 'PARAGRAPHS_REORDER'
+		dispatch({
+			type: 'SET_MODE_MODIFIER',
+			payload: { modeModifier: toggleModeModifier },
+		})
 	}
 	const toggleDeleteMode = () => {
-		setStartParagraphReorderMode(false)
-		setStartParagraphDeleteMode(!startParagraphsDeleteMode)
+		const toggleModeModifier =
+			modeModifier === 'PARAGRAPHS_DELETION'
+				? 'PARAGRAPHS_EDIT'
+				: 'PARAGRAPHS_DELETION'
+		dispatch({
+			type: 'SET_MODE_MODIFIER',
+			payload: { modeModifier: toggleModeModifier },
+		})
 	}
 	const paragraphsClasses = classNames('paragraphs', {
-		'paragraphs-edit-mode--delete': startParagraphsDeleteMode,
-		'paragraphs-edit-mode--reorder': startParagraphsReorderMode,
+		'paragraphs-edit-mode--delete': modeModifier === 'PARAGRAPHS_DELETION',
+		'paragraphs-edit-mode--reorder': modeModifier === 'PARAGRAPHS_REORDER',
 	})
-	const reorderParagraphs = ({ source, destination }) => {
-		const { index: sourceIndex } = source
-		const { index: destinationIndex } = destination
-		const tempActiveParagraphs = [...activeParagraphs]
-		const [removed] = tempActiveParagraphs.splice(sourceIndex, 1)
-		tempActiveParagraphs.splice(destinationIndex, 0, removed)
-
-		setActiveParagraphs(tempActiveParagraphs)
+	const reorderParagraphs = dragEvent => {
+		dispatch({ type: 'REORDER_PARAGRAPHS', payload: { value: dragEvent } })
 	}
 
 	return (
@@ -42,7 +42,7 @@ const ParagraphsEditMode = () => {
 				<Button type="secondary" text="Reoder" fn={() => toggleReorderMode()} />
 				<Button type="danger" text="Delete" fn={() => toggleDeleteMode()} />
 			</div>
-			{startParagraphsReorderMode ? (
+			{modeModifier === 'PARAGRAPHS_REORDER' ? (
 				// Display drag and droppable paragraphs
 				<DragDropContext onDragEnd={reorderParagraphs}>
 					<Droppable droppableId="paragraphs">

@@ -12,14 +12,11 @@
 		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .items-center .flex;
 	}
 
-	&:hover {
-		.paragraph__text--active {
-			@apply .bg-green-lighter !important;
-		}
-
-		.paragraph__text {
-			@apply .bg-gray-light .shadow-2xl;
-		}
+	&:hover,
+	&:active,
+	&:focus {
+		@apply .bg-gray-light;
+		@apply .shadow-2xl;
 	}
 
 	.paragraph__delete {

@@ -4,23 +4,12 @@ import classNames from 'classnames'
 import ScreenContext from '../../context'
 import Button from '../Button'
 import createLetterDocx from '../../utils/createLetterDocx'
+import modes from '../../state/modes'
 
 const Footer = () => {
-	const {
-		screen,
-		setScreen,
-		startFilterFlow,
-		setStartFilterFlow,
-		setStartParagraphPreviewFlow,
-		startParagraphPreviewFlow,
-		startLetterPreviewMode,
-		activeParagraphs,
-		setStartLetterPreviewMode,
-		startParagraphsEditMode,
-		setStartParagraphReorderMode,
-		setStartParagraphDeleteMode,
-		setStartParagraphsEditMode,
-	} = useContext(ScreenContext)
+	const { state, dispatch } = useContext(ScreenContext)
+	const { activeParagraphs, screen, mode } = state
+
 	const handleGoBack = () => {
 		const isFirstFilterScreen = screen === 0
 
@@ -28,20 +17,15 @@ const Footer = () => {
 			return
 		}
 
-		if (startLetterPreviewMode) {
-			setStartLetterPreviewMode(false)
-			setStartParagraphPreviewFlow(true)
+		if ((mode === modes.LETTER_PREVIEW) | (mode === modes.PARAGRAPHS_EDIT)) {
+			dispatch({
+				type: 'SET_MODE',
+				payload: { mode: modes.PARAGRAPHS_PREVIEW },
+			})
 		}
 
-		if (startFilterFlow) {
-			setScreen(screen => (screen -= 1))
-		}
-
-		if (startParagraphsEditMode) {
-			setStartParagraphsEditMode(false)
-			setStartParagraphReorderMode(false)
-			setStartParagraphDeleteMode(false)
-			setStartParagraphPreviewFlow(true)
+		if (mode === modes.FILTERS) {
+			dispatch({ type: 'DECREMENT_SCREEN' })
 		}
 	}
 	const handleMoreInfo = () => {}
@@ -49,21 +33,22 @@ const Footer = () => {
 		const isLastFilterScreen = screen === 2
 
 		if (isLastFilterScreen) {
-			setStartFilterFlow(false)
-			setStartParagraphPreviewFlow(true)
+			dispatch({
+				type: 'SET_MODE',
+				payload: { mode: modes.PARAGRAPHS_PREVIEW },
+			})
 		} else {
-			setScreen(screen => (screen += 1))
+			dispatch({ type: 'INCREMENT_SCREEN' })
 		}
 	}
 	const enterLetterPreviewMode = () => {
-		setStartParagraphPreviewFlow(false)
-		setStartLetterPreviewMode(true)
+		dispatch({ type: 'SET_MODE', payload: { mode: modes.LETTER_PREVIEW } })
 	}
 	const enterFilterFlow = () => {
-		setStartParagraphPreviewFlow(false)
-		setStartFilterFlow(true)
-		setScreen(0)
+		dispatch({ type: 'SET_MODE', payload: { mode: modes.FILTERS } })
+		dispatch({ type: 'SET_SCREEN', payload: { value: 0 } })
 	}
+
 	const classBack = classNames('footer_actions-btn footer__actions-back', {
 		'footer__actions--disabled': screen === 0,
 	})
@@ -83,7 +68,7 @@ const Footer = () => {
 		<footer className="footer">
 			<div className="container">
 				<div className="footer__actions">
-					{startFilterFlow && (
+					{mode === modes.FILTERS && (
 						<>
 							<button
 								className={classBack}
@@ -111,7 +96,7 @@ const Footer = () => {
 							</button>
 						</>
 					)}
-					{startParagraphsEditMode && (
+					{mode === modes.PARAGRAPHS_EDIT && (
 						<>
 							<button
 								className={classBack}
@@ -123,7 +108,7 @@ const Footer = () => {
 							</button>
 						</>
 					)}
-					{startParagraphPreviewFlow && (
+					{mode === modes.PARAGRAPHS_PREVIEW && (
 						<>
 							<Button
 								type="secondary"
@@ -133,7 +118,7 @@ const Footer = () => {
 							<Button text="Preview" fn={() => enterLetterPreviewMode()} />
 						</>
 					)}
-					{startLetterPreviewMode && (
+					{mode === modes.LETTER_PREVIEW && (
 						<>
 							<button
 								className={classBack}

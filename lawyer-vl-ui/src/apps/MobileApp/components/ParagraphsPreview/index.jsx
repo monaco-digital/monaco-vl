@@ -3,33 +3,17 @@ import Title from '../Title'
 import ScreenContext from '../../context'
 import Paragraph from '../Paragraph'
 import Button from '../Button'
-import paragraphs from '../../data/paragraphs'
+import modes from '../../state/modes'
 
 const ParagraphsPreview = () => {
-	const {
-		activeParagraphs,
-		activeFilters,
-		filteredParagraphs,
-		setFilteredParagraphs,
-		setStartParagraphPreviewFlow,
-		setStartParagraphsEditMode,
-	} = useContext(ScreenContext)
-	const aggregateAndSetParagraphs = () => {
-		const aggregatedActiveParagraphs = []
-
-		for (const filter of activeFilters) {
-			aggregatedActiveParagraphs.push(...paragraphs[filter])
-		}
-
-		setFilteredParagraphs(aggregatedActiveParagraphs)
-	}
+	const { state, dispatch } = useContext(ScreenContext)
+	const { activeParagraphs, filteredParagraphs } = state
 	const enterParagraphEditMode = () => {
-		setStartParagraphPreviewFlow(false)
-		setStartParagraphsEditMode(true)
+		dispatch({ type: 'SET_MODE', payload: { mode: modes.PARAGRAPHS_EDIT } })
 	}
 
 	useEffect(() => {
-		aggregateAndSetParagraphs()
+		dispatch({ type: 'SET_FILTERED_PARAGRAPHS' })
 	}, [])
 
 	return (
