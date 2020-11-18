@@ -1,18 +1,17 @@
 import React, { useContext } from 'react'
 import { saveAs } from 'file-saver'
-import classNames from 'classnames'
 import ScreenContext from '../../context'
 import Button from '../Button'
 import createLetterDocx from '../../utils/createLetterDocx'
 import modes from '../../state/modes'
 import actionType from '../../state/actionType'
+import moreInfoIcon from './../../assets/img/more-info.svg'
 
 const Footer = () => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { activeParagraphs, screen, mode } = state
-
+	const { activeParagraphs, previousScreen, screen, topicsView, mode } = state
 	const handleGoBack = () => {
-		const isFirstFilterScreen = screen === 0
+		const isFirstFilterScreen = screen === 1
 
 		if (isFirstFilterScreen) {
 			return
@@ -25,21 +24,24 @@ const Footer = () => {
 			})
 		}
 
-		if (mode === modes.FILTERS) {
-			dispatch({ type: actionType.DECREMENT_SCREEN })
+		if (mode === modes.TOPICS) {
+			dispatch({
+				type: actionType.SET_TOPIC_VIEW,
+				payload: { value: { isBackwards: true } },
+			})
 		}
 	}
 	const handleMoreInfo = () => {}
 	const handleGoForward = () => {
-		const isLastFilterScreen = screen === 2
+		const isLastTopicViewScreen = !topicsView.screen
 
-		if (isLastFilterScreen) {
+		if (isLastTopicViewScreen) {
 			dispatch({
 				type: actionType.SET_MODE,
 				payload: { mode: modes.PARAGRAPHS_PREVIEW },
 			})
 		} else {
-			dispatch({ type: actionType.INCREMENT_SCREEN })
+			dispatch({ type: actionType.SET_TOPIC_VIEW })
 		}
 	}
 	const enterLetterPreviewMode = () => {
@@ -52,16 +54,6 @@ const Footer = () => {
 		dispatch({ type: actionType.SET_MODE, payload: { mode: modes.FILTERS } })
 		dispatch({ type: actionType.SET_SCREEN, payload: { value: 0 } })
 	}
-
-	const classBack = classNames('footer_actions-btn footer__actions-back', {
-		'footer__actions--disabled': screen === 0,
-	})
-	const classForward = classNames(
-		'footer_actions-btn footer__actions-forward',
-		{
-			'footer__actions--disabled': false, // for now hardcode to false,
-		}
-	)
 	const downloadLetter = async () => {
 		const docBlob = await createLetterDocx(activeParagraphs)
 
@@ -72,46 +64,25 @@ const Footer = () => {
 		<footer className="footer">
 			<div className="container">
 				<div className="footer__actions">
-					{mode === modes.FILTERS && (
+					{mode === modes.TOPICS && (
 						<>
 							<button
-								className={classBack}
-								aria-label="Go back"
-								type="button"
-								onClick={() => handleGoBack()}
-							>
-								<i className="fas fa-chevron-left" />
-							</button>
-							<button
-								className="footer_actions-btn footer__actions-info"
+								className="footer__actions-info"
 								aria-label="More info"
 								type="button"
 								onClick={handleMoreInfo}
 							>
-								<i className="far fa-question-circle" />
+								<img src={moreInfoIcon} />
 							</button>
-							<button
-								className={classForward}
-								aria-label="Go forward"
-								type="button"
-								onClick={() => handleGoForward()}
-							>
-								<i className="fas fa-chevron-right" />
-							</button>
+							<Button
+								type="green"
+								text="Next"
+								rounded
+								fn={() => handleGoForward()}
+							/>
 						</>
 					)}
-					{mode === modes.PARAGRAPHS_EDIT && (
-						<>
-							<button
-								className={classBack}
-								aria-label="Go back"
-								type="button"
-								onClick={() => handleGoBack()}
-							>
-								<i className="fas fa-chevron-left" />
-							</button>
-						</>
-					)}
+					{mode === modes.PARAGRAPHS_EDIT && <></>}
 					{mode === modes.PARAGRAPHS_PREVIEW && (
 						<>
 							<Button
@@ -124,14 +95,6 @@ const Footer = () => {
 					)}
 					{mode === modes.LETTER_PREVIEW && (
 						<>
-							<button
-								className={classBack}
-								aria-label="Go back"
-								type="button"
-								onClick={() => handleGoBack()}
-							>
-								<i className="fas fa-chevron-left" />
-							</button>
 							<Button text="Download" fn={() => downloadLetter()} />
 						</>
 					)}

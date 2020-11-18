@@ -22,7 +22,7 @@ const ParagraphsPreview = () => {
 
 	return (
 		<>
-			<Title title="Tap accordingly." />
+			<Title text="Tap accordingly." />
 			<Button
 				type="neutral"
 				text={`Selected: ${activeParagraphs.length}`}
