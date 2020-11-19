@@ -9,15 +9,13 @@ import { DSubTopics } from '../data/types'
 
 export const getSuggestedParagraphs = (
 	allParagraphs: Paragraph[],
-	selectedTopics: CaseTopic[],
-	selectedParagraphs: Paragraph[]
+	selectedTopics: { value: string; label?: string }[]
 ): Paragraph[] => {
 	if (!selectedTopics || selectedTopics.length === 0) {
 		return allParagraphs
 	}
 
-	const selectedParagraphIds = selectedParagraphs.map(p => p.id)
-	const selectedTopicIds = selectedTopics.map(t => t.id)
+	const selectedTopicIds = selectedTopics.map(topic => topic.value)
 	console.log('selectedTopicIds', selectedTopicIds, selectedTopics)
 	const scoredAndFilteredParas = []
 	allParagraphs.forEach(paragraph => {
@@ -28,18 +26,13 @@ export const getSuggestedParagraphs = (
 		let score = (allOf || oneOf) && !noneOf ? 1 : 0
 		console.log('score', score, allOf, oneOf, !noneOf)
 
-		if (score > 0 && !selectedParagraphIds.includes(paragraph.id)) {
+		if (score > 0) {
 			scoredAndFilteredParas.push({
 				paragraph,
 				score,
 			})
 		}
 	})
-	console.log(
-		'getSuggestedParagraphs',
-		scoredAndFilteredParas.length,
-		allParagraphs.length
-	)
 
 	return scoredAndFilteredParas.map(p => p.paragraph)
 }
