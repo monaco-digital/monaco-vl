@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
 import ScreenContext from '../../context'
 import Button from '../Button'
+import actionType from '../../state/actionType'
 
 const ParagraphsEditMode = () => {
 	const { state, dispatch } = useContext(ScreenContext)
@@ -14,7 +15,7 @@ const ParagraphsEditMode = () => {
 				? 'PARAGRAPHS_EDIT'
 				: 'PARAGRAPHS_REORDER'
 		dispatch({
-			type: 'SET_MODE_MODIFIER',
+			type: actionType.SET_MODE_MODIFIER,
 			payload: { modeModifier: toggleModeModifier },
 		})
 	}
@@ -24,7 +25,7 @@ const ParagraphsEditMode = () => {
 				? 'PARAGRAPHS_EDIT'
 				: 'PARAGRAPHS_DELETION'
 		dispatch({
-			type: 'SET_MODE_MODIFIER',
+			type: actionType.SET_MODE_MODIFIER,
 			payload: { modeModifier: toggleModeModifier },
 		})
 	}
@@ -33,7 +34,10 @@ const ParagraphsEditMode = () => {
 		'paragraphs-edit-mode--reorder': modeModifier === 'PARAGRAPHS_REORDER',
 	})
 	const reorderParagraphs = dragEvent => {
-		dispatch({ type: 'REORDER_PARAGRAPHS', payload: { value: dragEvent } })
+		dispatch({
+			type: actionType.REORDER_PARAGRAPHS,
+			payload: { value: dragEvent },
+		})
 	}
 
 	return (

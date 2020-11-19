@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
 import modes from '../../state/modes'
+import actionType from '../../state/actionType'
 
 const Paragraph = ({ paragraphText }) => {
 	const { state, dispatch } = useContext(ScreenContext)
@@ -13,12 +14,15 @@ const Paragraph = ({ paragraphText }) => {
 		}
 
 		dispatch({
-			type: 'SET_ACTIVE_PARAGRAPHS',
+			type: actionType.SET_ACTIVE_PARAGRAPHS,
 			payload: { value: paragraphText },
 		})
 	}
 	const deleteParagraph = () => {
-		dispatch({ type: 'DELETE_PARAGRAPH', payload: { value: paragraphText } })
+		dispatch({
+			type: actionType.DELETE_PARAGRAPH,
+			payload: { value: paragraphText },
+		})
 	}
 	const paragraphClasses = classNames('paragraph', {
 		'paragraph--reorder': modeModifier === 'PARAGRAPHS_REORDER',

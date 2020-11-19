@@ -1,5 +1,5 @@
 import React from 'react'
-import logo from './../../../../img/monaco-solicitors-logo.svg'
+import logo from '../../assets/img/virtual-lawyer-logo.svg'
 
 const Header = () => {
 	return (
@@ -9,7 +9,7 @@ const Header = () => {
 					href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile"
 					target="_blank"
 				>
-					<img className="header__logo" src={logo} />
+					<img alt="Virtual lawyer" src={logo} />
 				</a>
 			</div>
 		</header>

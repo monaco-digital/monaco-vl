@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-const Button = ({ type = 'main', text, fn, extraClasses = '' }) => {
+const Button = ({ type = 'main', text, fn, extraClasses = '', rounded }) => {
 	const classes = classNames(
 		`${extraClasses} button`,
 		{
@@ -15,6 +15,12 @@ const Button = ({ type = 'main', text, fn, extraClasses = '' }) => {
 		},
 		{
 			'button--danger': type === 'danger',
+		},
+		{
+			'button--green': type === 'green',
+		},
+		{
+			'button--rounded': rounded,
 		}
 	)
 	return (

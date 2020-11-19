@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400&family=Montserrat:wght@400;600&display=swap');
 
 h1 {
-	@apply .text-2xl .font-serif .mb-4;
+	@apply .text-xl .font-sans .font-semibold .mb-4;
 }

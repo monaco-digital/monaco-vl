@@ -1,0 +1,23 @@
+.topic {
+	transition: all 0.3s;
+	@apply .mb-8;
+
+	label {
+		@apply .cursor-pointer .button .button--neutral;
+	}
+
+	[type='radio'],
+	[type='checkbox'] {
+		@apply .hidden;
+	}
+
+	[type='checkbox']:checked + label,
+	[type='radio']:checked + label {
+		@apply .text-white .bg-ms-blue;
+	}
+}
+
+.topics__tags {
+	.topic {
+	}
+}
