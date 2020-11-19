@@ -1,6 +1,8 @@
 import paragraphs from '../data/paragraphs'
 import actionType from '../state/actionType'
+import modes from '../state/modes'
 import { ViewLogic } from '../../../clustering'
+import { getSuggestedParagraphs } from '../../../filters'
 
 type Action = {
 	type: string
@@ -86,34 +88,35 @@ const reducer = (state, action: Action) => {
 				activeTopics: [...state.activeTopics, { label, value }],
 			}
 
-		case actionType.SET_ACTIVE_PARAGRAPHS:
-			const isAlreadyActiveParagraph = state.activeParagraphs.includes(
-				payloadValue
-			)
+		// case actionType.SET_ACTIVE_PARAGRAPHS:
+		// 	const isAlreadyActiveParagraph = state.activeParagraphs.includes(
+		// 		payloadValue
+		// 	)
 
-			if (isAlreadyActiveParagraph) {
-				return {
-					...state,
-					activeParagraphs: state.activeParagraphs.filter(
-						value => value !== value
-					),
-				}
-			}
+		// 	if (isAlreadyActiveParagraph) {
+		// 		return {
+		// 			...state,
+		// 			activeParagraphs: state.activeParagraphs.filter(
+		// 				value => value !== value
+		// 			),
+		// 		}
+		// 	}
 
-			return {
-				...state,
-				activeParagraphs: [...state.activeParagraphs, payloadValue],
-			}
+		// 	return {
+		// 		...state,
+		// 		activeParagraphs: [...state.activeParagraphs, payloadValue],
+		// 	}
 
 		case actionType.SET_FILTERED_PARAGRAPHS:
-			const filteredParagraphs = []
+			const activeTopicsStringMap = state.activeTopics.filter(topic => topic)
+			const suggestedParagraphs = getSuggestedParagraphs(
+				payloadValue,
+				activeTopicsStringMap
+			)
 
-			for (const filter of state.activeTopics) {
-				filteredParagraphs.push(...paragraphs[filter])
-			}
 			return {
 				...state,
-				filteredParagraphs,
+				suggestedParagraphs,
 			}
 
 		case actionType.REORDER_PARAGRAPHS:
@@ -144,9 +147,18 @@ const reducer = (state, action: Action) => {
 			const isBackwards = payloadValue?.isBackwards
 			const isNotFirstStep = state.screen !== 1
 			const topicsView = view.getNextView(currentScreen)
+			const isLastTopicScreen = !topicsView.hasOwnProperty('screen')
 
 			if (isBackwards && isNotFirstStep) {
 				return state.previousState
+			}
+
+			if (isLastTopicScreen) {
+				return {
+					...state,
+					previousState: state,
+					mode: modes.PARAGRAPHS_PREVIEW,
+				}
 			}
 
 			return {

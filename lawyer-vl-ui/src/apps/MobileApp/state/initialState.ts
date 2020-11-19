@@ -5,7 +5,10 @@ const initialState = {
 	activeTopics: [], // need change of logic
 	filteredParagraphs: [], // need change of logic
 	activeParagraphs: [], // need change of loggic
-	topicsView: {},
+	suggestedParagraphs: [],
+	topicsView: {
+		uiTopics: [],
+	},
 	mode: null,
 	modeModifier: null,
 }

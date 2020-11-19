@@ -50,9 +50,11 @@ const Footer = () => {
 			payload: { mode: modes.LETTER_PREVIEW },
 		})
 	}
-	const enterFilterFlow = () => {
-		dispatch({ type: actionType.SET_MODE, payload: { mode: modes.FILTERS } })
-		dispatch({ type: actionType.SET_SCREEN, payload: { value: 0 } })
+	const enterParagraphEditMode = () => {
+		dispatch({
+			type: actionType.SET_MODE,
+			payload: { mode: modes.PARAGRAPHS_EDIT },
+		})
 	}
 	const downloadLetter = async () => {
 		const docBlob = await createLetterDocx(activeParagraphs)
@@ -87,10 +89,16 @@ const Footer = () => {
 						<>
 							<Button
 								type="secondary"
-								text="Filters"
-								fn={() => enterFilterFlow()}
+								text="Edit"
+								rounded
+								fn={() => enterParagraphEditMode()}
 							/>
-							<Button text="Preview" fn={() => enterLetterPreviewMode()} />
+							<Button
+								type="green"
+								text="Preview"
+								rounded
+								fn={() => enterLetterPreviewMode()}
+							/>
 						</>
 					)}
 					{mode === modes.LETTER_PREVIEW && (
