@@ -1,24 +1,28 @@
 .footer {
-	@apply .bg-white .w-full .shadow-2xl .fixed .bottom-0 .py-2 .border-t .border-gray-light;
+	background: linear-gradient(
+		0deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+
+	@apply .w-full .fixed .bottom-0;
 
 	.footer__actions {
-		@apply .flex .flex-wrap .justify-between;
+		@apply .flex .flex-wrap .justify-between .py-4;
 
-		.footer_actions-btn {
-			@apply .text-4xl;
-		}
-
-		.footer__actions-back,
 		.footer__actions-forward {
 			@apply .text-black;
 		}
 
 		.footer__actions-info {
-			@apply .text-ms-blue;
+			@apply .h-8 .w-8 .bg-ms-blue .rounded-full .flex .items-center .justify-center .shadow-md;
+
+			img {
+				@apply .w-4 .h-4;
+			}
 		}
 
 		.footer__actions-info,
-		.footer__actions-back,
 		.footer__actions-forward {
 			transition: opacity 0.3s;
 			&:hover,

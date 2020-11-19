@@ -2,10 +2,12 @@ import React, { useContext } from 'react'
 import classNames from 'classnames'
 import ScreenContext from '../../context'
 import modes from '../../state/modes'
+import actionType from '../../state/actionType'
 
-const Paragraph = ({ paragraphText }) => {
+const Paragraph = ({ paragraphData }) => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { mode, modeModifier, activeParagraphs } = state
+	const { mode, activeParagraphs, modeModifier } = state
+	const { id, paragraph, summary, verticalHeight } = paragraphData
 	const handleOnClick = () => {
 		// avoid direct dlicks in the paragraphs during edit mode
 		if (mode === modes.PARAGRAPHS_EDIT) {
@@ -13,19 +15,22 @@ const Paragraph = ({ paragraphText }) => {
 		}
 
 		dispatch({
-			type: 'SET_ACTIVE_PARAGRAPHS',
-			payload: { value: paragraphText },
+			type: actionType.SET_ACTIVE_PARAGRAPHS,
+			payload: { value: id },
 		})
 	}
 	const deleteParagraph = () => {
-		dispatch({ type: 'DELETE_PARAGRAPH', payload: { value: paragraphText } })
+		dispatch({
+			type: actionType.DELETE_PARAGRAPH,
+			payload: { value: id },
+		})
 	}
 	const paragraphClasses = classNames('paragraph', {
 		'paragraph--reorder': modeModifier === 'PARAGRAPHS_REORDER',
 		'paragraph--active':
 			(modeModifier !== 'PARAGRAPHS_REORDER' ||
 				modeModifier !== 'PARAGRAPHS_DELETION') &&
-			activeParagraphs.find(value => value === paragraphText),
+			activeParagraphs.find(value => value === id),
 	})
 
 	return (
@@ -35,7 +40,7 @@ const Paragraph = ({ paragraphText }) => {
 					{modeModifier === 'PARAGRAPHS_REORDER' && (
 						<i className="paragraph__draghandle fas fa-ellipsis-v"></i>
 					)}
-					{paragraphText}
+					{summary}
 				</span>
 			</button>
 			{modeModifier === 'PARAGRAPHS_DELETION' && (

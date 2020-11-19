@@ -40,4 +40,4 @@ amplify-gradle-config.json
 amplifytools.xcconfig
 
 ## compiled/generated files
-main.output.css
+*.output.css

@@ -2,34 +2,29 @@ import React, { useContext, useEffect } from 'react'
 import Title from '../Title'
 import ScreenContext from '../../context'
 import Paragraph from '../Paragraph'
-import Button from '../Button'
-import modes from '../../state/modes'
+import actionType from '../../state/actionType'
+import { getData } from '../../../../api/vlmasersheet'
 
 const ParagraphsPreview = () => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { activeParagraphs, filteredParagraphs } = state
-	const enterParagraphEditMode = () => {
-		dispatch({ type: 'SET_MODE', payload: { mode: modes.PARAGRAPHS_EDIT } })
-	}
+	const { suggestedParagraphs } = state
 
 	useEffect(() => {
-		dispatch({ type: 'SET_FILTERED_PARAGRAPHS' })
+		;(async () => {
+			const paragraphs = await getData()
+			dispatch({
+				type: actionType.SET_FILTERED_PARAGRAPHS,
+				payload: { value: paragraphs },
+			})
+		})()
 	}, [])
 
 	return (
 		<>
-			<Title title="Tap accordingly." />
-			<Button
-				type="neutral"
-				text={`Selected: ${activeParagraphs.length}`}
-				fn={() => enterParagraphEditMode()}
-			/>
+			<Title text={{ heading: 'Letter builder' }} />
 			<div className="paragraphs">
-				{filteredParagraphs.map((paragraphText, i) => (
-					<Paragraph
-						key={`${paragraphText}-${i}`}
-						paragraphText={paragraphText}
-					/>
+				{suggestedParagraphs.map(paragraph => (
+					<Paragraph key={paragraph.id} paragraphData={paragraph} />
 				))}
 			</div>
 		</>
