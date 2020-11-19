@@ -14,6 +14,7 @@ import { Paragraph } from '../../../data/types'
 import { useSelector } from 'react-redux'
 import AppState from '../../../data/AppState'
 import { CustomParagraphs } from '../../../data/static'
+import { CreateGoogleDoc } from '../components/buttons/CreateGoogleDoc'
 
 interface Props {}
 
@@ -96,6 +97,7 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 						>
 							Copy Letter Text
 						</Button>
+						<CreateGoogleDoc />
 					</Box>
 				</Grid>
 			</Grid>
