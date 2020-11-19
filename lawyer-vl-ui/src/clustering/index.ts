@@ -1,18 +1,25 @@
 import { Topic } from '../data/types'
 
 export type UITopic = {
-	type: 'checkbox' | 'radio'
+	type: 'multi-statement' | 'radio' | 'tags'
 	options: { label: string; value?: Topic }[]
 }
 
 export type View = {
 	screen?: number
+	text?: {
+		heading: string
+		subHeading?: string
+	}
 	uiTopics?: UITopic[]
 }
 
-export type ScreenSelection = {
+export type CurrentScreen = {
 	screen: number
-	options?: Topic[]
+	options?: Array<{
+		label: string
+		value?: Topic
+	}>
 }
 
 export class ViewLogic {
@@ -23,13 +30,18 @@ export class ViewLogic {
 		this.#topicsSelected = topicsSelected
 	}
 
-	getNextView(screenSelection: ScreenSelection): View {
-		const { screen, options: selectedOptions } = screenSelection
+	getNextView(currentScreen: CurrentScreen): View {
+		const { screen, options: selectedOptions } = currentScreen
 
 		switch (screen) {
 			case 0: {
 				return {
 					screen: 1,
+					text: {
+						heading:
+							'Before we start we need to know some of the basic facts about your case.',
+						subHeading: 'Select the statement that applies to you.',
+					},
 					uiTopics: [
 						{
 							type: 'radio',
@@ -43,9 +55,12 @@ export class ViewLogic {
 			}
 
 			case 1:
-				if (selectedOptions?.includes['E']) {
+				if (selectedOptions?.find(topic => topic.value === 'E')) {
 					return {
 						screen: 2,
+						text: {
+							heading: 'How long have you been employed?',
+						},
 						uiTopics: [
 							{
 								type: 'radio',
@@ -59,9 +74,12 @@ export class ViewLogic {
 				} else {
 					return {
 						screen: 4,
+						text: {
+							heading: 'Select any or all of the statements that apply to you.',
+						},
 						uiTopics: [
 							{
-								type: 'checkbox',
+								type: 'multi-statement',
 								options: [
 									{ label: 'I have been dismissed', value: 'T' },
 									{ label: 'I have resigned', value: 'Rd' },
@@ -77,9 +95,14 @@ export class ViewLogic {
 			case 2:
 				return {
 					screen: 3,
+					text: {
+						heading: 'What’s your situation at work?',
+						subHeading:
+							'Select any or all of the statements that apply to you.',
+					},
 					uiTopics: [
 						{
-							type: 'checkbox',
+							type: 'multi-statement',
 							options: [
 								{ label: 'I am facing redundancy', value: 'R' },
 								{ label: 'I have been suspended', value: 'Sn' },
@@ -90,12 +113,16 @@ export class ViewLogic {
 				}
 
 			case 3:
-				//both screen 3 and 4 lead to 5
 				return {
 					screen: 5,
+					text: {
+						heading: 'What other factors are relevant to your case?',
+						subHeading:
+							'Select any or all of the statements that apply to you.',
+					},
 					uiTopics: [
 						{
-							type: 'checkbox',
+							type: 'tags',
 							options: [
 								{ label: 'Discrimination', value: 'D' },
 								{ label: 'Bullying', value: 'B' },
@@ -114,12 +141,16 @@ export class ViewLogic {
 				}
 
 			case 4:
-				//both screen 3 and 4 lead to 5
 				return {
 					screen: 5,
+					text: {
+						heading: 'What other factors are relevant to your case?',
+						subHeading:
+							'Select any or all of the statements that apply to you.',
+					},
 					uiTopics: [
 						{
-							type: 'checkbox',
+							type: 'tags',
 							options: [
 								{ label: 'Discrimination', value: 'D' },
 								{ label: 'Bullying', value: 'B' },
@@ -138,14 +169,17 @@ export class ViewLogic {
 				}
 
 			case 5:
-				//if discrimination has been selected return one more screen , otherwise finish
-				if (selectedOptions.includes['D']) {
-					// return screen to do with discrimination
+				if (selectedOptions?.find(topic => topic.value === 'D')) {
 					return {
 						screen: 6,
+						text: {
+							heading: 'What are being discriminated for?',
+							subHeading:
+								'Select any or all of the statements that apply to you.',
+						},
 						uiTopics: [
 							{
-								type: 'checkbox',
+								type: 'tags',
 								options: [
 									{ label: 'Age', value: 'DA' },
 									{ label: 'Pregnancy', value: 'DP' },

@@ -29,6 +29,7 @@ import { useSelector } from 'react-redux'
 import AppState from '../../../data/AppState'
 import { CustomParagraphs } from '../../../data/static'
 import axios from 'axios'
+import { CreateGoogleDoc } from '../components/buttons/CreateGoogleDoc'
 
 interface Props {}
 
@@ -232,17 +233,7 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 							</Button>
 						</Box>
 						<Box>
-							<Button
-								variant="contained"
-								color="secondary"
-								className={classes.button}
-								onClick={() => {
-									copyParasToText()
-								}}
-								disabled
-							>
-								Create doc
-							</Button>
+							<CreateGoogleDoc />
 						</Box>
 					</Box>
 
@@ -424,8 +415,6 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 								</a>
 							</p>
 						</Collapse>
-					</Box>
-				</Grid>
 			</Grid>
 		</>
 	)
