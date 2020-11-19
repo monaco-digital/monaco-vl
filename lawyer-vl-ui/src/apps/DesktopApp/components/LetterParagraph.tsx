@@ -2,8 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { Paragraph } from './Paragraph'
-import { Box, Grid, Tab, Tabs, Paper, Button } from '@material-ui/core'
+import { ParagraphComponent } from './ParagraphComponent'
+import {
+	Box,
+	Grid,
+	Tab,
+	Tabs,
+	Paper,
+	Button,
+	FormControlLabel,
+	Switch,
+} from '@material-ui/core'
 import {
 	convertParagraphsForEditor,
 	getEData,
@@ -129,6 +138,12 @@ const useStyles = makeStyles((theme: Theme) =>
 		tooltip: {
 			fontSize: '14px',
 		},
+		topicLabel: {
+			padding: '4px',
+			marginLeft: '4px',
+			background: 'green',
+			color: 'white',
+		},
 	})
 )
 
@@ -193,7 +208,13 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		selectedTopics,
 		selectedParagraphs
 	)
-	console.log('UPDATED SEGGGESTED PARGAPH', suggestedParagraphs)
+
+	const paraslist = selectedTopics.map(t => {
+		console.log('t', t)
+		const label = t && t.text
+		return <Button>ll:{label}</Button>
+	})
+	console.log('paraslist', paraslist, selectedTopics)
 
 	const [editorData, setEditorData] = useState<any>([])
 	const [tabValue, setTabValue] = React.useState(0)
@@ -270,13 +291,44 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		}
 	}
 
+	const generateTopicsGraphic = (topics: CaseTopic[]) => {
+		const topicList = topics.map(t => {
+			const label = t.text
+			return <b className={classes.topicLabel}>{label}</b>
+		})
+		return topicList
+	}
+
 	const [expanded, setExpanded] = useState(true)
+	const [paragraphDisplayStyle, setParagraphDisplayStyle] = useState('summary')
+
+	const topicsGraphic = generateTopicsGraphic(selectedTopics)
 
 	return (
 		<>
 			<Paper>
 				<DragDropContext onDragEnd={onDragEnd}>
 					<Grid container spacing={0} xs={12}>
+						<Grid item xs={6}>
+							{topicsGraphic}
+						</Grid>
+						<Grid item xs={6}>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={paragraphDisplayStyle === 'summary'}
+										onChange={e =>
+											setParagraphDisplayStyle(
+												e.target.checked ? 'summary' : 'full'
+											)
+										}
+										name="checkedB"
+										color="primary"
+									/>
+								}
+								label="Display summary paragraphs"
+							/>
+						</Grid>
 						<Droppable droppableId="paragraphList">
 							{(provided, snapshot) => (
 								<Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
@@ -302,9 +354,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																provided.draggableProps.style
 															)}
 														>
-															<Paragraph
+															<ParagraphComponent
 																paragraph={item}
-																displayStyle="summary"
+																displayStyle={paragraphDisplayStyle}
 															/>
 														</div>
 													)}
@@ -377,9 +429,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																provided.draggableProps.style
 															)}
 														>
-															<Paragraph
+															<ParagraphComponent
 																paragraph={item}
-																displayStyle="summary"
+																displayStyle={paragraphDisplayStyle}
 															/>
 														</div>
 													)}
