@@ -4,6 +4,7 @@ import ScreenContext from '../../context'
 import Paragraph from '../Paragraph'
 import actionType from '../../state/actionType'
 import { getData } from '../../../../api/vlmasersheet'
+import introParagraph from '../../data/introParagraph'
 
 const ParagraphsPreview = () => {
 	const { state, dispatch } = useContext(ScreenContext)
@@ -23,9 +24,12 @@ const ParagraphsPreview = () => {
 		<>
 			<Title text={{ heading: 'Letter builder' }} />
 			<div className="paragraphs">
-				{suggestedParagraphs.map(paragraph => (
-					<Paragraph key={paragraph.id} paragraphData={paragraph} />
-				))}
+				<div className="container">
+					<Paragraph paragraphData={introParagraph} />
+					{suggestedParagraphs.map(paragraph => (
+						<Paragraph key={paragraph.id} paragraphData={paragraph} />
+					))}
+				</div>
 			</div>
 		</>
 	)

@@ -1,15 +1,19 @@
 .paragraph {
 	transition: all 0.3s;
-	@apply .flex .mb-6;
+	@apply .bg-white .flex .mb-6;
 
 	.paragraph__box {
-		@apply .flex-grow;
+		box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.03);
+		@apply .flex-grow .flex .rounded;
+
+		.paragraph__chevron {
+			@apply .text-lg .pt-2 .w-10 .text-ms-gray;
+		}
 	}
 
 	.paragraph__text {
 		transition: all 0.3s;
-		min-height: 4rem;
-		@apply .font-serif .text-sm .text-left .font-bold .px-3 .shadow-xl .border .border-gray-light .rounded .py-2 .block .items-center .flex;
+		@apply .w-full .font-sans .text-sm .text-left .px-3 .rounded .block .items-center .flex .border-r .border-ms-gray-light .my-3;
 	}
 
 	&:hover,

@@ -3,12 +3,12 @@ import classNames from 'classnames'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
 import ScreenContext from '../../context'
-import Button from '../Button'
 import actionType from '../../state/actionType'
+import Title from '../Title'
 
 const ParagraphsEditMode = () => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { modeModifier, activeParagraphs } = state
+	const { modeModifier, suggestedParagraphs } = state
 	const toggleReorderMode = () => {
 		const toggleModeModifier =
 			modeModifier === 'PARAGRAPHS_REORDER'
@@ -41,13 +41,9 @@ const ParagraphsEditMode = () => {
 	}
 
 	return (
-		<div className="paragraphs-edit-mode">
-			<div className="paragraphs-edit-mode__actions">
-				<Button type="secondary" text="Reoder" fn={() => toggleReorderMode()} />
-				<Button type="danger" text="Delete" fn={() => toggleDeleteMode()} />
-			</div>
-			{modeModifier === 'PARAGRAPHS_REORDER' ? (
-				// Display drag and droppable paragraphs
+		<>
+			<Title text={{ heading: 'Letter builder - Editing' }} />
+			<div className="paragraphs-edit-mode">
 				<DragDropContext onDragEnd={reorderParagraphs}>
 					<Droppable droppableId="paragraphs">
 						{provided => (
@@ -56,32 +52,31 @@ const ParagraphsEditMode = () => {
 								{...provided.droppableProps}
 								className={paragraphsClasses}
 							>
-								{activeParagraphs.map((paragraphText, i) => (
-									<Draggable draggableId={`paragraph-${i}`} index={i} key={i}>
-										{provided => (
-											<div
-												ref={provided.innerRef}
-												{...provided.draggableProps}
-												{...provided.dragHandleProps}
-											>
-												<Paragraph paragraphText={paragraphText} />
-											</div>
-										)}
-									</Draggable>
-								))}
+								<div className="container">
+									{suggestedParagraphs.map((paragraph, i) => (
+										<Draggable
+											draggableId={paragraph.id}
+											index={i}
+											key={paragraph.id}
+										>
+											{provided => (
+												<div
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}
+												>
+													<Paragraph paragraphData={paragraph} />
+												</div>
+											)}
+										</Draggable>
+									))}
+								</div>
 							</div>
 						)}
 					</Droppable>
 				</DragDropContext>
-			) : (
-				// Display normal paragraphs
-				activeParagraphs.map((paragraphText, i) => (
-					<div key={`paragraph-${i}`}>
-						<Paragraph paragraphText={paragraphText} />
-					</div>
-				))
-			)}
-		</div>
+			</div>
+		</>
 	)
 }
 

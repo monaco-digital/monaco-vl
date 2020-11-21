@@ -95,7 +95,7 @@ const Footer = () => {
 							/>
 							<Button
 								type="green"
-								text="Preview"
+								text="Preview Letter"
 								rounded
 								fn={() => enterLetterPreviewMode()}
 							/>
