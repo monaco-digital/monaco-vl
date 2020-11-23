@@ -3,23 +3,23 @@ import classNames from 'classnames'
 import ScreenContext from '../../context'
 import modes from '../../state/modes'
 import actionType from '../../state/actionType'
+import truncatedIcon from './../../assets/img/truncated-icon.svg'
+import deleteIcon from './../../assets/img/delete-icon.svg'
 
 const Paragraph = ({ paragraphData }) => {
 	const [collapsed, setCollapsed] = useState(true)
 	const { state, dispatch } = useContext(ScreenContext)
-	const { mode, activeParagraphs, modeModifier } = state
-	const { id, paragraph, summary, verticalHeight } = paragraphData
-	const handleOnClick = () => {
+	const { mode, selectedParagraphs } = state
+	const { id, paragraph, summary } = paragraphData
+	const handleOnClick = event => {
+		event.stopPropagation()
 		toggleCollapsed()
-		// avoid direct dlicks in the paragraphs during edit mode
-		// if (mode === modes.PARAGRAPHS_EDIT) {
-		// 	return
-		// }
-
-		// dispatch({
-		// 	type: actionType.SET_ACTIVE_PARAGRAPHS,
-		// 	payload: { value: id },
-		// })
+	}
+	const selectParagraph = paragraphData => {
+		dispatch({
+			type: actionType.SET_SELECTED_PARAGRAPHS,
+			payload: { value: paragraphData },
+		})
 	}
 	const deleteParagraph = () => {
 		dispatch({
@@ -27,13 +27,6 @@ const Paragraph = ({ paragraphData }) => {
 			payload: { value: id },
 		})
 	}
-	const paragraphClasses = classNames('paragraph', {
-		'paragraph--reorder': modeModifier === 'PARAGRAPHS_REORDER',
-		'paragraph--active':
-			(modeModifier !== 'PARAGRAPHS_REORDER' ||
-				modeModifier !== 'PARAGRAPHS_DELETION') &&
-			activeParagraphs.find(value => value === id),
-	})
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
 		'fa-chevron-up': !collapsed,
@@ -41,25 +34,47 @@ const Paragraph = ({ paragraphData }) => {
 	const toggleCollapsed = () => {
 		setCollapsed(collapsed => !collapsed)
 	}
+	const paragraphClasses = classNames('paragraph', {
+		'paragraph--selected': selectedParagraphs.find(
+			paragraph => paragraph.id === paragraphData.id
+		),
+	})
 
 	return (
 		<div className={paragraphClasses}>
-			<button className="paragraph__box" onClick={() => handleOnClick()}>
-				<span className="paragraph__text">
-					{modeModifier === 'PARAGRAPHS_REORDER' && (
-						<i className="paragraph__draghandle fas fa-ellipsis-v"></i>
-					)}
-					{collapsed ? summary : paragraph}
-				</span>
-				<span className="paragraph__chevron">
-					<i className={chevronClasses}></i>
-				</span>
-			</button>
-			{modeModifier === 'PARAGRAPHS_DELETION' && (
-				<button onClick={() => deleteParagraph()}>
-					<i className="paragraph__delete fas fa-minus-circle"></i>
+			{mode === modes.PARAGRAPHS_EDIT && (
+				<button
+					className="paragraph__delete"
+					onClick={() => deleteParagraph()}
+					aria-label="delete paragraph"
+				>
+					<img src={deleteIcon} alt="" />
 				</button>
 			)}
+			<div className="paragraph__wrapper">
+				<div
+					className="paragraph__box"
+					onClick={() => selectParagraph(paragraphData)}
+				>
+					<span className="paragraph__text">
+						{collapsed ? (
+							<>
+								{summary}
+								<img src={truncatedIcon} className="paragraph__truncated" />
+							</>
+						) : (
+							<> {paragraph} </>
+						)}
+					</span>
+					<button
+						className="paragraph__chevron"
+						aria-label="toggle paragraph summary"
+						onClick={event => handleOnClick(event)}
+					>
+						<i className={chevronClasses}></i>
+					</button>
+				</div>
+			</div>
 		</div>
 	)
 }

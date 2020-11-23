@@ -1,7 +1,7 @@
 import { Document, Packer, Paragraph, HeadingLevel, AlignmentType } from 'docx'
 import letter from '../data/letter'
 
-const createLetterDocx = async activeParagraphs => {
+const createLetterDocx = async chosenParagraphs => {
 	const doc = new Document()
 	const title = new Paragraph({
 		text: letter.title,
@@ -11,10 +11,10 @@ const createLetterDocx = async activeParagraphs => {
 			after: 400,
 		},
 	})
-	const paragraphs = activeParagraphs.map(
-		paragraphText =>
+	const paragraphs = chosenParagraphs.map(
+		({ paragraph }) =>
 			new Paragraph({
-				text: paragraphText,
+				text: paragraph,
 				spacing: {
 					after: 200,
 				},

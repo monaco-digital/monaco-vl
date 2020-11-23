@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import classNames from 'classnames'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
 import ScreenContext from '../../context'
@@ -8,31 +7,7 @@ import Title from '../Title'
 
 const ParagraphsEditMode = () => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { modeModifier, suggestedParagraphs } = state
-	const toggleReorderMode = () => {
-		const toggleModeModifier =
-			modeModifier === 'PARAGRAPHS_REORDER'
-				? 'PARAGRAPHS_EDIT'
-				: 'PARAGRAPHS_REORDER'
-		dispatch({
-			type: actionType.SET_MODE_MODIFIER,
-			payload: { modeModifier: toggleModeModifier },
-		})
-	}
-	const toggleDeleteMode = () => {
-		const toggleModeModifier =
-			modeModifier === 'PARAGRAPHS_DELETION'
-				? 'PARAGRAPHS_EDIT'
-				: 'PARAGRAPHS_DELETION'
-		dispatch({
-			type: actionType.SET_MODE_MODIFIER,
-			payload: { modeModifier: toggleModeModifier },
-		})
-	}
-	const paragraphsClasses = classNames('paragraphs', {
-		'paragraphs-edit-mode--delete': modeModifier === 'PARAGRAPHS_DELETION',
-		'paragraphs-edit-mode--reorder': modeModifier === 'PARAGRAPHS_REORDER',
-	})
+	const { selectedParagraphs } = state
 	const reorderParagraphs = dragEvent => {
 		dispatch({
 			type: actionType.REORDER_PARAGRAPHS,
@@ -42,7 +17,12 @@ const ParagraphsEditMode = () => {
 
 	return (
 		<>
-			<Title text={{ heading: 'Letter builder - Editing' }} />
+			<Title
+				text={{
+					heading: 'Letter builder',
+					subHeading: 'Reorder or delete paragraphs.',
+				}}
+			/>
 			<div className="paragraphs-edit-mode">
 				<DragDropContext onDragEnd={reorderParagraphs}>
 					<Droppable droppableId="paragraphs">
@@ -50,10 +30,10 @@ const ParagraphsEditMode = () => {
 							<div
 								ref={provided.innerRef}
 								{...provided.droppableProps}
-								className={paragraphsClasses}
+								className="paragraphs"
 							>
 								<div className="container">
-									{suggestedParagraphs.map((paragraph, i) => (
+									{selectedParagraphs.map((paragraph, i) => (
 										<Draggable
 											draggableId={paragraph.id}
 											index={i}

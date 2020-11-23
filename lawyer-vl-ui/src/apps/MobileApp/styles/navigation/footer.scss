@@ -8,7 +8,7 @@
 	@apply .w-full .fixed .bottom-0;
 
 	.footer__actions {
-		@apply .flex .flex-wrap .justify-between .py-4 .items-end;
+		@apply .flex .flex-wrap .justify-between .py-4 .items-center;
 
 		.footer__actions-forward {
 			@apply .text-black;
@@ -19,6 +19,14 @@
 
 			img {
 				@apply .w-4 .h-4;
+			}
+		}
+
+		.footer__actions-drag {
+			@apply .text-white .bg-black .rounded-2xl .flex .px-3 .py-1 .items-center;
+
+			img {
+				@apply .mr-3;
 			}
 		}
 

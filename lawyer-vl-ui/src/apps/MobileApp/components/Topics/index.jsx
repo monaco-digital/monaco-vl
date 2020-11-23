@@ -26,8 +26,8 @@ const Topics = () => {
 					}
 				)
 				return (
-					<div className={classes}>
-						<Topic key={`${uiTopic.type}-${i}`} uiTopic={uiTopic} />
+					<div key={`${uiTopic.type}-${i}`} className={classes}>
+						<Topic uiTopic={uiTopic} />
 					</div>
 				)
 			})}

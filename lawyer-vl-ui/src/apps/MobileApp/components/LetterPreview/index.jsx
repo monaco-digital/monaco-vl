@@ -1,17 +1,27 @@
 import React, { useContext } from 'react'
 import ScreenContext from './../../context'
 import letter from './../../data/letter'
+import Title from './../Title'
 
 const LetterPreview = () => {
 	const { state } = useContext(ScreenContext)
-	const { activeParagraphs } = state
+	const { selectedParagraphs } = state
 	return (
-		<div className="letter-preview">
-			<div className="letter-preview__title">{letter.title}</div>
-			{activeParagraphs.map(paragraph => (
-				<p>{paragraph}</p>
-			))}
-		</div>
+		<>
+			<Title
+				text={{
+					heading: 'Letter preview',
+				}}
+			/>
+			<div className="letter-preview">
+				<div className="letter-preview__box">
+					<div className="letter-preview__box-title">{letter.title}</div>
+					{selectedParagraphs.map(({ paragraph, id }) => (
+						<p key={id}>{paragraph}</p>
+					))}
+				</div>
+			</div>
+		</>
 	)
 }
 

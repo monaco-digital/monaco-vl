@@ -14,7 +14,7 @@ const ParagraphsPreview = () => {
 		;(async () => {
 			const paragraphs = await getData()
 			dispatch({
-				type: actionType.SET_FILTERED_PARAGRAPHS,
+				type: actionType.SET_SUGGESTED_PARAGRAPHS,
 				payload: { value: paragraphs },
 			})
 		})()
@@ -22,7 +22,12 @@ const ParagraphsPreview = () => {
 
 	return (
 		<>
-			<Title text={{ heading: 'Letter builder' }} />
+			<Title
+				text={{
+					heading: 'Letter builder',
+					subHeading: 'Select paragraphs by tapping on them.',
+				}}
+			/>
 			<div className="paragraphs">
 				<div className="container">
 					<Paragraph paragraphData={introParagraph} />
