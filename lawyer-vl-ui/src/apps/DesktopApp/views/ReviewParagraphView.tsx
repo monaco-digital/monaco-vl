@@ -1,22 +1,15 @@
 import React, { useState } from 'react'
 import {
-	Typography,
 	Box,
 	Theme,
-	Breadcrumbs,
 	Grid,
 	Button,
-	TextField,
 	Select,
 	MenuItem,
 	FormControl,
 	FormControlLabel,
-	FormHelperText,
 	InputLabel,
 	Input,
-	OutlinedInput,
-	FilledInput,
-	Slider,
 	Checkbox,
 	Collapse,
 	CircularProgress,
@@ -24,12 +17,12 @@ import {
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import { LetterBottom } from '../components/letter/LetterBottom'
 import { LetterTop } from '../components/letter/LetterTop'
-import { Paragraph } from '../../../data/types'
+import { CaseTopic, Paragraph } from '../../../data/types'
 import { useSelector } from 'react-redux'
 import AppState from '../../../data/AppState'
-import { CustomParagraphs } from '../../../data/static'
 import axios from 'axios'
 import { CreateGoogleDoc } from '../components/buttons/CreateGoogleDoc'
+import { getLetterText } from '../../../utlis/letter'
 
 interface Props {}
 
@@ -120,20 +113,12 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 	const paragraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected ?? []
 	)
-
-	const getLetterText = () => {
-		const top = CustomParagraphs.top
-			.map(({ paragraph }) => paragraph)
-			.join('\n\n')
-		const middle = paragraphs.map(item => item.paragraph).join('\n\n')
-		const bottom = CustomParagraphs.bottom
-			.map(({ paragraph }) => paragraph)
-			.join('\n\n')
-		return top.concat(middle).concat(bottom)
-	}
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
 
 	const copyParasToText = () => {
-		navigator.clipboard.writeText(getLetterText())
+		navigator.clipboard.writeText(getLetterText(selectedTopics, paragraphs))
 	}
 
 	const getLetterMiddle = () => {
@@ -176,7 +161,7 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 			'still-employed': stillEmployed ? 'Yes' : 'No',
 			salary: salary,
 			'settlement-agreement': settlementAgreement ? 'Yes' : 'No',
-			description: getLetterText(),
+			description: getLetterText(selectedTopics, paragraphs),
 		}
 		axios
 			.post(
@@ -194,9 +179,9 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 				<Grid item xs={2}></Grid>
 				<Grid item xs={6}>
 					<Box className={classes.letterStyle}>
-						<LetterTop />
+						<LetterTop selectedTopics={selectedTopics} />
 						{getLetterMiddle()}
-						<LetterBottom />
+						<LetterBottom selectedTopics={selectedTopics} />
 					</Box>
 				</Grid>
 				<Grid item xs={4}>
@@ -233,7 +218,10 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 							</Button>
 						</Box>
 						<Box>
-							<CreateGoogleDoc />
+							<CreateGoogleDoc
+								paragraphs={paragraphs}
+								selectedTopics={selectedTopics}
+							/>
 						</Box>
 					</Box>
 
@@ -415,6 +403,8 @@ export const ReviewParagraphView: React.FC<Props> = (props: Props) => {
 								</a>
 							</p>
 						</Collapse>
+					</Box>
+				</Grid>
 			</Grid>
 		</>
 	)

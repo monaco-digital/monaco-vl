@@ -1,4 +1,4 @@
-import { Paragraph, Topic } from './types'
+import { CaseTopic, Paragraph, Topic } from './types'
 
 export type AppState = {
 	paragraphs: {
@@ -7,7 +7,7 @@ export type AppState = {
 		selected: Paragraph[]
 	}
 	topics: {
-		selected: Topic[]
+		selected: CaseTopic[]
 	}
 }
 

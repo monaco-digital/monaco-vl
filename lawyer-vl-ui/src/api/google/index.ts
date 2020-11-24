@@ -26,11 +26,6 @@ export const createGoogleDocument = (paragraphs: Paragraph[]): any => {
 
 	updateGoogleDocumentBody(updatedTemplate, paragraphs)
 
-	console.log(
-		'The updated google document being returned is 22222: ',
-		updatedTemplate
-	)
-
 	return updatedTemplate
 }
 
@@ -64,7 +59,6 @@ export const callGoogleApi = async (textToInsert: string) => {
 		}
 	)
 
-	console.log('The response 1 when creating document is: ', response1)
 	const {
 		data: { documentId },
 	} = response1
@@ -109,8 +103,6 @@ export const callGoogleApi = async (textToInsert: string) => {
 			},
 		}
 	)
-
-	console.log('The response 2 from google drive is: ', response2)
 
 	//get shareable link and log in to console
 	const shareableLink = `https://docs.google.com/document/d/${documentId}/edit`
