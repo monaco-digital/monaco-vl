@@ -84,7 +84,7 @@ export class CustomParagraphs {
 		},
 		{
 			id: 'A00010',
-			paragraph: '[-- Termination date of xx]',
+			paragraph: '-- Termination date of xx',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],
@@ -92,7 +92,7 @@ export class CustomParagraphs {
 		},
 		{
 			id: 'A00011',
-			paragraph: '[-- Orderly handover]',
+			paragraph: '-- Orderly handover',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],
@@ -100,7 +100,7 @@ export class CustomParagraphs {
 		},
 		{
 			id: 'A00012',
-			paragraph: '[-- [x] months’ notice pay]',
+			paragraph: '-- [x] months’ notice pay',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],
