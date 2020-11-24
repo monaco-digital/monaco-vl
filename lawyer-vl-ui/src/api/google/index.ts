@@ -1,6 +1,5 @@
 //@ts-nocheck
 import axios from 'axios'
-import nanoid from 'nanoid'
 import { updateGoogleDocumentBody } from './utils'
 import { Paragraph } from '../../data/types'
 
@@ -13,12 +12,10 @@ const refreshToken =
 const grantType = 'refresh_token'
 
 export const createGoogleDocument = (paragraphs: Paragraph[]): any => {
-	const id = nanoid()
 	const titleTime = new Date().toISOString().slice(0, 16)
 
 	const updatedTemplate = {
 		...template,
-		documentId: id,
 		title: `VL - Letter - ${titleTime} `,
 	}
 

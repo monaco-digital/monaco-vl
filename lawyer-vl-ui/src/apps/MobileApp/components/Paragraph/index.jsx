@@ -5,6 +5,7 @@ import modes from '../../state/modes'
 import actionType from '../../state/actionType'
 import truncatedIcon from './../../assets/img/truncated-icon.svg'
 import deleteIcon from './../../assets/img/delete-icon.svg'
+import Button from '../Button'
 
 const Paragraph = ({ paragraphData }) => {
 	const [collapsed, setCollapsed] = useState(true)
