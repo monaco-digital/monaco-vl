@@ -1,15 +1,17 @@
 import React, { useContext } from 'react'
 import classNames from 'classnames'
 import Topic from '../Topic'
+import Title from '../Title'
 import ScreenContext from '../../context'
 
 const Topics = () => {
 	const { state } = useContext(ScreenContext)
 	const { topicsView } = state
-	const { uiTopics } = topicsView
+	const { text, uiTopics } = topicsView
 
 	return (
 		<>
+			{text && <Title text={text} />}
 			{uiTopics.map((uiTopic, i) => {
 				const classes = classNames(
 					'topics',
@@ -24,8 +26,8 @@ const Topics = () => {
 					}
 				)
 				return (
-					<div className={classes}>
-						<Topic key={`${uiTopic.type}-${i}`} uiTopic={uiTopic} />
+					<div key={`${uiTopic.type}-${i}`} className={classes}>
+						<Topic uiTopic={uiTopic} />
 					</div>
 				)
 			})}
