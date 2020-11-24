@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { Typography, Box, Theme, createStyles } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import { CustomParagraphs } from '../../../../data/static'
+import { CustomParagraphs } from '../../../../data/CustomParagraphs'
+import { CaseTopic } from '../../../../data/types'
 
-type Props = {}
+interface Props {
+	selectedTopics: CaseTopic[]
+}
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -15,9 +18,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const LetterTop: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
-
-	const paragraphsText = CustomParagraphs.top.map(({ paragraph }) => paragraph)
-	const [expanded, setExpanded] = useState(true)
+	const { selectedTopics } = props
+	const { top } = CustomParagraphs.getParagraphs(selectedTopics)
+	const paragraphsText = top.map(({ paragraph }) => paragraph)
 
 	return (
 		<Box className={classes.root}>
@@ -47,8 +50,6 @@ export const LetterTop: React.FC<Props> = (props: Props) => {
 			<br />
 			<br />
 			{paragraphsText[9]}
-			<br />
-			<br />
 		</Box>
 	)
 }

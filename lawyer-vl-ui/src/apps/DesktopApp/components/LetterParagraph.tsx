@@ -20,7 +20,7 @@ import {
 import { SimpleEditor } from './editor/SimpleEditor'
 import { LetterTop } from './letter/LetterTop'
 import { LetterBottom } from './letter/LetterBottom'
-import { CustomParagraphs } from '../../../data/static'
+import { CustomParagraphs } from '../../../data/CustomParagraphs'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedParagraphs } from '../../../data/paragraphsDataSlice'
@@ -210,32 +210,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 	)
 
 	const paraslist = selectedTopics.map(t => {
-		console.log('t', t)
 		const label = t && t.text
 		return <Button>ll:{label}</Button>
 	})
-	console.log('paraslist', paraslist, selectedTopics)
-
-	const [editorData, setEditorData] = useState<any>([])
-	const [tabValue, setTabValue] = React.useState(0)
-
-	//bottom paragraphs
-
-	const handleChange = (event, newValue) => {
-		setTabValue(newValue)
-	}
-
-	const onSelectedParagraphChange = (paragraphs: Paragraph[]): void => {
-		//add paragraphs to the top and bottom of the letter
-		const combinedParagraphs = [
-			...CustomParagraphs.top,
-			...paragraphs,
-			...CustomParagraphs.bottom,
-		]
-		const eParagraphs = convertParagraphsForEditor(combinedParagraphs)
-		const eData = getEData(eParagraphs)
-		setEditorData(eData)
-	}
 
 	/* useEffect(() => {
 		const selectedParagraphsIds = selectedParagraphs.map(
@@ -444,7 +421,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 								<div>
 									<br />
 									<Collapse in={expanded} collapsedHeight={70}>
-										<LetterBottom />
+										<LetterBottom selectedTopics={selectedTopics} />
 									</Collapse>
 									{!expanded && (
 										<div className={classes.note}>expand to see more</div>

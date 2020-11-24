@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Topic } from './types'
+import { CaseTopic, Topic } from './types'
 
 export const slice = createSlice({
 	name: 'paragraphs',
 	initialState: {
-		selected: [] as Topic[],
+		selected: [] as CaseTopic[],
 	},
 	reducers: {
 		setTopics: (state, action) => {
