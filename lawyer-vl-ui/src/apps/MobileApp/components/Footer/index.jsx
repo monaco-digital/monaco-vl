@@ -2,14 +2,15 @@ import React, { useContext } from 'react'
 import { saveAs } from 'file-saver'
 import ScreenContext from '../../context'
 import Button from '../Button'
-import createLetterDocx from '../../utils/createLetterDocx'
+import createLetterDocx from '../../utils/createLetterDocx.js'
 import modes from '../../state/modes'
 import actionType from '../../state/actionType'
-import moreInfoIcon from './../../assets/img/more-info.svg'
+import moreInfoIcon from './../../assets/img/more-info-icon.svg'
+import dragIcon from './../../assets/img/drag-icon.svg'
 
 const Footer = () => {
 	const { state, dispatch } = useContext(ScreenContext)
-	const { activeParagraphs, previousScreen, screen, topicsView, mode } = state
+	const { screen, topicsView, mode, selectedParagraphs } = state
 	const handleGoBack = () => {
 		const isFirstFilterScreen = screen === 1
 
@@ -50,6 +51,12 @@ const Footer = () => {
 			payload: { mode: modes.LETTER_PREVIEW },
 		})
 	}
+	const enterParagraphPreviewMode = () => {
+		dispatch({
+			type: actionType.SET_MODE,
+			payload: { mode: modes.PARAGRAPHS_PREVIEW },
+		})
+	}
 	const enterParagraphEditMode = () => {
 		dispatch({
 			type: actionType.SET_MODE,
@@ -57,7 +64,7 @@ const Footer = () => {
 		})
 	}
 	const downloadLetter = async () => {
-		const docBlob = await createLetterDocx(activeParagraphs)
+		const docBlob = await createLetterDocx(selectedParagraphs)
 
 		saveAs(docBlob, 'Your letter.docx')
 	}
@@ -84,7 +91,23 @@ const Footer = () => {
 							/>
 						</>
 					)}
-					{mode === modes.PARAGRAPHS_EDIT && <></>}
+					{mode === modes.PARAGRAPHS_EDIT && (
+						<>
+							<Button
+								type="secondary"
+								text="Done"
+								rounded
+								fn={() => enterParagraphPreviewMode()}
+							/>
+							<button
+								className="footer__actions-drag"
+								aria-label="drag to reorder"
+							>
+								<img src={dragIcon} alt="" />
+								Drag to reorder
+							</button>
+						</>
+					)}
 					{mode === modes.PARAGRAPHS_PREVIEW && (
 						<>
 							<Button
@@ -95,7 +118,7 @@ const Footer = () => {
 							/>
 							<Button
 								type="green"
-								text="Preview"
+								text="Preview Letter"
 								rounded
 								fn={() => enterLetterPreviewMode()}
 							/>
@@ -103,7 +126,18 @@ const Footer = () => {
 					)}
 					{mode === modes.LETTER_PREVIEW && (
 						<>
-							<Button text="Download" fn={() => downloadLetter()} />
+							<Button
+								type="secondary"
+								text="Edit"
+								rounded
+								fn={() => enterParagraphEditMode()}
+							/>
+							<Button
+								type="green"
+								text="Create Document"
+								rounded
+								fn={() => downloadLetter()}
+							/>
 						</>
 					)}
 				</div>

@@ -1,4 +1,3 @@
-import paragraphs from '../data/paragraphs'
 import actionType from '../state/actionType'
 import modes from '../state/modes'
 import { ViewLogic } from '../../../clustering'
@@ -11,7 +10,6 @@ type Action = {
 
 type Payload = {
 	mode?: string
-	modeModifier?: string
 	active?: boolean
 	value?: any
 	radio?: boolean
@@ -21,7 +19,6 @@ const reducer = (state, action: Action) => {
 	const payload = action.payload
 	const payloadValue = payload?.value
 	const mode = payload?.mode
-	const modeModifier = payload?.modeModifier
 
 	switch (action.type) {
 		case actionType.SET_SCREEN:
@@ -46,12 +43,6 @@ const reducer = (state, action: Action) => {
 			return {
 				...state,
 				mode,
-			}
-
-		case actionType.SET_MODE_MODIFIER:
-			return {
-				...state,
-				modeModifier,
 			}
 
 		case actionType.SET_ACTIVE_TOPICS:
@@ -88,54 +79,46 @@ const reducer = (state, action: Action) => {
 				activeTopics: [...state.activeTopics, { label, value }],
 			}
 
-		// case actionType.SET_ACTIVE_PARAGRAPHS:
-		// 	const isAlreadyActiveParagraph = state.activeParagraphs.includes(
-		// 		payloadValue
-		// 	)
+		case actionType.SET_SUGGESTED_PARAGRAPHS:
+			return {
+				...state,
+				suggestedParagraphs: payloadValue,
+			}
 
-		// 	if (isAlreadyActiveParagraph) {
-		// 		return {
-		// 			...state,
-		// 			activeParagraphs: state.activeParagraphs.filter(
-		// 				value => value !== value
-		// 			),
-		// 		}
-		// 	}
-
-		// 	return {
-		// 		...state,
-		// 		activeParagraphs: [...state.activeParagraphs, payloadValue],
-		// 	}
-
-		case actionType.SET_FILTERED_PARAGRAPHS:
-			const activeTopicsStringMap = state.activeTopics.filter(topic => topic)
-			const suggestedParagraphs = getSuggestedParagraphs(
-				payloadValue,
-				activeTopicsStringMap
+		case actionType.SET_SELECTED_PARAGRAPHS:
+			const isSelectedAlready = state.selectedParagraphs.find(
+				paragraph => paragraph.id === payloadValue.id
+			)
+			const filteredSelectedParagraphs = state.selectedParagraphs.filter(
+				paragraph => paragraph.id !== payloadValue.id
 			)
 
 			return {
 				...state,
-				suggestedParagraphs,
+				selectedParagraphs: isSelectedAlready
+					? filteredSelectedParagraphs
+					: [...state.selectedParagraphs, payloadValue],
 			}
 
 		case actionType.REORDER_PARAGRAPHS:
 			const { source, destination } = payloadValue
 			const { index: sourceIndex } = source
 			const { index: destinationIndex } = destination
-			const tempActiveParagraphs = [...state.activeParagraphs]
-			const [removed] = tempActiveParagraphs.splice(sourceIndex, 1)
-			tempActiveParagraphs.splice(destinationIndex, 0, removed)
+			const reorderedSelectedParagraphs = [...state.selectedParagraphs]
+			const [removed] = reorderedSelectedParagraphs.splice(sourceIndex, 1)
+			reorderedSelectedParagraphs.splice(destinationIndex, 0, removed)
 
 			return {
 				...state,
-				activeParagraphs: tempActiveParagraphs,
+				selectedParagraphs: reorderedSelectedParagraphs,
 			}
 
 		case actionType.DELETE_PARAGRAPH:
 			return {
 				...state,
-				paragraphs: state.paragraphs.filter(value => value !== value),
+				selectedParagraphs: state.selectedParagraphs.filter(
+					paragraph => paragraph.id !== payloadValue
+				),
 			}
 
 		case actionType.SET_TOPIC_VIEW:

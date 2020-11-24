@@ -124,7 +124,7 @@ export default function HorizontalLinearStepper() {
 	const getStepContent = step => {
 		switch (step) {
 			case 0:
-				return <GetStarted />
+				return <GetStarted next={handleNext} />
 			case 1:
 				return <FilterView />
 			case 2:

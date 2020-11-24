@@ -1,7 +1,7 @@
 .title {
-	@apply .inline-block .pr-4;
+	@apply .inline-block;
 }
 
 .title__subheading {
-	@apply .text-lg;
+	@apply .text-lg .mb-2;
 }

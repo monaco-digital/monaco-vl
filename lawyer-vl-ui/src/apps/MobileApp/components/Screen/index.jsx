@@ -24,8 +24,8 @@ const Screen = () => {
 		<div className="screen container">
 			{mode === modes.TOPICS && <Topics />}
 			{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
-			{/* {mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
-			{mode === modes.LETTER_PREVIEW && <LetterPreview />} */}
+			{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
+			{mode === modes.LETTER_PREVIEW && <LetterPreview />}
 		</div>
 	)
 }

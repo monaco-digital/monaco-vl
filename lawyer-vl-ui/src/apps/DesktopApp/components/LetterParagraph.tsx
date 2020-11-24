@@ -2,8 +2,17 @@
 import React, { useEffect, useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { Paragraph } from './Paragraph'
-import { Box, Grid, Tab, Tabs, Paper, Button } from '@material-ui/core'
+import { ParagraphComponent } from './ParagraphComponent'
+import {
+	Box,
+	Grid,
+	Tab,
+	Tabs,
+	Paper,
+	Button,
+	FormControlLabel,
+	Switch,
+} from '@material-ui/core'
 import {
 	convertParagraphsForEditor,
 	getEData,
@@ -11,7 +20,7 @@ import {
 import { SimpleEditor } from './editor/SimpleEditor'
 import { LetterTop } from './letter/LetterTop'
 import { LetterBottom } from './letter/LetterBottom'
-import { CustomParagraphs } from '../../../data/static'
+import { CustomParagraphs } from '../../../data/CustomParagraphs'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedParagraphs } from '../../../data/paragraphsDataSlice'
@@ -129,6 +138,12 @@ const useStyles = makeStyles((theme: Theme) =>
 		tooltip: {
 			fontSize: '14px',
 		},
+		topicLabel: {
+			padding: '4px',
+			marginLeft: '4px',
+			background: 'green',
+			color: 'white',
+		},
 	})
 )
 
@@ -193,28 +208,11 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		selectedTopics,
 		selectedParagraphs
 	)
-	console.log('UPDATED SEGGGESTED PARGAPH', suggestedParagraphs)
 
-	const [editorData, setEditorData] = useState<any>([])
-	const [tabValue, setTabValue] = React.useState(0)
-
-	//bottom paragraphs
-
-	const handleChange = (event, newValue) => {
-		setTabValue(newValue)
-	}
-
-	const onSelectedParagraphChange = (paragraphs: Paragraph[]): void => {
-		//add paragraphs to the top and bottom of the letter
-		const combinedParagraphs = [
-			...CustomParagraphs.top,
-			...paragraphs,
-			...CustomParagraphs.bottom,
-		]
-		const eParagraphs = convertParagraphsForEditor(combinedParagraphs)
-		const eData = getEData(eParagraphs)
-		setEditorData(eData)
-	}
+	const paraslist = selectedTopics.map(t => {
+		const label = t && t.text
+		return <Button>ll:{label}</Button>
+	})
 
 	/* useEffect(() => {
 		const selectedParagraphsIds = selectedParagraphs.map(
@@ -270,13 +268,44 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		}
 	}
 
+	const generateTopicsGraphic = (topics: CaseTopic[]) => {
+		const topicList = topics.map(t => {
+			const label = t.text
+			return <b className={classes.topicLabel}>{label}</b>
+		})
+		return topicList
+	}
+
 	const [expanded, setExpanded] = useState(true)
+	const [paragraphDisplayStyle, setParagraphDisplayStyle] = useState('summary')
+
+	const topicsGraphic = generateTopicsGraphic(selectedTopics)
 
 	return (
 		<>
 			<Paper>
 				<DragDropContext onDragEnd={onDragEnd}>
 					<Grid container spacing={0} xs={12}>
+						<Grid item xs={6}>
+							{topicsGraphic}
+						</Grid>
+						<Grid item xs={6}>
+							<FormControlLabel
+								control={
+									<Switch
+										checked={paragraphDisplayStyle === 'summary'}
+										onChange={e =>
+											setParagraphDisplayStyle(
+												e.target.checked ? 'summary' : 'full'
+											)
+										}
+										name="checkedB"
+										color="primary"
+									/>
+								}
+								label="Display summary paragraphs"
+							/>
+						</Grid>
 						<Droppable droppableId="paragraphList">
 							{(provided, snapshot) => (
 								<Grid item xs={6} style={getListStyle(snapshot.isDraggingOver)}>
@@ -302,9 +331,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																provided.draggableProps.style
 															)}
 														>
-															<Paragraph
+															<ParagraphComponent
 																paragraph={item}
-																displayStyle="summary"
+																displayStyle={paragraphDisplayStyle}
 															/>
 														</div>
 													)}
@@ -377,9 +406,9 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 																provided.draggableProps.style
 															)}
 														>
-															<Paragraph
+															<ParagraphComponent
 																paragraph={item}
-																displayStyle="summary"
+																displayStyle={paragraphDisplayStyle}
 															/>
 														</div>
 													)}
@@ -392,7 +421,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 								<div>
 									<br />
 									<Collapse in={expanded} collapsedHeight={70}>
-										<LetterBottom />
+										<LetterBottom selectedTopics={selectedTopics} />
 									</Collapse>
 									{!expanded && (
 										<div className={classes.note}>expand to see more</div>

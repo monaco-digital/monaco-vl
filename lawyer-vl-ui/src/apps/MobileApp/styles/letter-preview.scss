@@ -1,10 +1,12 @@
 .letter-preview {
-	@apply .p-4 .shadow-2xl .font-serif .font-normal .border .border-gray-light;
+	.letter-preview__box {
+		@apply .rounded .ms-shadow .mx-2 .p-4 .font-serif .font-normal .border .border-ms-gray-light;
 
-	.letter-preview__title {
-		@apply .text-2xl .text-center .mb-8;
-	}
-	p {
-		@apply .pb-4;
+		.letter-preview__box-title {
+			@apply .text-base .font-bold .mb-8;
+		}
+		p {
+			@apply .text-sm .pb-4;
+		}
 	}
 }
