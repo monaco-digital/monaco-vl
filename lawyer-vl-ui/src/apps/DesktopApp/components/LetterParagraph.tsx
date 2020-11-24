@@ -32,9 +32,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import { generateKeyPair } from 'crypto'
 
-interface Props {
-	paragraphs: Paragraph[]
-}
+interface Props {}
 
 // a little function to help us with reordering the result
 const reorder = (list: any, startIndex: number, endIndex: number) => {

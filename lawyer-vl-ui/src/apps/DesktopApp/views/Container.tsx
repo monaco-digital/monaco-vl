@@ -12,9 +12,9 @@ import { FilterView } from './FilterView'
 import { ReviewParagraphView } from './ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { LetterParagraph } from '../components/LetterParagraph'
 import { getData } from '../../../api/vlmasersheet'
 import { updateAll } from '../../../data/paragraphsDataSlice'
+import { LetterBuilderView } from './LetterBuilderView'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -128,7 +128,7 @@ export default function HorizontalLinearStepper() {
 			case 1:
 				return <FilterView />
 			case 2:
-				return <LetterParagraph />
+				return <LetterBuilderView />
 			case 3:
 				return <ReviewParagraphView />
 			default:
