@@ -53,16 +53,6 @@ export const Filter: React.FC<Props> = props => {
 	const dispatch = useDispatch()
 	const selectedTopics = useSelector<AppState>(state => state.topics.selected)
 
-	const addTopic = (topic: string) => () => {
-		const updatedTopics = [...selectedTopics, topic]
-		dispatch(setTopics(updatedTopics))
-	}
-
-	const removeTopic = (topic: string) => () => {
-		const updatedTopics = selectedTopics.filter(tpc => tpc !== topic)
-		dispatch(setTopics(updatedTopics))
-	}
-
 	const employmentStatusTopics = Topics.filter(
 		t => t.type === 'employment_situation'
 	)
