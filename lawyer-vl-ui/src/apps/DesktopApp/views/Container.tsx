@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
@@ -9,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
-import { ReviewParagraphView } from './ReviewParagraphView'
+import { ReviewParagraphView } from './review/ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { getData } from '../../../api/vlmasersheet'

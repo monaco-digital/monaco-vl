@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { ParagraphComponent } from './ParagraphComponent'
+import { ParagraphComponent } from '../ParagraphComponent'
 import {
 	Box,
 	Grid,
@@ -18,14 +18,14 @@ import {
 	getEData,
 } from './editor/convertParagraphs'
 import { SimpleEditor } from './editor/SimpleEditor'
-import { LetterTop } from './letter/LetterTop'
-import { LetterBottom } from './letter/LetterBottom'
+import { LetterTop } from './LetterTop'
+import { LetterBottom } from './LetterBottom'
 import { CustomParagraphs } from '../../../data/CustomParagraphs'
 import FileCopyIcon from '@material-ui/icons/FileCopy'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateSelectedParagraphs } from '../../../data/paragraphsDataSlice'
+import { updateSelectedParagraphs } from '../../../../data/paragraphsDataSlice'
 import AppState from '../../../data/AppState'
-import { getSuggestedParagraphs } from '../../../filters'
+import { getSuggestedParagraphs } from '../../../../filters'
 import Collapse from '@material-ui/core/Collapse'
 import IconButton from '@material-ui/core/IconButton'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'

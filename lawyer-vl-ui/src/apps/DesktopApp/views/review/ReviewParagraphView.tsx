@@ -15,14 +15,14 @@ import {
 	CircularProgress,
 } from '@material-ui/core'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
-import { LetterBottom } from '../components/letter/LetterBottom'
-import { LetterTop } from '../components/letter/LetterTop'
-import { CaseTopic, Paragraph } from '../../../data/types'
+import { LetterBottom } from '../../components/letter/LetterBottom'
+import { LetterTop } from '../../components/letter/LetterTop'
+import { CaseTopic, Paragraph } from '../../../../data/types'
 import { useSelector } from 'react-redux'
-import AppState from '../../../data/AppState'
+import AppState from '../../../../data/AppState'
 import axios from 'axios'
-import { CreateGoogleDoc } from '../components/buttons/CreateGoogleDoc'
-import { getLetterText } from '../../../utlis/letter'
+import { CreateGoogleDoc } from '../../components/buttons/CreateGoogleDoc'
+import { getLetterText } from '../../../../utlis/letter'
 
 interface Props {}
 
