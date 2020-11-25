@@ -1,5 +1,5 @@
 import React from 'react'
-import { LetterParagraph } from '../components/LetterParagraph'
+import { LetterParagraph } from '../components/letter/LetterParagraph'
 
 type Props = {}
 

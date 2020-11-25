@@ -36,38 +36,6 @@ const useStyles = makeStyles((theme: Theme) => ({
 export const GetStarted: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
 	const next = props.next
-	const {} = props
-
-	/*
-	const loadReviews = (callback) => {
-		const existingScript = document.getElementById('reviewsIO');
-		if (!existingScript) {
-		  const script = document.createElement('script');
-		  script.src = 'https://widget.reviews.co.uk/rich-snippet-reviews-widgets/dist.js';
-		  script.id = 'reviewsIO';
-		  document.body.appendChild(script);
-		  script.onload = () => { 
-			if (callback) callback();
-		  };
-		}
-		if (existingScript && callback) callback();
-	};
-
-	/*
-	const initialiseReviews = () => {
-		document.richSnippetReviewsWidgets("text-banner-widget", {
-			store: "monacosolicitors-co-uk",
-			starsClr: "#f47e27",
-			textClr: "#313131",
-			logoClr: "black",
-			widgetName: "text-banner"
-		})
-	}
-
-	useEffect(() => {
-		loadReviews(initialiseReviews)
-	}, []) */
-
 	return (
 		<>
 			<div

@@ -207,22 +207,6 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 		selectedParagraphs
 	)
 
-	const paraslist = selectedTopics.map(t => {
-		const label = t && t.text
-		return <Button>ll:{label}</Button>
-	})
-
-	/* useEffect(() => {
-		const selectedParagraphsIds = selectedParagraphs.map(
-			paragraph => paragraph.id
-		)
-		//filter out already selcted paragraphs
-		const uParagraphs = paragraphs.filter(
-			({ id }) => !selectedParagraphsIds.includes(id)
-		)
-		setParagraphOptions(uParagraphs)
-	}, [paragraphs]) */
-
 	useEffect(() => {
 		console.log(
 			'Effect to call on select paragraphs change has been caleed with: ',
