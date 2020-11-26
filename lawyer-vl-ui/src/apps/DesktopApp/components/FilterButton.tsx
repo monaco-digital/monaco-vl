@@ -1,19 +1,10 @@
 //@ts-nocheck
 
 import React, { useState } from 'react'
-import {
-	Typography,
-	Box,
-	Button,
-	useTheme,
-	Theme,
-	createStyles,
-} from '@material-ui/core'
+import { Button, useTheme, Theme, createStyles } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { useSelector, useDispatch } from 'react-redux'
 import AppState from '../../../data/AppState'
-import { ParagraphProperties } from 'docx'
-import { ParagraphTopicMapping, ParagraphTopics } from '../../../data/types'
 import { setTopics } from '../../../data/topicDataSlice'
 
 type Props = {
@@ -52,7 +43,6 @@ export const FilterButton: React.FC<Props> = (props: Props) => {
 
 	const addTopic = () => {
 		const updatedTopics = [...topics, topic]
-		console.log('Updated topics to', updatedTopics)
 		dispatch(setTopics(updatedTopics))
 	}
 

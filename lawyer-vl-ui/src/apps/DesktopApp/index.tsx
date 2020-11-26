@@ -1,5 +1,4 @@
 import React from 'react'
-import { Main } from './components/Main'
 import Container from './views/Container'
 import { Provider } from 'react-redux'
 import store from '../../data/store'
