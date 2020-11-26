@@ -9,6 +9,7 @@ export const slice = createSlice({
 	reducers: {
 		setTopics: (state, action) => {
 			state.selected = action.payload
+			console.log('the selected topics are: ', state.selected)
 		},
 	},
 })

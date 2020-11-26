@@ -20,17 +20,18 @@ import {
 import { SimpleEditor } from './editor/SimpleEditor'
 import { LetterTop } from './LetterTop'
 import { LetterBottom } from './LetterBottom'
-import { CustomParagraphs } from '../../../data/CustomParagraphs'
-import FileCopyIcon from '@material-ui/icons/FileCopy'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { updateSelectedParagraphs } from '../../../../data/paragraphsDataSlice'
 import AppState from '../../../data/AppState'
-import { getSuggestedParagraphs } from '../../../../filters'
+import {
+	filterByGeneralMatch,
+	getSuggestedParagraphs,
+} from '../../../../filters'
 import Collapse from '@material-ui/core/Collapse'
-import IconButton from '@material-ui/core/IconButton'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
-import { generateKeyPair } from 'crypto'
+import { Paragraph } from '../../../../data/types'
 
 interface Props {}
 
@@ -188,36 +189,76 @@ const getLetterContentStyle = isDraggingOver => ({
 export const LetterParagraph: React.FC<Props> = (props: Props) => {
 	const classes = useStyles()
 	const dispatch = useDispatch()
-
-	const allParagraphs = useSelector<AppState, Paragraph[]>(
-		state => state.paragraphs.all
-	)
-
 	const selectedTopics = useSelector<AppState, Paragraph[]>(
 		state => state.topics.selected
 	)
-
-	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
+	const selectedParagraphStore = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected
 	)
-
-	const suggestedParagraphs = getSuggestedParagraphs(
-		allParagraphs,
-		selectedTopics,
-		selectedParagraphs
+	const allParagraphs = useSelector<AppState, Paragraph[]>(
+		state => state.paragraphs.all
 	)
+	const [paragraphs, setParagraphs] = useState([])
+	const [paragraphOptions, setParagraphOptions] = useState(paragraphs ?? [])
+	const [selectedParagraphs, setSelectedParagraphs] = useState(
+		selectedParagraphStore ?? []
+	)
+
+	const onSelectedParagraphChange = (paragraphs: Paragraphp[]): void => {
+		// //add paragraphs to the top and bottom of the letter
+		// const combinedParagraphs = [
+		// 	...CustomParagraphs.top,
+		// 	...paragraphs,
+		// 	...CustomParagraphs.bottom,
+		// ]
+		// const eParagraphs = convertParagraphsForEditor(combinedParagraphs)
+		// const eData = getEData(eParagraphs)
+		// setEditorData(eData)
+	}
+
+	useEffect(() => {
+		console.log(
+			'Filtered by general match 555 is being called with: ',
+			allParagraphs
+		)
+		console.log(
+			'Filtered by general match 555 is being called with: ',
+			selectedTopics
+		)
+		const filteredParagraphs = filterByGeneralMatch(
+			allParagraphs,
+			selectedTopics
+		)
+		console.log(
+			'The filtered by general match 555 is being called with: ',
+			filteredParagraphs
+		)
+		setParagraphs(filteredParagraphs)
+	}, [allParagraphs])
+
+	useEffect(() => {
+		const selectedParagraphsIds = selectedParagraphs.map(
+			paragraph => paragraph.id
+		)
+		//filter out already selcted paragraphs
+		const uParagraphs = paragraphs.filter(
+			({ id }) => !selectedParagraphsIds.includes(id)
+		)
+		setParagraphOptions(uParagraphs)
+	}, [paragraphs])
 
 	useEffect(() => {
 		console.log(
 			'Effect to call on select paragraphs change has been caleed with: ',
 			selectedParagraphs
 		)
+		onSelectedParagraphChange(selectedParagraphs)
 		dispatch(updateSelectedParagraphs(selectedParagraphs))
 	}, [selectedParagraphs])
 
 	const getList = id => {
 		if (id === 'paragraphList') {
-			return suggestedParagraphs
+			return paragraphOptions
 		} else if (id === 'letterList') {
 			return selectedParagraphs
 		}
@@ -237,7 +278,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 			)
 
 			if (source.droppableId === 'letterList') {
-				dispatch(updateSelectedParagraphs(reordered))
+				setSelectedParagraphs(reordered)
 			}
 		} else {
 			const updatedLists = move(
@@ -246,7 +287,8 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 				source,
 				destination
 			)
-			dispatch(updateSelectedParagraphs(updatedLists.letterList))
+			setParagraphOptions(updatedLists.paragraphList)
+			setSelectedParagraphs(updatedLists.letterList)
 		}
 	}
 
@@ -295,7 +337,7 @@ export const LetterParagraph: React.FC<Props> = (props: Props) => {
 										style={getParagraphContentStyle()}
 										ref={provided.innerRef}
 									>
-										{suggestedParagraphs?.map((item, index) => {
+										{paragraphOptions?.map((item, index) => {
 											return (
 												<Draggable
 													key={item.id}
