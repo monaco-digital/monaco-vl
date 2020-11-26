@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
@@ -9,12 +8,12 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { GetStarted } from './GetStarted'
 import { FilterView } from './FilterView'
-import { ReviewParagraphView } from './ReviewParagraphView'
+import { ReviewParagraphView } from './review/ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { LetterParagraph } from '../components/LetterParagraph'
 import { getData } from '../../../api/vlmasersheet'
 import { updateAll } from '../../../data/paragraphsDataSlice'
+import { LetterBuilderView } from './LetterBuilderView'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -100,21 +99,6 @@ export default function HorizontalLinearStepper() {
 		setActiveStep(prevActiveStep => prevActiveStep - 1)
 	}
 
-	const handleSkip = () => {
-		if (!isStepOptional(activeStep)) {
-			// You probably want to guard against something like this,
-			// it should never occur unless someone's actively trying to break something.
-			throw new Error("You can't skip a step that isn't optional.")
-		}
-
-		setActiveStep(prevActiveStep => prevActiveStep + 1)
-		setSkipped(prevSkipped => {
-			const newSkipped = new Set(prevSkipped.values())
-			newSkipped.add(activeStep)
-			return newSkipped
-		})
-	}
-
 	const handleReset = () => {
 		setActiveStep(0)
 	}
@@ -128,7 +112,7 @@ export default function HorizontalLinearStepper() {
 			case 1:
 				return <FilterView />
 			case 2:
-				return <LetterParagraph />
+				return <LetterBuilderView />
 			case 3:
 				return <ReviewParagraphView />
 			default:

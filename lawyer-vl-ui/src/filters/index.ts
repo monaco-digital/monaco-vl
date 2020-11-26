@@ -99,7 +99,7 @@ const matchAllOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 			return true
 		}
 
-		if (utopics.includes[ParagraphTopicMapping.DISCRIMINATION]) {
+		if (utopics.includes(ParagraphTopicMapping.DISCRIMINATION)) {
 			if (DSubTopics.includes(r)) {
 				return true
 			}
@@ -126,7 +126,7 @@ const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 			return false
 		}
 
-		if (utopics.includes[ParagraphTopicMapping.DISCRIMINATION]) {
+		if (utopics.includes(ParagraphTopicMapping.DISCRIMINATION)) {
 			if (DSubTopics.includes(r)) {
 				return false
 			}
@@ -144,7 +144,7 @@ const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 
 export const filterByGeneralMatch = (
 	data: Paragraph[],
-	topics: string[]
+	topics: CaseTopic[]
 ): Paragraph[] => {
 	if (!(topics?.length > 0)) {
 		return data
@@ -152,19 +152,23 @@ export const filterByGeneralMatch = (
 
 	//removing any duplication
 
-	const utopics = [...new Set(topics)]
+	const utopics = [...new Set(topics.map(({ id }) => id))]
 
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
 
+		const topicsOneOfF = topicsOneOf.filter(x => x !== '')
+		const topicsAllOfF = topicsAllOf.filter(x => x !== '')
+		const topicsNoneOfF = topicsNoneOf.filter(x => x !== '')
+
 		const eitherFlag =
-			topicsOneOf.length > 0
-				? topicsOneOf.some(r => utopics?.indexOf(r) >= 0)
+			topicsOneOfF.length > 0
+				? topicsOneOfF.some(r => utopics?.indexOf(r) >= 0)
 				: true
 
-		const mustFlag = matchAllOfTopics(topicsAllOf, utopics)
+		const mustFlag = matchAllOfTopics(topicsAllOfF, utopics)
 
-		const notFlag = matchNoneOfTopics(topicsNoneOf, utopics)
+		const notFlag = matchNoneOfTopics(topicsNoneOfF, utopics)
 
 		return eitherFlag && mustFlag && notFlag
 	})

@@ -6,11 +6,7 @@ import { setTopics } from '../../../data/topicDataSlice'
 
 type Props = {}
 
-const useStyles = makeStyles((theme: Theme) => {})
-
 export const FilterView: React.FC<Props> = (props: Props) => {
-	const classes = useStyles()
-
 	return (
 		<>
 			<Filter />
