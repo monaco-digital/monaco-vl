@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Paragraph } from './types'
-import { getData } from '../api/vlmasersheet'
 
 export const slice = createSlice({
 	name: 'paragraphs',
@@ -11,14 +10,12 @@ export const slice = createSlice({
 	},
 	reducers: {
 		updateAll: (state, action) => {
-			console.log('Updating reduction state with paragraphs 2223: ', action)
 			state.all = action.payload
 		},
 		updateSuggestedParagraphs: (state, action) => {
 			state.suggested = action.payload
 		},
 		updateSelectedParagraphs: (state, action) => {
-			console.log('Updating reduction state with paragraphs 1111: ', action)
 			state.selected = action.payload
 		},
 	},

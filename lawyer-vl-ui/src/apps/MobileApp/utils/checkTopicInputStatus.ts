@@ -1,8 +1,7 @@
-const checkTopicInputStatus = (
-	activeTopics: Array<{ label: string }>,
-	label: string
-) => {
-	const isChecked = activeTopics.find(topic => topic.label === label) || false
+import { CaseTopic } from '../../../data/types'
+
+const checkTopicInputStatus = (selectedTopics: CaseTopic[], id: string) => {
+	const isChecked = selectedTopics.find(topic => topic.id === id) || false
 	return isChecked
 }
 

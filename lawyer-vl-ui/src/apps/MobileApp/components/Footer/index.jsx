@@ -7,6 +7,7 @@ import modes from '../../state/modes'
 import actionType from '../../state/actionType'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
+import { connect } from 'react-redux'
 
 const Footer = () => {
 	const { state, dispatch } = useContext(ScreenContext)
@@ -146,4 +147,4 @@ const Footer = () => {
 	)
 }
 
-export default Footer
+export default connect(null)(Footer)

@@ -1,33 +1,34 @@
-import React, { useContext, useEffect } from 'react'
-import ScreenContext from '../../context'
+import React, { useContext, useEffect, useState } from 'react'
 import Topics from '../Topics'
-import ParagraphsPreview from '../ParagraphsPreview'
-import ParagraphsEditMode from '../ParagraphsEditMode'
-import LetterPreview from '../LetterPreview'
+// import ParagraphsPreview from '../ParagraphsPreview'
+// import ParagraphsEditMode from '../ParagraphsEditMode'
+// import LetterPreview from '../LetterPreview'
 import modes from '../../state/modes'
-import actionType from '../../state/actionType'
+import { connect } from 'react-redux'
+import { setView } from '../../../../data/questionDataSlice'
 
-const Screen = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { mode, screen } = state
-
+const Screen = ({ mode, setView }) => {
 	useEffect(() => {
-		const isInitialScreen = !screen
-
-		if (isInitialScreen) {
-			dispatch({ type: actionType.SET_MODE, payload: { mode: modes.TOPICS } })
-			dispatch({ type: actionType.SET_TOPIC_VIEW, payload: { value: screen } })
-		}
+		setView()
 	}, [])
 
 	return (
 		<div className="screen container">
 			{mode === modes.TOPICS && <Topics />}
-			{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
+			{/* mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 			{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
-			{mode === modes.LETTER_PREVIEW && <LetterPreview />}
+			{mode === modes.LETTER_PREVIEW && <LetterPreview />} */}
 		</div>
 	)
 }
+const mapStateToProps = state => {
+	const { questions } = state
+	return {
+		mode: questions.mode,
+	}
+}
 
-export default Screen
+const mapDispatchToProps = {
+	setView,
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Screen)

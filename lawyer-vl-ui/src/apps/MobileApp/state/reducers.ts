@@ -121,6 +121,7 @@ const reducer = (state, action: Action) => {
 				),
 			}
 
+		// DONE-ish
 		case actionType.SET_TOPIC_VIEW:
 			const view = new ViewLogic()
 			const currentScreen = {
