@@ -45,12 +45,11 @@ export class CustomParagraphs {
 		},
 		{
 			id: 'A00006',
-			paragraph: 'VERY URGENT',
+			paragraph: 'Dear Sir or Madam',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],
 			topicsNoneOf: [],
-			bold: true,
 		},
 		{
 			id: 'A00007',
@@ -61,14 +60,6 @@ export class CustomParagraphs {
 			topicsAllOf: ['All'],
 			topicsNoneOf: [],
 			bold: true,
-		},
-		{
-			id: 'A00008',
-			paragraph: 'Dear Sir or Madam',
-			verticalHeight: 0,
-			topicsOneOf: [],
-			topicsAllOf: ['All'],
-			topicsNoneOf: [],
 		},
 	]
 
