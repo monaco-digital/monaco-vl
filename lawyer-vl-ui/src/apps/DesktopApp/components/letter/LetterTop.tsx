@@ -37,19 +37,12 @@ export const LetterTop: React.FC<Props> = (props: Props) => {
 			{paragraphsText[4]}
 			<br />
 			<br />
-			<b>{paragraphsText[5]}</b>
+			{paragraphsText[5]}
 			<br />
 			<br />
 			<b>{paragraphsText[6]}</b>
 			<br />
 			<br />
-			{paragraphsText[7]}
-			<br />
-			<br />
-			{paragraphsText[8]}
-			<br />
-			<br />
-			{paragraphsText[9]}
 		</Box>
 	)
 }
