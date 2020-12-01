@@ -1,25 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import Title from '../Title'
-import ScreenContext from '../../context'
 import Paragraph from '../Paragraph'
-import actionType from '../../state/actionType'
-import { getData } from '../../../../api/vlmasersheet'
 import introParagraph from '../../data/introParagraph'
+import { connect } from 'react-redux'
 
-const ParagraphsPreview = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { suggestedParagraphs } = state
-
-	useEffect(() => {
-		;(async () => {
-			const paragraphs = await getData()
-			dispatch({
-				type: actionType.SET_SUGGESTED_PARAGRAPHS,
-				payload: { value: paragraphs },
-			})
-		})()
-	}, [])
-
+const ParagraphsPreview = ({ suggested }) => {
 	return (
 		<>
 			<Title
@@ -31,7 +16,7 @@ const ParagraphsPreview = () => {
 			<div className="paragraphs">
 				<div className="container">
 					<Paragraph paragraphData={introParagraph} />
-					{suggestedParagraphs.map(paragraph => (
+					{suggested.map(paragraph => (
 						<Paragraph key={paragraph.id} paragraphData={paragraph} />
 					))}
 				</div>
@@ -40,4 +25,11 @@ const ParagraphsPreview = () => {
 	)
 }
 
-export default ParagraphsPreview
+const mapStateToProps = state => {
+	const { paragraphs } = state
+	return {
+		suggested: paragraphs.suggested,
+	}
+}
+
+export default connect(mapStateToProps)(ParagraphsPreview)

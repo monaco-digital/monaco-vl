@@ -1,73 +1,32 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { saveAs } from 'file-saver'
-import ScreenContext from '../../context'
 import Button from '../Button'
 import createLetterDocx from '../../utils/createLetterDocx.js'
 import modes from '../../state/modes'
-import actionType from '../../state/actionType'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
 import { connect } from 'react-redux'
+import { setView, setMode } from '../../../../data/questionDataSlice'
 
-const Footer = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { screen, topicsView, mode, selectedParagraphs } = state
-	const handleGoBack = () => {
-		const isFirstFilterScreen = screen === 1
-
-		if (isFirstFilterScreen) {
-			return
-		}
-
-		if ((mode === modes.LETTER_PREVIEW) | (mode === modes.PARAGRAPHS_EDIT)) {
-			dispatch({
-				type: actionType.SET_MODE,
-				payload: { mode: modes.PARAGRAPHS_PREVIEW },
-			})
-		}
-
-		if (mode === modes.TOPICS) {
-			dispatch({
-				type: actionType.SET_TOPIC_VIEW,
-				payload: { value: { isBackwards: true } },
-			})
-		}
-	}
+const Footer = ({ setView, setMode, selected, screen, mode }) => {
+	const handleGoBack = () => {}
 	const handleMoreInfo = () => {}
 	const handleGoForward = () => {
-		const isLastTopicViewScreen = !topicsView.screen
-
-		if (isLastTopicViewScreen) {
-			dispatch({
-				type: actionType.SET_MODE,
-				payload: { mode: modes.PARAGRAPHS_PREVIEW },
-			})
-		} else {
-			dispatch({ type: actionType.SET_TOPIC_VIEW })
-		}
+		setView(selected)
 	}
 	const enterLetterPreviewMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.LETTER_PREVIEW },
-		})
+		setMode(modes.LETTER_PREVIEW)
 	}
 	const enterParagraphPreviewMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.PARAGRAPHS_PREVIEW },
-		})
+		setMode(modes.PARAGRAPHS_PREVIEW)
 	}
 	const enterParagraphEditMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.PARAGRAPHS_EDIT },
-		})
+		setMode(modes.PARAGRAPHS_EDIT)
 	}
 	const downloadLetter = async () => {
-		const docBlob = await createLetterDocx(selectedParagraphs)
-
-		saveAs(docBlob, 'Your letter.docx')
+		// TODO find out how this is going to be implemented, if any.
+		// const docBlob = await createLetterDocx(selectedParagraphs)
+		// saveAs(docBlob, 'Your letter.docx')
 	}
 
 	return (
@@ -147,4 +106,18 @@ const Footer = () => {
 	)
 }
 
-export default connect(null)(Footer)
+const mapStateToProps = state => {
+	const { questions, topics } = state
+	return {
+		screen: questions.screen,
+		mode: questions.mode,
+		selected: topics.selected,
+	}
+}
+
+const mapDispatchToProps = {
+	setView,
+	setMode,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Footer)

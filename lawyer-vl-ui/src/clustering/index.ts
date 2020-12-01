@@ -1,5 +1,5 @@
 import { CaseTopic, Topic } from '../data/types'
-import { Topics } from '../data/types'
+import topicsFinder from './topicFinder'
 
 export type UITopic = {
 	type: 'multi-statement' | 'radio' | 'tags'
@@ -42,10 +42,7 @@ export class ViewLogic {
 					},
 					questions: {
 						type: 'radio',
-						options: [
-							Topics.find(topic => topic.id === 'E'),
-							Topics.find(topic => topic.id === 'NE'),
-						],
+						options: topicsFinder(['E', 'NE']),
 					},
 				}
 			}
@@ -59,10 +56,7 @@ export class ViewLogic {
 						},
 						questions: {
 							type: 'radio',
-							options: [
-								Topics.find(topic => topic.id === '2y'),
-								Topics.find(topic => topic.id === 'M2y'),
-							],
+							options: topicsFinder(['2y', 'M2y']),
 						},
 					}
 				} else {
@@ -73,13 +67,7 @@ export class ViewLogic {
 						},
 						questions: {
 							type: 'multi-statement',
-							options: [
-								Topics.find(topic => topic.id === 'T'),
-								Topics.find(topic => topic.id === 'Rd'),
-								Topics.find(topic => topic.id === 'R'),
-								Topics.find(topic => topic.id === 'Sn'),
-								Topics.find(topic => topic.id === 'P'),
-							],
+							options: topicsFinder(['T', 'Rd', 'R', 'Sn', 'P']),
 						},
 					}
 				}
@@ -94,11 +82,7 @@ export class ViewLogic {
 					},
 					questions: {
 						type: 'multi-statement',
-						options: [
-							Topics.find(topic => topic.id === 'R'),
-							Topics.find(topic => topic.id === 'Sn'),
-							Topics.find(topic => topic.id === 'P'),
-						],
+						options: topicsFinder(['R', 'Sn', 'P']),
 					},
 				}
 
@@ -112,19 +96,19 @@ export class ViewLogic {
 					},
 					questions: {
 						type: 'tags',
-						options: [
-							Topics.find(topic => topic.id === 'D'),
-							Topics.find(topic => topic.id === 'B'),
-							Topics.find(topic => topic.id === 'C'),
-							Topics.find(topic => topic.id === 'H'),
-							Topics.find(topic => topic.id === 'W'),
-							Topics.find(topic => topic.id === 'S'),
-							Topics.find(topic => topic.id === 'Ml'),
-							Topics.find(topic => topic.id === 'M'),
-							Topics.find(topic => topic.id === 'EP'),
-							Topics.find(topic => topic.id === 'Mt'),
-							Topics.find(topic => topic.id === 'G'),
-						],
+						options: topicsFinder([
+							'D',
+							'B',
+							'C',
+							'H',
+							'W',
+							'S',
+							'Ml',
+							'M',
+							'EP',
+							'Mt',
+							'G',
+						]),
 					},
 				}
 
@@ -138,19 +122,19 @@ export class ViewLogic {
 					},
 					questions: {
 						type: 'tags',
-						options: [
-							Topics.find(topic => topic.id === 'D'),
-							Topics.find(topic => topic.id === 'B'),
-							Topics.find(topic => topic.id === 'C'),
-							Topics.find(topic => topic.id === 'H'),
-							Topics.find(topic => topic.id === 'W'),
-							Topics.find(topic => topic.id === 'S'),
-							Topics.find(topic => topic.id === 'Ml'),
-							Topics.find(topic => topic.id === 'M'),
-							Topics.find(topic => topic.id === 'EP'),
-							Topics.find(topic => topic.id === 'Mt'),
-							Topics.find(topic => topic.id === 'G'),
-						],
+						options: topicsFinder([
+							'D',
+							'B',
+							'C',
+							'H',
+							'W',
+							'S',
+							'Ml',
+							'M',
+							'EP',
+							'Mt',
+							'G',
+						]),
 					},
 				}
 
@@ -165,20 +149,20 @@ export class ViewLogic {
 						},
 						questions: {
 							type: 'tags',
-							options: [
-								Topics.find(topic => topic.id === 'DA'),
-								Topics.find(topic => topic.id === 'DP'),
-								Topics.find(topic => topic.id === 'DM'),
-								Topics.find(topic => topic.id === 'DS'),
-								Topics.find(topic => topic.id === 'DSy'),
-								Topics.find(topic => topic.id === 'DR'),
-								Topics.find(topic => topic.id === 'DRn'),
-								Topics.find(topic => topic.id === 'DD'),
-								Topics.find(topic => topic.id === 'DMe'),
-								Topics.find(topic => topic.id === 'DG'),
-								Topics.find(topic => topic.id === 'DPI'),
-								Topics.find(topic => topic.id === 'DMl'),
-							],
+							options: topicsFinder([
+								'DA',
+								'DP',
+								'DM',
+								'DS',
+								'DSy',
+								'DR',
+								'DRn',
+								'DD',
+								'DMe',
+								'DG',
+								'DPI',
+								'DMl',
+							]),
 						},
 					}
 				} else {

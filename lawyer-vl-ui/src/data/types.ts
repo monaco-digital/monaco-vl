@@ -57,6 +57,7 @@ export type Topic =
 	| 'C'
 	| 'H'
 	| 'W'
+	| 'NE'
 	| 'S'
 	| 'S1'
 	| 'Ml'
@@ -80,9 +81,11 @@ export type Topic =
 	| 'DMl'
 	| 'DV'
 	| '2y'
+	| 'All'
+	| 'M2y'
 
 export interface CaseTopic {
-	id?: string
+	id?: Topic
 	name: string
 	text: string
 	questionText?: string
@@ -223,7 +226,7 @@ export const Topics: CaseTopic[] = [
 		type: 'case',
 	},
 	{
-		id: 'M1',
+		id: 'Ml',
 		name: 'MENTAL_HEALTH',
 		text: 'Mental health',
 		questionText: 'Mental health',

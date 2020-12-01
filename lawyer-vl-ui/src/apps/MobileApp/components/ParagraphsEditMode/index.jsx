@@ -1,20 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
-import ScreenContext from '../../context'
-import actionType from '../../state/actionType'
 import Title from '../Title'
+import { reorderParagraphs } from '../../../../data/paragraphsDataSlice'
 
-const ParagraphsEditMode = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { selectedParagraphs } = state
-	const reorderParagraphs = dragEvent => {
-		dispatch({
-			type: actionType.REORDER_PARAGRAPHS,
-			payload: { value: dragEvent },
-		})
-	}
-
+const ParagraphsEditMode = ({ selectedParagraphs, reorderParagraphs }) => {
 	return (
 		<>
 			<Title
@@ -60,4 +51,15 @@ const ParagraphsEditMode = () => {
 	)
 }
 
-export default ParagraphsEditMode
+const mapStateToProps = state => {
+	const { paragraphs } = state
+	return {
+		selectedParagraphs: paragraphs.selected,
+	}
+}
+
+const mapDispatchToProps = {
+	reorderParagraphs,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ParagraphsEditMode)

@@ -18,19 +18,30 @@ export const slice = createSlice({
 				screen: state.screen,
 				options: selectedTopics,
 			}
-			const currentQuestion = view.getNextView(currentScreen)
+			const nextCurrentQuestion = view.getNextView(currentScreen)
 			const isFirstScreen = !state.screen
+			const isLastQuestion = !nextCurrentQuestion.hasOwnProperty('screen')
 
 			if (isFirstScreen) {
-				state.prevState = { ...state }
-				state.screen = currentQuestion.screen
-				state.currentQuestion = currentQuestion
 				state.mode = modes.TOPICS
 			}
+
+			if (isLastQuestion) {
+				state.mode = modes.PARAGRAPHS_PREVIEW
+			}
+
+			state.prevState = { ...state }
+			state.screen = nextCurrentQuestion.screen
+			state.currentQuestion = nextCurrentQuestion
+		},
+		setMode: (state, action) => {
+			const mode = action.payload
+
+			state.mode = mode
 		},
 	},
 })
 
-export const { setView } = slice.actions
+export const { setView, setMode } = slice.actions
 
 export default slice.reducer

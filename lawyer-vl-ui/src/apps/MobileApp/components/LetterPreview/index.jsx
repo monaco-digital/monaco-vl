@@ -1,11 +1,9 @@
-import React, { useContext } from 'react'
-import ScreenContext from './../../context'
+import React from 'react'
+import { connect } from 'react-redux'
 import letter from './../../data/letter'
 import Title from './../Title'
 
-const LetterPreview = () => {
-	const { state } = useContext(ScreenContext)
-	const { selectedParagraphs } = state
+const LetterPreview = ({ selectedParagraphs }) => {
 	return (
 		<>
 			<Title
@@ -24,5 +22,11 @@ const LetterPreview = () => {
 		</>
 	)
 }
+const mapStateToProps = state => {
+	const { paragraphs } = state
+	return {
+		selectedParagraphs: paragraphs.selected,
+	}
+}
 
-export default LetterPreview
+export default connect(mapStateToProps)(LetterPreview)

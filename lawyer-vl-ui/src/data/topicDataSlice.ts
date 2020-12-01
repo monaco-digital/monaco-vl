@@ -12,7 +12,6 @@ export const slice = createSlice({
 			state.selected = action.payload
 		},
 		setTopicsRadio: (state, action) => {
-			console.log('setTopicsRadio')
 			const { options, id } = action.payload
 			const optionsIds = options.map(option => option.id)
 			const topicReference = Topics.find(topic => topic.id === id)
@@ -29,11 +28,11 @@ export const slice = createSlice({
 			const isTopicSelected = state.selected.find(topic => topic.id === id)
 
 			switch (true) {
-				case !!topicReference:
-					state.selected = [...state.selected, topicReference]
-					break
 				case !!isTopicSelected:
 					state.selected = state.selected.filter(topic => topic.id !== id)
+					break
+				case !!topicReference:
+					state.selected = [...state.selected, topicReference]
 					break
 			}
 		},
