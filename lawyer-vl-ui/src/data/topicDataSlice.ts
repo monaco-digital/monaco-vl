@@ -11,34 +11,24 @@ export const slice = createSlice({
 		setTopics: (state, action) => {
 			state.selected = action.payload
 		},
-		setTopicsRadio: (state, action) => {
-			const { options, id } = action.payload
-			const optionsIds = options.map(option => option.id)
-			const topicReference = Topics.find(topic => topic.id === id)
-			const filteredTopicsRadio = state.selected.filter(
-				topic => !optionsIds.includes(topic.id)
-			)
-			// Empty selections as is a radio input
-			state.selected = filteredTopicsRadio
-			state.selected = [...state.selected, topicReference]
+		unselectTopic: (state, action) => {
+			const id = action.payload
+			state.selected = state.selected.filter(topic => topic.id !== id)
 		},
-		setTopicsMulti: (state, action) => {
-			const { id } = action.payload
+		toggleTopic: (state, action) => {
+			const id = action.payload
 			const topicReference = Topics.find(topic => topic.id === id)
 			const isTopicSelected = state.selected.find(topic => topic.id === id)
 
-			switch (true) {
-				case !!isTopicSelected:
-					state.selected = state.selected.filter(topic => topic.id !== id)
-					break
-				case !!topicReference:
-					state.selected = [...state.selected, topicReference]
-					break
+			if (!isTopicSelected) {
+				state.selected = [...state.selected, topicReference]
+			} else {
+				state.selected = state.selected.filter(topic => topic.id !== id)
 			}
 		},
 	},
 })
 
-export const { setTopics, setTopicsRadio, setTopicsMulti } = slice.actions
+export const { setTopics, toggleTopic, unselectTopic } = slice.actions
 
 export default slice.reducer

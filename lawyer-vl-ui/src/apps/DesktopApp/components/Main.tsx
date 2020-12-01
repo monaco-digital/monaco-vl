@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { LetterParagraph } from './LetterParagraph'
-import { updateAll } from '../../../data/paragraphsDataSlice'
+import { updateAllParagraphs } from '../../../data/paragraphsDataSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { getData } from '../../../api/vlmasersheet'
 import AppState from '../../../data/AppState'
@@ -82,7 +82,7 @@ export const Main: React.FC<Props> = (props: Props) => {
 		async function captureData() {
 			const data = await getData()
 			console.log('Adding the data 6666 : ', data)
-			dispatch(updateAll(data))
+			dispatch(updateAllParagraphs(data))
 		}
 		captureData()
 	}, [])

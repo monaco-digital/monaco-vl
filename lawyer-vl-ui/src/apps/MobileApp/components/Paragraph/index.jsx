@@ -1,22 +1,19 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import modes from '../../state/modes'
 import truncatedIcon from './../../assets/img/truncated-icon.svg'
 import deleteIcon from './../../assets/img/delete-icon.svg'
 import {
-	setParagraph,
-	deleteParagraph,
+	toggleSelectedParagraph,
+	removeSelectedParagraph,
 } from '../../../../data/paragraphsDataSlice'
 
-const Paragraph = ({
-	mode,
-	selectedParagraphs,
-	setParagraph,
-	deleteParagraph,
-	paragraphData,
-}) => {
+const Paragraph = ({ paragraphData }) => {
 	const [collapsed, setCollapsed] = useState(true)
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+	const mode = useSelector(state => state.questions.mode)
+	const dispatch = useDispatch()
 	const { id, paragraph, summary } = paragraphData
 	const handleOnClick = event => {
 		event.stopPropagation()
@@ -40,14 +37,17 @@ const Paragraph = ({
 			{mode === modes.PARAGRAPHS_EDIT && (
 				<button
 					className="paragraph__delete"
-					onClick={() => deleteParagraph(id)}
+					onClick={() => dispatch(removeSelectedParagraph(id))}
 					aria-label="delete paragraph"
 				>
 					<img src={deleteIcon} alt="" />
 				</button>
 			)}
 			<div className="paragraph__wrapper">
-				<div className="paragraph__box" onClick={() => setParagraph(id)}>
+				<div
+					className="paragraph__box"
+					onClick={() => dispatch(toggleSelectedParagraph(id))}
+				>
 					<span className="paragraph__text">
 						{collapsed ? (
 							<>
@@ -70,18 +70,4 @@ const Paragraph = ({
 		</div>
 	)
 }
-
-const mapStateToProps = state => {
-	const { questions, paragraphs } = state
-	return {
-		mode: questions.mode,
-		selectedParagraphs: paragraphs.selected,
-	}
-}
-
-const mapDispatchToProps = {
-	setParagraph,
-	deleteParagraph,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Paragraph)
+export default Paragraph

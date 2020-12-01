@@ -2,9 +2,10 @@ import React from 'react'
 import classNames from 'classnames'
 import Topic from '../Topic'
 import Title from '../Title'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-const Topics = ({ currentQuestion }) => {
+const Topics = () => {
+	const currentQuestion = useSelector(state => state.questions.currentQuestion)
 	const {
 		text,
 		questions: { type },
@@ -23,11 +24,4 @@ const Topics = ({ currentQuestion }) => {
 	)
 }
 
-const mapStateToProps = state => {
-	const { questions } = state
-	return {
-		currentQuestion: questions.currentQuestion,
-	}
-}
-
-export default connect(mapStateToProps)(Topics)
+export default Topics

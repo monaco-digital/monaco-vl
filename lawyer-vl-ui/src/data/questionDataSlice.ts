@@ -1,5 +1,5 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { ViewLogic, View } from '../clustering'
+import { createSlice } from '@reduxjs/toolkit'
+import { ViewLogic } from '../clustering'
 import modes from '../apps/MobileApp/state/modes'
 
 export const slice = createSlice({

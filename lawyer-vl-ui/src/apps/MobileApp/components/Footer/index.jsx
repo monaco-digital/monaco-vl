@@ -5,23 +5,27 @@ import createLetterDocx from '../../utils/createLetterDocx.js'
 import modes from '../../state/modes'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setView, setMode } from '../../../../data/questionDataSlice'
 
-const Footer = ({ setView, setMode, selected, screen, mode }) => {
+const Footer = () => {
+	const mode = useSelector(state => state.questions.mode)
+	const selectedTopics = useSelector(state => state.topics.selected)
+	const dispatch = useDispatch()
+
 	const handleGoBack = () => {}
 	const handleMoreInfo = () => {}
 	const handleGoForward = () => {
-		setView(selected)
+		dispatch(setView(selectedTopics))
 	}
 	const enterLetterPreviewMode = () => {
-		setMode(modes.LETTER_PREVIEW)
+		dispatch(setMode(modes.LETTER_PREVIEW))
 	}
 	const enterParagraphPreviewMode = () => {
-		setMode(modes.PARAGRAPHS_PREVIEW)
+		dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
 	}
 	const enterParagraphEditMode = () => {
-		setMode(modes.PARAGRAPHS_EDIT)
+		dispatch(setMode(modes.PARAGRAPHS_EDIT))
 	}
 	const downloadLetter = async () => {
 		// TODO find out how this is going to be implemented, if any.
@@ -106,18 +110,4 @@ const Footer = ({ setView, setMode, selected, screen, mode }) => {
 	)
 }
 
-const mapStateToProps = state => {
-	const { questions, topics } = state
-	return {
-		screen: questions.screen,
-		mode: questions.mode,
-		selected: topics.selected,
-	}
-}
-
-const mapDispatchToProps = {
-	setView,
-	setMode,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Footer)
+export default Footer

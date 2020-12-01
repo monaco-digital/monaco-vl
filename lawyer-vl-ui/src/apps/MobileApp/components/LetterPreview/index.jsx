@@ -1,9 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import letter from './../../data/letter'
 import Title from './../Title'
 
-const LetterPreview = ({ selectedParagraphs }) => {
+const LetterPreview = () => {
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+
 	return (
 		<>
 			<Title
@@ -22,11 +24,5 @@ const LetterPreview = ({ selectedParagraphs }) => {
 		</>
 	)
 }
-const mapStateToProps = state => {
-	const { paragraphs } = state
-	return {
-		selectedParagraphs: paragraphs.selected,
-	}
-}
 
-export default connect(mapStateToProps)(LetterPreview)
+export default LetterPreview

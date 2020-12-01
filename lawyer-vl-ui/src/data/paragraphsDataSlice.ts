@@ -8,10 +8,9 @@ export const slice = createSlice({
 		all: [] as Paragraph[],
 		suggested: [] as Paragraph[],
 		selected: [] as Paragraph[],
-		cazzo: [] as Paragraph[],
 	},
 	reducers: {
-		updateAll: (state, action) => {
+		updateAllParagraphs: (state, action) => {
 			state.all = action.payload
 		},
 		updateSuggestedParagraphs: (state, action) => {
@@ -21,28 +20,23 @@ export const slice = createSlice({
 		updateSelectedParagraphs: (state, action) => {
 			state.selected = action.payload
 		},
-		setParagraph: (state, action) => {
+		toggleSelectedParagraph: (state, action) => {
 			const id = action.payload
-			const paragraph = state.all.find(paragraph => paragraph.id === id)
+			const paragraphReference = state.all.find(topic => topic.id === id)
+			const isParagraphSelected = state.selected.find(topic => topic.id === id)
 
-			const isSelectedParagraph = state.selected.find(
-				paragraph => paragraph.id === id
-			)
-
-			if (paragraph) {
-				state.selected = [...state.selected, paragraph]
-			}
-
-			if (isSelectedParagraph) {
+			if (!isParagraphSelected) {
+				state.selected = [...state.selected, paragraphReference]
+			} else {
 				state.selected = state.selected.filter(paragraph => paragraph.id !== id)
 			}
 		},
-		deleteParagraph: (state, action) => {
+		removeSelectedParagraph: (state, action) => {
 			const id = action.payload
 
 			state.selected = state.selected.filter(paragraph => paragraph.id !== id)
 		},
-		reorderParagraphs: (state, action) => {
+		reorderSelectedParagraphs: (state, action) => {
 			const { source, destination } = action.payload
 			const { index: sourceIndex } = source
 			const { index: destinationIndex } = destination
@@ -56,12 +50,12 @@ export const slice = createSlice({
 })
 
 export const {
-	updateAll,
+	updateAllParagraphs,
 	updateSuggestedParagraphs,
 	updateSelectedParagraphs,
-	setParagraph,
-	deleteParagraph,
-	reorderParagraphs,
+	toggleSelectedParagraph,
+	removeSelectedParagraph,
+	reorderSelectedParagraphs,
 } = slice.actions
 
 export default slice.reducer

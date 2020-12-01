@@ -1,11 +1,15 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
 import Title from '../Title'
-import { reorderParagraphs } from '../../../../data/paragraphsDataSlice'
+import { reorderSelectedParagraphs } from '../../../../data/paragraphsDataSlice'
 
-const ParagraphsEditMode = ({ selectedParagraphs, reorderParagraphs }) => {
+const ParagraphsEditMode = () => {
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+
+	const dispatch = useDispatch()
+
 	return (
 		<>
 			<Title
@@ -15,7 +19,11 @@ const ParagraphsEditMode = ({ selectedParagraphs, reorderParagraphs }) => {
 				}}
 			/>
 			<div className="paragraphs-edit-mode">
-				<DragDropContext onDragEnd={reorderParagraphs}>
+				<DragDropContext
+					onDragEnd={dragEvent =>
+						dispatch(reorderSelectedParagraphs(dragEvent))
+					}
+				>
 					<Droppable droppableId="paragraphs">
 						{provided => (
 							<div
@@ -51,15 +59,4 @@ const ParagraphsEditMode = ({ selectedParagraphs, reorderParagraphs }) => {
 	)
 }
 
-const mapStateToProps = state => {
-	const { paragraphs } = state
-	return {
-		selectedParagraphs: paragraphs.selected,
-	}
-}
-
-const mapDispatchToProps = {
-	reorderParagraphs,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ParagraphsEditMode)
+export default ParagraphsEditMode

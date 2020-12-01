@@ -4,31 +4,29 @@ import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import LetterPreview from '../LetterPreview'
 import modes from '../../state/modes'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setView } from '../../../../data/questionDataSlice'
 import {
-	updateAll,
+	updateAllParagraphs,
 	updateSuggestedParagraphs,
 } from '../../../../data/paragraphsDataSlice'
 import { getData } from './../../../../api/vlmasersheet'
 
-const Screen = ({
-	mode,
-	setView,
-	selectedTopics,
-	updateSuggestedParagraphs,
-	updateAll,
-}) => {
+const Screen = () => {
+	const dispatch = useDispatch()
+	const mode = useSelector(state => state.questions.mode)
+	const selectedTopics = useSelector(state => state.topics.selected)
+
 	useEffect(() => {
-		setView()
+		dispatch(setView())
 		;(async () => {
 			const paragraphs = await getData()
-			updateAll(paragraphs)
+			dispatch(updateAllParagraphs(paragraphs))
 		})()
 	}, [])
 
 	useEffect(() => {
-		updateSuggestedParagraphs()
+		dispatch(updateSuggestedParagraphs())
 	}, [selectedTopics])
 
 	return (
@@ -40,17 +38,5 @@ const Screen = ({
 		</div>
 	)
 }
-const mapStateToProps = state => {
-	const { questions, topics } = state
-	return {
-		mode: questions.mode,
-		selectedTopics: topics.selected,
-	}
-}
 
-const mapDispatchToProps = {
-	setView,
-	updateAll,
-	updateSuggestedParagraphs,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Screen)
+export default Screen

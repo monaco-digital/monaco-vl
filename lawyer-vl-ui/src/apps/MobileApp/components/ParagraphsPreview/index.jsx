@@ -2,9 +2,11 @@ import React from 'react'
 import Title from '../Title'
 import Paragraph from '../Paragraph'
 import introParagraph from '../../data/introParagraph'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 
-const ParagraphsPreview = ({ suggested }) => {
+const ParagraphsPreview = () => {
+	const suggestedParagraphs = useSelector(state => state.paragraphs.suggested)
+
 	return (
 		<>
 			<Title
@@ -16,7 +18,7 @@ const ParagraphsPreview = ({ suggested }) => {
 			<div className="paragraphs">
 				<div className="container">
 					<Paragraph paragraphData={introParagraph} />
-					{suggested.map(paragraph => (
+					{suggestedParagraphs.map(paragraph => (
 						<Paragraph key={paragraph.id} paragraphData={paragraph} />
 					))}
 				</div>
@@ -25,11 +27,4 @@ const ParagraphsPreview = ({ suggested }) => {
 	)
 }
 
-const mapStateToProps = state => {
-	const { paragraphs } = state
-	return {
-		suggested: paragraphs.suggested,
-	}
-}
-
-export default connect(mapStateToProps)(ParagraphsPreview)
+export default ParagraphsPreview

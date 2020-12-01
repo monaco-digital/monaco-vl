@@ -1,38 +1,38 @@
 import React from 'react'
 import checkTopicInputStatus from '../../utils/checkTopicInputStatus'
-import { connect } from 'react-redux'
-import { setTopicsRadio, setTopicsMulti } from '../../../../data/topicDataSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
 
-const Topic = ({
-	question,
-	selectedTopics,
-	setTopicsRadio,
-	setTopicsMulti,
-}) => {
+const Topic = ({ question }) => {
+	const dispatch = useDispatch()
+	const selectedTopics = useSelector(state => state.topics.selected)
 	const { questions } = question
 	const type = questions.type
-	const handleOnClickRadio = (options, id) => {
-		setTopicsRadio({ options, id })
-	}
-	const handleOnClickMulti = id => {
-		setTopicsMulti({ id })
-	}
 	const isRadio = type === 'radio'
 	const isMulti = type === 'multi-statement' || type === 'tags'
+	const handleOnClick = (id, isRadio = false) => {
+		if (isRadio) {
+			for (const option of questions.options) {
+				dispatch(unselectTopic(option.id))
+			}
+		}
+
+		dispatch(toggleTopic(id))
+	}
 
 	return (
 		<>
 			{isRadio && (
 				<Topic.Radio
 					questions={questions}
+					handleOnClick={handleOnClick}
 					selectedTopics={selectedTopics}
-					handleOnClick={handleOnClickRadio}
 				/>
 			)}
 			{isMulti && (
 				<Topic.Multi
 					questions={questions}
-					handleOnClick={handleOnClickMulti}
+					handleOnClick={handleOnClick}
 					selectedTopics={selectedTopics}
 					type={type}
 				/>
@@ -52,7 +52,7 @@ Topic.Radio = ({ questions: { options }, handleOnClick, selectedTopics }) => {
 					id={name}
 					name={name}
 					value={name}
-					onChange={() => handleOnClick(options, id)}
+					onChange={() => handleOnClick(id, true)}
 					checked={checkTopicInputStatus(selectedTopics, id)}
 				/>
 				<label htmlFor={name}>{questionText}</label>
@@ -81,15 +81,4 @@ Topic.Multi = ({ questions: { options }, handleOnClick, selectedTopics }) => {
 	})
 }
 
-const mapStateToProps = state => {
-	const { topics } = state
-	return {
-		selectedTopics: topics.selected,
-	}
-}
-
-const mapDispatchToProps = {
-	setTopicsRadio,
-	setTopicsMulti,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Topic)
+export default Topic
