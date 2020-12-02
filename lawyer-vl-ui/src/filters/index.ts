@@ -156,9 +156,11 @@ export const filterByGeneralMatch = (
 
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
-
+		//@ts-ignore
 		const topicsOneOfF = topicsOneOf.filter(x => x !== '')
+		//@ts-ignore
 		const topicsAllOfF = topicsAllOf.filter(x => x !== '')
+		//@ts-ignore
 		const topicsNoneOfF = topicsNoneOf.filter(x => x !== '')
 
 		const eitherFlag =

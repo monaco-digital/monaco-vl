@@ -3,10 +3,13 @@ import Title from '../Title'
 import Paragraph from '../Paragraph'
 import introParagraph from '../../data/introParagraph'
 import { useSelector } from 'react-redux'
+import AppState from '../../../../data/AppState'
+import { Paragraph as ParagraphT } from '../../../../data/types'
 
-const ParagraphsPreview = () => {
-	const suggestedParagraphs = useSelector(state => state.paragraphs.suggested)
-
+const ParagraphsPreview: React.FC = () => {
+	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
+		state => state.paragraphs.suggested
+	)
 	return (
 		<>
 			<Title
@@ -17,7 +20,8 @@ const ParagraphsPreview = () => {
 			/>
 			<div className="paragraphs">
 				<div className="container">
-					<Paragraph paragraphData={introParagraph} />
+					{/*TODO - fix this as introParagraph object is not complete*/}
+					<Paragraph paragraphData={introParagraph as ParagraphT} />
 					{suggestedParagraphs.map(paragraph => (
 						<Paragraph key={paragraph.id} paragraphData={paragraph} />
 					))}

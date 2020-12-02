@@ -1,11 +1,12 @@
 export interface Paragraph {
 	id: string
 	paragraph: string
+	summary?: string
 	verticalHeight: number
 	topic?: string
-	topicsOneOf: string[]
-	topicsAllOf: string[]
-	topicsNoneOf: string[]
+	topicsOneOf: Topic[]
+	topicsAllOf: Topic[]
+	topicsNoneOf: Topic[]
 	bold?: boolean
 }
 

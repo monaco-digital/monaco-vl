@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../assets/img/virtual-lawyer-logo.svg'
 
-const Header = () => {
+const Header: React.FC = () => {
 	return (
 		<header className="header">
 			<div className="container">

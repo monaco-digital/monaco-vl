@@ -61,7 +61,7 @@ export class CustomParagraphs {
 			topicsNoneOf: [],
 			bold: true,
 		},
-	]
+	] as Paragraph[]
 
 	static bottom = [
 		{
@@ -180,7 +180,7 @@ export class CustomParagraphs {
 			topicsNoneOf: [],
 			bold: true,
 		},
-	]
+	] as Paragraph[]
 
 	static getParagraphs(
 		selectedTopics: CaseTopic[]

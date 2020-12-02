@@ -3,7 +3,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import Screen from '../Screen'
 
-const Main = () => {
+const Main: React.FC = () => {
 	return (
 		<main className="main">
 			<Header />

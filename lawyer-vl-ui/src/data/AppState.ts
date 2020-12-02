@@ -9,6 +9,12 @@ export type AppState = {
 	topics: {
 		selected: CaseTopic[]
 	}
+	questions: {
+		screen: number
+		mode: any
+		prevState: any
+		currentQuestion: any
+	}
 }
 
 export default AppState

@@ -1,16 +1,18 @@
 import React from 'react'
-import { saveAs } from 'file-saver'
 import Button from '../Button'
-import createLetterDocx from '../../utils/createLetterDocx.js'
 import modes from '../../state/modes'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { setView, setMode } from '../../../../data/questionDataSlice'
+import AppState from '../../../../data/AppState'
+import { CaseTopic, Paragraph } from '../../../../data/types'
 
-const Footer = () => {
-	const mode = useSelector(state => state.questions.mode)
-	const selectedTopics = useSelector(state => state.topics.selected)
+const Footer: React.FC = () => {
+	const mode = useSelector<AppState, any>(state => state.questions.mode)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
 	const dispatch = useDispatch()
 
 	const handleGoBack = () => {}

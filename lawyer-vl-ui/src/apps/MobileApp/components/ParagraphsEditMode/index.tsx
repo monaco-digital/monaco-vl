@@ -2,12 +2,15 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
+import { Paragraph as ParagraphT } from '../../../../data/types'
 import Title from '../Title'
 import { reorderSelectedParagraphs } from '../../../../data/paragraphsDataSlice'
+import AppState from '../../../../data/AppState'
 
-const ParagraphsEditMode = () => {
-	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
-
+const ParagraphsEditMode: React.FC = () => {
+	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
+		state => state.paragraphs.selected
+	)
 	const dispatch = useDispatch()
 
 	return (

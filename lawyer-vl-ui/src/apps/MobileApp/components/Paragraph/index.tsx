@@ -8,17 +8,21 @@ import {
 	toggleSelectedParagraph,
 	removeSelectedParagraph,
 } from '../../../../data/paragraphsDataSlice'
+import AppState from '../../../../data/AppState'
+import { Paragraph as ParagraphT } from '../../../../data/types'
 
-const Paragraph = ({ paragraphData }) => {
+interface Props {
+	paragraphData: ParagraphT
+}
+
+const Paragraph: React.FC<Props> = ({ paragraphData }) => {
 	const [collapsed, setCollapsed] = useState(true)
-	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
-	const mode = useSelector(state => state.questions.mode)
+	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
+		state => state.paragraphs.selected
+	)
+	const mode = useSelector<AppState, any>(state => state.questions.mode)
 	const dispatch = useDispatch()
 	const { id, paragraph, summary } = paragraphData
-	const handleOnClick = event => {
-		event.stopPropagation()
-		toggleCollapsed()
-	}
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
 		'fa-chevron-up': !collapsed,
@@ -31,6 +35,11 @@ const Paragraph = ({ paragraphData }) => {
 			paragraph => paragraph.id === paragraphData.id
 		),
 	})
+
+	const handleOnClick = event => {
+		event.stopPropagation()
+		toggleCollapsed()
+	}
 
 	return (
 		<div className={paragraphClasses}>
