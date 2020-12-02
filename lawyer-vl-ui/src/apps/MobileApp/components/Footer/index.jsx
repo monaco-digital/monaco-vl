@@ -1,72 +1,36 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { saveAs } from 'file-saver'
-import ScreenContext from '../../context'
 import Button from '../Button'
 import createLetterDocx from '../../utils/createLetterDocx.js'
 import modes from '../../state/modes'
-import actionType from '../../state/actionType'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
+import { useDispatch, useSelector } from 'react-redux'
+import { setView, setMode } from '../../../../data/questionDataSlice'
 
 const Footer = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { screen, topicsView, mode, selectedParagraphs } = state
-	const handleGoBack = () => {
-		const isFirstFilterScreen = screen === 1
+	const mode = useSelector(state => state.questions.mode)
+	const selectedTopics = useSelector(state => state.topics.selected)
+	const dispatch = useDispatch()
 
-		if (isFirstFilterScreen) {
-			return
-		}
-
-		if ((mode === modes.LETTER_PREVIEW) | (mode === modes.PARAGRAPHS_EDIT)) {
-			dispatch({
-				type: actionType.SET_MODE,
-				payload: { mode: modes.PARAGRAPHS_PREVIEW },
-			})
-		}
-
-		if (mode === modes.TOPICS) {
-			dispatch({
-				type: actionType.SET_TOPIC_VIEW,
-				payload: { value: { isBackwards: true } },
-			})
-		}
-	}
+	const handleGoBack = () => {}
 	const handleMoreInfo = () => {}
 	const handleGoForward = () => {
-		const isLastTopicViewScreen = !topicsView.screen
-
-		if (isLastTopicViewScreen) {
-			dispatch({
-				type: actionType.SET_MODE,
-				payload: { mode: modes.PARAGRAPHS_PREVIEW },
-			})
-		} else {
-			dispatch({ type: actionType.SET_TOPIC_VIEW })
-		}
+		dispatch(setView(selectedTopics))
 	}
 	const enterLetterPreviewMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.LETTER_PREVIEW },
-		})
+		dispatch(setMode(modes.LETTER_PREVIEW))
 	}
 	const enterParagraphPreviewMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.PARAGRAPHS_PREVIEW },
-		})
+		dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
 	}
 	const enterParagraphEditMode = () => {
-		dispatch({
-			type: actionType.SET_MODE,
-			payload: { mode: modes.PARAGRAPHS_EDIT },
-		})
+		dispatch(setMode(modes.PARAGRAPHS_EDIT))
 	}
 	const downloadLetter = async () => {
-		const docBlob = await createLetterDocx(selectedParagraphs)
-
-		saveAs(docBlob, 'Your letter.docx')
+		// TODO find out how this is going to be implemented, if any.
+		// const docBlob = await createLetterDocx(selectedParagraphs)
+		// saveAs(docBlob, 'Your letter.docx')
 	}
 
 	return (

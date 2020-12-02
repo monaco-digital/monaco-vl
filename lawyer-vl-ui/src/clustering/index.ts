@@ -1,8 +1,9 @@
-import { Topic } from '../data/types'
+import { CaseTopic, Topic } from '../data/types'
+import topicsFinder from './topicFinder'
 
 export type UITopic = {
 	type: 'multi-statement' | 'radio' | 'tags'
-	options: { label: string; value?: Topic }[]
+	options: CaseTopic[]
 }
 
 export type View = {
@@ -11,15 +12,12 @@ export type View = {
 		heading: string
 		subHeading?: string
 	}
-	uiTopics?: UITopic[]
+	questions?: UITopic
 }
 
 export type CurrentScreen = {
 	screen: number
-	options?: Array<{
-		label: string
-		value?: Topic
-	}>
+	selectedTopics?: CaseTopic[]
 }
 
 export class ViewLogic {
@@ -31,7 +29,7 @@ export class ViewLogic {
 	}
 
 	getNextView(currentScreen: CurrentScreen): View {
-		const { screen, options: selectedOptions } = currentScreen
+		const { screen, selectedTopics } = currentScreen
 
 		switch (screen) {
 			case 0: {
@@ -42,34 +40,24 @@ export class ViewLogic {
 							'Before we start we need to know some of the basic facts about your case.',
 						subHeading: 'Select the statement that applies to you.',
 					},
-					uiTopics: [
-						{
-							type: 'radio',
-							options: [
-								{ label: 'I am still employed', value: 'E' },
-								{ label: 'I am no longer employed' },
-							],
-						},
-					],
+					questions: {
+						type: 'radio',
+						options: topicsFinder(['E', 'NE']),
+					},
 				}
 			}
 
 			case 1:
-				if (selectedOptions?.find(topic => topic.value === 'E')) {
+				if (selectedTopics?.find(topic => topic.id === 'E')) {
 					return {
 						screen: 2,
 						text: {
 							heading: 'How long have you been employed?',
 						},
-						uiTopics: [
-							{
-								type: 'radio',
-								options: [
-									{ label: 'Less than 2 years', value: '2y' },
-									{ label: 'More than 2 years' },
-								],
-							},
-						],
+						questions: {
+							type: 'radio',
+							options: topicsFinder(['2y', 'M2y']),
+						},
 					}
 				} else {
 					return {
@@ -77,18 +65,10 @@ export class ViewLogic {
 						text: {
 							heading: 'Select any or all of the statements that apply to you.',
 						},
-						uiTopics: [
-							{
-								type: 'multi-statement',
-								options: [
-									{ label: 'I have been dismissed', value: 'T' },
-									{ label: 'I have resigned', value: 'Rd' },
-									{ label: 'I was made redundant', value: 'R' },
-									{ label: 'I was suspended', value: 'Sn' },
-									{ label: 'I failed a performance review', value: 'P' },
-								],
-							},
-						],
+						questions: {
+							type: 'multi-statement',
+							options: topicsFinder(['T', 'Rd', 'R', 'Sn', 'P']),
+						},
 					}
 				}
 
@@ -100,16 +80,10 @@ export class ViewLogic {
 						subHeading:
 							'Select any or all of the statements that apply to you.',
 					},
-					uiTopics: [
-						{
-							type: 'multi-statement',
-							options: [
-								{ label: 'I am facing redundancy', value: 'R' },
-								{ label: 'I have been suspended', value: 'Sn' },
-								{ label: 'I failed a performance review', value: 'P' },
-							],
-						},
-					],
+					questions: {
+						type: 'multi-statement',
+						options: topicsFinder(['R', 'Sn', 'P']),
+					},
 				}
 
 			case 3:
@@ -120,24 +94,22 @@ export class ViewLogic {
 						subHeading:
 							'Select any or all of the statements that apply to you.',
 					},
-					uiTopics: [
-						{
-							type: 'tags',
-							options: [
-								{ label: 'Discrimination', value: 'D' },
-								{ label: 'Bullying', value: 'B' },
-								{ label: 'Coronavirus', value: 'C' },
-								{ label: 'Health & Safety', value: 'H' },
-								{ label: 'Whistleblowing', value: 'W' },
-								{ label: 'Sickness', value: 'S' },
-								{ label: 'Mental Health', value: 'Ml' },
-								{ label: 'Money owed', value: 'M' },
-								{ label: 'Equal Pay', value: 'EP' },
-								{ label: 'Misconduct', value: 'Mt' },
-								{ label: 'Grievance', value: 'G' },
-							],
-						},
-					],
+					questions: {
+						type: 'tags',
+						options: topicsFinder([
+							'D',
+							'B',
+							'C',
+							'H',
+							'W',
+							'S',
+							'Ml',
+							'M',
+							'EP',
+							'Mt',
+							'G',
+						]),
+					},
 				}
 
 			case 4:
@@ -148,28 +120,26 @@ export class ViewLogic {
 						subHeading:
 							'Select any or all of the statements that apply to you.',
 					},
-					uiTopics: [
-						{
-							type: 'tags',
-							options: [
-								{ label: 'Discrimination', value: 'D' },
-								{ label: 'Bullying', value: 'B' },
-								{ label: 'Coronavirus', value: 'C' },
-								{ label: 'Health & Safety', value: 'H' },
-								{ label: 'Whistleblowing', value: 'W' },
-								{ label: 'Sickness', value: 'S' },
-								{ label: 'Mental Health', value: 'Ml' },
-								{ label: 'Money owed', value: 'M' },
-								{ label: 'Equal Pay', value: 'EP' },
-								{ label: 'Misconduct', value: 'Mt' },
-								{ label: 'Grievance', value: 'G' },
-							],
-						},
-					],
+					questions: {
+						type: 'tags',
+						options: topicsFinder([
+							'D',
+							'B',
+							'C',
+							'H',
+							'W',
+							'S',
+							'Ml',
+							'M',
+							'EP',
+							'Mt',
+							'G',
+						]),
+					},
 				}
 
 			case 5:
-				if (selectedOptions?.find(topic => topic.value === 'D')) {
+				if (selectedTopics?.find(topic => topic.id === 'D')) {
 					return {
 						screen: 6,
 						text: {
@@ -177,25 +147,23 @@ export class ViewLogic {
 							subHeading:
 								'Select any or all of the statements that apply to you.',
 						},
-						uiTopics: [
-							{
-								type: 'tags',
-								options: [
-									{ label: 'Age', value: 'DA' },
-									{ label: 'Pregnancy', value: 'DP' },
-									{ label: 'Maternity', value: 'DM' },
-									{ label: 'Sex', value: 'DS' },
-									{ label: 'Sexuality', value: 'DSy' },
-									{ label: 'Race', value: 'DR' },
-									{ label: 'Religion/Belief', value: 'DRn' },
-									{ label: 'Disability', value: 'DD' },
-									{ label: 'Marriage/Civil/Partnership', value: 'DMe' },
-									{ label: 'Gender/Reassignment', value: 'DG' },
-									{ label: 'Political/Philosophical', value: 'DPI' },
-									{ label: 'Mental Health', value: 'DMl' },
-								],
-							},
-						],
+						questions: {
+							type: 'tags',
+							options: topicsFinder([
+								'DA',
+								'DP',
+								'DM',
+								'DS',
+								'DSy',
+								'DR',
+								'DRn',
+								'DD',
+								'DMe',
+								'DG',
+								'DPI',
+								'DMl',
+							]),
+						},
 					}
 				} else {
 					return {}

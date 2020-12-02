@@ -1,24 +1,33 @@
-import React, { useContext, useEffect } from 'react'
-import ScreenContext from '../../context'
+import React, { useEffect } from 'react'
 import Topics from '../Topics'
 import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import LetterPreview from '../LetterPreview'
 import modes from '../../state/modes'
-import actionType from '../../state/actionType'
+import { useDispatch, useSelector } from 'react-redux'
+import { setView } from '../../../../data/questionDataSlice'
+import {
+	updateAllParagraphs,
+	updateSuggestedParagraphs,
+} from '../../../../data/paragraphsDataSlice'
+import { getData } from './../../../../api/vlmasersheet'
 
 const Screen = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { mode, screen } = state
+	const dispatch = useDispatch()
+	const mode = useSelector(state => state.questions.mode)
+	const selectedTopics = useSelector(state => state.topics.selected)
 
 	useEffect(() => {
-		const isInitialScreen = !screen
-
-		if (isInitialScreen) {
-			dispatch({ type: actionType.SET_MODE, payload: { mode: modes.TOPICS } })
-			dispatch({ type: actionType.SET_TOPIC_VIEW, payload: { value: screen } })
-		}
+		dispatch(setView())
+		;(async () => {
+			const paragraphs = await getData()
+			dispatch(updateAllParagraphs(paragraphs))
+		})()
 	}, [])
+
+	useEffect(() => {
+		dispatch(updateSuggestedParagraphs())
+	}, [selectedTopics])
 
 	return (
 		<div className="screen container">

@@ -57,6 +57,7 @@ export type Topic =
 	| 'C'
 	| 'H'
 	| 'W'
+	| 'NE'
 	| 'S'
 	| 'S1'
 	| 'Ml'
@@ -80,13 +81,16 @@ export type Topic =
 	| 'DMl'
 	| 'DV'
 	| '2y'
+	| 'All'
+	| 'M2y'
 
 export interface CaseTopic {
-	id: string
+	id?: Topic
 	name: string
 	text: string
-	parentTopics: string[]
-	subtopics: string[]
+	questionText?: string
+	parentTopics?: string[]
+	subtopics?: string[]
 	type: string
 }
 
@@ -95,6 +99,16 @@ export const Topics: CaseTopic[] = [
 		id: 'E',
 		name: 'EMPLOYED',
 		text: 'Employed',
+		questionText: 'I am still employed',
+		parentTopics: [],
+		subtopics: [],
+		type: 'employment_situation',
+	},
+	{
+		id: 'NE',
+		name: 'NOT_EMPLOYED',
+		text: 'Not Employed',
+		questionText: 'I am no longer employed',
 		parentTopics: [],
 		subtopics: [],
 		type: 'employment_situation',
@@ -103,6 +117,7 @@ export const Topics: CaseTopic[] = [
 		id: 'EP',
 		name: 'EQUAL_PAY',
 		text: 'Equal pay',
+		questionText: 'Equal pay',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -111,6 +126,7 @@ export const Topics: CaseTopic[] = [
 		id: 'T',
 		name: 'DISMISSED',
 		text: 'Dismissed',
+		questionText: 'I have been dismissed',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -119,6 +135,7 @@ export const Topics: CaseTopic[] = [
 		id: 'R',
 		name: 'REDUNDANCY',
 		text: 'Redundancy',
+		questionText: 'I was made redudannt',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -127,6 +144,7 @@ export const Topics: CaseTopic[] = [
 		id: 'D',
 		name: 'DISCRIMINATION',
 		text: 'Discrimination',
+		questionText: 'Discrimination',
 		parentTopics: [],
 		subtopics: [
 			'DP',
@@ -149,6 +167,7 @@ export const Topics: CaseTopic[] = [
 		id: 'B',
 		name: 'BULLYING',
 		text: 'Bullying',
+		questionText: 'Bullying',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -157,6 +176,7 @@ export const Topics: CaseTopic[] = [
 		id: 'P',
 		name: 'PERFORMANCE',
 		text: 'Performance',
+		questionText: 'I failed a performance review',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -165,6 +185,7 @@ export const Topics: CaseTopic[] = [
 		id: 'C',
 		name: 'CORONAVIRUS',
 		text: 'Coronavirus',
+		questionText: 'Coronavirus',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -173,6 +194,7 @@ export const Topics: CaseTopic[] = [
 		id: 'H',
 		name: 'HEALTH_SAFETY',
 		text: 'Health & Safety',
+		questionText: 'Health & Safety',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -181,6 +203,7 @@ export const Topics: CaseTopic[] = [
 		id: 'W',
 		name: 'WHISTLEBLOWING',
 		text: 'Whistleblowing',
+		questionText: 'Whistleblowing',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -189,6 +212,7 @@ export const Topics: CaseTopic[] = [
 		id: 'S',
 		name: 'SICKNESS',
 		text: 'Sickness',
+		questionText: 'Sickness',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -202,9 +226,10 @@ export const Topics: CaseTopic[] = [
 		type: 'case',
 	},
 	{
-		id: 'M1',
+		id: 'Ml',
 		name: 'MENTAL_HEALTH',
 		text: 'Mental health',
+		questionText: 'Mental health',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -213,6 +238,7 @@ export const Topics: CaseTopic[] = [
 		id: 'M',
 		name: 'MONEY_OWED',
 		text: 'Money owed',
+		questionText: 'Money owed',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -221,6 +247,7 @@ export const Topics: CaseTopic[] = [
 		id: 'Rd',
 		name: 'RESIGNED',
 		text: 'Resigned',
+		questionText: 'I have resigned',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -229,6 +256,7 @@ export const Topics: CaseTopic[] = [
 		id: 'Sn',
 		name: 'SUSPENSION',
 		text: 'Suspension',
+		questionText: 'I was suspended',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -237,6 +265,7 @@ export const Topics: CaseTopic[] = [
 		id: 'Mt',
 		name: 'MISCONDUCT',
 		text: 'Misconduct',
+		questionText: 'Misconduct',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -253,6 +282,7 @@ export const Topics: CaseTopic[] = [
 		id: 'G',
 		name: 'GRIEVANCE',
 		text: 'Grievance',
+		questionText: 'Grievance',
 		parentTopics: [],
 		subtopics: [],
 		type: 'case',
@@ -261,6 +291,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DP',
 		name: 'PREGNANCY',
 		text: 'Pregnancy',
+		questionText: 'Pregnancy',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -269,6 +300,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DM',
 		name: 'MATERNITY',
 		text: 'Maternity',
+		questionText: 'Maternity',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -277,6 +309,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DS',
 		name: 'SEX',
 		text: 'Sex',
+		questionText: 'Sex',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -285,6 +318,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DSy',
 		name: 'SEXUALITY',
 		text: 'Sexuality',
+		questionText: 'Sexuality',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -293,6 +327,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DR',
 		name: 'RACE',
 		text: 'Race',
+		questionText: 'Race',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -301,6 +336,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DRn',
 		name: 'RELIGION_BELIEF',
 		text: 'Religion / belief',
+		questionText: 'Religion / belief',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -309,6 +345,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DA',
 		name: 'AGE',
 		text: 'Age',
+		questionText: 'Age',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -317,6 +354,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DD',
 		name: 'DISABILITY',
 		text: 'Disability',
+		questionText: 'Disability',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -325,6 +363,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DMe',
 		name: 'MARRIAGE_CIVIL_PARTNERSHIP',
 		text: 'Marriage / Civil partnership',
+		questionText: 'Marriage / Civil partnership',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -333,6 +372,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DG',
 		name: 'GENDER_REASSIGNMENT',
 		text: 'Gender reassignment',
+		questionText: 'Gender reassignment',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -341,6 +381,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DPI',
 		name: 'POLITICAL_PHILOSOPHICAL',
 		text: 'Political / philosophical',
+		questionText: 'Political / philosophical',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -349,6 +390,7 @@ export const Topics: CaseTopic[] = [
 		id: 'DMl',
 		name: 'MENTAL_HEALTH_DISCRIMINATION',
 		text: 'Mental health discrimination',
+		questionText: 'Mental health',
 		parentTopics: [],
 		subtopics: [],
 		type: 'subcase',
@@ -373,6 +415,14 @@ export const Topics: CaseTopic[] = [
 		id: '2y',
 		name: 'LESS_THAN_2_YEARS',
 		text: 'Less than 2 years',
+		parentTopics: [],
+		subtopics: [],
+		type: 'employment_situation',
+	},
+	{
+		id: 'M2y',
+		name: 'MORE_THAN_2_YEARS',
+		text: 'More than 2 years',
 		parentTopics: [],
 		subtopics: [],
 		type: 'employment_situation',

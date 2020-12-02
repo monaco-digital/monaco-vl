@@ -1,24 +1,11 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import Title from '../Title'
-import ScreenContext from '../../context'
 import Paragraph from '../Paragraph'
-import actionType from '../../state/actionType'
-import { getData } from '../../../../api/vlmasersheet'
 import introParagraph from '../../data/introParagraph'
+import { useSelector } from 'react-redux'
 
 const ParagraphsPreview = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { suggestedParagraphs } = state
-
-	useEffect(() => {
-		;(async () => {
-			const paragraphs = await getData()
-			dispatch({
-				type: actionType.SET_SUGGESTED_PARAGRAPHS,
-				payload: { value: paragraphs },
-			})
-		})()
-	}, [])
+	const suggestedParagraphs = useSelector(state => state.paragraphs.suggested)
 
 	return (
 		<>

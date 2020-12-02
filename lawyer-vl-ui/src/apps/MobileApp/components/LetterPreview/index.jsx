@@ -1,11 +1,11 @@
-import React, { useContext } from 'react'
-import ScreenContext from './../../context'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import letter from './../../data/letter'
 import Title from './../Title'
 
 const LetterPreview = () => {
-	const { state } = useContext(ScreenContext)
-	const { selectedParagraphs } = state
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+
 	return (
 		<>
 			<Title

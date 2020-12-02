@@ -1,45 +1,39 @@
-import React, { useContext } from 'react'
-import classNames from 'classnames'
+import React from 'react'
 import checkTopicInputStatus from '../../utils/checkTopicInputStatus'
-import ScreenContext from '../../context'
-import actionType from '../../state/actionType'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
 
-const Topic = ({ uiTopic }) => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { activeTopics } = state
-	const { type } = uiTopic
-	const handleOnClickRadio = (options, { label, value }) => {
-		dispatch({
-			type: actionType.SET_ACTIVE_TOPICS,
-			payload: {
-				value: { options, topicsValues: { label, value } },
-				radio: true,
-			},
-		})
-	}
-	const handleOnClickMulti = ({ label, value }) => {
-		dispatch({
-			type: actionType.SET_ACTIVE_TOPICS,
-			payload: { value: { topicsValues: { label, value } } },
-		})
-	}
+const Topic = ({ question }) => {
+	const dispatch = useDispatch()
+	const selectedTopics = useSelector(state => state.topics.selected)
+	const { questions } = question
+	const type = questions.type
 	const isRadio = type === 'radio'
 	const isMulti = type === 'multi-statement' || type === 'tags'
+	const handleOnClick = (id, isRadio = false) => {
+		if (isRadio) {
+			for (const option of questions.options) {
+				dispatch(unselectTopic(option.id))
+			}
+		}
+
+		dispatch(toggleTopic(id))
+	}
 
 	return (
 		<>
 			{isRadio && (
 				<Topic.Radio
-					uiTopic={uiTopic}
-					activeTopics={activeTopics}
-					handleOnClick={handleOnClickRadio}
+					questions={questions}
+					handleOnClick={handleOnClick}
+					selectedTopics={selectedTopics}
 				/>
 			)}
 			{isMulti && (
 				<Topic.Multi
-					uiTopic={uiTopic}
-					activeTopics={activeTopics}
-					handleOnClick={handleOnClickMulti}
+					questions={questions}
+					handleOnClick={handleOnClick}
+					selectedTopics={selectedTopics}
 					type={type}
 				/>
 			)}
@@ -47,36 +41,44 @@ const Topic = ({ uiTopic }) => {
 	)
 }
 
-Topic.Radio = ({ uiTopic: { options, type }, activeTopics, handleOnClick }) => {
-	return options.map(({ label, value }, i) => (
-		<div key={`value ${i}`} className="topic">
-			<input
-				type="radio"
-				id={label}
-				name={type}
-				value={value}
-				onChange={() => handleOnClick(options, { label, value })}
-				checked={checkTopicInputStatus(activeTopics, label)}
-			/>
-			<label htmlFor={label}>{label}</label>
-		</div>
-	))
+Topic.Radio = ({ questions: { options }, handleOnClick, selectedTopics }) => {
+	return options.map((option, i) => {
+		const { id, name, questionText } = option
+
+		return (
+			<div key={`value ${i}`} className="topic">
+				<input
+					type="radio"
+					id={name}
+					name={name}
+					value={name}
+					onChange={() => handleOnClick(id, true)}
+					checked={checkTopicInputStatus(selectedTopics, id)}
+				/>
+				<label htmlFor={name}>{questionText}</label>
+			</div>
+		)
+	})
 }
 
-Topic.Multi = ({ uiTopic: { options }, activeTopics, handleOnClick, type }) => {
-	return options.map(({ label, value }, i) => (
-		<div key={`value ${i}`} className="topic">
-			<input
-				type="checkbox"
-				id={label}
-				name={label}
-				value={value}
-				onChange={() => handleOnClick({ label, value })}
-				checked={checkTopicInputStatus(activeTopics, label)}
-			/>
-			<label htmlFor={label}>{label}</label>
-		</div>
-	))
+Topic.Multi = ({ questions: { options }, handleOnClick, selectedTopics }) => {
+	return options.map((option, i) => {
+		const { id, name, questionText } = option
+
+		return (
+			<div key={`value ${i}`} className="topic">
+				<input
+					type="checkbox"
+					id={name}
+					name={name}
+					value={name}
+					onChange={() => handleOnClick(id)}
+					checked={checkTopicInputStatus(selectedTopics, id)}
+				/>
+				<label htmlFor={name}>{questionText}</label>
+			</div>
+		)
+	})
 }
 
 export default Topic

@@ -1,36 +1,25 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import Topic from '../Topic'
 import Title from '../Title'
-import ScreenContext from '../../context'
+import { useSelector } from 'react-redux'
 
 const Topics = () => {
-	const { state } = useContext(ScreenContext)
-	const { topicsView } = state
-	const { text, uiTopics } = topicsView
+	const currentQuestion = useSelector(state => state.questions.currentQuestion)
+	const {
+		text,
+		questions: { type },
+	} = currentQuestion
+	const classes = classNames('topics', {
+		[`topics__${type}`]: type,
+	})
 
 	return (
 		<>
 			{text && <Title text={text} />}
-			{uiTopics.map((uiTopic, i) => {
-				const classes = classNames(
-					'topics',
-					{
-						topics__radio: uiTopic.type === 'radio',
-					},
-					{
-						'topics__multi-statement': uiTopic.type === 'multi-statement',
-					},
-					{
-						topics__tags: uiTopic.type === 'tags',
-					}
-				)
-				return (
-					<div key={`${uiTopic.type}-${i}`} className={classes}>
-						<Topic uiTopic={uiTopic} />
-					</div>
-				)
-			})}
+			<div className={classes}>
+				<Topic question={currentQuestion} />
+			</div>
 		</>
 	)
 }

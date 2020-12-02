@@ -12,8 +12,7 @@ import { ReviewParagraphView } from './review/ReviewParagraphView'
 import { Grid } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { getData } from '../../../api/vlmasersheet'
-import { updateAll } from '../../../data/paragraphsDataSlice'
-import { LetterBuilderView } from './LetterBuilderView'
+import { updateAllParagraphs } from '../../../data/paragraphsDataSlice'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -124,7 +123,7 @@ export default function HorizontalLinearStepper() {
 		async function captureData() {
 			const data = await getData()
 			console.log('Adding the data 6666 : ', data)
-			dispatch(updateAll(data))
+			dispatch(updateAllParagraphs(data))
 		}
 		captureData()
 	}, [])

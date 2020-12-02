@@ -1,19 +1,14 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../Paragraph'
-import ScreenContext from '../../context'
-import actionType from '../../state/actionType'
 import Title from '../Title'
+import { reorderSelectedParagraphs } from '../../../../data/paragraphsDataSlice'
 
 const ParagraphsEditMode = () => {
-	const { state, dispatch } = useContext(ScreenContext)
-	const { selectedParagraphs } = state
-	const reorderParagraphs = dragEvent => {
-		dispatch({
-			type: actionType.REORDER_PARAGRAPHS,
-			payload: { value: dragEvent },
-		})
-	}
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+
+	const dispatch = useDispatch()
 
 	return (
 		<>
@@ -24,7 +19,11 @@ const ParagraphsEditMode = () => {
 				}}
 			/>
 			<div className="paragraphs-edit-mode">
-				<DragDropContext onDragEnd={reorderParagraphs}>
+				<DragDropContext
+					onDragEnd={dragEvent =>
+						dispatch(reorderSelectedParagraphs(dragEvent))
+					}
+				>
 					<Droppable droppableId="paragraphs">
 						{provided => (
 							<div

@@ -1,32 +1,23 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
-import ScreenContext from '../../context'
 import modes from '../../state/modes'
-import actionType from '../../state/actionType'
 import truncatedIcon from './../../assets/img/truncated-icon.svg'
 import deleteIcon from './../../assets/img/delete-icon.svg'
-import Button from '../Button'
+import {
+	toggleSelectedParagraph,
+	removeSelectedParagraph,
+} from '../../../../data/paragraphsDataSlice'
 
 const Paragraph = ({ paragraphData }) => {
 	const [collapsed, setCollapsed] = useState(true)
-	const { state, dispatch } = useContext(ScreenContext)
-	const { mode, selectedParagraphs } = state
+	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+	const mode = useSelector(state => state.questions.mode)
+	const dispatch = useDispatch()
 	const { id, paragraph, summary } = paragraphData
 	const handleOnClick = event => {
 		event.stopPropagation()
 		toggleCollapsed()
-	}
-	const selectParagraph = paragraphData => {
-		dispatch({
-			type: actionType.SET_SELECTED_PARAGRAPHS,
-			payload: { value: paragraphData },
-		})
-	}
-	const deleteParagraph = () => {
-		dispatch({
-			type: actionType.DELETE_PARAGRAPH,
-			payload: { value: id },
-		})
 	}
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
@@ -46,7 +37,7 @@ const Paragraph = ({ paragraphData }) => {
 			{mode === modes.PARAGRAPHS_EDIT && (
 				<button
 					className="paragraph__delete"
-					onClick={() => deleteParagraph()}
+					onClick={() => dispatch(removeSelectedParagraph(id))}
 					aria-label="delete paragraph"
 				>
 					<img src={deleteIcon} alt="" />
@@ -55,7 +46,7 @@ const Paragraph = ({ paragraphData }) => {
 			<div className="paragraph__wrapper">
 				<div
 					className="paragraph__box"
-					onClick={() => selectParagraph(paragraphData)}
+					onClick={() => dispatch(toggleSelectedParagraph(id))}
 				>
 					<span className="paragraph__text">
 						{collapsed ? (
@@ -79,5 +70,4 @@ const Paragraph = ({ paragraphData }) => {
 		</div>
 	)
 }
-
 export default Paragraph
