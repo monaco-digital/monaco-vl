@@ -22,7 +22,8 @@ const Screen: React.FC = () => {
 	)
 
 	useEffect(() => {
-		//dispatch(setView())
+		//TODO - fix this
+		dispatch(setView(undefined))
 		;(async () => {
 			const paragraphs = await getData()
 			dispatch(updateAllParagraphs(paragraphs))
@@ -30,7 +31,8 @@ const Screen: React.FC = () => {
 	}, [])
 
 	useEffect(() => {
-		//dispatch(updateSuggestedParagraphs())
+		//TODO- fix this
+		dispatch(updateSuggestedParagraphs(undefined))
 	}, [selectedTopics])
 
 	return (
