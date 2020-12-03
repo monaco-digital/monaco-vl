@@ -13,7 +13,7 @@ const MobileApp = () => {
 					<script
 						defer
 						src="https://kit.fontawesome.com/5bf6b27f09.js"
-						crossorigin="anonymous"
+						crossOrigin="anonymous"
 					/>
 				</Helmet>
 				<Main />

@@ -2,9 +2,13 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import letter from './../../data/letter'
 import Title from './../Title'
+import AppState from '../../../../data/AppState'
+import { Paragraph } from '../../../../data/types'
 
-const LetterPreview = () => {
-	const selectedParagraphs = useSelector(state => state.paragraphs.selected)
+const LetterPreview: React.FC = () => {
+	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
+		state => state.paragraphs.selected
+	)
 
 	return (
 		<>

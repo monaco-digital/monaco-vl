@@ -3,9 +3,12 @@ import classNames from 'classnames'
 import Topic from '../Topic'
 import Title from '../Title'
 import { useSelector } from 'react-redux'
+import AppState from '../../../../data/AppState'
 
-const Topics = () => {
-	const currentQuestion = useSelector(state => state.questions.currentQuestion)
+const Topics: React.FC = () => {
+	const currentQuestion = useSelector<AppState, any>(
+		state => state.questions.currentQuestion
+	)
 	const {
 		text,
 		questions: { type },

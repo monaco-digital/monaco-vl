@@ -1,5 +1,6 @@
 import { createContext } from 'react'
 
-const ScreenContext = createContext()
+//@ts-ignore
+const ScreenContext = createContext<any>()
 
 export default ScreenContext
