@@ -11,7 +11,7 @@ export type AppState = {
 	}
 	questions: {
 		screen: number
-		mode: any
+		mode: string
 		prevState: any
 		currentQuestion: any
 	}

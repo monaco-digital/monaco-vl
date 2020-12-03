@@ -3,10 +3,10 @@ import classNames from 'classnames'
 
 interface Props {
 	type?: string
-	text: string
-	fn: any
+	text?: string
+	fn?: any
 	extraClasses?: string
-	rounded: any
+	rounded?: any
 }
 
 export const Button: React.FC<Props> = ({

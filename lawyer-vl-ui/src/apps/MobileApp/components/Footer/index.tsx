@@ -9,7 +9,7 @@ import AppState from '../../../../data/AppState'
 import { CaseTopic, Paragraph } from '../../../../data/types'
 
 const Footer: React.FC = () => {
-	const mode = useSelector<AppState, any>(state => state.questions.mode)
+	const mode = useSelector<AppState, string>(state => state.questions.mode)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
