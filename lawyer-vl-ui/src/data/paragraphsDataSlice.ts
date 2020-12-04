@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Paragraph } from './types'
-import { getSuggestedParagraphs } from './../filters'
+import { filterByGeneralMatch, getSuggestedParagraphs } from './../filters'
 
 export const slice = createSlice({
 	name: 'paragraphs',
@@ -15,7 +15,11 @@ export const slice = createSlice({
 		},
 		updateSuggestedParagraphs: (state, action) => {
 			const selectedTopics = action.payload
-			state.suggested = getSuggestedParagraphs(state.all, selectedTopics)
+			const suggestedParagraphs = filterByGeneralMatch(
+				state.all,
+				selectedTopics
+			)
+			state.suggested = suggestedParagraphs
 		},
 		updateSelectedParagraphs: (state, action) => {
 			state.selected = action.payload
