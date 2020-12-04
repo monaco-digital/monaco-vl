@@ -51,7 +51,7 @@ const ParagraphsPreview: FC = () => {
 		<>
 			<Title
 				text={{
-					heading: '[Desktop] Letter builder',
+					heading: 'Build your letter',
 					subHeading: 'Select paragraphs by tapping on them.',
 				}}
 			/>

@@ -16,7 +16,7 @@ const ParagraphsPreview: React.FC = () => {
 		<>
 			<Title
 				text={{
-					heading: '[Mobile] Letter builder',
+					heading: 'Build your letter',
 					subHeading: 'Select paragraphs by tapping on them.',
 				}}
 			/>

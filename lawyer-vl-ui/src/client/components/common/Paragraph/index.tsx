@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import modes from '../../../state/modes'
-import truncatedIcon from '../../../assets/img/truncated-icon.svg'
 import deleteIcon from '../../../assets/img/delete-icon.svg'
 import {
 	toggleSelectedParagraph,
@@ -23,17 +22,23 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 	)
 	const mode = useSelector<AppState, any>(state => state.questions.mode)
 	const dispatch = useDispatch()
-	const { id, paragraph, summary } = paragraphData
+	const {
+		id,
+		paragraph,
+		summary,
+		topicsOneOf = [],
+		topicsAllOf = [],
+	} = paragraphData
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
-		'fa-chevron-up': !collapsed,
+		'fa-minus': !collapsed,
 	})
 	const paragraphClasses = classNames('paragraph', {
 		'paragraph--selected':
 			selectedParagraphs.find(paragraph => paragraph.id === paragraphData.id) &&
 			!isDesktop,
 	})
-
+	const topics = [...topicsOneOf, ...topicsAllOf]
 	const toggleCollapsed = event => {
 		event.stopPropagation()
 		setCollapsed(collapsed => !collapsed)
@@ -65,24 +70,31 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 					className="paragraph__box"
 					onClick={() => handleToggleSelectedParagraph()}
 				>
-					<span className="paragraph__text">
-						{collapsed ? (
-							<>
-								{summary}
-								<img src={truncatedIcon} className="paragraph__truncated" />
-							</>
-						) : (
-							<> {paragraph} </>
-						)}
-					</span>
+					<p className="paragraph__text">
+						{collapsed ? <>{summary}</> : <> {paragraph} </>}
+					</p>
+				</div>
+				<footer>
+					<div className="paragraph__topics">
+						<span className="paragraph__topics-topic">
+							<div className=" paragraph__topics-topic__wrapper">Topic 1</div>
+						</span>
+						<span className="paragraph__topics-topic">
+							<div className=" paragraph__topics-topic__wrapper">Topic 2</div>
+						</span>
+						<span className="paragraph__topics-topic">
+							<div className=" paragraph__topics-topic__wrapper">Topic 3</div>
+						</span>
+					</div>
 					<button
 						className="paragraph__chevron"
 						aria-label="toggle paragraph summary"
 						onClick={event => toggleCollapsed(event)}
 					>
+						{collapsed ? 'See more' : 'See less'}
 						<i className={chevronClasses}></i>
 					</button>
-				</div>
+				</footer>
 			</div>
 		</div>
 	)
