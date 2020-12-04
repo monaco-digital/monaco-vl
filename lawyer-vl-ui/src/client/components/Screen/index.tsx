@@ -1,7 +1,7 @@
 import React, { useEffect, FC, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CSSTransition, SwitchTransition } from 'react-transition-group'
-import Topics from '../Topics'
+import Topics from '../common/Topics'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import ParagraphsPreview from '../common/ParagraphsPreview'
 import LetterPreview from '../LetterPreview'

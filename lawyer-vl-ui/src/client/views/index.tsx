@@ -1,35 +1,23 @@
-import React, { useState } from 'react'
-import Footer from '../components/common/Footer'
-import KeyFacts from './KeyFacts'
-import LetterBuilder from './LetterBuilder'
-import PreviewLetter from './preview/PreviewLetter'
-import Help from './Help'
-import GetStarted from './GetStarted'
-import Header from '../components/common/Header'
-import Paragraph from '../components/common/Paragraph'
+import React, { FC } from 'react'
+import Footer from '../components/Footer'
+import LetterPreview from '../components/LetterPreview'
+import ParagraphsPreview from '../components/common/ParagraphsPreview'
+import Topics from '../components/common/Topics'
+import Header from '../components/Header'
+import { useSelector } from 'react-redux'
+import modes from '../state/modes'
+import ParagraphsEditMode from '../components/ParagraphsEditMode'
 
-export type NavView =
-	| 'get-started'
-	| 'key-facts'
-	| 'preview-letter'
-	| 'letter-builder'
-	| 'help'
-
-const Main: React.FC = () => {
-	const [activeView, setActiveView] = useState<NavView>('get-started')
-
-	const setView = (view: NavView) => {
-		setActiveView(view)
-	}
+const Main: FC = () => {
+	const mode = useSelector<any, any>(state => state.questions.mode)
 
 	return (
 		<main className="main">
-			<Header setView={setView} />
-			{activeView === 'get-started' && <GetStarted />}
-			{activeView === 'key-facts' && <KeyFacts />}
-			{activeView === 'letter-builder' && <LetterBuilder />}
-			{activeView === 'preview-letter' && <PreviewLetter />}
-			{activeView === 'help' && <Help />}
+			<Header />
+			{mode === modes.TOPICS && <Topics />}
+			{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
+			{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
+			{mode === modes.TOPICS && <LetterPreview />}
 			<Footer />
 		</main>
 	)

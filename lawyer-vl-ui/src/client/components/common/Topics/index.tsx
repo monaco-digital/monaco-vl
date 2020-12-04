@@ -1,12 +1,12 @@
 import React, { FC } from 'react'
 import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
-import Topic from '../Topic'
-import Title from '../Title'
-import AppState from '../../../data/AppState'
-import { setView } from '../../../data/questionDataSlice'
-import { CaseTopic } from '../../../data/types'
-import Button from '../Button'
+import Topic from '../../Topic'
+import Title from '../../Title'
+import AppState from '../../../../data/AppState'
+import { setView } from '../../../../data/questionDataSlice'
+import { CaseTopic } from '../../../../data/types'
+import Button from '../../Button'
 
 const Topics: FC = () => {
 	const currentQuestion = useSelector<AppState, any>(
