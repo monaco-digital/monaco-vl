@@ -2,7 +2,7 @@ import React, { FC, ReactNode, useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 import Title from '../../Title'
-import Paragraph from '../../Paragraph'
+import Paragraph from '../../common/Paragraph'
 import introParagraph from '../../../data/introParagraph'
 import {
 	toggleSelectedParagraph,

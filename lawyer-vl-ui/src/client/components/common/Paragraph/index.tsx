@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
-import modes from '../../state/modes'
-import truncatedIcon from './../../assets/img/truncated-icon.svg'
-import deleteIcon from './../../assets/img/delete-icon.svg'
+import modes from '../../../state/modes'
+import truncatedIcon from '../../../assets/img/truncated-icon.svg'
+import deleteIcon from '../../../assets/img/delete-icon.svg'
 import {
 	toggleSelectedParagraph,
 	removeSelectedParagraph,
-} from '../../../data/paragraphsDataSlice'
-import AppState from '../../../data/AppState'
-import { Paragraph as ParagraphT } from '../../../data/types'
+} from '../../../../data/paragraphsDataSlice'
+import AppState from '../../../../data/AppState'
+import { Paragraph as ParagraphT } from '../../../../data/types'
 
 interface Props {
 	paragraphData: ParagraphT

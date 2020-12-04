@@ -1,6 +1,6 @@
 import React from 'react'
 import Title from '../../Title'
-import Paragraph from '../../Paragraph'
+import Paragraph from '../../common/Paragraph'
 import introParagraph from '../../../data/introParagraph'
 import { useSelector, useDispatch } from 'react-redux'
 import AppState from '../../../../data/AppState'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import Paragraph from '../Paragraph'
+import Paragraph from '../common/Paragraph'
 import { Paragraph as ParagraphT } from '../../../data/types'
 import Title from '../Title'
 import { reorderSelectedParagraphs } from '../../../data/paragraphsDataSlice'
