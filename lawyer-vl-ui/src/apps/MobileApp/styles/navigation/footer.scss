@@ -40,6 +40,14 @@
 			}
 		}
 
+		.footer__actions-next {
+			@apply .flex;
+
+			@screen md {
+				@apply .hidden;
+			}
+		}
+
 		.footer__actions--disabled {
 			@apply .cursor-not-allowed .opacity-50 .text-black;
 

@@ -7,11 +7,14 @@
 @import './topics.scss';
 @import './topic.scss';
 @import './paragraph.scss';
-@import './paragraphs.scss';
 @import './letter-preview.scss';
 @import './paragraphs-edit-mode.scss';
 @import './navigation/header.scss';
 @import './navigation/footer.scss';
+
+@import './desktop/paragraphs-preview.scss';
+@import './mobile/paragraphs-preview.scss';
+@import './common/paragraphs-preview.scss';
 
 @import 'tailwindcss/components';
 

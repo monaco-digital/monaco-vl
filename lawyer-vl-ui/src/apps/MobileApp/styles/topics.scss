@@ -1,5 +1,17 @@
 .topics {
 	@apply .flex .flex-col .mb-0 .mt-auto .pt-8 .items-end;
+
+	@screen md {
+		@apply .items-start .mt-0;
+	}
+
+	.topics__actions-next {
+		@apply .hidden;
+
+		@screen md {
+			@apply .flex;
+		}
+	}
 }
 
 .topics__tags {

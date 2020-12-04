@@ -1,6 +1,6 @@
 .paragraph {
 	transition: all 0.3s;
-	@apply .cursor-pointer .flex .mb-6 .items-center;
+	@apply .cursor-pointer .flex .items-center;
 
 	.paragraph__wrapper {
 		@apply .w-full;

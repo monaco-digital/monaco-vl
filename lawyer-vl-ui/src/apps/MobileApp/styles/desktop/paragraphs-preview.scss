@@ -1,0 +1,88 @@
+.paragraphs-preview--desktop {
+	@apply .flex .flex-row -mx-4 .font-sans;
+
+	.paragraphs-preview__select,
+	.paragraphs-preview__letter {
+		@apply .w-1/2 .px-4;
+	}
+
+	.paragraphs-preview__select__wrapper {
+		@apply .h-screen .overflow-auto;
+	}
+
+	.paragraphs-preview__header {
+		@apply .flex .font-bold .justify-between .text-sm .pt-4 .pb-3 .mb-4 .border-b .border-ms-gray .border-opacity-25;
+
+		.paragraphs-preview__header__counter {
+			@apply .flex .rounded-full .px-3 py-1;
+
+			img {
+				@apply .pr-2;
+			}
+		}
+	}
+
+	.paragraphs-preview__select__wrapper,
+	.paragraphs-preview__letter__wrapper {
+		@apply .border .rounded-md .px-3;
+	}
+
+	.paragraphs-preview__select__wrapper {
+		@apply .bg-ms-gray-lighter .border-ms-gray  .border-opacity-25;
+
+		.paragraphs-preview__header__counter {
+			@apply .bg-white;
+		}
+	}
+
+	.paragraphs-preview__letter__wrapper {
+		@apply .shadow-2xl .border-ms-blue  .border-opacity-25;
+
+		.paragraphs-preview__header__counter {
+			@apply .bg-ms-gray-lighter;
+		}
+	}
+
+	.paragraphs-preview__letter {
+		.paragraphs-preview__letter-boxes {
+			@apply .h-full .flex .flex-col;
+		}
+
+		.paragraphs-preview__letter-box {
+			@apply .bg-ms-blue-light .mb-2 .rounded-tr .rounded-br .px-4 .py-3 .border-l-4 .border-ms-blue;
+		}
+
+		.paragraphs-preview__letter-box--collapsible {
+			@apply .cursor-pointer .flex;
+
+			.paragraphs-preview__letter-box__text {
+				@apply .text-sm .w-full .text-ms-gray;
+			}
+
+			.paragraphs-preview__letter-box__chevron {
+				@apply .flex .justify-start .px-2;
+
+				i {
+					@apply .text-lg .text-ms-gray;
+				}
+			}
+		}
+
+		.paragraphs-preview__letter-dropzone {
+			height: 33vh;
+			@apply .flex .justify-center .items-center .flex-grow .border-ms-blue;
+
+			.paragraphs-preview__letter-dropzone-message {
+				@apply .text-sm .font-sans .border .border-ms-blue .px-4 .py-3 .bg-white .rounded .text-ms-blue;
+
+				i {
+					@apply .text-xl .pr-3 .text-ms-blue;
+				}
+			}
+		}
+
+		.paragraphs-preview__letter-dropzone--is-dragging {
+			@apply .border-dashed .border-4 .border-ms-blue;
+		}
+	}
+}

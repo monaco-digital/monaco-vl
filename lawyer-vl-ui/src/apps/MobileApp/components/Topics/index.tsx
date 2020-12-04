@@ -1,27 +1,42 @@
-import React from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
+import { useSelector, useDispatch } from 'react-redux'
 import Topic from '../Topic'
 import Title from '../Title'
-import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
+import { setView } from '../../../../data/questionDataSlice'
+import { CaseTopic } from '../../../../data/types'
+import Button from '../Button'
 
-const Topics: React.FC = () => {
+const Topics: FC = () => {
 	const currentQuestion = useSelector<AppState, any>(
 		state => state.questions.currentQuestion
 	)
-	const {
-		text,
-		questions: { type },
-	} = currentQuestion
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
+	const dispatch = useDispatch()
+	const { text, questions } = currentQuestion
 	const classes = classNames('topics', {
-		[`topics__${type}`]: type,
+		[`topics__${questions.type}`]: questions.type,
 	})
-
+	const handleGoForward = () => {
+		dispatch(setView(selectedTopics))
+	}
 	return (
 		<>
 			{text && <Title text={text} />}
 			<div className={classes}>
 				<Topic question={currentQuestion} />
+				<div className="topics__actions">
+					<Button
+						type="green"
+						text="Next"
+						rounded
+						fn={() => handleGoForward()}
+						extraClasses="topics__actions-next"
+					/>
+				</div>
 			</div>
 		</>
 	)

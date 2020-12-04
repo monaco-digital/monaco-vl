@@ -6,7 +6,7 @@ import dragIcon from './../../assets/img/drag-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { setView, setMode } from '../../../../data/questionDataSlice'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, Paragraph } from '../../../../data/types'
+import { CaseTopic } from '../../../../data/types'
 
 const Footer: React.FC = () => {
 	const mode = useSelector<AppState, string>(state => state.questions.mode)
@@ -53,6 +53,7 @@ const Footer: React.FC = () => {
 								type="green"
 								text="Next"
 								rounded
+								extraClasses="footer__actions-next"
 								fn={() => handleGoForward()}
 							/>
 						</>
