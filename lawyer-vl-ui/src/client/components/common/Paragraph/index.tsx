@@ -9,6 +9,7 @@ import {
 } from '../../../../data/paragraphsDataSlice'
 import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
+import { Topics } from '../../../../data/types'
 
 interface Props {
 	paragraphData: ParagraphT
@@ -39,6 +40,9 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 			!isDesktop,
 	})
 	const topics = [...topicsOneOf, ...topicsAllOf]
+	const caseTopics = Topics.filter(({ id }) => topics.includes(id))
+	const topicTags = caseTopics.map(({ name }) => name)
+
 	const toggleCollapsed = event => {
 		event.stopPropagation()
 		setCollapsed(collapsed => !collapsed)
