@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import './App.css'
 import DesktopApp from './apps/DesktopApp'
 import MobileApp from './apps/MobileApp'
+import Client from './client/index'
 
 function App() {
 	return (
@@ -13,6 +14,9 @@ function App() {
 				</Route>
 				<Route path="/mobile">
 					<MobileApp />
+				</Route>
+				<Route path="/client">
+					<Client />
 				</Route>
 			</Switch>
 		</Router>
