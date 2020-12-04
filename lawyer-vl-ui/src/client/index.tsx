@@ -2,7 +2,7 @@ import React from 'react'
 import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import store from '../data/store'
-import '../apps/MobileApp/styles/main.output.css'
+import '../client/styles/main.output.css'
 import Main from './views/Main'
 
 const MobileApp = () => {

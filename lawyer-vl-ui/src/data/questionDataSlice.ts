@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { ViewLogic } from '../clustering'
-import modes from '../apps/MobileApp/state/modes'
+import modes from '../client/state/modes'
 
 export const slice = createSlice({
 	name: 'question',
