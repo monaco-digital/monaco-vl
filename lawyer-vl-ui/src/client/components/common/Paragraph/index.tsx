@@ -41,7 +41,9 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 	})
 	const topics = [...topicsOneOf, ...topicsAllOf]
 	const caseTopics = Topics.filter(({ id }) => topics.includes(id))
-	const topicTags = caseTopics.map(({ name }) => name)
+	const topicTags = caseTopics
+		.map(({ text }) => text)
+		.slice(0, isDesktop ? 3 : 1)
 
 	const toggleCollapsed = event => {
 		event.stopPropagation()
@@ -80,22 +82,20 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 				</div>
 				<footer>
 					<div className="paragraph__topics">
-						<span className="paragraph__topics-topic">
-							<div className=" paragraph__topics-topic__wrapper">Topic 1</div>
-						</span>
-						<span className="paragraph__topics-topic">
-							<div className=" paragraph__topics-topic__wrapper">Topic 2</div>
-						</span>
-						<span className="paragraph__topics-topic">
-							<div className=" paragraph__topics-topic__wrapper">Topic 3</div>
-						</span>
+						{topicTags.map(tag => (
+							<span className="paragraph__topics-topic">
+								<div className=" paragraph__topics-topic__wrapper">{tag}</div>
+							</span>
+						))}
 					</div>
 					<button
 						className="paragraph__chevron"
 						aria-label="toggle paragraph summary"
 						onClick={event => toggleCollapsed(event)}
 					>
-						{collapsed ? 'See more' : 'See less'}
+						<span className="paragraph__chevron__see-more">
+							{collapsed ? 'See more' : 'See less'}
+						</span>
 						<i className={chevronClasses}></i>
 					</button>
 				</footer>

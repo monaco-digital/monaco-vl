@@ -40,16 +40,25 @@
 			@apply .pl-4 .flex .-mx-2;
 
 			.paragraph__topics-topic {
-				@apply .px-2 .flex .items-center;
+				@apply .px-2 .flex .items-center .text-sm;
 
 				.paragraph__topics-topic__wrapper {
-					@apply .rounded-full .bg-ms-gray-light .px-4;
+					max-width: 8rem;
+					@apply .truncate .rounded-full .bg-ms-gray-light .px-4;
 				}
 			}
 		}
 
 		.paragraph__chevron {
 			@apply .flex .items-center .text-sm;
+
+			.paragraph__chevron__see-more {
+				@apply .hidden;
+
+				@screen xl {
+					@apply .flex;
+				}
+			}
 
 			i {
 				@apply .text-ms-gray .p-4 .bg-ms-gray-lighter .ml-8 .text-lg;
