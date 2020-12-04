@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import logo from '../../../assets/img/virtual-lawyer-logo.svg'
-import { NavView } from './../../../views/Main'
+import { NavView } from '../../../views'
 
 interface Props {
 	setView: (type: NavView) => void

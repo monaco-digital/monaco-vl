@@ -3,7 +3,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import store from '../data/store'
 import '../client/styles/main.output.css'
-import Main from './views/Main'
+import Main from './views'
 
 const MobileApp = () => {
 	return (

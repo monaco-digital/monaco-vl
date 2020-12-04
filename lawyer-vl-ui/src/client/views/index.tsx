@@ -24,18 +24,6 @@ const Main: React.FC = () => {
 
 	return (
 		<main className="main">
-			<Paragraph
-				paragraphData={{
-					id: 'dsdsa',
-					summary: 'This is a summary',
-					paragraph:
-						'what about a long ass one what about a long ass onewhat about a long ass onewhat about a long ass onewhat about a long ass one',
-					topicsNoneOf: [],
-					topicsAllOf: [],
-					topicsOneOf: [],
-					verticalHeight: 0,
-				}}
-			/>
 			<Header setView={setView} />
 			{activeView === 'get-started' && <GetStarted />}
 			{activeView === 'key-facts' && <KeyFacts />}
