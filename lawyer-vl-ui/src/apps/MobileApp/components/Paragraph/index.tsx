@@ -13,9 +13,10 @@ import { Paragraph as ParagraphT } from '../../../../data/types'
 
 interface Props {
 	paragraphData: ParagraphT
+	isDesktop?: boolean
 }
 
-const Paragraph: React.FC<Props> = ({ paragraphData }) => {
+const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 	const [collapsed, setCollapsed] = useState(true)
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
@@ -27,18 +28,25 @@ const Paragraph: React.FC<Props> = ({ paragraphData }) => {
 		'fa-chevron-down': collapsed,
 		'fa-chevron-up': !collapsed,
 	})
-	const toggleCollapsed = () => {
-		setCollapsed(collapsed => !collapsed)
-	}
 	const paragraphClasses = classNames('paragraph', {
-		'paragraph--selected': selectedParagraphs.find(
-			paragraph => paragraph.id === paragraphData.id
-		),
+		'paragraph--selected':
+			selectedParagraphs.find(paragraph => paragraph.id === paragraphData.id) &&
+			!isDesktop,
 	})
 
-	const handleOnClick = event => {
+	const toggleCollapsed = event => {
 		event.stopPropagation()
-		toggleCollapsed()
+		setCollapsed(collapsed => !collapsed)
+	}
+
+	const handleToggleSelectedParagraph = () => {
+		if (!isDesktop) {
+			dispatch(toggleSelectedParagraph(id))
+		}
+	}
+
+	const removeParagraph = () => {
+		dispatch(removeSelectedParagraph(id))
 	}
 
 	return (
@@ -46,7 +54,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData }) => {
 			{mode === modes.PARAGRAPHS_EDIT && (
 				<button
 					className="paragraph__delete"
-					onClick={() => dispatch(removeSelectedParagraph(id))}
+					onClick={() => removeParagraph()}
 					aria-label="delete paragraph"
 				>
 					<img src={deleteIcon} alt="" />
@@ -55,7 +63,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData }) => {
 			<div className="paragraph__wrapper">
 				<div
 					className="paragraph__box"
-					onClick={() => dispatch(toggleSelectedParagraph(id))}
+					onClick={() => handleToggleSelectedParagraph()}
 				>
 					<span className="paragraph__text">
 						{collapsed ? (
@@ -70,7 +78,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData }) => {
 					<button
 						className="paragraph__chevron"
 						aria-label="toggle paragraph summary"
-						onClick={event => handleOnClick(event)}
+						onClick={event => toggleCollapsed(event)}
 					>
 						<i className={chevronClasses}></i>
 					</button>

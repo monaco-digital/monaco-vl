@@ -1,25 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, FC, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { CSSTransition, SwitchTransition } from 'react-transition-group'
 import Topics from '../Topics'
-import ParagraphsPreview from '../ParagraphsPreview'
 import ParagraphsEditMode from '../ParagraphsEditMode'
+import ParagraphsPreview from '../common/ParagraphsPreview'
 import LetterPreview from '../LetterPreview'
 import modes from '../../state/modes'
-import { useDispatch, useSelector } from 'react-redux'
 import { setView } from '../../../../data/questionDataSlice'
-import {
-	updateAllParagraphs,
-	updateSuggestedParagraphs,
-} from '../../../../data/paragraphsDataSlice'
+import { updateAllParagraphs } from '../../../../data/paragraphsDataSlice'
 import { getData } from './../../../../api/vlmasersheet'
 import AppState from '../../../../data/AppState'
 import { CaseTopic } from '../../../../data/types'
 
-const Screen: React.FC = () => {
+const Screen: FC = () => {
 	const dispatch = useDispatch()
 	const mode = useSelector<AppState, any>(state => state.questions.mode)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
+	const screenRef = useRef(null)
 
 	useEffect(() => {
 		//TODO - fix this
@@ -30,13 +29,8 @@ const Screen: React.FC = () => {
 		})()
 	}, [])
 
-	useEffect(() => {
-		//TODO- fix this
-		dispatch(updateSuggestedParagraphs(undefined))
-	}, [selectedTopics])
-
 	return (
-		<div className="screen container">
+		<div ref={screenRef} className="screen container">
 			{mode === modes.TOPICS && <Topics />}
 			{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 			{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
