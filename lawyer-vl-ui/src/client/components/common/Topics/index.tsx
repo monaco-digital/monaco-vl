@@ -1,10 +1,11 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 import Topic from '../../Topic'
 import Title from '../../Title'
 import AppState from '../../../../data/AppState'
 import { setView } from '../../../../data/questionDataSlice'
+import { updateSuggestedParagraphs } from '../../../../data/paragraphsDataSlice'
 import { CaseTopic } from '../../../../data/types'
 import Button from '../../Button'
 
@@ -23,6 +24,11 @@ const Topics: FC = () => {
 	const handleGoForward = () => {
 		dispatch(setView(selectedTopics))
 	}
+
+	useEffect(() => {
+		dispatch(updateSuggestedParagraphs(selectedTopics))
+	}, [selectedTopics])
+
 	return (
 		<>
 			{text && <Title text={text} />}
