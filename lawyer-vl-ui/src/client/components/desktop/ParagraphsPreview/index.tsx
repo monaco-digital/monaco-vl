@@ -1,12 +1,12 @@
-import React, { FC, ReactNode, useState } from 'react'
+import React, { FC, ReactNode, useState, useEffect } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
 import classNames from 'classnames'
 import Title from '../../Title'
 import Paragraph from '../../common/Paragraph'
-import introParagraph from '../../../data/introParagraph'
 import {
-	toggleSelectedParagraph,
-	removeSelectedParagraph,
+	removeParagraph,
+	addParagraph,
+	reorderParagraphs,
 } from '../../../../data/paragraphsDataSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
@@ -20,24 +20,65 @@ const ParagraphsPreview: FC = () => {
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
 	)
+	const [
+		suggestedParagraphsMinusSelected,
+		setSuggestedParagraphsMinusSelected,
+	] = useState([])
 	const dispatch = useDispatch()
 	const [isDragging, setIsDraggin] = useState(false)
+
+	useEffect(() => {
+		const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
+		const filteredSuggestedParagraphs = suggestedParagraphs.filter(
+			paragraph => !selectedParagraphsIds.includes(paragraph.id)
+		)
+
+		setSuggestedParagraphsMinusSelected(filteredSuggestedParagraphs)
+	}, [selectedParagraphs])
+
 	const handleDragStart = () => {
 		setIsDraggin(true)
 	}
 	const handleDragEnd = dragEvent => {
-		console.log({ dragEvent })
 		setIsDraggin(false)
+
 		const { source, destination, draggableId } = dragEvent
 		const destinationExists = destination
+		const isFromSuggested = source.droppableId === 'suggested'
+		const isFromSelected = source.droppableId === 'selected'
+		const sourceId = source.droppableId
 
+		// Make sure we are dragging into a <Droppable>
 		if (destinationExists) {
-			const sourceId = source.droppableId
 			const destinationId = destination.droppableId
-			const isSelfDropping = sourceId === destinationId
-			dispatch(toggleSelectedParagraph(draggableId))
+			const isMultilist = sourceId !== destinationId
 
-			if (isSelfDropping) return
+			// Check if dragging between lists
+			if (isMultilist) {
+				if (isFromSuggested) {
+					dispatch(addParagraph({ id: draggableId, toId: destinationId }))
+					dispatch(
+						reorderParagraphs({
+							dragEvent,
+						})
+					)
+				}
+				if (isFromSelected) {
+					dispatch(removeParagraph({ id: draggableId, fromId: sourceId }))
+				}
+				// Handle reordering within the same list
+			} else {
+				dispatch(
+					reorderParagraphs({
+						dragEvent,
+					})
+				)
+			}
+		}
+
+		// Remove from selected if dragging away from it
+		if (!destinationExists && isFromSelected) {
+			dispatch(removeParagraph({ id: draggableId, fromId: sourceId }))
 		}
 	}
 	const paragraphsPreviewLetterDropzoneClasses = classNames(
@@ -61,17 +102,15 @@ const ParagraphsPreview: FC = () => {
 						<div className="paragraphs-preview__select__wrapper">
 							<div className="paragraphs-preview__header">
 								<span>Select paragraphs</span>
-								<ParagraphsPreviewCounter selected={suggestedParagraphs} />
+								<ParagraphsPreviewCounter
+									selected={suggestedParagraphsMinusSelected}
+								/>
 							</div>
 							<div className="paragraphs-preview__select-paragraphs">
-								<Paragraph paragraphData={introParagraph as ParagraphT} />
-								{suggestedParagraphs.map((paragraph, i) => (
-									<Droppable
-										key={paragraph.id}
-										droppableId="paragraphs-preview__letter-select"
-									>
-										{(provided, snapshot) => (
-											<div ref={provided.innerRef}>
+								<Droppable droppableId="suggested">
+									{(provided, snapshot) => (
+										<div ref={provided.innerRef}>
+											{suggestedParagraphsMinusSelected.map((paragraph, i) => (
 												<Draggable
 													key={paragraph.id}
 													draggableId={paragraph.id}
@@ -86,16 +125,16 @@ const ParagraphsPreview: FC = () => {
 															<Paragraph
 																key={paragraph.id}
 																paragraphData={paragraph}
-																isDesktop
 															/>
+															{provided.placeholder}
 														</div>
 													)}
 												</Draggable>
-												{provided.placeholder}
-											</div>
-										)}
-									</Droppable>
-								))}
+											))}
+											{provided.placeholder}
+										</div>
+									)}
+								</Droppable>
 							</div>
 						</div>
 					</div>
@@ -112,29 +151,44 @@ const ParagraphsPreview: FC = () => {
 										summary="Letter introduction and address"
 									/>
 								</ParagraphsPreviewBox>
-								<Droppable droppableId="paragraphs-preview__letter-dropzone">
+								<Droppable droppableId="selected">
 									{(provided, snapshot) => (
-										<div ref={provided.innerRef}>
+										<div
+											className="paragraphs-preview__letter-box"
+											ref={provided.innerRef}
+										>
 											{!selectedParagraphs.length ? (
-												<ParagraphsPreviewBox
-													extraClasses={paragraphsPreviewLetterDropzoneClasses}
-												>
+												<div className={paragraphsPreviewLetterDropzoneClasses}>
 													<div className="paragraphs-preview__letter-dropzone-message">
 														<i className="fas fa-info-circle"></i>
 														<span>Drag paragraphs here</span>
 													</div>
-												</ParagraphsPreviewBox>
+												</div>
 											) : (
 												selectedParagraphs.map((paragraph, i) => {
 													return (
-														<Paragraph
+														<Draggable
 															key={paragraph.id}
-															paragraphData={paragraph}
-															isDesktop
-														/>
+															draggableId={paragraph.id}
+															index={i}
+														>
+															{(provided, snapshot) => (
+																<div
+																	ref={provided.innerRef}
+																	{...provided.draggableProps}
+																	{...provided.dragHandleProps}
+																>
+																	<Paragraph
+																		key={paragraph.id}
+																		paragraphData={paragraph}
+																	/>
+																</div>
+															)}
+														</Draggable>
 													)
 												})
 											)}
+											{provided.placeholder}
 										</div>
 									)}
 								</Droppable>

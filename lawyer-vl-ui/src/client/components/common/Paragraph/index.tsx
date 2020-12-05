@@ -4,8 +4,9 @@ import classNames from 'classnames'
 import modes from '../../../state/modes'
 import deleteIcon from '../../../assets/img/delete-icon.svg'
 import {
-	toggleSelectedParagraph,
-	removeSelectedParagraph,
+	addParagraph,
+	removeParagraph,
+	toggleParagraph,
 } from '../../../../data/paragraphsDataSlice'
 import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
@@ -13,11 +14,12 @@ import { Topics } from '../../../../data/types'
 
 interface Props {
 	paragraphData: ParagraphT
-	isDesktop?: boolean
+	isMobile?: boolean
 }
 
-const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
+const Paragraph: React.FC<Props> = ({ paragraphData, isMobile }) => {
 	const [collapsed, setCollapsed] = useState(true)
+	const [isSelected, setIsSelected] = useState(false)
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
 	)
@@ -35,29 +37,26 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 		'fa-minus': !collapsed,
 	})
 	const paragraphClasses = classNames('paragraph', {
-		'paragraph--selected':
-			selectedParagraphs.find(paragraph => paragraph.id === paragraphData.id) &&
-			!isDesktop,
+		'paragraph--selected': isMobile
+			? selectedParagraphs.find(paragraph => paragraph.id === paragraphData.id)
+			: false,
 	})
 	const topics = [...topicsOneOf, ...topicsAllOf]
 	const caseTopics = Topics.filter(({ id }) => topics.includes(id))
 	const topicTags = caseTopics
 		.map(({ text }) => text)
-		.slice(0, isDesktop ? 3 : 1)
+		.slice(0, !isMobile ? 3 : 1)
 
 	const toggleCollapsed = event => {
 		event.stopPropagation()
 		setCollapsed(collapsed => !collapsed)
 	}
 
-	const handleToggleSelectedParagraph = () => {
-		if (!isDesktop) {
-			dispatch(toggleSelectedParagraph(id))
+	const handleToggleSelectedParagraph = ({ id }) => {
+		if (isMobile) {
+			setIsSelected(selected => !selected)
+			dispatch(toggleParagraph({ id, toId: 'selected' }))
 		}
-	}
-
-	const removeParagraph = () => {
-		dispatch(removeSelectedParagraph(id))
 	}
 
 	return (
@@ -65,7 +64,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 			{mode === modes.PARAGRAPHS_EDIT && (
 				<button
 					className="paragraph__delete"
-					onClick={() => removeParagraph()}
+					onClick={() => dispatch(removeParagraph({ id, fromId: 'selected' }))}
 					aria-label="delete paragraph"
 				>
 					<img src={deleteIcon} alt="" />
@@ -74,7 +73,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isDesktop }) => {
 			<div className="paragraph__wrapper">
 				<div
 					className="paragraph__box"
-					onClick={() => handleToggleSelectedParagraph()}
+					onClick={() => handleToggleSelectedParagraph({ id })}
 				>
 					<p className="paragraph__text">
 						{collapsed ? <>{summary}</> : <> {paragraph} </>}

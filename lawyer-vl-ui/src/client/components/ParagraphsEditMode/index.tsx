@@ -4,7 +4,7 @@ import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
 import Paragraph from '../common/Paragraph'
 import { Paragraph as ParagraphT } from '../../../data/types'
 import Title from '../Title'
-import { reorderSelectedParagraphs } from '../../../data/paragraphsDataSlice'
+import { reorderParagraphs } from '../../../data/paragraphsDataSlice'
 import AppState from '../../../data/AppState'
 
 const ParagraphsEditMode: React.FC = () => {
@@ -23,11 +23,9 @@ const ParagraphsEditMode: React.FC = () => {
 			/>
 			<div className="paragraphs-edit-mode">
 				<DragDropContext
-					onDragEnd={dragEvent =>
-						dispatch(reorderSelectedParagraphs(dragEvent))
-					}
+					onDragEnd={dragEvent => dispatch(reorderParagraphs({ dragEvent }))}
 				>
-					<Droppable droppableId="paragraphs">
+					<Droppable droppableId="selected">
 						{provided => (
 							<div
 								ref={provided.innerRef}
@@ -53,6 +51,7 @@ const ParagraphsEditMode: React.FC = () => {
 										</Draggable>
 									))}
 								</div>
+								{provided.placeholder}
 							</div>
 						)}
 					</Droppable>

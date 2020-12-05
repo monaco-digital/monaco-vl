@@ -1,4 +1,4 @@
-import { CaseTopic, Paragraph, Topic } from './types'
+import { CaseTopic, Paragraph } from './types'
 
 export type AppState = {
 	paragraphs: {
