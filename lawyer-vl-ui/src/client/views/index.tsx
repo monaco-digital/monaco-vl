@@ -3,16 +3,17 @@ import Footer from '../components/Footer'
 import LetterPreview from '../components/LetterPreview'
 import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Topics from '../components/common/Topics'
-import Header from '../components/Header'
+import Header from '../components/common/Header'
 import { useSelector, useDispatch } from 'react-redux'
 import modes from '../state/modes'
 import ParagraphsEditMode from '../components/ParagraphsEditMode'
 import { setView } from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
+import AppState from '../../data/AppState'
 
 const Main: FC = () => {
-	const mode = useSelector<any, any>(state => state.questions.mode)
+	const mode = useSelector<AppState, string>(state => state.navigation.mode)
 	const dispatch = useDispatch()
 
 	useEffect(() => {

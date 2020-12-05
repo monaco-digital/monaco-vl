@@ -15,6 +15,9 @@ export type AppState = {
 		prevState: any
 		currentQuestion: any
 	}
+	navigation: {
+		mode: string
+	}
 }
 
 export default AppState
