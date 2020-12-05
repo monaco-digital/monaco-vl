@@ -10,39 +10,6 @@
 		@apply .h-screen .overflow-auto;
 	}
 
-	.paragraphs-preview__header {
-		@apply .flex .font-bold .justify-between .text-sm .pt-4 .pb-3 .mb-4 .border-b .border-ms-gray .border-opacity-25;
-
-		.paragraphs-preview__header__counter {
-			@apply .flex .rounded-full .px-3 py-1;
-
-			img {
-				@apply .pr-2;
-			}
-		}
-	}
-
-	.paragraphs-preview__select__wrapper,
-	.paragraphs-preview__letter__wrapper {
-		@apply .border .rounded-md .px-3;
-	}
-
-	.paragraphs-preview__select__wrapper {
-		@apply .bg-ms-gray-lighter .border-ms-gray  .border-opacity-25;
-
-		.paragraphs-preview__header__counter {
-			@apply .bg-white;
-		}
-	}
-
-	.paragraphs-preview__letter__wrapper {
-		@apply .shadow-2xl .border-ms-blue  .border-opacity-25;
-
-		.paragraphs-preview__header__counter {
-			@apply .bg-ms-gray-lighter;
-		}
-	}
-
 	.paragraphs-preview__letter {
 		.paragraphs-preview__letter-boxes {
 			@apply .h-full .flex .flex-col;
