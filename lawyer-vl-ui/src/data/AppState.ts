@@ -1,4 +1,7 @@
 import { CaseTopic, Paragraph, Topic } from './types'
+import modes from '../client/state/modes'
+
+type mode = keyof typeof modes
 
 export type AppState = {
 	paragraphs: {
@@ -16,7 +19,7 @@ export type AppState = {
 		currentQuestion: any
 	}
 	navigation: {
-		mode: string
+		mode: mode
 	}
 }
 

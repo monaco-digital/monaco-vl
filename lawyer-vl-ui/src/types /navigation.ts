@@ -1,6 +1,6 @@
 export type NavView =
 	| 'get-started'
-	| 'key-facts'
-	| 'preview-letter'
+	| 'topics'
 	| 'letter-builder'
+	| 'preview-letter'
 	| 'help'

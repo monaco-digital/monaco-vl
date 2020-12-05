@@ -11,6 +11,8 @@ import { setView } from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
+import GetStarted from './GetStarted'
+import Help from './Help'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.mode)
@@ -29,10 +31,12 @@ const Main: FC = () => {
 		<main className="main">
 			<Header />
 			<div className="screen container">
+				{mode === modes.GET_STARTED && <GetStarted />}
 				{mode === modes.TOPICS && <Topics />}
 				{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 				{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
 				{mode === modes.LETTER_PREVIEW && <LetterPreview />}
+				{mode === modes.HELP && <Help />}
 			</div>
 			<Footer />
 		</main>

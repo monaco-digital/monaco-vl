@@ -7,7 +7,7 @@ import AppState from '../../../../data/AppState'
 import { setView } from '../../../../data/questionDataSlice'
 import { updateSuggestedParagraphs } from '../../../../data/paragraphsDataSlice'
 import { CaseTopic } from '../../../../data/types'
-import Button from '../../Button'
+import Button from '../../common/Button'
 
 const Topics: FC = () => {
 	const currentQuestion = useSelector<AppState, any>(

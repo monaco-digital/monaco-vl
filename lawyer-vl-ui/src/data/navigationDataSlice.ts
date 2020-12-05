@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { NavView } from '../types /navigation'
+import modes from '../client/state/modes'
 
 export const slice = createSlice({
 	name: 'navigation',
 	initialState: {
-		mode: 'get-started' as NavView,
+		mode: 'GET_STARTED' as keyof typeof modes,
 	},
 	reducers: {
 		setMode: (state, action) => {

@@ -24,16 +24,10 @@ export const Button: React.FC<Props> = ({
 			'button--secondary': type === 'secondary',
 		},
 		{
-			'button--neutral': type === 'neutral',
+			'button--tertiary': type === 'tertiary',
 		},
 		{
-			'button--danger': type === 'danger',
-		},
-		{
-			'button--green': type === 'green',
-		},
-		{
-			'button--rounded': rounded,
+			'button--ghost': type === 'ghost',
 		}
 	)
 	return (
