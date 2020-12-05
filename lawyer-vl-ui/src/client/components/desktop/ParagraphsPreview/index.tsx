@@ -114,16 +114,17 @@ const ParagraphsPreview: FC = () => {
 								</ParagraphsPreviewBox>
 								<Droppable droppableId="paragraphs-preview__letter-dropzone">
 									{(provided, snapshot) => (
-										<div ref={provided.innerRef}>
+										<div
+											className="paragraphs-preview__letter-box"
+											ref={provided.innerRef}
+										>
 											{!selectedParagraphs.length ? (
-												<ParagraphsPreviewBox
-													extraClasses={paragraphsPreviewLetterDropzoneClasses}
-												>
+												<div className={paragraphsPreviewLetterDropzoneClasses}>
 													<div className="paragraphs-preview__letter-dropzone-message">
 														<i className="fas fa-info-circle"></i>
 														<span>Drag paragraphs here</span>
 													</div>
-												</ParagraphsPreviewBox>
+												</div>
 											) : (
 												selectedParagraphs.map((paragraph, i) => {
 													return (
@@ -135,6 +136,7 @@ const ParagraphsPreview: FC = () => {
 													)
 												})
 											)}
+											{provided.placeholder}
 										</div>
 									)}
 								</Droppable>
