@@ -13,7 +13,7 @@ import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
 
 const Main: FC = () => {
-	const mode = useSelector<AppState, string>(state => state.navigation.mode)
+	const mode = useSelector<AppState, string>(state => state.questions.mode)
 	const dispatch = useDispatch()
 
 	useEffect(() => {

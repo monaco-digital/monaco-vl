@@ -16,7 +16,7 @@ export type AppState = {
 		currentQuestion: any
 	}
 	navigation: {
-		mode: string
+		path: string
 	}
 }
 
