@@ -489,3 +489,20 @@ export const DSubTopics = [
 	ParagraphTopicMapping.MENTAL_HEALTH_DISCRIMINATION,
 	ParagraphTopicMapping.VEGAN,
 ]
+
+export interface Question {
+	id: number
+	text: string
+	subtext: string
+	prerequisites?: string[]
+	options: Answer[]
+	answers?: Answer[]
+	minAnswers: number
+	maxAnswers: number
+}
+
+export interface Answer {
+	text: string
+	topicId: string
+	prerequisites?: string[]
+}

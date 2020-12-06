@@ -4,10 +4,12 @@ import LetterPreview from '../components/LetterPreview'
 import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Topics from '../components/common/Topics'
 import Header from '../components/Header'
+import Questions from '../components/common/Questions'
+// import Header from '../components/common/Header'
 import { useSelector, useDispatch } from 'react-redux'
 import modes from '../state/modes'
 import ParagraphsEditMode from '../components/ParagraphsEditMode'
-import { setView } from '../../data/questionDataSlice'
+import setView from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 
@@ -17,7 +19,7 @@ const Main: FC = () => {
 
 	useEffect(() => {
 		//TODO - fix this
-		dispatch(setView(undefined))
+		// dispatch(setView(undefined))
 		;(async () => {
 			const paragraphs = await getData()
 			dispatch(updateAllParagraphs(paragraphs))
@@ -28,7 +30,7 @@ const Main: FC = () => {
 		<main className="main">
 			<Header />
 			<div className="screen container">
-				{mode === modes.TOPICS && <Topics />}
+				{mode === 'get-started' && <Questions />}
 				{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 				{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
 				{mode === modes.LETTER_PREVIEW && <LetterPreview />}

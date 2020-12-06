@@ -1,4 +1,4 @@
-import { CaseTopic, Paragraph, Topic } from './types'
+import { CaseTopic, Paragraph, Topic, Question } from './types'
 
 export type AppState = {
 	paragraphs: {
@@ -13,7 +13,8 @@ export type AppState = {
 		screen: number
 		mode: string
 		prevState: any
-		currentQuestion: any
+		currentQuestion: Question
+		answeredQuestions: Question[]
 	}
 }
 

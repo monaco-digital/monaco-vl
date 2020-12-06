@@ -21,7 +21,9 @@ export const slice = createSlice({
 			const topicReference = Topics.find(topic => topic.id === id)
 			const isTopicSelected = state.selected.find(topic => topic.id === id)
 
-			if (!isTopicSelected) {
+			if (!topicReference) {
+				// Topic not defined, do nothing
+			} else if (!isTopicSelected) {
 				state.selected = [...state.selected, topicReference]
 			} else {
 				state.selected = state.selected.filter(topic => topic.id !== id)
