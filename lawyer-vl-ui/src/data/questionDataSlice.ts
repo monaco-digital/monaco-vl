@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getFirstQuestion } from '../clustering/questionFlow'
-import { ViewLogic } from '../clustering'
-import modes from '../client/state/modes'
 
 export const slice = createSlice({
 	name: 'question',
@@ -17,12 +15,19 @@ export const slice = createSlice({
 			const latestQuestion = action.payload
 			state.answeredQuestions.push(latestQuestion)
 		},
+		removeLastAnsweredQuestion: (state, action) => {
+			const lastAnswered = state.answeredQuestions.pop()
+		},
 		setCurrentQuestion: (state, action) => {
 			state.currentQuestion = action.payload
 		},
 	},
 })
 
-export const { addAnsweredQuestion, setCurrentQuestion } = slice.actions
+export const {
+	addAnsweredQuestion,
+	removeLastAnsweredQuestion,
+	setCurrentQuestion,
+} = slice.actions
 
 export default slice.reducer

@@ -94,7 +94,7 @@ const allQuestions: Question[] = [
 		options: [
 			{
 				text: 'More than two years',
-				topicId: null,
+				topicId: 'M2y',
 			},
 			{
 				text: 'Less than two years',
@@ -328,11 +328,11 @@ const allQuestions: Question[] = [
 		options: [
 			{
 				text: 'No',
-				topicId: null,
+				topicId: '_NCE',
 			},
 			{
 				text: 'Yes, but I was not treated badly afterwards',
-				topicId: null,
+				topicId: '_YCE',
 			},
 			{
 				text: 'Yes, and I was treated badly afterwards',

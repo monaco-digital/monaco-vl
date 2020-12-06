@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus'
 import { useDispatch, useSelector } from 'react-redux'
 import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
@@ -11,10 +11,20 @@ interface Props {
 }
 const Question: React.FC<Props> = ({ question }) => {
 	const dispatch = useDispatch()
-	console.log('QUESTION', question)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
+
+	const defaultLimit = 8
+	const optionsCount = question.options.length
+	const hasMore = optionsCount > defaultLimit
+
+	const [showMore, setShowMore] = useState(false)
+
+	const optionsToShow = showMore
+		? question.options
+		: question.options.slice(0, defaultLimit)
 
 	const isSingle = question.maxAnswers === 1
 	const isMulti = question.maxAnswers > 1
@@ -22,7 +32,7 @@ const Question: React.FC<Props> = ({ question }) => {
 	const answerStyle = isSingle ? 'radio' : 'checkbox'
 
 	const handleOnClick = (id, isRadio = false) => {
-		console.log('CLICKED-->->', id)
+		console.log('clicked', id)
 		if (isSingle) {
 			for (const option of question.options) {
 				dispatch(unselectTopic(option.topicId))
@@ -31,11 +41,14 @@ const Question: React.FC<Props> = ({ question }) => {
 		dispatch(toggleTopic(id))
 	}
 
-	const answers = question.options.map((option, i) => {
+	const answers = optionsToShow.map((option, i) => {
 		const { text, topicId } = option
 		const prerequisites = option.prerequisites || []
+		const passesPrerequisites =
+			prerequisites.length === 0 ||
+			prerequisites.every(prq => selectedTopicIds.includes(prq))
 
-		const passesPrerequisites = ''
+		if (!passesPrerequisites) return null
 
 		return (
 			<div key={`value ${i}`} className="topic">
@@ -55,8 +68,14 @@ const Question: React.FC<Props> = ({ question }) => {
 	return (
 		<>
 			{question.text && <Title text={question} />}
-
 			{answers}
+			<br />
+			<br />
+			{hasMore && !showMore && (
+				<button onClick={e => setShowMore(true)}>show more</button>
+			)}
+			<br />
+			<br />
 		</>
 	)
 }
