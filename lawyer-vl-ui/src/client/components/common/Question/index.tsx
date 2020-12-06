@@ -5,7 +5,6 @@ import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
 import { CaseTopic, Question as QuestionT } from '../../../../data/types'
 import AppState from '../../../../data/AppState'
 import Title from '../../Title'
-import { AnyARecord } from 'dns'
 
 interface Props {
 	question: QuestionT

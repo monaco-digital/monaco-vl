@@ -12,13 +12,13 @@ import { addAnsweredQuestion } from '../../../../data/questionDataSlice'
 import { setPage } from '../../../../data/navigationDataSlice'
 
 const Questions: FC = () => {
-	let selectedTopics =
-		useSelector<AppState, CaseTopic[]>(state => state.topics.selected) || []
+	let selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
 
-	let answeredQuestions =
-		useSelector<AppState, QuestionT[]>(
-			state => state.questions.answeredQuestions
-		) || []
+	let answeredQuestions = useSelector<AppState, QuestionT[]>(
+		state => state.questions.answeredQuestions
+	)
 
 	console.log('Render question answered questions', answeredQuestions.length)
 
