@@ -1,12 +1,23 @@
 .letter-preview {
-	.letter-preview__box {
-		@apply .rounded .ms-shadow .mx-2 .p-4 .font-serif .font-normal .border .border-ms-gray-light;
+	@apply .max-w-3xl .mx-auto .mt-8;
 
-		.letter-preview__box-title {
-			@apply .text-base .font-bold .mb-8;
+	p {
+		@apply .text-sm .pb-4;
+	}
+
+	.letter-preview__intro {
+		@apply .relative .mb-16 .pt-6 .pr-12 .pb-16 .border-b .border-ms-blue .border-opacity-25;
+
+		.letter-preview_intro__chevron {
+			@apply .absolute .top-0 .right-0;
+
+			button {
+				@apply .h-8 .w-8 .bg-ms-gray-lighter .rounded-full .flex .justify-center .items-center .text-ms-gray;
+			}
 		}
-		p {
-			@apply .text-sm .pb-4;
-		}
+	}
+
+	.letter-preview__intro__text--collapsed {
+		@apply .hidden;
 	}
 }

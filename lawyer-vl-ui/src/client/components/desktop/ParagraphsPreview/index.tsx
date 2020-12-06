@@ -11,7 +11,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
-import expandTextIcon from '../../../assets/img/expand-text-icon.svg'
+import VLcard from '../../common/VLcard'
 
 const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
@@ -100,73 +100,16 @@ const ParagraphsPreview: FC = () => {
 				<div className="paragraphs-preview paragraphs-preview--desktop">
 					<div className="paragraphs-preview__select">
 						<div className="paragraphs-preview__select__wrapper">
-							<div className="paragraphs-preview__header">
-								<span>Select paragraphs</span>
-								<ParagraphsPreviewCounter
-									selected={suggestedParagraphsMinusSelected}
-								/>
-							</div>
-							<div className="paragraphs-preview__select-paragraphs">
-								<Droppable droppableId="suggested">
-									{(provided, snapshot) => (
-										<div ref={provided.innerRef}>
-											{suggestedParagraphsMinusSelected.map((paragraph, i) => (
-												<Draggable
-													key={paragraph.id}
-													draggableId={paragraph.id}
-													index={i}
-												>
-													{(provided, snapshot) => (
-														<div
-															ref={provided.innerRef}
-															{...provided.draggableProps}
-															{...provided.dragHandleProps}
-														>
-															<Paragraph
-																key={paragraph.id}
-																paragraphData={paragraph}
-															/>
-															{provided.placeholder}
-														</div>
-													)}
-												</Draggable>
-											))}
-											{provided.placeholder}
-										</div>
-									)}
-								</Droppable>
-							</div>
-						</div>
-					</div>
-					<div className="paragraphs-preview__letter">
-						<div className="paragraphs-preview__letter__wrapper">
-							<div className="paragraphs-preview__header">
-								<span>Draft letter</span>
-								<ParagraphsPreviewCounter selected={selectedParagraphs} />
-							</div>
-							<div className="paragraphs-preview__letter-boxes">
-								<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-intro">
-									<ParagraphsPreviewBoxCollapsable
-										paragraph="Letter introduction and address Letter introduction and address Letter introduction and address"
-										summary="Letter introduction and address"
-									/>
-								</ParagraphsPreviewBox>
-								<Droppable droppableId="selected">
-									{(provided, snapshot) => (
-										<div
-											className="paragraphs-preview__letter-box"
-											ref={provided.innerRef}
-										>
-											{!selectedParagraphs.length ? (
-												<div className={paragraphsPreviewLetterDropzoneClasses}>
-													<div className="paragraphs-preview__letter-dropzone-message">
-														<i className="fas fa-info-circle"></i>
-														<span>Drag paragraphs here</span>
-													</div>
-												</div>
-											) : (
-												selectedParagraphs.map((paragraph, i) => {
-													return (
+							<VLcard
+								heading="Select paragraphs"
+								counter={suggestedParagraphsMinusSelected.length}
+							>
+								<div className="paragraphs-preview__select-paragraphs">
+									<Droppable droppableId="suggested">
+										{(provided, snapshot) => (
+											<div ref={provided.innerRef}>
+												{suggestedParagraphsMinusSelected.map(
+													(paragraph, i) => (
 														<Draggable
 															key={paragraph.id}
 															draggableId={paragraph.id}
@@ -182,23 +125,85 @@ const ParagraphsPreview: FC = () => {
 																		key={paragraph.id}
 																		paragraphData={paragraph}
 																	/>
+																	{provided.placeholder}
 																</div>
 															)}
 														</Draggable>
 													)
-												})
-											)}
-											{provided.placeholder}
-										</div>
-									)}
-								</Droppable>
-								<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-outro">
-									<ParagraphsPreviewBoxCollapsable
-										paragraph="Signature Signature Signature Signature Signature Signature"
-										summary="Signature"
-									/>
-								</ParagraphsPreviewBox>
-							</div>
+												)}
+												{provided.placeholder}
+											</div>
+										)}
+									</Droppable>
+								</div>
+							</VLcard>
+						</div>
+					</div>
+					<div className="paragraphs-preview__letter">
+						<div className="paragraphs-preview__letter__wrapper">
+							<VLcard
+								heading="Draft letter"
+								counter={selectedParagraphs.length}
+								theme="light"
+							>
+								<div className="paragraphs-preview__letter-boxes">
+									<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-intro">
+										<ParagraphsPreviewBoxCollapsable
+											paragraph="Letter introduction and address Letter introduction and address Letter introduction and address"
+											summary="Letter introduction and address"
+										/>
+									</ParagraphsPreviewBox>
+									<Droppable droppableId="selected">
+										{(provided, snapshot) => (
+											<div
+												className="paragraphs-preview__letter-box"
+												ref={provided.innerRef}
+											>
+												{!selectedParagraphs.length ? (
+													<div
+														className={paragraphsPreviewLetterDropzoneClasses}
+													>
+														<div className="paragraphs-preview__letter-dropzone-message">
+															<i className="fas fa-info-circle"></i>
+															<span>Drag paragraphs here</span>
+														</div>
+													</div>
+												) : (
+													selectedParagraphs.map((paragraph, i) => {
+														return (
+															<Draggable
+																key={paragraph.id}
+																draggableId={paragraph.id}
+																index={i}
+															>
+																{(provided, snapshot) => (
+																	<div
+																		ref={provided.innerRef}
+																		{...provided.draggableProps}
+																		{...provided.dragHandleProps}
+																	>
+																		<Paragraph
+																			key={paragraph.id}
+																			paragraphData={paragraph}
+																		/>
+																	</div>
+																)}
+															</Draggable>
+														)
+													})
+												)}
+												{provided.placeholder}
+											</div>
+										)}
+									</Droppable>
+									<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-outro">
+										<ParagraphsPreviewBoxCollapsable
+											paragraph="Signature Signature Signature Signature Signature Signature"
+											summary="Signature"
+										/>
+									</ParagraphsPreviewBox>
+								</div>
+							</VLcard>
 						</div>
 					</div>
 				</div>
@@ -253,23 +258,6 @@ const ParagraphsPreviewBoxCollapsable: FC<ParagraphsPreviewBoxCollapsable> = ({
 				<i className={chevronClasses}></i>
 			</span>
 		</div>
-	)
-}
-
-type ParagraphsPreviewCounter = {
-	selected: ParagraphT[]
-}
-
-const ParagraphsPreviewCounter: FC<ParagraphsPreviewCounter> = ({
-	selected,
-}) => {
-	return (
-		<span className="paragraphs-preview__header__counter">
-			<img src={expandTextIcon} />
-			<span className="paragraphs-preview__header__counter-number">
-				{selected.length}
-			</span>
-		</span>
 	)
 }
 
