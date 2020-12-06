@@ -17,46 +17,18 @@ const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.suggested
 	)
-	console.log('+++PARAGRAPHS PREVIEW SUGGESTED++++', suggestedParagraphs.length)
+
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
 	)
 	const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
-	console.log(
-		'selectedParagraphsIds',
-		selectedParagraphsIds.length,
-		selectedParagraphsIds
-	)
-	const filteredSuggestedParagraphs = suggestedParagraphs.filter(
+
+	const suggestedParagraphsMinusSelected = suggestedParagraphs.filter(
 		paragraph => !selectedParagraphsIds.includes(paragraph.id)
-	)
-
-	console.log(
-		'suggestedParagraphsMinusSelected',
-		filteredSuggestedParagraphs.length
-	)
-
-	const [
-		suggestedParagraphsMinusSelected,
-		setSuggestedParagraphsMinusSelected,
-	] = useState(filteredSuggestedParagraphs)
-
-	console.log(
-		'suggestedParagraphsMinusSelected',
-		filteredSuggestedParagraphs.length,
-		suggestedParagraphsMinusSelected.length
 	)
 
 	const dispatch = useDispatch()
 	const [isDragging, setIsDraggin] = useState(false)
-
-	useEffect(() => {
-		const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
-		const filteredSuggestedParagraphs = suggestedParagraphs.filter(
-			paragraph => !selectedParagraphsIds.includes(paragraph.id)
-		)
-		setSuggestedParagraphsMinusSelected(filteredSuggestedParagraphs)
-	}, [selectedParagraphs])
 
 	const handleDragStart = () => {
 		setIsDraggin(true)
