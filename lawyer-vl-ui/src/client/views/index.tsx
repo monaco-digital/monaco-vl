@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import Footer from '../components/Footer'
+import Footer from '../components/common/Footer'
 import LetterPreview from '../components/common/LetterPreview'
 import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Topics from '../components/common/Topics'

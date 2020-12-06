@@ -51,7 +51,7 @@ const Topics: FC = () => {
 				<Topic question={currentQuestion} />
 				<div className="topics__actions">
 					<Button
-						type="green"
+						type="main"
 						text="Next"
 						rounded
 						fn={() => handleGoForward()}
