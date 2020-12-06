@@ -1,10 +1,32 @@
 import React, { FC } from 'react'
 import logo from '../../../assets/img/virtual-lawyer-logo.svg'
-import { useDispatch } from 'react-redux'
-import pages from '../../../../types /navigation'
+import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../../data/navigationDataSlice'
+import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'
+import pages from '../../../../types/navigation'
+import AppState from '../../../../data/AppState'
+import { unselectTopic } from '../../../../data/topicDataSlice'
+import { CaseTopic, Question as QuestionT } from '../../../../data/types'
+import { getNextQuestion } from '../../../../clustering/questionFlow'
+
 const Header: FC = () => {
+	let selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
+	let answeredQuestions = useSelector<AppState, QuestionT[]>(
+		state => state.questions.answeredQuestions
+	)
+	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
+
 	const dispatch = useDispatch()
+	const navigateTo = page => {
+		if (page === pages.TOPICS && !currentQuestion) {
+			dispatch(removeLastAnsweredQuestion(null))
+		}
+		dispatch(setPage(page))
+	}
+
 	return (
 		<div className="header">
 			<a
@@ -15,22 +37,20 @@ const Header: FC = () => {
 			</a>
 			<div className="header__breadcrumb">
 				<div className="header__breadrcrumb__text">
-					<button onClick={() => dispatch(setPage(pages.TOPICS))}>
-						Key Facts
-					</button>
+					<button onClick={() => navigateTo(pages.TOPICS)}>Key Facts</button>
 				</div>
 				<div className="header__breadrcrumb__text">
-					<button onClick={() => dispatch(setPage(pages.PARAGRAPHS_PREVIEW))}>
+					<button onClick={() => navigateTo(pages.PARAGRAPHS_PREVIEW)}>
 						Build Your Letter
 					</button>
 				</div>
 				<div className="header__breadrcrumb__text">
-					<button onClick={() => dispatch(setPage(pages.LETTER_PREVIEW))}>
+					<button onClick={() => navigateTo(pages.LETTER_PREVIEW)}>
 						Preview Your Letter
 					</button>
 				</div>
 				<div className="header__breadrcrumb__text">
-					<button onClick={() => dispatch(setPage(pages.HELP))}>Help</button>
+					<button onClick={() => navigateTo(pages.HELP)}>Help</button>
 				</div>
 			</div>
 		</div>

@@ -2,15 +2,15 @@ import React, { FC, useEffect } from 'react'
 import Footer from '../components/common/Footer'
 import LetterPreview from '../components/common/LetterPreview'
 import ParagraphsPreview from '../components/common/ParagraphsPreview'
-import Topics from '../components/common/Topics'
 import Header from '../components/common/Header'
+import Questions from '../components/common/Questions'
 import { useSelector, useDispatch } from 'react-redux'
 import ParagraphsEditMode from '../components/ParagraphsEditMode'
-import { setView } from '../../data/questionDataSlice'
+import setView from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
-import pages from '../../types /navigation'
+import pages from '../../types/navigation'
 import Help from './Help'
 import GetStarted from './GetStarted'
 
@@ -20,7 +20,7 @@ const Main: FC = () => {
 
 	useEffect(() => {
 		//TODO - fix this
-		dispatch(setView(undefined))
+		// dispatch(setView(undefined))
 		;(async () => {
 			const paragraphs = await getData()
 			dispatch(updateAllParagraphs(paragraphs))
@@ -32,7 +32,7 @@ const Main: FC = () => {
 			<Header />
 			<div className="screen container">
 				{mode === pages.GET_STARTED && <GetStarted />}
-				{mode === pages.TOPICS && <Topics />}
+				{mode === pages.TOPICS && <Questions />}
 				{mode === pages.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 				{mode === pages.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
 				{mode === pages.LETTER_PREVIEW && <LetterPreview />}

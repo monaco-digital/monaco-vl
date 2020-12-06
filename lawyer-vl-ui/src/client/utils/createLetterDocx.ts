@@ -1,7 +1,6 @@
 import { Document, Packer, Paragraph, HeadingLevel, AlignmentType } from 'docx'
-import letter from '../data/letter'
 
-const createLetterDocx = async chosenParagraphs => {
+const createLetterDocx = async (letter, chosenParagraphs) => {
 	const doc = new Document()
 	const title = new Paragraph({
 		text: letter.title,

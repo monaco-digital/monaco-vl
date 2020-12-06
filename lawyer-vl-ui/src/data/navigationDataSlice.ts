@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import pages from '../types /navigation'
+import pages from '../types/navigation'
 
 export const slice = createSlice({
 	name: 'navigation',

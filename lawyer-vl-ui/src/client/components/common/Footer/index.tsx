@@ -1,13 +1,11 @@
 import React from 'react'
 import Button from '../../Button'
-import modes from '../../../state/modes'
 import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
 import dragIcon from './../../../assets/img/drag-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { setView, setMode } from '../../../../data/questionDataSlice'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, Paragraph } from '../../../../data/types'
-import pages from '../../../../types /navigation'
+import pages from '../../../../types/navigation'
 import { setPage } from '../../../../data/navigationDataSlice'
 import { getLetterText } from '../../../../utlis/letter'
 import { callGoogleApi } from '../../../../api/google'
@@ -32,9 +30,9 @@ const Footer: React.FC = () => {
 
 	const handleMoreInfo = () => {}
 
-	const enterParagraphPreviewMode = () => {
-		dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
-	}
+	// const enterParagraphPreviewMode = () => {
+	// 	dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
+	// }
 
 	const copyParasToText = () => {
 		navigator.clipboard.writeText(
@@ -85,7 +83,7 @@ const Footer: React.FC = () => {
 				)}
 				{page === pages.PARAGRAPHS_EDIT && (
 					<>
-						<Button
+						{/*						<Button
 							type="secondary"
 							text="Done"
 							rounded
@@ -97,7 +95,7 @@ const Footer: React.FC = () => {
 						>
 							<img src={dragIcon} alt="" />
 							Drag to reorder
-						</button>
+						</button>*/}
 					</>
 				)}
 				{page === pages.PARAGRAPHS_PREVIEW && (
