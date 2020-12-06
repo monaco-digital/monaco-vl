@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getFirstQuestion } from '../clustering/questionFlow'
-import { ViewLogic } from '../clustering'
-import modes from '../client/state/modes'
 
 export const slice = createSlice({
 	name: 'question',
