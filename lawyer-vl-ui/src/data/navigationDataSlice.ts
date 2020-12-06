@@ -1,18 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { NavView } from '../types /navigation'
+import { NavView } from './types'
 
 export const slice = createSlice({
 	name: 'navigation',
 	initialState: {
-		path: 'get-started' as NavView,
+		mode: 'get-started' as NavView,
 	},
 	reducers: {
-		setPage: (state, action) => {
-			state.path = action.payload
+		setMode: (state, action) => {
+			console.log('set navigation', action.payload)
+			state.mode = action.payload as NavView
 		},
 	},
 })
 
-export const { setPage } = slice.actions
+export const { setMode } = slice.actions
 
 export default slice.reducer

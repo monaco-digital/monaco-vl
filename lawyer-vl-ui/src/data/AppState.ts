@@ -1,4 +1,4 @@
-import { CaseTopic, Paragraph, Topic, Question } from './types'
+import { CaseTopic, Paragraph, Topic, Question, NavView } from './types'
 
 export type AppState = {
 	paragraphs: {
@@ -17,6 +17,7 @@ export type AppState = {
 		answeredQuestions: Question[]
 	}
 	navigation: {
+		mode: NavView
 		path: string
 	}
 }

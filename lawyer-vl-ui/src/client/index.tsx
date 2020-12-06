@@ -10,6 +10,7 @@ const MobileApp = () => {
 		<Provider store={store}>
 			<HelmetProvider>
 				<Helmet>
+					<title>Virtual Lawyer</title>
 					<script
 						defer
 						src="https://kit.fontawesome.com/5bf6b27f09.js"

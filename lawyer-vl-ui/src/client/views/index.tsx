@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react'
-import Footer from '../components/Footer'
+import Footer from '../components/common/Footer'
 import LetterPreview from '../components/common/LetterPreview'
 import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Header from '../components/common/Header'
@@ -11,9 +11,10 @@ import setView from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
+import { NavView } from '../../data/types'
 
 const Main: FC = () => {
-	const mode = useSelector<AppState, string>(state => state.questions.mode)
+	const mode = useSelector<AppState, NavView>(state => state.navigation.mode)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -29,7 +30,7 @@ const Main: FC = () => {
 		<main className="main">
 			<Header />
 			<div className="screen container">
-				{mode === 'get-started' && <Questions />}
+				{mode === mode && <Questions />}
 				{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
 				{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
 				{mode === modes.LETTER_PREVIEW && <LetterPreview />}
