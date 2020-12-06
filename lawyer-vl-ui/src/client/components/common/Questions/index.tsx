@@ -38,10 +38,11 @@ const Questions: FC = () => {
 
 	const text = currentQuestion.text || ''
 	const subtext = currentQuestion.subtext || ''
+	const isMulti = currentQuestion.maxAnswers > 1
+	const type = isMulti ? 'tags' : ''
 
 	const classes = classNames('topics', {
-		// [`topics__${questions.type}`]: questions.type,
-		[`topics__tags`]: 'tags',
+		[`topics__${type}`]: type,
 	})
 
 	const handleGoBackwards = () => {}

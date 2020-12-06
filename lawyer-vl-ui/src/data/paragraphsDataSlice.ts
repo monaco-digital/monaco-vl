@@ -19,6 +19,7 @@ export const slice = createSlice({
 				state.all,
 				selectedTopics
 			)
+			console.log('updating suggested paragraphs', suggestedParagraphs)
 			state.suggested = suggestedParagraphs
 		},
 		updateSelectedParagraphs: (state, action) => {

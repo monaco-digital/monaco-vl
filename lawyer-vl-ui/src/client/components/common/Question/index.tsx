@@ -55,8 +55,7 @@ const Question: React.FC<Props> = ({ question }) => {
 
 	return (
 		<>
-			{question.text && <Title text={question.text} />}
-			{question.subtext && <Title text={question.subtext} />}
+			{question.text && <Title text={question} />}
 
 			{answers}
 		</>
