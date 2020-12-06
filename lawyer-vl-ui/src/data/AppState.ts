@@ -16,6 +16,9 @@ export type AppState = {
 		currentQuestion: Question
 		answeredQuestions: Question[]
 	}
+	navigation: {
+		path: string
+	}
 }
 
 export default AppState

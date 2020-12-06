@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Paragraph } from './types'
-import { filterByGeneralMatch, getSuggestedParagraphs } from './../filters'
+import { filterByGeneralMatch } from './../filters'
 
 export const slice = createSlice({
 	name: 'paragraphs',
@@ -24,31 +24,53 @@ export const slice = createSlice({
 		updateSelectedParagraphs: (state, action) => {
 			state.selected = action.payload
 		},
-		toggleSelectedParagraph: (state, action) => {
-			const id = action.payload
+		addParagraph: (state, action) => {
+			const { id, toId } = action.payload
 			const paragraphReference = state.all.find(topic => topic.id === id)
-			const isParagraphSelected = state.selected.find(topic => topic.id === id)
 
-			if (!isParagraphSelected) {
-				state.selected = [...state.selected, paragraphReference]
-			} else {
-				state.selected = state.selected.filter(paragraph => paragraph.id !== id)
+			if (paragraphReference) {
+				state[toId] = [...state[toId], paragraphReference]
 			}
 		},
-		removeSelectedParagraph: (state, action) => {
-			const id = action.payload
+		removeParagraph: (state, action) => {
+			const { id, fromId } = action.payload
 
-			state.selected = state.selected.filter(paragraph => paragraph.id !== id)
+			state[fromId] = state[fromId].filter(paragraph => paragraph.id !== id)
 		},
-		reorderSelectedParagraphs: (state, action) => {
-			const { source, destination } = action.payload
+		toggleParagraph: (state, action) => {
+			const { id, toId } = action.payload
+			const paragraphReference = state.all.find(topic => topic.id === id)
+			const isDuplicate = state[toId].find(topic => topic.id === id)
+
+			if (!paragraphReference) return
+
+			if (isDuplicate) {
+				state[toId] = state[toId].filter(paragraph => paragraph.id !== id)
+			} else {
+				state[toId] = [...state[toId], paragraphReference]
+			}
+		},
+		reorderParagraphs: (state, action) => {
+			const { source, destination } = action.payload.dragEvent
+			const fromId = source.droppableId
+			const toId = destination.droppableId
 			const { index: sourceIndex } = source
 			const { index: destinationIndex } = destination
-			const reorderedSelectedParagraphs = [...state.selected]
-			const [removed] = reorderedSelectedParagraphs.splice(sourceIndex, 1)
-			reorderedSelectedParagraphs.splice(destinationIndex, 0, removed)
+			const isSameList = fromId === toId
 
-			state.selected = reorderedSelectedParagraphs
+			if (isSameList) {
+				const reorderedSameListParagraphs = [...state[fromId]]
+				const [removed] = reorderedSameListParagraphs.splice(sourceIndex, 1)
+
+				reorderedSameListParagraphs.splice(destinationIndex, 0, removed)
+				state[fromId] = reorderedSameListParagraphs
+			} else {
+				const reorderedDestinationListParagraphs = [...state[toId]]
+				const removed = reorderedDestinationListParagraphs.pop()
+
+				reorderedDestinationListParagraphs.splice(destinationIndex, 0, removed)
+				state[toId] = reorderedDestinationListParagraphs
+			}
 		},
 	},
 })
@@ -57,9 +79,10 @@ export const {
 	updateAllParagraphs,
 	updateSuggestedParagraphs,
 	updateSelectedParagraphs,
-	toggleSelectedParagraph,
-	removeSelectedParagraph,
-	reorderSelectedParagraphs,
+	toggleParagraph,
+	addParagraph,
+	removeParagraph,
+	reorderParagraphs,
 } = slice.actions
 
 export default slice.reducer

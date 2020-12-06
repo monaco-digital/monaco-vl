@@ -1,13 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import Title from '../../Title'
 import Paragraph from '../../common/Paragraph'
-import introParagraph from '../../../data/introParagraph'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
-import useViewport from '../../../utils/useViewport'
 
-const ParagraphsPreview: React.FC = () => {
+const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.suggested
 	)
@@ -24,11 +22,9 @@ const ParagraphsPreview: React.FC = () => {
 				// TODO refactor the paragraphs class
 			}
 			<div className="paragraphs-preview paragraphs-preview--mobile">
-				{/*TODO - fix this as introParagraph object is not complete*/}
 				<div className="paragraphs-preview__select">
-					<Paragraph paragraphData={introParagraph as ParagraphT} />
 					{suggestedParagraphs.map(paragraph => (
-						<Paragraph key={paragraph.id} paragraphData={paragraph} />
+						<Paragraph key={paragraph.id} paragraphData={paragraph} isMobile />
 					))}
 				</div>
 			</div>

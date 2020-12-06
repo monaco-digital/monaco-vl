@@ -1,7 +1,15 @@
 .header {
-	@apply .py-4 .shadow;
+	@apply .py-8 .pl-8 .pr-4 .shadow .flex .justify-between;
 
 	img {
 		@apply .w-48;
+	}
+
+	.header__breadcrumb {
+		@apply .inline-flex .justify-center;
+
+		.header__breadrcrumb__text {
+			@apply .font-sans .mx-6;
+		}
 	}
 }
