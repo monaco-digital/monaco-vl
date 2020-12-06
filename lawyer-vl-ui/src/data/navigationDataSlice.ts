@@ -1,14 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { NavView } from '../types /navigation'
+import pages from '../types /navigation'
 
 export const slice = createSlice({
 	name: 'navigation',
 	initialState: {
-		path: 'get-started' as NavView,
+		page: pages.GET_STARTED as keyof typeof pages,
 	},
 	reducers: {
 		setPage: (state, action) => {
-			state.path = action.payload
+			state.page = action.payload
 		},
 	},
 })

@@ -1,4 +1,5 @@
 import { CaseTopic, Paragraph } from './types'
+import pages from '../types /navigation'
 
 export type AppState = {
 	paragraphs: {
@@ -16,7 +17,7 @@ export type AppState = {
 		currentQuestion: any
 	}
 	navigation: {
-		path: string
+		page: keyof typeof pages
 	}
 }
 

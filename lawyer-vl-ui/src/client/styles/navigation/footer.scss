@@ -5,7 +5,7 @@
 		rgba(255, 255, 255, 0) 100%
 	);
 
-	@apply .w-full .fixed .bottom-0;
+	@apply .w-full .fixed .bottom-0 .pl-8 .pr-4;
 
 	.footer__actions {
 		@apply .flex .flex-wrap .justify-between .py-4 .items-center;
@@ -56,6 +56,10 @@
 			&:focus {
 				@apply .opacity-25;
 			}
+		}
+
+		.footer__switch__buttons {
+			@apply .inline-flex .justify-center;
 		}
 	}
 }
