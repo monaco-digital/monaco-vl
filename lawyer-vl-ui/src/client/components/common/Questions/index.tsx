@@ -9,7 +9,7 @@ import Question from '../Question'
 import _ from 'lodash'
 import Button from '../../Button'
 import { addAnsweredQuestion } from '../../../../data/questionDataSlice'
-import { setMode } from '../../../../data/navigationDataSlice'
+import { setPage } from '../../../../data/navigationDataSlice'
 
 const Questions: FC = () => {
 	let selectedTopics =
@@ -32,7 +32,7 @@ const Questions: FC = () => {
 
 	if (!currentQuestion) {
 		console.log('No more questions')
-		dispatch(setMode('PARAGRAPHS_PREVIEW'))
+		dispatch(setPage('PARAGRAPHS_PREVIEW'))
 		return null
 	}
 

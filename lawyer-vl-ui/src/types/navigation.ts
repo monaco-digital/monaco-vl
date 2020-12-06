@@ -1,4 +1,4 @@
-const modes = {
+const pages = {
 	GET_STARTED: 'GET_STARTED',
 	TOPICS: 'TOPICS',
 	LETTER_PREVIEW: 'LETTER_PREVIEW',
@@ -9,4 +9,4 @@ const modes = {
 	HELP: 'HELP',
 }
 
-export default modes
+export default pages

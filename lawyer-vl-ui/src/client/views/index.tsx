@@ -5,16 +5,17 @@ import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Header from '../components/common/Header'
 import Questions from '../components/common/Questions'
 import { useSelector, useDispatch } from 'react-redux'
-import modes from '../state/modes'
 import ParagraphsEditMode from '../components/ParagraphsEditMode'
 import setView from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
-import { NavView } from '../../data/types'
+import pages from '../../types/navigation'
+import Help from './Help'
+import GetStarted from './GetStarted'
 
 const Main: FC = () => {
-	const mode = useSelector<AppState, NavView>(state => state.navigation.mode)
+	const mode = useSelector<AppState, string>(state => state.navigation.page)
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -30,10 +31,12 @@ const Main: FC = () => {
 		<main className="main">
 			<Header />
 			<div className="screen container">
-				{mode === mode && <Questions />}
-				{mode === modes.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
-				{mode === modes.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
-				{mode === modes.LETTER_PREVIEW && <LetterPreview />}
+				{mode === pages.GET_STARTED && <GetStarted />}
+				{mode === pages.TOPICS && <Questions />}
+				{mode === pages.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
+				{mode === pages.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
+				{mode === pages.LETTER_PREVIEW && <LetterPreview />}
+				{mode === pages.HELP && <Help />}
 			</div>
 			<Footer />
 		</main>
