@@ -104,6 +104,10 @@ export type Topic =
 	| '_NCE'
 	| '_YCE'
 	| '_PC'
+	| '_Rr'
+	| '_UP'
+	| '_UDy'
+	| '_US'
 
 export interface CaseTopic {
 	id?: Topic
@@ -566,6 +570,30 @@ export const Topics: CaseTopic[] = [
 		id: '_PC',
 		name: 'PROTECTED_CHARACTERISTIC',
 		text: 'Protected characteristic',
+		type: 'employment_situation',
+	},
+	{
+		id: '_Rr',
+		name: 'RISK_OF_REDUNDANCY',
+		text: 'Risk of redundnacy',
+		type: 'employment_situation',
+	},
+	{
+		id: '_UP',
+		name: 'UNJUSTIFIED_PERF_MGMT',
+		text: 'Unjustified performance management',
+		type: 'employment_situation',
+	},
+	{
+		id: '_UDy',
+		name: 'UNJUSTIFIED_DISCIPLINARY',
+		text: 'Unjustified disciplinary proceedings',
+		type: 'employment_situation',
+	},
+	{
+		id: '_US',
+		name: 'MISHANDLED_SICKNESS',
+		text: 'Poor response to sickness issues',
 		type: 'employment_situation',
 	},
 ]
