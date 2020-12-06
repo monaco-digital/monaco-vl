@@ -43,6 +43,14 @@ export const getNextQuestion = (selectedTopics, answeredQuestions) => {
 	return nextQuestion
 }
 
+/*
+,
+			{
+				text: 'I am working my notice period',
+				topicId: 'E',
+			},
+*/
+
 const allQuestions: Question[] = [
 	{
 		id: 1,
@@ -59,10 +67,6 @@ const allQuestions: Question[] = [
 			{
 				text: 'I have left my job',
 				topicId: '_NE',
-			},
-			{
-				text: 'I am working my notice period',
-				topicId: 'E',
 			},
 		],
 	},
@@ -185,19 +189,19 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'Risk of redundancy',
-				topicId: 'R',
+				topicId: '_Rr',
 			},
 			{
 				text: 'Unjustified performance management',
-				topicId: 'P',
+				topicId: '_UP',
 			},
 			{
 				text: 'Unjustified disciplinary proceedings',
-				topicId: 'Dy',
+				topicId: '_UDy',
 			},
 			{
 				text: 'Poor response to sickness issues',
-				topicId: 'S',
+				topicId: '_US',
 			},
 			{
 				text: 'Unsafe workplace e.g. Coronavirus',
