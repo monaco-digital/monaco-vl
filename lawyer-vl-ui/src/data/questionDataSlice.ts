@@ -17,12 +17,19 @@ export const slice = createSlice({
 			const latestQuestion = action.payload
 			state.answeredQuestions.push(latestQuestion)
 		},
+		removeLastAnsweredQuestion: (state, action) => {
+			const lastAnswered = state.answeredQuestions.pop()
+		},
 		setCurrentQuestion: (state, action) => {
 			state.currentQuestion = action.payload
 		},
 	},
 })
 
-export const { addAnsweredQuestion, setCurrentQuestion } = slice.actions
+export const {
+	addAnsweredQuestion,
+	removeLastAnsweredQuestion,
+	setCurrentQuestion,
+} = slice.actions
 
 export default slice.reducer

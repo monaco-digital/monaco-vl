@@ -101,6 +101,9 @@ export type Topic =
 	| '_RSP'
 	| '_RPC'
 	| '_RNC'
+	| '_NCE'
+	| '_YCE'
+	| '_PC'
 
 export interface CaseTopic {
 	id?: Topic
@@ -545,6 +548,24 @@ export const Topics: CaseTopic[] = [
 		id: '_RNC',
 		name: 'INADEQUATE_CONSULATION',
 		text: 'Inadequate consultation',
+		type: 'employment_situation',
+	},
+	{
+		id: '_NCE',
+		name: 'HAVENT_COMPLAINED',
+		text: "Haven't complained",
+		type: 'employment_situation',
+	},
+	{
+		id: '_YCE',
+		name: 'COMPLAINED_TO_EMPLOYER',
+		text: 'Complained to employer',
+		type: 'employment_situation',
+	},
+	{
+		id: '_PC',
+		name: 'PROTECTED_CHARACTERISTIC',
+		text: 'Protected characteristic',
 		type: 'employment_situation',
 	},
 ]
