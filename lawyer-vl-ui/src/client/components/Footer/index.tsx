@@ -4,11 +4,13 @@ import modes from '../../state/modes'
 import moreInfoIcon from './../../assets/img/more-info-icon.svg'
 import dragIcon from './../../assets/img/drag-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { setView, setMode } from '../../../data/questionDataSlice'
 import AppState from '../../../data/AppState'
 import { CaseTopic } from '../../../data/types'
 
 const Footer: React.FC = () => {
+	const setView = x => {}
+	const setMode = x => {}
+
 	const mode = useSelector<AppState, string>(state => state.questions.mode)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
