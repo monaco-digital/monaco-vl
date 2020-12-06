@@ -4,8 +4,8 @@ interface Props {
 	text: any
 }
 const Title: React.FC<Props> = ({ text }) => {
-	const heading = text?.heading
-	const subHeading = text?.subHeading
+	const heading = text?.text
+	const subHeading = text?.subtext
 
 	return (
 		<>

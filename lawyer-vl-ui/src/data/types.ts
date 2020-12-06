@@ -84,6 +84,23 @@ export type Topic =
 	| '2y'
 	| 'All'
 	| 'M2y'
+	| '_NE'
+	| '_M'
+	| 'NRD'
+	| 'ORD'
+	| 'Dy'
+	| 'TWE'
+	| 'EW'
+	| 'TB'
+	| 'HD'
+	| 'ORT'
+	| 'V'
+	| '_RNRW'
+	| '_RNA'
+	| '_RSI'
+	| '_RSP'
+	| '_RPC'
+	| '_RNC'
 
 export interface CaseTopic {
 	id?: Topic
@@ -428,6 +445,108 @@ export const Topics: CaseTopic[] = [
 		subtopics: [],
 		type: 'employment_situation',
 	},
+	{
+		id: '_NE',
+		name: 'NOT_EMPLOYED',
+		text: 'Not employed',
+		type: 'employment_situation',
+	},
+	{
+		id: '_M',
+		name: 'MISCORNDUCT',
+		text: 'Misconduct',
+		type: 'employment_situation',
+	},
+	{
+		id: 'NRD',
+		name: 'DISMISSAL_NO_REASON',
+		text: 'No reason for dismissal',
+		type: 'employment_situation',
+	},
+	{
+		id: 'ORD',
+		name: 'DISMISSAL_OTHER',
+		text: 'Other reason for dismissal',
+		type: 'employment_situation',
+	},
+	{
+		id: 'Dy',
+		name: 'DISCIPLINARY_UNJUSTIFIED',
+		text: 'Unjustified reason for disciplinary',
+		type: 'employment_situation',
+	},
+	{
+		id: 'TWE',
+		name: 'TOXIC_WORK_ENVIRONMENT',
+		text: 'Toxic work environment',
+		type: 'employment_situation',
+	},
+	{
+		id: 'EW',
+		name: 'EXCESSIVE_WORKLOAD',
+		text: 'Excessive workload',
+		type: 'employment_situation',
+	},
+	{
+		id: 'TB',
+		name: 'OTHER_PROBLEMS',
+		text: 'Other problems',
+		type: 'employment_situation',
+	},
+	{
+		id: 'HD',
+		name: 'REFUSED_ATTEND_HS',
+		text: 'Refused to attend (H&S)',
+		type: 'employment_situation',
+	},
+	{
+		id: 'ORT',
+		name: 'OTHER_REASON_DISMISSAL',
+		text: 'Other reason for dismissal',
+		type: 'employment_situation',
+	},
+	{
+		id: 'V',
+		name: 'VICTIMISATION',
+		text: 'Victimisation',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RNRW',
+		name: 'NO_REDUCTION_WORK',
+		text: 'No reduction of work',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RNA',
+		name: 'NO_ALTERNATIVE_CONSIDERED',
+		text: 'Alternative employment not considered',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RSI',
+		name: 'SCORING_ISSUES',
+		text: 'Scoring issues',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RSP',
+		name: 'OUTCOME_PREDEFINED',
+		text: 'Selection outcome predetermined',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RPC',
+		name: 'PROBLEMATIC_SELECTION',
+		text: 'Problematic selection criteria',
+		type: 'employment_situation',
+	},
+	{
+		id: '_RNC',
+		name: 'INADEQUATE_CONSULATION',
+		text: 'Inadequate consultation',
+		type: 'employment_situation',
+	},
 ]
 
 export const ParagraphTopicMapping = {
@@ -489,3 +608,27 @@ export const DSubTopics = [
 	ParagraphTopicMapping.MENTAL_HEALTH_DISCRIMINATION,
 	ParagraphTopicMapping.VEGAN,
 ]
+
+export interface Question {
+	id: number
+	text: string
+	subtext: string
+	prerequisites?: string[]
+	options: Answer[]
+	answers?: Answer[]
+	minAnswers: number
+	maxAnswers: number
+}
+
+export interface Answer {
+	text: string
+	topicId: string
+	prerequisites?: string[]
+}
+
+export type NavView =
+	| 'get-started'
+	| 'key-facts'
+	| 'preview-letter'
+	| 'letter-builder'
+	| 'help'

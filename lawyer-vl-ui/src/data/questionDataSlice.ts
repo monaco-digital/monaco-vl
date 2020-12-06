@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getFirstQuestion } from '../clustering/questionFlow'
 import { ViewLogic } from '../clustering'
 import modes from '../client/state/modes'
 
@@ -8,40 +9,20 @@ export const slice = createSlice({
 		screen: 0,
 		mode: null,
 		prevState: {} as any,
-		currentQuestion: {},
+		currentQuestion: getFirstQuestion(),
+		answeredQuestions: [],
 	},
 	reducers: {
-		setView: (state, action) => {
-			const selectedTopics = action.payload
-			const view = new ViewLogic()
-			const currentScreen = {
-				screen: state.screen,
-				options: selectedTopics,
-			}
-			const nextCurrentQuestion = view.getNextView(currentScreen)
-			const isFirstScreen = !state.screen
-			const isLastQuestion = !nextCurrentQuestion.hasOwnProperty('screen')
-
-			if (isFirstScreen) {
-				state.mode = modes.TOPICS
-			}
-
-			if (isLastQuestion) {
-				state.mode = modes.PARAGRAPHS_PREVIEW
-			}
-
-			state.prevState = { ...state }
-			state.screen = nextCurrentQuestion.screen
-			state.currentQuestion = nextCurrentQuestion
+		addAnsweredQuestion: (state, action) => {
+			const latestQuestion = action.payload
+			state.answeredQuestions.push(latestQuestion)
 		},
-		setMode: (state, action) => {
-			const mode = action.payload
-
-			state.mode = mode
+		setCurrentQuestion: (state, action) => {
+			state.currentQuestion = action.payload
 		},
 	},
 })
 
-export const { setView, setMode } = slice.actions
+export const { addAnsweredQuestion, setCurrentQuestion } = slice.actions
 
 export default slice.reducer

@@ -5,6 +5,7 @@ export class CustomParagraphs {
 		{
 			id: 'A00001',
 			paragraph: 'PRIVATE & CONFIDENTIAL',
+			html: '<b>PRIVATE & CONFIDENTIAL</b>',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],

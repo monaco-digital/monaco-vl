@@ -3,7 +3,7 @@ import Button from '../components/Button'
 import { useDispatch } from 'react-redux'
 import { setPage } from '../../data/navigationDataSlice'
 
-import pages from '../../types /navigation'
+import pages from '../../types/navigation'
 export const GetStarted: React.FC = () => {
 	const dispatch = useDispatch()
 
