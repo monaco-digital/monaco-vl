@@ -1,18 +1,22 @@
 import React from 'react'
 import Button from '../../Button'
-import modes from '../../../state/modes'
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg'
-import dragIcon from '../../../assets/img/drag-icon.svg'
+import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
+import dragIcon from './../../../assets/img/drag-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { CaseTopic } from '../../../../data/types'
+import { CaseTopic, Paragraph } from '../../../../data/types'
 import pages from '../../../../types/navigation'
 import { setPage } from '../../../../data/navigationDataSlice'
+import { getLetterText } from '../../../../utlis/letter'
+import { callGoogleApi } from '../../../../api/google'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
+	)
+	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
+		state => state.paragraphs.selected
 	)
 	const dispatch = useDispatch()
 
@@ -26,10 +30,24 @@ const Footer: React.FC = () => {
 
 	const handleMoreInfo = () => {}
 
-	const enterParagraphPreviewMode = () => {
-		dispatch(setPage(modes.PARAGRAPHS_PREVIEW))
+	// const enterParagraphPreviewMode = () => {
+	// 	dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
+	// }
+
+	const copyParasToText = () => {
+		navigator.clipboard.writeText(
+			getLetterText(selectedTopics, selectedParagraphs)
+		)
 	}
 
+	const openInGoogleDoc = async () => {
+		//const document = createGoogleDocument(paragraphs);
+		const shareableLink = await callGoogleApi(
+			getLetterText(selectedTopics, selectedParagraphs)
+		)
+		console.log('The response for the document is from google: ', shareableLink)
+		window.open(shareableLink, '_blank')
+	}
 	// const enterParagraphEditMode = () => {
 	// 	dispatch(setMode(modes.PARAGRAPHS_EDIT))
 	// }
@@ -65,7 +83,7 @@ const Footer: React.FC = () => {
 				)}
 				{page === pages.PARAGRAPHS_EDIT && (
 					<>
-						<Button
+						{/*						<Button
 							type="secondary"
 							text="Done"
 							rounded
@@ -77,7 +95,7 @@ const Footer: React.FC = () => {
 						>
 							<img src={dragIcon} alt="" />
 							Drag to reorder
-						</button>
+						</button>*/}
 					</>
 				)}
 				{page === pages.PARAGRAPHS_PREVIEW && (
@@ -98,13 +116,13 @@ const Footer: React.FC = () => {
 								<img src={moreInfoIcon} />
 							</button>
 							<Button
-								type="main"
+								type="tertiary"
 								text="Paragraphs"
 								rounded
 								fn={() => enterLetterPreviewMode()}
 							/>
 							<Button
-								type="main"
+								type="tertiary"
 								text="Summaries"
 								rounded
 								fn={() => enterLetterPreviewMode()}
@@ -143,18 +161,18 @@ const Footer: React.FC = () => {
 						>
 							<img src={moreInfoIcon} />
 						</button>
-						<div>
+						<div className="footer__preview__button">
 							<Button
 								type="secondary"
 								text="Copy letter text"
 								rounded
-								fn={() => {}}
+								fn={copyParasToText}
 							/>
 							<Button
 								type="main"
 								text="Create Google Doc"
 								rounded
-								fn={() => {}}
+								fn={openInGoogleDoc}
 							/>
 						</div>
 					</>

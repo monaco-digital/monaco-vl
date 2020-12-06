@@ -62,4 +62,8 @@
 			@apply .inline-flex .justify-center;
 		}
 	}
+
+	.footer__preview__button > * {
+		@apply .mx-2;
+	}
 }
