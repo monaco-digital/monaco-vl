@@ -70,7 +70,7 @@ const Questions: FC = () => {
 				<div className="topics__actions">
 					{answeredQuestions.length > 0 && (
 						<Button
-							type="green"
+							type="tertiary"
 							text="Back"
 							rounded
 							fn={() => handleGoBackwards()}
