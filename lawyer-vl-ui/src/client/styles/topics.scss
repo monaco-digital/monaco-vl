@@ -1,0 +1,34 @@
+.topics {
+	@apply .flex .flex-col .mb-0 .mt-auto .pt-8 .items-end;
+
+	@screen md {
+		@apply .items-start .mt-0;
+	}
+
+	.topics__actions {
+		@apply .flex .flex-row .justify-between .flex-grow;
+	}
+
+	.topics__actions-next {
+		@apply .flex .m-3;
+	}
+}
+
+.topics__tags {
+	@apply .flex-wrap .flex-row .max-w-xs .-mx-2;
+
+	.topic {
+		@apply .px-2;
+
+		label {
+			transition: all 0.3s;
+			@apply .rounded-full .bg-white .border .border-ms-blue;
+		}
+
+		&:hover {
+			label {
+				@apply .text-white .bg-ms-blue;
+			}
+		}
+	}
+}

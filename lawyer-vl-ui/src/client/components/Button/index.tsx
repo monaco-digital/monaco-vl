@@ -34,6 +34,9 @@ export const Button: React.FC<Props> = ({
 		},
 		{
 			'button--rounded': rounded,
+		},
+		{
+			'button--small': type === 'small',
 		}
 	)
 	return (

@@ -296,7 +296,7 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'Philosophical belief',
-				topicId: 'DMl',
+				topicId: 'DPl',
 				prerequisites: ['_PC'],
 			},
 			{
@@ -327,8 +327,8 @@ const allQuestions: Question[] = [
 		text: 'Did you ever complain to your employer about this?',
 		subtext:
 			'Why do you think your employer acted this way? Select all that apply',
-		minAnswers: 0,
-		maxAnswers: 100,
+		minAnswers: 1,
+		maxAnswers: 1,
 		options: [
 			{
 				text: 'No',
