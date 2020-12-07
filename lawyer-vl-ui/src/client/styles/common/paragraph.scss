@@ -36,7 +36,7 @@
 		@apply .border-t .border-ms-gray .border-opacity-25 .flex .justify-between;
 
 		.paragraph__topics {
-			@apply .pl-4 .flex .-mx-2;
+			@apply .pl-4 .flex .-mx-2 .overflow-x-auto;
 
 			.paragraph__topics-topic {
 				@apply .px-2 .flex .items-center .text-sm;

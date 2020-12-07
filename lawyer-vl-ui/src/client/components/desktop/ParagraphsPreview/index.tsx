@@ -10,8 +10,10 @@ import {
 } from '../../../../data/paragraphsDataSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { Paragraph as ParagraphT } from '../../../../data/types'
+import { CaseTopic, Paragraph as ParagraphT } from '../../../../data/types'
 import VLcard from '../../common/VLcard'
+import LetterPreviewParagraph from '../../common/LetterPreviewParagraph'
+import { getLetterText } from '../../../../utlis/letter'
 
 const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
@@ -21,6 +23,11 @@ const ParagraphsPreview: FC = () => {
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
 	)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.selected
+	)
+
+	const { top, bottom } = getLetterText(selectedTopics, selectedParagraphs)
 	const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
 
 	const suggestedParagraphsMinusSelected = suggestedParagraphs.filter(
@@ -76,9 +83,9 @@ const ParagraphsPreview: FC = () => {
 		}
 	}
 	const paragraphsPreviewLetterDropzoneClasses = classNames(
-		'paragraphs-preview__letter-dropzone',
+		'paragraphs-preview__letter__dropzone__message',
 		{
-			'paragraphs-preview__letter-dropzone--is-dragging': isDragging,
+			'paragraphs-preview__letter__dropzone__message--is-dragging': isDragging,
 		}
 	)
 
@@ -141,26 +148,21 @@ const ParagraphsPreview: FC = () => {
 								theme="light"
 							>
 								<div className="paragraphs-preview__letter-boxes">
-									<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-intro">
-										<ParagraphsPreviewBoxCollapsable
-											paragraph="Letter introduction and address Letter introduction and address Letter introduction and address"
-											summary="Letter introduction and address"
-										/>
+									<ParagraphsPreviewBox collapsedText="Introduction">
+										<LetterPreviewParagraph paragraphs={top} />
 									</ParagraphsPreviewBox>
 									<Droppable droppableId="selected">
 										{(provided, snapshot) => (
 											<div
-												className="paragraphs-preview__letter-box"
+												className="paragraphs-preview__letter-box paragraphs-preview__letter__dropzone"
 												ref={provided.innerRef}
 											>
 												{!selectedParagraphs.length ? (
 													<div
 														className={paragraphsPreviewLetterDropzoneClasses}
 													>
-														<div className="paragraphs-preview__letter-dropzone-message">
-															<i className="fas fa-info-circle"></i>
-															<span>Drag paragraphs here</span>
-														</div>
+														<i className="fas fa-info-circle"></i>
+														<span>Drag paragraphs here</span>
 													</div>
 												) : (
 													selectedParagraphs.map((paragraph, i) => {
@@ -190,11 +192,8 @@ const ParagraphsPreview: FC = () => {
 											</div>
 										)}
 									</Droppable>
-									<ParagraphsPreviewBox extraClasses="paragraphs-preview__letter-outro">
-										<ParagraphsPreviewBoxCollapsable
-											paragraph="Signature Signature Signature Signature Signature Signature"
-											summary="Signature"
-										/>
+									<ParagraphsPreviewBox collapsedText="Signature">
+										<LetterPreviewParagraph paragraphs={bottom} />
 									</ParagraphsPreviewBox>
 								</div>
 							</VLcard>
@@ -208,49 +207,31 @@ const ParagraphsPreview: FC = () => {
 
 type ParagraphsPreviewBox = {
 	children: ReactNode
-	extraClasses?: string
+	collapsedText?: string
 }
 
 const ParagraphsPreviewBox: FC<ParagraphsPreviewBox> = ({
 	children,
-	extraClasses,
+	collapsedText,
 }) => {
-	const ParagraphsPreviewBoxClasses = classNames(
-		`paragraphs-preview__letter-box ${extraClasses}`
-	)
-
-	return <div className={ParagraphsPreviewBoxClasses}>{children}</div>
-}
-
-type ParagraphsPreviewBoxCollapsable = {
-	paragraph: string
-	summary: string
-}
-
-const ParagraphsPreviewBoxCollapsable: FC<ParagraphsPreviewBoxCollapsable> = ({
-	paragraph,
-	summary,
-}) => {
-	const [collapsed, setCollapsed] = useState(true)
-	const handleOnClick = () => {
-		setCollapsed(collapsed => !collapsed)
-	}
+	const [isCollapsed, setIsCollapsed] = useState(true)
 	const chevronClasses = classNames('fas', {
-		'fa-chevron-down': collapsed,
-		'fa-chevron-up': !collapsed,
+		'fa-chevron-up': isCollapsed,
+		'fa-chevron-down': !isCollapsed,
 	})
+	const handleClick = () => {
+		setIsCollapsed(isCollapsed => !isCollapsed)
+	}
 
 	return (
-		<div
-			onClick={handleOnClick}
-			className="paragraphs-preview__letter-box--collapsible"
-		>
-			<span className="paragraphs-preview__letter-box__text">
-				{!collapsed ? paragraph : summary}
-			</span>
-			<span className="paragraphs-preview__letter-box__chevron">
-				<i className={chevronClasses}></i>
-			</span>
+		<div className="paragraphs-preview__letter-box">
+			<button
+				className="paragraphs-preview__letter-box__chevron"
+				onClick={handleClick}
+			>
+				<i className={chevronClasses} />
+			</button>
+			{isCollapsed ? collapsedText : children}
 		</div>
 	)
 }
