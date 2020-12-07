@@ -13,7 +13,7 @@ import AppState from '../../../../data/AppState'
 import { CaseTopic, Paragraph as ParagraphT } from '../../../../data/types'
 import VLcard from '../../common/VLcard'
 import LetterPreviewParagraph from '../../common/LetterPreviewParagraph'
-import { getLetterText } from '../../../../utlis/letter'
+import { getLetterParagraphs } from '../../../../utlis/letter'
 
 const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
@@ -27,7 +27,10 @@ const ParagraphsPreview: FC = () => {
 		state => state.topics.selected
 	)
 
-	const { top, bottom } = getLetterText(selectedTopics, selectedParagraphs)
+	const { top, bottom } = getLetterParagraphs(
+		selectedTopics,
+		selectedParagraphs
+	)
 	const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
 
 	const suggestedParagraphsMinusSelected = suggestedParagraphs.filter(

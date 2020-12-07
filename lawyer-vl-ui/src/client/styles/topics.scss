@@ -5,6 +5,10 @@
 		@apply .items-start .mt-0;
 	}
 
+	.topics__actions {
+		@apply .flex-row;
+	}
+
 	.topics__actions-next {
 		@apply .hidden;
 
