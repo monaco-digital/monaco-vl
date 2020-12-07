@@ -79,6 +79,7 @@ export type Topic =
 	| 'DMe'
 	| 'DG'
 	| 'DPI'
+	| 'DPl'
 	| 'DMl'
 	| 'DV'
 	| '2y'
@@ -403,7 +404,7 @@ export const Topics: CaseTopic[] = [
 		type: 'subcase',
 	},
 	{
-		id: 'DPI',
+		id: 'DPl',
 		name: 'POLITICAL_PHILOSOPHICAL',
 		text: 'Political / philosophical',
 		questionText: 'Political / philosophical',
