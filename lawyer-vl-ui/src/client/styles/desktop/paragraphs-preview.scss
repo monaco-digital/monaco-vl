@@ -8,6 +8,10 @@
 
 	.paragraphs-preview__select__wrapper {
 		@apply .h-screen .overflow-auto;
+
+		.vl-card {
+			@apply .h-full;
+		}
 	}
 
 	.paragraphs-preview__select-paragraphs {
