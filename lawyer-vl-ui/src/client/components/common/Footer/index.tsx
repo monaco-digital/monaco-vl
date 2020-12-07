@@ -9,6 +9,7 @@ import pages from '../../../../types/navigation'
 import { setPage } from '../../../../data/navigationDataSlice'
 import { getLetterText } from '../../../../utlis/letter'
 import { callGoogleApi } from '../../../../api/google'
+import useViewport from '../../../utils/useViewport'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -18,6 +19,8 @@ const Footer: React.FC = () => {
 	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected
 	)
+	const { isMobile } = useViewport()
+
 	const dispatch = useDispatch()
 
 	// const handleGoForward = () => {
@@ -28,7 +31,13 @@ const Footer: React.FC = () => {
 		dispatch(setPage(pages.LETTER_PREVIEW))
 	}
 
-	const handleMoreInfo = () => {}
+	const handleMoreInfo = () => {
+		dispatch(setPage(pages.HELP))
+	}
+
+	const navigateTo = page => {
+		dispatch(setPage(page))
+	}
 
 	// const enterParagraphPreviewMode = () => {
 	// 	dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
@@ -68,7 +77,7 @@ const Footer: React.FC = () => {
 							className="footer__actions-info"
 							aria-label="More info"
 							type="button"
-							onClick={handleMoreInfo}
+							onClick={() => navigateTo(pages.HELP)}
 						>
 							<img src={moreInfoIcon} />
 						</button>
@@ -81,24 +90,45 @@ const Footer: React.FC = () => {
 							/> */}
 					</>
 				)}
-				{page === pages.PARAGRAPHS_EDIT && (
+				{page === pages.PARAGRAPHS_EDIT && isMobile && (
 					<>
-						{/*						<Button
+						<Button
 							type="secondary"
 							text="Done"
 							rounded
-							fn={() => enterParagraphPreviewMode()}
+							fn={() => navigateTo(pages.PARAGRAPHS_PREVIEW)}
 						/>
-						<button
-							className="footer__actions-drag"
-							aria-label="drag to reorder"
-						>
-							<img src={dragIcon} alt="" />
-							Drag to reorder
-						</button>*/}
 					</>
 				)}
-				{page === pages.PARAGRAPHS_PREVIEW && (
+				{page === pages.PARAGRAPHS_PREVIEW && isMobile && (
+					<>
+						<Button
+							type="secondary"
+							text="Edit"
+							rounded
+							fn={() => navigateTo(pages.PARAGRAPHS_EDIT)}
+						/>
+						<Button
+							type="green"
+							text="Next"
+							rounded
+							fn={() => navigateTo(pages.LETTER_PREVIEW)}
+						/>
+						{/*<Button
+							type="tertiary"
+							text="Paragraphs"
+							rounded
+							fn={() => enterLetterPreviewMode()}
+						/>
+						<Button
+							type="tertiary"
+							text="Summaries"
+							rounded
+							fn={() => enterLetterPreviewMode()}
+						/>*/}
+					</>
+				)}
+				{page === pages.PARAGRAPHS_PREVIEW && !isMobile && (
 					<>
 						{/*	<Button
 								type="secondary"

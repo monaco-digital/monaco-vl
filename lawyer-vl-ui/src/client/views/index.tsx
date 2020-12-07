@@ -5,8 +5,6 @@ import ParagraphsPreview from '../components/common/ParagraphsPreview'
 import Header from '../components/common/Header'
 import Questions from '../components/common/Questions'
 import { useSelector, useDispatch } from 'react-redux'
-import ParagraphsEditMode from '../components/ParagraphsEditMode'
-import setView from '../../data/questionDataSlice'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
@@ -33,8 +31,8 @@ const Main: FC = () => {
 			<div className="screen container">
 				{mode === pages.GET_STARTED && <GetStarted />}
 				{mode === pages.TOPICS && <Questions />}
-				{mode === pages.PARAGRAPHS_PREVIEW && <ParagraphsPreview />}
-				{mode === pages.PARAGRAPHS_EDIT && <ParagraphsEditMode />}
+				{(mode === pages.PARAGRAPHS_PREVIEW ||
+					mode === pages.PARAGRAPHS_EDIT) && <ParagraphsPreview />}
 				{mode === pages.LETTER_PREVIEW && <LetterPreview />}
 				{mode === pages.HELP && <Help />}
 			</div>

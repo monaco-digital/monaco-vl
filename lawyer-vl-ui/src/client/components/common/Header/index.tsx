@@ -8,8 +8,10 @@ import AppState from '../../../../data/AppState'
 import { unselectTopic } from '../../../../data/topicDataSlice'
 import { CaseTopic, Question as QuestionT } from '../../../../data/types'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
+import useViewport from '../../../utils/useViewport'
 
 const Header: FC = () => {
+	const { isMobile } = useViewport()
 	let selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
@@ -27,6 +29,10 @@ const Header: FC = () => {
 		dispatch(setPage(page))
 	}
 
+	const keyFacts = isMobile ? 'Details' : 'Key facts'
+	const buildLetter = isMobile ? 'Build' : 'Build your letter'
+	const previewLetter = isMobile ? 'Preview' : 'Preview your letter'
+
 	return (
 		<div className="header">
 			<a
@@ -36,20 +42,20 @@ const Header: FC = () => {
 				<img alt="Virtual lawyer" src={logo} />
 			</a>
 			<div className="header__breadcrumb">
-				<div className="header__breadrcrumb__text">
-					<button onClick={() => navigateTo(pages.TOPICS)}>Key Facts</button>
+				<div className="header__breadcrumb__text">
+					<button onClick={() => navigateTo(pages.TOPICS)}>{keyFacts}</button>
 				</div>
-				<div className="header__breadrcrumb__text">
+				<div className="header__breadcrumb__text">
 					<button onClick={() => navigateTo(pages.PARAGRAPHS_PREVIEW)}>
-						Build Your Letter
+						{buildLetter}
 					</button>
 				</div>
-				<div className="header__breadrcrumb__text">
+				<div className="header__breadcrumb__text">
 					<button onClick={() => navigateTo(pages.LETTER_PREVIEW)}>
-						Preview Your Letter
+						{previewLetter}
 					</button>
 				</div>
-				<div className="header__breadrcrumb__text">
+				<div className="header__breadcrumb__text">
 					<button onClick={() => navigateTo(pages.HELP)}>Help</button>
 				</div>
 			</div>

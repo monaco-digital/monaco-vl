@@ -1,11 +1,11 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-import Paragraph from '../common/Paragraph'
-import { Paragraph as ParagraphT } from '../../../data/types'
-import Title from '../Title'
-import { reorderParagraphs } from '../../../data/paragraphsDataSlice'
-import AppState from '../../../data/AppState'
+import Paragraph from '../../common/Paragraph'
+import { Paragraph as ParagraphT } from '../../../../data/types'
+import Title from '../../Title'
+import { reorderParagraphs } from '../../../../data/paragraphsDataSlice'
+import AppState from '../../../../data/AppState'
 
 const ParagraphsEditMode: React.FC = () => {
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
