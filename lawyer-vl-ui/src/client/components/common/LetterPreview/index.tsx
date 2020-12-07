@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, Paragraph } from '../../../../data/types'
-import { getLetterText } from '../../../../utlis/letter'
 import LetterPreviewParagraph from '../LetterPreviewParagraph'
+import { getLetterParagraphs, getLetterText } from '../../../../utlis/letter'
 import VLcard from '../VLcard'
 
 const LetterPreview: FC = () => {
@@ -22,7 +22,7 @@ const LetterPreview: FC = () => {
 	const handleCollapseIntro = () => {
 		setIsCollapsedIntro(collapseIntro => !collapseIntro)
 	}
-	const { top, middle, bottom } = getLetterText(
+	const { top, middle, bottom } = getLetterParagraphs(
 		selectedTopics,
 		selectedParagraphs
 	)

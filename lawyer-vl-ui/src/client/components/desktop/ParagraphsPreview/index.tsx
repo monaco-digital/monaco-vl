@@ -19,28 +19,23 @@ const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.suggested
 	)
+
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
 	)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
-	const [
-		suggestedParagraphsMinusSelected,
-		setSuggestedParagraphsMinusSelected,
-	] = useState([])
+
+	const { top, bottom } = getLetterText(selectedTopics, selectedParagraphs)
+	const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
+
+	const suggestedParagraphsMinusSelected = suggestedParagraphs.filter(
+		paragraph => !selectedParagraphsIds.includes(paragraph.id)
+	)
+
 	const dispatch = useDispatch()
 	const [isDragging, setIsDraggin] = useState(false)
-	const { top, bottom } = getLetterText(selectedTopics, selectedParagraphs)
-
-	useEffect(() => {
-		const selectedParagraphsIds = selectedParagraphs.map(({ id }) => id)
-		const filteredSuggestedParagraphs = suggestedParagraphs.filter(
-			paragraph => !selectedParagraphsIds.includes(paragraph.id)
-		)
-
-		setSuggestedParagraphsMinusSelected(filteredSuggestedParagraphs)
-	}, [selectedParagraphs])
 
 	const handleDragStart = () => {
 		setIsDraggin(true)

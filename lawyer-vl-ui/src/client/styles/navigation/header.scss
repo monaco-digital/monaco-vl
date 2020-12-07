@@ -1,15 +1,27 @@
 .header {
-	@apply .py-8 .pl-8 .pr-4 .shadow .flex .justify-between;
+	@apply .relative .py-8 .pl-8 .pr-4 .flex .justify-between;
 
 	img {
 		@apply .w-48;
 	}
 
 	.header__breadcrumb {
-		@apply .inline-flex .justify-center;
+		@apply .hidden .justify-center;
+
+		@screen md {
+			@apply .flex;
+		}
 
 		.header__breadrcrumb__text {
 			@apply .font-sans .mx-6;
+		}
+	}
+
+	.header__burger-btn {
+		@apply .absolute .top-0 .right-0 .text-xl .flex .items-center .px-6 .bg-ms-gray-lighter .text-ms-gray .rounded-bl-2xl .h-20;
+
+		@screen md {
+			@apply .hidden;
 		}
 	}
 }

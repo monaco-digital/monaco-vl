@@ -175,5 +175,11 @@ export const filterByGeneralMatch = (
 		return eitherFlag && mustFlag && notFlag
 	})
 
+	console.log(
+		'filterByGeneralMatch return ',
+		filterByGeneralMatch.length,
+		'paras'
+	)
+
 	return newData
 }

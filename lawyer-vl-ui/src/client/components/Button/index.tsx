@@ -24,7 +24,7 @@ export const Button: React.FC<Props> = ({
 			'button--secondary': type === 'secondary',
 		},
 		{
-			'button--neutral': type === 'neutral',
+			'button--neutral': type === 'tertiary',
 		},
 		{
 			'button--danger': type === 'danger',

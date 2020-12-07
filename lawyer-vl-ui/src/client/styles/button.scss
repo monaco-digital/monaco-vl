@@ -11,6 +11,14 @@
 }
 
 .button--main {
+	@apply .bg-ms-green;
+}
+
+.button--secondary {
+	@apply .bg-ms-blue;
+}
+
+.button--tertiary {
 	@apply .bg-ms-orange;
 }
 
@@ -20,10 +28,6 @@
 
 .button--green {
 	@apply .bg-ms-green;
-}
-
-.button--secondary {
-	@apply .bg-ms-blue;
 }
 
 .button--neutral {
