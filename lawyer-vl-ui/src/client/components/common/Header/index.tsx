@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
+import classNames from 'classnames'
 import logo from '../../../assets/img/virtual-lawyer-logo.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../../data/navigationDataSlice'
@@ -18,13 +19,20 @@ const Header: FC = () => {
 		state => state.questions.answeredQuestions
 	)
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-
+	const [menuIsVisibile, setMenuIsVisibile] = useState(false)
 	const dispatch = useDispatch()
 	const navigateTo = page => {
 		if (page === pages.TOPICS && !currentQuestion) {
 			dispatch(removeLastAnsweredQuestion(null))
 		}
 		dispatch(setPage(page))
+	}
+	const headerBreacrumbClasses = classNames('header__breadcrumb', {
+		'header__breadcrumb--mobile-visible': menuIsVisibile,
+	})
+
+	const handleOnClick = () => {
+		setMenuIsVisibile(menuIsVisibile => !menuIsVisibile)
 	}
 
 	return (
@@ -53,6 +61,9 @@ const Header: FC = () => {
 					<button onClick={() => navigateTo(pages.HELP)}>Help</button>
 				</div>
 			</div>
+			<button className="header__burger-btn" onClick={handleOnClick}>
+				<i className="fas fa-bars"></i>
+			</button>
 		</div>
 	)
 }
