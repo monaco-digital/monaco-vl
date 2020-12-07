@@ -78,7 +78,7 @@ const Question: React.FC<Props> = ({ question }) => {
 }
 
 /* Filters the list of possible options to limit it to only those that pass
-the prerequisites, and to only show ones that are within the limit if showmore has not been selected */
+the prerequisites */
 const filterValidOptions = (options, selectedTopicIds) => {
 	const toShow = options.filter(option => {
 		const prerequisites = option.prerequisites || []
