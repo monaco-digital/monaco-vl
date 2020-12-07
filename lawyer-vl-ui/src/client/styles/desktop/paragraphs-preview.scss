@@ -34,11 +34,11 @@
 		}
 
 		.paragraphs-preview__letter__dropzone {
-			height: 33vh;
-			@apply .flex .flex-col .justify-center .items-center .flex-grow .border-ms-blue;
+			min-height: 33vh;
+			@apply .flex .flex-col .justify-center .flex-grow .border-ms-blue;
 
 			.paragraphs-preview__letter__dropzone__message {
-				@apply .transition-shadow .duration-500 .shadow-none .ease-linear .text-sm .font-sans .border .border-ms-blue .px-4 .py-3 .bg-white .rounded .text-ms-blue;
+				@apply .transition-shadow .duration-500 .shadow-none .ease-linear .text-sm .font-sans .border .border-ms-blue .px-4 .py-3 .bg-white .rounded .text-ms-blue .max-w-xs .mx-auto;
 
 				i {
 					@apply .text-xl .pr-3 .text-ms-blue;

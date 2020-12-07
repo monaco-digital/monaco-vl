@@ -1,25 +1,23 @@
-.topics {
+.questions {
 	@apply .flex .flex-col .mb-0 .mt-auto .pt-8 .items-end;
 
 	@screen md {
 		@apply .items-start .mt-0;
 	}
 
-	.topics__actions {
+	.questions__actions {
 		@apply .flex .flex-row .justify-between .flex-grow;
 	}
 
-	.topics__actions-next {
+	.questions__actions-next {
 		@apply .flex;
-
-		@screen md {
-			// @apply .flex;
-		}
 	}
 }
 
-.topics__tags {
-	@apply .flex-wrap .flex-row .max-w-xs .-mx-2;
+.questions__tags {
+	.topics {
+		@apply .flex .flex-wrap .max-w-md .-mx-2;
+	}
 
 	.topic {
 		@apply .px-2;

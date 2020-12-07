@@ -1,6 +1,10 @@
 .topic {
 	transition: all 0.3s;
-	@apply .mb-8;
+	@apply .flex .mb-4 .text-center;
+
+	@screen md {
+		@apply .text-left;
+	}
 
 	label {
 		@apply .cursor-pointer .button .button--neutral .break-normal;
