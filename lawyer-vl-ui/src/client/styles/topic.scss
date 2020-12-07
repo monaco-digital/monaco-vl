@@ -3,7 +3,7 @@
 	@apply .mb-8;
 
 	label {
-		@apply .cursor-pointer .button .button--neutral;
+		@apply .cursor-pointer .button .button--neutral .break-normal;
 	}
 
 	[type='radio'],
