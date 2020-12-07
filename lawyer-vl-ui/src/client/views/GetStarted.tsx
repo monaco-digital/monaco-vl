@@ -23,20 +23,23 @@ export const GetStarted: React.FC = () => {
 				<br /> a fair settlement agreement exit package after being badly
 				treated at work.
 			</p>
+			<br />
 			<p>
 				<b>You can do this in 3 easy steps:</b>
 			</p>
-			<p>
-				<i>1</i> Tell us a few<b>&nbsp;key facts&nbsp;</b> about your case.
+			<p className={'gettingStartedStep'}>
+				<div className={'circleIcon'}>1</div> Tell us a few
+				<b>&nbsp;key facts&nbsp;</b> about your case.
 			</p>
-			<p>
-				<i>2</i> Select the paragraphs that apply to you to{' '}
-				<b>&nbsp;build your letter&nbsp;</b>.
+			<p className={'gettingStartedStep'}>
+				<div className={'circleIcon'}>2</div> Select the paragraphs that apply
+				to you to <b>&nbsp;build your letter&nbsp;</b>.
 			</p>
-			<p>
-				<i>3</i> <b>&nbsp;Preview your letter&nbsp;</b> and create a draft to
-				take away.
+			<p className={'gettingStartedStep'}>
+				<div className={'circleIcon'}>3</div>
+				<b>&nbsp;Preview your letter&nbsp;</b> and create a draft to take away.
 			</p>
+			<br />
 			<div>
 				<Button type="main" text="Next" rounded fn={() => goToTopics()} />
 			</div>
