@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, Paragraph } from '../../../../data/types'
 import { getLetterText } from '../../../../utlis/letter'
+import LetterPreviewParagraph from '../LetterPreviewParagraph'
 import VLcard from '../VLcard'
 
 const LetterPreview: FC = () => {
@@ -56,26 +57,6 @@ const LetterPreview: FC = () => {
 					</div>
 				</VLcard>
 			</div>
-		</>
-	)
-}
-
-const LetterPreviewParagraph: FC<{ paragraphs: Paragraph[] }> = ({
-	paragraphs,
-}) => {
-	return (
-		<>
-			{paragraphs.map(({ paragraph, bold, id }) => {
-				if (bold) {
-					return (
-						<p key={id}>
-							<b>{paragraph}</b>
-						</p>
-					)
-				}
-
-				return <p key={id}>{paragraph}</p>
-			})}
 		</>
 	)
 }
