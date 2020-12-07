@@ -28,16 +28,25 @@ export const GetStarted: React.FC = () => {
 				<b>You can do this in 3 easy steps:</b>
 			</p>
 			<p className={'gettingStartedStep'}>
-				<div className={'circleIcon'}>1</div> Tell us a few
-				<b>&nbsp;key facts&nbsp;</b> about your case.
+				<div className={'circleIcon'}>1</div>
+				<div className={'gettinStartedStepText'}>
+					Tell us a few
+					<b>&nbsp;key facts&nbsp;</b> about your case.
+				</div>
 			</p>
 			<p className={'gettingStartedStep'}>
-				<div className={'circleIcon'}>2</div> Select the paragraphs that apply
-				to you to <b>&nbsp;build your letter&nbsp;</b>.
+				<div className={'circleIcon'}>2</div>{' '}
+				<div className={'gettinStartedStepText'}>
+					Select the paragraphs that apply to you to{' '}
+					<b>&nbsp;build your letter&nbsp;</b>.
+				</div>
 			</p>
 			<p className={'gettingStartedStep'}>
 				<div className={'circleIcon'}>3</div>
-				<b>&nbsp;Preview your letter&nbsp;</b> and create a draft to take away.
+				<div className={'gettinStartedStepText'}>
+					<b>&nbsp;Preview your letter&nbsp;</b> and create a draft to take
+					away.
+				</div>
 			</p>
 			<br />
 			<div>

@@ -145,18 +145,22 @@ const Footer: React.FC = () => {
 							>
 								<img src={moreInfoIcon} />
 							</button>
-							<Button
-								type="tertiary"
-								text="Paragraphs"
-								rounded
-								fn={() => enterLetterPreviewMode()}
-							/>
-							<Button
-								type="tertiary"
-								text="Summaries"
-								rounded
-								fn={() => enterLetterPreviewMode()}
-							/>
+							{false && (
+								<>
+									<Button
+										type="tertiary"
+										text="Paragraphs"
+										rounded
+										fn={() => enterLetterPreviewMode()}
+									/>
+									<Button
+										type="tertiary"
+										text="Summaries"
+										rounded
+										fn={() => enterLetterPreviewMode()}
+									/>
+								</>
+							)}
 						</div>
 
 						<div>

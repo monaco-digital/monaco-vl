@@ -60,6 +60,10 @@ button {
 	@apply .flex .flex-row .items-center;
 }
 
+.gettinStartedStepText {
+	@apply .flex .flex-shrink;
+}
+
 .circleIcon {
 	@apply .rounded-full .h-12 .m-4 .w-12 .flex .items-center .justify-center .bg-ms-blue .text-white .font-semibold;
 }
