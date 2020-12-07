@@ -15,7 +15,6 @@ const ParagraphsPreview: FC = () => {
 	)
 
 	useEffect(() => {
-		console.log('Update suggested paragraphs based on ', selectedTopics.length)
 		dispatch(updateSuggestedParagraphs(selectedTopics))
 	}, [selectedTopics])
 
