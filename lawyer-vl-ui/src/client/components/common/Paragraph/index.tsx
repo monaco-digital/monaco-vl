@@ -11,6 +11,7 @@ import {
 import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
 import { Topics } from '../../../../data/types'
+import { formatParagraphText } from '../../../utils/formatOutput'
 
 interface Props {
 	paragraphData: ParagraphT
@@ -32,6 +33,9 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isMobile }) => {
 		topicsOneOf = [],
 		topicsAllOf = [],
 	} = paragraphData
+
+	const formattedParagraph = formatParagraphText(paragraph)
+
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
 		'fa-minus': !collapsed,
@@ -76,7 +80,7 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isMobile }) => {
 					onClick={() => handleToggleSelectedParagraph({ id })}
 				>
 					<p className="paragraph__text">
-						{collapsed ? <>{summary}</> : <> {paragraph} </>}
+						{collapsed ? <>{summary}</> : <> {formattedParagraph} </>}
 					</p>
 				</div>
 				<footer>

@@ -41,3 +41,7 @@
 .button--rounded {
 	@apply .py-3 .px-5 .rounded-3xl;
 }
+
+.button--small {
+	@apply .text-sm .border .border-gray-400 .bg-white .py-1 .px-2 .text-gray-400;
+}
