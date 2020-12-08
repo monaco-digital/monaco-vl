@@ -6,6 +6,7 @@ interface Props {
 	fn?: any
 	extraClasses?: string
 	rounded?: any
+	color?: string
 }
 
 export const Button: React.FC<Props> = ({
@@ -14,6 +15,7 @@ export const Button: React.FC<Props> = ({
 	fn,
 	extraClasses = '',
 	rounded,
+	color,
 }) => {
 	const classes = classNames(
 		`${extraClasses} button`,
@@ -24,7 +26,7 @@ export const Button: React.FC<Props> = ({
 			'button--secondary': type === 'secondary',
 		},
 		{
-			'button--neutral': type === 'tertiary',
+			'button--tertiary': type === 'tertiary',
 		},
 		{
 			'button--danger': type === 'danger',
