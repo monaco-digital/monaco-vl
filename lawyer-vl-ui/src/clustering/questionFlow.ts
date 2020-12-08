@@ -90,7 +90,7 @@ const allQuestions: Question[] = [
 	},
 	{
 		id: 3,
-		prerequisites: ['_NE'],
+		prerequisites: [],
 		text: 'Are you still in your job',
 		subtext: 'How long were you (have you been) in your job?',
 		minAnswers: 1,
@@ -296,7 +296,7 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'Philosophical belief',
-				topicId: 'DMl',
+				topicId: 'DPl',
 				prerequisites: ['_PC'],
 			},
 			{
@@ -317,18 +317,17 @@ const allQuestions: Question[] = [
 			{
 				text: 'Other',
 				topicId: 'ORT',
-				prerequisites: ['_PC'],
 			},
 		],
 	},
 	{
 		id: 8,
 		prerequisites: [],
-		text: 'Did you ever complain to your employer about this?',
+		text: 'Did you ever complain to your employer about this discrimination?',
 		subtext:
 			'Why do you think your employer acted this way? Select all that apply',
-		minAnswers: 0,
-		maxAnswers: 100,
+		minAnswers: 1,
+		maxAnswers: 1,
 		options: [
 			{
 				text: 'No',

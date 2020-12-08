@@ -46,8 +46,8 @@ const Questions: FC = () => {
 	const isMulti = currentQuestion.maxAnswers > 1
 	const type = isMulti ? 'tags' : ''
 
-	const classes = classNames('topics', {
-		[`topics__${type}`]: type,
+	const classes = classNames('questions', {
+		[`questions__${type}`]: type,
 	})
 
 	const handleGoBackwards = () => {
@@ -70,7 +70,7 @@ const Questions: FC = () => {
 				<div className="topics__actions">
 					{answeredQuestions.length > 0 && (
 						<Button
-							type="green"
+							type="tertiary"
 							text="Back"
 							rounded
 							fn={() => handleGoBackwards()}
