@@ -15,7 +15,7 @@
 		}
 
 		.footer__actions-info {
-			@apply .h-8 .w-8 .bg-ms-blue .rounded-full .flex .items-center .justify-center .shadow-md;
+			@apply .h-12 .w-12 .bg-ms-blue .rounded-full .flex .items-center .justify-center .shadow-md;
 
 			img {
 				@apply .w-4 .h-4;
@@ -62,18 +62,18 @@
 			@apply inline-flex .items-center .content-center;
 
 			.footer__actions__switch__button__notselected {
-				@apply button bg-ms-gray-light rounded-full .text-black h-12 w-48 inline-flex  .items-center .justify-center;
+				@apply .button .bg-ms-gray-light .rounded-full .text-black .h-10 w-48 inline-flex  .items-center .justify-center .relative .z-0;
 
 				img {
-					@apply .w-4 .h-4 mr-2;
+					@apply .w-4 .h-4 .mr-2;
 				}
 			}
 
 			.footer__actions__switch__button__selected {
-				@apply button bg-ms-blue rounded-full h-12 w-48 inline-flex  .items-center .justify-center;
+				@apply button .bg-ms-blue .rounded-full .h-10 .w-48 inline-flex  .items-center .justify-center .relative .z-10;
 
 				img {
-					@apply .w-4 .h-4 fill-current text-white mr-2;
+					@apply .w-4 .h-4 .mr-2;
 				}
 			}
 		}

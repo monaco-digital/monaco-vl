@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../Button'
 import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,8 +9,12 @@ import { setPage } from '../../../../data/navigationDataSlice'
 import { getLetterText } from '../../../../utlis/letter'
 import { callGoogleApi } from '../../../../api/google'
 import useViewport from '../../../utils/useViewport'
-import summaryIcon from '../../../assets/img/expand-text-icon.svg'
-import paragraphIcon from '../../../assets/img/expand-text-icon.svg'
+import summaryIconWhite from '../../../assets/img/summaries-icon-white.svg'
+import paragraphIconWhite from '../../../assets/img/expand-text-icon-white.svg'
+import summaryIconBlack from '../../../assets/img/summaries-icon-black.svg'
+import paragraphIconBlack from '../../../assets/img/expand-text-icon-black.svg'
+import { ParagraphToggle } from '../../../../types/paragraph'
+import { setParagraphToggle } from '../../../../data/paragraphsDataSlice'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -23,6 +27,8 @@ const Footer: React.FC = () => {
 	const { isMobile } = useViewport()
 
 	const dispatch = useDispatch()
+
+	const [paragraphToggle, setParaToggle] = useState<ParagraphToggle>('summary')
 
 	// const handleGoForward = () => {
 	// 	dispatch(setView(selectedTopics))
@@ -57,6 +63,11 @@ const Footer: React.FC = () => {
 		)
 		console.log('The response for the document is from google: ', shareableLink)
 		window.open(shareableLink, '_blank')
+	}
+
+	const toggleParagraphView = (toggle: ParagraphToggle) => {
+		setParaToggle(toggle)
+		dispatch(setParagraphToggle(toggle))
 	}
 
 	// const enterParagraphEditMode = () => {
@@ -124,18 +135,42 @@ const Footer: React.FC = () => {
 							</button>
 							<div>
 								<button
-									className="footer__actions__switch__button__notselected"
-									aria-label="Paragraphs"
-									type="button"
-								>
-									<img src={paragraphIcon} /> Paragraphs
-								</button>
-								<button
-									className="footer__actions__switch__button__selected -ml-8"
+									className={
+										paragraphToggle === 'summary'
+											? 'footer__actions__switch__button__selected -mr-8'
+											: 'footer__actions__switch__button__notselected -mr-8'
+									}
 									aria-label="Summaries"
 									type="button"
+									onClick={() => toggleParagraphView('summary')}
 								>
-									<img src={summaryIcon} /> Summaries
+									<img
+										src={
+											paragraphToggle === 'summary'
+												? summaryIconWhite
+												: summaryIconBlack
+										}
+									/>{' '}
+									Summaries
+								</button>
+								<button
+									className={
+										paragraphToggle === 'paragraph'
+											? 'footer__actions__switch__button__selected'
+											: 'footer__actions__switch__button__notselected'
+									}
+									aria-label="Paragraphs"
+									type="button"
+									onClick={() => toggleParagraphView('paragraph')}
+								>
+									<img
+										src={
+											paragraphToggle === 'paragraph'
+												? paragraphIconWhite
+												: paragraphIconBlack
+										}
+									/>{' '}
+									Paragraphs
 								</button>
 							</div>
 						</div>

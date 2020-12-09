@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { Paragraph } from './types'
 import { filterByGeneralMatch } from './../filters'
+import { ParagraphToggle } from '../types/paragraph'
 
 export const slice = createSlice({
 	name: 'paragraphs',
@@ -8,6 +9,7 @@ export const slice = createSlice({
 		all: [] as Paragraph[],
 		suggested: [] as Paragraph[],
 		selected: [] as Paragraph[],
+		toggle: 'summary' as ParagraphToggle,
 	},
 	reducers: {
 		updateAllParagraphs: (state, action) => {
@@ -73,6 +75,9 @@ export const slice = createSlice({
 				state[toId] = reorderedDestinationListParagraphs
 			}
 		},
+		setParagraphToggle: (state, action) => {
+			state.toggle = action.payload
+		},
 	},
 })
 
@@ -84,6 +89,7 @@ export const {
 	addParagraph,
 	removeParagraph,
 	reorderParagraphs,
+	setParagraphToggle,
 } = slice.actions
 
 export default slice.reducer
