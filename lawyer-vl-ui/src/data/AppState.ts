@@ -1,11 +1,13 @@
 import { CaseTopic, Paragraph, Question } from './types'
 import pages from '../types/navigation'
+import { ParagraphToggle } from '../types/paragraph'
 
 export type AppState = {
 	paragraphs: {
 		all: Paragraph[]
 		suggested: Paragraph[]
 		selected: Paragraph[]
+		toggle: ParagraphToggle
 	}
 	topics: {
 		selected: CaseTopic[]

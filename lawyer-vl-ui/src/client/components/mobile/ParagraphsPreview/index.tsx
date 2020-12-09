@@ -7,6 +7,7 @@ import { Paragraph as ParagraphT } from '../../../../data/types'
 import ParagraphsEditMode from '../ParagraphsEditMode'
 import pages from '../../../../types/navigation'
 import useViewport from '../../../utils/useViewport'
+import { ParagraphToggle } from '../../../../types/paragraph'
 
 const ParagraphsPreview: FC = () => {
 	const { isMobile } = useViewport()
@@ -14,7 +15,14 @@ const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.suggested
 	)
-	const mode = useSelector<AppState, string>(state => state.navigation.page)
+	const { mode, toggle: pToggle } = useSelector<
+		AppState,
+		{ mode: any; toggle: ParagraphToggle }
+	>(state => {
+		const mode = state.navigation.page
+		const toggle = state.paragraphs.toggle
+		return { mode, toggle }
+	})
 
 	if (mode === pages.PARAGRAPHS_EDIT) {
 		return <ParagraphsEditMode />
@@ -37,6 +45,7 @@ const ParagraphsPreview: FC = () => {
 								key={paragraph.id}
 								paragraphData={paragraph}
 								isMobile
+								pToggle={pToggle}
 							/>
 						))}
 					</div>

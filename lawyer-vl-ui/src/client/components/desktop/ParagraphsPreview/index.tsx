@@ -14,6 +14,7 @@ import { CaseTopic, Paragraph as ParagraphT } from '../../../../data/types'
 import VLcard from '../../common/VLcard'
 import LetterPreviewParagraph from '../../common/LetterPreviewParagraph'
 import { getLetterParagraphs } from '../../../../utlis/letter'
+import { ParagraphToggle } from '../../../../types/paragraph'
 
 const ParagraphsPreview: FC = () => {
 	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(
@@ -25,6 +26,10 @@ const ParagraphsPreview: FC = () => {
 	)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
+	)
+
+	const pToggle = useSelector<AppState, ParagraphToggle>(
+		state => state.paragraphs.toggle
 	)
 
 	const { top, bottom } = getLetterParagraphs(
@@ -128,6 +133,7 @@ const ParagraphsPreview: FC = () => {
 																	<Paragraph
 																		key={paragraph.id}
 																		paragraphData={paragraph}
+																		pToggle={pToggle}
 																	/>
 																	{provided.placeholder}
 																</div>
@@ -184,6 +190,7 @@ const ParagraphsPreview: FC = () => {
 																		<Paragraph
 																			key={paragraph.id}
 																			paragraphData={paragraph}
+																			pToggle={pToggle}
 																		/>
 																	</div>
 																)}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import classNames from 'classnames'
 import modes from '../../../state/modes'
@@ -12,13 +12,19 @@ import AppState from '../../../../data/AppState'
 import { Paragraph as ParagraphT } from '../../../../data/types'
 import { Topics } from '../../../../data/types'
 import { formatParagraphText } from '../../../utils/formatOutput'
+import { ParagraphToggle } from '../../../../types/paragraph'
 
 interface Props {
 	paragraphData: ParagraphT
 	isMobile?: boolean
+	pToggle?: ParagraphToggle
 }
 
-const Paragraph: React.FC<Props> = ({ paragraphData, isMobile }) => {
+const Paragraph: React.FC<Props> = ({
+	paragraphData,
+	isMobile,
+	pToggle = 'summary',
+}) => {
 	const [collapsed, setCollapsed] = useState(true)
 	const [isSelected, setIsSelected] = useState(false)
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
@@ -26,6 +32,14 @@ const Paragraph: React.FC<Props> = ({ paragraphData, isMobile }) => {
 	)
 	const mode = useSelector<AppState, any>(state => state.questions.mode)
 	const dispatch = useDispatch()
+
+	useEffect(() => {
+		if (pToggle === 'summary') {
+			setCollapsed(true)
+		} else if (pToggle === 'paragraph') {
+			setCollapsed(false)
+		}
+	}, [pToggle])
 	const {
 		id,
 		paragraph,

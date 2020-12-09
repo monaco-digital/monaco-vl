@@ -1,4 +1,7 @@
 @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
 @import './typography.scss';
 @import './general.scss';
 @import './title.scss';
@@ -17,7 +20,3 @@
 @import './common/paragraph.scss';
 @import './common/paragraphs-preview.scss';
 @import './common/vl-card.scss';
-
-@import 'tailwindcss/components';
-
-@import 'tailwindcss/utilities';
