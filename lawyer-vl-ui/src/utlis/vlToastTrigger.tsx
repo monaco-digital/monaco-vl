@@ -48,7 +48,7 @@ const vlToastTrigger = ({
 			className: 'vl-toast',
 			position: 'bottom-right',
 			progressClassName: 'vl-toast__progress',
-			autoClose: 100000,
+			autoClose: 3000,
 		}
 	)
 }
