@@ -2,7 +2,6 @@ import React from 'react'
 import Button from '../components/Button'
 import { useDispatch } from 'react-redux'
 import { setPage } from '../../data/navigationDataSlice'
-
 import pages from '../../types/navigation'
 export const GetStarted: React.FC = () => {
 	const dispatch = useDispatch()
@@ -27,26 +26,23 @@ export const GetStarted: React.FC = () => {
 			<p>
 				<b>You can do this in 3 easy steps:</b>
 			</p>
-			<p className={'gettingStartedStep'}>
-				<div className={'circleIcon'}>1</div>
-				<div className={'gettinStartedStepText'}>
-					Tell us a few
-					<b>&nbsp;key facts&nbsp;</b> about your case.
-				</div>
+			<p className={'get__started__step'}>
+				<div className={'circle__icon'}>1</div>
+				<p>
+					Tell us a few <b>key facts</b> about your case.
+				</p>
 			</p>
-			<p className={'gettingStartedStep'}>
-				<div className={'circleIcon'}>2</div>{' '}
-				<div className={'gettinStartedStepText'}>
-					Select the paragraphs that apply to you to{' '}
-					<b>&nbsp;build your letter&nbsp;</b>.
-				</div>
+			<p className={'get__started__step'}>
+				<div className={'circle__icon'}>2</div>{' '}
+				<p>
+					Select the paragraphs that apply to you to <b>build your letter</b>.
+				</p>
 			</p>
-			<p className={'gettingStartedStep'}>
-				<div className={'circleIcon'}>3</div>
-				<div className={'gettinStartedStepText'}>
-					<b>&nbsp;Preview your letter&nbsp;</b> and create a draft to take
-					away.
-				</div>
+			<p className={'get__started__step'}>
+				<div className={'circle__icon'}>3</div>
+				<p>
+					<b>Preview your letter</b> and create a draft to take away.
+				</p>
 			</p>
 			<br />
 			<div>

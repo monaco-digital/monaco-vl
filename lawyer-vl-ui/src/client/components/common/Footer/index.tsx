@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
 					<>
 						<Button
 							type="secondary"
-							text="Edit"
+							text="Reorder"
 							rounded
 							fn={() => navigateTo(pages.PARAGRAPHS_EDIT)}
 						/>
