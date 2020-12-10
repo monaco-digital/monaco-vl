@@ -1,0 +1,67 @@
+.Toastify__toast-container {
+	@apply .w-full .px-4 .right-0;
+
+	@screen sm {
+		@apply .w-auto .px-0 .mr-4;
+	}
+
+	.vl-toast:last-child {
+		@apply .mb-8;
+
+		@screen sm {
+			@apply .mb-16;
+		}
+	}
+}
+
+.vl-toast {
+	@apply .bg-white .shadow-xl .text-black .border .rounded-md .p-0;
+
+	.Toastify__toast-body {
+		@apply .flex .flex-row .m-0;
+
+		.vl-toast__icon {
+			@apply .w-12;
+		}
+
+		.vl-toast__text {
+			@apply .p-2 .flex .items-center;
+		}
+	}
+}
+
+.Toastify__toast--success {
+	@apply .border-ms-green;
+
+	.Toastify__progress-bar {
+		@apply .bg-ms-green !important;
+	}
+
+	.vl-toast__icon {
+		@apply .bg-ms-green;
+	}
+}
+
+.Toastify__toast--info {
+	@apply .border-ms-blue;
+
+	.Toastify__progress-bar {
+		@apply .bg-ms-blue !important;
+	}
+
+	.vl-toast__icon {
+		@apply .bg-ms-blue;
+	}
+}
+
+.Toastify__toast--warning {
+	@apply .border-ms-yellow;
+
+	.Toastify__progress-bar {
+		@apply .bg-ms-yellow !important;
+	}
+
+	.vl-toast__icon {
+		@apply .bg-ms-yellow;
+	}
+}

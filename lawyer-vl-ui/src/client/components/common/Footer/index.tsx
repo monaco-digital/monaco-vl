@@ -15,6 +15,7 @@ import summaryIconBlack from '../../../assets/img/summaries-icon-black.svg'
 import paragraphIconBlack from '../../../assets/img/expand-text-icon-black.svg'
 import { ParagraphToggle } from '../../../../types/paragraph'
 import { setParagraphToggle } from '../../../../data/paragraphsDataSlice'
+import vlToastTrigger from '../../../../utlis/vlToastTrigger'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -51,18 +52,37 @@ const Footer: React.FC = () => {
 	// }
 
 	const copyParasToText = () => {
-		navigator.clipboard.writeText(
-			getLetterText(selectedTopics, selectedParagraphs)
-		)
+		try {
+			navigator.clipboard.writeText(
+				getLetterText(selectedTopics, selectedParagraphs)
+			)
+			vlToastTrigger({
+				text: 'Text copied',
+				type: 'info',
+			})
+		} catch (error) {
+			vlToastTrigger({
+				text: 'Unable to create Google Doc',
+				type: 'warning',
+			})
+		}
 	}
 
 	const openInGoogleDoc = async () => {
-		//const document = createGoogleDocument(paragraphs);
-		const shareableLink = await callGoogleApi(
-			getLetterText(selectedTopics, selectedParagraphs)
-		)
-		console.log('The response for the document is from google: ', shareableLink)
-		window.open(shareableLink, '_blank')
+		try {
+			vlToastTrigger({
+				text: 'Document created',
+			})
+			const shareableLink = await callGoogleApi(
+				getLetterText(selectedTopics, selectedParagraphs)
+			)
+			window.open(shareableLink, '_blank')
+		} catch (error) {
+			vlToastTrigger({
+				text: 'Unable to create Google Doc',
+				type: 'warning',
+			})
+		}
 	}
 
 	const toggleParagraphView = (toggle: ParagraphToggle) => {
