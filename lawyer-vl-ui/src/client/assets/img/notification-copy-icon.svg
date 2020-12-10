@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="22px" viewBox="0 0 19 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>🔹 Icon Copy@1x</title>
+    <g id="UI---Desktop" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Notifications-all" transform="translate(-163.000000, -149.000000)" fill="#FFFFFF">
+            <g id="Group-3-Copy" transform="translate(146.000000, 128.000000)">
+                <path d="M30,21 L19,21 C17.9,21 17,21.9 17,23 L17,36 C17,36.55 17.45,37 18,37 C18.55,37 19,36.55 19,36 L19,24 C19,23.45 19.45,23 20,23 L30,23 C30.55,23 31,22.55 31,22 C31,21.45 30.55,21 30,21 Z M30.59,25.59 L35.42,30.42 C35.79,30.79 36,31.3 36,31.83 L36,41 C36,42.1 35.1,43 34,43 L22.99,43 C21.89,43 21,42.1 21,41 L21.01,27 C21.01,25.9 21.9,25 23,25 L29.17,25 C29.7,25 30.21,25.21 30.59,25.59 Z M30,32 L34.5,32 L29,26.5 L29,31 C29,31.55 29.45,32 30,32 Z" id="🔹-Icon-Copy"></path>
+            </g>
+        </g>
+    </g>
+</svg>

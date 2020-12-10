@@ -19,6 +19,7 @@ module.exports = {
 			'ms-red': '#E03131',
 			'ms-red-light': '#DE6161',
 			'ms-red-lighter': '#FFD8D8',
+			'ms-yellow': '#f8c559',
 			'gray-light': '#eaedf1',
 			gray: '#a0aec0',
 			black: '#414141',
