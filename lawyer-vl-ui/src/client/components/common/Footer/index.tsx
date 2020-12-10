@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
 	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected
 	)
-	const { isMobile } = useViewport()
+	const { isDesktop } = useViewport()
 
 	const dispatch = useDispatch()
 
@@ -96,7 +96,7 @@ const Footer: React.FC = () => {
 						</button>
 					</>
 				)}
-				{page === pages.PARAGRAPHS_EDIT && isMobile && (
+				{page === pages.PARAGRAPHS_EDIT && !isDesktop && (
 					<>
 						<Button
 							type="secondary"
@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
 						/>
 					</>
 				)}
-				{page === pages.PARAGRAPHS_PREVIEW && isMobile && (
+				{page === pages.PARAGRAPHS_PREVIEW && !isDesktop && (
 					<>
 						<Button
 							type="secondary"
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
 						/>
 					</>
 				)}
-				{page === pages.PARAGRAPHS_PREVIEW && !isMobile && (
+				{page === pages.PARAGRAPHS_PREVIEW && isDesktop && (
 					<>
 						<div className="footer__actions__switch__buttons space-x-4">
 							<button
