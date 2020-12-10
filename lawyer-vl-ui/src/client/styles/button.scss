@@ -8,6 +8,9 @@
 	&:focus {
 		@apply;
 	}
+}
+
+.button--has-short-text {
 	.button__short-text {
 		@apply .block;
 		@screen md {

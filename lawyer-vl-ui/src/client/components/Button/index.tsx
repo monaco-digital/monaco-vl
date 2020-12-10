@@ -7,7 +7,6 @@ interface Props {
 	fn?: any
 	extraClasses?: string
 	rounded?: any
-	color?: string
 }
 
 export const Button: React.FC<Props> = ({
@@ -17,36 +16,17 @@ export const Button: React.FC<Props> = ({
 	fn,
 	extraClasses = '',
 	rounded,
-	color,
 }) => {
-	const classes = classNames(
-		`${extraClasses} button`,
-		{
-			'button--main': type === 'main',
-		},
-		{
-			'button--secondary': type === 'secondary',
-		},
-		{
-			'button--tertiary': type === 'tertiary',
-		},
-		{
-			'button--danger': type === 'danger',
-		},
-		{
-			'button--green': type === 'green',
-		},
-		{
-			'button--rounded': rounded,
-		},
-		{
-			'button--small': type === 'small',
-		}
-	)
+	const buttonClasses = classNames(`${extraClasses} button`, {
+		'button--has-short-text': shortText,
+		[`button--${type}`]: type,
+		'button--rounded': rounded,
+	})
+
 	return (
 		<>
 			<button
-				className={classes + ' mobile'}
+				className={buttonClasses}
 				type="button"
 				aria-label={shortText || text}
 				onClick={params => fn(params)}
