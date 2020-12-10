@@ -223,12 +223,14 @@ const Footer: React.FC = () => {
 						<div className="footer__preview__button">
 							<Button
 								type="secondary"
+								shortText="Copy text"
 								text="Copy letter text"
 								rounded
 								fn={copyParasToText}
 							/>
 							<Button
 								type="main"
+								shortText="Google doc"
 								text="Create Google Doc"
 								rounded
 								fn={openInGoogleDoc}

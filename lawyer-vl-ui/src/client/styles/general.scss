@@ -28,10 +28,16 @@ button {
 		padding-left: 2rem;
 		padding-right: 2rem;
 	}
+	.not-mobile {
+		@apply .hidden;
+	}
 }
 
 @screen md {
 	.container {
+	}
+	.mobile {
+		@apply .hidden;
 	}
 }
 
@@ -40,6 +46,9 @@ button {
 		max-width: 1366px;
 		padding-left: 0;
 		padding-right: 0;
+	}
+	.mobile {
+		@apply .hidden;
 	}
 }
 
@@ -54,4 +63,8 @@ button {
 	position: relative;
 	right: 50%;
 	width: 100vw;
+}
+
+@screen sm {
+	@apply .hidden;
 }

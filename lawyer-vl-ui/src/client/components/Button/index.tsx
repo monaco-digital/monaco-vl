@@ -3,6 +3,7 @@ import classNames from 'classnames'
 interface Props {
 	type?: string
 	text?: string
+	shortText?: string
 	fn?: any
 	extraClasses?: string
 	rounded?: any
@@ -12,6 +13,7 @@ interface Props {
 export const Button: React.FC<Props> = ({
 	type = 'main',
 	text,
+	shortText,
 	fn,
 	extraClasses = '',
 	rounded,
@@ -42,14 +44,17 @@ export const Button: React.FC<Props> = ({
 		}
 	)
 	return (
-		<button
-			className={classes}
-			type="button"
-			aria-label={text}
-			onClick={params => fn(params)}
-		>
-			{text}
-		</button>
+		<>
+			<button
+				className={classes + ' mobile'}
+				type="button"
+				aria-label={shortText || text}
+				onClick={params => fn(params)}
+			>
+				{shortText && <span className="button__short-text">{shortText}</span>}
+				<span className="button__text">{text}</span>
+			</button>
+		</>
 	)
 }
 

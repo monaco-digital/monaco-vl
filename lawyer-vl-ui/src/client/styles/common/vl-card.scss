@@ -1,5 +1,5 @@
 .vl-card {
-	@apply .bg-ms-gray-lighter .border .border-ms-gray .border-opacity-25 .px-4 .py-1 .rounded;
+	@apply .bg-ms-gray-lighter .border .border-ms-gray .border-opacity-25 .px-4 .py-1 .rounded .overflow-y-scroll;
 
 	.vl-card__header {
 		@apply .flex .font-bold .justify-between .pt-4 .pb-3 .mb-4 .border-b .border-ms-gray .border-opacity-25;
