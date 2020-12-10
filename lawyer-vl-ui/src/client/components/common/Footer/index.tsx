@@ -59,11 +59,13 @@ const Footer: React.FC = () => {
 			vlToastTrigger({
 				text: 'Text copied',
 				type: 'info',
+				iconType: 'copy',
 			})
 		} catch (error) {
 			vlToastTrigger({
 				text: 'Unable to create Google Doc',
 				type: 'warning',
+				iconType: 'warning',
 			})
 		}
 	}
@@ -71,7 +73,8 @@ const Footer: React.FC = () => {
 	const openInGoogleDoc = async () => {
 		try {
 			vlToastTrigger({
-				text: 'Document created',
+				text: 'Creating document...',
+				iconType: 'new-doc',
 			})
 			const shareableLink = await callGoogleApi(
 				getLetterText(selectedTopics, selectedParagraphs)
@@ -81,6 +84,7 @@ const Footer: React.FC = () => {
 			vlToastTrigger({
 				text: 'Unable to create Google Doc',
 				type: 'warning',
+				iconType: 'warning',
 			})
 		}
 	}
