@@ -62,7 +62,7 @@ const Question: React.FC<Props> = ({ question }) => {
 
 	return (
 		<>
-			{question.text && <Title text={question} />}
+			<div>{question.text && <Title text={question} />}</div>
 			<div className="topics">{answers}</div>
 			{hasMore && !showMore && (
 				<Button
