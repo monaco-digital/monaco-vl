@@ -10,6 +10,21 @@
 	}
 }
 
+.button--has-short-text {
+	.button__short-text {
+		@apply .block;
+		@screen md {
+			@apply .hidden;
+		}
+	}
+	.button__text {
+		@apply .hidden;
+		@screen md {
+			@apply .block;
+		}
+	}
+}
+
 .button--main {
 	@apply .bg-ms-green;
 }
