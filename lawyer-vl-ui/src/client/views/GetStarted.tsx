@@ -13,7 +13,7 @@ export const GetStarted: React.FC = () => {
 		<>
 			<h1>Welcome to Virtual Lawyer</h1>
 			<p>
-				<i>Negotiate your exit like a pro</i>{' '}
+				<i>Empowering Employees</i>{' '}
 			</p>
 			<br />
 			<p>
