@@ -1,10 +1,4 @@
-import {
-	Paragraph,
-	ParagraphTopicMapping,
-	ParagraphTopics,
-	CaseTopic,
-	Topics,
-} from '../data/types'
+import { Paragraph, ParagraphTopicMapping, CaseTopic } from '../data/types'
 import { DSubTopics } from '../data/types'
 
 export const getSuggestedParagraphs = (

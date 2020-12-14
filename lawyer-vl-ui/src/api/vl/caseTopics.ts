@@ -1,12 +1,15 @@
 import config from '../../config'
 import axios from 'axios'
+import { CaseTopic } from '../../data/types'
 
 export const getAllCaseTopics = async () => {
 	try {
-		const { apiUrl } = config
-		const url = apiUrl + '/casetopics/get'
-		const response = await axios.get(url)
-		const { body } = response
+		const { API_URL } = config
+		const url = API_URL + '/casetopics/get'
+		const response = await axios.get<CaseTopic[]>(url)
+		const { data } = response
+		console.log('The case topics we have returned: ', data)
+		return data
 	} catch (e) {
 		console.log('There was an error getting all case topics: ', e)
 	}

@@ -10,6 +10,7 @@ export type AppState = {
 		toggle: ParagraphToggle
 	}
 	topics: {
+		all: CaseTopic[]
 		selected: CaseTopic[]
 	}
 	questions: {

@@ -1,7 +1,9 @@
-import { Topics, Topic } from '../data/types'
+import { Topic } from '../data/types'
+import store from '../data/store'
 
 const topicsFinder = (topicIds: Array<Topic>) => {
-	return Topics.filter(topic => topicIds.includes(topic.id))
+	const state = store.getState()
+	return state.topics.all.filter(topic => topicIds.includes(topic.id))
 }
 
 export default topicsFinder
