@@ -38,8 +38,10 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"deploy-dev": "amplify env checkout dev && amplify publish",
-		"deploy-prod": "amplify env checkout prod && amplify publish"
+		"predeploy:dev": "REACT_APP_STAGE=dev && yarn build",
+		"predeploy:prod": "REACT_APP_STAGE=prod && yarn build",
+		"deploy:dev": "amplify env checkout dev && amplify publish",
+		"deploy:prod": "amplify env checkout prod && amplify publish"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
