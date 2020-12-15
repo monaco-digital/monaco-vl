@@ -6,7 +6,7 @@ const apiUrl = (): string => {
 	} else if (stage === 'dev') {
 		return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev'
 	}
-	return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev'
+	return ''
 }
 
 export const config = {
