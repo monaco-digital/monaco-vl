@@ -8,7 +8,6 @@ export const getAllCaseTopics = async () => {
 		const url = API_URL + '/casetopics/get'
 		const response = await axios.get<CaseTopic[]>(url)
 		const { data } = response
-		console.log('The case topics we have returned: ', data)
 		return data
 	} catch (e) {
 		console.log('There was an error getting all case topics: ', e)
