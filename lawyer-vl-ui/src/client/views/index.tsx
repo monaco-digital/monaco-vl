@@ -6,11 +6,13 @@ import Header from '../components/common/Header'
 import Questions from '../components/common/Questions'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateAllParagraphs } from '../../data/paragraphsDataSlice'
+import { setAllTopics } from '../../data/topicDataSlice'
 import { getData } from '../../api/vlmasersheet'
 import AppState from '../../data/AppState'
 import pages from '../../types/navigation'
 import Help from './Help'
 import GetStarted from './GetStarted'
+import { getAllCaseTopics } from '../../api/vl/'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
@@ -21,7 +23,9 @@ const Main: FC = () => {
 		// dispatch(setView(undefined))
 		;(async () => {
 			const paragraphs = await getData()
+			const caseTopics = await getAllCaseTopics()
 			dispatch(updateAllParagraphs(paragraphs))
+			dispatch(setAllTopics(caseTopics))
 		})()
 	}, [])
 

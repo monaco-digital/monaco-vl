@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { CaseTopic } from './types'
-import { Topics } from '../data/types'
 
 export const slice = createSlice({
 	name: 'topic',
 	initialState: {
+		all: [] as CaseTopic[],
 		selected: [] as CaseTopic[],
 	},
 	reducers: {
+		setAllTopics: (state, action) => {
+			state.all = action.payload
+		},
 		setTopics: (state, action) => {
 			state.selected = action.payload
 			console.log('the selected topics are: ', state.selected)
@@ -18,7 +21,7 @@ export const slice = createSlice({
 		},
 		toggleTopic: (state, action) => {
 			const id = action.payload
-			const topicReference = Topics.find(topic => topic.id === id)
+			const topicReference = state.all.find(topic => topic.id === id)
 			const isTopicSelected = state.selected.find(topic => topic.id === id)
 
 			if (!topicReference) {
@@ -32,6 +35,11 @@ export const slice = createSlice({
 	},
 })
 
-export const { setTopics, toggleTopic, unselectTopic } = slice.actions
+export const {
+	setTopics,
+	toggleTopic,
+	unselectTopic,
+	setAllTopics,
+} = slice.actions
 
 export default slice.reducer

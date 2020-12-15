@@ -9,8 +9,7 @@ import {
 	toggleParagraph,
 } from '../../../../data/paragraphsDataSlice'
 import AppState from '../../../../data/AppState'
-import { Paragraph as ParagraphT } from '../../../../data/types'
-import { Topics } from '../../../../data/types'
+import { CaseTopic, Paragraph as ParagraphT } from '../../../../data/types'
 import { formatParagraphText } from '../../../utils/formatOutput'
 import { ParagraphToggle } from '../../../../types/paragraph'
 
@@ -31,6 +30,10 @@ const Paragraph: React.FC<Props> = ({
 		state => state.paragraphs.selected
 	)
 	const mode = useSelector<AppState, any>(state => state.questions.mode)
+	const allCaseTopics = useSelector<AppState, CaseTopic[]>(
+		state => state.topics.all
+	)
+
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -60,7 +63,7 @@ const Paragraph: React.FC<Props> = ({
 			: false,
 	})
 	const topics = [...topicsOneOf, ...topicsAllOf]
-	const caseTopics = Topics.filter(({ id }) => topics.includes(id))
+	const caseTopics = allCaseTopics.filter(({ id }) => topics.includes(id))
 	const topicTags = caseTopics
 		.map(({ text }) => text)
 		.slice(0, !isMobile ? 3 : 1)
