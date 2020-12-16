@@ -15,6 +15,7 @@ import { setPage } from '../../../../data/navigationDataSlice'
 import { unselectTopic } from '../../../../data/topicDataSlice'
 
 import { current } from '@reduxjs/toolkit'
+import pages from '../../../../types/navigation'
 
 const Questions: FC = () => {
 	let selectedTopics = useSelector<AppState, CaseTopic[]>(
@@ -31,7 +32,7 @@ const Questions: FC = () => {
 
 	if (!currentQuestion) {
 		console.log('No more questions')
-		dispatch(setPage('PARAGRAPHS_PREVIEW'))
+		dispatch(setPage(pages.STATEMENT_SELECT))
 		return null
 	}
 
