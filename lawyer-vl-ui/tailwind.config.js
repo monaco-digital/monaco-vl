@@ -15,9 +15,11 @@ module.exports = {
 			'ms-orange': '#FF9553',
 			'ms-green': '#68c170',
 			'ms-blue': '#538cff',
+			'ms-blue-light': '#f6f9ff',
 			'ms-red': '#E03131',
 			'ms-red-light': '#DE6161',
 			'ms-red-lighter': '#FFD8D8',
+			'ms-yellow': '#f8c559',
 			'gray-light': '#eaedf1',
 			gray: '#a0aec0',
 			black: '#414141',
@@ -56,10 +58,11 @@ module.exports = {
 				'serif',
 			],
 		},
-		corePlugins: {
-			outline: false,
-		},
 		variants: {},
 		plugins: [],
+	},
+	corePlugins: {
+		outline: false,
+		container: false,
 	},
 }

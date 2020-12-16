@@ -1,0 +1,59 @@
+.paragraphs-preview--desktop {
+	@apply .flex .flex-row -mx-4 .font-sans;
+
+	.paragraphs-preview__select,
+	.paragraphs-preview__letter {
+		@apply .w-1/2 .px-4;
+	}
+
+	.paragraphs-preview__select__wrapper {
+		@apply .h-screen .overflow-auto;
+
+		.vl-card {
+			@apply .h-full;
+		}
+	}
+
+	.paragraphs-preview__select-paragraphs {
+		[data-rbd-draggable-context-id] {
+			outline: none;
+		}
+	}
+
+	.paragraphs-preview__letter {
+		p {
+			@apply .pb-4;
+		}
+
+		.paragraphs-preview__letter-boxes {
+			@apply .h-full .flex .flex-col;
+		}
+
+		.paragraphs-preview__letter-box {
+			@apply .relative .bg-ms-blue-light .mb-2 .rounded-tr .rounded-br .px-4 .py-3 .border-l-4 .border-ms-blue;
+		}
+
+		.paragraphs-preview__letter-box__chevron {
+			@apply .w-10 .h-10 .absolute .top-0 .right-0 .text-ms-gray .text-xl;
+		}
+
+		.paragraphs-preview__letter__dropzone {
+			min-height: 33vh;
+			@apply .flex .flex-col .justify-center .flex-grow .border-ms-blue;
+
+			.paragraphs-preview__letter__dropzone__message {
+				@apply .transition-shadow .duration-500 .shadow-none .ease-linear .text-sm .font-sans .border .border-ms-blue .px-4 .py-3 .bg-white .rounded .text-ms-blue .max-w-xs .mx-auto;
+
+				i {
+					@apply .text-xl .pr-3 .text-ms-blue;
+				}
+			}
+		}
+
+		.paragraphs-preview__letter__dropzone__message--is-dragging {
+			.paragraphs-preview__letter__dropzone__message {
+				@apply .shadow-2xl;
+			}
+		}
+	}
+}

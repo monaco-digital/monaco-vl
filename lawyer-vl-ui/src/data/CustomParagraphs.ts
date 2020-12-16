@@ -5,6 +5,7 @@ export class CustomParagraphs {
 		{
 			id: 'A00001',
 			paragraph: 'PRIVATE & CONFIDENTIAL',
+			html: '<b>PRIVATE & CONFIDENTIAL</b>',
 			verticalHeight: 0,
 			topicsOneOf: [],
 			topicsAllOf: ['All'],
@@ -61,7 +62,7 @@ export class CustomParagraphs {
 			topicsNoneOf: [],
 			bold: true,
 		},
-	]
+	] as Paragraph[]
 
 	static bottom = [
 		{
@@ -180,7 +181,7 @@ export class CustomParagraphs {
 			topicsNoneOf: [],
 			bold: true,
 		},
-	]
+	] as Paragraph[]
 
 	static getParagraphs(
 		selectedTopics: CaseTopic[]

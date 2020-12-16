@@ -1,0 +1,9 @@
+.paragraphs-preview--mobile {
+	.paragraphs-preview__select {
+		@apply .fullwidth .pt-6 .px-6 .bg-ms-gray-lighter .flex .flex-col;
+
+		@screen sm {
+			@apply .px-8;
+		}
+	}
+}

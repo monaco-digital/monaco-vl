@@ -1,0 +1,62 @@
+.button {
+	transition: all 0.3s;
+	border-radius: 2px 20px 2px 0;
+	@apply .font-medium .text-white .font-sans .py-3 .px-4;
+
+	&:hover,
+	&:active,
+	&:focus {
+		@apply;
+	}
+}
+
+.button--has-short-text {
+	.button__short-text {
+		@apply .block;
+		@screen md {
+			@apply .hidden;
+		}
+	}
+	.button__text {
+		@apply .hidden;
+		@screen md {
+			@apply .block;
+		}
+	}
+}
+
+.button--main {
+	@apply .bg-ms-green;
+}
+
+.button--secondary {
+	@apply .bg-ms-blue;
+}
+
+.button--tertiary {
+	@apply .text-black .bg-gray .h-12;
+}
+
+.button--rounded {
+	@apply .rounded-full;
+}
+
+.button--green {
+	@apply .bg-ms-green;
+}
+
+.button--neutral {
+	@apply .text-black .bg-gray-light;
+}
+
+.button--danger {
+	@apply .bg-ms-red;
+}
+
+.button--rounded {
+	@apply .py-3 .px-5 .rounded-3xl;
+}
+
+.button--small {
+	@apply .text-sm .border .border-ms-gray .bg-white .py-1 .px-2 .text-ms-gray;
+}

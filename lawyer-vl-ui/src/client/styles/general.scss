@@ -1,0 +1,70 @@
+/* General overrides */
+// That's how to define placeholder
+// @define-placeholder outline-none {
+// 	outline: 0;
+// }
+
+button {
+	outline: 0;
+
+	&:focus,
+	&:active,
+	&:hover {
+		outline: 0;
+	}
+}
+
+.main {
+	@apply;
+}
+
+/* Containers */
+.container {
+	@apply .w-full .mx-auto .px-4;
+}
+
+@screen sm {
+	.container {
+		padding-left: 2rem;
+		padding-right: 2rem;
+	}
+	.not-mobile {
+		@apply .hidden;
+	}
+}
+
+@screen md {
+	.container {
+	}
+	.mobile {
+		@apply .hidden;
+	}
+}
+
+@screen xl {
+	.container {
+		max-width: 1366px;
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.mobile {
+		@apply .hidden;
+	}
+}
+
+.ms-shadow {
+	box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.03);
+}
+
+.fullwidth {
+	left: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	position: relative;
+	right: 50%;
+	width: 100vw;
+}
+
+@screen sm {
+	@apply .hidden;
+}

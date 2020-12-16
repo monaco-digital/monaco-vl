@@ -1,0 +1,27 @@
+.letter-preview {
+	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
+
+	p {
+		@apply .text-sm .pb-4;
+	}
+
+	.letter-preview__intro {
+		@apply .relative .pt-6;
+
+		.letter-preview_intro__chevron {
+			@apply .absolute .top-0 .right-0;
+
+			button {
+				@apply .h-8 .w-8 .bg-ms-gray-lighter .rounded-full .flex .justify-center .items-center .text-ms-gray;
+			}
+		}
+	}
+
+	.letter-preview__body {
+		@apply .my-12 .py-12 .border-t .border-b .border-ms-blue .border-opacity-25;
+	}
+
+	.letter-preview__signature {
+		@apply;
+	}
+}

@@ -1,10 +1,4 @@
-import {
-	Paragraph,
-	ParagraphTopicMapping,
-	ParagraphTopics,
-	CaseTopic,
-	Topics,
-} from '../data/types'
+import { Paragraph, ParagraphTopicMapping, CaseTopic } from '../data/types'
 import { DSubTopics } from '../data/types'
 
 export const getSuggestedParagraphs = (
@@ -156,9 +150,11 @@ export const filterByGeneralMatch = (
 
 	const newData = data.filter((value: Paragraph) => {
 		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
-
+		//@ts-ignore
 		const topicsOneOfF = topicsOneOf.filter(x => x !== '')
+		//@ts-ignore
 		const topicsAllOfF = topicsAllOf.filter(x => x !== '')
+		//@ts-ignore
 		const topicsNoneOfF = topicsNoneOf.filter(x => x !== '')
 
 		const eitherFlag =
@@ -172,6 +168,12 @@ export const filterByGeneralMatch = (
 
 		return eitherFlag && mustFlag && notFlag
 	})
+
+	console.log(
+		'filterByGeneralMatch return ',
+		filterByGeneralMatch.length,
+		'paras'
+	)
 
 	return newData
 }
