@@ -240,6 +240,7 @@ const Footer: React.FC = () => {
 							type="secondary"
 							text="Back"
 							rounded
+							extraClasses={'footer__actions-back-button'}
 							fn={() => navigateTo(pages.TOPICS)}
 						/>
 					</div>

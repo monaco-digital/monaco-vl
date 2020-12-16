@@ -10,6 +10,10 @@
 	.footer__actions {
 		@apply .flex .flex-wrap w-full .py-4 .items-center .h-16 .content-center justify-between;
 
+		.footer__actions-back-button {
+			@apply .bg-white .border .border-ms-blue text-black;
+		}
+
 		.footer__actions-forward {
 			@apply .text-black;
 		}
