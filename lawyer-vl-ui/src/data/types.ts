@@ -1,7 +1,7 @@
 export interface Paragraph {
 	id: string
 	paragraph: string
-	summary?: string
+	summary: string
 	verticalHeight: number
 	topic?: string
 	topicsOneOf: Topic[]
