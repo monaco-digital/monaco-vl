@@ -282,6 +282,17 @@ const Footer: React.FC = () => {
 						</div>
 					</>
 				)}
+				{page === pages.HELP && (
+					<div className="footer__actions__switch__buttons space-x-4">
+						<Button
+							type="secondary"
+							text="Back"
+							rounded
+							extraClasses={'footer__actions-back-button'}
+							fn={() => navigateTo(pages.TOPICS)}
+						/>
+					</div>
+				)}
 			</div>
 		</footer>
 	)
