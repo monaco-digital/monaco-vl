@@ -247,25 +247,34 @@ const Footer: React.FC = () => {
 				)}
 				{page === pages.LETTER_PREVIEW && (
 					<>
-						<button
-							className="footer__actions-info"
-							aria-label="More info"
-							type="button"
-							onClick={handleMoreInfo}
-						>
-							<img src={moreInfoIcon} />
-						</button>
+						<div className="footer__actions__switch__buttons space-x-1 md:space-x-4">
+							<button
+								className="footer__actions-info"
+								aria-label="More info"
+								type="button"
+								onClick={() => navigateTo(pages.HELP)}
+							>
+								<img src={moreInfoIcon} />
+							</button>
+							<Button
+								type="secondary"
+								text="Back"
+								rounded
+								extraClasses={'footer__actions-back-button'}
+								fn={() => navigateTo(pages.STATEMENT_SELECT)}
+							/>
+						</div>
 						<div className="footer__preview__button">
 							<Button
 								type="secondary"
-								shortText="Copy text"
+								shortText="Copy"
 								text="Copy letter text"
 								rounded
 								fn={copyParasToText}
 							/>
 							<Button
 								type="main"
-								shortText="Google doc"
+								shortText="Open Doc"
 								text="Create Google Doc"
 								rounded
 								fn={openInGoogleDoc}

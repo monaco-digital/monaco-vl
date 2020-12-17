@@ -5,7 +5,11 @@
 		rgba(255, 255, 255, 0) 100%
 	);
 
-	@apply .w-full .fixed .bottom-0 .pl-8 .pr-4 .h-20;
+	@apply .w-full .fixed .bottom-0 .pl-3 .pr-3 .h-20;
+
+	@screen md {
+		@apply .pl-8 .pr-4;
+	}
 
 	.footer__actions {
 		@apply .flex .flex-wrap w-full .py-4 .items-center .h-16 .content-center justify-between;
@@ -83,7 +87,10 @@
 		}
 
 		.footer__preview__button > * {
-			@apply .mx-2;
+			margin-left: 0.125rem;
+			@screen md {
+				@apply mx-1;
+			}
 		}
 	}
 }
