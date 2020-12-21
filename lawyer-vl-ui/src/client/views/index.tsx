@@ -13,6 +13,7 @@ import pages from '../../types/navigation'
 import Help from './Help'
 import GetStarted from './GetStarted'
 import { getAllCaseTopics } from '../../api/vl/'
+import StatementSelect from '../components/common/StatementSelect'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
@@ -37,6 +38,7 @@ const Main: FC = () => {
 				{mode === pages.TOPICS && <Questions />}
 				{(mode === pages.PARAGRAPHS_PREVIEW ||
 					mode === pages.PARAGRAPHS_EDIT) && <ParagraphsPreview />}
+				{mode === pages.STATEMENT_SELECT && <StatementSelect />}
 				{mode === pages.LETTER_PREVIEW && <LetterPreview />}
 				{mode === pages.HELP && <Help />}
 			</div>

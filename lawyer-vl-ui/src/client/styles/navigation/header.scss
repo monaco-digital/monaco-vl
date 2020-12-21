@@ -14,6 +14,11 @@
 
 		.header__breadcrumb__text {
 			@apply .font-sans .mx-6;
+
+			.header__breadcrumb__text-selected {
+				text-decoration: underline;
+				text-decoration-color: #538cff;
+			}
 		}
 	}
 

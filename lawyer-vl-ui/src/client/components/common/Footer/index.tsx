@@ -3,7 +3,11 @@ import Button from '../../Button'
 import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, Paragraph } from '../../../../data/types'
+import {
+	CaseTopic,
+	Paragraph,
+	Question as QuestionT,
+} from '../../../../data/types'
 import pages from '../../../../types/navigation'
 import { setPage } from '../../../../data/navigationDataSlice'
 import { getLetterText } from '../../../../utlis/letter'
@@ -16,6 +20,8 @@ import paragraphIconBlack from '../../../assets/img/expand-text-icon-black.svg'
 import { ParagraphToggle } from '../../../../types/paragraph'
 import { setParagraphToggle } from '../../../../data/paragraphsDataSlice'
 import vlToastTrigger from '../../../../utlis/vlToastTrigger'
+import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'
+import { getNextQuestion } from '../../../../clustering/questionFlow'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -25,6 +31,10 @@ const Footer: React.FC = () => {
 	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
 		state => state.paragraphs.selected
 	)
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(
+		state => state.questions.answeredQuestions
+	)
+
 	const { isDesktop } = useViewport()
 
 	const dispatch = useDispatch()
@@ -43,7 +53,13 @@ const Footer: React.FC = () => {
 		dispatch(setPage(pages.HELP))
 	}
 
+	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
+
 	const navigateTo = page => {
+		if (page === pages.TOPICS && !currentQuestion) {
+			dispatch(removeLastAnsweredQuestion(null))
+		}
+		console.log('Navigating to: ', page)
 		dispatch(setPage(page))
 	}
 
@@ -210,33 +226,72 @@ const Footer: React.FC = () => {
 						</div>
 					</>
 				)}
-				{page === pages.LETTER_PREVIEW && (
-					<>
+				{page === pages.STATEMENT_SELECT && (
+					<div className="footer__actions__switch__buttons space-x-4">
 						<button
 							className="footer__actions-info"
 							aria-label="More info"
 							type="button"
-							onClick={handleMoreInfo}
+							onClick={() => navigateTo(pages.HELP)}
 						>
 							<img src={moreInfoIcon} />
 						</button>
+						<Button
+							type="secondary"
+							text="Back"
+							rounded
+							extraClasses={'footer__actions-back-button'}
+							fn={() => navigateTo(pages.TOPICS)}
+						/>
+					</div>
+				)}
+				{page === pages.LETTER_PREVIEW && (
+					<>
+						<div className="footer__actions__switch__buttons space-x-1 md:space-x-4">
+							<button
+								className="footer__actions-info"
+								aria-label="More info"
+								type="button"
+								onClick={() => navigateTo(pages.HELP)}
+							>
+								<img src={moreInfoIcon} />
+							</button>
+							<Button
+								type="secondary"
+								text="Back"
+								rounded
+								extraClasses={'footer__actions-back-button'}
+								fn={() => navigateTo(pages.STATEMENT_SELECT)}
+							/>
+						</div>
 						<div className="footer__preview__button">
 							<Button
 								type="secondary"
-								shortText="Copy text"
+								shortText="Copy"
 								text="Copy letter text"
 								rounded
 								fn={copyParasToText}
 							/>
 							<Button
 								type="main"
-								shortText="Google doc"
+								shortText="Open Doc"
 								text="Create Google Doc"
 								rounded
 								fn={openInGoogleDoc}
 							/>
 						</div>
 					</>
+				)}
+				{page === pages.HELP && (
+					<div className="footer__actions__switch__buttons space-x-4">
+						<Button
+							type="secondary"
+							text="Back"
+							rounded
+							extraClasses={'footer__actions-back-button'}
+							fn={() => navigateTo(pages.TOPICS)}
+						/>
+					</div>
 				)}
 			</div>
 		</footer>
