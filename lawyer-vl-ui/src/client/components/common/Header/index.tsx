@@ -13,22 +13,16 @@ import useViewport from '../../../utils/useViewport'
 
 const Header: FC = () => {
 	const { isMobile } = useViewport()
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(
+	let selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(
+	let answeredQuestions = useSelector<AppState, QuestionT[]>(
 		state => state.questions.answeredQuestions
 	)
-	const page = useSelector<AppState, keyof typeof pages>(
-		state => state.navigation.page
-	)
-
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
 	const [menuIsVisibile, setMenuIsVisibile] = useState(false)
-
 	const dispatch = useDispatch()
-
 	const navigateTo = page => {
 		if (page === pages.TOPICS && !currentQuestion) {
 			dispatch(removeLastAnsweredQuestion(null))
@@ -57,45 +51,20 @@ const Header: FC = () => {
 			</a>
 			<div className="header__breadcrumb">
 				<div className="header__breadcrumb__text">
-					<button
-						className={
-							page === pages.TOPICS
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
-						onClick={() => navigateTo(pages.TOPICS)}
-					>
-						{keyFacts}
-					</button>
+					<button onClick={() => navigateTo(pages.TOPICS)}>{keyFacts}</button>
 				</div>
-				{/*				<div className="header__breadcrumb__text">
+				<div className="header__breadcrumb__text">
 					<button onClick={() => navigateTo(pages.PARAGRAPHS_PREVIEW)}>
 						{buildLetter}
 					</button>
-				</div>*/}
+				</div>
 				<div className="header__breadcrumb__text">
-					<button
-						className={
-							page === pages.LETTER_PREVIEW
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
-						onClick={() => navigateTo(pages.LETTER_PREVIEW)}
-					>
+					<button onClick={() => navigateTo(pages.LETTER_PREVIEW)}>
 						{previewLetter}
 					</button>
 				</div>
 				<div className="header__breadcrumb__text">
-					<button
-						className={
-							page === pages.HELP
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
-						onClick={() => navigateTo(pages.HELP)}
-					>
-						Help
-					</button>
+					<button onClick={() => navigateTo(pages.HELP)}>Help</button>
 				</div>
 			</div>
 			<button className="header__burger-btn" onClick={handleOnClick}>

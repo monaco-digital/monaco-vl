@@ -29,9 +29,7 @@ export const slice = createSlice({
 		},
 		addParagraph: (state, action) => {
 			const { id, toId } = action.payload
-			const paragraphReference = state.all.find(
-				paragraph => paragraph.id === id
-			)
+			const paragraphReference = state.all.find(topic => topic.id === id)
 
 			if (paragraphReference) {
 				state[toId] = [...state[toId], paragraphReference]

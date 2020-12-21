@@ -74,7 +74,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			}
 			return dataPoint
 		})
-		.filter(paragraph => !!paragraph.paragraph && !!paragraph.summary)
+		.filter(paragraph => !!paragraph.paragraph)
 
 	//add custom paragraphs
 	//const newData = data.concat(CustomParagraphs);
