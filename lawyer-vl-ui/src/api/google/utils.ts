@@ -1,9 +1,9 @@
 import { Paragraph } from '../../data/types'
 
 const mapParagraphToDocument = (paragraph: Paragraph): any => {
-	//extract text from paragraph ... amend with /n
+	//extract text from textThirdPerson ... amend with /n
 
-	const { paragraph: ptext } = paragraph
+	const { textThirdPerson: ptext } = paragraph
 	const text = ptext.concat('\n')
 	const startIndex = 0
 	const endIndex = text.length
@@ -40,7 +40,7 @@ export const updateGoogleDocumentBody = (
 		return template
 	}
 
-	//modifications using paragraph will happen here
+	//modifications using textThirdPerson will happen here
 	const docParaInsert = paragraphs.map(paragraph =>
 		mapParagraphToDocument(paragraph)
 	)

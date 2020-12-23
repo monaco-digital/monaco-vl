@@ -6,16 +6,16 @@ const LetterPreviewParagraph: FC<{ paragraphs: Paragraph[] }> = ({
 }) => {
 	return (
 		<>
-			{paragraphs.map(({ paragraph, bold, id }) => {
+			{paragraphs.map(({ textThirdPerson, bold, id }) => {
 				if (bold) {
 					return (
 						<p key={id}>
-							<b>{paragraph}</b>
+							<b>{textThirdPerson}</b>
 						</p>
 					)
 				}
 
-				return <p key={id}>{paragraph}</p>
+				return <p key={id}>{textThirdPerson}</p>
 			})}
 		</>
 	)

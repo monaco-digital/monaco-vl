@@ -13,6 +13,7 @@ import pages from '../../types/navigation'
 import Help from './Help'
 import GetStarted from './GetStarted'
 import { getAllCaseTopics } from '../../api/vl/'
+import TopicFilter from '../components/desktop/TopicFilter'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
@@ -34,7 +35,7 @@ const Main: FC = () => {
 			<Header />
 			<div className="screen container">
 				{mode === pages.GET_STARTED && <GetStarted />}
-				{mode === pages.TOPICS && <Questions />}
+				{mode === pages.TOPICS && <TopicFilter />}
 				{(mode === pages.PARAGRAPHS_PREVIEW ||
 					mode === pages.PARAGRAPHS_EDIT) && <ParagraphsPreview />}
 				{mode === pages.LETTER_PREVIEW && <LetterPreview />}

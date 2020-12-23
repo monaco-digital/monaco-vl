@@ -12,12 +12,12 @@ import * as mvpresponse from './mvpresponse.json'
 
 export const getData = async (): Promise<Paragraph[]> => {
 	// const d = mvpresponse.data
-	// 	.filter(paragraph => !!paragraph.paragraph)
+	// 	.filter(textThirdPerson => !!textThirdPerson.textThirdPerson)
 	// 	.map(p => {
 	// 		return {
 	// 			id: p.id,
 	// 			summary: p.summary,
-	// 			paragraph: p.paragraph,
+	// 			textThirdPerson: p.textThirdPerson,
 	// 			verticalHeight: p.verticalHeight,
 	// 			topic: p.topic,
 	// 			topicsOneOf: p.topicsOneOf.split(',') || [],
@@ -65,7 +65,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			const dataPoint: Paragraph = {
 				id: value[0],
 				summary: value[2],
-				paragraph: value[3],
+				textThirdPerson: value[3],
 				verticalHeight: value[8],
 				topic,
 				topicsOneOf,
@@ -74,7 +74,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			}
 			return dataPoint
 		})
-		.filter(paragraph => !!paragraph.paragraph)
+		.filter(paragraph => !!paragraph.textThirdPerson)
 
 	//add custom paragraphs
 	//const newData = data.concat(CustomParagraphs);

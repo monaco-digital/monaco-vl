@@ -13,7 +13,7 @@ export const getSuggestedParagraphs = (
 	console.log('selectedTopicIds', selectedTopicIds, selectedTopics)
 	const scoredAndFilteredParas = []
 	allParagraphs.forEach(paragraph => {
-		//score to rank how relevant the paragraph is
+		//score to rank how relevant the textThirdPerson is
 		const allOf = matchesAllOf(paragraph, selectedTopicIds)
 		const oneOf = matchesOneOf(paragraph, selectedTopicIds)
 		const noneOf = matchesNoneOf(paragraph, selectedTopicIds)
@@ -38,7 +38,7 @@ const matchesAllOf = (paragraph: Paragraph, selectedTopicIds) => {
 			matchCount++
 		}
 	})
-	// return matchCount === paragraph.topicsAllOf.length
+	// return matchCount === textThirdPerson.topicsAllOf.length
 	return matchCount > 0
 }
 

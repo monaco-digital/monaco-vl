@@ -1,6 +1,7 @@
 export interface Paragraph {
 	id: string
-	paragraph: string
+	textFirstPerson: string
+	textThirdPerson: string
 	summary?: string
 	verticalHeight: number
 	topic?: string

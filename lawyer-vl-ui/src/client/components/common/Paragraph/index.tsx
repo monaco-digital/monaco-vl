@@ -45,13 +45,13 @@ const Paragraph: React.FC<Props> = ({
 	}, [pToggle])
 	const {
 		id,
-		paragraph,
+		textThirdPerson,
 		summary,
 		topicsOneOf = [],
 		topicsAllOf = [],
 	} = paragraphData
 
-	const formattedParagraph = formatParagraphText(paragraph)
+	const formattedParagraph = formatParagraphText(textThirdPerson)
 
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,

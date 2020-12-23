@@ -1,0 +1,36 @@
+.topicfilter {
+	@apply .flex .flex-col .mb-0 .mt-auto .pt-8 .items-end;
+
+	@screen md {
+		@apply .items-start .mt-0;
+	}
+
+	.questions__actions {
+		@apply .flex .flex-row .justify-between .flex-grow;
+	}
+
+	.questions__actions-next {
+		@apply .flex;
+	}
+}
+
+.topicfilter__tags {
+	.topics {
+		@apply .flex .flex-wrap .max-w-md .-mx-2;
+	}
+
+	.topic {
+		@apply .px-2;
+
+		label {
+			transition: all 0.3s;
+			@apply .rounded-full .bg-white .border .border-ms-blue;
+		}
+
+		&:hover {
+			label {
+				@apply .text-white .bg-ms-blue;
+			}
+		}
+	}
+}
