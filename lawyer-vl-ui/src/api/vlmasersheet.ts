@@ -28,7 +28,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 	// console.log('data 1422', d)
 	// return d
 	//const sheetsUrl =
-	//	'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!D6:L?key=AIzaSyCnMRMK2SDglZY5UF__dcUfMC1mGiQnZcQ'
+	//	'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!A2:M?key=AIzaSyCnMRMK2SDglZY5UF__dcUfMC1mGiQnZcQ'
 	//const response = await axios.get(sheetsUrl)
 	const {
 		default: { values = [] },
@@ -37,9 +37,9 @@ export const getData = async (): Promise<Paragraph[]> => {
 
 	const data = filteredValues
 		.map((value, index) => {
-			const topicOneOfValue = value[5]
-			const topicAllOfValue = value[6]
-			const topicNoneOfValue = value[7]
+			const topicOneOfValue = value[9]
+			const topicAllOfValue = value[10]
+			const topicNoneOfValue = value[11]
 
 			//disjoin by , trim and convert into an array and convert D to an array to subsets
 
@@ -63,10 +63,14 @@ export const getData = async (): Promise<Paragraph[]> => {
 			}) + !(${topicNoneOfValue ?? ''})`
 
 			const dataPoint: Paragraph = {
-				id: value[0],
-				summary: value[2],
-				textThirdPerson: value[3],
-				verticalHeight: value[8],
+				id: value[3],
+				summary: value[5],
+				textFirstPerson: value[6],
+				textThirdPerson: value[7],
+				authorFirstPerson: value[1],
+				authorThirdPerson: value[8],
+				verticalHeight: value[12],
+				status: value[0],
 				topic,
 				topicsOneOf,
 				topicsAllOf,
@@ -74,7 +78,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			}
 			return dataPoint
 		})
-		.filter(paragraph => !!paragraph.textThirdPerson)
+		.filter(paragraph => !!paragraph.summary)
 
 	//add custom paragraphs
 	//const newData = data.concat(CustomParagraphs);

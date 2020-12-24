@@ -108,16 +108,27 @@ const Paragraph: React.FC<Props> = ({
 							</span>
 						))}
 					</div>
-					<button
-						className="paragraph__chevron"
-						aria-label="toggle paragraph summary"
-						onClick={event => toggleCollapsed(event)}
-					>
-						<span className="paragraph__chevron__see-more">
-							{collapsed ? 'See more' : 'See less'}
-						</span>
-						<i className={chevronClasses}></i>
-					</button>
+					<div className="inline-flex">
+						<button
+							className="paragraph__chevron ml-2"
+							aria-label="toggle paragraph summary"
+							onClick={event => toggleCollapsed(event)}
+						>
+							<span className="paragraph__chevron__see-more">
+								{collapsed ? '1st' : '3rd'}
+							</span>
+						</button>
+						<button
+							className="paragraph__chevron ml-2"
+							aria-label="toggle paragraph summary"
+							onClick={event => toggleCollapsed(event)}
+						>
+							<span className="paragraph__chevron__see-more">
+								{collapsed ? 'See more' : 'See less'}
+							</span>
+							<i className={chevronClasses}></i>
+						</button>
+					</div>
 				</footer>
 			</div>
 		</div>

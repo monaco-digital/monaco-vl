@@ -2,9 +2,12 @@ export interface Paragraph {
 	id: string
 	textFirstPerson: string
 	textThirdPerson: string
+	authorFirstPerson: string
+	authorThirdPerson: string
 	summary?: string
 	verticalHeight: number
 	topic?: string
+	status: string
 	topicsOneOf: Topic[]
 	topicsAllOf: Topic[]
 	topicsNoneOf: Topic[]
