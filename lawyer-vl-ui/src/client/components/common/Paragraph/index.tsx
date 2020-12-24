@@ -25,6 +25,7 @@ const Paragraph: React.FC<Props> = ({
 	pToggle = 'summary',
 }) => {
 	const [collapsed, setCollapsed] = useState(true)
+	const [isParaPerspectiveThird, setParaPerspectiveThird] = useState(true)
 	const [isSelected, setIsSelected] = useState(false)
 	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(
 		state => state.paragraphs.selected
@@ -45,13 +46,16 @@ const Paragraph: React.FC<Props> = ({
 	}, [pToggle])
 	const {
 		id,
+		textFirstPerson,
 		textThirdPerson,
 		summary,
 		topicsOneOf = [],
 		topicsAllOf = [],
 	} = paragraphData
 
-	const formattedParagraph = formatParagraphText(textThirdPerson)
+	const formattedParagraph = formatParagraphText(
+		isParaPerspectiveThird ? textThirdPerson : textFirstPerson
+	)
 
 	const chevronClasses = classNames('fas', {
 		'fa-chevron-down': collapsed,
@@ -71,6 +75,10 @@ const Paragraph: React.FC<Props> = ({
 	const toggleCollapsed = event => {
 		event.stopPropagation()
 		setCollapsed(collapsed => !collapsed)
+	}
+
+	const onClickParaPerspective = () => {
+		setParaPerspectiveThird(value => !value)
 	}
 
 	const handleToggleSelectedParagraph = ({ id }) => {
@@ -111,11 +119,11 @@ const Paragraph: React.FC<Props> = ({
 					<div className="inline-flex">
 						<button
 							className="paragraph__chevron ml-2"
-							aria-label="toggle paragraph summary"
-							onClick={event => toggleCollapsed(event)}
+							aria-label="toggle paragraph perspective"
+							onClick={onClickParaPerspective}
 						>
-							<span className="paragraph__chevron__see-more">
-								{collapsed ? '1st' : '3rd'}
+							<span className="paragraph__tag">
+								{isParaPerspectiveThird ? '3rd' : '1st'}
 							</span>
 						</button>
 						<button

@@ -1,4 +1,9 @@
-import { Paragraph, ParagraphTopicMapping, CaseTopic } from '../data/types'
+import {
+	Paragraph,
+	ParagraphTopicMapping,
+	CaseTopic,
+	AuthorPerspective,
+} from '../data/types'
 import { DSubTopics } from '../data/types'
 
 export const getSuggestedParagraphs = (
@@ -138,7 +143,8 @@ const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 
 export const filterByGeneralMatch = (
 	data: Paragraph[],
-	topics: CaseTopic[]
+	topics: CaseTopic[],
+	authorPerspective?: AuthorPerspective
 ): Paragraph[] => {
 	if (!(topics?.length > 0)) {
 		return data
@@ -169,11 +175,20 @@ export const filterByGeneralMatch = (
 		return eitherFlag && mustFlag && notFlag
 	})
 
-	console.log(
-		'filterByGeneralMatch return ',
-		filterByGeneralMatch.length,
-		'paras'
-	)
+	if (authorPerspective?.author && authorPerspective?.perspective) {
+		console.log('Entering author filter with : ', authorPerspective)
+		if (authorPerspective?.perspective === 'First') {
+			const dataToReturn = newData.filter(
+				paragraph => paragraph.authorFirstPerson === authorPerspective?.author
+			)
+			return dataToReturn
+		} else if (authorPerspective?.perspective === 'Third') {
+			const dataToReturn = newData.filter(
+				paragraph => paragraph.authorThirdPerson === authorPerspective?.author
+			)
+			return dataToReturn
+		}
+	}
 
 	return newData
 }

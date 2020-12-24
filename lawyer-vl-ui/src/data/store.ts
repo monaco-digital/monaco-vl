@@ -3,6 +3,7 @@ import paragraphReducer from './paragraphsDataSlice'
 import topicsReducer from './topicDataSlice'
 import questionsReducer from './questionDataSlice'
 import navigationReducer from './navigationDataSlice'
+import filterReducer from './filterDataSlice'
 
 export default configureStore({
 	reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
 		topics: topicsReducer,
 		questions: questionsReducer,
 		navigation: navigationReducer,
+		filters: filterReducer,
 	},
 })

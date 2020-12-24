@@ -686,3 +686,8 @@ export type NavView =
 	| 'preview-letter'
 	| 'letter-builder'
 	| 'help'
+
+export type AuthorPerspective = {
+	perspective: 'First' | 'Third'
+	author: string
+}

@@ -4,8 +4,11 @@ import checkTopicInputStatus from '../../../utils/checkTopicInputStatus'
 import classNames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { CaseTopic } from '../../../../data/types'
+import { AuthorPerspective, CaseTopic } from '../../../../data/types'
 import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
+import { setAuthorPerspective } from '../../../../data/filterDataSlice'
+
+import { SelectFilter } from './SelectFilter'
 
 const TopicFilter: React.FC = () => {
 	const classes = classNames('topicfilter', 'topicfilter__tags')
@@ -16,8 +19,33 @@ const TopicFilter: React.FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
+	const authorPerspective = useSelector<AppState, AuthorPerspective>(
+		state => state.filters.authorPerspective
+	)
 
 	const [showDiscrimination, setShowDiscrimination] = useState(false)
+
+	const [perspectiveFilter, setPerspectiveFilter] = useState(
+		authorPerspective?.perspective
+	)
+	const [authorFilter, setAuthorFilter] = useState(authorPerspective?.author)
+
+	const onPerspectiveChange = (value: any) => {
+		setPerspectiveFilter(value !== 'No Filter' ? value : undefined)
+	}
+
+	const onAuthorChange = (value: any) => {
+		setAuthorFilter(value !== 'No Filter' ? value : undefined)
+	}
+
+	useEffect(() => {
+		dispatch(
+			setAuthorPerspective({
+				perspective: perspectiveFilter,
+				author: authorFilter,
+			})
+		)
+	}, [perspectiveFilter, authorFilter])
 
 	useEffect(() => {
 		if (selectedTopics.some(topic => topic.id === 'D')) {
@@ -109,23 +137,23 @@ const TopicFilter: React.FC = () => {
 						{topicDiscriminationSubCaseViews}
 					</div>
 				)}
-				<div className="grid grid-cols-2 gap-4 mt-8">
-					<div>
-						<label htmlFor="cars">Choose Paragraph Perspective</label>
-						<select name="para-perspective" id="para-perspective">
-							<option value="default">Default</option>
-							<option value="first">First</option>
-							<option value="third">Third</option>
-						</select>
-					</div>
-					<div>
-						<label htmlFor="cars">Choose Author</label>
-						<select name="author" id="author">
-							<option value="default">Default</option>
-							<option value="first">AV</option>
-							<option value="third">RP</option>
-						</select>
-					</div>
+			</div>
+			<div className="inline-flex">
+				<div className="w-full">
+					<SelectFilter
+						filterValues={['No Filter', 'First', 'Third']}
+						label={'Paragraph Perspective'}
+						chosenValue={perspectiveFilter}
+						onSelect={onPerspectiveChange}
+					/>
+				</div>
+				<div className="w-full">
+					<SelectFilter
+						filterValues={['No Filter', 'AV', 'RP']}
+						label={'Choose Author'}
+						chosenValue={authorFilter}
+						onSelect={onAuthorChange}
+					/>
 				</div>
 			</div>
 		</>

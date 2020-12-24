@@ -5,7 +5,7 @@ import useViewport from '../../../utils/useViewport'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateSuggestedParagraphs } from '../../../../data/paragraphsDataSlice'
 import { AppState } from '../../../../data/AppState'
-import { CaseTopic } from '../../../../data/types'
+import { AuthorPerspective, CaseTopic } from '../../../../data/types'
 
 const ParagraphsPreview: FC = () => {
 	const { isDesktop } = useViewport()
@@ -13,10 +13,13 @@ const ParagraphsPreview: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(
 		state => state.topics.selected
 	)
+	const authorPerspective = useSelector<AppState, AuthorPerspective>(
+		state => state.filters.authorPerspective
+	)
 
 	useEffect(() => {
-		dispatch(updateSuggestedParagraphs(selectedTopics))
-	}, [selectedTopics])
+		dispatch(updateSuggestedParagraphs({ selectedTopics, authorPerspective }))
+	}, [selectedTopics, authorPerspective])
 
 	return (
 		<>

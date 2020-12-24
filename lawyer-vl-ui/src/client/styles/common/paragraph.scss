@@ -48,6 +48,10 @@
 			}
 		}
 
+		.paragraph__tag {
+			@apply .flex .items-center .text-xs .text-ms-gray .p-3 .bg-ms-blue-light .ml-8;
+		}
+
 		.paragraph__chevron {
 			@apply .flex .items-center .text-xs;
 

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { Paragraph } from './types'
+import { AuthorPerspective, Paragraph } from './types'
 import { filterByGeneralMatch } from './../filters'
 import { ParagraphToggle } from '../types/paragraph'
 
@@ -16,12 +16,13 @@ export const slice = createSlice({
 			state.all = action.payload
 		},
 		updateSuggestedParagraphs: (state, action) => {
-			const selectedTopics = action.payload
+			const { selectedTopics, authorPerspective } = action.payload
 			const suggestedParagraphs = filterByGeneralMatch(
 				state.all,
-				selectedTopics
+				selectedTopics,
+				authorPerspective
 			)
-			console.log('updating suggested paragraphs', suggestedParagraphs)
+			console.log('the suggested paragraphs are: ', suggestedParagraphs)
 			state.suggested = suggestedParagraphs
 		},
 		updateSelectedParagraphs: (state, action) => {
