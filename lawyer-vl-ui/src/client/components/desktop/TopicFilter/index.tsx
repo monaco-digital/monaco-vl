@@ -139,7 +139,7 @@ const TopicFilter: React.FC = () => {
 				)}
 			</div>
 			<div className="inline-flex">
-				<div className="w-full">
+				<div className="w-full z-10">
 					<SelectFilter
 						filterValues={['No Filter', 'First', 'Third']}
 						label={'Paragraph Perspective'}
@@ -147,7 +147,7 @@ const TopicFilter: React.FC = () => {
 						onSelect={onPerspectiveChange}
 					/>
 				</div>
-				<div className="w-full">
+				<div className="w-full z-10">
 					<SelectFilter
 						filterValues={['No Filter', 'AV', 'RP']}
 						label={'Choose Author'}
