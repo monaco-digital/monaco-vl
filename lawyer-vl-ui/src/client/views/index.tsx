@@ -23,10 +23,10 @@ const Main: FC = () => {
 		//TODO - fix this
 		// dispatch(setView(undefined))
 		;(async () => {
-			const paragraphs = await getData()
 			const caseTopics = await getAllCaseTopics()
-			dispatch(updateAllParagraphs(paragraphs))
 			dispatch(setAllTopics(caseTopics))
+			const paragraphs = await getData()
+			dispatch(updateAllParagraphs(paragraphs))
 		})()
 	}, [])
 
