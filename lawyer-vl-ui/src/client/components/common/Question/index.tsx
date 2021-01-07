@@ -6,6 +6,7 @@ import { CaseTopic, Question as QuestionT } from '../../../../data/types'
 import AppState from '../../../../data/AppState'
 import Title from '../../Title'
 import Button from '../../Button'
+import classNames from 'classnames'
 
 interface Props {
 	question: QuestionT
@@ -55,7 +56,22 @@ const Question: React.FC<Props> = ({ question }) => {
 					onChange={() => handleOnClick(topicId, true)}
 					checked={checkTopicInputStatus(selectedTopics, topicId)}
 				/>
-				<label htmlFor={topicId}>{text}</label>
+				<label htmlFor={topicId}>
+					<div className="inline-flex items-center content-center">
+						{text}
+						{topicId === '_PC' && (
+							<div className="questions__tags__topic-chevron ml-4">
+								<div
+									className={
+										checkTopicInputStatus(selectedTopics, topicId)
+											? classNames('fas', 'fa-chevron-up')
+											: classNames('fas', 'fa-chevron-down')
+									}
+								/>
+							</div>
+						)}
+					</div>
+				</label>
 			</div>
 		)
 	})
