@@ -37,7 +37,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 
 	const data = filteredValues
 		.map((value, index) => {
-			const topicOneOfValue = value[7]
+			const topicOneOfValue = value[6]
 			const topicAllOfValue = value[7]
 			const topicNoneOfValue = value[8]
 

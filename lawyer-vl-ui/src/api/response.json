@@ -233,7 +233,7 @@
 		[
 			"AflV962-Zn1ASHrQwIAGA",
 			"There was a lack of empathy so that I feel bullied. This is discrimination.",
-			"Their lack of empathy was so bad that it amount to discrimination",
+			"Their lack of empathy was so bad it amounted to discrimination",
 			"There was a lack of empathy for my situation to the extent that I felt bullied. This would amount to discrimination on the grounds of [insert protected characteristic].\n\n[provide up to 3 bullet points of strong, recent examples - try to keep them within the last 2-3 months, if possible].    ",
 			"",
 			"",
@@ -257,7 +257,7 @@
 		[
 			"XBWVW6TvgVexGL66Aq_dq",
 			"There has been a lack of empathy so that I feel bullied. This is discrimination.",
-			"Their lack of empathy was so bad that it amounted to discrimination",
+			"Their lack of empathy is so bad it amounts to discrimination",
 			"There has been a lack of empathy for my situation to the extent that I feel bullied. This would amount to discrimination on the grounds of [insert protected characteristic].\n\n[provide up to 3 bullet points of strong, recent examples - try to keep them within the last 2-3 months, if possible].    ",
 			"",
 			"",
@@ -267,7 +267,7 @@
 			"2"
 		],
 		[
-			"jAYO2GiqdHKdEyY_Fcvki",
+			"_YG7mBqFZdxtYW908hwp1",
 			"",
 			"I've been harassed and discriminated against",
 			"I’ve been subjected to [protected characteristic(s)] harassment and/or direct discrimination, in particular:\n\n[provide up to 3 bullet points of strong, recent examples - try to keep them within the last 2-3 months, if possible]. ",
@@ -375,18 +375,6 @@
 			"2"
 		],
 		[
-			"G8V52eEde1nnD5V9m_-nc",
-			"I've paid less for equal work because of my gender.",
-			"I've been paid less than a male colleague for equal work",
-			"I've been paid less than a male colleague for equal work. [add details here]. An 'equality clause' is implied in every employment contract, which means that you have breached my contract by paying me less than this colleague.",
-			"",
-			"",
-			"",
-			"DS,EP,E",
-			"",
-			"2"
-		],
-		[
 			"-UkcsyiwopM6D4oi12_3t",
 			"",
 			"I was paid less than a male colleague for equal work",
@@ -399,14 +387,14 @@
 			"2"
 		],
 		[
-			"A6pqbo7kmWdAD8Cz0cVPN",
-			"Disciplinary process/action against me is unfair.",
-			"The disciplinary process against me is unjustified or unfair",
-			"The disciplinary process against me is unjustified and unfair, and any resulting disciplinary action would clearly be unfair. In particular: [add up to three bullet points with the strongest reasons that it is unfair. Examples: lack of evidence; that even if proven, the action wasn't misconduct; bias. Try to explain your reasons.]",
+			"G8V52eEde1nnD5V9m_-nc",
+			"I've paid less for equal work because of my gender.",
+			"I've been paid less than a male colleague for equal work",
+			"I've been paid less than a male colleague for equal work. [add details here]. An 'equality clause' is implied in every employment contract, which means that you have breached my contract by paying me less than this colleague.",
 			"",
 			"",
 			"",
-			"Dy,E",
+			"DS,EP,E",
 			"",
 			"2"
 		],
@@ -423,15 +411,15 @@
 			"2"
 		],
 		[
-			"YzZrRoMInvZOnljX8Egox",
-			"Lack of empathy - constructive dismissal.",
-			"Lack of empathy makes me want to resign",
-			"Your lack of empathy amounts to a fundamental breach of the implied term of trust and confidence in our employment agreement. This would entitle me to resign and claim compensation for unfair constructive dismissal in an employment tribunal.",
+			"A6pqbo7kmWdAD8Cz0cVPN",
+			"Disciplinary process/action against me is unfair.",
+			"The disciplinary process against me is unjustified or unfair",
+			"The disciplinary process against me is unjustified and unfair, and any resulting disciplinary action would clearly be unfair. In particular: [add up to three bullet points with the strongest reasons that it is unfair. Examples: lack of evidence; that even if proven, the action wasn't misconduct; bias. Try to explain your reasons.]",
 			"",
 			"",
 			"",
-			"E",
-			"D,2y",
+			"Dy,E",
+			"",
 			"2"
 		],
 		[
@@ -1371,6 +1359,18 @@
 			"3"
 		],
 		[
+			"YzZrRoMInvZOnljX8Egox",
+			"Lack of empathy - constructive dismissal.",
+			"Lack of empathy makes me want to resign",
+			"Your lack of empathy amounts to a fundamental breach of the implied term of trust and confidence in our employment agreement. This would entitle me to resign and claim compensation for unfair constructive dismissal in an employment tribunal.",
+			"",
+			"",
+			"",
+			"E",
+			"D,2y",
+			"3"
+		],
+		[
 			"fSKjwnSIvD4MJHXZt4tsA",
 			"My employment no longer tenable, but reserving position.",
 			"I am considering whether to resign",
@@ -1403,8 +1403,7 @@
 			"",
 			"",
 			"P,E",
-			"2y",
-			"3"
+			"2y"
 		]
 	]
 }
