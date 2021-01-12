@@ -15,6 +15,7 @@ module.exports = {
 			'ms-orange': '#FF9553',
 			'ms-green': '#68c170',
 			'ms-blue': '#538cff',
+			'ms-blue-dark': '#4377e0',
 			'ms-blue-light': '#f6f9ff',
 			'ms-red': '#E03131',
 			'ms-red-light': '#DE6161',
