@@ -37,9 +37,9 @@ export const getData = async (): Promise<Paragraph[]> => {
 
 	const data = filteredValues
 		.map((value, index) => {
-			const topicOneOfValue = value[5]
-			const topicAllOfValue = value[6]
-			const topicNoneOfValue = value[7]
+			const topicOneOfValue = value[6]
+			const topicAllOfValue = value[7]
+			const topicNoneOfValue = value[8]
 
 			//disjoin by , trim and convert into an array and convert D to an array to subsets
 
@@ -66,7 +66,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 				id: value[0],
 				summary: value[2],
 				paragraph: value[3],
-				verticalHeight: value[8],
+				verticalHeight: value[9],
 				topic,
 				topicsOneOf,
 				topicsAllOf,

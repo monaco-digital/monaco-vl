@@ -251,7 +251,7 @@ const allQuestions: Question[] = [
 				topicId: 'HD',
 			},
 			{
-				text: 'Because of my:',
+				text: 'Because of my',
 				topicId: '_PC',
 			},
 			{

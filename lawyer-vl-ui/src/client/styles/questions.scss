@@ -24,12 +24,24 @@
 
 		label {
 			transition: all 0.3s;
-			@apply .rounded-full .bg-white .border .border-ms-blue;
+			@apply .rounded-full .bg-white .border .border-ms-blue inline-flex items-center content-center;
+
+			.questions__tags__topic-chevron {
+				@apply .h-10 .w-10 bg-ms-blue .rounded-full .flex .items-center .justify-center .shadow-md .text-white;
+			}
 		}
 
 		&:hover {
 			label {
-				@apply .text-white .bg-ms-blue;
+				@apply .text-white .bg-ms-blue inline-flex items-center content-center;
+			}
+		}
+
+		[type='checkbox']:checked + label {
+			@apply .text-white .bg-ms-blue;
+
+			.questions__tags__topic-chevron {
+				@apply bg-ms-blue-dark;
 			}
 		}
 	}
