@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames'
-import logo from '../../../assets/img/virtual-lawyer-logo.svg'
+import logo from '../../../assets/img/vl-logo.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../../data/navigationDataSlice'
 import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'

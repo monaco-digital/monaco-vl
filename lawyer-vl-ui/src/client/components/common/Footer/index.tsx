@@ -22,6 +22,7 @@ import { setParagraphToggle } from '../../../../data/paragraphsDataSlice'
 import vlToastTrigger from '../../../../utlis/vlToastTrigger'
 import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
+import { unselectTopic } from '../../../../data/topicDataSlice'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -41,10 +42,6 @@ const Footer: React.FC = () => {
 
 	const [paragraphToggle, setParaToggle] = useState<ParagraphToggle>('summary')
 
-	// const handleGoForward = () => {
-	// 	dispatch(setView(selectedTopics))
-	// }
-
 	const enterLetterPreviewMode = () => {
 		dispatch(setPage(pages.LETTER_PREVIEW))
 	}
@@ -59,13 +56,16 @@ const Footer: React.FC = () => {
 		if (page === pages.TOPICS && !currentQuestion) {
 			dispatch(removeLastAnsweredQuestion(null))
 		}
-		console.log('Navigating to: ', page)
 		dispatch(setPage(page))
 	}
 
-	// const enterParagraphPreviewMode = () => {
-	// 	dispatch(setMode(modes.PARAGRAPHS_PREVIEW))
-	// }
+	const handleGoBackwards = () => {
+		console.log('Handle go backwards')
+		for (const option of currentQuestion.options) {
+			dispatch(unselectTopic(option.topicId))
+		}
+		dispatch(removeLastAnsweredQuestion(null))
+	}
 
 	const copyParasToText = () => {
 		try {
@@ -125,7 +125,7 @@ const Footer: React.FC = () => {
 			<div className="footer__actions">
 				{page === pages.GET_STARTED && <></>}
 				{page === pages.TOPICS && (
-					<>
+					<div className="footer__actions__switch__buttons space-x-4">
 						<button
 							className="footer__actions-info"
 							aria-label="More info"
@@ -134,7 +134,14 @@ const Footer: React.FC = () => {
 						>
 							<img src={moreInfoIcon} />
 						</button>
-					</>
+						<Button
+							type="secondary"
+							text="Back"
+							rounded
+							extraClasses={'footer__actions-back-button'}
+							fn={() => handleGoBackwards()}
+						/>
+					</div>
 				)}
 				{page === pages.PARAGRAPHS_EDIT && !isDesktop && (
 					<>
