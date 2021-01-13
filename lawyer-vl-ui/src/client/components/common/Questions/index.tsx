@@ -77,16 +77,14 @@ const Questions: FC = () => {
 				)}
 				<Question question={currentQuestion} />
 				<div className="topics__actions">
-					{enableNext && (
-						<Button
-							disabled={!enableNext}
-							type="green"
-							text="Next"
-							rounded
-							fn={() => handleGoForward()}
-							extraClasses="topics__actions-next"
-						/>
-					)}
+					<Button
+						disabled={!enableNext}
+						type={!enableNext ? 'tertiary' : 'green'}
+						text="Next"
+						rounded
+						fn={() => handleGoForward()}
+						extraClasses="topics__actions-next"
+					/>
 				</div>
 			</div>
 		</>
