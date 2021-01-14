@@ -12,6 +12,14 @@
 	.questions__actions-next {
 		@apply .flex;
 	}
+
+	.questions__steps {
+		@apply text-ms-blue mb-1 self-start;
+	}
+
+	.questions__title {
+		@apply self-start;
+	}
 }
 
 .questions__tags {
