@@ -7,10 +7,12 @@ interface Props {
 	fn?: any
 	extraClasses?: string
 	rounded?: any
+	disabled?: boolean
 }
 
 export const Button: React.FC<Props> = ({
 	type = 'main',
+	disabled = false,
 	text,
 	shortText,
 	fn,
@@ -26,6 +28,7 @@ export const Button: React.FC<Props> = ({
 	return (
 		<>
 			<button
+				disabled={disabled}
 				className={buttonClasses}
 				type="button"
 				aria-label={shortText || text}

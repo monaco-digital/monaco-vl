@@ -67,26 +67,24 @@ const Questions: FC = () => {
 	return (
 		<>
 			<div className={classes}>
+				{currentQuestion.id <= 6 && (
+					<div className="questions__steps">
+						Step 1 of 2: Your Job Situation
+					</div>
+				)}
+				{currentQuestion.id > 6 && (
+					<div className="questions__steps">Step 2 of 2: Reasons Given</div>
+				)}
 				<Question question={currentQuestion} />
 				<div className="topics__actions">
-					{answeredQuestions.length > 0 && (
-						<Button
-							type="tertiary"
-							text="Back"
-							rounded
-							fn={() => handleGoBackwards()}
-							extraClasses="topics__actions-next"
-						/>
-					)}
-					{enableNext && (
-						<Button
-							type="green"
-							text="Next"
-							rounded
-							fn={() => handleGoForward()}
-							extraClasses="topics__actions-next"
-						/>
-					)}
+					<Button
+						disabled={!enableNext}
+						type={!enableNext ? 'tertiary' : 'green'}
+						text="Next"
+						rounded
+						fn={() => handleGoForward()}
+						extraClasses="topics__actions-next"
+					/>
 				</div>
 			</div>
 		</>
