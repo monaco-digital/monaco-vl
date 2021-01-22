@@ -251,7 +251,7 @@ const allQuestions: Question[] = [
 				topicId: 'HD',
 			},
 			{
-				text: 'Because of my',
+				text: 'Discrimination',
 				topicId: '_PC',
 			},
 			{
