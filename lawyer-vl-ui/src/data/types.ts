@@ -1,3 +1,8 @@
+export interface Meta {
+	created: number
+	updated: number
+}
+
 export interface Paragraph {
 	id: string
 	paragraph: string
@@ -7,11 +12,119 @@ export interface Paragraph {
 	topicsOneOf: Topic[]
 	topicsAllOf: Topic[]
 	topicsNoneOf: Topic[]
+	paragraphComponents?: ParagraphComponent[]
 	bold?: boolean
-	hasUserFields: boolean
-	userFields: {
-		reasons?: string[]
-	}
+	meta?: Meta
+}
+
+export type ParagraphComponent = {
+	id: string
+	meta: Meta
+} & (
+	| ({
+			type: 'StaticText'
+	  } & StaticText)
+	| ({
+			type: 'BulletPoints'
+	  } & BulletPoints)
+	| ({
+			type: 'Dropdown'
+	  } & Dropdown)
+)
+
+export type StaticText = {
+	textFirstPerson: string
+	textThirdPerson: string
+}
+
+export type BulletPoints = {
+	bulletPoints: {
+		id: string
+		placeholder: string
+		required: boolean
+		minLength: number
+		maxLength: number
+	}[]
+}
+
+export type Dropdown = {
+	minSelect: number
+	maxSelect: number
+	optionsList: string
+}
+
+export interface Letter {
+	id: string
+	baseTemplate: string
+	letterComponents: LetterComponent[]
+	meta: Meta
+}
+
+//abstract
+export interface LetterComponent {
+	id: string
+	baseTemplateComponent: string
+	meta: Meta
+}
+
+export interface LetterImage extends LetterComponent {
+	url: string
+}
+
+export interface LetterSignature extends LetterComponent {
+	html: string
+}
+
+export interface Template {
+	templateComponents: TemplateComponent[]
+}
+
+export interface TemplateComponent {
+	id: string
+	type: 'Image' | 'Paragraph' | 'Signature' | 'Header'
+	alignment: 'left' | 'right' | 'center' | 'justify'
+	meta: Meta
+}
+
+export interface Image extends TemplateComponent {
+	url: string
+}
+
+export interface Signature extends TemplateComponent {
+	html: string
+}
+
+export interface Header extends TemplateComponent {
+	logo: Image
+	address: string
+}
+export interface LetterHeader extends LetterComponent {
+	logo: Image
+	address: string
+}
+
+// abstract interface, never directly implemented
+export interface LetterParagraphComponent extends LetterComponent {
+	type: 'StaticText' | 'BulletPoints' | 'Dropdown'
+}
+
+export interface LetterParagraphStaticText extends LetterParagraphComponent {
+	textFirstPerson: string
+	textThirdPerson: string
+}
+
+export interface LetterParagraphBulletPoints extends LetterParagraphComponent {
+	completedBulletPoints: [
+		{
+			id: string
+			value: string
+		}
+	]
+}
+
+export interface LetterParagraphDropdown {
+	optionsList: string // ID - reference
+	selected: string[] // ID - reference
 }
 
 export const ParagraphTopics = {

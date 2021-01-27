@@ -1,3 +1,15 @@
 .user-fields {
-	@apply .mt-8;
+	@apply .w-1/2 .mt-8;
+
+	.user-fields__bullet-points {
+		@apply .flex .flex-col;
+
+		.user-fields__bullet-point__field {
+			@apply .mb-8;
+
+			textarea {
+				@apply .w-full .border .border-ms-gray .rounded .p-2;
+			}
+		}
+	}
 }

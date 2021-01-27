@@ -32,11 +32,6 @@ export const slice = createSlice({
 				state[toId] = [...state[toId], paragraphReference]
 			}
 		},
-		addSelectedParagraphUserFields: (state, action) => {
-			const { id, reasons } = action.payload
-			const paragraph = state.selected.find(paragraph => paragraph.id === id)
-			paragraph.userFields.reasons = reasons
-		},
 		removeParagraph: (state, action) => {
 			const { id, fromId } = action.payload
 
@@ -89,7 +84,6 @@ export const {
 	updateSelectedParagraphs,
 	toggleParagraph,
 	addParagraph,
-	addSelectedParagraphUserFields,
 	removeParagraph,
 	reorderParagraphs,
 	setParagraphToggle,

@@ -5,6 +5,7 @@ import { replaceDInArrayOfTopics } from '../utlis/TypeConversion'
 import { CustomParagraphs } from '../data/static'
 import * as response from './response.json'
 import * as mvpresponse from './mvpresponse.json'
+import { type } from 'os'
 
 export const getData = async (): Promise<Paragraph[]> => {
 	// const d = mvpresponse.data
@@ -36,7 +37,6 @@ export const getData = async (): Promise<Paragraph[]> => {
 			const topicOneOfValue = value[6]
 			const topicAllOfValue = value[7]
 			const topicNoneOfValue = value[8]
-			const hasUserFields = !!value[10]
 
 			//disjoin by , trim and convert into an array and convert D to an array to subsets
 
@@ -57,14 +57,123 @@ export const getData = async (): Promise<Paragraph[]> => {
 				topicsOneOf,
 				topicsAllOf,
 				topicsNoneOf,
-				hasUserFields,
-				userFields: {},
+				paragraphComponents: [
+					{
+						id: 321,
+						meta: {
+							created: 432,
+							updated: 434,
+						},
+						type: 'BulletPoints',
+						bulletPoints: [
+							{
+								id: 'somebulletpointid1',
+								placeholder: 'some placeholder goes here1',
+								required: false,
+								minLength: 0,
+								maxLength: 1000,
+							},
+							{
+								id: 'somebulletpointid2',
+								placeholder: 'some placeholder goes here2',
+								required: false,
+								minLength: 0,
+								maxLength: 1000,
+							},
+							{
+								id: 'somebulletpointid3',
+								placeholder: 'some placeholder goes here3',
+								required: false,
+								minLength: 0,
+								maxLength: 1000,
+							},
+						],
+					},
+				],
 			}
+
 			return dataPoint
 		})
 		.filter(paragraph => !!paragraph.paragraph && !!paragraph.summary)
 
+	const hardcodedData = [
+		{
+			id: 'T2000',
+			summary: 'This a summary paragraph object 2',
+			verticalHeight: 8,
+			topicsOneOf: ['D', 'R'],
+			paragraphComponents: [
+				{
+					id: 'PC2000',
+					type: 'StaticText',
+					textFirstPerson: 'This is first person text for para PC2000',
+				},
+				{
+					id: 'PC3000',
+					type: 'BulletPoints',
+					bulletPoints: [
+						{
+							placeholder: 'Please enter the person involved in the harassment',
+							required: true,
+							minLength: 1,
+							maxLength: 100,
+						},
+						{
+							placeholder: 'Please enter the name of a witness to this',
+							required: true,
+							minLength: 1,
+							maxLength: 100,
+						},
+						{
+							placeholder: 'Please tell us how long this went on for',
+							required: true,
+							minLength: 1,
+							maxLength: 100,
+						},
+					],
+					meta: {
+						created: 1611333500439,
+						updated: 1611333500439,
+					},
+				},
+			],
+			paragraphComponentRefs: ['PC2000', 'PC3000'],
+			meta: {
+				created: 1611333500439,
+				updated: 1611333500439,
+			},
+		},
+		{
+			// Preexisting
+			id: 'T3000',
+			summary: 'This a summary paragraph object 4',
+			verticalHeight: 6,
+			topicsOneOf: ['D', 'R'],
+			paragraphComponents: [
+				{
+					id: 'PC5000',
+					type: 'StaticText',
+					textFirstPerson: 'This is first person text for para PC2000',
+				},
+				{
+					id: 'PC6000',
+					type: 'BulletPoints',
+					bulletPoints: [{}],
+					meta: {
+						created: 1611333500439,
+						updated: 1611333500439,
+					},
+				},
+			],
+			paragraphComponentRefs: ['PC5000', 'PC6000'],
+			meta: {
+				created: 1611333500439,
+				updated: 1611333500439,
+			},
+		},
+	]
+
 	//add custom paragraphs
 	//const newData = data.concat(CustomParagraphs);
-	return data
+	return hardcodedData
 }
