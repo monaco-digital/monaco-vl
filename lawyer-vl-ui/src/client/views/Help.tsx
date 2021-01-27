@@ -1,6 +1,11 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 
 export const Help: React.FC = () => {
+	ReactGA.event({
+		category: 'User',
+		action: 'Opened help page',
+	})
 	return (
 		<div className={'helpsection'}>
 			<h1>Virtual Lawyer help</h1>

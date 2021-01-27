@@ -23,6 +23,7 @@ import vlToastTrigger from '../../../../utlis/vlToastTrigger'
 import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
 import { unselectTopic } from '../../../../data/topicDataSlice'
+import ReactGA from 'react-ga'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -69,6 +70,10 @@ const Footer: React.FC = () => {
 
 	const copyParasToText = () => {
 		try {
+			ReactGA.event({
+				category: 'User',
+				action: 'Copied text',
+			})
 			navigator.clipboard.writeText(
 				getLetterText(selectedTopics, selectedParagraphs)
 			)
@@ -91,6 +96,10 @@ const Footer: React.FC = () => {
 			vlToastTrigger({
 				text: 'Creating document...',
 				iconType: 'new-doc',
+			})
+			ReactGA.event({
+				category: 'User',
+				action: 'Created a Google Doc',
 			})
 			const shareableLink = await callGoogleApi(
 				getLetterText(selectedTopics, selectedParagraphs)
