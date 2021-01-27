@@ -96,12 +96,12 @@ export const getData = async (): Promise<Paragraph[]> => {
 		})
 		.filter(paragraph => !!paragraph.paragraph && !!paragraph.summary)
 
-	const hardcodedData = [
+	const hardcodedData: Paragraph[] = [
 		{
 			id: 'T2000',
 			summary: 'This a summary paragraph object 2',
 			verticalHeight: 8,
-			topicsOneOf: ['D', 'R'],
+			topicsOneOf: [],
 			paragraphComponents: [
 				{
 					id: 'PC2000',
@@ -148,7 +148,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			id: 'T3000',
 			summary: 'This a summary paragraph object 4',
 			verticalHeight: 6,
-			topicsOneOf: ['D', 'R'],
+			topicsOneOf: [],
 			paragraphComponents: [
 				{
 					id: 'PC5000',
