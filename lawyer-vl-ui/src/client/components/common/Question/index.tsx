@@ -36,9 +36,11 @@ const Question: React.FC<Props> = ({ question }) => {
 	}
 
 	const handleOnClick = (id, isRadio = false) => {
+		const option = validOptions.find(option => option.topicId === id)
+
 		ReactGA.event({
 			category: 'User',
-			action: `Clicked topic ${id}`,
+			action: `Clicked topic: ${option.text}`,
 		})
 		if (isSingle) {
 			for (const option of question.options) {
