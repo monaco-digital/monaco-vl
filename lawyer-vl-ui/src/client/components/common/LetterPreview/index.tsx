@@ -6,6 +6,7 @@ import { CaseTopic, Paragraph } from '../../../../data/types'
 import LetterPreviewParagraph from '../LetterPreviewParagraph'
 import { getLetterParagraphs, getLetterText } from '../../../../utlis/letter'
 import VLcard from '../VLcard'
+import ReactGA from 'react-ga'
 
 const LetterPreview: FC = () => {
 	const selectedParagraphs = useSelector<AppState, Paragraph[]>(
@@ -26,6 +27,11 @@ const LetterPreview: FC = () => {
 		selectedTopics,
 		selectedParagraphs
 	)
+
+	ReactGA.event({
+		category: 'User',
+		action: `Letter previewed`,
+	})
 
 	return (
 		<>

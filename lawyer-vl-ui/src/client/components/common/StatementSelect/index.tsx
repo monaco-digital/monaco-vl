@@ -34,9 +34,15 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	}, [selectedTopics])
 
 	const handleOnClick = (id: string) => {
+		const selectedStatement = suggestedParagraphs.find(
+			paragraph => paragraph.id === id
+		)
 		ReactGA.event({
 			category: 'User',
-			action: `Selected statement ${id}`,
+			action: `Selected statement: ${selectedStatement.summary.substring(
+				0,
+				30
+			)} - ${id}`,
 		})
 		const selected = selectedParagraphs.some(paragraph => id === paragraph.id)
 		if (selected) {
