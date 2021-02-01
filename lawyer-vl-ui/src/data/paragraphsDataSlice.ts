@@ -17,10 +17,7 @@ export const slice = createSlice({
 		},
 		updateSuggestedParagraphs: (state, action) => {
 			const selectedTopics = action.payload
-			const suggestedParagraphs = filterByGeneralMatch(
-				state.all,
-				selectedTopics
-			)
+			const suggestedParagraphs = filterByGeneralMatch(state.all, selectedTopics)
 			console.log('updating suggested paragraphs', suggestedParagraphs)
 			state.suggested = suggestedParagraphs
 		},
@@ -29,9 +26,7 @@ export const slice = createSlice({
 		},
 		addParagraph: (state, action) => {
 			const { id, toId } = action.payload
-			const paragraphReference = state.all.find(
-				paragraph => paragraph.id === id
-			)
+			const paragraphReference = state.all.find(paragraph => paragraph.id === id)
 
 			if (paragraphReference) {
 				state[toId] = [...state[toId], paragraphReference]

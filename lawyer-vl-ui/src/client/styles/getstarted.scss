@@ -1,7 +1,9 @@
-.get__started__step {
-	@apply .flex .items-center;
+.get-started {
+	.get-started__step {
+		@apply .flex .items-center;
 
-	.circle__icon {
-		@apply flex-shrink-0 .rounded-full .h-12 .m-4 .w-12 .flex .items-center .justify-center .bg-ms-blue .text-white .font-semibold;
+		.circle__icon {
+			@apply flex-shrink-0 .rounded-full .h-12 .m-4 .w-12 .flex .items-center .justify-center .bg-ms-blue .text-white .font-semibold;
+		}
 	}
 }
