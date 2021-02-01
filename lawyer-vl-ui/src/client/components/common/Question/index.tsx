@@ -7,6 +7,7 @@ import AppState from '../../../../data/AppState'
 import Title from '../../Title'
 import Button from '../../Button'
 import classNames from 'classnames'
+import ReactGA from 'react-ga'
 
 interface Props {
 	question: QuestionT
@@ -35,7 +36,12 @@ const Question: React.FC<Props> = ({ question }) => {
 	}
 
 	const handleOnClick = (id, isRadio = false) => {
-		console.log('clicked', id)
+		const option = validOptions.find(option => option.topicId === id)
+
+		ReactGA.event({
+			category: 'User',
+			action: `Clicked topic: ${option.text}`,
+		})
 		if (isSingle) {
 			for (const option of question.options) {
 				dispatch(unselectTopic(option.topicId))

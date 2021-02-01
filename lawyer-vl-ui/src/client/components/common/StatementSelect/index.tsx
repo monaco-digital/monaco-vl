@@ -5,8 +5,13 @@ import { BulletPoints, CaseTopic, Paragraph as ParagraphT, ParagraphComponent } 
 import Button from '../../Button'
 import { setPage } from '../../../../data/navigationDataSlice'
 import pages from '../../../../types/navigation'
-import { addParagraph, removeParagraph, updateSuggestedParagraphs } from '../../../../data/paragraphsDataSlice'
 import { addUserField, setActiveParagraphComponent } from '../../../../data/userFieldsSlice'
+import {
+	addParagraph,
+	removeParagraph,
+	updateSuggestedParagraphs,
+} from '../../../../data/paragraphsDataSlice'
+import ReactGA from 'react-ga'
 
 interface Props {}
 
@@ -25,12 +30,19 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 		dispatch(updateSuggestedParagraphs(selectedTopics))
 	}, [selectedTopics])
 
-	const handleOnClick = (paragraph: ParagraphT) => {
-		const { id, paragraphComponents } = paragraph
-		const hasParagraphComponents = !!paragraphComponents.length
-		const selected = selectedParagraphs.some(paragraph => id === paragraph.id)
+	const handleOnClick = (id: string) => {
+		const selectedStatement = suggestedParagraphs.find(
+			paragraph => paragraph.id === id
+		)
+		ReactGA.event({
+			category: 'User',
+			action: `Selected statement: ${selectedStatement.summary.substring(
+				0,
+				30
+			)} - ${id}`,
+		})
 
-		if (selected) {
+		if (selectedStatement) {
 			dispatch(removeParagraph({ id, fromId: 'selected' }))
 		} else {
 			dispatch(addParagraph({ id, toId: 'selected' }))
@@ -50,7 +62,7 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 		const { id, summary } = paragraph
 		const selected = selectedParagraphs.some(paragraph => id === paragraph.id)
 		return (
-			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(paragraph)}>
+			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(paragraph.id)}>
 				<input type={'checkbox'} id={''} name={summary} value={summary} checked={selected} />
 				<label htmlFor={id}>{summary}</label>
 			</div>
