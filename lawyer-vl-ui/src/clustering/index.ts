@@ -1,4 +1,5 @@
-import { CaseTopic, Topic } from '../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
+import { Topic } from '../data/types'
 import topicsFinder from './topicFinder'
 
 export type UITopic = {
@@ -36,8 +37,7 @@ export class ViewLogic {
 				return {
 					screen: 1,
 					text: {
-						heading:
-							'Before we start we need to know some of the basic facts about your case.',
+						heading: 'Before we start we need to know some of the basic facts about your case.',
 						subHeading: 'Select the statement that applies to you.',
 					},
 					questions: {
@@ -77,8 +77,7 @@ export class ViewLogic {
 					screen: 3,
 					text: {
 						heading: 'What’s your situation at work?',
-						subHeading:
-							'Select any or all of the statements that apply to you.',
+						subHeading: 'Select any or all of the statements that apply to you.',
 					},
 					questions: {
 						type: 'multi-statement',
@@ -91,24 +90,11 @@ export class ViewLogic {
 					screen: 5,
 					text: {
 						heading: 'What other factors are relevant to your case?',
-						subHeading:
-							'Select any or all of the statements that apply to you.',
+						subHeading: 'Select any or all of the statements that apply to you.',
 					},
 					questions: {
 						type: 'tags',
-						options: topicsFinder([
-							'D',
-							'B',
-							'C',
-							'H',
-							'W',
-							'S',
-							'Ml',
-							'M',
-							'EP',
-							'Mt',
-							'G',
-						]),
+						options: topicsFinder(['D', 'B', 'C', 'H', 'W', 'S', 'Ml', 'M', 'EP', 'Mt', 'G']),
 					},
 				}
 
@@ -117,24 +103,11 @@ export class ViewLogic {
 					screen: 5,
 					text: {
 						heading: 'What other factors are relevant to your case?',
-						subHeading:
-							'Select any or all of the statements that apply to you.',
+						subHeading: 'Select any or all of the statements that apply to you.',
 					},
 					questions: {
 						type: 'tags',
-						options: topicsFinder([
-							'D',
-							'B',
-							'C',
-							'H',
-							'W',
-							'S',
-							'Ml',
-							'M',
-							'EP',
-							'Mt',
-							'G',
-						]),
+						options: topicsFinder(['D', 'B', 'C', 'H', 'W', 'S', 'Ml', 'M', 'EP', 'Mt', 'G']),
 					},
 				}
 
@@ -144,25 +117,11 @@ export class ViewLogic {
 						screen: 6,
 						text: {
 							heading: 'What are being discriminated for?',
-							subHeading:
-								'Select any or all of the statements that apply to you.',
+							subHeading: 'Select any or all of the statements that apply to you.',
 						},
 						questions: {
 							type: 'tags',
-							options: topicsFinder([
-								'DA',
-								'DP',
-								'DM',
-								'DS',
-								'DSy',
-								'DR',
-								'DRn',
-								'DD',
-								'DMe',
-								'DG',
-								'DPI',
-								'DMl',
-							]),
+							options: topicsFinder(['DA', 'DP', 'DM', 'DS', 'DSy', 'DR', 'DRn', 'DD', 'DMe', 'DG', 'DPI', 'DMl']),
 						},
 					}
 				} else {

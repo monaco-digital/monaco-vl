@@ -1,7 +1,7 @@
 //@ts-nocheck
 import axios from 'axios'
-import { Paragraph, ParagraphTopicMapping, TopicAlgebraOperators } from '../data/types'
-import { replaceDInArrayOfTopics } from '../utlis/TypeConversion'
+import { Paragraph } from '@monaco-digital/vl-types/lib/main'
+import { ParagraphTopicMapping, TopicAlgebraOperators } from '../data/types'
 import { CustomParagraphs } from '../data/static'
 import * as response from './response.json'
 import * as mvpresponse from './mvpresponse.json'
@@ -58,6 +58,15 @@ export const getData = async (): Promise<Paragraph[]> => {
 				topicsAllOf,
 				topicsNoneOf,
 				paragraphComponents: [
+					{
+						id: 12342,
+						meta: {
+							created: 432,
+							updated: 434,
+						},
+						type: 'StaticText',
+						summary: value[3],
+					},
 					{
 						id: 321,
 						meta: {
@@ -148,6 +157,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 			id: 'T3000',
 			summary: 'This a summary paragraph object 4',
 			verticalHeight: 6,
+			topicsAllOf: [],
 			topicsOneOf: [],
 			paragraphComponents: [
 				{
@@ -175,5 +185,6 @@ export const getData = async (): Promise<Paragraph[]> => {
 
 	//add custom paragraphs
 	//const newData = data.concat(CustomParagraphs);
-	return hardcodedData
+	// return hardcodedData
+	return data
 }

@@ -1,6 +1,6 @@
 import config from '../../config'
 import axios from 'axios'
-import { CaseTopic } from '../../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 
 export const getAllCaseTopics = async () => {
 	try {

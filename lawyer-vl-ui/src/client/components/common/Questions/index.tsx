@@ -2,30 +2,25 @@ import React, { FC, useEffect } from 'react'
 import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, Question as QuestionT } from '../../../../data/types'
+import { Question as QuestionT } from '../../../../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
 import Question from '../Question'
 import _ from 'lodash'
 import Button from '../../Button'
+import { setPage } from '../../../../data/navigationDataSlice'
+import pages from '../../../../types/navigation'
 import {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
-} from '../../../../data/questionDataSlice'
-import { setPage } from '../../../../data/navigationDataSlice'
-import { unselectTopic } from '../../../../data/topicDataSlice'
-
-import { current } from '@reduxjs/toolkit'
-import pages from '../../../../types/navigation'
+	updateSelectedTopics,
+} from '../../../../data/sessionDataSlice'
 
 const Questions: FC = () => {
-	let selectedTopics = useSelector<AppState, CaseTopic[]>(
-		state => state.topics.selected
-	)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
 
-	let answeredQuestions = useSelector<AppState, QuestionT[]>(
-		state => state.questions.answeredQuestions
-	)
+	let answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
 	const dispatch = useDispatch()
@@ -53,9 +48,9 @@ const Questions: FC = () => {
 
 	const handleGoBackwards = () => {
 		console.log('Handle go backwards')
-		for (const option of currentQuestion.options) {
-			dispatch(unselectTopic(option.topicId))
-		}
+		const optionIds = currentQuestion.option.map(option => option.topicId)
+		const updatedSelectedTopics = selectedTopics.filter(topic => !optionIds.includes(topic.id))
+		dispatch(updateSelectedTopics(updatedSelectedTopics))
 		dispatch(removeLastAnsweredQuestion(null))
 	}
 
@@ -67,14 +62,8 @@ const Questions: FC = () => {
 	return (
 		<>
 			<div className={classes}>
-				{currentQuestion.id <= 6 && (
-					<div className="questions__steps">
-						Step 1 of 2: Your Job Situation
-					</div>
-				)}
-				{currentQuestion.id > 6 && (
-					<div className="questions__steps">Step 2 of 2: Reasons Given</div>
-				)}
+				{currentQuestion.id <= 6 && <div className="questions__steps">Step 1 of 2: Your Job Situation</div>}
+				{currentQuestion.id > 6 && <div className="questions__steps">Step 2 of 2: Reasons Given</div>}
 				<Question question={currentQuestion} />
 				<div className="topics__actions">
 					<Button

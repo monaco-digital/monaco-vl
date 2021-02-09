@@ -1,70 +1,76 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { BulletPoints, CaseTopic, Paragraph as ParagraphT, ParagraphComponent } from '../../../../data/types'
+import { CaseTopic, Paragraph, BulletPoints, DocumentParagraph } from '@monaco-digital/vl-types/lib/main'
 import Button from '../../Button'
 import { setPage } from '../../../../data/navigationDataSlice'
 import pages from '../../../../types/navigation'
-import { addUserField, setActiveParagraphComponent } from '../../../../data/userFieldsSlice'
-import {
-	addParagraph,
-	removeParagraph,
-	updateSuggestedParagraphs,
-} from '../../../../data/paragraphsDataSlice'
+import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from '../../../../data/sessionDataSlice'
+import { SessionParagraph } from '../../../../types/SessionDocument'
+import { getSuggestedParagraphs } from '../../../../api/vl'
 import ReactGA from 'react-ga'
 
 interface Props {}
 
 const StatementSelect: React.FC<Props> = (props: Props) => {
 	const dispatch = useDispatch()
-	const activeParagraph = useSelector<any, any>(state => state.userFields.active)
+	const [activeParagraph, setActiveParagraph] = useState(null)
+	// const activeParagraph = useSelector<any, any>(state => state.userFields.active)
 	const [areParagraphComponentsVisible, setAreParagraphComponentsVisible] = useState(false)
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.selected)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 
-	const suggestedParagraphs = useSelector<AppState, ParagraphT[]>(state => state.paragraphs.suggested)
-
-	const selectedParagraphs = useSelector<AppState, ParagraphT[]>(state => state.paragraphs.selected)
+	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs)
 
 	useEffect(() => {
-		dispatch(updateSuggestedParagraphs(selectedTopics))
-	}, [selectedTopics])
+		const updateParagraphs = async () => {
+			const paragraphs = await getSuggestedParagraphs(selectedTopics)
+			const sessionParagraphs = paragraphs.map(paragraph => {
+				return {
+					templateComponent: paragraph,
+					documentComponent: null,
+					isSelected: false,
+				} as SessionParagraph
+			})
+			dispatch(updateSuggestedParagraphs(sessionParagraphs))
+		}
+		updateParagraphs()
+	}, [])
 
 	const handleOnClick = (id: string) => {
-		const selectedStatement = suggestedParagraphs.find(
-			paragraph => paragraph.id === id
-		)
+		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id)
+		if (!selectedSessionParagraph.isSelected) {
+			console.log('Select ID', id)
+			dispatch(selectParagraphs([id]))
+		} else {
+			console.log('Deselect ID', id)
+			dispatch(deselectParagraphs([id]))
+		}
+
+		const paragraph = selectedSessionParagraph.templateComponent as Paragraph
 		ReactGA.event({
 			category: 'User',
-			action: `Selected statement: ${selectedStatement.summary.substring(
-				0,
-				30
-			)} - ${id}`,
+			action: `Selected statement: ${paragraph.summary.substring(0, 30)} - ${id}`,
 		})
-
-		if (selectedStatement) {
-			dispatch(removeParagraph({ id, fromId: 'selected' }))
-		} else {
-			dispatch(addParagraph({ id, toId: 'selected' }))
-		}
-
-		if (hasParagraphComponents) {
-			dispatch(setActiveParagraphComponent(paragraph))
-			setAreParagraphComponentsVisible(true)
-		}
 	}
 
 	const enterLetterPreviewMode = () => {
 		dispatch(setPage(pages.LETTER_PREVIEW))
 	}
 
-	const statements = suggestedParagraphs.map((paragraph, i) => {
-		const { id, summary } = paragraph
-		const selected = selectedParagraphs.some(paragraph => id === paragraph.id)
+	const statements = suggestedParagraphs.map((sessionParagraph, i) => {
+		const templateParagraph = sessionParagraph.templateComponent as Paragraph
+		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
+		const { id, summary } = templateParagraph
+		const selected = sessionParagraph.isSelected
+		const hasUserInput = templateParagraph.paragraphComponents.find(pc => pc.type === 'BulletPoints') as BulletPoints
+		const displayInput = hasUserInput && documentParagraph
+
 		return (
-			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(paragraph.id)}>
+			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(id)}>
 				<input type={'checkbox'} id={''} name={summary} value={summary} checked={selected} />
 				<label htmlFor={id}>{summary}</label>
+				{displayInput && documentParagraph.documentParagraphComponents}
 			</div>
 		)
 	})
@@ -78,12 +84,13 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 					<Button type="main" text="Preview Letter" rounded fn={() => enterLetterPreviewMode()} />
 				</div>
 			</div>
-			{areParagraphComponentsVisible && <ParagraphComponents activeParagraph={activeParagraph} />}
 		</>
 	)
 }
+/*
+{areParagraphComponentsVisible && <ParagraphComponents activeParagraph={activeParagraph} />}
 
-const ParagraphComponents = ({ activeParagraph }: { activeParagraph: ParagraphT }) => {
+const ParagraphComponents = ({ activeParagraph }: { activeParagraph: Paragraph }) => {
 	const dispatch = useDispatch()
 	const [userFilledFields, setUserFilledFields] = useState({})
 	const { id, paragraphComponents } = activeParagraph
@@ -97,9 +104,10 @@ const ParagraphComponents = ({ activeParagraph }: { activeParagraph: ParagraphT 
 			{paragraphComponents.map(paragraphComponent => {
 				switch (paragraphComponent.type) {
 					case 'BulletPoints':
+						const bulletPoints = paragraphComponent as BulletPoints
 						return (
 							<ParagraphComponentBulletPoints
-								bulletPoints={paragraphComponent.bulletPoints}
+								bulletPoints={bulletPoints.bulletPoints}
 								setUserFilledFields={setUserFilledFields}
 							/>
 						)
@@ -138,5 +146,5 @@ const ParagraphComponentBulletPoints = ({ bulletPoints, setUserFilledFields }) =
 		</div>
 	)
 }
-
+*/
 export default StatementSelect
