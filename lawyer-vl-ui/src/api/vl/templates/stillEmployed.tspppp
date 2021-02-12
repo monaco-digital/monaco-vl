@@ -1,15 +1,13 @@
-//@ts-nocheck
 import {
-	CaseTopic,
 	Template,
 	TemplateParagraph,
 	StaticText,
 	TemplateSection,
 	EditableText,
+    BulletPoints
 } from '@monaco-digital/vl-types/lib/main'
-import { BulletPoints } from '../../data/types'
 
-const stillEmployed: Template = {
+export const stillEmployed: Template = {
 	id: 'asdasdasda',
 	version: 1,
 	meta: {
@@ -23,22 +21,19 @@ const stillEmployed: Template = {
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					paragraphId: 'A00001',
-					paragraph: {
-						id: 'A00001',
-						type: 'Paragraph',
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: 'PC2000',
-								type: 'StaticText',
-								textFirstPerson: 'PRIVATE & CONFIDENTIAL',
-							} as StaticText,
-						],
-					},
+					id: 'A00001',
+					type: 'Paragraph',
+					verticalHeight: 0,
+					topicsOneOf: [],
+					topicsAllOf: ['All'],
+					topicsNoneOf: [],
+					paragraphComponents: [
+						{
+							id: 'PC2000',
+							type: 'StaticText',
+							textFirstPerson: 'PRIVATE & CONFIDENTIAL',
+						} as StaticText,
+					],
 				},
 				{
 					id: 'A00002',
@@ -79,7 +74,7 @@ const stillEmployed: Template = {
 					],
 				},
 				{
-					id: 'A00004',
+					id: 'A00004128743',
 					type: 'Paragraph',
 					verticalHeight: 0,
 					topicsOneOf: [],
@@ -92,7 +87,7 @@ const stillEmployed: Template = {
 							textFirstPerson: 'By email only to: ',
 						} as StaticText,
 						{
-							id: '7675f75',
+							id: 'XZ7675f75ASD',
 							type: 'EditableText',
 							placeholder: '[Email]',
 						} as EditableText,
@@ -371,6 +366,7 @@ const stillEmployed: Template = {
 			] as TemplateParagraph[],
 		} as TemplateSection,
 	],
+<<<<<<< HEAD:lawyer-vl-ui/src/api/vl/templates.ts
 } as Template
 
 const notEmployed: Template = {
@@ -700,3 +696,6 @@ export const getTemplate = (topics: CaseTopic[]) => {
 		// nothing yet
 	}
 }
+=======
+} as Template
+>>>>>>> dev:lawyer-vl-ui/src/api/vl/templates/stillEmployed.tspppp

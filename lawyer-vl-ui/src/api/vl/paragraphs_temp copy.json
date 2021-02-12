@@ -3,8 +3,6 @@
 		"getAllParagraphs": [
 			{
 				"id": "x__D3qPn4Cvk6r7e4HDNa-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I resigned because of their discrimination.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D", "Rd"],
@@ -23,8 +21,6 @@
 			},
 			{
 				"id": "BXWo5VMQQ0BbtTqXjaTJ7-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing in respect of unlawful treatment I suffered at work.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["E"],
@@ -40,18 +36,16 @@
 						"textThirdPerson": "I have been instructed by the above named client, who has been treated unlawfully at work."
 					},
 					{
-						"id": "BXWo5VMQQ0DbtTqXjaTJ7-STTXT1",
+						"id": "BXWo5VMQQ0BbtTqXjaTJ7-STTXT1",
 						"type": "BulletPoints",
 						"bulletPoints": [
 							{
-								"id": "as9ndsada0sndv43v1",
 								"placeholder": "<a way in which you suffered>",
 								"required": true,
 								"minLength": 10,
 								"maxLength": 100
 							},
 							{
-								"id": "as9ndsada0sndv43v2",
 								"placeholder": "<another way in which you suffered>",
 								"required": true,
 								"minLength": 10,
@@ -63,8 +57,6 @@
 			},
 			{
 				"id": "Oq6dH51Cas8Q8UzTctw8v-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I refer to my resignation due to health and safety concerns.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["H", "Rd"],
@@ -83,8 +75,6 @@
 			},
 			{
 				"id": "JM2mHAa9z1rY7aCqRp9bP-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing in relation to an unlawful deduction from my wages.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M"],
@@ -103,8 +93,6 @@
 			},
 			{
 				"id": "4jr5IbfVa6O1VBzs2G6xt-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing regarding my employment situation. ",
 				"topicsOneOf": [],
 				"topicsAllOf": ["P", "E"],
@@ -123,8 +111,6 @@
 			},
 			{
 				"id": "c6vyAOpN6_6FBbQetE52A-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing further to my dismissal because of performance.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["P", "T"],
@@ -143,8 +129,6 @@
 			},
 			{
 				"id": "YbxyYyugxQAZbxx6r_TZH-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing regarding the current redundancy process, which I believe to be unfair and discriminatory.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "E"],
@@ -163,8 +147,6 @@
 			},
 			{
 				"id": "khPJ0-NcecRYOWa231XMB-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm writing further to my recent resignation.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Rd"],
@@ -183,8 +165,6 @@
 			},
 			{
 				"id": "TuOh-tPwkJSkIkHmfkmDr-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I refer to my suspension which was unjustified.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Sn", "E"],
@@ -203,8 +183,6 @@
 			},
 			{
 				"id": "QPM0NVJAgfHe9UkDGLSer-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Following my recent dismissal, I'm writing to express serious concerns.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["T"],
@@ -223,8 +201,6 @@
 			},
 			{
 				"id": "Fz3R7QXzIBQuMwhOzSlCr-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I resigned because of mistreatment due to whistleblowing. ",
 				"topicsOneOf": [],
 				"topicsAllOf": ["W", "Rd"],
@@ -243,8 +219,6 @@
 			},
 			{
 				"id": "pNtkZ0UNBDvgim5UEtXb4-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I have felt bullied.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["B"],
@@ -263,8 +237,6 @@
 			},
 			{
 				"id": "94mx4lAQDohUMeWLu209G-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "It's clear that my treatment was discriminatory.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D"],
@@ -283,8 +255,6 @@
 			},
 			{
 				"id": "P4BPhoyNM6S1mTNAyu-qO-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I was subjected to unlawful discrimination.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["D"],
@@ -303,8 +273,6 @@
 			},
 			{
 				"id": "htEaS_MBm6NjI3iUwnzEl-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Resigned because of unlawful deductions of wages - constructive dismissal.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Rd", "M"],
@@ -323,8 +291,6 @@
 			},
 			{
 				"id": "XBWVW6TvgVexGL66Aq_dq-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "There has been a lack of empathy so that I feel bullied. This is discrimination.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D", "B", "E"],
@@ -343,8 +309,6 @@
 			},
 			{
 				"id": "14EfSG2YDlfdFXo5r9dyA-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I've been subjected to unlawful discrimination",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D", "E"],
@@ -363,8 +327,6 @@
 			},
 			{
 				"id": "L5rI8IarcMOu3WLWTLw6l-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Your seemingly neutral practice discriminated against me indirectly.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["D", "ID"],
@@ -383,8 +345,6 @@
 			},
 			{
 				"id": "YwKQN819SvjcKs2nJtvrT-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Your seemingly neutral practice has discriminated against me indirectly.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D", "ID", "E"],
@@ -403,8 +363,6 @@
 			},
 			{
 				"id": "kdF8C-LqdkMfHg7v_PhDv-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I complained about discrimination and I was victimised.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["D", "V"],
@@ -423,8 +381,6 @@
 			},
 			{
 				"id": "Ky12UY69t3-nqlKH5ldQZ-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I complained about discrimination and have been victimised.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D", "V", "E"],
@@ -443,8 +399,6 @@
 			},
 			{
 				"id": "uG-w3Y7mXzhnfKKpdWriB-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You failed your health & safety duty - coronavirus unsafe workplace.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["H", "E"],
@@ -463,8 +417,6 @@
 			},
 			{
 				"id": "U0gqIuNHkC-KDUJnLKFsO-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "My pay's been cut because of refusing to attend an unsafe workplace.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["H", "M", "E"],
@@ -483,8 +435,6 @@
 			},
 			{
 				"id": "rxaRTcKk6PPQ-o1kjIC-z-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Making me attend unsafe workplace is unlawful - constructive dismissal. ",
 				"topicsOneOf": [],
 				"topicsAllOf": ["H", "Rd"],
@@ -503,8 +453,6 @@
 			},
 			{
 				"id": "szzK5MMl-UtXkEQ9QsBkA-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "My contract specifies [amount of payment].",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M"],
@@ -523,8 +471,6 @@
 			},
 			{
 				"id": "tQDFmkjGyPvpZtDjxGf42-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You reduced my salary without my agreement.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M"],
@@ -543,8 +489,6 @@
 			},
 			{
 				"id": "Hm5tFY7Xq1s34yvTxzr7Q-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Intend to claim the difference between what was paid and owed to me.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M"],
@@ -563,8 +507,6 @@
 			},
 			{
 				"id": "z05YasmQDlg-9x1bbpG1--PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "The unlawful deductions of my wages had a negative effect on me.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M"],
@@ -583,8 +525,6 @@
 			},
 			{
 				"id": "LGjnV1dp4Zbl90lS5CRqa-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I have a physical or mental condition.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["DD"],
@@ -603,8 +543,6 @@
 			},
 			{
 				"id": "qI-8n3OU749To0TTuTk39-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You didn't consider making reasonable adjustments for me.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["DMl", "E"],
@@ -623,8 +561,6 @@
 			},
 			{
 				"id": "TenEsYEyxi9t2NwyO5pN1-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Ethical veganism has been accepted by the employment tribunals as a form of protected belief.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["DPI"],
@@ -643,8 +579,6 @@
 			},
 			{
 				"id": "G8V52eEde1nnD5V9m_-nc-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I've paid less for equal work because of my gender.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["DS", "EP", "E"],
@@ -663,8 +597,6 @@
 			},
 			{
 				"id": "A6pqbo7kmWdAD8Cz0cVPN-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Disciplinary process/action against me is unfair.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Dy", "E"],
@@ -683,8 +615,6 @@
 			},
 			{
 				"id": "_ldBjyedXtlRJUD8svoiO-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Resigned due to excessive workload.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["EW", "Rd"],
@@ -703,8 +633,6 @@
 			},
 			{
 				"id": "27R2yAyeWqR3e61Qldlrj-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Haven't been provided with employment particulars in writing.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["F", "E"],
@@ -723,8 +651,6 @@
 			},
 			{
 				"id": "SrG3yWT8lbYUG-5cuPeHW-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Danger from Coronavirus at work.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["H"],
@@ -743,8 +669,6 @@
 			},
 			{
 				"id": "FWdeUvb6Ctgkx7HHh_DdK-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Subjeced to detriment because of refusing to attend an unsafe workplace.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["H", "E"],
@@ -763,8 +687,6 @@
 			},
 			{
 				"id": "a0SVIsYG_ndf8cfzsEiv--PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Gross misconduct - investigation and dismissal unfair.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Mt", "T"],
@@ -783,8 +705,6 @@
 			},
 			{
 				"id": "lhm2ms4cl2zR13_dPDGcF-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "My performance wasn't poor.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["P"],
@@ -803,8 +723,6 @@
 			},
 			{
 				"id": "r2FuIcZ72HdgGm9iUC8QB-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You didn't follow a reasonable procedure before dismissing for poor performance.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["P", "T"],
@@ -823,8 +741,6 @@
 			},
 			{
 				"id": "zvRpGN-kq1OhA-amNMrvc-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "If a meaningful consultation were to be carried out, I wouldn't be made redundant because ... .",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R"],
@@ -843,8 +759,6 @@
 			},
 			{
 				"id": "KkUmjC8NuUbqTY27_OfVU-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "This shows that the selection process was predetermined.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R"],
@@ -863,8 +777,6 @@
 			},
 			{
 				"id": "nP_2YLGSPIq2hyuDq2gTs-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Suitable alternative employment wasn't considered.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R"],
@@ -883,8 +795,6 @@
 			},
 			{
 				"id": "WHIZvIYm3cVhpWa0JH-Up-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I have a disability  - choosing me for potential redundancy is discriminatory.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "DD", "E"],
@@ -903,8 +813,6 @@
 			},
 			{
 				"id": "MD7ut13hPpqB1gUvCZWj1-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You're implementing the restructure in bad faith to remove me because ... .",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "E"],
@@ -923,8 +831,6 @@
 			},
 			{
 				"id": "TdAResHKx47qgL3oGZotb-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "No actual reduction in work - redundancy based on anticipation of losses only.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "E"],
@@ -943,8 +849,6 @@
 			},
 			{
 				"id": "pB0HjdU63yZVazbcwTRNo-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Should be selected for the new role.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "E"],
@@ -963,8 +867,6 @@
 			},
 			{
 				"id": "q1tA-Y4kj7lpPwrcPG8Pt-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "You were implementing the restructure in bad faith to remove me because ... .",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "T"],
@@ -983,8 +885,6 @@
 			},
 			{
 				"id": "kXIZT1QgNdtQYfix7FU8N-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Bad treatment led to constructive dismissal.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Rd"],
@@ -1003,8 +903,6 @@
 			},
 			{
 				"id": "4D7-KH-oBfVFt4GgPucuH-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "My suspension was a kneejerk reaction.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Sn", "D", "E"],
@@ -1023,8 +921,6 @@
 			},
 			{
 				"id": "C9xMpOGoDtGmgcG-xKhW_-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Your actions had a discriminatory motive as there is no rational explanation to such appalling treatment.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["D"],
@@ -1043,8 +939,6 @@
 			},
 			{
 				"id": "AflV962-Zn1ASHrQwIAGA-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "There was a lack of empathy so that I feel bullied. This is discrimination.",
 				"topicsOneOf": ["T", "Rd"],
 				"topicsAllOf": ["D", "B"],
@@ -1063,8 +957,6 @@
 			},
 			{
 				"id": "gS701EvJ13rDgMZAoXSw0-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Unlawful deductions of wages are a breach of contract - entitled to resign and claim constructive dismissal.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["M", "E"],
@@ -1083,8 +975,6 @@
 			},
 			{
 				"id": "B4sV8r1FwKji2UHNQOksB-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "The current redundancy selection criteria are unfair [and discriminatory] because ... .",
 				"topicsOneOf": [],
 				"topicsAllOf": ["R", "D"],
@@ -1103,8 +993,6 @@
 			},
 			{
 				"id": "BusFaCOCNXZmIJVebiiea-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I refer to my suspension, which was discriminatory and due to whistleblowing.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["Sn", "W"],
@@ -1123,8 +1011,6 @@
 			},
 			{
 				"id": "YPDNY8--blyIFQjo4-9aa-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Whistleblowing/health & safety - was mistreated.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["W", "E"],
@@ -1143,8 +1029,6 @@
 			},
 			{
 				"id": "wx0NgcPkmzSfuT4PBDh0j-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Whistleblowing - was mistreated.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["W", "T"],
@@ -1163,8 +1047,6 @@
 			},
 			{
 				"id": "YzZrRoMInvZOnljX8Egox-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "Lack of empathy - constructive dismissal.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["E"],
@@ -1183,8 +1065,6 @@
 			},
 			{
 				"id": "fSKjwnSIvD4MJHXZt4tsA-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "My employment no longer tenable, but reserving position.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["E"],
@@ -1203,8 +1083,6 @@
 			},
 			{
 				"id": "ifvkV6DB6mcgIj96ns_pI-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I'm considering bringing a claim (except for discrimination).",
 				"topicsOneOf": ["E", "T", "Rd"],
 				"topicsAllOf": [],
@@ -1223,8 +1101,6 @@
 			},
 			{
 				"id": "N5REgDcX2K19sceCKbpL5-PAR1",
-				"version": 1,
-				"type": "Paragraph",
 				"summary": "I believe that subjecting me to unnecessary and unjustified performance management is unfair and demonstrates a lack of empathy - this entitles me to resign and claim unfair constructive dismissal.",
 				"topicsOneOf": [],
 				"topicsAllOf": ["P", "E"],

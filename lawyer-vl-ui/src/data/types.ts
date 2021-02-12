@@ -1,58 +1,3 @@
-export interface Meta {
-	created: number
-	updated: number
-}
-
-export interface Paragraph {
-	id: string
-	paragraph: string
-	summary: string
-	verticalHeight: number
-	topic?: string
-	topicsOneOf: Topic[]
-	topicsAllOf: Topic[]
-	topicsNoneOf: Topic[]
-	paragraphComponents?: ParagraphComponent[]
-	bold?: boolean
-	meta?: Meta
-}
-
-export type ParagraphComponent = {
-	id: string
-	meta: Meta
-} & (
-	| ({
-			type: 'StaticText'
-	  } & StaticText)
-	| ({
-			type: 'BulletPoints'
-	  } & BulletPoints)
-	| ({
-			type: 'Dropdown'
-	  } & Dropdown)
-)
-
-export type StaticText = {
-	textFirstPerson: string
-	textThirdPerson: string
-}
-
-export type BulletPoints = {
-	bulletPoints: {
-		id: string
-		placeholder: string
-		required: boolean
-		minLength: number
-		maxLength: number
-	}[]
-}
-
-export type Dropdown = {
-	minSelect: number
-	maxSelect: number
-	optionsList: string
-}
-
 export const ParagraphTopics = {
 	EMPLOYED: 'EMPLOYED',
 	EQUAL_PAY: 'EQUAL_PAY',
@@ -88,6 +33,7 @@ export const ParagraphTopics = {
 	VEGAN: 'VEGAN',
 	ALL: 'ALL',
 	LESS_THAN_2_YEARS: 'LESS_THAN_2_YEARS',
+	EXIT_PACKAGE: 'EXIT_PACKAGE',
 }
 
 export type Topic =
@@ -152,6 +98,7 @@ export type Topic =
 	| '_UP'
 	| '_UDy'
 	| '_US'
+	| '_EX'
 
 export interface CaseTopic {
 	id?: Topic
@@ -626,6 +573,12 @@ export const Topics: CaseTopic[] = [
 		text: 'Poor response to sickness issues',
 		type: 'employment_situation',
 	},
+	{
+		id: '_EX',
+		name: 'EXIT_PACKAGE',
+		text: 'Seek exit package',
+		type: 'employment_situation',
+	},
 ]
 
 export const ParagraphTopicMapping = {
@@ -663,6 +616,7 @@ export const ParagraphTopicMapping = {
 	VEGAN: 'DV',
 	ALL: 'All',
 	LESS_THAN_2_YEARS: '2y',
+	EXIT_PACKAGE: '_EX',
 }
 export const TopicAlgebraOperators = {
 	AND: '+',

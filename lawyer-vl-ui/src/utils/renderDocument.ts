@@ -12,9 +12,10 @@ import {
 	DocumentSignature,
 	DocumentParagraphEditableText,
 } from '@monaco-digital/vl-types/lib/main'
+import { SessionDocument } from '../types/SessionDocument'
+import { nanoid } from 'nanoid'
 
 export const getDocumentText = (document: Document): string => {
-	console.log('++++DOCUMENT', document)
 	return document.documentComponents
 		.map(documentComponent => {
 			return getDocumentComponentText(documentComponent)
@@ -23,6 +24,7 @@ export const getDocumentText = (document: Document): string => {
 }
 
 export const getDocumentComponentText = (documentComponent: DocumentComponent) => {
+	if (!documentComponent) return ''
 	if (documentComponent.type === 'TemplateContentSection' || documentComponent.type === 'UserContentSection') {
 		const documentSection = documentComponent as DocumentSection
 		const sectionComponents = documentSection.documentComponents

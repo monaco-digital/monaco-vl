@@ -2,12 +2,9 @@ import { DocumentParagraphStaticText, StaticText } from '@monaco-digital/vl-type
 import React, { FC } from 'react'
 import { SessionParagraph } from '../../../../types/SessionDocument'
 
-const PreviewDocumentParagraphStaticText: FC<{ staticText: DocumentParagraphStaticText }> = ({ staticText }) => {
-	return <span>{staticText.textFirstPerson}</span>
+export const PreviewStaticText: FC<{
+	templateStaticText: StaticText
+	documentStaticText: DocumentParagraphStaticText
+}> = ({ templateStaticText, documentStaticText }) => {
+	return <span>{documentStaticText?.textFirstPerson || templateStaticText.textFirstPerson}</span>
 }
-
-const PreviewTemplateParagraphStaticText: FC<{ staticText: StaticText }> = ({ staticText }) => {
-	return <span>{staticText.textFirstPerson}</span>
-}
-
-export { PreviewDocumentParagraphStaticText, PreviewTemplateParagraphStaticText }

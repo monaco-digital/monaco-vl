@@ -1,0 +1,9 @@
+.paragraph-preview {
+	.paragraph-preview__editable {
+		@apply border-1;
+	}
+
+	.paragraph-preview__static {
+		@apply border-0;
+	}
+}

@@ -1,7 +1,7 @@
-import { Paragraph } from '../../data/types'
 import { client } from './graphql'
 import { gql } from '@apollo/client'
 import { fragments } from './fragments'
+import { Paragraph } from '@monaco-digital/vl-types/lib/main'
 
 const GET_ALL_PARAGRAPHS = gql`
 	query {

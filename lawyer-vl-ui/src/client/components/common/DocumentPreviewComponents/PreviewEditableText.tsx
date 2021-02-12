@@ -1,29 +1,49 @@
 import { DocumentParagraphEditableText, EditableText } from '@monaco-digital/vl-types/lib/main'
 import React, { FC, useState } from 'react'
-import { updateEditableText } from '../../../../data/sessionDataSlice'
+import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice'
+import { useDispatch } from 'react-redux'
+import { nanoid } from 'nanoid'
 
-const PreviewDocumentParagraphEditableText: FC<{ editableText: DocumentParagraphEditableText }> = ({
-	editableText,
-}) => {
-	return <span>{editableText.value}</span>
-}
-
-const PreviewTemplateParagraphEditableText: FC<{ editableText: EditableText }> = ({ editableText }) => {
+export const PreviewEditableText: FC<{
+	templateEditableText: EditableText
+	documentEditableText: DocumentParagraphEditableText
+}> = ({ templateEditableText, documentEditableText }) => {
 	let value = ''
+	const dispatch = useDispatch()
 
-	return (
-		<span>
-			<input
-				type="text"
-				id={editableText.id}
-				name={editableText.id}
-				placeholder={editableText.placeholder}
-				onChange={e => {
-					updateEditableText({ id: editableText.id, value: value })
-				}}
-			/>
-		</span>
-	)
+	const updateEditableText = (value: string) => {
+		const updatedDocumentParagraphComponent = {
+			id: nanoid(),
+			baseTemplateComponent: templateEditableText.id,
+			type: 'EditableText',
+			value: value,
+		} as DocumentParagraphEditableText
+		dispatch(updateSessionDocumentComponent(updatedDocumentParagraphComponent))
+	}
+
+	if (documentEditableText?.value) {
+		value = documentEditableText.value
+		return (
+			<span
+				contentEditable="true"
+				onInput={e => (value = e.currentTarget.textContent)}
+				id={documentEditableText.id}
+				onBlur={e => updateEditableText(value)}
+			>
+				{value}
+			</span>
+		)
+	} else {
+		return (
+			<span>
+				<input
+					type="text"
+					id={templateEditableText.id}
+					placeholder={templateEditableText.placeholder}
+					onInput={e => (value = e.currentTarget.value)}
+					onBlur={e => updateEditableText(value)}
+				/>
+			</span>
+		)
+	}
 }
-
-export { PreviewDocumentParagraphEditableText, PreviewTemplateParagraphEditableText }
