@@ -1,8 +1,8 @@
 import {
-	SessionParagraph,
 	SessionDocument,
 	SessionDocumentComponent,
 	SessionDocumentSection,
+	SessionParagraph,
 } from '../types/SessionDocument'
 import {
 	CaseTopic,
@@ -16,97 +16,60 @@ import {
 import {
 	Document,
 	DocumentComponent,
-	DocumentHeader,
-	DocumentImage,
 	DocumentParagraph,
 	DocumentSection,
 	DocumentParagraphBulletPoints,
 	DocumentParagraphComponent,
-	DocumentParagraphDropdown,
 	DocumentParagraphStaticText,
-	DocumentSignature,
 	DocumentParagraphEditableText,
 } from '@monaco-digital/vl-types/lib/main'
-import {
-	TemplateHeader,
-	TemplateImage,
-	TemplateSignature,
-	Template,
-	TemplateComponent,
-	TemplateSection,
-	TemplateParagraph,
-} from '@monaco-digital/vl-types/lib/main'
+import { Template, TemplateComponent, TemplateSection, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
-import { template } from '../api/google/template'
-import { convertCompilerOptionsFromJson } from 'typescript'
+import { nanoid } from 'nanoid'
+import { getDocumentComponentText } from './renderDocument'
+import { Session } from 'inspector'
 
-export const createSessionDocument = (template: Template, paragraphs: SessionParagraph[]): SessionDocument => {
-	return {
-		template,
-		document: createDocumentFromTemplate(template, paragraphs),
-		sessionDocumentComponents: template.templateComponents.map(templateComponent =>
-			createSessionDocumentComponent(templateComponent, paragraphs)
-		),
-	} as SessionDocument
+export const createDocument = (sessionDocument: SessionDocument): Document => {
+	const documentComponents = sessionDocument.sessionDocumentComponents.map(sd => {
+		return createDocumentComponent(sd)
+	}) as DocumentComponent[]
+
+	const doc = {
+		id: nanoid(),
+		version: 1,
+		baseTemplate: sessionDocument.template.id,
+		documentComponents: documentComponents,
+		meta: {
+			created: Date.now(),
+			updated: Date.now(),
+		},
+	} as Document
+
+	console.log('doc-->', doc)
+	return doc
 }
 
-export const createSessionDocumentComponent = (
-	templateComponent: TemplateComponent,
-	paragraphs: SessionParagraph[]
-): SessionDocumentComponent => {
-	switch (templateComponent.type) {
-		case 'UserContentSection':
-			return createSessionDocumentSection(templateComponent as TemplateSection, paragraphs)
-		case 'TemplateContentSection':
-			return createSessionDocumentSection(templateComponent as TemplateSection, paragraphs)
-		case 'Paragraph':
-			return createSessionDocumentParagraph(templateComponent as TemplateParagraph, paragraphs)
-		default:
-			return null
+export const createDocumentComponent = (sessionDocumentComponent: SessionDocumentComponent): DocumentComponent => {
+	if (
+		sessionDocumentComponent.type === 'TemplateContentSection' ||
+		sessionDocumentComponent.type === 'UserContentSection'
+	) {
+		const section = sessionDocumentComponent as SessionDocumentSection
+		return {
+			id: nanoid(),
+			version: 1,
+			type: sessionDocumentComponent.type,
+			baseTemplateComponent: section.templateComponent.id,
+			documentComponents: section.sessionDocumentComponents.map(sdc => createDocumentComponent(sdc)),
+		} as DocumentSection
+	} else if (sessionDocumentComponent.type === 'Paragraph') {
+		const sessionParagraph = sessionDocumentComponent as SessionParagraph
+		console.log('sessionParagraph.documentComponent', sessionParagraph.documentComponent)
+		return sessionParagraph.documentComponent
 	}
 }
 
-const createSessionDocumentSection = (
-	templateSection: TemplateSection,
-	paragraphs: SessionParagraph[]
-): SessionDocumentComponent => {
-	if (templateSection.type === 'UserContentSection') {
-		return {
-			type: 'UserContentSection',
-			templateComponent: templateSection,
-			documentComponent: null,
-			sessionDocumentComponents: paragraphs.map(paragraph =>
-				createSessionDocumentComponent(paragraph.templateComponent, paragraphs)
-			),
-		} as SessionDocumentSection
-	} else {
-		return {
-			type: 'TemplateContentSection',
-			templateComponent: templateSection,
-			documentComponent: null,
-			sessionDocumentComponents: templateSection.templateComponents.map(templateComponent =>
-				createSessionDocumentComponent(templateComponent, paragraphs)
-			),
-		} as SessionDocumentSection
-	}
-}
-
-const createSessionDocumentParagraph = (
-	templateParagraph: TemplateParagraph,
-	paragraphs: SessionParagraph[]
-): SessionParagraph => {
-	const matchingSessionParagraph = paragraphs.find(
-		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id
-	)
-	const existingDocumentParagraph = matchingSessionParagraph && matchingSessionParagraph.documentComponent
-
-	return {
-		type: 'Paragraph',
-		templateComponent: templateParagraph,
-		documentComponent: existingDocumentParagraph,
-		isSelected: true,
-	} as SessionParagraph
-}
+export const createDocumentParagraphComponent = () => {}
 
 export const createDocumentParagraph = (
 	templateParagraph: TemplateParagraph,
@@ -120,10 +83,10 @@ export const createDocumentParagraph = (
 		return existingDocumentParagraph as DocumentParagraph
 	}
 	return {
-		id: templateParagraph.id,
+		id: nanoid(),
 		type: 'Paragraph',
 		baseTemplateComponent: templateParagraph.id,
-		documentParagraphComponents: templateParagraph.paragraphComponents.map(paragraphComponent =>
+		documentParagraphComponents: templateParagraph.paragraph.paragraphComponents.map(paragraphComponent =>
 			templateParagraphComponentToDocumentParagraphComponent(paragraphComponent)
 		),
 	} as DocumentParagraph
@@ -136,7 +99,8 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 		case 'StaticText':
 			const staticTextParagraph = paragraphComponent as StaticText
 			return {
-				baseTemplateComponent: paragraphComponent.id,
+				id: nanoid(),
+				baseTemplateComponent: staticTextParagraph.id,
 				type: 'StaticText',
 				textFirstPerson: staticTextParagraph.textFirstPerson,
 				textThirdPerson: staticTextParagraph.textThirdPerson,
@@ -144,7 +108,8 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 		case 'EditableText':
 			const editableTextParagraph = paragraphComponent as EditableText
 			return {
-				baseTemplateComponent: paragraphComponent.id,
+				id: nanoid(),
+				baseTemplateComponent: editableTextParagraph.id,
 				type: 'EditableText',
 				value: null,
 			} as DocumentParagraphEditableText
@@ -153,7 +118,8 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 			const bulletPointsParagraph = paragraphComponent as BulletPoints
 			// find matching in suggestedParagraphs
 			return {
-				baseTemplateComponent: paragraphComponent.id,
+				id: nanoid(),
+				baseTemplateComponent: bulletPointsParagraph.id,
 				type: 'BulletPoints',
 				completedBulletPoints: [],
 			} as DocumentParagraphBulletPoints
@@ -165,7 +131,7 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 export const createDocumentFromTemplate = (template: Template, paragraphs: SessionParagraph[]): Document => {
 	// create new Document object
 	return {
-		id: 'asda',
+		id: nanoid(),
 		version: 1,
 		baseTemplate: template.id,
 		documentComponents: template.templateComponents.map(tc =>
@@ -198,7 +164,7 @@ const createDocumentComponentFromTemplateComponent = (
 		case 'TemplateContentSection':
 			const templateComponentSection = templateComponent as TemplateSection
 			return {
-				id: 'doinasd89d3',
+				id: nanoid(),
 				version: 1,
 				type: 'TemplateContentSection',
 				baseTemplateComponent: templateComponent.id,
@@ -208,7 +174,7 @@ const createDocumentComponentFromTemplateComponent = (
 			} as DocumentSection
 		case 'UserContentSection':
 			return {
-				id: 'doinasd893',
+				id: nanoid(),
 				version: 1,
 				type: 'UserContentSection',
 				baseTemplateComponent: templateComponent.id,

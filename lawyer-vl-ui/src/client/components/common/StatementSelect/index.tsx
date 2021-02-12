@@ -40,10 +40,8 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	const handleOnClick = (id: string) => {
 		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id)
 		if (!selectedSessionParagraph.isSelected) {
-			console.log('Select ID', id)
 			dispatch(selectParagraphs([id]))
 		} else {
-			console.log('Deselect ID', id)
 			dispatch(deselectParagraphs([id]))
 		}
 

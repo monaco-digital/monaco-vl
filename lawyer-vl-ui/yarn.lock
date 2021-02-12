@@ -1376,10 +1376,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@monaco-digital/vl-types@^1.6.20":
-  version "1.6.20"
-  resolved "https://npm.pkg.github.com/download/@monaco-digital/vl-types/1.6.20/71aef2cf771d0ed0d2019d802fe85999abc0bcf4a4003b8bf1f86e84d0c97dd8#08e38b0b28bbbf23836e6a16a15f0040d99c5f2b"
-  integrity sha512-RhRoBoY/42rRobzIE5q6tlsy5vF/dXv4YBPGKOCUOue6C3opJszW4Z/O58OaXEGIdip0DCoB2TW3ieWR4IiIpQ==
+"@monaco-digital/vl-types@^1.6.0-PROJ-1307-R8":
+  version "1.6.0-PROJ-1307-R8"
+  resolved "https://npm.pkg.github.com/download/@monaco-digital/vl-types/1.6.0-PROJ-1307-R8/c5da1548460400b12ecf55e6b2be7a312444df42d78be49d0619ef49afdcd4c2#858ba784ca4592b75ace35b34d696373a713db4f"
+  integrity sha512-INad51iTOo/H4HnHtBL7lt+/y1BLgDDTdM7sHoInRB3dodofh4ORM3cIsJBmdeDDz9hPgcPkY2w9nJdcUlCg8Q==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"

@@ -95,6 +95,24 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
+		id: 31,
+		prerequisites: ['E'],
+		text: 'What would you like to do?',
+		subtext: "What's your preferred course of action?",
+		minAnswers: 1,
+		maxAnswers: 1,
+		options: [
+			{
+				text: 'Stay employed and submit a grievance',
+				topicId: 'G',
+			},
+			{
+				text: 'Leave my job and seek an exit package',
+				topicId: '_EX',
+			},
+		],
+	},
+	{
 		id: 4,
 		prerequisites: ['T'],
 		text: 'Why were you dismissed',
@@ -257,7 +275,7 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'Mental health',
-				topicId: 'DMl',
+				topicId: 'DD',
 				prerequisites: ['_PC'],
 			},
 			{

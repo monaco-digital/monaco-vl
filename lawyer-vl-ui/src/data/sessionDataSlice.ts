@@ -1,18 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { SessionParagraph } from '../types/SessionDocument'
+import {
+	SessionDocument,
+	SessionParagraph,
+	SessionDocumentComponent,
+	SessionDocumentSection,
+} from '../types/SessionDocument'
 import { Question } from '../types/Questions'
 import {
 	CaseTopic,
 	DocumentParagraphBulletPoints,
 	DocumentParagraphEditableText,
 	DocumentParagraph,
-	ParagraphComponent,
-	TemplateComponent,
 	TemplateParagraph,
+	Template,
+	TemplateComponent,
+	TemplateSection,
+	Paragraph,
+	ParagraphComponent,
+	BulletPoints,
+	DocumentParagraphComponent,
 } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
-import { BulletPoints } from './types'
 import { createDocumentParagraph } from '../utils/document'
+import { createSessionDocument, createSessionDocumentComponent } from '../utils/sessionDocument'
+import { template } from '../api/google/template'
 
 export const slice = createSlice({
 	name: 'session',
@@ -20,6 +31,8 @@ export const slice = createSlice({
 		suggestedParagraphs: [] as SessionParagraph[],
 		selectedTopics: [] as CaseTopic[],
 		answeredQuestions: [] as Question[],
+		selectedTemplate: null as Template,
+		sessionDocument: null as SessionDocument,
 	},
 	reducers: {
 		selectParagraphs: (state, action) => {
@@ -38,14 +51,16 @@ export const slice = createSlice({
 				}
 			})
 		},
-		updateBulletPoints: (state, action) => {
-			console.log('UPDATE BULLET POINTS----->>>>>')
-			const { id, values } = action.payload
-			state.suggestedParagraphs = _updateBulletPoints(id, values, state.suggestedParagraphs)
+		updateSessionParagraph: (state, action) => {
+			const documentParagraphComponent = action.payload
+			state.suggestedParagraphs = _updateSessionParagraph(documentParagraphComponent, state.suggestedParagraphs)
 		},
-		updateEditableText: (state, action) => {
-			const { id, value } = action.payload
-			state.suggestedParagraphs = _updateEditableText(id, value, state.suggestedParagraphs)
+		updateSessionDocument: (state, action) => {
+			state.sessionDocument = action.payload
+		},
+		updateSessionDocumentComponent: (state, action) => {
+			const documentParagraphComponent = action.payload
+			state.sessionDocument = _updateSessionDocument(documentParagraphComponent, state.sessionDocument)
 		},
 		updateSelectedTopics: (state, action) => {
 			state.selectedTopics = _.compact(action.payload)
@@ -55,6 +70,9 @@ export const slice = createSlice({
 		},
 		updateAnsweredQuestions: (state, action) => {
 			state.answeredQuestions = action.payload
+		},
+		updateSelectedTemplate: (state, action) => {
+			state.selectedTemplate = action.payload
 		},
 		addAnsweredQuestion: (state, action) => {
 			const latestQuestion = action.payload
@@ -66,86 +84,51 @@ export const slice = createSlice({
 	},
 })
 
-const _updateBulletPoints = (
-	id: string,
-	values: { id: string; value: string }[],
+const _updateSessionParagraph = (
+	documentParagraphComponent: DocumentParagraphComponent,
 	sessionParagraphs: SessionParagraph[]
 ): SessionParagraph[] => {
-	for (let sessionParagraph of sessionParagraphs) {
-		// find by documentcomponents first
-		// baseTemplateComponent
+	sessionParagraphs.forEach(sessionParagraph => {
+		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
+		sessionParagraph.documentComponent =
+			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs)
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-
-		const findDocumentParagraphBulletPoints = (documentParagraph: DocumentParagraph): DocumentParagraphBulletPoints => {
-			if (!documentParagraph) return null
-			const match = documentParagraph.documentParagraphComponents.find(
-				dpc => dpc.baseTemplateComponent === id && dpc.type === 'BulletPoints'
-			)
-			return (match as unknown) as DocumentParagraphBulletPoints
-		}
-
-		const documentParagraphBulletPoints = findDocumentParagraphBulletPoints(documentParagraph)
-
-		if (documentParagraphBulletPoints) {
-			console.log('FOUND MATCHING BPS', documentParagraphBulletPoints)
-			documentParagraphBulletPoints.completedBulletPoints = values
-			return sessionParagraphs
-		} else {
-			// Try to match on template
-			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and 
-			the full structure of the DocumentComponent is not created first time round. SHouldn't happen, but just in case you are reading this... */
-			const template = sessionParagraph.templateComponent as TemplateParagraph
-			const templateMatch = template.paragraphComponents.find(pc => pc.id === id && pc.type === 'BulletPoints')
-			if (templateMatch && !sessionParagraph.documentComponent) {
-				sessionParagraph.documentComponent = createDocumentParagraph(template, sessionParagraphs)
-				console.log('create doc from template', sessionParagraph.documentComponent)
-				const documentParagraphBulletPoints = findDocumentParagraphBulletPoints(
-					sessionParagraph.documentComponent as DocumentParagraph
-				)
-				documentParagraphBulletPoints.completedBulletPoints = values
-				return sessionParagraphs
+		documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
+			if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
+				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
 			}
-			console.log('No template or doceument match!!!!!!!!!!')
-		}
-	}
+		})
+	})
 	return sessionParagraphs
 }
 
-const _updateEditableText = (id: string, value: string, sessionParagraphs: SessionParagraph[]): SessionParagraph[] => {
-	for (let sessionParagraph of sessionParagraphs) {
-		// find by documentcomponents first
-		// baseTemplateComponent
-		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-
-		const findDocumentParagraphEditableText = (documentParagraph: DocumentParagraph): DocumentParagraphEditableText => {
-			const match = documentParagraph.documentParagraphComponents.find(
-				dpc => dpc.baseTemplateComponent === id && dpc.type === 'EditableText'
-			)
-			return (match as unknown) as DocumentParagraphEditableText
-		}
-
-		const documentParagraphEditableText = findDocumentParagraphEditableText(documentParagraph)
-
-		if (documentParagraphEditableText) {
-			documentParagraphEditableText.value = value
-			return sessionParagraphs
-		} else {
-			// Try to match on template
-			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and 
-			the full structure of the DocumentComponent is not created first time round. SHouldn't happen, but just in case you are reading this... */
-			const template = sessionParagraph.templateComponent as TemplateParagraph
-			const templateMatch = template.paragraphComponents.find(pc => pc.id === id && pc.type === 'BulletPoints')
-			if (templateMatch && !sessionParagraph.documentComponent) {
-				sessionParagraph.documentComponent = createDocumentParagraph(template, sessionParagraphs)
-				const documentParagraphEditableText = findDocumentParagraphEditableText(
-					sessionParagraph.documentComponent as DocumentParagraph
-				)
-				documentParagraphEditableText.value = value
-				return sessionParagraphs
-			}
+const _updateSessionDocument = (
+	documentParagraphComponent: DocumentParagraphComponent,
+	sessionDocument: SessionDocument
+): SessionDocument => {
+	const processSessionDocumentComponent = (sessionDocumentComponent: SessionDocumentComponent) => {
+		if (
+			sessionDocumentComponent.type === 'TemplateContentSection' ||
+			sessionDocumentComponent.type === 'UserContentSection'
+		) {
+			const sectionComponent = sessionDocumentComponent as SessionDocumentSection
+			sectionComponent.sessionDocumentComponents.forEach(sc => processSessionDocumentComponent(sc))
+		} else if (sessionDocumentComponent.type === 'Paragraph') {
+			const sessionParagraph = sessionDocumentComponent as SessionParagraph
+			const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
+			documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
+				if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
+					documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
+				}
+			})
 		}
 	}
-	return sessionParagraphs
+
+	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
+		processSessionDocumentComponent(sessionDocumentComponent)
+	})
+
+	return sessionDocument
 }
 
 export const {
@@ -156,8 +139,10 @@ export const {
 	removeLastAnsweredQuestion,
 	selectParagraphs,
 	deselectParagraphs,
-	updateBulletPoints,
-	updateEditableText,
+	updateSelectedTemplate,
+	updateSessionParagraph,
+	updateSessionDocument,
+	updateSessionDocumentComponent,
 } = slice.actions
 
 export default slice.reducer

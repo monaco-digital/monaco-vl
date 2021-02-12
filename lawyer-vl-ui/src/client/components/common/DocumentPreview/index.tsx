@@ -1,25 +1,45 @@
 import React, { FC, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, DocumentSection, Paragraph } from '@monaco-digital/vl-types/lib/main'
-import { SessionDocumentComponent, SessionDocumentSection, SessionParagraph } from '../../../../types/SessionDocument'
+import { CaseTopic, Template, DocumentSection, Paragraph } from '@monaco-digital/vl-types/lib/main'
+import {
+	SessionDocumentComponent,
+	SessionDocumentSection,
+	SessionParagraph,
+	SessionDocument,
+} from '../../../../types/SessionDocument'
 import { PreviewParagraph } from '../DocumentPreviewComponents'
-import { createSessionDocument, createDocumentFromTemplate } from '../../../../utils/document'
-import { getLetterParagraphs, getLetterText } from '../../../../utils/document'
+import { createDocument, createDocumentFromTemplate } from '../../../../utils/document'
+import { createSessionDocument, refreshSessionDocument } from '../../../../utils/sessionDocument'
 import VLcard from '../VLcard'
 import ReactGA from 'react-ga'
 import { getTemplate } from '../../../../api/vl'
 import { getDocumentText } from '../../../../utils/renderDocument'
+import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice'
+import _ from 'lodash'
 
 const DocumentPreview: FC = () => {
+	const dispatch = useDispatch()
 	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
 		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected)
 	)
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.selected)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 
-	const selectedTemplate = getTemplate(selectedTopics)
+	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate)
+	const updatedTemplate = getTemplate(selectedTopics)
+	if (updatedTemplate.id !== selectedTemplate?.id) {
+		dispatch(updateSelectedTemplate(updatedTemplate))
+	}
+
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
+	if (!sessionDocument) {
+		const doc = createSessionDocument(updatedTemplate, selectedParagraphs)
+		dispatch(updateSessionDocument(doc))
+	} /* else if(!_.isEqual(sessionDocument, refreshSessionDocument(sessionDocument, selectedParagraphs))) {
+		dispatch(updateSessionDocument(refreshSessionDocument(sessionDocument, selectedParagraphs)))
+	} */
 
 	const [isCollapsedIntro, setIsCollapsedIntro] = useState(false)
 	const chevronClasses = classNames('fas', {
@@ -30,17 +50,10 @@ const DocumentPreview: FC = () => {
 		setIsCollapsedIntro(collapseIntro => !collapseIntro)
 	}
 
-	const sessionDocument = createSessionDocument(selectedTemplate, selectedParagraphs)
-
 	const getTextTemp = () => {
-		const tdoc = createDocumentFromTemplate(selectedTemplate, selectedParagraphs)
-		console.log(getDocumentText(tdoc))
+		const doc = createDocument(sessionDocument)
+		console.log(getDocumentText(doc))
 	}
-	// const populatedTemplate = populateTemplate(selectedTemplate, selectedParagraphs)
-
-	const top = null
-	const middle = null
-	const bottom = null
 
 	ReactGA.event({
 		category: 'User',
@@ -50,6 +63,7 @@ const DocumentPreview: FC = () => {
 	const SessionDocComponents: FC<{ sessionDocumentComponents: SessionDocumentComponent[] }> = ({
 		sessionDocumentComponents,
 	}) => {
+		if (!sessionDocumentComponents) return null
 		const output = sessionDocumentComponents.map(sessionDocumentComponent => {
 			const type = sessionDocumentComponent && sessionDocumentComponent.type
 			switch (type) {
@@ -73,26 +87,31 @@ const DocumentPreview: FC = () => {
 		<>
 			<div className="letter-preview">
 				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
-					<div className="letter-preview__intro">
+					<div className="letter-preview__body">
+						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
+					</div>
+					<button type="button" onClick={e => getTextTemp()} value="generate">
+						generate text
+					</button>
+				</VLcard>
+			</div>
+		</>
+	)
+}
+
+/*
+<div className="letter-preview__intro">
 						<div className="letter-preview_intro__chevron">
 							<button onClick={handleCollapseIntro}>
 								<i className={chevronClasses}></i>
 							</button>
 						</div>
 					</div>
-					<div className="letter-preview__body">
-						<SessionDocComponents sessionDocumentComponents={sessionDocument.sessionDocumentComponents} />
-					</div>
-					<div className="letter-preview__signature">
+<div className="letter-preview__signature">
 						<button type="button" onClick={e => getTextTemp()} value="gettext">
 							Output text
 						</button>
-						{/* <LetterPreviewParagraph paragraphs={bottom} /> */}
-					</div>
-				</VLcard>
-			</div>
-		</>
-	)
-}
+						{/* <LetterPreviewParagraph paragraphs={bottom} /> * /}
+						</div> */
 
 export default DocumentPreview

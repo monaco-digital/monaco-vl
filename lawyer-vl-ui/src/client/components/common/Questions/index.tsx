@@ -26,7 +26,6 @@ const Questions: FC = () => {
 	const dispatch = useDispatch()
 
 	if (!currentQuestion) {
-		console.log('No more questions')
 		dispatch(setPage(pages.STATEMENT_SELECT))
 		return null
 	}
@@ -47,7 +46,6 @@ const Questions: FC = () => {
 	})
 
 	const handleGoBackwards = () => {
-		console.log('Handle go backwards')
 		const optionIds = currentQuestion.option.map(option => option.topicId)
 		const updatedSelectedTopics = selectedTopics.filter(topic => !optionIds.includes(topic.id))
 		dispatch(updateSelectedTopics(updatedSelectedTopics))
@@ -55,7 +53,6 @@ const Questions: FC = () => {
 	}
 
 	const handleGoForward = () => {
-		console.log('Handle go forward')
 		dispatch(addAnsweredQuestion(currentQuestion))
 	}
 
