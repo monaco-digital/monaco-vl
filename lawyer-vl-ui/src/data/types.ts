@@ -1,15 +1,3 @@
-export interface Paragraph {
-	id: string
-	paragraph: string
-	summary: string
-	verticalHeight: number
-	topic?: string
-	topicsOneOf: Topic[]
-	topicsAllOf: Topic[]
-	topicsNoneOf: Topic[]
-	bold?: boolean
-}
-
 export const ParagraphTopics = {
 	EMPLOYED: 'EMPLOYED',
 	EQUAL_PAY: 'EQUAL_PAY',
@@ -45,6 +33,7 @@ export const ParagraphTopics = {
 	VEGAN: 'VEGAN',
 	ALL: 'ALL',
 	LESS_THAN_2_YEARS: 'LESS_THAN_2_YEARS',
+	EXIT_PACKAGE: 'EXIT_PACKAGE',
 }
 
 export type Topic =
@@ -109,6 +98,7 @@ export type Topic =
 	| '_UP'
 	| '_UDy'
 	| '_US'
+	| '_EX'
 
 export interface CaseTopic {
 	id?: Topic
@@ -172,21 +162,7 @@ export const Topics: CaseTopic[] = [
 		text: 'Discrimination',
 		questionText: 'Discrimination',
 		parentTopics: [],
-		subtopics: [
-			'DP',
-			'DM',
-			'DS',
-			'DSy',
-			'DR',
-			'DRn',
-			'DA',
-			'DD',
-			'DMe',
-			'DG',
-			'DPI',
-			'DMl',
-			'DV',
-		],
+		subtopics: ['DP', 'DM', 'DS', 'DSy', 'DR', 'DRn', 'DA', 'DD', 'DMe', 'DG', 'DPI', 'DMl', 'DV'],
 		type: 'case',
 	},
 	{
@@ -597,6 +573,12 @@ export const Topics: CaseTopic[] = [
 		text: 'Poor response to sickness issues',
 		type: 'employment_situation',
 	},
+	{
+		id: '_EX',
+		name: 'EXIT_PACKAGE',
+		text: 'Seek exit package',
+		type: 'employment_situation',
+	},
 ]
 
 export const ParagraphTopicMapping = {
@@ -634,6 +616,7 @@ export const ParagraphTopicMapping = {
 	VEGAN: 'DV',
 	ALL: 'All',
 	LESS_THAN_2_YEARS: '2y',
+	EXIT_PACKAGE: '_EX',
 }
 export const TopicAlgebraOperators = {
 	AND: '+',
@@ -676,9 +659,4 @@ export interface Answer {
 	prerequisites?: string[]
 }
 
-export type NavView =
-	| 'get-started'
-	| 'key-facts'
-	| 'preview-letter'
-	| 'letter-builder'
-	| 'help'
+export type NavView = 'get-started' | 'key-facts' | 'preview-letter' | 'letter-builder' | 'help'

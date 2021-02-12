@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { ToastContainer } from 'react-toastify'
 import Client from './client/index'
 import ReactGA from 'react-ga'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
 function App() {
 	ReactGA.initialize('UA-66970592-3')
@@ -11,7 +12,9 @@ function App() {
 
 	return (
 		<>
-			<Client /> <ToastContainer />
+			<Router>
+				<Client /> <ToastContainer />
+			</Router>
 		</>
 	)
 }

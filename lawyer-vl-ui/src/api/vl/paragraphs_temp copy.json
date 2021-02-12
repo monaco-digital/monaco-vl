@@ -1,0 +1,1122 @@
+{
+	"data": {
+		"getAllParagraphs": [
+			{
+				"id": "x__D3qPn4Cvk6r7e4HDNa-PAR1",
+				"summary": "I resigned because of their discrimination.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D", "Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(D,Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "x__D3qPn4Cvk6r7e4HDNa-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "I have been instructed by the above named client, who resigned because they were discriminated against."
+					}
+				]
+			},
+			{
+				"id": "BXWo5VMQQ0BbtTqXjaTJ7-PAR1",
+				"summary": "I'm writing in respect of unlawful treatment I suffered at work.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "BXWo5VMQQ0BbtTqXjaTJ7-STTXT2",
+						"type": "StaticText",
+						"textFirstPerson": "I have suffered unlawful treatment at work in the following ways",
+						"textThirdPerson": "I have been instructed by the above named client, who has been treated unlawfully at work."
+					},
+					{
+						"id": "BXWo5VMQQ0BbtTqXjaTJ7-STTXT1",
+						"type": "BulletPoints",
+						"bulletPoints": [
+							{
+								"placeholder": "<a way in which you suffered>",
+								"required": true,
+								"minLength": 10,
+								"maxLength": 100
+							},
+							{
+								"placeholder": "<another way in which you suffered>",
+								"required": true,
+								"minLength": 10,
+								"maxLength": 100
+							}
+						]
+					}
+				]
+			},
+			{
+				"id": "Oq6dH51Cas8Q8UzTctw8v-PAR1",
+				"summary": "I refer to my resignation due to health and safety concerns.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["H", "Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(H,Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "Oq6dH51Cas8Q8UzTctw8v-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "JM2mHAa9z1rY7aCqRp9bP-PAR1",
+				"summary": "I'm writing in relation to an unlawful deduction from my wages.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "JM2mHAa9z1rY7aCqRp9bP-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "4jr5IbfVa6O1VBzs2G6xt-PAR1",
+				"summary": "I'm writing regarding my employment situation. ",
+				"topicsOneOf": [],
+				"topicsAllOf": ["P", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(P,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "4jr5IbfVa6O1VBzs2G6xt-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "c6vyAOpN6_6FBbQetE52A-PAR1",
+				"summary": "I'm writing further to my dismissal because of performance.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["P", "T"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(P,T) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "c6vyAOpN6_6FBbQetE52A-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "YbxyYyugxQAZbxx6r_TZH-PAR1",
+				"summary": "I'm writing regarding the current redundancy process, which I believe to be unfair and discriminatory.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(R,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "YbxyYyugxQAZbxx6r_TZH-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "khPJ0-NcecRYOWa231XMB-PAR1",
+				"summary": "I'm writing further to my recent resignation.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "khPJ0-NcecRYOWa231XMB-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "TuOh-tPwkJSkIkHmfkmDr-PAR1",
+				"summary": "I refer to my suspension which was unjustified.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Sn", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(Sn,E ) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "TuOh-tPwkJSkIkHmfkmDr-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "QPM0NVJAgfHe9UkDGLSer-PAR1",
+				"summary": "Following my recent dismissal, I'm writing to express serious concerns.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["T"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(T) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "QPM0NVJAgfHe9UkDGLSer-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "Fz3R7QXzIBQuMwhOzSlCr-PAR1",
+				"summary": "I resigned because of mistreatment due to whistleblowing. ",
+				"topicsOneOf": [],
+				"topicsAllOf": ["W", "Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(W,Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "Fz3R7QXzIBQuMwhOzSlCr-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "pNtkZ0UNBDvgim5UEtXb4-PAR1",
+				"summary": "I have felt bullied.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["B"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(B) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "pNtkZ0UNBDvgim5UEtXb4-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "This was part of a sustained campaign of humiliation, professional undermining and bullying."
+					}
+				]
+			},
+			{
+				"id": "94mx4lAQDohUMeWLu209G-PAR1",
+				"summary": "It's clear that my treatment was discriminatory.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "94mx4lAQDohUMeWLu209G-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "P4BPhoyNM6S1mTNAyu-qO-PAR1",
+				"summary": "I was subjected to unlawful discrimination.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["D"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(D) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "P4BPhoyNM6S1mTNAyu-qO-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "htEaS_MBm6NjI3iUwnzEl-PAR1",
+				"summary": "Resigned because of unlawful deductions of wages - constructive dismissal.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Rd", "M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 1,
+				"topic": "() + allOf(Rd,M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "htEaS_MBm6NjI3iUwnzEl-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "XBWVW6TvgVexGL66Aq_dq-PAR1",
+				"summary": "There has been a lack of empathy so that I feel bullied. This is discrimination.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D", "B", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D,B,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "XBWVW6TvgVexGL66Aq_dq-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "14EfSG2YDlfdFXo5r9dyA-PAR1",
+				"summary": "I've been subjected to unlawful discrimination",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "14EfSG2YDlfdFXo5r9dyA-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "L5rI8IarcMOu3WLWTLw6l-PAR1",
+				"summary": "Your seemingly neutral practice discriminated against me indirectly.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["D", "ID"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(D,ID) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "L5rI8IarcMOu3WLWTLw6l-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "YwKQN819SvjcKs2nJtvrT-PAR1",
+				"summary": "Your seemingly neutral practice has discriminated against me indirectly.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D", "ID", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D,ID,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "YwKQN819SvjcKs2nJtvrT-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "kdF8C-LqdkMfHg7v_PhDv-PAR1",
+				"summary": "I complained about discrimination and I was victimised.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["D", "V"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(D,V) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "kdF8C-LqdkMfHg7v_PhDv-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "Ky12UY69t3-nqlKH5ldQZ-PAR1",
+				"summary": "I complained about discrimination and have been victimised.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D", "V", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D,V,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "Ky12UY69t3-nqlKH5ldQZ-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "uG-w3Y7mXzhnfKKpdWriB-PAR1",
+				"summary": "You failed your health & safety duty - coronavirus unsafe workplace.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["H", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(H,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "uG-w3Y7mXzhnfKKpdWriB-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "Second, you failed your duty in respect of health and safety. I’m being asked to attend a workplace that is unsafe due to coronavirus. I could work from home, but I’m not being allowed. I’m regularly being called into meetings in the office that are either unecessary or could be conducted remotely. I’ve been subjected to detrimental treatment in respect of my health and safety, which is a violation of s.44 and potentially of s.100 of the Employment Rights Act 1996."
+					}
+				]
+			},
+			{
+				"id": "U0gqIuNHkC-KDUJnLKFsO-PAR1",
+				"summary": "My pay's been cut because of refusing to attend an unsafe workplace.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["H", "M", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(H,M,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "U0gqIuNHkC-KDUJnLKFsO-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "rxaRTcKk6PPQ-o1kjIC-z-PAR1",
+				"summary": "Making me attend unsafe workplace is unlawful - constructive dismissal. ",
+				"topicsOneOf": [],
+				"topicsAllOf": ["H", "Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(H,Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "rxaRTcKk6PPQ-o1kjIC-z-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "szzK5MMl-UtXkEQ9QsBkA-PAR1",
+				"summary": "My contract specifies [amount of payment].",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "szzK5MMl-UtXkEQ9QsBkA-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "tQDFmkjGyPvpZtDjxGf42-PAR1",
+				"summary": "You reduced my salary without my agreement.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "tQDFmkjGyPvpZtDjxGf42-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "Hm5tFY7Xq1s34yvTxzr7Q-PAR1",
+				"summary": "Intend to claim the difference between what was paid and owed to me.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "Hm5tFY7Xq1s34yvTxzr7Q-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "- payment of the difference between what you paid and what I was contractually entitled to."
+					}
+				]
+			},
+			{
+				"id": "z05YasmQDlg-9x1bbpG1--PAR1",
+				"summary": "The unlawful deductions of my wages had a negative effect on me.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(M) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "z05YasmQDlg-9x1bbpG1--STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "LGjnV1dp4Zbl90lS5CRqa-PAR1",
+				"summary": "I have a physical or mental condition.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["DD"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(DD) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "LGjnV1dp4Zbl90lS5CRqa-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "qI-8n3OU749To0TTuTk39-PAR1",
+				"summary": "You didn't consider making reasonable adjustments for me.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["DMl", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(DMl,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "qI-8n3OU749To0TTuTk39-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "TenEsYEyxi9t2NwyO5pN1-PAR1",
+				"summary": "Ethical veganism has been accepted by the employment tribunals as a form of protected belief.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["DPI"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(DPI) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "TenEsYEyxi9t2NwyO5pN1-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "G8V52eEde1nnD5V9m_-nc-PAR1",
+				"summary": "I've paid less for equal work because of my gender.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["DS", "EP", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(DS,EP,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "G8V52eEde1nnD5V9m_-nc-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "A6pqbo7kmWdAD8Cz0cVPN-PAR1",
+				"summary": "Disciplinary process/action against me is unfair.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Dy", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(Dy,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "A6pqbo7kmWdAD8Cz0cVPN-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "_ldBjyedXtlRJUD8svoiO-PAR1",
+				"summary": "Resigned due to excessive workload.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["EW", "Rd"],
+				"topicsNoneOf": ["2y"],
+				"verticalHeight": 2,
+				"topic": "() + allOf(EW,Rd) + !(2y)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "_ldBjyedXtlRJUD8svoiO-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "27R2yAyeWqR3e61Qldlrj-PAR1",
+				"summary": "Haven't been provided with employment particulars in writing.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["F", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(F,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "27R2yAyeWqR3e61Qldlrj-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "I requested an updated contract as the only contract in my possession was that dated [. ] when I joined the business. This was not issued at the time of request in February 2019, nor has it been issued subsequently, though I have been working in that position. This is a breach of the employer’s duty to provide the employee with a written statement of initial employment particulars or of any changes to their terms of employment."
+					}
+				]
+			},
+			{
+				"id": "SrG3yWT8lbYUG-5cuPeHW-PAR1",
+				"summary": "Danger from Coronavirus at work.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["H"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(H) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "SrG3yWT8lbYUG-5cuPeHW-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "FWdeUvb6Ctgkx7HHh_DdK-PAR1",
+				"summary": "Subjeced to detriment because of refusing to attend an unsafe workplace.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["H", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(H,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "FWdeUvb6Ctgkx7HHh_DdK-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "a0SVIsYG_ndf8cfzsEiv--PAR1",
+				"summary": "Gross misconduct - investigation and dismissal unfair.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Mt", "T"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(Mt,T) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "a0SVIsYG_ndf8cfzsEiv--STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "lhm2ms4cl2zR13_dPDGcF-PAR1",
+				"summary": "My performance wasn't poor.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["P"],
+				"topicsNoneOf": ["2y"],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(P) + !(2y)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "lhm2ms4cl2zR13_dPDGcF-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "i am caroline this is my third person para"
+					}
+				]
+			},
+			{
+				"id": "r2FuIcZ72HdgGm9iUC8QB-PAR1",
+				"summary": "You didn't follow a reasonable procedure before dismissing for poor performance.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["P", "T"],
+				"topicsNoneOf": ["2y"],
+				"verticalHeight": 2,
+				"topic": "() + allOf(P,T) + !(2y)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "r2FuIcZ72HdgGm9iUC8QB-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "zvRpGN-kq1OhA-amNMrvc-PAR1",
+				"summary": "If a meaningful consultation were to be carried out, I wouldn't be made redundant because ... .",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "zvRpGN-kq1OhA-amNMrvc-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "KkUmjC8NuUbqTY27_OfVU-PAR1",
+				"summary": "This shows that the selection process was predetermined.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "KkUmjC8NuUbqTY27_OfVU-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "nP_2YLGSPIq2hyuDq2gTs-PAR1",
+				"summary": "Suitable alternative employment wasn't considered.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "nP_2YLGSPIq2hyuDq2gTs-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "WHIZvIYm3cVhpWa0JH-Up-PAR1",
+				"summary": "I have a disability  - choosing me for potential redundancy is discriminatory.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "DD", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,DD,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "WHIZvIYm3cVhpWa0JH-Up-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "MD7ut13hPpqB1gUvCZWj1-PAR1",
+				"summary": "You're implementing the restructure in bad faith to remove me because ... .",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "MD7ut13hPpqB1gUvCZWj1-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "TdAResHKx47qgL3oGZotb-PAR1",
+				"summary": "No actual reduction in work - redundancy based on anticipation of losses only.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "TdAResHKx47qgL3oGZotb-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "Anticipating [losses] doesn’t mean I’m redundant - there is still the same amount of work to be done, therefore I’m not being dismissed because of a reduction in the amount of the type of work I do. For this reason, this is not a genuine redundancy dismissal and and resulting dismissal will inevitably be unfair."
+					}
+				]
+			},
+			{
+				"id": "pB0HjdU63yZVazbcwTRNo-PAR1",
+				"summary": "Should be selected for the new role.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "pB0HjdU63yZVazbcwTRNo-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "q1tA-Y4kj7lpPwrcPG8Pt-PAR1",
+				"summary": "You were implementing the restructure in bad faith to remove me because ... .",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "T"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,T) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "q1tA-Y4kj7lpPwrcPG8Pt-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "kXIZT1QgNdtQYfix7FU8N-PAR1",
+				"summary": "Bad treatment led to constructive dismissal.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Rd"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(Rd) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "kXIZT1QgNdtQYfix7FU8N-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "4D7-KH-oBfVFt4GgPucuH-PAR1",
+				"summary": "My suspension was a kneejerk reaction.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Sn", "D", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(Sn,D,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "4D7-KH-oBfVFt4GgPucuH-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "C9xMpOGoDtGmgcG-xKhW_-PAR1",
+				"summary": "Your actions had a discriminatory motive as there is no rational explanation to such appalling treatment.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["D"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(D) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "C9xMpOGoDtGmgcG-xKhW_-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "AflV962-Zn1ASHrQwIAGA-PAR1",
+				"summary": "There was a lack of empathy so that I feel bullied. This is discrimination.",
+				"topicsOneOf": ["T", "Rd"],
+				"topicsAllOf": ["D", "B"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "(T,Rd) + allOf(D,B) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "AflV962-Zn1ASHrQwIAGA-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "gS701EvJ13rDgMZAoXSw0-PAR1",
+				"summary": "Unlawful deductions of wages are a breach of contract - entitled to resign and claim constructive dismissal.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["M", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(M,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "gS701EvJ13rDgMZAoXSw0-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "B4sV8r1FwKji2UHNQOksB-PAR1",
+				"summary": "The current redundancy selection criteria are unfair [and discriminatory] because ... .",
+				"topicsOneOf": [],
+				"topicsAllOf": ["R", "D"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(R,D) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "B4sV8r1FwKji2UHNQOksB-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "BusFaCOCNXZmIJVebiiea-PAR1",
+				"summary": "I refer to my suspension, which was discriminatory and due to whistleblowing.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["Sn", "W"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(Sn,W) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "BusFaCOCNXZmIJVebiiea-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "YPDNY8--blyIFQjo4-9aa-PAR1",
+				"summary": "Whistleblowing/health & safety - was mistreated.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["W", "E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(W,E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "YPDNY8--blyIFQjo4-9aa-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "wx0NgcPkmzSfuT4PBDh0j-PAR1",
+				"summary": "Whistleblowing - was mistreated.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["W", "T"],
+				"topicsNoneOf": [],
+				"verticalHeight": 2,
+				"topic": "() + allOf(W,T) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "wx0NgcPkmzSfuT4PBDh0j-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "YzZrRoMInvZOnljX8Egox-PAR1",
+				"summary": "Lack of empathy - constructive dismissal.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["E"],
+				"topicsNoneOf": ["D", "2y"],
+				"verticalHeight": 3,
+				"topic": "() + allOf(E) + !(D,2y)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "YzZrRoMInvZOnljX8Egox-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "fSKjwnSIvD4MJHXZt4tsA-PAR1",
+				"summary": "My employment no longer tenable, but reserving position.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["E"],
+				"topicsNoneOf": [],
+				"verticalHeight": 3,
+				"topic": "() + allOf(E) + !()",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "fSKjwnSIvD4MJHXZt4tsA-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			},
+			{
+				"id": "ifvkV6DB6mcgIj96ns_pI-PAR1",
+				"summary": "I'm considering bringing a claim (except for discrimination).",
+				"topicsOneOf": ["E", "T", "Rd"],
+				"topicsAllOf": [],
+				"topicsNoneOf": ["D"],
+				"verticalHeight": 3,
+				"topic": "(E,T,Rd) + allOf() + !(D)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "ifvkV6DB6mcgIj96ns_pI-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": "Our client is prepared to present an employment tribunal claim, which would result in substantial damages."
+					}
+				]
+			},
+			{
+				"id": "N5REgDcX2K19sceCKbpL5-PAR1",
+				"summary": "I believe that subjecting me to unnecessary and unjustified performance management is unfair and demonstrates a lack of empathy - this entitles me to resign and claim unfair constructive dismissal.",
+				"topicsOneOf": [],
+				"topicsAllOf": ["P", "E"],
+				"topicsNoneOf": ["2y"],
+				"verticalHeight": 2,
+				"topic": "() + allOf(P,E) + !(2y)",
+				"status": "Live",
+				"paragraphComponents": [
+					{
+						"id": "N5REgDcX2K19sceCKbpL5-STTXT1",
+						"type": "StaticText",
+						"textFirstPerson": null,
+						"textThirdPerson": ""
+					}
+				]
+			}
+		]
+	}
+}
