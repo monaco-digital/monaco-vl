@@ -1,5 +1,4 @@
-import config from '../../config'
-import axios from 'axios'
+//@ts-nocheck
 import {
 	CaseTopic,
 	Template,
@@ -9,18 +8,6 @@ import {
 	EditableText,
 } from '@monaco-digital/vl-types/lib/main'
 import { BulletPoints } from '../../data/types'
-
-export const getTemplate = (topics: CaseTopic[]) => {
-	try {
-		if (topics.find(topic => topic.id === 'E')) {
-			return stillEmployed
-		} else {
-			return notEmployed
-		}
-	} catch (e) {
-		// nothing yet
-	}
-}
 
 const stillEmployed: Template = {
 	id: 'asdasdasda',
@@ -36,19 +23,22 @@ const stillEmployed: Template = {
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					id: 'A00001',
-					type: 'Paragraph',
-					verticalHeight: 0,
-					topicsOneOf: [],
-					topicsAllOf: ['All'],
-					topicsNoneOf: [],
-					paragraphComponents: [
-						{
-							id: 'PC2000',
-							type: 'StaticText',
-							textFirstPerson: 'PRIVATE & CONFIDENTIAL',
-						} as StaticText,
-					],
+					paragraphId: 'A00001',
+					paragraph: {
+						id: 'A00001',
+						type: 'Paragraph',
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: 'PC2000',
+								type: 'StaticText',
+								textFirstPerson: 'PRIVATE & CONFIDENTIAL',
+							} as StaticText,
+						],
+					},
 				},
 				{
 					id: 'A00002',
@@ -698,3 +688,15 @@ const notEmployed: Template = {
 		} as TemplateSection,
 	],
 } as Template
+
+export const getTemplate = (topics: CaseTopic[]) => {
+	try {
+		if (topics.find(topic => topic.id === 'E')) {
+			return stillEmployed
+		} else {
+			return notEmployed
+		}
+	} catch (e) {
+		// nothing yet
+	}
+}

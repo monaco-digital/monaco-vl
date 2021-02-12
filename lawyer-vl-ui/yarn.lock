@@ -1400,17 +1400,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-<<<<<<< HEAD
-"@monaco-digital/vl-types@1.6.0-PROJ-1307-R1":
-  version "1.6.0-PROJ-1307-R1"
-  resolved "https://npm.pkg.github.com/download/@monaco-digital/vl-types/1.6.0-PROJ-1307-R1/2c04a6465334162290b0b80cd304ea8bfce825c9b7a7dd3f64aaef900abb5f64#936079086dec39184837fa42e06f8b1c4ea3e601"
-  integrity sha512-1xBQatd/SvJ9AY1Ay9M0iuORhhjVrz3T/xTG9FP06H18TFddJJ8ypyak8e6kGkGJiABe6X303usFnJheaTK9fQ==
-=======
-"@monaco-digital/vl-types@^1.6.20":
-  version "1.6.20"
-  resolved "https://npm.pkg.github.com/download/@monaco-digital/vl-types/1.6.20/71aef2cf771d0ed0d2019d802fe85999abc0bcf4a4003b8bf1f86e84d0c97dd8#08e38b0b28bbbf23836e6a16a15f0040d99c5f2b"
-  integrity sha512-RhRoBoY/42rRobzIE5q6tlsy5vF/dXv4YBPGKOCUOue6C3opJszW4Z/O58OaXEGIdip0DCoB2TW3ieWR4IiIpQ==
->>>>>>> tw-working-branch
+"@monaco-digital/vl-types@1.6.0-PROJ-1307-R8":
+  version "1.6.0-PROJ-1307-R8"
+  resolved "https://npm.pkg.github.com/download/@monaco-digital/vl-types/1.6.0-PROJ-1307-R8/c5da1548460400b12ecf55e6b2be7a312444df42d78be49d0619ef49afdcd4c2#858ba784ca4592b75ace35b34d696373a713db4f"
+  integrity sha512-INad51iTOo/H4HnHtBL7lt+/y1BLgDDTdM7sHoInRB3dodofh4ORM3cIsJBmdeDDz9hPgcPkY2w9nJdcUlCg8Q==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -5927,6 +5920,11 @@ graphql-tag@^2.11.0:
   version "2.11.0"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.11.0.tgz#1deb53a01c46a7eb401d6cb59dec86fa1cccbffd"
   integrity sha512-VmsD5pJqWJnQZMUeRwrDhfgoyqcfwEkvtpANqcoUG8/tOLkwNgU9mzub/Mc78OJMhHjx7gfAMTxzdG43VGg3bA==
+
+graphql@^15.5.0:
+  version "15.5.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.5.0.tgz#39d19494dbe69d1ea719915b578bf920344a69d5"
+  integrity sha512-OmaM7y0kaK31NKG31q4YbD2beNYa6jBBKtMFT6gLYJljHLJr42IqJ8KX08u3Li/0ifzTU5HjmoOOrwa5BRLeDA==
 
 growly@^1.3.0:
   version "1.3.0"

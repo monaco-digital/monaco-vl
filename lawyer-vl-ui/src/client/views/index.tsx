@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { FC, useEffect } from 'react'
 import Footer from '../components/common/Footer'
 import DocumentPreview from '../components/common/DocumentPreview'
@@ -16,6 +17,7 @@ import { getAllCaseTopics } from '../../api/vl/'
 import StatementSelect from '../components/common/StatementSelect'
 import { SessionParagraph } from '../../types/SessionDocument'
 import { Route, Switch } from 'react-router-dom'
+import { getAllParagraphs } from '../../api/vl/paragraph'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
@@ -25,7 +27,8 @@ const Main: FC = () => {
 		//TODO - fix this
 		// dispatch(setView(undefined))
 		;(async () => {
-			const paragraphs = await getData()
+			//const paragraphs = await getData()
+			const paragraphs = await getAllParagraphs()
 			const caseTopics = await getAllCaseTopics()
 			const sessionParagraphs = paragraphs.map(paragraph => {
 				return {

@@ -14,7 +14,7 @@ const GET_ALL_PARAGRAPHS = gql`
 
 export const getAllParagraphs = async (): Promise<Paragraph[]> => {
 	try {
-		const result = await client.query<Paragraph[], undefined>({
+		const result = await client.query<any, any>({
 			query: GET_ALL_PARAGRAPHS,
 		})
 		const { data, errors } = result
@@ -22,7 +22,9 @@ export const getAllParagraphs = async (): Promise<Paragraph[]> => {
 			const errorString = errors?.join('\n') ?? 'did not get data from server'
 			throw new Error(`The error is: ${errorString}`)
 		}
-		return data
+		console.log('The data returned for paras  is: ', data)
+		const { getAllParagraphs: allParagraphs } = data
+		return allParagraphs
 	} catch (e) {
 		console.log('There was an error getting all paragraphs: ', e)
 	}

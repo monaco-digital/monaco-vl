@@ -92,10 +92,12 @@ const _updateBulletPoints = (
 			return sessionParagraphs
 		} else {
 			// Try to match on template
-			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and 
+			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and
 			the full structure of the DocumentComponent is not created first time round. SHouldn't happen, but just in case you are reading this... */
 			const template = sessionParagraph.templateComponent as TemplateParagraph
-			const templateMatch = template.paragraphComponents.find(pc => pc.id === id && pc.type === 'BulletPoints')
+			const templateMatch = template.paragraph.paragraphComponents.find(
+				pc => pc.id === id && pc.type === 'BulletPoints'
+			)
 			if (templateMatch && !sessionParagraph.documentComponent) {
 				sessionParagraph.documentComponent = createDocumentParagraph(template, sessionParagraphs)
 				console.log('create doc from template', sessionParagraph.documentComponent)
@@ -131,10 +133,12 @@ const _updateEditableText = (id: string, value: string, sessionParagraphs: Sessi
 			return sessionParagraphs
 		} else {
 			// Try to match on template
-			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and 
+			/* This has the potential to have weird side effects if there is more than one editable component in a paragraph and
 			the full structure of the DocumentComponent is not created first time round. SHouldn't happen, but just in case you are reading this... */
 			const template = sessionParagraph.templateComponent as TemplateParagraph
-			const templateMatch = template.paragraphComponents.find(pc => pc.id === id && pc.type === 'BulletPoints')
+			const templateMatch = template.paragraph.paragraphComponents.find(
+				pc => pc.id === id && pc.type === 'BulletPoints'
+			)
 			if (templateMatch && !sessionParagraph.documentComponent) {
 				sessionParagraph.documentComponent = createDocumentParagraph(template, sessionParagraphs)
 				const documentParagraphEditableText = findDocumentParagraphEditableText(

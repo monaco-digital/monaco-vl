@@ -50,7 +50,7 @@ const PreviewParagraph: FC<{ paragraph: SessionParagraph }> = ({ paragraph }) =>
 		const templateParagraph = paragraph.templateComponent as TemplateParagraph
 		return (
 			<div style={{ border: '1px solid #f0f0f0', padding: '10px', margin: '10px' }}>
-				{templateParagraph.paragraphComponents.map(templateParagraphComponent => {
+				{templateParagraph.paragraph.paragraphComponents.map(templateParagraphComponent => {
 					switch (templateParagraphComponent.type) {
 						case 'StaticText':
 							return <PreviewTemplateParagraphStaticText staticText={templateParagraphComponent as StaticText} />

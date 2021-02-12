@@ -63,9 +63,6 @@ export const paragraph = gql`
 			... on BulletPoint {
 				...FBulletPoints
 			}
-			... on OptionalList {
-				...FOptionsList
-			}
 		}
 		paragraphComponentRefs
 		meta {
@@ -75,6 +72,5 @@ export const paragraph = gql`
 	${paragraphComponent}
 	${staticText}
 	${bulletPoint}
-	${dropDown}
 	${meta}
 `

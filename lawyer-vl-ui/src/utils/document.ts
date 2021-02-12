@@ -123,7 +123,7 @@ export const createDocumentParagraph = (
 		id: templateParagraph.id,
 		type: 'Paragraph',
 		baseTemplateComponent: templateParagraph.id,
-		documentParagraphComponents: templateParagraph.paragraphComponents.map(paragraphComponent =>
+		documentParagraphComponents: templateParagraph.paragraph.paragraphComponents.map(paragraphComponent =>
 			templateParagraphComponentToDocumentParagraphComponent(paragraphComponent)
 		),
 	} as DocumentParagraph

@@ -13,7 +13,7 @@ const GET_ALL_CASE_TOPICS = gql`
 
 export const getAllCaseTopics = async (): Promise<CaseTopic[]> => {
 	try {
-		const result = await client.query<CaseTopic[], undefined>({
+		const result = await client.query<any, any>({
 			query: GET_ALL_CASE_TOPICS,
 		})
 		const { data, errors } = result
@@ -21,7 +21,9 @@ export const getAllCaseTopics = async (): Promise<CaseTopic[]> => {
 			const errorString = errors?.join('\n') ?? 'did not get data from server'
 			throw new Error(`The error is: ${errorString}`)
 		}
-		return data
+		const { getAllCaseTopics: caseTopics } = data
+		console.log('The case topics are: ', caseTopics)
+		return caseTopics
 	} catch (e) {
 		console.log('There was an error getting all case topics: ', e)
 	}
