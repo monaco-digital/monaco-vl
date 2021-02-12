@@ -9,8 +9,17 @@ const apiUrl = (): string => {
 	return ''
 }
 
+const vlApiUrl = (): string => {
+	if (stage === 'prod') {
+		return ''
+	} else if (stage === 'dev') {
+		return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev/graphql'
+	}
+}
+
 export const config = {
 	API_URL: apiUrl(),
+	VL_API_URL: vlApiUrl(),
 }
 
 export default config
