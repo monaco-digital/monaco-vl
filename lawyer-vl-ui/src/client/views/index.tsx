@@ -27,8 +27,8 @@ const Main: FC = () => {
 		//TODO - fix this
 		// dispatch(setView(undefined))
 		;(async () => {
-			//const paragraphs = await getData()
 			const paragraphs = await getAllParagraphs()
+			//const paragraphs = await getData()
 			const caseTopics = await getAllCaseTopics()
 			const sessionParagraphs = paragraphs.map(paragraph => {
 				return {

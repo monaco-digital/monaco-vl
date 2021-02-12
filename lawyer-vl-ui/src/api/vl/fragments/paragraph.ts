@@ -10,20 +10,29 @@ export const paragraphComponent = gql`
 			...FMeta
 		}
 	}
-	${meta}
 `
 
 export const staticText = gql`
 	fragment FStaticText on StaticText {
-		...FParagraphComponent
+		_id
+		id
+		type
 		textFirstPerson
 		textThirdPerson
+		meta {
+			...FMeta
+		}
 	}
 `
 
 export const bulletPoint = gql`
 	fragment FBulletPoints on BulletPoints {
-		...FParagraphComponent
+		_id
+		id
+		type
+		meta {
+			...FMeta
+		}
 		bulletPoints {
 			placeholder
 			required
@@ -60,7 +69,7 @@ export const paragraph = gql`
 			... on StaticText {
 				...FStaticText
 			}
-			... on BulletPoint {
+			... on BulletPoints {
 				...FBulletPoints
 			}
 		}
@@ -69,7 +78,6 @@ export const paragraph = gql`
 			...FMeta
 		}
 	}
-	${paragraphComponent}
 	${staticText}
 	${bulletPoint}
 	${meta}
