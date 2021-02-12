@@ -1,3 +1,8 @@
+export interface Meta {
+	created: number
+	updated: number
+}
+
 export interface Paragraph {
 	id: string
 	paragraph: string
@@ -7,7 +12,45 @@ export interface Paragraph {
 	topicsOneOf: Topic[]
 	topicsAllOf: Topic[]
 	topicsNoneOf: Topic[]
+	paragraphComponents?: ParagraphComponent[]
 	bold?: boolean
+	meta?: Meta
+}
+
+export type ParagraphComponent = {
+	id: string
+	meta: Meta
+} & (
+	| ({
+			type: 'StaticText'
+	  } & StaticText)
+	| ({
+			type: 'BulletPoints'
+	  } & BulletPoints)
+	| ({
+			type: 'Dropdown'
+	  } & Dropdown)
+)
+
+export type StaticText = {
+	textFirstPerson: string
+	textThirdPerson: string
+}
+
+export type BulletPoints = {
+	bulletPoints: {
+		id: string
+		placeholder: string
+		required: boolean
+		minLength: number
+		maxLength: number
+	}[]
+}
+
+export type Dropdown = {
+	minSelect: number
+	maxSelect: number
+	optionsList: string
 }
 
 export const ParagraphTopics = {
@@ -172,21 +215,7 @@ export const Topics: CaseTopic[] = [
 		text: 'Discrimination',
 		questionText: 'Discrimination',
 		parentTopics: [],
-		subtopics: [
-			'DP',
-			'DM',
-			'DS',
-			'DSy',
-			'DR',
-			'DRn',
-			'DA',
-			'DD',
-			'DMe',
-			'DG',
-			'DPI',
-			'DMl',
-			'DV',
-		],
+		subtopics: ['DP', 'DM', 'DS', 'DSy', 'DR', 'DRn', 'DA', 'DD', 'DMe', 'DG', 'DPI', 'DMl', 'DV'],
 		type: 'case',
 	},
 	{
@@ -676,9 +705,4 @@ export interface Answer {
 	prerequisites?: string[]
 }
 
-export type NavView =
-	| 'get-started'
-	| 'key-facts'
-	| 'preview-letter'
-	| 'letter-builder'
-	| 'help'
+export type NavView = 'get-started' | 'key-facts' | 'preview-letter' | 'letter-builder' | 'help'

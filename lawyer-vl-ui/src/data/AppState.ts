@@ -1,8 +1,15 @@
-import { CaseTopic, Paragraph, Question } from './types'
+import { CaseTopic, Paragraph } from '@monaco-digital/vl-types/lib/main'
+import { Question } from '../types/Questions'
+import { SessionParagraph } from '../types/SessionDocument'
 import pages from '../types/navigation'
 import { ParagraphToggle } from '../types/paragraph'
 
 export type AppState = {
+	session: {
+		suggestedParagraphs: SessionParagraph[]
+		selectedTopics: CaseTopic[]
+		answeredQuestions: Question[]
+	}
 	paragraphs: {
 		all: Paragraph[]
 		suggested: Paragraph[]

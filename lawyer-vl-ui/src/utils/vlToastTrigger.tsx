@@ -10,11 +10,7 @@ type VlToastTriggerProps = {
 	iconType?: 'copy' | 'new-doc' | 'warning'
 }
 
-const vlToastTrigger = ({
-	type = 'success',
-	text,
-	iconType,
-}: VlToastTriggerProps) => {
+const vlToastTrigger = ({ type = 'success', text, iconType }: VlToastTriggerProps) => {
 	let icon: string | false = false
 
 	switch (iconType) {

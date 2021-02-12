@@ -1,15 +1,28 @@
-import { Paragraph, ParagraphTopicMapping, CaseTopic } from '../data/types'
-import { DSubTopics } from '../data/types'
+import { ParagraphTopicMapping } from '../../data/types'
+import { CaseTopic, Paragraph } from '@monaco-digital/vl-types/lib/main'
+import { DSubTopics } from '../../data/types'
+import { SessionParagraph } from '../../types/SessionDocument'
+import { getData } from '../vlmasersheet'
+import { getAllCaseTopics } from '../vl'
+import * as paragraphDataRaw from './paragraphs_temp.json'
 
-export const getSuggestedParagraphs = (
-	allParagraphs: Paragraph[],
-	selectedTopics: { value: string; label?: string }[]
-): Paragraph[] => {
+const getSuggestedParagraphs = async (selectedTopics: CaseTopic[]): Promise<Paragraph[]> => {
+	const {
+		default: { data = {} },
+	} = paragraphDataRaw as any
+	console.log('paragraphData', data)
+	const paragraphs = data.getAllParagraphs
+	console.log('filterSuggestedParagraphs', paragraphs, selectedTopics.length)
+	const filtered = filterSuggestedParagraphs(paragraphs, selectedTopics)
+	return filtered
+}
+
+const filterSuggestedParagraphs = (allParagraphs: Paragraph[], selectedTopics: CaseTopic[]): Paragraph[] => {
 	if (!selectedTopics || selectedTopics.length === 0) {
 		return allParagraphs
 	}
 
-	const selectedTopicIds = selectedTopics.map(topic => topic.value)
+	const selectedTopicIds = selectedTopics.map(topic => topic.id)
 	console.log('selectedTopicIds', selectedTopicIds, selectedTopics)
 	const scoredAndFilteredParas = []
 	allParagraphs.forEach(paragraph => {
@@ -18,7 +31,7 @@ export const getSuggestedParagraphs = (
 		const oneOf = matchesOneOf(paragraph, selectedTopicIds)
 		const noneOf = matchesNoneOf(paragraph, selectedTopicIds)
 		let score = (allOf || oneOf) && !noneOf ? 1 : 0
-		console.log('score', score, allOf, oneOf, !noneOf)
+		// console.log('score', score, allOf, oneOf, !noneOf)
 
 		if (score > 0) {
 			scoredAndFilteredParas.push({
@@ -62,10 +75,7 @@ const matchesNoneOf = (paragraph: Paragraph, selectedTopicIds) => {
 	return matchCount > 0
 }
 
-export const filterByExactTopicMatch = (
-	data: Paragraph[],
-	topic: string
-): Paragraph[] => {
+export const filterByExactTopicMatch = (data: Paragraph[], topic: string): Paragraph[] => {
 	if (!topic) {
 		return data
 	}
@@ -136,10 +146,7 @@ const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 	})
 }
 
-export const filterByGeneralMatch = (
-	data: Paragraph[],
-	topics: CaseTopic[]
-): Paragraph[] => {
+export const filterByGeneralMatch = (data: Paragraph[], topics: CaseTopic[]): Paragraph[] => {
 	if (!(topics?.length > 0)) {
 		return data
 	}
@@ -157,10 +164,7 @@ export const filterByGeneralMatch = (
 		//@ts-ignore
 		const topicsNoneOfF = topicsNoneOf.filter(x => x !== '')
 
-		const eitherFlag =
-			topicsOneOfF.length > 0
-				? topicsOneOfF.some(r => utopics?.indexOf(r) >= 0)
-				: true
+		const eitherFlag = topicsOneOfF.length > 0 ? topicsOneOfF.some(r => utopics?.indexOf(r) >= 0) : true
 
 		const mustFlag = matchAllOfTopics(topicsAllOfF, utopics)
 
@@ -169,11 +173,13 @@ export const filterByGeneralMatch = (
 		return eitherFlag && mustFlag && notFlag
 	})
 
-	console.log(
+	/* console.log(
 		'filterByGeneralMatch return ',
 		filterByGeneralMatch.length,
 		'paras'
-	)
+	) */
 
 	return newData
 }
+
+export { getSuggestedParagraphs }

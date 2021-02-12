@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus'
 import { useDispatch, useSelector } from 'react-redux'
-import { toggleTopic, unselectTopic } from '../../../../data/topicDataSlice'
-import { CaseTopic, Question as QuestionT } from '../../../../data/types'
+import { updateSelectedTopics } from '../../../../data/sessionDataSlice'
+import { Question as QuestionT } from '../../../../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import AppState from '../../../../data/AppState'
 import Title from '../../Title'
 import Button from '../../Button'
@@ -14,15 +15,14 @@ interface Props {
 }
 const Question: React.FC<Props> = ({ question }) => {
 	const dispatch = useDispatch()
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(
-		state => state.topics.selected
-	)
+
+	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
 
 	const defaultLimit = 8
 
 	const isSingle = question.maxAnswers === 1
-	const isMulti = question.maxAnswers > 1
 
 	const answerStyle = isSingle ? 'radio' : 'checkbox'
 	const validOptions = filterValidOptions(question.options, selectedTopicIds)
@@ -42,12 +42,9 @@ const Question: React.FC<Props> = ({ question }) => {
 			category: 'User',
 			action: `Clicked topic: ${option.text}`,
 		})
-		if (isSingle) {
-			for (const option of question.options) {
-				dispatch(unselectTopic(option.topicId))
-			}
-		}
-		dispatch(toggleTopic(id))
+		const updatedSelectedTopics = recalculateSelectedTopics(id, allTopics, selectedTopics, question, isSingle)
+
+		dispatch(updateSelectedTopics(updatedSelectedTopics))
 	}
 
 	const answers = optionsToShow.map((option, i) => {
@@ -84,18 +81,9 @@ const Question: React.FC<Props> = ({ question }) => {
 
 	return (
 		<>
-			<div className="questions__title">
-				{question.text && <Title text={question} />}
-			</div>
+			<div className="questions__title">{question.text && <Title text={question} />}</div>
 			<div className="topics">{answers}</div>
-			{hasMore && !showMore && (
-				<Button
-					type="small"
-					text="show more +"
-					rounded
-					fn={() => setShowMore(true)}
-				/>
-			)}
+			{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
 			<br />
 		</>
 	)
@@ -106,12 +94,43 @@ the prerequisites */
 const filterValidOptions = (options, selectedTopicIds) => {
 	const toShow = options.filter(option => {
 		const prerequisites = option.prerequisites || []
-		const passesPrerequisites =
-			prerequisites.length === 0 ||
-			prerequisites.every(prq => selectedTopicIds.includes(prq))
+		const passesPrerequisites = prerequisites.length === 0 || prerequisites.every(prq => selectedTopicIds.includes(prq))
 		return passesPrerequisites
 	})
 	return toShow
+}
+
+const recalculateSelectedTopics = (
+	id: string,
+	allTopics: CaseTopic[],
+	selectedTopics: CaseTopic[],
+	question: QuestionT,
+	isSingle: boolean
+): CaseTopic[] => {
+	const toDeselect = []
+
+	// find topic
+	const topic = allTopics.find(topic => topic.id === id)
+
+	// Check if it is already selected
+	const isSelected = selectedTopics.find(topic => topic.id === id)
+	if (isSelected) {
+		toDeselect.push(id)
+	}
+
+	if (isSingle) {
+		// if single, deselect all other options from the question
+		const optionIds = question.options.map(option => option.topicId)
+		toDeselect.push(...optionIds)
+	}
+
+	// Deselect all unwanted
+	const newSelectedTopics = selectedTopics.filter(topic => !toDeselect.includes(topic.id))
+
+	if (!isSelected) {
+		newSelectedTopics.push(topic)
+	}
+	return newSelectedTopics
 }
 
 export default Question

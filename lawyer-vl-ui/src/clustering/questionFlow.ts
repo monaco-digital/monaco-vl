@@ -1,18 +1,10 @@
-import { useDispatch, useSelector } from 'react-redux'
-import AppState from '../data/AppState'
-import { CaseTopic, Question } from '../data/types'
+import { Question } from '../data/types'
 
 export const getFirstQuestion = () => {
 	return allQuestions[0]
 }
 
-export const getNextQuestion = (selectedTopics, answeredQuestions) => {
-	console.log(
-		'getNextQuestion',
-		selectedTopics.length,
-		answeredQuestions.length
-	)
-
+export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
 	// const selectedTopics = useSelector<AppState, CaseTopic[]>(
 	//     state => state.topics.selected
 	// )
@@ -27,12 +19,8 @@ export const getNextQuestion = (selectedTopics, answeredQuestions) => {
 	let nextQuestion = null
 	while (!nextQuestion && index < allQuestions.length) {
 		const prerequisites = allQuestions[index].prerequisites || []
-		const prerequisitesMet = prerequisites.every(id =>
-			selectedTopicIds.includes(id)
-		)
-		const answeredAlready = answeredQuestionsIds.includes(
-			allQuestions[index].id
-		)
+		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
+		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
 
 		if (prerequisitesMet && !answeredAlready) {
 			nextQuestion = allQuestions[index]
@@ -178,8 +166,7 @@ const allQuestions: Question[] = [
 		id: 6,
 		prerequisites: [],
 		text: 'Problems at work',
-		subtext:
-			'What problem(s) have you faced at work? Select any or all that apply?',
+		subtext: 'What problem(s) have you faced at work? Select any or all that apply?',
 		minAnswers: 0,
 		maxAnswers: 100,
 		options: [
@@ -237,8 +224,7 @@ const allQuestions: Question[] = [
 		id: 7,
 		prerequisites: [],
 		text: 'Why did this happen?',
-		subtext:
-			'Why do you think your employer acted this way? Select all that apply',
+		subtext: 'Why do you think your employer acted this way? Select all that apply',
 		minAnswers: 0,
 		maxAnswers: 100,
 		options: [
@@ -324,8 +310,7 @@ const allQuestions: Question[] = [
 		id: 8,
 		prerequisites: ['_PC'],
 		text: 'Did you ever complain to your employer about this discrimination?',
-		subtext:
-			'Why do you think your employer acted this way? Select all that apply',
+		subtext: 'Why do you think your employer acted this way? Select all that apply',
 		minAnswers: 1,
 		maxAnswers: 1,
 		options: [

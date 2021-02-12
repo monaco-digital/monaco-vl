@@ -1,9 +1,17 @@
-import { Paragraph } from '../../data/types'
+import { Paragraph, StaticText } from '@monaco-digital/vl-types/lib/main'
 
 const mapParagraphToDocument = (paragraph: Paragraph): any => {
 	//extract text from paragraph ... amend with /n
 
-	const { paragraph: ptext } = paragraph
+	const ptext = paragraph.paragraphComponents.map(pc => {
+		switch (pc.type) {
+			case 'StaticText':
+				const staticText = pc as StaticText
+				return staticText.textFirstPerson
+			default:
+				return ''
+		}
+	})
 	const text = ptext.concat('\n')
 	const startIndex = 0
 	const endIndex = text.length
@@ -30,10 +38,7 @@ const mapParagraphToDocument = (paragraph: Paragraph): any => {
 	}
 }
 
-export const updateGoogleDocumentBody = (
-	template: any,
-	paragraphs: Paragraph[]
-): any => {
+export const updateGoogleDocumentBody = (template: any, paragraphs: Paragraph[]): any => {
 	console.log('The paragraphs being entered are: ', paragraphs)
 
 	if (!(paragraphs?.length > 0)) {
@@ -41,9 +46,7 @@ export const updateGoogleDocumentBody = (
 	}
 
 	//modifications using paragraph will happen here
-	const docParaInsert = paragraphs.map(paragraph =>
-		mapParagraphToDocument(paragraph)
-	)
+	const docParaInsert = paragraphs.map(paragraph => mapParagraphToDocument(paragraph))
 	let index = 0
 	docParaInsert.forEach(paragraph => {
 		paragraph.startIndex += index
