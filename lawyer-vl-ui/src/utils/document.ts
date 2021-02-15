@@ -82,11 +82,12 @@ export const createDocumentParagraph = (
 	if (existingDocumentParagraph) {
 		return existingDocumentParagraph as DocumentParagraph
 	}
+	console.log('++++>>>', templateParagraph)
 	return {
 		id: nanoid(),
 		type: 'Paragraph',
 		baseTemplateComponent: templateParagraph.id,
-		documentParagraphComponents: templateParagraph.paragraph.paragraphComponents.map(paragraphComponent =>
+		documentParagraphComponents: templateParagraph.paragraph?.paragraphComponents.map(paragraphComponent =>
 			templateParagraphComponentToDocumentParagraphComponent(paragraphComponent)
 		),
 	} as DocumentParagraph

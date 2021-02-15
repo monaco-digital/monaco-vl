@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, Paragraph, BulletPoints, DocumentParagraph } from '@monaco-digital/vl-types/lib/main'
+import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
 import Button from '../../Button'
 import { setPage } from '../../../../data/navigationDataSlice'
 import pages from '../../../../types/navigation'
@@ -45,10 +45,10 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 			dispatch(deselectParagraphs([id]))
 		}
 
-		const paragraph = selectedSessionParagraph.templateComponent as Paragraph
+		const paragraph = selectedSessionParagraph.templateComponent as TemplateParagraph
 		ReactGA.event({
 			category: 'User',
-			action: `Selected statement: ${paragraph.summary.substring(0, 30)} - ${id}`,
+			action: `Selected statement: ${paragraph?.paragraph.summary.substring(0, 30)} - ${id}`,
 		})
 	}
 
@@ -57,11 +57,14 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	}
 
 	const statements = suggestedParagraphs.map((sessionParagraph, i) => {
-		const templateParagraph = sessionParagraph.templateComponent as Paragraph
+		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-		const { id, summary } = templateParagraph
+		console.log('templateParagraph.paragraph', templateParagraph)
+		const { id, summary } = templateParagraph.paragraph
 		const selected = sessionParagraph.isSelected
-		const hasUserInput = templateParagraph.paragraphComponents.find(pc => pc.type === 'BulletPoints') as BulletPoints
+		const hasUserInput = templateParagraph.paragraph.paragraphComponents.find(
+			pc => pc.type === 'BulletPoints'
+		) as BulletPoints
 		const displayInput = hasUserInput && documentParagraph
 
 		return (

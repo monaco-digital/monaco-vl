@@ -1,19 +1,12 @@
 import {
 	Document,
 	DocumentComponent,
-	DocumentHeader,
-	DocumentImage,
 	DocumentParagraph,
 	DocumentSection,
 	DocumentParagraphBulletPoints,
-	DocumentParagraphComponent,
-	DocumentParagraphDropdown,
 	DocumentParagraphStaticText,
-	DocumentSignature,
 	DocumentParagraphEditableText,
 } from '@monaco-digital/vl-types/lib/main'
-import { SessionDocument } from '../types/SessionDocument'
-import { nanoid } from 'nanoid'
 
 export const getDocumentText = (document: Document): string => {
 	return document.documentComponents
