@@ -8,22 +8,13 @@ import {
 import { Question } from '../types/Questions'
 import {
 	CaseTopic,
-	DocumentParagraphBulletPoints,
-	DocumentParagraphEditableText,
 	DocumentParagraph,
 	TemplateParagraph,
 	Template,
-	TemplateComponent,
-	TemplateSection,
-	Paragraph,
-	ParagraphComponent,
-	BulletPoints,
 	DocumentParagraphComponent,
 } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
 import { createDocumentParagraph } from '../utils/document'
-import { createSessionDocument, createSessionDocumentComponent } from '../utils/sessionDocument'
-import { template } from '../api/google/template'
 
 export const slice = createSlice({
 	name: 'session',

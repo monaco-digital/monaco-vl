@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
-import { CaseTopic, Template, DocumentSection, Paragraph } from '@monaco-digital/vl-types/lib/main'
+import { CaseTopic, Template } from '@monaco-digital/vl-types/lib/main'
 import {
 	SessionDocumentComponent,
 	SessionDocumentSection,
@@ -10,8 +10,8 @@ import {
 	SessionDocument,
 } from '../../../../types/SessionDocument'
 import { PreviewParagraph } from '../DocumentPreviewComponents'
-import { createDocument, createDocumentFromTemplate } from '../../../../utils/document'
-import { createSessionDocument, refreshSessionDocument } from '../../../../utils/sessionDocument'
+import { createDocument } from '../../../../utils/document'
+import { createSessionDocument } from '../../../../utils/sessionDocument'
 import VLcard from '../VLcard'
 import ReactGA from 'react-ga'
 import { getTemplate } from '../../../../api/vl'

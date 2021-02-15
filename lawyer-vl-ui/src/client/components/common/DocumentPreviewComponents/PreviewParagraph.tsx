@@ -24,7 +24,7 @@ const PreviewParagraph: FC<{ paragraph: SessionParagraph }> = ({ paragraph }) =>
 	const documentParagraph = paragraph.documentComponent as DocumentParagraph
 	return (
 		<div style={{ padding: '5px', margin: '10px' }}>
-			{templateParagraph.paragraph.paragraphComponents.map(paragraphComponent => {
+			{templateParagraph.paragraph?.paragraphComponents.map(paragraphComponent => {
 				const matchingDocumentComponent = documentParagraph?.documentParagraphComponents.find(
 					dpc => paragraphComponent.id === dpc.baseTemplateComponent
 				)

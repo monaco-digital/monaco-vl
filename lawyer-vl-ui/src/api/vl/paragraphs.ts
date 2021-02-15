@@ -1,23 +1,23 @@
 import { ParagraphTopicMapping } from '../../data/types'
-import { CaseTopic, Paragraph } from '@monaco-digital/vl-types/lib/main'
+import { CaseTopic, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
 import { DSubTopics } from '../../data/types'
-import { SessionParagraph } from '../../types/SessionDocument'
-import { getData } from '../vlmasersheet'
-import { getAllCaseTopics } from '../vl'
-import * as paragraphDataRaw from './paragraphs_temp.json'
+import { getAllParagraphs } from './paragraph'
 
-const getSuggestedParagraphs = async (selectedTopics: CaseTopic[]): Promise<Paragraph[]> => {
-	const {
+const getSuggestedParagraphs = async (selectedTopics: CaseTopic[]): Promise<TemplateParagraph[]> => {
+	/* const {
 		default: { data = {} },
 	} = paragraphDataRaw as any
-	console.log('paragraphData', data)
-	const paragraphs = data.getAllParagraphs
+	console.log('paragraphData', data) */
+	const paragraphs = await getAllParagraphs()
 	console.log('filterSuggestedParagraphs', paragraphs, selectedTopics.length)
 	const filtered = filterSuggestedParagraphs(paragraphs, selectedTopics)
 	return filtered
 }
 
-const filterSuggestedParagraphs = (allParagraphs: Paragraph[], selectedTopics: CaseTopic[]): Paragraph[] => {
+const filterSuggestedParagraphs = (
+	allParagraphs: TemplateParagraph[],
+	selectedTopics: CaseTopic[]
+): TemplateParagraph[] => {
 	if (!selectedTopics || selectedTopics.length === 0) {
 		return allParagraphs
 	}
@@ -44,9 +44,9 @@ const filterSuggestedParagraphs = (allParagraphs: Paragraph[], selectedTopics: C
 	return scoredAndFilteredParas.map(p => p.paragraph)
 }
 
-const matchesAllOf = (paragraph: Paragraph, selectedTopicIds) => {
+const matchesAllOf = (templateParagraph: TemplateParagraph, selectedTopicIds) => {
 	let matchCount = 0
-	paragraph.topicsAllOf.forEach(topicId => {
+	templateParagraph.paragraph.topicsAllOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount++
 		}
@@ -55,9 +55,9 @@ const matchesAllOf = (paragraph: Paragraph, selectedTopicIds) => {
 	return matchCount > 0
 }
 
-const matchesOneOf = (paragraph: Paragraph, selectedTopicIds) => {
+const matchesOneOf = (templateParagraph: TemplateParagraph, selectedTopicIds) => {
 	let matchCount = 0
-	paragraph.topicsOneOf.forEach(topicId => {
+	templateParagraph.paragraph.topicsOneOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount++
 		}
@@ -65,9 +65,9 @@ const matchesOneOf = (paragraph: Paragraph, selectedTopicIds) => {
 	return matchCount > 0
 }
 
-const matchesNoneOf = (paragraph: Paragraph, selectedTopicIds) => {
+const matchesNoneOf = (templateParagraph: TemplateParagraph, selectedTopicIds) => {
 	let matchCount = 0
-	paragraph.topicsNoneOf.forEach(topicId => {
+	templateParagraph.paragraph.topicsNoneOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount++
 		}
@@ -75,7 +75,7 @@ const matchesNoneOf = (paragraph: Paragraph, selectedTopicIds) => {
 	return matchCount > 0
 }
 
-export const filterByExactTopicMatch = (data: Paragraph[], topic: string): Paragraph[] => {
+export const filterByExactTopicMatch = (data: TemplateParagraph[], topic: string): TemplateParagraph[] => {
 	if (!topic) {
 		return data
 	}
@@ -146,7 +146,7 @@ const matchNoneOfTopics = (ptopics: string[], utopics: string[]): boolean => {
 	})
 }
 
-export const filterByGeneralMatch = (data: Paragraph[], topics: CaseTopic[]): Paragraph[] => {
+export const filterByGeneralMatch = (data: TemplateParagraph[], topics: CaseTopic[]): TemplateParagraph[] => {
 	if (!(topics?.length > 0)) {
 		return data
 	}
@@ -155,8 +155,8 @@ export const filterByGeneralMatch = (data: Paragraph[], topics: CaseTopic[]): Pa
 
 	const utopics = [...new Set(topics.map(({ id }) => id))]
 
-	const newData = data.filter((value: Paragraph) => {
-		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value
+	const newData = data.filter((value: TemplateParagraph) => {
+		const { topicsOneOf = [], topicsAllOf = [], topicsNoneOf = [] } = value.paragraph
 		//@ts-ignore
 		const topicsOneOfF = topicsOneOf.filter(x => x !== '')
 		//@ts-ignore
