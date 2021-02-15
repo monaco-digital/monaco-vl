@@ -5,12 +5,10 @@ import {
 	TemplateSection,
 	EditableText,
 	BulletPoints,
-	Paragraph,
 } from '@monaco-digital/vl-types/lib/main'
 import { nanoid } from 'nanoid'
-import { allowedNodeEnvironmentFlags } from 'process'
 
-export const grievanceLetter: Template = {
+export const notEmployed: Template = {
 	id: 'asdasdergerg',
 	version: 1,
 	meta: {
@@ -25,8 +23,8 @@ export const grievanceLetter: Template = {
 			templateComponents: [
 				{
 					id: 'A00001',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -44,8 +42,8 @@ export const grievanceLetter: Template = {
 				},
 				{
 					id: 'A00002',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -55,16 +53,24 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[HR manager]',
-							} as EditableText,
+								type: 'BulletPoints',
+								bulletPoints: [
+									{
+										id: nanoid(),
+										placeholder: '[Full name of recipient]',
+										required: false,
+										minLength: 1,
+										maxLength: 100,
+									},
+								],
+							} as BulletPoints,
 						],
 					},
 				},
 				{
 					id: 'A00003',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -74,16 +80,16 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[Company name]',
-							} as EditableText,
+							} as StaticText,
 						],
 					},
 				},
 				{
 					id: 'A00004345356',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -106,8 +112,8 @@ export const grievanceLetter: Template = {
 				},
 				{
 					id: 'A00005',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -117,20 +123,18 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Today]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Today]',
+							} as StaticText,
 						],
 					},
 				},
 				{
 					id: 'A00006',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
-						version: 1,
-						type: 'Paragraph',
 						verticalHeight: 0,
 						topicsOneOf: [],
 						topicsAllOf: ['All'],
@@ -139,41 +143,15 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Dear ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[HR manager]',
-							} as EditableText,
-						],
-					},
-				},
-				{
-					id: 'A00007',
-					version: 1,
-					type: 'Paragraph',
-					paragraph: {
-						id: nanoid(),
-						version: 1,
-						type: 'Paragraph',
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'Formal grievance',
+								textFirstPerson: 'Dear Sir or Madam',
 							} as StaticText,
 						],
 					},
 				},
 				{
 					id: 'A00007',
-					version: 1,
 					type: 'Paragraph',
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -184,75 +162,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I write to raise a formal grievance.',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: 'A00007',
-					version: 1,
-					type: 'Paragraph',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'My employment started on ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[date]',
-							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '. I am employed as ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[job title]',
-							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '. I have enjoyed working for ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[company name]',
-							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: ', but I have unfortunately suffered unfair treatment which I invite you to remedy.',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: 'A00007',
-					version: 1,
-					type: 'Paragraph',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'My complaints are as follows:',
+								textFirstPerson: 'Settlement - Without Prejudice Save as to Costs & Subject to Contract',
 							} as StaticText,
 						],
 					},
@@ -267,10 +177,124 @@ export const grievanceLetter: Template = {
 				{
 					id: 'A0009',
 					type: 'Paragraph',
-					version: 1,
+					verticalHeight: 0,
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
-						type: 'Paragraph',
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson:
+									'However, I would prefer to remain on amicable terms and avoid the stress and time of litigation. For that reason, I’m suggesting we agree on the following terms: [edit as appropriate]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00013',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '-- Outstanding pay in the sum of [x]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00014',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '-- No disparaging remarks from either party',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00015',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '-- Mutual confidentiality of terms',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00016',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '-- Agreed references',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00017',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: "-- Ex gratia payment of [x] months' gross salary",
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00018',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
 						verticalHeight: 0,
 						topicsOneOf: [],
 						topicsAllOf: ['All'],
@@ -280,42 +304,15 @@ export const grievanceLetter: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson:
-									'I invite you to take the following action in order to resolve my complaints [provide 3-5 bullet points outlining your desired outcome].:',
+									'-- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
 							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'BulletPoints',
-								bulletPoints: [
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-								],
-							} as BulletPoints,
 						],
 					},
 				},
 				{
-					id: 'A00013',
+					id: 'A00019',
 					type: 'Paragraph',
-					version: 1,
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -326,17 +323,17 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I look forward to hearing from you at your earliest convenience.',
+								textFirstPerson: 'If these terms are agreed, I will agree to waive any employment tribunal claims.',
 							} as StaticText,
 						],
 					},
-				} as TemplateParagraph,
+				},
 				{
-					id: 'A00021',
+					id: 'A00020',
 					type: 'Paragraph',
-					version: 1,
+					paragraphId: '',
 					paragraph: {
-						id: 'A00021',
+						id: nanoid(),
 						verticalHeight: 0,
 						topicsOneOf: [],
 						topicsAllOf: ['All'],
@@ -345,7 +342,26 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Yours sincerely',
+								textFirstPerson: 'I look forward to hearing from you.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: 'A00021',
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'Yours faithfully',
 							} as StaticText,
 						],
 					},
@@ -353,7 +369,7 @@ export const grievanceLetter: Template = {
 				{
 					id: 'A00022',
 					type: 'Paragraph',
-					version: 1,
+					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -363,9 +379,9 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[name]',
+							} as StaticText,
 						],
 					},
 				},

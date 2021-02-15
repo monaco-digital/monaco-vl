@@ -75,6 +75,7 @@ export const createDocumentParagraph = (
 	templateParagraph: TemplateParagraph,
 	paragraphs: SessionParagraph[]
 ): DocumentParagraph => {
+	console.log('The template paragraph is: ', templateParagraph)
 	const matchingSessionParagraph = paragraphs.find(
 		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id
 	)
