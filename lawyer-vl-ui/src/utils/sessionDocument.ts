@@ -16,7 +16,7 @@ import _ from 'lodash'
 import { createDocumentFromTemplate, createDocumentParagraph } from './document'
 
 /*
-	Because existing session documents may have TemplateComponents that have had corresponding DocumentComponents that have 
+	Because existing session documents may have TemplateComponents that have had corresponding DocumentComponents that have
 	been customised, provide the ability to regenerate the sessiondocument only updating the session paragraphs
 	Assumes UserContentSection exists at top level
 */
@@ -36,6 +36,7 @@ export const refreshSessionDocument = (
 
 export const createSessionDocument = (template: Template, paragraphs: SessionParagraph[]): SessionDocument => {
 	if (!template) return null
+	console.log('The template being used is: ', template)
 	return {
 		template,
 		document: createDocumentFromTemplate(template, paragraphs),

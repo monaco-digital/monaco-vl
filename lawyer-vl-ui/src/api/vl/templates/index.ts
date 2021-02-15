@@ -1,8 +1,7 @@
 import { CaseTopic, Template, TemplateSection } from '@monaco-digital/vl-types/lib/main'
-import { adviceLetter } from './adviceLetter'
-// import { stillEmployed } from './stillEmployed'
-// import { notEmployed } from './notEmployed'
 import { grievanceLetter } from './grievanceLetter'
+import { stillEmployed } from './stillEmployed'
+import { notEmployed } from './notEmployed'
 
 export const getTemplate = (topics: CaseTopic[]) => {
 	console.log('getTemplate', topics)
@@ -10,9 +9,9 @@ export const getTemplate = (topics: CaseTopic[]) => {
 		if (topics.find(topic => topic.id === 'G')) {
 			return grievanceLetter
 		} else if (topics.find(topic => topic.id === 'E')) {
-			return null // stillEmployed
+			return stillEmployed
 		} else {
-			return null //notEmployed
+			return notEmployed
 		}
 	} catch (e) {
 		// nothing yet
