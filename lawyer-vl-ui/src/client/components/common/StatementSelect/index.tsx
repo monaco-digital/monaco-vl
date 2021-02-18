@@ -9,6 +9,7 @@ import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from 
 import { SessionParagraph } from '../../../../types/SessionDocument'
 import { getSuggestedParagraphs } from '../../../../api/vl'
 import ReactGA from 'react-ga'
+import _ from 'lodash'
 
 interface Props {}
 
@@ -19,6 +20,10 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	const [areParagraphComponentsVisible, setAreParagraphComponentsVisible] = useState(false)
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
+	const selectedTopicIds = selectedTopics.map(t => t.id)
+	if (_.intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
+		dispatch(setPage(pages.LETTER_PREVIEW))
+	}
 
 	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs)
 
@@ -59,13 +64,13 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	const statements = suggestedParagraphs.map((sessionParagraph, i) => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-		console.log('templateParagraph.paragraph', templateParagraph)
 		const { id, summary } = templateParagraph.paragraph
 		const selected = sessionParagraph.isSelected
 		const hasUserInput = templateParagraph.paragraph.paragraphComponents.find(
 			pc => pc.type === 'BulletPoints'
 		) as BulletPoints
 		const displayInput = hasUserInput && documentParagraph
+		const topicList = getTopicsList(templateParagraph)
 
 		return (
 			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(id)}>
@@ -75,6 +80,11 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 			</div>
 		)
 	})
+
+	/*
+		<div>Env: {process.env.NODE_ENV}</div>
+		<div>{selectedTopics.map(t => t.id).join(', ')}</div>
+	*/
 
 	return (
 		<>
@@ -87,6 +97,11 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 			</div>
 		</>
 	)
+}
+
+const getTopicsList = (templateParagraph: TemplateParagraph): string => {
+	const { topicsAllOf, topicsOneOf, topicsNoneOf } = templateParagraph.paragraph
+	return `A:${topicsAllOf.join(', ')}|O:${topicsOneOf.join(', ')}|N:${topicsNoneOf.join(', ')}`
 }
 /*
 {areParagraphComponentsVisible && <ParagraphComponents activeParagraph={activeParagraph} />}

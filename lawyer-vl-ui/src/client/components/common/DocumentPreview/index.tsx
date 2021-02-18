@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
@@ -41,20 +41,6 @@ const DocumentPreview: FC = () => {
 		dispatch(updateSessionDocument(refreshSessionDocument(sessionDocument, selectedParagraphs)))
 	} */
 
-	const [isCollapsedIntro, setIsCollapsedIntro] = useState(false)
-	const chevronClasses = classNames('fas', {
-		'fa-chevron-up': isCollapsedIntro,
-		'fa-chevron-down': !isCollapsedIntro,
-	})
-	const handleCollapseIntro = () => {
-		setIsCollapsedIntro(collapseIntro => !collapseIntro)
-	}
-
-	const getTextTemp = () => {
-		const doc = createDocument(sessionDocument)
-		console.log(getDocumentText(doc))
-	}
-
 	ReactGA.event({
 		category: 'User',
 		action: `Letter previewed`,
@@ -90,9 +76,6 @@ const DocumentPreview: FC = () => {
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 					</div>
-					<button type="button" onClick={e => getTextTemp()} value="generate">
-						generate text
-					</button>
 				</VLcard>
 			</div>
 		</>

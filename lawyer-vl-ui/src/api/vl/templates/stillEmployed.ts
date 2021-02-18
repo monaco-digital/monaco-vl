@@ -9,7 +9,7 @@ import {
 import { nanoid } from 'nanoid'
 
 export const stillEmployed: Template = {
-	id: 'asdasdasda',
+	id: nanoid(),
 	version: 1,
 	meta: {
 		created: 123123,
@@ -17,12 +17,12 @@ export const stillEmployed: Template = {
 	},
 	templateComponents: [
 		{
-			id: 'qwdqt3t',
+			id: nanoid(),
 			version: 1,
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					id: 'A00001',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -41,7 +41,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00002',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -53,22 +53,14 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'BulletPoints',
-								bulletPoints: [
-									{
-										id: 'asda',
-										placeholder: '[Full name of recipient]',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-								],
-							} as BulletPoints,
+								type: 'EditableText',
+								placeholder: '[Full name of recipient]',
+							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00003',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -80,14 +72,14 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[Company name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Company name]',
+							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00004128743',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -111,7 +103,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00005',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -123,14 +115,14 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[Today]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Today]',
+							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00006',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -149,7 +141,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00007',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraphId: '',
@@ -172,10 +164,16 @@ export const stillEmployed: Template = {
 			] as TemplateParagraph[],
 		} as TemplateSection,
 		{
+			id: nanoid(),
+			version: 1,
+			type: 'UserContentSection',
+			templateComponents: [],
+		} as TemplateSection,
+		{
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					id: 'A0009',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -195,7 +193,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00010',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -208,13 +206,18 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Termination date of xx',
+								textFirstPerson: '- Termination date of',
 							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[date]',
+							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00011',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -227,13 +230,13 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Orderly handover',
+								textFirstPerson: '- Orderly handover',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00012',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -246,13 +249,23 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- [x] months’ notice pay',
+								textFirstPerson: '- ',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[x]',
+							} as EditableText,
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'months’ notice pay',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00013',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -265,13 +278,18 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Outstanding pay in the sum of [x]',
+								textFirstPerson: '- Outstanding pay in the sum of',
 							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[x]',
+							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00014',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -284,13 +302,13 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- No disparaging remarks from either party',
+								textFirstPerson: '- No disparaging remarks from either party',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00015',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -303,13 +321,13 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Mutual confidentiality of terms',
+								textFirstPerson: '- Mutual confidentiality of terms',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00016',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -322,13 +340,13 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Agreed references',
+								textFirstPerson: '- Agreed references',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00017',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -341,13 +359,23 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: "-- Ex gratia payment of [x] months' gross salary",
+								textFirstPerson: '- Ex gratia payment of',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[x]',
+							} as EditableText,
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: "months' gross salary",
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00018',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -361,13 +389,13 @@ export const stillEmployed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson:
-									'-- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
+									'- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
 							} as StaticText,
 						],
 					},
 				},
 				{
-					id: 'A00019',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -378,7 +406,7 @@ export const stillEmployed: Template = {
 						topicsNoneOf: [],
 						paragraphComponents: [
 							{
-								id: 'PC2000',
+								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson: 'If these terms are agreed, I will agree to waive any employment tribunal claims.',
 							} as StaticText,
@@ -386,7 +414,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00020',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -405,7 +433,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00021',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -424,7 +452,7 @@ export const stillEmployed: Template = {
 					},
 				},
 				{
-					id: 'A00022',
+					id: nanoid(),
 					type: 'Paragraph',
 					paragraphId: '',
 					paragraph: {
@@ -436,9 +464,9 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[name]',
+							} as EditableText,
 						],
 					},
 				},

@@ -1,4 +1,4 @@
-import { CaseTopic } from '../../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { client } from './graphql'
 import { gql } from '@apollo/client'
 import { fragments } from './fragments'

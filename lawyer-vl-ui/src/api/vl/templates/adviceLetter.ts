@@ -1,7 +1,8 @@
 import { Template, TemplateSection } from '@monaco-digital/vl-types/lib/main'
+import { nanoid } from 'nanoid'
 
 export const adviceLetter: Template = {
-	id: 'asdasdasda',
+	id: nanoid(),
 	version: 1,
 	meta: {
 		created: 123123,

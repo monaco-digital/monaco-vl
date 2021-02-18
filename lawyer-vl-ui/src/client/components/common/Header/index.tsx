@@ -7,7 +7,7 @@ import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice'
 import pages from '../../../../types/navigation'
 import AppState from '../../../../data/AppState'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { Question as QuestionT } from '../../../../data/types'
+import { Question as QuestionT } from '../../../../types/Questions'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
 import useViewport from '../../../utils/useViewport'
 

@@ -260,6 +260,12 @@ export const grievanceLetter: Template = {
 			] as TemplateParagraph[],
 		} as TemplateSection,
 		{
+			id: nanoid(),
+			version: 1,
+			type: 'UserContentSection',
+			templateComponents: [],
+		} as TemplateSection,
+		{
 			id: 'dapda',
 			version: 1,
 			type: 'TemplateContentSection',

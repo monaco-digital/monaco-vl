@@ -4,11 +4,10 @@ import {
 	StaticText,
 	TemplateSection,
 	EditableText,
-	BulletPoints,
 } from '@monaco-digital/vl-types/lib/main'
 import { nanoid } from 'nanoid'
 
-export const notEmployed: Template = {
+export const responseWantToKeepMe: Template = {
 	id: nanoid(),
 	version: 1,
 	meta: {
@@ -23,8 +22,8 @@ export const notEmployed: Template = {
 			templateComponents: [
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -42,8 +41,8 @@ export const notEmployed: Template = {
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -61,8 +60,8 @@ export const notEmployed: Template = {
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -72,16 +71,16 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[Company name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Company name]',
+							} as EditableText,
 						],
 					},
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -104,8 +103,8 @@ export const notEmployed: Template = {
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -115,16 +114,63 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[Today]',
+							} as EditableText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						version: 1,
+						type: 'Paragraph',
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '[Today]',
+								textFirstPerson: 'Dear ',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[name]',
+							} as EditableText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						version: 1,
+						type: 'Paragraph',
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'Without Prejudice Save as to Costs & Subject to Contract',
 							} as StaticText,
 						],
 					},
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -135,15 +181,25 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Dear Sir or Madam',
+								textFirstPerson: 'Thank you for your email of',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[date]',
+							} as EditableText,
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'in response to my offer of settlement.',
 							} as StaticText,
 						],
 					},
 				},
 				{
 					id: nanoid(),
+					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -154,18 +210,43 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Settlement - Without Prejudice Save as to Costs & Subject to Contract',
+								textFirstPerson:
+									'I appreciate your efforts to persuade me to stay employed. However, I don’t feel able to carry on working as I feel the situation cannot be resolved. ',
 							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[Add detail, if you wish]',
+							} as EditableText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson:
+									'As I said, I could bring a claim in the employment tribunals, but I prefer to pursue an amicable route and so repeat my offer of ',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[date]',
+							} as EditableText,
 						],
 					},
 				},
 			] as TemplateParagraph[],
-		} as TemplateSection,
-		{
-			id: nanoid(),
-			version: 1,
-			type: 'UserContentSection',
-			templateComponents: [],
 		} as TemplateSection,
 		{
 			id: nanoid(),
@@ -175,163 +256,10 @@ export const notEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					verticalHeight: 0,
-					paragraphId: '',
+					version: 1,
 					paragraph: {
 						id: nanoid(),
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson:
-									'However, I would prefer to remain on amicable terms and avoid the stress and time of litigation. For that reason, I’m suggesting we agree on the following terms: [edit as appropriate]',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '-- Outstanding pay in the sum of [x]',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '-- No disparaging remarks from either party',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '-- Mutual confidentiality of terms',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '-- Agreed references',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: "-- Ex gratia payment of [x] months' gross salary",
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson:
-									'-- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'If these terms are agreed, I will agree to waive any employment tribunal claims.',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
+						type: 'Paragraph',
 						verticalHeight: 0,
 						topicsOneOf: [],
 						topicsAllOf: ['All'],
@@ -348,7 +276,7 @@ export const notEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
+					version: 1,
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -359,7 +287,7 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Yours faithfully',
+								textFirstPerson: 'Yours sincerely',
 							} as StaticText,
 						],
 					},
@@ -367,7 +295,7 @@ export const notEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
+					version: 1,
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -377,9 +305,9 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[name]',
+							} as EditableText,
 						],
 					},
 				},
