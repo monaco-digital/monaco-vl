@@ -105,7 +105,7 @@ export type Topic =
 	| '_NCE'
 	| '_YCE'
 	| '_PC'
-	| '_Rr'
+	| 'RR'
 	| '_UP'
 	| '_UDy'
 	| '_US'
@@ -574,7 +574,7 @@ export const Topics: CaseTopic[] = [
 		type: 'employment_situation',
 	},
 	{
-		id: '_Rr',
+		id: 'RR',
 		name: 'RISK_OF_REDUNDANCY',
 		text: 'Risk of redundnacy',
 		type: 'employment_situation',

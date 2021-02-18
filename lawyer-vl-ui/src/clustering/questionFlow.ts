@@ -189,19 +189,19 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'Risk of redundancy',
-				topicId: '_Rr',
+				topicId: 'RR',
 			},
 			{
 				text: 'Unjustified performance management',
-				topicId: '_UP',
+				topicId: 'P',
 			},
 			{
 				text: 'Unjustified disciplinary proceedings',
-				topicId: '_UDy',
+				topicId: 'Dy',
 			},
 			{
 				text: 'Poor response to sickness issues',
-				topicId: '_US',
+				topicId: 'S',
 			},
 			{
 				text: 'Unsafe workplace e.g. Coronavirus',
@@ -225,11 +225,11 @@ const allQuestions: Question[] = [
 			},
 			{
 				text: 'No written employment terms',
-				topicId: 'FPP',
+				topicId: 'F',
 			},
 			{
 				text: 'Other',
-				topicId: 'TB',
+				topicId: 'OBT',
 			},
 		],
 	},
