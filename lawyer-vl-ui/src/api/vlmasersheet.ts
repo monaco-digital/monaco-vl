@@ -28,7 +28,7 @@ export const getData = async (): Promise<Paragraph[]> => {
 	// console.log('data 1422', d)
 	// return d
 	//const sheetsUrl =
-	//	'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!D6:L?key=AIzaSyCnMRMK2SDglZY5UF__dcUfMC1mGiQnZcQ'
+	//	'https://sheets.googleapis.com/v4/spreadsheets/1xF6OTVysJCQ_MTJEg5uhv2m2WP4xKlln2Py1dI9fTUQ/values/Para%20bank!D2:M?key=AIzaSyCnMRMK2SDglZY5UF__dcUfMC1mGiQnZcQ'
 	//const response = await axios.get(sheetsUrl)
 	const {
 		default: { values = [] },
