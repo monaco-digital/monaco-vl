@@ -32,7 +32,7 @@ const allQuestions: Question[] = [
 		id: 1,
 		prerequisites: [],
 		text: 'How can we help you',
-		subtext: 'DO any of the following apply to you',
+		subtext: 'Do any of the following apply to you',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,

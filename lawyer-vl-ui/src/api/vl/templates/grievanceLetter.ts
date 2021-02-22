@@ -11,7 +11,7 @@ import { nanoid } from 'nanoid'
 import { allowedNodeEnvironmentFlags } from 'process'
 
 export const grievanceLetter: Template = {
-	id: 'asdasdergerg',
+	id: nanoid(),
 	version: 1,
 	meta: {
 		created: 123123,
@@ -19,12 +19,12 @@ export const grievanceLetter: Template = {
 	},
 	templateComponents: [
 		{
-			id: 'sdaionda',
+			id: nanoid(),
 			version: 1,
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					id: 'A00001',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -43,7 +43,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00002',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -62,7 +62,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00003',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -75,13 +75,13 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								textFirstPerson: '[Company name]',
+								placeholder: '[Company name]',
 							} as EditableText,
 						],
 					},
 				},
 				{
-					id: 'A00004345356',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -105,7 +105,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00005',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -124,7 +124,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00006',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -150,7 +150,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00007',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -171,7 +171,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00007',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -190,7 +190,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00007',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -239,7 +239,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00007',
+					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
 					paragraph: {
@@ -266,12 +266,12 @@ export const grievanceLetter: Template = {
 			templateComponents: [],
 		} as TemplateSection,
 		{
-			id: 'dapda',
+			id: nanoid(),
 			version: 1,
 			type: 'TemplateContentSection',
 			templateComponents: [
 				{
-					id: 'A0009',
+					id: nanoid(),
 					type: 'Paragraph',
 					version: 1,
 					paragraph: {
@@ -319,7 +319,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00013',
+					id: nanoid(),
 					type: 'Paragraph',
 					version: 1,
 					paragraph: {
@@ -338,11 +338,11 @@ export const grievanceLetter: Template = {
 					},
 				} as TemplateParagraph,
 				{
-					id: 'A00021',
+					id: nanoid(),
 					type: 'Paragraph',
 					version: 1,
 					paragraph: {
-						id: 'A00021',
+						id: nanoid(),
 						verticalHeight: 0,
 						topicsOneOf: [],
 						topicsAllOf: ['All'],
@@ -357,7 +357,7 @@ export const grievanceLetter: Template = {
 					},
 				},
 				{
-					id: 'A00022',
+					id: nanoid(),
 					type: 'Paragraph',
 					version: 1,
 					paragraph: {

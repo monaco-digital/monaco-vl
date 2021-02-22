@@ -56,7 +56,7 @@ export const PreviewBulletPoints: FC<{
 							<TextareaAutosize
 								id={bulletPoint.id}
 								name={bulletPoint.id}
-								style={{ width: '100%' }}
+								style={{ width: '90%' }}
 								placeholder={bulletPoint.placeholder}
 								maxLength={350}
 								onChange={e => (values[e.target.id] = e.target.value)}

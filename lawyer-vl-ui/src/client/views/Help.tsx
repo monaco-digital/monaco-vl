@@ -48,37 +48,39 @@ export const Help: React.FC = () => {
 				If you do want to leave, and you need help completing your without prejudice letter template, read these
 				articles:
 			</p>
-			<ul>
-				<li>
-					<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener">
-						Negotiating
-					</a>
-				</li>
-				<li>
-					<a href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener">
-						Evidence
-					</a>
-				</li>
-				<li>
-					<a
-						href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
-						target="_blank"
-						rel="noopener"
-					>
-						How to use without prejudice letters
-					</a>
-				</li>
-				<li>
-					<a href="https://www.monacosolicitors.co.uk/without-prejudice/" target="_blank" rel="noopener">
-						How to write without prejudice letters
-					</a>
-				</li>
-				<li>
-					<a href="https://www.monacosolicitors.co.uk/templates/#negotiations" target="_blank" rel="noopener">
-						Example without prejudice letters
-					</a>
-				</li>
-			</ul>
+			<div>
+				<ul>
+					<li>
+						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener">
+							Negotiating
+						</a>
+					</li>
+					<li>
+						<a href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener">
+							Evidence
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
+							target="_blank"
+							rel="noopener"
+						>
+							How to use without prejudice letters
+						</a>
+					</li>
+					<li>
+						<a href="https://www.monacosolicitors.co.uk/without-prejudice/" target="_blank" rel="noopener">
+							How to write without prejudice letters
+						</a>
+					</li>
+					<li>
+						<a href="https://www.monacosolicitors.co.uk/templates/#negotiations" target="_blank" rel="noopener">
+							Example without prejudice letters
+						</a>
+					</li>
+				</ul>
+			</div>
 			<h2>Assessing your employer&rsquo;s response to your without prejudice letter</h2>
 			<p>Broadly speaking, there are 3 types of response which you might be met with:</p>
 			<br />
@@ -194,17 +196,18 @@ export const Help: React.FC = () => {
 				Once you are happy with the deal set out in the document, we would countersign it to confirm that all of the
 				legal wording in the document has been explained to you in plain English.&nbsp;
 			</p>
-			<p>&nbsp;&nbsp;</p>
-			<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
-			<p>Tel: 020 7717 5259</p>
-			<p>Email: communications@monacosolicitors.co.uk</p>
-			<p>
-				Address: Monaco Solicitors, Level 24, The Shard, 32 London Bridge St, London SE1 9SG (meetings by appointment
-				only)
-			</p>
-			<p>Registered company no: 08487857</p>
-			<p>Registered office: Unit 502, Peckham Levels, 95a Rye Lane, London, SE15 4ST</p>
-			<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
+			<div className="helpFooter">
+				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
+				<p>Tel: 020 7717 5259</p>
+				<p>Email: communications@monacosolicitors.co.uk</p>
+				<p>
+					Address: Monaco Solicitors, Level 24, The Shard, 32 London Bridge St, London SE1 9SG (meetings by appointment
+					only)
+				</p>
+				<p>Registered company no: 08487857</p>
+				<p>Registered office: Unit 502, Peckham Levels, 95a Rye Lane, London, SE15 4ST</p>
+				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
+			</div>
 		</div>
 	)
 }

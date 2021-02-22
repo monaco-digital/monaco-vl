@@ -181,7 +181,7 @@ export const responseCounterOffer: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Thank you for your email of',
+								textFirstPerson: 'Thank you for your email of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -191,7 +191,7 @@ export const responseCounterOffer: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'in response to my offer of settlement.',
+								textFirstPerson: ' in response to my offer of settlement.',
 							} as StaticText,
 						],
 					},
@@ -220,7 +220,7 @@ export const responseCounterOffer: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I propose that we meet in the middle and settle on the following: ',
+								textFirstPerson: ' I propose that we meet in the middle and settle on the following: ',
 							} as StaticText,
 						],
 					},

@@ -72,9 +72,9 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[Company name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Company name]',
+							} as EditableText,
 						],
 					},
 				},
@@ -115,9 +115,9 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[Today]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Today]]',
+							} as EditableText,
 						],
 					},
 				},
@@ -206,7 +206,31 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Outstanding pay in the sum of [x]',
+								textFirstPerson: '- Outstanding pay in the sum of',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[x]',
+							} as EditableText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					type: 'Paragraph',
+					paragraphId: '',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '- No disparaging remarks from either party',
 							} as StaticText,
 						],
 					},
@@ -225,7 +249,7 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- No disparaging remarks from either party',
+								textFirstPerson: '- Mutual confidentiality of terms',
 							} as StaticText,
 						],
 					},
@@ -244,7 +268,7 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Mutual confidentiality of terms',
+								textFirstPerson: '- Agreed references',
 							} as StaticText,
 						],
 					},
@@ -263,26 +287,17 @@ export const notEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '-- Agreed references',
+								textFirstPerson: '- Ex gratia payment of',
 							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					paragraphId: '',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[x]',
+							} as EditableText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: "-- Ex gratia payment of [x] months' gross salary",
+								textFirstPerson: "months' gross salary",
 							} as StaticText,
 						],
 					},
@@ -302,7 +317,7 @@ export const notEmployed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson:
-									'-- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
+									'- Legal fees of £500 (plus VAT) for advice on the terms and effect of a settlement agreement.',
 							} as StaticText,
 						],
 					},
@@ -377,9 +392,9 @@ export const notEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '[name]',
-							} as StaticText,
+								type: 'EditableText',
+								placeholder: '[Name]',
+							} as EditableText,
 						],
 					},
 				},

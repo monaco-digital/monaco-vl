@@ -181,7 +181,7 @@ export const responseInvestigating: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Thank you for your email of',
+								textFirstPerson: 'Thank you for your email of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -191,7 +191,7 @@ export const responseInvestigating: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'in response to my offer of settlement.',
+								textFirstPerson: ' in response to my offer of settlement.',
 							} as StaticText,
 						],
 					},

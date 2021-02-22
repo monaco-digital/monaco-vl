@@ -206,7 +206,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '- Termination date of',
+								textFirstPerson: '- Termination date of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -259,7 +259,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'months’ notice pay',
+								textFirstPerson: ' months’ notice pay',
 							} as StaticText,
 						],
 					},
@@ -278,7 +278,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '- Outstanding pay in the sum of',
+								textFirstPerson: '- Outstanding pay in the sum of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -359,7 +359,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '- Ex gratia payment of',
+								textFirstPerson: '- Ex gratia payment of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -369,7 +369,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: "months' gross salary",
+								textFirstPerson: " months' gross salary",
 							} as StaticText,
 						],
 					},

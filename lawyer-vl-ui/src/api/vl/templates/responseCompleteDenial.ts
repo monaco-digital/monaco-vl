@@ -181,7 +181,7 @@ export const responseCompleteDenail: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Thank you for your email of',
+								textFirstPerson: 'Thank you for your email of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -191,7 +191,7 @@ export const responseCompleteDenail: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'in response to my offer of settlement.',
+								textFirstPerson: ' in response to my offer of settlement.',
 							} as StaticText,
 						],
 					},
@@ -211,7 +211,7 @@ export const responseCompleteDenail: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson:
-									'I am disappointed that you have not engaged with the substance of my allegations, but just denied wrongdoing. In particular:',
+									'I am disappointed that you have not engaged with the substance of my allegations, but just denied wrongdoing. In particular: ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -236,7 +236,7 @@ export const responseCompleteDenail: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I urge you to reconsider your position and respond to my offer within the next',
+								textFirstPerson: 'I urge you to reconsider your position and respond to my offer within the next ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -246,7 +246,7 @@ export const responseCompleteDenail: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'days.',
+								textFirstPerson: ' days.',
 							} as StaticText,
 						],
 					},

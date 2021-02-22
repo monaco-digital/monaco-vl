@@ -27,7 +27,7 @@ export const PreviewEditableText: FC<{
 		return (
 			<TextareaAutosize
 				id={templateEditableText.id}
-				style={{ width: '100%' }}
+				style={{ width: '100%', padding: '1px' }}
 				placeholder={templateEditableText.placeholder}
 				maxLength={templateEditableText.maxLength}
 				defaultValue={value}
@@ -41,6 +41,7 @@ export const PreviewEditableText: FC<{
 				<AutosizeInput
 					id={templateEditableText.id}
 					value={value}
+					inputStyle={{ padding: '1px' }}
 					placeholderIsMinWidth
 					placeholder={templateEditableText.placeholder}
 					onChange={e => setValue(e.target.value)}

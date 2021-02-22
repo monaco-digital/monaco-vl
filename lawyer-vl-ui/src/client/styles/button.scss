@@ -25,6 +25,10 @@
 	}
 }
 
+.button--start {
+	@apply .bg-ms-blue .font-bold;
+}
+
 .button--main {
 	@apply .bg-ms-green;
 }
