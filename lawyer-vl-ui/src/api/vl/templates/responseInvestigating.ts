@@ -4,13 +4,10 @@ import {
 	StaticText,
 	TemplateSection,
 	EditableText,
-	BulletPoints,
-	Paragraph,
 } from '@monaco-digital/vl-types/lib/main'
 import { nanoid } from 'nanoid'
-import { allowedNodeEnvironmentFlags } from 'process'
 
-export const grievanceLetter: Template = {
+export const responseInvestigating: Template = {
 	id: nanoid(),
 	version: 1,
 	meta: {
@@ -56,7 +53,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[HR manager]',
+								placeholder: '[Full name of recipient]',
 							} as EditableText,
 						],
 					},
@@ -144,7 +141,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[HR manager]',
+								placeholder: '[name]',
 							} as EditableText,
 						],
 					},
@@ -165,7 +162,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Formal grievance',
+								textFirstPerson: 'Without Prejudice Save as to Costs & Subject to Contract',
 							} as StaticText,
 						],
 					},
@@ -184,26 +181,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I write to raise a formal grievance.',
-							} as StaticText,
-						],
-					},
-				},
-				{
-					id: nanoid(),
-					version: 1,
-					type: 'Paragraph',
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'My employment started on ',
+								textFirstPerson: 'Thank you for your email of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -213,27 +191,7 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '. I am employed as ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[job title]',
-							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '. I have enjoyed working for ',
-							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[company name]',
-							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: ', but I have unfortunately suffered unfair treatment which I invite you to remedy.',
+								textFirstPerson: ' in response to my offer of settlement.',
 							} as StaticText,
 						],
 					},
@@ -252,18 +210,33 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'My complaints are as follows:',
+								textFirstPerson:
+									'I understand that you wish to conduct an investigation. However, I urge you to consider settlement instead, as it would save time, stress and costs for all concerned.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson:
+									'In any event, I won’t wait for the result of your investigation if it makes my employment tribunal claim out of time.',
 							} as StaticText,
 						],
 					},
 				},
 			] as TemplateParagraph[],
-		} as TemplateSection,
-		{
-			id: nanoid(),
-			version: 1,
-			type: 'UserContentSection',
-			templateComponents: [],
 		} as TemplateSection,
 		{
 			id: nanoid(),
@@ -285,58 +258,11 @@ export const grievanceLetter: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson:
-									'I invite you to take the following action in order to resolve my complaints [provide 3-5 bullet points outlining your desired outcome].:',
+								textFirstPerson: 'I look forward to hearing from you as soon as possible.',
 							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'BulletPoints',
-								bulletPoints: [
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-								],
-							} as BulletPoints,
 						],
 					},
 				},
-				{
-					id: nanoid(),
-					type: 'Paragraph',
-					version: 1,
-					paragraph: {
-						id: nanoid(),
-						verticalHeight: 0,
-						topicsOneOf: [],
-						topicsAllOf: ['All'],
-						topicsNoneOf: [],
-						paragraphComponents: [
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: 'I look forward to hearing from you at your earliest convenience.',
-							} as StaticText,
-						],
-					},
-				} as TemplateParagraph,
 				{
 					id: nanoid(),
 					type: 'Paragraph',

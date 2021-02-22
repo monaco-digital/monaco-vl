@@ -25,7 +25,7 @@ export const getDocumentComponentText = (documentComponent: DocumentComponent) =
 			.map(dc => {
 				return getDocumentComponentText(dc)
 			})
-			.join('\n')
+			.join('\n\n')
 	} else if (documentComponent.type === 'Paragraph') {
 		return getParagraphText(documentComponent as DocumentParagraph)
 	}

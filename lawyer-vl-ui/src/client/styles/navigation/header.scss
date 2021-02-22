@@ -16,8 +16,10 @@
 			@apply .font-sans .mx-6;
 
 			.header__breadcrumb__text-selected {
-				text-decoration: underline;
-				text-decoration-color: #538cff;
+				padding-bottom: 1px;
+				border-color: #538cff;
+				border-bottom-width: 3px;
+				border-bottom-style: solid;
 			}
 		}
 	}

@@ -14,7 +14,7 @@ import {
 	DocumentParagraphComponent,
 } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
-import { createDocumentParagraph } from '../utils/document'
+import { createDocument, createDocumentParagraph } from '../utils/document'
 
 export const slice = createSlice({
 	name: 'session',
@@ -118,6 +118,7 @@ const _updateSessionDocument = (
 	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
 		processSessionDocumentComponent(sessionDocumentComponent)
 	})
+	sessionDocument.document = createDocument(sessionDocument)
 
 	return sessionDocument
 }

@@ -6,4 +6,39 @@
 			@apply flex-shrink-0 .rounded-full .h-12 .m-4 .w-12 .flex .items-center .justify-center .bg-ms-blue .text-white .font-semibold;
 		}
 	}
+
+	h1 {
+		font-size: 3.5rem;
+		line-height: 1;
+		color: #383838;
+		font-weight: 800;
+		font-family: 'Montserrat', sans-serif;
+		margin-top: 30px;
+	}
+
+	h3 {
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
+	.section {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+
+		.lhs-panel {
+			margin-top: 20px;
+			padding-right: 2rem;
+			width: 50%;
+			color: #a7abad;
+		}
+
+		h3 {
+			margin-top: 80px;
+			padding-right: 5rem;
+			font-size: 1.2rem;
+			margin-bottom: 2rem;
+			color: #383838;
+		}
+	}
 }

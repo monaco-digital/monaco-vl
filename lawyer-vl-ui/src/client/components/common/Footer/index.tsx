@@ -4,7 +4,7 @@ import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { Question as QuestionT } from '../../../../data/types'
+import { Question as QuestionT } from '../../../../types/Questions'
 import { SessionParagraph } from '../../../../types/SessionDocument'
 import pages from '../../../../types/navigation'
 import { setPage } from '../../../../data/navigationDataSlice'
@@ -20,6 +20,7 @@ import vlToastTrigger from '../../../../utils/vlToastTrigger'
 import { removeLastAnsweredQuestion, updateSelectedTopics } from '../../../../data/sessionDataSlice'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
 import ReactGA from 'react-ga'
+import EmailModal from '../EmailModal'
 
 const Footer: React.FC = () => {
 	const page = useSelector<AppState, string>(state => state.navigation.page)
@@ -33,6 +34,8 @@ const Footer: React.FC = () => {
 	const dispatch = useDispatch()
 
 	const [paragraphToggle, setParaToggle] = useState<ParagraphToggle>('summary')
+
+	const [showEmailModal, setShowEmailModal] = useState(false)
 
 	const enterLetterPreviewMode = () => {
 		dispatch(setPage(pages.LETTER_PREVIEW))
@@ -178,8 +181,7 @@ const Footer: React.FC = () => {
 							/>
 						</div>
 						<div className="footer__preview__button">
-							<Button type="secondary" shortText="Copy" text="Copy letter text" rounded fn={copyParasToText} />
-							<Button type="main" shortText="Open Doc" text="Create Google Doc" rounded fn={openInGoogleDoc} />
+							<Button type="main" shortText="Email" text="Email" rounded fn={() => setShowEmailModal(true)} />
 						</div>
 					</>
 				)}
@@ -195,6 +197,7 @@ const Footer: React.FC = () => {
 					</div>
 				)}
 			</div>
+			<EmailModal isOpen={showEmailModal} onRequestClose={e => setShowEmailModal(false)}></EmailModal>
 		</footer>
 	)
 }

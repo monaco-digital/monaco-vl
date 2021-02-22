@@ -3,6 +3,7 @@ import React, { FC, useState } from 'react'
 import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice'
 import { useDispatch } from 'react-redux'
 import { nanoid } from 'nanoid'
+import { TextareaAutosize } from '@material-ui/core'
 
 export const PreviewBulletPoints: FC<{
 	templateBulletPoints: BulletPoints
@@ -36,25 +37,28 @@ export const PreviewBulletPoints: FC<{
 					return (
 						<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
 							<li></li>
-							<div
-								contentEditable="true"
-								onInput={e => (values[bulletPoint.id] = e.currentTarget.textContent)}
+							<TextareaAutosize
 								id={bulletPoint.id}
-								onBlur={e => updateBulletPoints(values)}
-							>
-								{values[bulletPoint.id] || matchingDocumentBulletPoint?.value || bulletPoint.placeholder}
-							</div>
+								name={bulletPoint.id}
+								style={{ width: '90%' }}
+								placeholder={bulletPoint.placeholder}
+								maxLength={350}
+								defaultValue={values[bulletPoint.id] || matchingDocumentBulletPoint?.value || bulletPoint.placeholder}
+								onChange={e => (values[e.target.id] = e.target.value)}
+								onBlur={() => updateBulletPoints(values)}
+							/>
 						</div>
 					)
 				} else {
 					return (
 						<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
 							<li></li>
-							<input
-								type="text"
+							<TextareaAutosize
 								id={bulletPoint.id}
 								name={bulletPoint.id}
+								style={{ width: '90%' }}
 								placeholder={bulletPoint.placeholder}
+								maxLength={350}
 								onChange={e => (values[e.target.id] = e.target.value)}
 								onBlur={() => updateBulletPoints(values)}
 							/>

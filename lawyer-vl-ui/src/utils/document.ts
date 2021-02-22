@@ -83,7 +83,6 @@ export const createDocumentParagraph = (
 	if (existingDocumentParagraph) {
 		return existingDocumentParagraph as DocumentParagraph
 	}
-	console.log('++++>>>', templateParagraph)
 	return {
 		id: nanoid(),
 		type: 'Paragraph',
@@ -113,7 +112,7 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 				id: nanoid(),
 				baseTemplateComponent: editableTextParagraph.id,
 				type: 'EditableText',
-				value: null,
+				value: editableTextParagraph.placeholder,
 			} as DocumentParagraphEditableText
 		case 'BulletPoints':
 			// if there are bullet points in the template, is the preview the first opportunity to see them?
@@ -123,7 +122,12 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 				id: nanoid(),
 				baseTemplateComponent: bulletPointsParagraph.id,
 				type: 'BulletPoints',
-				completedBulletPoints: [],
+				completedBulletPoints: bulletPointsParagraph.bulletPoints?.map(bulletPoint => {
+					return {
+						id: bulletPoint.id,
+						value: bulletPoint.placeholder,
+					}
+				}),
 			} as DocumentParagraphBulletPoints
 		default:
 			return null

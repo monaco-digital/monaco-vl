@@ -5,7 +5,6 @@ export const slice = createSlice({
 	name: 'topic',
 	initialState: {
 		all: [] as CaseTopic[],
-		selected: [] as CaseTopic[],
 	},
 	reducers: {
 		setAllTopics: (state, action) => {

@@ -2,13 +2,14 @@
 import React, { FC, useEffect } from 'react'
 import Footer from '../components/common/Footer'
 import DocumentPreview from '../components/common/DocumentPreview'
+import AdvicePreview from '../components/common/AdvicePreview'
 import Header from '../components/common/Header'
 import Questions from '../components/common/Questions'
 import { useSelector, useDispatch } from 'react-redux'
 import { setAllTopics } from '../../data/topicDataSlice'
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice'
 
-import { getData } from '../../api/vlmasersheet'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import AppState from '../../data/AppState'
 import pages from '../../types/navigation'
 import Help from './Help'
@@ -21,6 +22,9 @@ import { getAllParagraphs } from '../../api/vl/paragraph'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
+	const advicePreviewOnly = selectedTopics.find(t => t.id === '_ADV') ? true : false
+
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -61,7 +65,8 @@ const Main: FC = () => {
 						<StatementSelect />
 					</Route>
 					<Route path="/preview">
-						<DocumentPreview />
+						{advicePreviewOnly && <AdvicePreview />}
+						{!advicePreviewOnly && <DocumentPreview />}
 					</Route>
 					<Route path="/help">
 						<Help />
@@ -74,7 +79,8 @@ const Main: FC = () => {
 						{mode === pages.GET_STARTED && <GetStarted />}
 						{mode === pages.TOPICS && <Questions />}
 						{mode === pages.STATEMENT_SELECT && <StatementSelect />}
-						{mode === pages.LETTER_PREVIEW && <DocumentPreview />}
+						{mode === pages.LETTER_PREVIEW && advicePreviewOnly && <AdvicePreview />}
+						{mode === pages.LETTER_PREVIEW && !advicePreviewOnly && <DocumentPreview />}
 						{mode === pages.HELP && <Help />}
 					</Route>
 				</Switch>
