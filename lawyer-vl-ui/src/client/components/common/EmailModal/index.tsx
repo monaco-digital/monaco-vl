@@ -44,6 +44,11 @@ interface Data {
 const EmailModal: FC<EmailModalProps> = ({ isOpen = false, onRequestClose }) => {
 	const handleChange = () => {}
 
+	const lambdaUrl =
+		process.env.REACT_APP_STAGE === 'prod'
+			? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
+			: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer'
+
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -95,10 +100,9 @@ const EmailModal: FC<EmailModalProps> = ({ isOpen = false, onRequestClose }) => 
 		data.recipient = recipient
 		data.contactMe = contactMe
 
-		console.log('Submit data', data)
 		axios({
 			method: 'POST',
-			url: `https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer`,
+			url: lambdaUrl,
 			data,
 			headers: {
 				'Content-Type': 'application/json',
