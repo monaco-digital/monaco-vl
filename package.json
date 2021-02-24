@@ -1,3 +1,5 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "react-gtm-module": "^2.0.11"
+  }
 }

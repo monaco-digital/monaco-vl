@@ -172,21 +172,7 @@ export const Topics: CaseTopic[] = [
 		text: 'Discrimination',
 		questionText: 'Discrimination',
 		parentTopics: [],
-		subtopics: [
-			'DP',
-			'DM',
-			'DS',
-			'DSy',
-			'DR',
-			'DRn',
-			'DA',
-			'DD',
-			'DMe',
-			'DG',
-			'DPI',
-			'DMl',
-			'DV',
-		],
+		subtopics: ['DP', 'DM', 'DS', 'DSy', 'DR', 'DRn', 'DA', 'DD', 'DMe', 'DG', 'DPI', 'DMl', 'DV'],
 		type: 'case',
 	},
 	{
@@ -676,9 +662,4 @@ export interface Answer {
 	prerequisites?: string[]
 }
 
-export type NavView =
-	| 'get-started'
-	| 'key-facts'
-	| 'preview-letter'
-	| 'letter-builder'
-	| 'help'
+export type NavView = 'get-started' | 'key-facts' | 'preview-letter' | 'letter-builder' | 'help'

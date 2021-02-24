@@ -1,4 +1,4 @@
-import { getLetterText } from '../../utlis/letter'
+import { getLetterText } from '../../utils/document'
 import axios from 'axios'
 
 export const submitFormToPipeDrive = async (fields: any) => {
@@ -27,8 +27,5 @@ export const submitFormToPipeDrive = async (fields: any) => {
 		'settlement-agreement': settlementAgreement ? 'Yes' : 'No',
 		description: getLetterText(selectedTopics, paragraphs),
 	}
-	return axios.post(
-		'https://40ueg9bxdg.execute-api.eu-west-2.amazonaws.com/prod/create-deal',
-		body
-	)
+	return axios.post('https://40ueg9bxdg.execute-api.eu-west-2.amazonaws.com/prod/create-deal', body)
 }

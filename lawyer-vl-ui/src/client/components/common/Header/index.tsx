@@ -1,28 +1,22 @@
 import React, { FC, useState } from 'react'
 import classNames from 'classnames'
-import logo from '../../../assets/img/vl-logo.png'
+import logo from '../../../assets/img/vl-logo-2.png'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPage } from '../../../../data/navigationDataSlice'
-import { removeLastAnsweredQuestion } from '../../../../data/questionDataSlice'
+import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice'
 import pages from '../../../../types/navigation'
 import AppState from '../../../../data/AppState'
-import { unselectTopic } from '../../../../data/topicDataSlice'
-import { CaseTopic, Question as QuestionT } from '../../../../data/types'
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
+import { Question as QuestionT } from '../../../../types/Questions'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
 import useViewport from '../../../utils/useViewport'
 
 const Header: FC = () => {
 	const { isMobile } = useViewport()
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(
-		state => state.topics.selected
-	)
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(
-		state => state.questions.answeredQuestions
-	)
-	const page = useSelector<AppState, keyof typeof pages>(
-		state => state.navigation.page
-	)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
+
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
+	const page = useSelector<AppState, keyof typeof pages>(state => state.navigation.page)
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
 	const [menuIsVisibile, setMenuIsVisibile] = useState(false)
@@ -49,20 +43,13 @@ const Header: FC = () => {
 
 	return (
 		<div className="header">
-			<a
-				href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile"
-				target="_blank"
-			>
+			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
 				<img alt="Virtual lawyer" src={logo} />
 			</a>
 			<div className="header__breadcrumb">
 				<div className="header__breadcrumb__text">
 					<button
-						className={
-							page === pages.TOPICS
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
+						className={page === pages.TOPICS ? 'header__breadcrumb__text-selected' : undefined}
 						onClick={() => navigateTo(pages.TOPICS)}
 					>
 						{keyFacts}
@@ -75,11 +62,7 @@ const Header: FC = () => {
 				</div>*/}
 				<div className="header__breadcrumb__text">
 					<button
-						className={
-							page === pages.LETTER_PREVIEW
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
+						className={page === pages.LETTER_PREVIEW ? 'header__breadcrumb__text-selected' : undefined}
 						onClick={() => navigateTo(pages.LETTER_PREVIEW)}
 					>
 						{previewLetter}
@@ -87,11 +70,7 @@ const Header: FC = () => {
 				</div>
 				<div className="header__breadcrumb__text">
 					<button
-						className={
-							page === pages.HELP
-								? 'header__breadcrumb__text-selected'
-								: undefined
-						}
+						className={page === pages.HELP ? 'header__breadcrumb__text-selected' : undefined}
 						onClick={() => navigateTo(pages.HELP)}
 					>
 						Help

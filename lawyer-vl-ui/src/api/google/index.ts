@@ -1,11 +1,10 @@
 //@ts-nocheck
 import axios from 'axios'
 import { updateGoogleDocumentBody } from './utils'
-import { Paragraph } from '../../data/types'
+import { Paragraph } from '@monaco-digital/vl-types/lib/main'
 
 const apiKey = 'AIzaSyD5K02Z-M8v3naFEKSZqMwywn1VlScdrF0'
-const clientId =
-	'206188710944-ajooov15d0cfri82onq1l5p16e30oajg.apps.googleusercontent.com'
+const clientId = '206188710944-ajooov15d0cfri82onq1l5p16e30oajg.apps.googleusercontent.com'
 const clientSecret = '4LWWhYfoq3kd3GLXns_2hlGe'
 const refreshToken =
 	'1//04J6CYOWIgGB8CgYIARAAGAQSNwF-L9IrpaMEanSA6hP960edl3NbllpfH5PJwBpz-0LB2iuMLrsd0l_1q8rp3WtmhCrBeDTe_kk'
@@ -44,17 +43,13 @@ export const callGoogleApi = async (textToInsert: string) => {
 	const { access_token: accessToken } = data
 
 	//make google doc
-	const response1 = await axios.post(
-		`https://docs.googleapis.com/v1/documents?key=${apiKey}`,
-		doc,
-		{
-			headers: {
-				Authorization: `Bearer ${accessToken}`,
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		}
-	)
+	const response1 = await axios.post(`https://docs.googleapis.com/v1/documents?key=${apiKey}`, doc, {
+		headers: {
+			Authorization: `Bearer ${accessToken}`,
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+		},
+	})
 
 	const {
 		data: { documentId },

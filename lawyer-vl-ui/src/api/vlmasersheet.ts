@@ -1,10 +1,6 @@
 //@ts-nocheck
 import axios from 'axios'
-import {
-	Paragraph,
-	ParagraphTopicMapping,
-	TopicAlgebraOperators,
-} from '../data/types'
+import { Paragraph, ParagraphTopicMapping, TopicAlgebraOperators } from '../data/types'
 import { replaceDInArrayOfTopics } from '../utlis/TypeConversion'
 import { CustomParagraphs } from '../data/static'
 import * as response from './response.json'
@@ -43,24 +39,13 @@ export const getData = async (): Promise<Paragraph[]> => {
 
 			//disjoin by , trim and convert into an array and convert D to an array to subsets
 
-			const topicsOneOf = (topicOneOfValue
-				? topicOneOfValue.split(',')
-				: []
-			)?.map(topic => topic.trim())
+			const topicsOneOf = (topicOneOfValue ? topicOneOfValue.split(',') : [])?.map(topic => topic.trim())
 
-			const topicsAllOf = (topicAllOfValue
-				? topicAllOfValue.split(',')
-				: []
-			)?.map(topic => topic.trim())
+			const topicsAllOf = (topicAllOfValue ? topicAllOfValue.split(',') : [])?.map(topic => topic.trim())
 
-			const topicsNoneOf = (topicNoneOfValue
-				? topicNoneOfValue.split(',')
-				: []
-			)?.map(topic => topic.trim())
+			const topicsNoneOf = (topicNoneOfValue ? topicNoneOfValue.split(',') : [])?.map(topic => topic.trim())
 
-			const topic = `(${topicOneOfValue ?? ''}) + allOf(${
-				topicAllOfValue ?? ''
-			}) + !(${topicNoneOfValue ?? ''})`
+			const topic = `(${topicOneOfValue ?? ''}) + allOf(${topicAllOfValue ?? ''}) + !(${topicNoneOfValue ?? ''})`
 
 			const dataPoint: Paragraph = {
 				id: value[0],
