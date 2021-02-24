@@ -22,7 +22,6 @@ export const PreviewBulletPoints: FC<{
 				return { id: key, value: values[key] }
 			}),
 		} as DocumentParagraphBulletPoints
-		console.log('updateBulletPoints', updatedDocumentParagraphComponent)
 		dispatch(updateSessionDocumentComponent(updatedDocumentParagraphComponent))
 	}
 
@@ -32,7 +31,7 @@ export const PreviewBulletPoints: FC<{
 				const matchingDocumentBulletPoint = documentBulletPoints?.completedBulletPoints?.find(
 					cbp => cbp.id === bulletPoint.id
 				)
-				if (matchingDocumentBulletPoint?.value) {
+				if (matchingDocumentBulletPoint?.value && matchingDocumentBulletPoint.value !== bulletPoint.placeholder) {
 					values[matchingDocumentBulletPoint.id] = matchingDocumentBulletPoint.value
 					return (
 						<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
@@ -40,7 +39,7 @@ export const PreviewBulletPoints: FC<{
 							<TextareaAutosize
 								id={bulletPoint.id}
 								name={bulletPoint.id}
-								style={{ width: '90%' }}
+								style={{ width: '90%', backgroundColor: '#deefff', margin: '2px' }}
 								placeholder={bulletPoint.placeholder}
 								maxLength={350}
 								defaultValue={values[bulletPoint.id] || matchingDocumentBulletPoint?.value || bulletPoint.placeholder}
@@ -56,7 +55,7 @@ export const PreviewBulletPoints: FC<{
 							<TextareaAutosize
 								id={bulletPoint.id}
 								name={bulletPoint.id}
-								style={{ width: '90%' }}
+								style={{ width: '90%', backgroundColor: '#deefff', margin: '2px' }}
 								placeholder={bulletPoint.placeholder}
 								maxLength={350}
 								onChange={e => (values[e.target.id] = e.target.value)}
