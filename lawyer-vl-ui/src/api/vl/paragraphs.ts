@@ -2,6 +2,7 @@ import { CaseTopic, TemplateParagraph, Advice, Paragraph } from '@monaco-digital
 import { getAllParagraphs } from './paragraph'
 import { nanoid } from 'nanoid'
 import _ from 'lodash'
+import store from '../../data/store'
 
 interface Rankable {
 	topicsOneOf?: string[]
@@ -10,6 +11,7 @@ interface Rankable {
 }
 
 const getSuggestedAdviceParagraphs = async (selectedTopics: CaseTopic[]): Promise<Advice[]> => {
+	const selectedTopicsAndParents = includeParentTopics(selectedTopics)
 	const allAdvice = rawAdviceParas.map(rap => {
 		return {
 			id: rap.id,
@@ -19,28 +21,16 @@ const getSuggestedAdviceParagraphs = async (selectedTopics: CaseTopic[]): Promis
 			topicsNoneOf: _.compact(rap.topicsNoneOf.split(',').map(s => s.trim())),
 		} as Advice
 	})
-	const filtered = filterAdviceParagraphs(allAdvice, selectedTopics)
-	console.log(
-		'filterAdviceParagraphs',
-		filtered,
-		selectedTopics.map(t => t.id)
-	)
-
+	const filtered = filterAdviceParagraphs(allAdvice, selectedTopicsAndParents)
 	return filtered
 }
 
 const getSuggestedParagraphs = async (selectedTopics: CaseTopic[]): Promise<TemplateParagraph[]> => {
-	/* const {
-		default: { data = {} },
-	} = paragraphDataRaw as any
-	console.log('paragraphData', data) */
 	const paragraphs = await getAllParagraphs()
-	const filtered = filterSuggestedParagraphs(paragraphs, selectedTopics)
-	console.log(
-		'filterSuggestedParagraphs',
-		filtered,
-		selectedTopics.map(t => t.id)
-	)
+	const selectedTopicsAndParents = includeParentTopics(selectedTopics)
+
+	const filtered = filterSuggestedParagraphs(paragraphs, selectedTopicsAndParents)
+
 	return filtered
 }
 
@@ -85,17 +75,6 @@ const filterSuggestedParagraphs = (
 		const oneOf = matchesOneOf(templateParagraph.paragraph, selectedTopicIds)
 		const noneOf = matchesNoneOf(templateParagraph.paragraph, selectedTopicIds)
 		let score = allOf && oneOf && noneOf ? 1 : 0
-		console.log(
-			'match',
-			selectedTopicIds,
-			': ',
-			templateParagraph.paragraph.topicsAllOf,
-			templateParagraph.paragraph.topicsOneOf,
-			templateParagraph.paragraph.topicsNoneOf,
-			allOf,
-			oneOf,
-			!noneOf
-		)
 
 		if (score > 0) {
 			scoredAndFilteredParas.push({
@@ -108,6 +87,21 @@ const filterSuggestedParagraphs = (
 	return scoredAndFilteredParas.map(p => p.paragraph)
 }
 
+const includeParentTopics = (selectedTopics: CaseTopic[]) => {
+	const state = store.getState()
+	const allTopics = state.topics.all
+	const updatedSelectedTopics = []
+	selectedTopics.forEach(selectedTopic => {
+		if (selectedTopic.parentTopics?.length > 0) {
+			selectedTopic.parentTopics.forEach(parentTopic => {
+				updatedSelectedTopics.push(allTopics.find(topic => topic.id === parentTopic))
+			})
+		}
+		updatedSelectedTopics.push(selectedTopic)
+	})
+	return _.compact(updatedSelectedTopics)
+}
+
 const matchesAllOf = (paragraph: Rankable, selectedTopicIds) => {
 	let matchCount = 0
 	if (paragraph.topicsAllOf.length === 0) return true
@@ -117,7 +111,6 @@ const matchesAllOf = (paragraph: Rankable, selectedTopicIds) => {
 		}
 	})
 	return matchCount === paragraph.topicsAllOf.length
-	// return matchCount > 0
 }
 
 const matchesOneOf = (paragraph: Rankable, selectedTopicIds) => {
@@ -133,7 +126,6 @@ const matchesOneOf = (paragraph: Rankable, selectedTopicIds) => {
 
 const matchesNoneOf = (paragraph: Rankable, selectedTopicIds) => {
 	let matchCount = 0
-	if (paragraph.topicsNoneOf.length === 0) return true
 	paragraph.topicsNoneOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount++
@@ -145,6 +137,20 @@ const matchesNoneOf = (paragraph: Rankable, selectedTopicIds) => {
 export { getSuggestedParagraphs, getSuggestedAdviceParagraphs }
 
 const rawAdviceParas = [
+	{
+		id: nanoid(),
+		text: `Advice\n\nVirtual Lawyer will advise whether or not you have a potential case against your employer, based on the information you’ve given us. Virtual Lawyer cannot advise on the strength of your case, but it will give you some pointers so that you can make an educated guess.\n\nIf you do have a case, it’s important to gather evidence as your employer will likely want to deny wrongdoing. The stronger your case, the more likely the employer is to settle it with you (although there are no guarantees and different employers act differently). This is why we refer to having a claim throughout the advice - it’s always in the shadow of your negotiations with your employer.`,
+		topicsOneOf: '',
+		topicsAllOf: '',
+		topicsNoneOf: '',
+	},
+	{
+		id: nanoid(),
+		text: `Time limits\n\nThis is very important. You should keep on top of the time limit for your case, even if you don’t intend to bring a claim at an employment tribunal. It’s essential for your bargaining power - once you’ve lost your right to issue a claim, the employer has no incentive to settle the case with you.\n\nTime limits for employment claims are short - three months minus one day from the last act complained of. In a claim for unfair dismissal or constructive dismissal, the time limit will run from your last day of employment. For other claims such as discrimination or whistleblowing, the time limit will normally run from the date of the employer’s alleged wrongdoing. When the treatment is ongoing, it will be the date of the last act. Time limits can occasionally be extended - however, we’d urge that you bring your claim promptly as you don’t want a dispute in the tribunal about this. More information on time limits: https://www.monacosolicitors.co.uk/tribunals/time-limits/.\n\nIf it’s getting close to the time limit expiring, you should contact Advisory Conciliation and Arbitration Service (Acas) for early conciliation, which is a compulsory step before issuing a claim and it will give you a bit more time. For more information see: https://www.acas.org.uk/making-a-claim-to-an-employment-tribunal.`,
+		topicsOneOf: '',
+		topicsAllOf: '',
+		topicsNoneOf: '',
+	},
 	{
 		id: nanoid(),
 		text:
@@ -582,7 +588,7 @@ const rawAdviceParas = [
 		text:
 			'Religious belief\n\nThis covers all mainstream religions (Christianity, Islam, Judaism, Hinduism, Buddism, Sikhism etc) as well as any less known ones, provided they have a clear structure and belief system. In practice this means adherents of less known religions have this extra step of proving their religion or religious belief system is worthy of protection. A lack of religious belief (e.g. atheism) is also protected.',
 		topicsOneOf: '',
-		topicsAllOf: 'DR',
+		topicsAllOf: 'DRn',
 		topicsNoneOf: '',
 	},
 	{

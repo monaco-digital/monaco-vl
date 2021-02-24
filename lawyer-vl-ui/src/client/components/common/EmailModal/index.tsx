@@ -71,7 +71,7 @@ const EmailModal: FC<EmailModalProps> = ({ isOpen = false, onRequestClose }) => 
 			setAdviceParagraphs(suggestAdviceParagraphs)
 		}
 		updateAdviceParagraphs()
-	}, [])
+	}, [selectedTopics])
 
 	const getLetterText = () => {
 		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
