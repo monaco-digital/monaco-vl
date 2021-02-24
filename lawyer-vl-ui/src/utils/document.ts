@@ -45,7 +45,6 @@ export const createDocument = (sessionDocument: SessionDocument): Document => {
 		},
 	} as Document
 
-	console.log('doc-->', doc)
 	return doc
 }
 
@@ -64,7 +63,6 @@ export const createDocumentComponent = (sessionDocumentComponent: SessionDocumen
 		} as DocumentSection
 	} else if (sessionDocumentComponent.type === 'Paragraph') {
 		const sessionParagraph = sessionDocumentComponent as SessionParagraph
-		console.log('sessionParagraph.documentComponent', sessionParagraph.documentComponent)
 		return sessionParagraph.documentComponent
 	}
 }
@@ -75,7 +73,6 @@ export const createDocumentParagraph = (
 	templateParagraph: TemplateParagraph,
 	paragraphs: SessionParagraph[]
 ): DocumentParagraph => {
-	console.log('The template paragraph is: ', templateParagraph)
 	const matchingSessionParagraph = paragraphs.find(
 		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id
 	)
