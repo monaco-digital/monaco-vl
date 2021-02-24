@@ -13,7 +13,7 @@ const apiUrl = (): string => {
 
 const vlApiUrl = (): string => {
 	if (stage === 'prod') {
-		return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev/graphql'
+		return 'https://4xrp27z7te.execute-api.eu-west-2.amazonaws.com/prod/graphql'
 	} else if (stage === 'dev') {
 		return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev/graphql'
 	}
