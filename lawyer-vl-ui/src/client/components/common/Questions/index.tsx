@@ -1,6 +1,7 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC } from 'react'
 import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import AppState from '../../../../data/AppState'
 import { Question as QuestionT } from '../../../../types/Questions'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
@@ -8,25 +9,20 @@ import { getNextQuestion } from '../../../../clustering/questionFlow'
 import Question from '../Question'
 import _ from 'lodash'
 import Button from '../../Button'
-import { setPage } from '../../../../data/navigationDataSlice'
-import pages from '../../../../types/navigation'
-import {
-	addAnsweredQuestion,
-	removeLastAnsweredQuestion,
-	updateSelectedTopics,
-} from '../../../../data/sessionDataSlice'
+import { addAnsweredQuestion } from '../../../../data/sessionDataSlice'
 
 const Questions: FC = () => {
+	const history = useHistory()
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
 
-	let answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
 	const dispatch = useDispatch()
 
 	if (!currentQuestion) {
-		dispatch(setPage(pages.STATEMENT_SELECT))
+		history.push('/statements')
 		return null
 	}
 
@@ -36,21 +32,12 @@ const Questions: FC = () => {
 	)
 	const enableNext = optionsSelectedCount >= currentQuestion.minAnswers
 
-	const text = currentQuestion.text || ''
-	const subtext = currentQuestion.subtext || ''
 	const isMulti = currentQuestion.maxAnswers > 1
 	const type = isMulti ? 'tags' : ''
 
 	const classes = classNames('questions', {
 		[`questions__${type}`]: type,
 	})
-
-	const handleGoBackwards = () => {
-		const optionIds = currentQuestion.option.map(option => option.topicId)
-		const updatedSelectedTopics = selectedTopics.filter(topic => !optionIds.includes(topic.id))
-		dispatch(updateSelectedTopics(updatedSelectedTopics))
-		dispatch(removeLastAnsweredQuestion(null))
-	}
 
 	const handleGoForward = () => {
 		dispatch(addAnsweredQuestion(currentQuestion))

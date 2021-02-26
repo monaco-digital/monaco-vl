@@ -1,7 +1,6 @@
 import { CaseTopic, Paragraph, Template } from '@monaco-digital/vl-types/lib/main'
 import { Question } from '../types/Questions'
 import { SessionDocument, SessionParagraph } from '../types/SessionDocument'
-import pages from '../types/navigation'
 import { ParagraphToggle } from '../types/paragraph'
 
 export type AppState = {
@@ -27,9 +26,6 @@ export type AppState = {
 		mode: string
 		prevState: any
 		answeredQuestions: Question[]
-	}
-	navigation: {
-		page: keyof typeof pages
 	}
 	features: {
 		enableMonetization: boolean

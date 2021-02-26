@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
 import Button from '../../Button'
-import { setPage } from '../../../../data/navigationDataSlice'
-import pages from '../../../../types/navigation'
 import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from '../../../../data/sessionDataSlice'
 import { SessionParagraph } from '../../../../types/SessionDocument'
 import { getSuggestedParagraphs } from '../../../../api/vl'
@@ -14,6 +13,7 @@ import _ from 'lodash'
 interface Props {}
 
 const StatementSelect: React.FC<Props> = (props: Props) => {
+	const history = useHistory()
 	const dispatch = useDispatch()
 	const [activeParagraph, setActiveParagraph] = useState(null)
 	// const activeParagraph = useSelector<any, any>(state => state.userFields.active)
@@ -22,7 +22,7 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds = selectedTopics.map(t => t.id)
 	if (_.intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
-		dispatch(setPage(pages.LETTER_PREVIEW))
+		history.push('/preview')
 	}
 
 	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs)
@@ -58,7 +58,7 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	}
 
 	const enterLetterPreviewMode = () => {
-		dispatch(setPage(pages.LETTER_PREVIEW))
+		history.push('/preview')
 	}
 
 	const statements = suggestedParagraphs.map((sessionParagraph, i) => {

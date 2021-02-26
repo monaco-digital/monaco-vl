@@ -8,7 +8,7 @@ export const Help: React.FC = () => {
 		action: 'Opened help page',
 	})
 	return (
-		<div style={{ display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
+		<div className="helpsection" style={{ display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
