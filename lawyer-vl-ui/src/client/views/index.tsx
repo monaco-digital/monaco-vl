@@ -28,17 +28,36 @@ const Main: FC = () => {
 
 	const { search } = useLocation()
 	useEffect(() => {
+		// Pulls feature switch values from URL or local storage, and passes to redux.
+		// URL values (if present) should override local storage.
+
 		const queryParams = new URLSearchParams(search)
 
-		// url params for feature switching prior to full release.
-		const isMonetizationEnabled = queryParams.get('enableMonetization') === 'true'
-		if (isMonetizationEnabled) {
-			dispatch(enableMonetization())
+		let featureStorage = {}
+		try {
+			featureStorage = JSON.parse(localStorage.getItem('vl-features')) || {}
+		} catch {
+			/* ignore */
+		}
+
+		const isMonetizationSet = queryParams.has('enableMonetization')
+		if (isMonetizationSet) {
+			featureStorage.enableMonetization = queryParams.get('enableMonetization') === 'true'
 		}
 
 		const isFromLegalAdviceCentre = queryParams.get('source') === 'lac'
 		if (isFromLegalAdviceCentre) {
-			dispatch(disableMonetization())
+			featureStorage.enableMonetization = false
+		}
+
+		if ('enableMonetization' in featureStorage) {
+			featureStorage.enableMonetization ? dispatch(enableMonetization()) : dispatch(disableMonetization())
+		}
+
+		try {
+			localStorage.setItem('vl-features', JSON.stringify(featureStorage))
+		} catch {
+			/* ignore */
 		}
 	}, [search])
 
