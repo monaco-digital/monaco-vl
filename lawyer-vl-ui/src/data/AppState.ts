@@ -27,7 +27,7 @@ export type AppState = {
 		prevState: any
 		answeredQuestions: Question[]
 	}
-	settings: {
+	features: {
 		enableMonetization: boolean
 	}
 }
