@@ -32,13 +32,14 @@ const Main: FC = () => {
 	useEffect(() => {
 		const queryParams = new URLSearchParams(search)
 
-		// url param to enable monetization for testing prior to release.
-		if (queryParams.get('enableMonetization') === 'true') {
+		// url params for feature switching prior to full release.
+		const isMonetizationEnabled = queryParams.get('enableMonetization') === 'true'
+		if (isMonetizationEnabled) {
 			dispatch(enableMonetization())
 		}
 
-		// always disable monetization when source is from legal advice centre
-		if (queryParams.get('source') === 'lac') {
+		const isFromLegalAdviceCentre = queryParams.get('source') === 'lac'
+		if (isFromLegalAdviceCentre) {
 			dispatch(disableMonetization())
 		}
 	}, [search])
