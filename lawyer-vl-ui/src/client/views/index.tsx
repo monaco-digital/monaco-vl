@@ -17,8 +17,9 @@ import GetStarted from './GetStarted'
 import { getAllCaseTopics } from '../../api/vl/'
 import StatementSelect from '../components/common/StatementSelect'
 import { SessionParagraph } from '../../types/SessionDocument'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import { getAllParagraphs } from '../../api/vl/paragraph'
+import { disableMonetization, enableMonetization } from '../../data/featureDataSlice'
 
 const Main: FC = () => {
 	const mode = useSelector<AppState, string>(state => state.navigation.page)
@@ -26,6 +27,22 @@ const Main: FC = () => {
 	const advicePreviewOnly = selectedTopics.find(t => t.id === '_ADV') ? true : false
 
 	const dispatch = useDispatch()
+
+	const { search } = useLocation()
+	useEffect(() => {
+		const queryParams = new URLSearchParams(search)
+
+		// url params for feature switching prior to full release.
+		const isMonetizationEnabled = queryParams.get('enableMonetization') === 'true'
+		if (isMonetizationEnabled) {
+			dispatch(enableMonetization())
+		}
+
+		const isFromLegalAdviceCentre = queryParams.get('source') === 'lac'
+		if (isFromLegalAdviceCentre) {
+			dispatch(disableMonetization())
+		}
+	}, [search])
 
 	useEffect(() => {
 		//TODO - fix this

@@ -31,6 +31,9 @@ export type AppState = {
 	navigation: {
 		page: keyof typeof pages
 	}
+	features: {
+		enableMonetization: boolean
+	}
 }
 
 export default AppState
