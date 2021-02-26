@@ -1,15 +1,15 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 import Button from '../components/Button'
-import { useDispatch } from 'react-redux'
-import { setPage } from '../../data/navigationDataSlice'
-import pages from '../../types/navigation'
 import mainimage from '../assets/img/homepage-image-1.png'
+
 export const GetStarted: React.FC = () => {
-	const dispatch = useDispatch()
+	const history = useHistory()
 
 	const goToTopics = () => {
-		dispatch(setPage(pages.TOPICS))
+		history.push('/questions')
 	}
+
 	return (
 		<div className="get-started">
 			<h1>
@@ -27,7 +27,7 @@ export const GetStarted: React.FC = () => {
 					<h3>Find out whether or not you have a case against your employer</h3>
 
 					<div>
-						<Button type="start" text="Get started" rounded fn={() => goToTopics()} />
+						<Button type="start" text="Get started" rounded fn={goToTopics} />
 					</div>
 				</div>
 				<img style={{ height: '400px' }} src={mainimage} />

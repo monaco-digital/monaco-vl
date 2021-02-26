@@ -11,7 +11,6 @@ import { updateSuggestedParagraphs } from '../../data/sessionDataSlice'
 
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import AppState from '../../data/AppState'
-import pages from '../../types/navigation'
 import Help from './Help'
 import GetStarted from './GetStarted'
 import { getAllCaseTopics } from '../../api/vl/'
@@ -22,7 +21,6 @@ import { getAllParagraphs } from '../../api/vl/paragraph'
 import { disableMonetization, enableMonetization } from '../../data/featureDataSlice'
 
 const Main: FC = () => {
-	const mode = useSelector<AppState, string>(state => state.navigation.page)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const advicePreviewOnly = selectedTopics.find(t => t.id === '_ADV') ? true : false
 
@@ -68,13 +66,6 @@ const Main: FC = () => {
 			<Header />
 			<div className="screen container">
 				<Switch>
-					{/* omitted for backwards compatibility for now}
-				<Route path="/">
-					<Home />
-				</Route> */}
-					<Route path="/home">
-						<GetStarted />
-					</Route>
 					<Route path="/questions">
 						<Questions />
 					</Route>
@@ -88,17 +79,8 @@ const Main: FC = () => {
 					<Route path="/help">
 						<Help />
 					</Route>
-					<Route path="/org/:name">
+					<Route path="/">
 						<GetStarted />
-					</Route>
-					<Route>
-						{/* default for legacy compatibility */}
-						{mode === pages.GET_STARTED && <GetStarted />}
-						{mode === pages.TOPICS && <Questions />}
-						{mode === pages.STATEMENT_SELECT && <StatementSelect />}
-						{mode === pages.LETTER_PREVIEW && advicePreviewOnly && <AdvicePreview />}
-						{mode === pages.LETTER_PREVIEW && !advicePreviewOnly && <DocumentPreview />}
-						{mode === pages.HELP && <Help />}
 					</Route>
 				</Switch>
 			</div>
