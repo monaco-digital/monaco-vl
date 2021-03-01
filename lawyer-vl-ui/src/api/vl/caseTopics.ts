@@ -22,7 +22,6 @@ export const getAllCaseTopics = async (): Promise<CaseTopic[]> => {
 			throw new Error(`The error is: ${errorString}`)
 		}
 		const { getAllCaseTopics: caseTopics } = data
-		console.log('The case topics are: ', caseTopics)
 		return caseTopics
 	} catch (e) {
 		console.log('There was an error getting all case topics: ', e)
