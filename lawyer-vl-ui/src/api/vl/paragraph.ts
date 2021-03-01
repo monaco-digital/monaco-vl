@@ -22,7 +22,6 @@ export const getAllParagraphs = async (): Promise<TemplateParagraph[]> => {
 			const errorString = errors?.join('\n') ?? 'did not get data from server'
 			throw new Error(`The error is: ${errorString}`)
 		}
-		console.log('The data returned for paras  is: ', data)
 		const { getAllParagraphs: allParagraphs } = data
 		/* TODO - Fix the endpoint so that it returns template Paragraphs? */
 		return allParagraphs.map(paragraph => {
