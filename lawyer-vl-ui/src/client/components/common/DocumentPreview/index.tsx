@@ -1,6 +1,5 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import classNames from 'classnames'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, Template } from '@monaco-digital/vl-types/lib/main'
 import {
@@ -10,12 +9,10 @@ import {
 	SessionDocument,
 } from '../../../../types/SessionDocument'
 import { PreviewParagraph } from '../DocumentPreviewComponents'
-import { createDocument } from '../../../../utils/document'
 import { createSessionDocument } from '../../../../utils/sessionDocument'
 import VLcard from '../VLcard'
 import ReactGA from 'react-ga'
 import { getTemplate } from '../../../../api/vl'
-import { getDocumentText } from '../../../../utils/renderDocument'
 import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice'
 import _ from 'lodash'
 
@@ -37,14 +34,14 @@ const DocumentPreview: FC = () => {
 	if (!sessionDocument) {
 		const doc = createSessionDocument(updatedTemplate, selectedParagraphs)
 		dispatch(updateSessionDocument(doc))
-	} /* else if(!_.isEqual(sessionDocument, refreshSessionDocument(sessionDocument, selectedParagraphs))) {
-		dispatch(updateSessionDocument(refreshSessionDocument(sessionDocument, selectedParagraphs)))
-	} */
+	}
 
-	ReactGA.event({
-		category: 'User',
-		action: `Letter previewed`,
-	})
+	useEffect(() => {
+		ReactGA.event({
+			category: 'User',
+			action: `Letter previewed`,
+		})
+	}, [])
 
 	const SessionDocComponents: FC<{ sessionDocumentComponents: SessionDocumentComponent[] }> = ({
 		sessionDocumentComponents,

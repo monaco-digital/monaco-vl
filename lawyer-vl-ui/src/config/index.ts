@@ -19,9 +19,18 @@ const vlApiUrl = (): string => {
 	}
 }
 
+const gaPropertyId = (): string => {
+	if (stage === 'prod') {
+		return 'UA-66970592-3'
+	} else if (stage === 'dev') {
+		return 'UA-66970592-4'
+	}
+}
+
 export const config = {
 	API_URL: apiUrl(),
 	VL_API_URL: vlApiUrl(),
+	GA_PROPERTY_ID: gaPropertyId(),
 }
 
 export default config
