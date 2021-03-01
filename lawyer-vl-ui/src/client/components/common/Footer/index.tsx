@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import Button from '../../Button'
+import React from 'react'
 import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, Route, Switch } from 'react-router-dom'
@@ -8,17 +7,25 @@ import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { Question as QuestionT } from '../../../../types/Questions'
 import { removeLastAnsweredQuestion, updateSelectedTopics } from '../../../../data/sessionDataSlice'
 import { getNextQuestion } from '../../../../clustering/questionFlow'
-import EmailModal from '../EmailModal'
+import CheckoutModal from '../CheckoutModal'
+import Button from '../../Button'
 
 const Footer: React.FC = () => {
 	const history = useHistory()
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 
 	const dispatch = useDispatch()
 
-	const [showEmailModal, setShowEmailModal] = useState(false)
+	const openCheckoutModal = () => {
+		if (isMonetizationEnabled) {
+			history.push('/preview/checkout')
+		} else {
+			history.push('/preview/checkout/email')
+		}
+	}
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
 
@@ -85,7 +92,7 @@ const Footer: React.FC = () => {
 								/>
 							</div>
 							<div className="footer__preview__button">
-								<Button type="main" shortText="Email" text="Email" rounded fn={() => setShowEmailModal(true)} />
+								<Button type="main" shortText="Email" text="Email" rounded fn={openCheckoutModal} />
 							</div>
 						</>
 					</Route>
@@ -102,7 +109,7 @@ const Footer: React.FC = () => {
 					</Route>
 				</Switch>
 			</div>
-			<EmailModal isOpen={showEmailModal} onRequestClose={() => setShowEmailModal(false)}></EmailModal>
+			<CheckoutModal></CheckoutModal>
 		</footer>
 	)
 }

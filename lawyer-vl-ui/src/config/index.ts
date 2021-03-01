@@ -25,12 +25,21 @@ const vlStripeUrl = (): string => {
 	}
 }
 
+const gaPropertyId = (): string => {
+	if (stage === 'prod') {
+		return 'UA-66970592-3'
+	} else if (stage === 'dev') {
+		return 'UA-66970592-4'
+	}
+}
+
 export const config = {
 	API_URL: apiUrl(),
 	VL_API_URL: vlApiUrl(),
 	VL_STRIPE_URL: vlStripeUrl(),
 	STRIPE_PUBLIC_KEY:
 		stage === 'prod' ? 'pk_live_6Uq8eJFH8Hx6nXFrAOCkVckm00cI5AF91f' : 'pk_test_hGSeVxDC8lZRMNo8TNE2XSC200i9IRSvSj',
+	GA_PROPERTY_ID: gaPropertyId(),
 }
 
 export default config

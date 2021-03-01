@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
 import ReactMarkdown from 'react-markdown'
 
 export const Help: React.FC = () => {
-	ReactGA.event({
-		category: 'User',
-		action: 'Opened help page',
-	})
+	useEffect(() => {
+		ReactGA.event({
+			category: 'User',
+			action: 'Opened help page',
+		})
+	}, [])
+
 	return (
 		<div className="helpsection" style={{ display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
 			<h1>Virtual Lawyer help</h1>

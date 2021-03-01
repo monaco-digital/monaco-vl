@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import classNames from 'classnames'
+import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
 import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
 import VLcard from '../VLcard'
@@ -10,7 +9,6 @@ import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import ReactMarkdown from 'react-markdown'
 
 const AdvicePreview: FC = () => {
-	const dispatch = useDispatch()
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const [adviceParagraphs, setAdviceParagraphs] = useState([])
 
@@ -22,10 +20,12 @@ const AdvicePreview: FC = () => {
 		updateAdviceParagraphs()
 	}, [])
 
-	ReactGA.event({
-		category: 'User',
-		action: `Advice letter previewed`,
-	})
+	useEffect(() => {
+		ReactGA.event({
+			category: 'User',
+			action: `Advice letter previewed`,
+		})
+	}, [])
 
 	const AdviceDocParagraph: FC<{ paragraph: Advice }> = ({ paragraph }) => {
 		return (

@@ -14,13 +14,13 @@
 
 		.header__breadcrumb__text {
 			@apply .font-sans .mx-6;
+		}
 
-			.header__breadcrumb__text-selected {
-				padding-bottom: 1px;
-				border-color: #538cff;
-				border-bottom-width: 3px;
-				border-bottom-style: solid;
-			}
+		.header__breadcrumb__text-selected {
+			padding-bottom: 1px;
+			border-color: #538cff;
+			border-bottom-width: 3px;
+			border-bottom-style: solid;
 		}
 	}
 

@@ -1,5 +1,6 @@
 //@ts-nocheck
 import React, { FC, useEffect } from 'react'
+import ReactGA from 'react-ga'
 import Footer from '../components/common/Footer'
 import DocumentPreview from '../components/common/DocumentPreview'
 import AdvicePreview from '../components/common/AdvicePreview'
@@ -16,7 +17,7 @@ import GetStarted from './GetStarted'
 import { getAllCaseTopics } from '../../api/vl/'
 import StatementSelect from '../components/common/StatementSelect'
 import { SessionParagraph } from '../../types/SessionDocument'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { getAllParagraphs } from '../../api/vl/paragraph'
 import { disableMonetization, enableMonetization } from '../../data/featureDataSlice'
 
@@ -25,8 +26,15 @@ const Main: FC = () => {
 	const advicePreviewOnly = selectedTopics.find(t => t.id === '_ADV') ? true : false
 
 	const dispatch = useDispatch()
-
 	const { search } = useLocation()
+	const history = useHistory()
+
+	useEffect(() => {
+		history.listen(location => {
+			ReactGA.pageview(location.pathname)
+		})
+	}, [])
+
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.
 		// URL values (if present) should override local storage.
