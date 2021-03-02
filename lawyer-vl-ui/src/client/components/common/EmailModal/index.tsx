@@ -9,8 +9,6 @@ import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import axios from 'axios'
 import downloadIcon from '../../../assets/img/download-icon.png'
-import IconButton from '@material-ui/core/IconButton'
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 
 interface Data {
 	adviceText: string
@@ -92,11 +90,6 @@ const EmailModal: FC = () => {
 	return (
 		<form>
 			<div className="emailModal">
-				<div className="close-button">
-					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
-						<CancelOutlinedIcon />
-					</IconButton>
-				</div>
 				<div className="section-end">
 					<img style={{ width: '80px' }} src={downloadIcon} />
 					<h1>
@@ -115,7 +108,7 @@ const EmailModal: FC = () => {
 						label="First name"
 						autoComplete="name"
 						variant="filled"
-						classes={{ root: 'textfield' }}
+						fullWidth
 					/>
 				</div>
 				<div className="section">
@@ -125,7 +118,7 @@ const EmailModal: FC = () => {
 						label="Your email"
 						autoComplete="email"
 						variant="filled"
-						classes={{ root: 'textfield' }}
+						fullWidth
 					/>
 				</div>
 
@@ -148,10 +141,10 @@ const EmailModal: FC = () => {
 					<Button
 						variant="contained"
 						size="large"
-						color="primary"
+						color="secondary"
 						onClick={() => {
 							submitDetails()
-							history.push('/preview')
+							history.push('/preview/checkout/email/complete')
 						}}
 					>
 						Send now

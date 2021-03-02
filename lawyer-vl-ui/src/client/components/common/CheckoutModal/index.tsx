@@ -3,6 +3,11 @@ import ReactModal from 'react-modal'
 import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom'
 import EmailModal from '../EmailModal'
 import Button from '../../Button'
+import Upsell from '../Payment/Upsell'
+import PaymentComplete from '../Payment/PaymentComplete'
+import EmailComplete from '../EmailModal/EmailComplete'
+import IconButton from '@material-ui/core/IconButton'
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 
 const customStyles = {
 	content: {
@@ -25,30 +30,35 @@ const CheckoutModal: FC = () => {
 
 	return (
 		<ReactModal isOpen={isCheckout} shouldCloseOnOverlayClick={true} onRequestClose={onClose} style={customStyles}>
-			<Switch>
-				<Route path="/preview/checkout/email/complete">Email Sent</Route>
-				<Route path="/preview/checkout/email">
-					<EmailModal />
-				</Route>
-				<Route path="/preview/checkout/payment/complete">Payment Received</Route>
-				<Route path="/preview/checkout/payment">
-					<Button
-						type="secondary"
-						text="Send Payment"
-						rounded
-						fn={() => history.push('/preview/checkout/payment/complete')}
-					></Button>
-				</Route>
-				<Route path="/preview/checkout">
-					<Button type="secondary" text="Pay" rounded fn={() => history.push('/preview/checkout/payment')}></Button>
-					<Button
-						type="secondary"
-						text="Just Email"
-						rounded
-						fn={() => history.push('/preview/checkout/email')}
-					></Button>
-				</Route>
-			</Switch>
+			<div className="checkoutModal">
+				<div className="close-button">
+					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
+						<CancelOutlinedIcon />
+					</IconButton>
+				</div>
+				<Switch>
+					<Route path="/preview/checkout/email/complete">
+						<EmailComplete />
+					</Route>
+					<Route path="/preview/checkout/email">
+						<EmailModal />
+					</Route>
+					<Route path="/preview/checkout/payment/complete">
+						<PaymentComplete />
+					</Route>
+					<Route path="/preview/checkout/payment">
+						<Button
+							type="secondary"
+							text="Send Payment"
+							rounded
+							fn={() => history.push('/preview/checkout/payment/complete')}
+						></Button>
+					</Route>
+					<Route path="/preview/checkout">
+						<Upsell />
+					</Route>
+				</Switch>
+			</div>
 		</ReactModal>
 	)
 }
