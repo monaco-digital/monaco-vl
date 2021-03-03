@@ -9,6 +9,7 @@ import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import axios from 'axios'
 import downloadIcon from '../../../assets/img/download-icon.png'
+import config from '../../../../config'
 
 interface Data {
 	adviceText: string
@@ -21,11 +22,7 @@ interface Data {
 
 const EmailModal: FC = () => {
 	const history = useHistory()
-	const lambdaUrl =
-		process.env.REACT_APP_STAGE === 'prod'
-			? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
-			: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer'
-
+	const lambdaUrl = config.LAMBDA_URL
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -88,7 +85,7 @@ const EmailModal: FC = () => {
 	}
 
 	return (
-		<form>
+		<form className="flex justify-center">
 			<div className="emailModal space-y-5">
 				<div className="emailModal__section-end">
 					<img style={{ width: '80px' }} src={downloadIcon} />
