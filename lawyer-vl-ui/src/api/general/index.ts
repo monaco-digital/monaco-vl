@@ -17,5 +17,4 @@ export const submitDetails = async (data: {
 			'Content-Type': 'application/json',
 		},
 	})
-	console.log('Call to submit details has been made')
 }
