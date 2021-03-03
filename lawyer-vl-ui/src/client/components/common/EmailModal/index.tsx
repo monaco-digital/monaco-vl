@@ -9,8 +9,6 @@ import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import axios from 'axios'
 import downloadIcon from '../../../assets/img/download-icon.png'
-import IconButton from '@material-ui/core/IconButton'
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 
 interface Data {
 	adviceText: string
@@ -91,67 +89,49 @@ const EmailModal: FC = () => {
 
 	return (
 		<form>
-			<div className="emailModal">
-				<div className="close-button">
-					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
-						<CancelOutlinedIcon />
-					</IconButton>
-				</div>
-				<div className="section-end">
+			<div className="emailModal space-y-5">
+				<div className="emailModal__section-end">
 					<img style={{ width: '80px' }} src={downloadIcon} />
-					<h1>
+					<h1 className="emailModal__header">
 						SEND THIS
 						<br /> TO ME
 					</h1>
 				</div>
-				<div className="section">
-					<span>Enter your name and email address below and we'll send this to you for free</span>
-				</div>
+				<div>Enter your name and email address below and we'll send this to you for free</div>
 
-				<div className="section">
-					<TextField
-						id="name"
-						onChange={e => setName(e.target.value)}
-						label="First name"
-						autoComplete="name"
-						variant="filled"
-						classes={{ root: 'textfield' }}
-					/>
-				</div>
-				<div className="section">
-					<TextField
-						id="email"
-						onChange={e => setRecipient(e.target.value)}
-						label="Your email"
-						autoComplete="email"
-						variant="filled"
-						classes={{ root: 'textfield' }}
-					/>
-				</div>
+				<TextField
+					id="name"
+					onChange={e => setName(e.target.value)}
+					label="First name"
+					autoComplete="name"
+					variant="filled"
+					fullWidth
+				/>
+				<TextField
+					id="email"
+					onChange={e => setRecipient(e.target.value)}
+					label="Your email"
+					autoComplete="email"
+					variant="filled"
+					fullWidth
+				/>
 
-				<div className="section">
-					<FormControlLabel
-						control={
-							<Checkbox
-								checked={contactMe}
-								onChange={() => setContactMe(!contactMe)}
-								name="contactme"
-								color="primary"
-							/>
-						}
-						classes={{ label: 'checkbox-font' }}
-						label="Check this box if you want our specialist team to contact you about your case"
-					/>
-				</div>
+				<FormControlLabel
+					control={
+						<Checkbox checked={contactMe} onChange={() => setContactMe(!contactMe)} name="contactme" color="primary" />
+					}
+					classes={{ label: 'emailModal__checkbox' }}
+					label="Check this box if you want our specialist team to contact you about your case"
+				/>
 
-				<div className="section-end">
+				<div className="emailModal__section-end">
 					<Button
 						variant="contained"
 						size="large"
-						color="primary"
+						color="secondary"
 						onClick={() => {
 							submitDetails()
-							history.push('/preview')
+							history.push('/preview/checkout/email/complete')
 						}}
 					>
 						Send now
