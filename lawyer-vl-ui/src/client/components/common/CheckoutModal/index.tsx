@@ -31,7 +31,7 @@ const CheckoutModal: FC = () => {
 	return (
 		<ReactModal isOpen={isCheckout} shouldCloseOnOverlayClick={true} onRequestClose={onClose} style={customStyles}>
 			<div className="checkoutModal">
-				<div className="close-button">
+				<div className="checkoutModal__close-button">
 					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
 						<CancelOutlinedIcon />
 					</IconButton>

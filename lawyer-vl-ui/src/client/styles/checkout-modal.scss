@@ -1,15 +1,9 @@
 .checkoutModal {
 	max-width: 350px;
 
-	.close-button {
+	.checkoutModal__close-button {
 		position: absolute;
 		top: 10px;
 		right: 10px;
-	}
-
-	.section {
-		margin-top: 20px;
-		margin-bottom: 20px;
-		flex-shrink: 1;
 	}
 }

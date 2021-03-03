@@ -4,7 +4,7 @@
 	margin: '5px';
 	max-width: 350px;
 
-	h1 {
+	.emailModal__header {
 		font-size: 2rem;
 		line-height: 1;
 		color: #66beff;
@@ -13,12 +13,12 @@
 		padding-left: 2rem;
 	}
 
-	.checkbox-font {
+	.emailModal__checkbox {
 		font-size: 0.9rem;
 		color: gray;
 	}
 
-	.section-end {
+	.emailModal__section-end {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
