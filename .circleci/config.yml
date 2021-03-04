@@ -28,9 +28,9 @@ jobs:
           key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
 
       - run:
-          - name: 'Building React App'
-            command: |
-              npm run build
+          name: 'Building React App'
+          command: |
+            npm run build
       - run:
           name: 'Run tests'
           command: |
