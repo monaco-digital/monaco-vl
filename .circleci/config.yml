@@ -19,6 +19,7 @@ jobs:
           command: |
             node -v
             npm -v
+      - run: ls -lR /home/circleci/      
       - checkout:
           path: ~/vl-ui
       - restore_cache:
