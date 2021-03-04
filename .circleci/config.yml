@@ -10,7 +10,7 @@ executors:
 
 jobs:
   build_and_test:
-    working_directory: ~/lawyer-vl-ui
+    working_directory: ~/project/lawyer-vl-ui
     executor: node
     steps:
       - run:
@@ -38,7 +38,7 @@ jobs:
 
 
   deploy:
-    working_directory: ~/lawyer-vl-ui
+    working_directory: ~/project/lawyer-vl-ui
     parameters:
       deploy_env:
         type: string
