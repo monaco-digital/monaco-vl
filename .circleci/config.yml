@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  aws-cli: circleci/aws-cli@0.1.13
+  aws-cli: circleci/aws-cli@1.4.0
 
 executors:
   node:
     docker:
-      - image: circleci/node:12.4.0
+      - image: cimg/node:15.10.0
 
 jobs:
   build_and_test:
