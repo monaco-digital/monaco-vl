@@ -18,7 +18,7 @@ jobs:
             node -v
             npm -v
       - checkout
-      -  run: cd lawyer-vl-ui
+      - run: cd lawyer-vl-ui
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm ci
