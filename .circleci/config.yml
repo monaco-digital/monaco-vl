@@ -10,7 +10,7 @@ executors:
 
 jobs:
   build_and_test:
-    working_directory: ~/project/lawyer-vl-ui
+    working_directory: ~/vl-ui/lawyer-vl-ui
     executor: node
     steps:
       - run:
@@ -18,7 +18,8 @@ jobs:
           command: |
             node -v
             npm -v
-      - checkout
+      - checkout:
+          path: ~/vl-ui
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm ci
@@ -38,7 +39,7 @@ jobs:
 
 
   deploy:
-    working_directory: ~/project/lawyer-vl-ui
+    working_directory: ~/vl-ui/lawyer-vl-ui
     parameters:
       deploy_env:
         type: string
@@ -48,7 +49,8 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
-      - checkout
+      - checkout:
+          path: ~/vl-ui
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - aws-cli/setup
