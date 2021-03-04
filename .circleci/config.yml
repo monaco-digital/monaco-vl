@@ -50,8 +50,7 @@ jobs:
       - checkout
       - restore_cache:
           key: v1-dependencies-{{ .Branch }}-{{ checksum "package-lock.json" }}
-      - aws-cli/install
-      - aws-cli/configure
+      - aws-cli/setup
       - run:
           name: 'Install aws-amplify CLI'
           command: |
@@ -62,6 +61,7 @@ jobs:
             aws --version
             amplify --version
 
+      - run: export NPM_TOKEN = ${NPM_TOKEN}
       - run: cd lawyer-vl-ui
       - run: npm ci
       - run: npm run build
@@ -79,6 +79,9 @@ workflows:
     jobs:
       - build_and_test
       - deploy:
+          context:
+            - aws-cli
+            - github
           name: DeployDev
           deploy_env: dev
           requires:
@@ -94,6 +97,9 @@ workflows:
               only:
                 - master
       - deploy:
+          context:
+            - aws-cli
+            - github
           name: DeployProduction
           deploy_env: prod
           requires:
