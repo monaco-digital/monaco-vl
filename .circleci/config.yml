@@ -63,7 +63,6 @@ jobs:
             amplify --version
 
       - run: export NPM_TOKEN = ${NPM_TOKEN}
-      - run: cd lawyer-vl-ui
       - run: npm ci
       - run: npm run build
       - run:
