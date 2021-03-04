@@ -8,6 +8,7 @@ import PaymentComplete from '../Payment/PaymentComplete'
 import EmailComplete from '../EmailModal/EmailComplete'
 import IconButton from '@material-ui/core/IconButton'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
+import { PaymentForm } from '../Payment/PaymenForm'
 
 const customStyles = {
 	content: {
@@ -47,12 +48,7 @@ const CheckoutModal: FC = () => {
 						<PaymentComplete />
 					</Route>
 					<Route path="/preview/checkout/payment">
-						<Button
-							type="secondary"
-							text="Send Payment"
-							rounded
-							fn={() => history.push('/preview/checkout/payment/complete')}
-						></Button>
+						<PaymentForm />
 					</Route>
 					<Route path="/preview/checkout">
 						<Upsell />

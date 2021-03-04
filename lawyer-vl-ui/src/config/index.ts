@@ -33,10 +33,17 @@ const gaPropertyId = (): string => {
 	}
 }
 
+const lambdaUrl = (): string => {
+	return stage === 'prod'
+		? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
+		: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer'
+}
+
 export const config = {
 	API_URL: apiUrl(),
 	VL_API_URL: vlApiUrl(),
 	VL_STRIPE_URL: vlStripeUrl(),
+	LAMBDA_URL: lambdaUrl(),
 	STRIPE_PUBLIC_KEY:
 		stage === 'prod' ? 'pk_live_6Uq8eJFH8Hx6nXFrAOCkVckm00cI5AF91f' : 'pk_test_hGSeVxDC8lZRMNo8TNE2XSC200i9IRSvSj',
 	GA_PROPERTY_ID: gaPropertyId(),
