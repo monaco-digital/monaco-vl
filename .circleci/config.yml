@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   aws-cli: circleci/aws-cli@1.4.0
+  node: circleci/node@4.2.0
 
 executors:
   node:
@@ -10,7 +11,7 @@ executors:
 
 jobs:
   build_and_test:
-    working_directory: ~/project/lawyer-vl-ui
+    working_directory: ~/vl-ui/lawyer-vl-ui
     executor: node
     steps:
       - run:
@@ -19,7 +20,7 @@ jobs:
             node -v
             npm -v
       - checkout:
-          path: ~/project
+          path: ~/vl-ui
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm ci
@@ -39,7 +40,7 @@ jobs:
 
 
   deploy:
-    working_directory: ~/project/lawyer-vl-ui
+    working_directory: ~/vl-ui/lawyer-vl-ui
     parameters:
       deploy_env:
         type: string
@@ -50,7 +51,7 @@ jobs:
           command: |
             echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
       - checkout:
-          path: ~/project
+          path: ~/vl-ui
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - aws-cli/setup
