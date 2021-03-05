@@ -11,23 +11,13 @@ executors:
 
 jobs:
   build_and_test:
-    working_directory: ~/project/lawyer-vl-ui
     executor: node
     steps:
       - run:
           name: 'Show node and NPM versions'
           command: |
             node -v
-            npm -v
-      - run:
-          name: 'Show node and NPM versions'
-          command: |
-            whoami
-      - run: sudo chown -R $USER:$USER ~/project
-      - run: sudo rm -rf ~/project/lawyer-vl-ui
-      - run: ls -lR /home/circleci/
-      - checkout:
-          path: ~/project
+      - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: npm ci
@@ -47,7 +37,6 @@ jobs:
 
 
   deploy:
-    working_directory: ~/project/lawyer-vl-ui
     parameters:
       deploy_env:
         type: string
@@ -57,10 +46,7 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
-      - run: sudo chown -R $USER:$USER ~/project
-      - run: sudo rm -rf ~/project/lawyer-vl-ui
-      - checkout:
-          path: ~/project
+      - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - aws-cli/setup
