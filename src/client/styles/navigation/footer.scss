@@ -1,9 +1,5 @@
 .footer {
-	background: linear-gradient(
-		0deg,
-		rgba(255, 255, 255, 1) 25%,
-		rgba(255, 255, 255, 0) 100%
-	);
+	background: linear-gradient(0deg, rgba(255, 255, 255, 1) 25%, rgba(255, 255, 255, 0) 100%);
 
 	@apply .w-full .fixed .bottom-0 .pl-3 .pr-3 .h-20;
 

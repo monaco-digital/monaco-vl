@@ -21,11 +21,7 @@ const MobileApp = () => {
 							a.appendChild(r);
 						})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
 					</script>
-					<script
-						defer
-						src="https://kit.fontawesome.com/5bf6b27f09.js"
-						crossOrigin="anonymous"
-					/>
+					<script defer src="https://kit.fontawesome.com/5bf6b27f09.js" crossOrigin="anonymous" />
 				</Helmet>
 				<Main />
 			</HelmetProvider>
