@@ -19,6 +19,10 @@ jobs:
           command: |
             node -v
             npm -v
+      - run:
+          name: 'Show node and NPM versions'
+          command: |
+            whoami
       - run: sudo chown -R $USER:$USER ~/project
       - run: sudo rm -rf ~/project/lawyer-vl-ui
       - run: ls -lR /home/circleci/
