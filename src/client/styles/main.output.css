@@ -11622,7 +11622,7 @@ button:hover {
 	max-width: 350px;
 }
 
-.emailModal .emailModal__header {
+.emailModal h1 {
 	font-size: 2rem;
 	line-height: 1;
 	color: #66beff;
@@ -11631,23 +11631,29 @@ button:hover {
 	padding-left: 2rem;
 }
 
-.emailModal .emailModal__checkbox {
+.emailModal .section {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	flex-shrink: 1;
+}
+
+.emailModal .checkbox-font {
 	font-size: 0.9rem;
 	color: gray;
 }
 
-.emailModal .emailModal__section-end {
+.emailModal .textfield {
+	width: 100%;
+}
+
+.emailModal .section-end {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 }
 
-.checkoutModal {
-	width: 35rem;
-}
-
-.checkoutModal .checkoutModal__close-button {
+.emailModal .close-button {
 	position: absolute;
 	top: 10px;
 	right: 10px;
