@@ -19,7 +19,7 @@ jobs:
           command: |
             node -v
             npm -v
-      - run: rm -rf ~/vl-ui     
+      - run: rm -rf /home/circleci/vl-ui
       - run: ls -lR /home/circleci/
       - checkout:
           path: ~/vl-ui
@@ -52,7 +52,7 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
-      - run: rm -rf ~/vl-ui       
+      - run: rm -rf /home/circleci/vl-ui
       - checkout:
           path: ~/vl-ui
       - restore_cache:
