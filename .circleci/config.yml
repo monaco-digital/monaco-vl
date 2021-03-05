@@ -19,6 +19,7 @@ jobs:
           command: |
             node -v
             npm -v
+      - run: sudo chown -R $USER:$USER ~/project
       - run: sudo rm -rf ~/project/lawyer-vl-ui
       - run: ls -lR /home/circleci/
       - checkout:
@@ -52,6 +53,7 @@ jobs:
           name: Setup Environment Variables
           command: |
             echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
+      - run: sudo chown -R $USER:$USER ~/project
       - run: sudo rm -rf ~/project/lawyer-vl-ui
       - checkout:
           path: ~/project
