@@ -217,7 +217,7 @@ export const Help: React.FC = () => {
 				Once you are happy with the deal set out in the document, we would countersign it to confirm that all of the
 				legal wording in the document has been explained to you in plain English.&nbsp;
 			</p>
-			<div className="helpFooter">
+			<div className="italic text-ms-gray text-sm mt-12">
 				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>Email: communications@monacosolicitors.co.uk</p>

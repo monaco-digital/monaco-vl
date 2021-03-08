@@ -42,7 +42,7 @@ export const Terms: React.FC = () => {
 				<a href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</a> for any
 				queries.
 			</p>
-			<div className="termsSection__footer">
+			<div className="italic text-ms-gray text-sm mt-12">
 				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>
