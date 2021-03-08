@@ -16,7 +16,8 @@ jobs:
       - run:
           name: 'Show node and NPM versions'
           command: |
-            node -v
+            node -v |
+            npm -v
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -29,7 +30,7 @@ jobs:
       - run:
           name: 'Building React App'
           command: |
-            npm run build
+            CI=false && npm run build
       - run:
           name: 'Run tests'
           command: |
