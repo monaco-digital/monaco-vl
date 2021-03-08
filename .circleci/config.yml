@@ -76,7 +76,7 @@ jobs:
       - run:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
-            amplify publish  -- yes
+            CI=false && amplify publish  -- yes
 
 workflows:
   Deploy:
