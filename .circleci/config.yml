@@ -21,6 +21,7 @@ jobs:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
+      - run: export NPM_TOKEN=${NPM_TOKEN}
       - run: npm ci
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -61,7 +62,7 @@ jobs:
             aws --version
             amplify --version
 
-      - run: export NPM_TOKEN = ${NPM_TOKEN}
+      - run: export NPM_TOKEN=${NPM_TOKEN}
       - run: npm ci
       - run: CI=false && npm run build
       - run:
