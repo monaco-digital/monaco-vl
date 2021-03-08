@@ -93,7 +93,7 @@ workflows:
           filters:
             branches:
               only:
-                - PROJ-1404-devops-circleci-integration-final
+                - dev
       - request_production_deploy:
           type: approval
           filters:
