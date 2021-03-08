@@ -11,6 +11,14 @@
   ],
   "rules": {
     "semi": "off",
-    "@typescript-eslint/semi": "off"
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "warn",
+      {
+        "allowExpressions": true
+      }
+    ]
+
   }
 }

@@ -9,7 +9,7 @@ type VLCardProps = {
 	counter?: number
 }
 
-const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme }) => {
+const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme }: VLCardProps) => {
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
 	})

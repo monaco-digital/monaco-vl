@@ -1,18 +1,4 @@
-import { Paragraph } from '@monaco-digital/vl-types/lib/main'
-import {
-	Template,
-	TemplateComponent,
-	TemplateHeader,
-	TemplateSection,
-	TemplateSignature,
-	TemplateImage,
-	StaticText,
-	BulletPoints,
-	Document,
-	DocumentComponent,
-	DocumentHeader,
-	DocumentParagraph,
-} from '@monaco-digital/vl-types/lib/main'
+import { Template, TemplateComponent, Document, DocumentComponent } from '@monaco-digital/vl-types/lib/main'
 
 // made up of both
 export interface SessionDocument {
