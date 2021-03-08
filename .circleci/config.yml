@@ -70,7 +70,8 @@ jobs:
           command: |
             amplify init --amplify "{\"envName\":\"<< parameters.deploy_env >>\"}" --providers "{\"awscloudformation\":{\"useProfile\":true,\"profileName\":\"default\"}}" --yes
       - run:
-          name: 'Checkout Amplify << parameters.deploy_env >> Environment' |
+          name: 'Checkout Amplify << parameters.deploy_env >> Environment'
+          command: |
             amplify env checkout << parameters.deploy_env >>
       - run:
           name: 'Deploy to << parameters.deploy_env >>'
