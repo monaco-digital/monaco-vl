@@ -26,13 +26,14 @@ export const Help: React.FC = () => {
 				. Alternatively if you complete this app (it only takes 5 minutes) there is a contact form at the end which you
 				can use to send. The following guidance is produced by Monaco Solicitors:
 			</p>
-			<h2>Progressing your case</h2>
+			<h2>Should I send a grievance letter or without prejudice letter?</h2>
 			<p>
 				If you&rsquo;ve completed this app, you think you may have a case, and you&rsquo;re still wondering about what
 				to do.&nbsp;
 			</p>
+			<br />
 			<p>
-				Generally, if you want to leave your job, then send a{' '}
+				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
 				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener">
 					grievance letter
 				</a>
@@ -40,19 +41,37 @@ export const Help: React.FC = () => {
 				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener">
 					example grievance letters
 				</a>
-				.&nbsp;
+				.&nbsp; Bear in mind that this could make it more difficult for you at work, especially in smaller companies. In
+				bigger companies you may be able to transfer to a different department or team.
 			</p>
+			<br />
 			<p>
 				If you want to leave with a &lsquo;settlement agreement&rsquo; exit package deal, send a &lsquo;without
-				prejudice&rsquo; letter.&nbsp;
+				prejudice&rsquo; letter.&nbsp; If that doesn&rsquo;t work you can send a grievance letter.
 			</p>
+			<br />
 			<p>You can purchase bespoke templates for both of these letters at the end of this app.</p>
+			<br />
 			<p>
 				If you do want to leave, and you need help completing your without prejudice letter template, read these
 				articles:
 			</p>
 			<div>
 				<ul>
+					<li>
+						<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener">
+							How much should I get
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
+							target="_blank"
+							rel="noopener"
+						>
+							Settlement agreement calculator
+						</a>
+					</li>
 					<li>
 						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener">
 							Negotiating
@@ -90,7 +109,7 @@ export const Help: React.FC = () => {
 			<h3>Complete denial</h3>
 			<p>
 				This can include writing back to you telling you how you have no hope at all and that they are not willing to
-				negotiate. If this happens then it&rsquo;s time to escalate matters.
+				negotiate. If this happens then it&rsquo;s time to escalate matters, see below.
 			</p>
 			<br />
 			<h3>Partial denial</h3>
@@ -106,7 +125,7 @@ export const Help: React.FC = () => {
 			<p>
 				Often an employer won&rsquo;t respond at all, or will acknowledge receipt of your letter but not get back to you
 				properly. This is frustrating but you need to chase them. If you&rsquo;ve chased them then it&rsquo;s time to
-				escalate matters.
+				escalate matters, see below.
 			</p>
 			<h2>Why submit a grievance even if you are leaving your job</h2>
 			<p>
