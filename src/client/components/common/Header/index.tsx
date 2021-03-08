@@ -1,41 +1,20 @@
 import React, { FC, useState } from 'react'
-import classNames from 'classnames'
 import logo from '../../../assets/img/vl-logo-2.png'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
+import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice'
-import AppState from '../../../../data/AppState'
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { Question as QuestionT } from '../../../../types/Questions'
-import { getNextQuestion } from '../../../../clustering/questionFlow'
-import useViewport from '../../../utils/useViewport'
 
 const Header: FC = () => {
-	const { isMobile } = useViewport()
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
-
-	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-	const [menuIsVisibile, setMenuIsVisibile] = useState(false)
-
+	const { pathname } = useLocation()
+	const [menuIsVisible, setMenuIsVisible] = useState(false)
 	const dispatch = useDispatch()
 
 	const navigateToTopics = () => {
 		dispatch(removeLastAnsweredQuestion(null))
+		setMenuIsVisible(false)
 	}
-
-	const headerBreacrumbClasses = classNames('header__breadcrumb', {
-		'header__breadcrumb--mobile-visible': menuIsVisibile,
-	})
-
-	const handleOnClick = () => {
-		setMenuIsVisibile(menuIsVisibile => !menuIsVisibile)
-	}
-
-	const keyFacts = isMobile ? 'Details' : 'Key facts'
-	const previewLetter = isMobile ? 'Preview' : 'Preview your letter'
 
 	return (
 		<div className="header">
@@ -49,18 +28,49 @@ const Header: FC = () => {
 					activeClassName="header__breadcrumb__text-selected"
 					onClick={navigateToTopics}
 				>
-					{keyFacts}
+					Key facts
 				</NavLink>
 				<NavLink to="/preview" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					{previewLetter}
+					Preview your letter
 				</NavLink>
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Help
 				</NavLink>
 			</div>
-			<button className="header__burger-btn" onClick={handleOnClick}>
+			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
 				<i className="fas fa-bars"></i>
 			</button>
+			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
+				<List component="nav">
+					<ListItem
+						button
+						component={NavLink}
+						to="/questions"
+						onClick={navigateToTopics}
+						selected={pathname === '/questions'}
+					>
+						<ListItemText primary="Key facts" />
+					</ListItem>
+					<ListItem
+						button
+						component={NavLink}
+						to="/preview"
+						onClick={() => setMenuIsVisible(false)}
+						selected={pathname === '/preview'}
+					>
+						<ListItemText primary="Preview your letter" />
+					</ListItem>
+					<ListItem
+						button
+						component={NavLink}
+						to="/help"
+						onClick={() => setMenuIsVisible(false)}
+						selected={pathname === '/help'}
+					>
+						<ListItemText primary="Help" />
+					</ListItem>
+				</List>
+			</Drawer>
 		</div>
 	)
 }
