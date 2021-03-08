@@ -20,6 +20,7 @@ import { SessionParagraph } from '../../types/SessionDocument'
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom'
 import { getAllParagraphs } from '../../api/vl/paragraph'
 import { disableMonetization, enableMonetization } from '../../data/featureDataSlice'
+import Terms from './Terms'
 
 const Main: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
@@ -102,6 +103,9 @@ const Main: FC = () => {
 					<Route path="/preview">
 						{advicePreviewOnly && <AdvicePreview />}
 						{!advicePreviewOnly && <DocumentPreview />}
+					</Route>
+					<Route path="/terms">
+						<Terms />
 					</Route>
 					<Route path="/help">
 						<Help />

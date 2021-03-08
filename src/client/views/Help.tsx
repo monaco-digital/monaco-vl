@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
-import ReactMarkdown from 'react-markdown'
 
 export const Help: React.FC = () => {
 	useEffect(() => {
@@ -11,7 +10,7 @@ export const Help: React.FC = () => {
 	}, [])
 
 	return (
-		<div className="helpsection" style={{ display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
+		<div className="helpsection" style={{ maxWidth: '900px' }}>
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
