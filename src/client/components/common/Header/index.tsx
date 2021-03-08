@@ -36,6 +36,9 @@ const Header: FC = () => {
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Help
 				</NavLink>
+				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
+					Terms of Use
+				</NavLink>
 			</div>
 			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
 				<i className="fas fa-bars"></i>
@@ -68,6 +71,15 @@ const Header: FC = () => {
 						selected={pathname === '/help'}
 					>
 						<ListItemText primary="Help" />
+					</ListItem>
+					<ListItem
+						button
+						component={NavLink}
+						to="/terms"
+						onClick={() => setMenuIsVisible(false)}
+						selected={pathname === '/terms'}
+					>
+						<ListItemText primary="Terms of Use" />
 					</ListItem>
 				</List>
 			</Drawer>
