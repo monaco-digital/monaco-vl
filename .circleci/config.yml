@@ -63,7 +63,7 @@ jobs:
 
       - run: export NPM_TOKEN = ${NPM_TOKEN}
       - run: npm ci
-      - run: npm run build
+      - run: CI=false && npm run build
       - run:
           name: 'Checkout Amplify << parameters.deploy_env >> Environment'
           command: |
