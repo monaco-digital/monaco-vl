@@ -48,7 +48,7 @@ jobs:
           name: Setup Environment Variables
           command: |
             export REACT_APP_STAGE=<< parameters.deploy_env >>
-      - run: echo 'The REACT_APP_STAGE variable is "${REACT_APP_STAGE}"'
+      - run: echo "The REACT_APP_STAGE variable is ${REACT_APP_STAGE}"
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
@@ -73,7 +73,7 @@ jobs:
       - run:
           name: 'Checkout Amplify << parameters.deploy_env >> Environment'
           command: |
-            amplify env checkout << parameters.deploy_env >>
+            amplify env checkout ${REACT_APP_STAGE}
       - run:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
