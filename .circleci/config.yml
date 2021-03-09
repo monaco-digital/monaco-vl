@@ -47,7 +47,8 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            export REACT_APP_STAGE=<<parameters.deploy_env >>
+            export REACT_APP_STAGE=<< parameters.deploy_env >>
+      - run: echo 'The REACT_APP_STAGE variable is "${REACT_APP_STAGE}"'
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
