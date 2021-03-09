@@ -1,0 +1,27 @@
+.emailModal {
+	display: 'flex';
+	flex-direction: 'column';
+	margin: '5px';
+	max-width: 350px;
+
+	.emailModal__header {
+		font-size: 2rem;
+		line-height: 1;
+		color: #66beff;
+		font-weight: 800;
+		font-family: 'Montserrat', sans-serif;
+		padding-left: 2rem;
+	}
+
+	.emailModal__checkbox {
+		font-size: 0.9rem;
+		color: gray;
+	}
+
+	.emailModal__section-end {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+}

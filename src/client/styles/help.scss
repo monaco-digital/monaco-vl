@@ -1,0 +1,12 @@
+.helpsection {
+	@apply .max-w-3xl .my-auto;
+
+	ul {
+		list-style: square inside none;
+		padding: 1rem;
+	}
+
+	a {
+		color: orange;
+	}
+}
