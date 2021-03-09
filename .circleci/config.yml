@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Setup Environment Variables
           command: |
-            echo 'export REACT_APP_CHAT_APP_ID="<< parameters.deploy_env >>"' >> $BASH_ENV
+            export REACT_APP_STAGE=<<parameters.deploy_env >>
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
