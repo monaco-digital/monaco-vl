@@ -71,7 +71,7 @@ jobs:
       - run:
           name: 'Checkout Amplify << parameters.deploy_env >> Environment'
           command: |
-            amplify env checkout ${REACT_APP_STAGE}
+            amplify env checkout << parameters.deploy_env >>
       - run:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
