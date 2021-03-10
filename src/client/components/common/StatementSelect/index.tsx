@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import AppState from '../../../../data/AppState'
@@ -10,14 +10,9 @@ import { getSuggestedParagraphs } from '../../../../api/vl'
 import ReactGA from 'react-ga'
 import _ from 'lodash'
 
-interface Props {}
-
-const StatementSelect: React.FC<Props> = (props: Props) => {
+const StatementSelect: React.FC = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
-	const [activeParagraph, setActiveParagraph] = useState(null)
-	// const activeParagraph = useSelector<any, any>(state => state.userFields.active)
-	const [areParagraphComponentsVisible, setAreParagraphComponentsVisible] = useState(false)
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds = selectedTopics.map(t => t.id)
@@ -42,7 +37,7 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 		updateParagraphs()
 	}, [])
 
-	const handleOnClick = (id: string) => {
+	const handleOnClick = (id: string): void => {
 		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id)
 		if (!selectedSessionParagraph.isSelected) {
 			dispatch(selectParagraphs([id]))
@@ -70,7 +65,6 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 			pc => pc.type === 'BulletPoints'
 		) as BulletPoints
 		const displayInput = hasUserInput && documentParagraph
-		const topicList = getTopicsList(templateParagraph)
 
 		return (
 			<div key={`value ${i}`} className="topic" onClick={() => handleOnClick(id)}>
@@ -80,11 +74,6 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 			</div>
 		)
 	})
-
-	/*
-		<div>Env: {process.env.NODE_ENV}</div>
-		<div>{selectedTopics.map(t => t.id).join(', ')}</div>
-	*/
 
 	return (
 		<>
@@ -99,68 +88,4 @@ const StatementSelect: React.FC<Props> = (props: Props) => {
 	)
 }
 
-const getTopicsList = (templateParagraph: TemplateParagraph): string => {
-	const { topicsAllOf, topicsOneOf, topicsNoneOf } = templateParagraph.paragraph
-	return `A:${topicsAllOf.join(', ')}|O:${topicsOneOf.join(', ')}|N:${topicsNoneOf.join(', ')}`
-}
-/*
-{areParagraphComponentsVisible && <ParagraphComponents activeParagraph={activeParagraph} />}
-
-const ParagraphComponents = ({ activeParagraph }: { activeParagraph: Paragraph }) => {
-	const dispatch = useDispatch()
-	const [userFilledFields, setUserFilledFields] = useState({})
-	const { id, paragraphComponents } = activeParagraph
-
-	const handleOnClick = () => {
-		dispatch(addUserField({ id, userFilledFields }))
-	}
-
-	return (
-		<div className="user-fields">
-			{paragraphComponents.map(paragraphComponent => {
-				switch (paragraphComponent.type) {
-					case 'BulletPoints':
-						const bulletPoints = paragraphComponent as BulletPoints
-						return (
-							<ParagraphComponentBulletPoints
-								bulletPoints={bulletPoints.bulletPoints}
-								setUserFilledFields={setUserFilledFields}
-							/>
-						)
-					case 'StaticText':
-						return <p>Nope (StaticText).</p>
-					case 'Dropdown':
-						return <p>Nope (Dropdown).</p>
-					default:
-						return null
-				}
-			})}
-			<button type="button" onClick={handleOnClick}>
-				Confirm
-			</button>
-		</div>
-	)
-}
-
-const ParagraphComponentBulletPoints = ({ bulletPoints, setUserFilledFields }) => {
-	const [values, setValues] = useState([])
-	const handleOnChange = event => {
-		const { value } = event.target
-		setUserFilledFields()
-	}
-
-	return (
-		<div className="user-fields__bullet-points">
-			<h2>Bullet points</h2>
-			{bulletPoints.map(bulletPoint => {
-				return (
-					<div className="user-fields__bullet-point__field">
-						<textarea placeholder={bulletPoint.placeholder} />
-					</div>
-				)
-			})}
-		</div>
-	)
-}
-*/
 export default StatementSelect

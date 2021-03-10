@@ -1,17 +1,13 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* Recursive functions used in this file */
+
 import {
 	SessionParagraph,
 	SessionDocument,
 	SessionDocumentComponent,
 	SessionDocumentSection,
 } from '../types/SessionDocument'
-import {
-	DocumentComponent,
-	Template,
-	TemplateComponent,
-	TemplateSection,
-	TemplateParagraph,
-	DocumentSection,
-} from '@monaco-digital/vl-types/lib/main'
+import { Template, TemplateComponent, TemplateSection, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
 import { createDocumentFromTemplate, createDocumentParagraph } from './document'
 

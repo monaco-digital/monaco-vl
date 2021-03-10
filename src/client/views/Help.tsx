@@ -15,11 +15,11 @@ export const Help: React.FC = () => {
 			<h2>Monaco Solicitors</h2>
 			<p>
 				This app is created by{' '}
-				<a href="https://www.monacosolicitors.co.uk/about-us/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/about-us/" target="_blank" rel="noopener noreferrer">
 					Monaco Solicitors
 				</a>
 				. If you need Monaco Solicitors to review your case then you can find a contact form{' '}
-				<a href="https://www.monacosolicitors.co.uk/contact-us/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/contact-us/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				. Alternatively if you complete this app (it only takes 5 minutes) there is a contact form at the end which you
@@ -37,7 +37,7 @@ export const Help: React.FC = () => {
 					grievance letter
 				</a>
 				, Here are some{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener noreferrer">
 					example grievance letters
 				</a>
 				.&nbsp; Bear in mind that this could make it more difficult for you at work, especially in smaller companies. In
@@ -77,7 +77,7 @@ export const Help: React.FC = () => {
 						</a>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener">
+						<a href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener noreferrer">
 							Evidence
 						</a>
 					</li>
@@ -85,18 +85,22 @@ export const Help: React.FC = () => {
 						<a
 							href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
 							target="_blank"
-							rel="noopener"
+							rel="noopener noreferrer"
 						>
 							How to use without prejudice letters
 						</a>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/without-prejudice/" target="_blank" rel="noopener">
+						<a href="https://www.monacosolicitors.co.uk/without-prejudice/" target="_blank" rel="noopener noreferrer">
 							How to write without prejudice letters
 						</a>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/templates/#negotiations" target="_blank" rel="noopener">
+						<a
+							href="https://www.monacosolicitors.co.uk/templates/#negotiations"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							Example without prejudice letters
 						</a>
 					</li>
@@ -140,11 +144,19 @@ export const Help: React.FC = () => {
 			<p>
 				Another effective method of encouraging your employer to enter into a settlement agreement with you is to raise
 				a data subject access request, which you can read about{' '}
-				<a href="https://www.monacosolicitors.co.uk/evidence/subject-access-requests/" target="_blank" rel="noopener">
+				<a
+					href="https://www.monacosolicitors.co.uk/evidence/subject-access-requests/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					here
 				</a>
 				. You can also see our example DSAR&rsquo;s{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#subject-access-requests" target="_blank" rel="noopener">
+				<a
+					href="https://www.monacosolicitors.co.uk/templates/#subject-access-requests"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					here
 				</a>
 				.
@@ -160,12 +172,12 @@ export const Help: React.FC = () => {
 				<a
 					href="https://www.monacosolicitors.co.uk/tribunals/commencing-the-acas-pre-claim-process-for-employment-tribunals/"
 					target="_blank"
-					rel="noopener"
+					rel="noopener noreferrer"
 				>
 					here
 				</a>{' '}
 				and you can read about 3 month time limits{' '}
-				<a href="https://www.monacosolicitors.co.uk/tribunals/time-limits/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/tribunals/time-limits/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				.
@@ -173,11 +185,11 @@ export const Help: React.FC = () => {
 			<p>
 				Once you have your ACAS certificate, you will have up to a month to issue an Employment Tribunal claim. You can
 				read about how to do that{' '}
-				<a href="https://www.monacosolicitors.co.uk/tribunals/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/tribunals/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>{' '}
 				and you can see our example Employment Tribunal claim documents{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#tribunals" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/templates/#tribunals" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				.
@@ -186,14 +198,14 @@ export const Help: React.FC = () => {
 			<p>
 				If at any stage you get offered a settlement agreement then try to play it cool. Don&rsquo;t accept the first
 				offer they make. Read our article on how much you should get{' '}
-				<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				, and read the guidance on our calculator page{' '}
 				<a
 					href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 					target="_blank"
-					rel="noopener"
+					rel="noopener noreferrer"
 				>
 					here
 				</a>

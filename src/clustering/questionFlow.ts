@@ -1,32 +1,5 @@
 import { Question } from '../types/Questions'
 
-export const getFirstQuestion = () => {
-	return allQuestions[0]
-}
-
-export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id)
-	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null
-
-	if (lastAnsweredQuestion?.isFinal) return null
-
-	let index = 0
-	let nextQuestion = null
-	while (!nextQuestion && index < allQuestions.length) {
-		const prerequisites = allQuestions[index].prerequisites || []
-		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
-		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
-
-		if (prerequisitesMet && !answeredAlready) {
-			nextQuestion = allQuestions[index]
-		}
-		index++
-	}
-
-	return nextQuestion
-}
-
 const allQuestions: Question[] = [
 	{
 		id: 1,
@@ -394,3 +367,30 @@ const allQuestions: Question[] = [
 		],
 	},
 ]
+
+export const getFirstQuestion = () => {
+	return allQuestions[0]
+}
+
+export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
+	const answeredQuestionsIds = answeredQuestions.map(q => q.id)
+	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null
+
+	if (lastAnsweredQuestion?.isFinal) return null
+
+	let index = 0
+	let nextQuestion = null
+	while (!nextQuestion && index < allQuestions.length) {
+		const prerequisites = allQuestions[index].prerequisites || []
+		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
+		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
+
+		if (prerequisitesMet && !answeredAlready) {
+			nextQuestion = allQuestions[index]
+		}
+		index++
+	}
+
+	return nextQuestion
+}
