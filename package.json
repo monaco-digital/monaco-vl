@@ -35,6 +35,7 @@
 		"react-editor-js": "^1.6.2",
 		"react-ga": "^3.3.0",
 		"react-gtm-module": "^2.0.11",
+		"react-hook-form": "^6.15.4",
 		"react-input-autosize": "^3.0.0",
 		"react-markdown": "^5.0.3",
 		"react-modal": "^3.12.1",
@@ -53,7 +54,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"deploy:dev": "REACT_APP_STAGE=dev && yarn build && amplify env checkout dev && amplify publish",
+		"deploy:dev": "yarn build && amplify env checkout dev && amplify publish",
 		"deploy:prod": "REACT_APP_STAGE=prod && yarn build && amplify env checkout prod && amplify publish"
 	},
 	"eslintConfig": {

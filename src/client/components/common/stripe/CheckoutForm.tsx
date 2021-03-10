@@ -1,9 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import config from '../../../../config'
+import React, { useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
+import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
+import { useForm } from 'react-hook-form'
+
 import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
-import { Button, CircularProgress, TextField } from '@material-ui/core'
+import {
+	Button,
+	CircularProgress,
+	TextField,
+	Typography,
+	Grid,
+	FormControlLabel,
+	Checkbox,
+	FormHelperText,
+} from '@material-ui/core'
 import { submitDetails } from '../../../../api/general'
 import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
@@ -11,6 +21,7 @@ import { SessionDocument } from '../../../../types/SessionDocument'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import { getDocumentText } from '../../../../utils/renderDocument'
+import StripeInput from './StripeInput'
 
 const makeCallToSubmitDetails = async (input: {
 	name: string
@@ -53,8 +64,8 @@ export const CheckoutForm: React.FC = () => {
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 
-	const [email, setEmail] = useState<string>(null)
-	const [name, setName] = useState<string>(null)
+	const { register, handleSubmit, errors } = useForm()
+
 	const [succeeded, setSucceeded] = useState(false)
 	const [error, setError] = useState(null)
 	const [processing, setProcessing] = useState(false)
@@ -63,23 +74,6 @@ export const CheckoutForm: React.FC = () => {
 	const elements = useElements()
 
 	const history = useHistory()
-	const cardStyle = {
-		style: {
-			base: {
-				color: '#32325d',
-				fontFamily: 'Arial, sans-serif',
-				fontSmoothing: 'antialiased',
-				fontSize: '18px',
-				'::placeholder': {
-					color: '#32325d',
-				},
-			},
-			invalid: {
-				color: '#fa755a',
-				iconColor: '#fa755a',
-			},
-		},
-	}
 	const handleChange = async event => {
 		// Listen for changes in the CardElement
 		// and display any errors as the customer types their card details
@@ -87,21 +81,14 @@ export const CheckoutForm: React.FC = () => {
 		setError(event.error ? event.error.message : '')
 	}
 
-	const handleSubmit = async ev => {
-		ev.preventDefault()
-		if (!email) {
-			setError(`Email is required`)
-			return
-		}
-		if (!name) {
-			setError(`Name is required`)
-			return
-		}
+	const onSubmit = async data => {
 		setProcessing(true)
-		const clientSecret = await createWPLetterPaymentRequest(email)
+		const clientSecret = await createWPLetterPaymentRequest(data.email)
 		const payload = await stripe.confirmCardPayment(clientSecret, {
+			// justification: 3rd party API library
+			// eslint-disable-next-line @typescript-eslint/camelcase
 			payment_method: {
-				card: elements.getElement(CardElement),
+				card: elements.getElement(CardNumberElement),
 			},
 		})
 		if (payload.error) {
@@ -114,69 +101,110 @@ export const CheckoutForm: React.FC = () => {
 			history.push('/preview/checkout/payment/complete')
 			//make call to submit details
 			await makeCallToSubmitDetails({
-				name,
-				recipient: email,
+				name: data.name,
+				recipient: data.email,
 				sessionDocument,
 				selectedTopics,
 			})
 		}
 	}
 
-	const handleEmailChange = async ev => {
-		const email = ev.target.value
-		if (email) {
-			setEmail(email)
-			setError(null)
-		}
-	}
-
-	const handleNameChange = async ev => {
-		const name = ev.target.value
-		if (name) {
-			setName(name)
-			setError(null)
-		}
-	}
-
 	return (
-		<form id="payment-form" onSubmit={handleSubmit} className="space-y-6">
-			<div className="space-x-4" style={{ width: '100%' }}>
-				<TextField
-					style={{ width: '45%' }}
-					id="standard-basic"
-					label="Email"
-					inputProps={{ style: { fontSize: 18 } }}
-					InputLabelProps={{ style: { fontSize: 18 } }}
-					onChange={handleEmailChange}
-				/>
-				<TextField
-					style={{ width: '45%' }}
-					id="standard-basic"
-					label="Name"
-					inputProps={{ style: { fontSize: 18 } }}
-					InputLabelProps={{ style: { fontSize: 18 } }}
-					onChange={handleNameChange}
-				/>
-			</div>
-			<CardElement options={cardStyle} onChange={handleChange} />
-			<Button
-				disabled={processing || disabled || succeeded}
-				type="submit"
-				variant="contained"
-				size="large"
-				color="secondary"
+		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-sm">
+			<Typography className="self-center" variant="h5">
+				Checkout
+			</Typography>
+			<p>You are buying a legal letter template which you can adapt and send to your employer</p>
+			<TextField
+				name="email"
+				label="Email"
+				inputRef={register({ required: 'Email is required' })}
 				fullWidth
-			>
-				<>
-					{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
-					{!processing && <span>Make Payment for £5.00</span>}
-				</>
-			</Button>
-			{error && (
-				<div className="card-error" role="alert">
-					{error}
-				</div>
+				error={Boolean(errors.email)}
+				helperText={errors.email?.message}
+			/>
+			<TextField
+				name="name"
+				label="Name on card"
+				inputRef={register({ required: 'Name on card is required' })}
+				error={Boolean(errors.name)}
+				helperText={errors.name?.message}
+				fullWidth
+			/>
+			<TextField
+				label="Credit Card Number"
+				name="ccnumber"
+				fullWidth
+				InputProps={{
+					inputComponent: StripeInput,
+					inputProps: {
+						component: CardNumberElement,
+					},
+				}}
+				onChange={handleChange}
+			/>
+
+			<Grid container spacing={2}>
+				<Grid item xs={6}>
+					<TextField
+						label="Expiration Date"
+						name="ccexp"
+						fullWidth
+						InputProps={{
+							inputProps: {
+								component: CardExpiryElement,
+							},
+							inputComponent: StripeInput,
+						}}
+						onChange={handleChange}
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<TextField
+						label="CVC"
+						name="cvc"
+						fullWidth
+						InputProps={{
+							inputProps: {
+								component: CardCvcElement,
+							},
+							inputComponent: StripeInput,
+						}}
+						onChange={handleChange}
+					/>
+				</Grid>
+			</Grid>
+			{error && <FormHelperText error={Boolean(error)}>{error}</FormHelperText>}
+			<FormControlLabel
+				name="termsAccepted"
+				control={
+					<Checkbox color="primary" inputRef={register({ required: 'You must accept the terms and conditions' })} />
+				}
+				label={<div>Agree to our Terms and Conditions</div>}
+			/>
+			{errors.termsAccepted && (
+				<FormHelperText error={Boolean(errors.termsAccepted)}>{errors.termsAccepted?.message}</FormHelperText>
 			)}
+
+			<Grid container dir="row" spacing={2} justify="flex-end">
+				<Grid item>
+					<Button
+						disabled={processing || disabled || succeeded}
+						type="submit"
+						variant="contained"
+						size="large"
+						color="secondary"
+					>
+						<>
+							{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
+							{!processing && <span>Buy now</span>}
+						</>
+					</Button>
+				</Grid>
+				<Grid item className="self-end">
+					for just £5
+				</Grid>
+			</Grid>
 		</form>
 	)
 }

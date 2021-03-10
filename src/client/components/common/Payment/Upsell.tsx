@@ -7,7 +7,7 @@ const Upsell: FC = () => {
 
 	return (
 		<div className="space-y-5">
-			<Typography variant="h5">Did you know….</Typography>
+			<Typography variant="h5">Did you know…</Typography>
 			<Grid container dir="row">
 				<Grid item xs={4}>
 					<img src={headerImage} />
