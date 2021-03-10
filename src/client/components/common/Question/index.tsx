@@ -20,7 +20,7 @@ const Question: React.FC<Props> = ({ question }) => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
 
-	const defaultLimit = 8
+	const defaultLimit = 14
 
 	const isSingle = question.maxAnswers === 1
 
@@ -94,10 +94,21 @@ the prerequisites */
 const filterValidOptions = (options, selectedTopicIds) => {
 	const toShow = options.filter(option => {
 		const prerequisites = option.prerequisites || []
-		const passesPrerequisites = prerequisites.length === 0 || prerequisites.every(prq => selectedTopicIds.includes(prq))
-		return passesPrerequisites
+		return passesPrerequisites(prerequisites, selectedTopicIds)
 	})
 	return toShow
+}
+
+const passesPrerequisites = (prerequisites, selectedTopicIds) => {
+	if (prerequisites.length === 0) return true
+	return prerequisites.every(prerequisite => {
+		// Allow 'negative' prerequisites
+		if (/^\!/.test(prerequisite)) {
+			return !selectedTopicIds.includes(prerequisite.replace(/^\!/, ''))
+		} else {
+			return selectedTopicIds.includes(prerequisite)
+		}
+	})
 }
 
 const recalculateSelectedTopics = (
