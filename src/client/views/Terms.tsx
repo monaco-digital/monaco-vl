@@ -19,8 +19,8 @@ export const Terms: React.FC = () => {
 			<p>
 				Whether you paid for a draft letter template or generated a free letter, nothing in Virtual Lawyer&rsquo;s
 				automated services is intended to create a lawyer / client relationship. Where we have not signed a client care
-				letter with you in writing then you are not our client, and you should hold us out to be your lawyers to third
-				parties.
+				letter with you in writing then you are not our client, and you should not hold us out to be your lawyers to
+				third parties.
 			</p>
 			<h2>For personal use only</h2>
 			<p>
@@ -57,7 +57,7 @@ export const Terms: React.FC = () => {
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
 			</div>
 			<br />
-			{/* Start of SRA Digital Badge code 
+			{/* Start of SRA Digital Badge code
 				Code taken from https://www.yoshki.com/sra/ and adapted to React
 			*/}
 			<div
