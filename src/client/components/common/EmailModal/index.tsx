@@ -18,6 +18,7 @@ interface Data {
 	name: string
 	recipient: string
 	contactMe: boolean
+	templateId: string
 }
 
 const EmailModal: FC = () => {
@@ -30,11 +31,13 @@ const EmailModal: FC = () => {
 		name: '',
 		recipient: '',
 		contactMe: false,
+		templateId: '',
 	})
 	const [contactMe, setContactMe] = useState(false)
 	const [name, setName] = useState('')
 	const [recipient, setRecipient] = useState('')
 
+	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([])
@@ -62,10 +65,20 @@ const EmailModal: FC = () => {
 		return adviceText
 	}
 
+	const getTemplateId = () => {
+		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
+			return 'LAC'
+		} else if (selectedTopics.find(topic => topic.id === '_LET') && enabledMonetization) {
+			return 'GE1'
+		}
+		return 'AD1'
+	}
+
 	useEffect(() => {
 		data.adviceText = getAdviceText()
 		data.letterText = getLetterText()
 		data.topicsList = getTopicsList()
+		data.templateId = getTemplateId()
 		setData(data)
 	}, [sessionDocument, selectedTopics, adviceParagraphs])
 
