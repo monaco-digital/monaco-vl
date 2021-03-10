@@ -11227,31 +11227,6 @@ button:hover {
 	margin-bottom: auto;
 }
 
-.helpsection h1 {
-	font-size: 1.25rem;
-	font-family: Montserrat, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-	font-weight: 600;
-	margin-bottom: 1rem;
-}
-
-.helpsection h2 {
-	font-size: 1.125rem;
-	font-family: Montserrat, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-	margin-bottom: 0.75rem;
-	margin-top: 1.5rem;
-	font-weight: 600;
-}
-
-.helpsection h3 {
-	font-size: 1rem;
-	font-family: Montserrat, system-ui, BlinkMacSystemFont, -apple-system, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-		Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-	margin-bottom: 0.25rem;
-	font-weight: 600;
-}
-
 .helpsection ul {
 	list-style: square inside none;
 	padding: 1rem;
@@ -11259,13 +11234,6 @@ button:hover {
 
 .helpsection a {
 	color: orange;
-}
-
-.helpsection .helpFooter {
-	margin-top: 3rem;
-	font-size: 0.9rem;
-	font-style: italic;
-	color: gray;
 }
 
 .letter-preview {
@@ -11651,6 +11619,16 @@ button:hover {
 	position: absolute;
 	top: 10px;
 	right: 10px;
+}
+
+.termsSection {
+	max-width: 48rem;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.termsSection a {
+	color: orange;
 }
 
 .paragraphs-preview--desktop {

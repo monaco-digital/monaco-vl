@@ -38,16 +38,16 @@ const allQuestions: Question[] = [
 		isFinal: false,
 		options: [
 			{
-				text: 'I want to write to my employer',
-				topicId: '_LET',
+				text: 'I just want some advice',
+				topicId: '_ADV',
 			},
 			{
 				text: 'My employer has responded to my initial letter',
 				topicId: '_RES',
 			},
 			{
-				text: 'I just want some advice',
-				topicId: '_ADV',
+				text: 'I want to write to my employer',
+				topicId: '_LET',
 			},
 		],
 	},
