@@ -17,6 +17,24 @@ import _ from 'lodash'
 import { createDocument, createDocumentParagraph } from '../utils/document'
 import { orderSuggestedParagraphs } from '../utils/paragraphOrdering'
 
+const _updateSessionParagraph = (
+	documentParagraphComponent: DocumentParagraphComponent,
+	sessionParagraphs: SessionParagraph[]
+): SessionParagraph[] => {
+	sessionParagraphs.forEach(sessionParagraph => {
+		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
+		sessionParagraph.documentComponent =
+			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs)
+		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
+		documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
+			if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
+				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
+			}
+		})
+	})
+	return sessionParagraphs
+}
+
 export const slice = createSlice({
 	name: 'session',
 	initialState: {
@@ -75,24 +93,6 @@ export const slice = createSlice({
 		},
 	},
 })
-
-const _updateSessionParagraph = (
-	documentParagraphComponent: DocumentParagraphComponent,
-	sessionParagraphs: SessionParagraph[]
-): SessionParagraph[] => {
-	sessionParagraphs.forEach(sessionParagraph => {
-		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
-		sessionParagraph.documentComponent =
-			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs)
-		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-		documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
-			if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
-				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
-			}
-		})
-	})
-	return sessionParagraphs
-}
 
 const _updateSessionDocument = (
 	documentParagraphComponent: DocumentParagraphComponent,

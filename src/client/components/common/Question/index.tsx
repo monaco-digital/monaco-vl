@@ -9,6 +9,7 @@ import Title from '../../Title'
 import Button from '../../Button'
 import classNames from 'classnames'
 import ReactGA from 'react-ga'
+import PaymentIcon from '@material-ui/icons/Payment'
 
 interface Props {
 	question: QuestionT
@@ -50,7 +51,7 @@ const Question: React.FC<Props> = ({ question }) => {
 	const answers = optionsToShow.map((option, i) => {
 		const { text, topicId } = option
 		return (
-			<div key={`value ${i}`} className="topic">
+			<div key={`value ${i}`} className="topic inline-flex">
 				<input
 					type={answerStyle}
 					id={topicId}
@@ -75,6 +76,11 @@ const Question: React.FC<Props> = ({ question }) => {
 						)}
 					</div>
 				</label>
+				{topicId === '_LET' && (
+					<div className="flex flex-wrap content-end ml-8">
+						<PaymentIcon fontSize="large" />
+					</div>
+				)}
 			</div>
 		)
 	})

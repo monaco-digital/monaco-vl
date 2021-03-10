@@ -7,13 +7,75 @@ import { orderSuggestedParagraphs } from './paragraphOrdering'
 describe('Paragraph ordering', () => {
 	/* Anastasia to provide more scenarios to test */
 
+	// ['T', 'W', 'D', 'V', 'H', 'B', 'P', 'TWE', 'EW', 'M', 'F', 'OBT']
 	test('Order when dismissed', () => {
 		const selectedTopics = [{ id: 'T' }]
 		const suggestedParagraphs = testParagraphs
 		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics)
-		expect(ordered[0].templateComponent.id).toBe('C9xMpOGoDtGmgcG-xKhW_-PAR1')
+		expect(ordered[0]).toEqual(suggestedParagraphs[2])
+		expect(ordered[1]).toEqual(suggestedParagraphs[1])
+		expect(ordered[2]).toEqual(suggestedParagraphs[0])
+		expect(ordered[3]).toEqual(suggestedParagraphs[4])
+		expect(ordered[4]).toEqual(suggestedParagraphs[3])
+		expect(ordered[5]).toEqual(suggestedParagraphs[7])
+		expect(ordered[6]).toEqual(suggestedParagraphs[5])
+		expect(ordered[7]).toEqual(suggestedParagraphs[6])
+	})
+
+	// ['B', 'RR', 'Sn', 'Dy', 'H', 'P', 'S', 'TWE', 'EW', 'W', 'D', 'V', 'M', 'F', 'OBT']
+	test('Order when employed', () => {
+		const selectedTopics = [{ id: 'E' }]
+		const suggestedParagraphs = testParagraphs
+		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics)
+		expect(ordered[0]).toEqual(suggestedParagraphs[4])
+		expect(ordered[1]).toEqual(suggestedParagraphs[3])
+		expect(ordered[2]).toEqual(suggestedParagraphs[7])
+		expect(ordered[3]).toEqual(suggestedParagraphs[5])
+		expect(ordered[4]).toEqual(suggestedParagraphs[6])
+		expect(ordered[5]).toEqual(suggestedParagraphs[2])
+		expect(ordered[6]).toEqual(suggestedParagraphs[1])
+		expect(ordered[7]).toEqual(suggestedParagraphs[0])
 	})
 })
+
+/*
+1
+D, B, EW
+
+should be
+2,1,0,4,3,7,5,6
+
+2
+B, EW, D 
+4,3,7,5,6,2,1,0
+
+
+8 paras: 
+verticalHeight: 3,
+topic: '() + allOf(D) + !()',
+
+verticalHeight: 2,
+topic: '() + allOf(D) + !()',
+
+verticalHeight: 1,
+topic: '() + allOf(D,B,E) + !()',
+
+verticalHeight: 2,
+topic: '() + allOf(B,E) + !()',
+
+verticalHeight: 1,
+topic: '() + allOf(B) + !()',
+
+verticalHeight: 2,
+topic: '() + allOf(EW) + !()',
+
+verticalHeight: 2,
+topic: '() + allOf(EW,D,E) + !()',
+
+verticalHeight: 1,
+topic: '() + allOf(EW,E) + !()',
+
+*/
 
 const testParagraphs = ([
 	{
@@ -98,7 +160,7 @@ const testParagraphs = ([
 				_id: '603d2115d116fb1079064acf',
 				id: '_YG7mBqFZdxtYW908hwp1-PAR1',
 				summary: "I've been harassed and/or discriminated against",
-				verticalHeight: 2,
+				verticalHeight: 1,
 				topic: '() + allOf(D,B,E) + !()',
 				status: 'Live',
 				topicsOneOf: [],
@@ -135,10 +197,10 @@ const testParagraphs = ([
 				id: 'YwKQN819SvjcKs2nJtvrT-PAR1',
 				summary: "I am disadvantaged by one of the employer's policies or procedures",
 				verticalHeight: 2,
-				topic: '() + allOf(D,E) + !()',
+				topic: '() + allOf(B,E) + !()',
 				status: 'Live',
 				topicsOneOf: [],
-				topicsAllOf: ['D', 'E'],
+				topicsAllOf: ['B', 'E'],
 				topicsNoneOf: [],
 				paragraphComponents: [
 					{
@@ -170,11 +232,11 @@ const testParagraphs = ([
 				_id: '603d2117d116fb35f64fe1ff',
 				id: 'LGjnV1dp4Zbl90lS5CRqa-PAR1',
 				summary: 'I have a physical or mental condition',
-				verticalHeight: 2,
-				topic: '() + allOf(DD) + !()',
+				verticalHeight: 1,
+				topic: '() + allOf(B) + !()',
 				status: 'Live',
 				topicsOneOf: [],
-				topicsAllOf: ['DD'],
+				topicsAllOf: ['B'],
 				topicsNoneOf: [],
 				paragraphComponents: [
 					{
@@ -207,10 +269,10 @@ const testParagraphs = ([
 				id: 'qI-8n3OU749To0TTuTk39-PAR1',
 				summary: "They didn't consider making reasonable adjustments for my condition",
 				verticalHeight: 2,
-				topic: '() + allOf(DD) + !()',
+				topic: '() + allOf(EW) + !()',
 				status: 'Live',
 				topicsOneOf: [],
-				topicsAllOf: ['DD'],
+				topicsAllOf: ['EW'],
 				topicsNoneOf: [],
 				paragraphComponents: [
 					{
@@ -243,10 +305,10 @@ const testParagraphs = ([
 				id: 'oGd2rfp1se16FAlWjyzE5-PAR1',
 				summary: 'The disciplinary process against me is discriminatory',
 				verticalHeight: 2,
-				topic: '() + allOf(Dy,D,E) + !()',
+				topic: '() + allOf(EW,D,E) + !()',
 				status: 'Live',
 				topicsOneOf: [],
-				topicsAllOf: ['Dy', 'D', 'E'],
+				topicsAllOf: ['EW', 'D', 'E'],
 				topicsNoneOf: [],
 				paragraphComponents: [
 					{
@@ -278,11 +340,11 @@ const testParagraphs = ([
 				_id: '603d2117d116fb35f64fe204',
 				id: 'A6pqbo7kmWdAD8Cz0cVPN-PAR1',
 				summary: 'The disciplinary process against me is unjustified or unfair',
-				verticalHeight: 2,
-				topic: '() + allOf(Dy,E) + !()',
+				verticalHeight: 1,
+				topic: '() + allOf(EW,E) + !()',
 				status: 'Live',
 				topicsOneOf: [],
-				topicsAllOf: ['Dy', 'E'],
+				topicsAllOf: ['EW', 'E'],
 				topicsNoneOf: [],
 				paragraphComponents: [
 					{
