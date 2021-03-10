@@ -43,6 +43,7 @@ const makeCallToSubmitDetails = async (input: {
 		adviceText: getAdviceText(),
 		letterText: getLetterText(),
 		topicsList: getTopicsList(),
+		templateId: 'GE1',
 	}
 	submitDetails(data)
 }
