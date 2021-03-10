@@ -58,8 +58,6 @@ export const slice = createSlice({
 			state.selectedTopics = _.compact(action.payload)
 		},
 		updateSuggestedParagraphs: (state, action) => {
-			console.log('+++SUggested oaragrapsh')
-			console.log(JSON.stringify(action.payload))
 			state.suggestedParagraphs = orderSuggestedParagraphs(action.payload, state.selectedTopics)
 		},
 		updateAnsweredQuestions: (state, action) => {
