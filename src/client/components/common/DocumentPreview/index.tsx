@@ -21,10 +21,12 @@ const DocumentPreview: FC = () => {
 	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
 		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected)
 	)
-
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate)
+
+	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET')
+
 	const updatedTemplate = getTemplate(selectedTopics)
 	if (updatedTemplate.id !== selectedTemplate?.id) {
 		dispatch(updateSelectedTemplate(updatedTemplate))
@@ -69,7 +71,7 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
-				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
+				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length} blur={isBlur}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 					</div>

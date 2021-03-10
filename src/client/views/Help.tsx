@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import ReactGA from 'react-ga'
-import ReactMarkdown from 'react-markdown'
 
 export const Help: React.FC = () => {
 	useEffect(() => {
@@ -11,7 +10,7 @@ export const Help: React.FC = () => {
 	}, [])
 
 	return (
-		<div className="helpsection" style={{ display: 'flex', flexDirection: 'column', maxWidth: '900px' }}>
+		<div className="helpsection" style={{ maxWidth: '900px' }}>
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
@@ -230,7 +229,7 @@ export const Help: React.FC = () => {
 				Once you are happy with the deal set out in the document, we would countersign it to confirm that all of the
 				legal wording in the document has been explained to you in plain English.&nbsp;
 			</p>
-			<div className="helpFooter">
+			<div className="italic text-ms-gray text-sm mt-12">
 				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>Email: communications@monacosolicitors.co.uk</p>
