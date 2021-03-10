@@ -74,8 +74,8 @@ const sortParagraphs = (suggestedParagraphs: SessionParagraph[], sortOrder: stri
 		}
 		return 0
 	}
-
-	return suggestedParagraphs.sort(comparisonFunction)
+	// slice(0) to clone the array to avoid mutating it
+	return suggestedParagraphs.slice(0).sort(comparisonFunction)
 }
 
 export { orderSuggestedParagraphs }
