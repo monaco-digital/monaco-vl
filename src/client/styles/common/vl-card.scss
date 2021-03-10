@@ -16,6 +16,10 @@
 			}
 		}
 	}
+
+	.vl-card__blur {
+		filter: blur(0.21rem);
+	}
 }
 
 .vl-card--light {
