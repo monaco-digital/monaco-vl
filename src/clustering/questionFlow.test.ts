@@ -1,4 +1,25 @@
+import { getFirstQuestion, getNextQuestion } from './questionFlow'
 import { Question } from '../types/Questions'
+
+describe('Question flow', () => {
+	test('First question returned', () => {
+		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help you')
+	})
+
+	test('Question prerequisite not met', () => {
+		const selectedTopics = []
+		const answeredQuestions = allQuestions.slice(0, 1)
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
+		expect(nextQuestion.id).toBe(3)
+	})
+
+	test('Question prerequisite met', () => {
+		const selectedTopics = [{ id: '_RES' }]
+		const answeredQuestions = allQuestions.slice(0, 1)
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
+		expect(nextQuestion.id).toBe(2)
+	})
+})
 
 const allQuestions: Question[] = [
 	{
@@ -11,16 +32,16 @@ const allQuestions: Question[] = [
 		isFinal: false,
 		options: [
 			{
-				text: 'I just want some advice',
-				topicId: '_ADV',
+				text: 'I want to write to my employer',
+				topicId: '_LET',
 			},
 			{
 				text: 'My employer has responded to my initial letter',
 				topicId: '_RES',
 			},
 			{
-				text: 'I want to write to my employer',
-				topicId: '_LET',
+				text: 'I just want some advice',
+				topicId: '_ADV',
 			},
 		],
 	},
@@ -371,30 +392,3 @@ const allQuestions: Question[] = [
 		],
 	},
 ]
-
-export const getFirstQuestion = () => {
-	return allQuestions[0]
-}
-
-export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id)
-	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null
-
-	if (lastAnsweredQuestion?.isFinal) return null
-
-	let index = 0
-	let nextQuestion = null
-	while (!nextQuestion && index < allQuestions.length) {
-		const prerequisites = allQuestions[index].prerequisites || []
-		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
-		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
-
-		if (prerequisitesMet && !answeredAlready) {
-			nextQuestion = allQuestions[index]
-		}
-		index++
-	}
-
-	return nextQuestion
-}

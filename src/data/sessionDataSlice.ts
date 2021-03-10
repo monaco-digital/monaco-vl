@@ -15,6 +15,7 @@ import {
 } from '@monaco-digital/vl-types/lib/main'
 import _ from 'lodash'
 import { createDocument, createDocumentParagraph } from '../utils/document'
+import { orderSuggestedParagraphs } from '../utils/paragraphOrdering'
 
 const _updateSessionParagraph = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -75,7 +76,7 @@ export const slice = createSlice({
 			state.selectedTopics = _.compact(action.payload)
 		},
 		updateSuggestedParagraphs: (state, action) => {
-			state.suggestedParagraphs = action.payload
+			state.suggestedParagraphs = orderSuggestedParagraphs(action.payload, state.selectedTopics)
 		},
 		updateAnsweredQuestions: (state, action) => {
 			state.answeredQuestions = action.payload
