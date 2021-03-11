@@ -66,7 +66,9 @@ const EmailModal: FC = () => {
 	}
 
 	const getTemplateId = () => {
-		if (selectedTopics.find(topic => topic.id === '_LET')) {
+		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
+			return 'LAC'
+		} else if (selectedTopics.find(topic => topic.id === '_RES')) {
 			if (enabledMonetization) {
 				return 'GE1'
 			} else {
