@@ -7,7 +7,7 @@ const StripeInput = ({ component: Component, inputRef, ...other }) => {
 		focus: () => elementRef.current.focus,
 	}))
 
-	return <Component options={{ placeholder: '' }} onReady={element => (elementRef.current = element)} {...other} />
+	return <Component options={{ showIcon: true }} onReady={element => (elementRef.current = element)} {...other} />
 }
 
 export default StripeInput

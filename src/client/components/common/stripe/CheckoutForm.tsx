@@ -4,16 +4,7 @@ import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcEl
 import { useForm } from 'react-hook-form'
 
 import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
-import {
-	Button,
-	CircularProgress,
-	TextField,
-	Typography,
-	Grid,
-	FormControlLabel,
-	Checkbox,
-	FormHelperText,
-} from '@material-ui/core'
+import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core'
 import { submitDetails } from '../../../../api/general'
 import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
@@ -28,22 +19,22 @@ const makeCallToSubmitDetails = async (input: {
 	recipient: string
 	sessionDocument: any
 	selectedTopics: any
-}) => {
+}): Promise<void> => {
 	const { name, recipient, sessionDocument, selectedTopics } = input
 
 	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
 
-	const getLetterText = () => {
+	const getLetterText = (): string => {
 		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
 		return letterText
 	}
 
-	const getTopicsList = () => {
+	const getTopicsList = (): string => {
 		const topicsList = selectedTopics.map(t => t.text).join(', ')
 		return topicsList
 	}
 
-	const getAdviceText = () => {
+	const getAdviceText = (): string => {
 		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
 		return adviceText
 	}
@@ -69,19 +60,17 @@ export const CheckoutForm: React.FC = () => {
 	const [succeeded, setSucceeded] = useState(false)
 	const [error, setError] = useState(null)
 	const [processing, setProcessing] = useState(false)
-	const [disabled, setDisabled] = useState(true)
 	const stripe = useStripe()
 	const elements = useElements()
 
 	const history = useHistory()
-	const handleChange = async event => {
+	const handleChange = async (event): Promise<void> => {
 		// Listen for changes in the CardElement
 		// and display any errors as the customer types their card details
-		setDisabled(event.empty)
 		setError(event.error ? event.error.message : '')
 	}
 
-	const onSubmit = async data => {
+	const onSubmit = async (data): Promise<void> => {
 		setProcessing(true)
 		const clientSecret = await createWPLetterPaymentRequest(data.email)
 		const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -110,7 +99,7 @@ export const CheckoutForm: React.FC = () => {
 	}
 
 	return (
-		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-sm">
+		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
 			<Typography className="self-center" variant="h5">
 				Checkout
 			</Typography>
@@ -118,6 +107,7 @@ export const CheckoutForm: React.FC = () => {
 			<TextField
 				name="email"
 				label="Email"
+				required
 				inputRef={register({ required: 'Email is required' })}
 				fullWidth
 				error={Boolean(errors.email)}
@@ -126,6 +116,7 @@ export const CheckoutForm: React.FC = () => {
 			<TextField
 				name="name"
 				label="Name on card"
+				required
 				inputRef={register({ required: 'Name on card is required' })}
 				error={Boolean(errors.name)}
 				helperText={errors.name?.message}
@@ -134,6 +125,7 @@ export const CheckoutForm: React.FC = () => {
 			<TextField
 				label="Credit Card Number"
 				name="ccnumber"
+				required
 				fullWidth
 				InputProps={{
 					inputComponent: StripeInput,
@@ -142,6 +134,7 @@ export const CheckoutForm: React.FC = () => {
 					},
 				}}
 				onChange={handleChange}
+				InputLabelProps={{ shrink: true }}
 			/>
 
 			<Grid container spacing={2}>
@@ -149,6 +142,7 @@ export const CheckoutForm: React.FC = () => {
 					<TextField
 						label="Expiration Date"
 						name="ccexp"
+						required
 						fullWidth
 						InputProps={{
 							inputProps: {
@@ -157,12 +151,14 @@ export const CheckoutForm: React.FC = () => {
 							inputComponent: StripeInput,
 						}}
 						onChange={handleChange}
+						InputLabelProps={{ shrink: true }}
 					/>
 				</Grid>
 				<Grid item xs={6}>
 					<TextField
 						label="CVC"
 						name="cvc"
+						required
 						fullWidth
 						InputProps={{
 							inputProps: {
@@ -171,29 +167,37 @@ export const CheckoutForm: React.FC = () => {
 							inputComponent: StripeInput,
 						}}
 						onChange={handleChange}
+						InputLabelProps={{ shrink: true }}
 					/>
 				</Grid>
 			</Grid>
 			{error && <FormHelperText error={Boolean(error)}>{error}</FormHelperText>}
-			<FormControlLabel
-				name="termsAccepted"
-				control={
-					<Checkbox color="primary" inputRef={register({ required: 'You must accept the terms and conditions' })} />
-				}
-				label={<div>Agree to our Terms and Conditions</div>}
-			/>
+			<Grid>
+				<Checkbox
+					name="termsAccepted"
+					color="primary"
+					inputRef={register({ required: 'You must accept the terms and conditions' })}
+				/>
+				<span>
+					Agree to our{' '}
+					<Link to="/terms" className="text-ms-orange" target="_blank">
+						Terms and Conditions
+					</Link>
+				</span>
+			</Grid>
 			{errors.termsAccepted && (
 				<FormHelperText error={Boolean(errors.termsAccepted)}>{errors.termsAccepted?.message}</FormHelperText>
 			)}
 
-			<Grid container dir="row" spacing={2} justify="flex-end">
-				<Grid item>
+			<Grid container dir="row" spacing={2}>
+				<Grid item xs={6}>
 					<Button
-						disabled={processing || disabled || succeeded}
+						disabled={processing || succeeded}
 						type="submit"
 						variant="contained"
 						size="large"
 						color="secondary"
+						fullWidth
 					>
 						<>
 							{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
@@ -202,7 +206,9 @@ export const CheckoutForm: React.FC = () => {
 					</Button>
 				</Grid>
 				<Grid item className="self-end">
-					for just £5
+					<Typography variant="h6" className="underline">
+						for just £5
+					</Typography>
 				</Grid>
 			</Grid>
 		</form>
