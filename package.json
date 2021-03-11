@@ -54,7 +54,7 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"deploy:dev": "yarn build && amplify env checkout dev && amplify publish",
+		"deploy:dev": "REACT_APP_STAGE=dev && yarn build && amplify env checkout dev && amplify publish",
 		"deploy:prod": "REACT_APP_STAGE=prod && yarn build && amplify env checkout prod && amplify publish"
 	},
 	"eslintConfig": {
