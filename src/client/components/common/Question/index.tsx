@@ -17,6 +17,7 @@ interface Props {
 const Question: React.FC<Props> = ({ question }) => {
 	const dispatch = useDispatch()
 
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
@@ -76,7 +77,7 @@ const Question: React.FC<Props> = ({ question }) => {
 						)}
 					</div>
 				</label>
-				{topicId === '_LET' && (
+				{isMonetizationEnabled && topicId === '_LET' && (
 					<div className="flex flex-wrap content-end ml-8">
 						<PaymentIcon fontSize="large" />
 					</div>

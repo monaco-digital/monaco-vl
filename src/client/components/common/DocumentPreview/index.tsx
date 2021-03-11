@@ -14,7 +14,6 @@ import VLcard from '../VLcard'
 import ReactGA from 'react-ga'
 import { getTemplate } from '../../../../api/vl'
 import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice'
-import _ from 'lodash'
 
 const DocumentPreview: FC = () => {
 	const dispatch = useDispatch()
@@ -28,12 +27,13 @@ const DocumentPreview: FC = () => {
 	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET')
 
 	const updatedTemplate = getTemplate(selectedTopics)
-	if (updatedTemplate.id !== selectedTemplate?.id) {
+	const isTemplateIdDifferent = updatedTemplate?.id !== selectedTemplate?.id
+	if (isTemplateIdDifferent) {
 		dispatch(updateSelectedTemplate(updatedTemplate))
 	}
 
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
-	if (!sessionDocument) {
+	if (!sessionDocument || isTemplateIdDifferent) {
 		const doc = createSessionDocument(updatedTemplate, selectedParagraphs)
 		dispatch(updateSessionDocument(doc))
 	}
