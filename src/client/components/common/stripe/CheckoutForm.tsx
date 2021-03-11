@@ -112,6 +112,7 @@ export const CheckoutForm: React.FC = () => {
 				fullWidth
 				error={Boolean(errors.email)}
 				helperText={errors.email?.message}
+				variant="filled"
 			/>
 			<TextField
 				name="name"
@@ -121,6 +122,7 @@ export const CheckoutForm: React.FC = () => {
 				error={Boolean(errors.name)}
 				helperText={errors.name?.message}
 				fullWidth
+				variant="filled"
 			/>
 			<TextField
 				label="Credit Card Number"
@@ -135,6 +137,7 @@ export const CheckoutForm: React.FC = () => {
 				}}
 				onChange={handleChange}
 				InputLabelProps={{ shrink: true }}
+				variant="filled"
 			/>
 
 			<Grid container spacing={2}>
@@ -152,6 +155,7 @@ export const CheckoutForm: React.FC = () => {
 						}}
 						onChange={handleChange}
 						InputLabelProps={{ shrink: true }}
+						variant="filled"
 					/>
 				</Grid>
 				<Grid item xs={6}>
@@ -168,6 +172,7 @@ export const CheckoutForm: React.FC = () => {
 						}}
 						onChange={handleChange}
 						InputLabelProps={{ shrink: true }}
+						variant="filled"
 					/>
 				</Grid>
 			</Grid>

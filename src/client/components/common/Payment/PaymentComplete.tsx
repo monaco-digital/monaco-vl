@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Button, Grid, Typography } from '@material-ui/core'
 import { useHistory } from 'react-router-dom'
-import headerImage from '../../../assets/img/doc-award.png'
+import headerImage from '../../../assets/img/document.svg'
 
 const PaymentComplete: FC = () => {
 	const history = useHistory()
