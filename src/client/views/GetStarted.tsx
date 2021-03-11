@@ -12,26 +12,10 @@ export const GetStarted: React.FC = () => {
 
 	return (
 		<div className="get-started">
-			<h1>
-				Empower yourself
-				<br /> with Virtual Lawyer
-			</h1>
-
-			<div className="section">
-				<div className="lhs-panel">
-					<p>
-						<b>Discover your rights </b>and build the perfect legal document - either to lodge a formal grievance,
-						negotiate an exit package, or bring a claim at an employment tribunal
-					</p>
-
-					<h3>Find out whether or not you have a case against your employer</h3>
-
-					<div>
-						<Button type="start" text="Get started" rounded fn={goToTopics} />
-					</div>
-				</div>
-				<img style={{ height: '400px' }} src={mainimage} />
-			</div>
+			<h1>Empowering employees</h1>
+			<h3>Get free advice and build legal letters when badly treated at work</h3>
+			<img style={{ height: '300px' }} src={mainimage} />
+			<Button type="start" text="Get started" rounded fn={goToTopics} />
 		</div>
 	)
 }
