@@ -4,6 +4,12 @@
 		@apply justify-start;
 	}
 
+	.get-started__content {
+		@screen md {
+			@apply justify-self-end;
+		}
+	}
+
 	h1 {
 		font-size: 2.5rem;
 		line-height: 1;
