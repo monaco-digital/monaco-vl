@@ -50,7 +50,18 @@ const Question: React.FC<Props> = ({ question }) => {
 	}
 
 	const answers = optionsToShow.map((option, i) => {
-		const { text, topicId } = option
+		const { id: questionId } = question
+		let { text } = option
+		const { topicId } = option
+
+		if (isMonetizationEnabled && questionId === 1) {
+			if (topicId === '_LET') {
+				text = text + ' - £5'
+			} else {
+				text = text + ' - £FREE'
+			}
+		}
+
 		return (
 			<div key={`value ${i}`} className="topic inline-flex">
 				<input
@@ -77,11 +88,6 @@ const Question: React.FC<Props> = ({ question }) => {
 						)}
 					</div>
 				</label>
-				{isMonetizationEnabled && topicId === '_LET' && (
-					<div className="flex flex-wrap content-end ml-8">
-						<PaymentIcon fontSize="large" />
-					</div>
-				)}
 			</div>
 		)
 	})
