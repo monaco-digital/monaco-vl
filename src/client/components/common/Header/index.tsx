@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
-import logo from '../../../assets/img/vl-logo-2.png'
+import logo1 from '../../../assets/img/ms-logo-blue-black.svg'
+import logo2 from '../../../assets/img/vl-powered-by-logo-01.svg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
 
@@ -18,9 +19,19 @@ const Header: FC = () => {
 
 	return (
 		<div className="header">
-			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-				<img alt="Virtual lawyer" src={logo} />
-			</a>
+			<div>
+				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+					<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
+				</a>
+			</div>
+			<div>
+				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+					<img className="header__logo-2 ml-6" alt="Virtual lawyer" src={logo2} />
+				</a>
+			</div>
+			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
+				<i className="fas fa-bars"></i>
+			</button>
 			<div className="header__breadcrumb">
 				<NavLink
 					to="/questions"
@@ -40,9 +51,6 @@ const Header: FC = () => {
 					Terms of Use
 				</NavLink>
 			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
-				<i className="fas fa-bars"></i>
-			</button>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
 					<ListItem

@@ -1,40 +1,84 @@
 .get-started {
 	@apply flex flex-col justify-center;
+
 	@screen md {
-		@apply justify-start;
+		@apply text-left;
 	}
 
-	.get-started__content {
+	.get-started__button-desktop {
+		@apply invisible;
 		@screen md {
-			@apply justify-self-end;
+			@apply visible;
+		}
+	}
+
+	.get-started__button-mobile {
+		@screen md {
+			@apply invisible;
+		}
+	}
+
+	.get-started__image {
+		width: 350px;
+		margin: 0 1.3rem 0 0.8rem;
+		@screen md {
+			padding-top: 50px;
+			width: 700px;
 		}
 	}
 
 	h1 {
-		font-size: 2.5rem;
-		line-height: 1;
-		color: #383838;
-		font-weight: 800;
-		font-family: 'Montserrat', sans-serif;
-		margin-top: 15px;
-		font-size: 3rem;
-		margin-top: 20px;
+		font-family: Montserrat;
+		margin: 10px 2.5rem 24.3px;
+		font-size: 40px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.16;
+		letter-spacing: -2.7px;
 		text-align: center;
+		color: #383838;
 
 		@screen md {
-			font-size: 3.5rem;
-			margin-top: 30px;
+			width: 560px;
+			height: 143px;
+			font-family: Montserrat;
+			margin: 10px 2.5rem 59.4px 0px;
+			font-size: 60px;
+			font-weight: bold;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.17;
+			letter-spacing: -3.6px;
+			text-align: left;
+			color: #383838;
 		}
 	}
 
 	h3 {
-		margin-top: 40px;
-		font-size: 1.2rem;
-		margin-bottom: 2rem;
-		color: #383838;
+		font-family: Montserrat;
+		margin: 24.3px 2.5rem 18.6px 2.5rem;
+		font-size: 17px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.47;
+		letter-spacing: -0.85px;
 		text-align: center;
+		color: #383838;
 		@screen md {
-			margin-top: 80px;
+			width: 391px;
+			height: 71.2px;
+			font-family: Montserrat;
+			margin: 59.4px 2.5rem 17.3px 0px;
+			font-size: 21px;
+			font-weight: 500;
+			font-stretch: normal;
+			font-style: normal;
+			line-height: 1.24;
+			letter-spacing: -1.05px;
+			text-align: left;
+			color: #383838;
 		}
 	}
 }
