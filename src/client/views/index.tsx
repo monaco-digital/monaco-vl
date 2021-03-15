@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { FC, useEffect } from 'react'
 import ReactGA from 'react-ga'
 import Footer from '../components/common/Footer'
@@ -42,7 +41,7 @@ const Main: FC = () => {
 
 		const queryParams = new URLSearchParams(search)
 
-		let featureStorage = {}
+		let featureStorage: any = {}
 		try {
 			featureStorage = JSON.parse(localStorage.getItem('vl-features')) || {}
 		} catch {
@@ -73,6 +72,7 @@ const Main: FC = () => {
 	useEffect(() => {
 		//TODO - fix this
 		// dispatch(setView(undefined))
+		// eslint-disable-next-line @typescript-eslint/no-extra-semi
 		;(async () => {
 			const paragraphs = await getAllParagraphs()
 			//const paragraphs = await getData()

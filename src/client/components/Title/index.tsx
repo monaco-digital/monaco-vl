@@ -3,7 +3,7 @@ import React from 'react'
 interface Props {
 	text: any
 }
-const Title: React.FC<Props> = ({ text }) => {
+const Title: React.FC<Props> = ({ text }: Props) => {
 	const heading = text?.text
 	const subHeading = text?.subtext
 

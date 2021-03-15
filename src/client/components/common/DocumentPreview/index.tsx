@@ -15,6 +15,34 @@ import ReactGA from 'react-ga'
 import { getTemplate } from '../../../../api/vl'
 import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice'
 
+interface Props {
+	sessionDocumentComponents: SessionDocumentComponent[]
+}
+
+const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) => {
+	if (!sessionDocumentComponents) return null
+	const output = sessionDocumentComponents.map(sessionDocumentComponent => {
+		const type = sessionDocumentComponent && sessionDocumentComponent.type
+		switch (type) {
+			case 'UserContentSection': {
+				const userContentSection = sessionDocumentComponent as SessionDocumentSection
+				return <SessionDocComponents sessionDocumentComponents={userContentSection.sessionDocumentComponents} />
+			}
+			case 'TemplateContentSection': {
+				const templateContentSection = sessionDocumentComponent as SessionDocumentSection
+				return <SessionDocComponents sessionDocumentComponents={templateContentSection.sessionDocumentComponents} />
+			}
+			case 'Paragraph': {
+				const sessionParagraph = sessionDocumentComponent as SessionParagraph
+				return <PreviewParagraph paragraph={sessionParagraph} />
+			}
+			default:
+				return null
+		}
+	})
+	return <>{output.concat()}</>
+}
+
 const DocumentPreview: FC = () => {
 	const dispatch = useDispatch()
 	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
@@ -45,29 +73,6 @@ const DocumentPreview: FC = () => {
 		})
 	}, [])
 
-	const SessionDocComponents: FC<{ sessionDocumentComponents: SessionDocumentComponent[] }> = ({
-		sessionDocumentComponents,
-	}) => {
-		if (!sessionDocumentComponents) return null
-		const output = sessionDocumentComponents.map(sessionDocumentComponent => {
-			const type = sessionDocumentComponent && sessionDocumentComponent.type
-			switch (type) {
-				case 'UserContentSection':
-					const userContentSection = sessionDocumentComponent as SessionDocumentSection
-					return <SessionDocComponents sessionDocumentComponents={userContentSection.sessionDocumentComponents} />
-				case 'TemplateContentSection':
-					const templateContentSection = sessionDocumentComponent as SessionDocumentSection
-					return <SessionDocComponents sessionDocumentComponents={templateContentSection.sessionDocumentComponents} />
-				case 'Paragraph':
-					const sessionParagraph = sessionDocumentComponent as SessionParagraph
-					return <PreviewParagraph paragraph={sessionParagraph} />
-				default:
-					return null
-			}
-		})
-		return <>{output.concat()}</>
-	}
-
 	return (
 		<>
 			<div className="letter-preview">
@@ -80,20 +85,5 @@ const DocumentPreview: FC = () => {
 		</>
 	)
 }
-
-/*
-<div className="letter-preview__intro">
-						<div className="letter-preview_intro__chevron">
-							<button onClick={handleCollapseIntro}>
-								<i className={chevronClasses}></i>
-							</button>
-						</div>
-					</div>
-<div className="letter-preview__signature">
-						<button type="button" onClick={e => getTextTemp()} value="gettext">
-							Output text
-						</button>
-						{/* <LetterPreviewParagraph paragraphs={bottom} /> * /}
-						</div> */
 
 export default DocumentPreview

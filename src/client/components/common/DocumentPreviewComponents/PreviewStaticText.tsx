@@ -1,10 +1,11 @@
 import { DocumentParagraphStaticText, StaticText } from '@monaco-digital/vl-types/lib/main'
 import React, { FC } from 'react'
-import { SessionParagraph } from '../../../../types/SessionDocument'
 
-export const PreviewStaticText: FC<{
+interface Props {
 	templateStaticText: StaticText
 	documentStaticText: DocumentParagraphStaticText
-}> = ({ templateStaticText, documentStaticText }) => {
+}
+
+export const PreviewStaticText: FC<Props> = ({ templateStaticText, documentStaticText }: Props) => {
 	return <span>{documentStaticText?.textFirstPerson || templateStaticText.textFirstPerson}</span>
 }

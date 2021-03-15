@@ -9,12 +9,11 @@ import Title from '../../Title'
 import Button from '../../Button'
 import classNames from 'classnames'
 import ReactGA from 'react-ga'
-import PaymentIcon from '@material-ui/icons/Payment'
 
 interface Props {
 	question: QuestionT
 }
-const Question: React.FC<Props> = ({ question }) => {
+const Question: React.FC<Props> = ({ question }: Props) => {
 	const dispatch = useDispatch()
 
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
@@ -116,8 +115,8 @@ const passesPrerequisites = (prerequisites, selectedTopicIds) => {
 	if (prerequisites.length === 0) return true
 	return prerequisites.every(prerequisite => {
 		// Allow 'negative' prerequisites
-		if (/^\!/.test(prerequisite)) {
-			return !selectedTopicIds.includes(prerequisite.replace(/^\!/, ''))
+		if (/^!/.test(prerequisite)) {
+			return !selectedTopicIds.includes(prerequisite.replace(/^!/, ''))
 		} else {
 			return selectedTopicIds.includes(prerequisite)
 		}

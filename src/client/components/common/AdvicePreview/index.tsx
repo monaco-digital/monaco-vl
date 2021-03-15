@@ -4,9 +4,20 @@ import AppState from '../../../../data/AppState'
 import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
 import VLcard from '../VLcard'
 import ReactGA from 'react-ga'
-import _ from 'lodash'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import ReactMarkdown from 'react-markdown'
+
+interface Props {
+	paragraph: Advice
+}
+
+const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => {
+	return (
+		<div style={{ margin: '10px' }}>
+			<ReactMarkdown>{'## ' + paragraph.text}</ReactMarkdown>
+		</div>
+	)
+}
 
 const AdvicePreview: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
@@ -26,14 +37,6 @@ const AdvicePreview: FC = () => {
 			action: `Advice letter previewed`,
 		})
 	}, [])
-
-	const AdviceDocParagraph: FC<{ paragraph: Advice }> = ({ paragraph }) => {
-		return (
-			<div style={{ margin: '10px' }}>
-				<ReactMarkdown>{'## ' + paragraph.text}</ReactMarkdown>
-			</div>
-		)
-	}
 
 	return (
 		<>

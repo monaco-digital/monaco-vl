@@ -13,12 +13,12 @@ import { SessionParagraph } from '../../../../types/SessionDocument'
 import { PreviewStaticText } from './PreviewStaticText'
 import { PreviewBulletPoints } from './PreviewBulletPoints'
 import { PreviewEditableText } from './PreviewEditableText'
-import classNames from 'classnames'
 
-const PreviewParagraph: FC<{ paragraph: SessionParagraph }> = ({ paragraph }) => {
-	/* const classes = classNames('questions', {
-		[`questions__${type}`]: type,
-	}) */
+interface Props {
+	paragraph: SessionParagraph
+}
+
+const PreviewParagraph: FC<Props> = ({ paragraph }: Props) => {
 	// If documentComponent exists, i.e. the user has entered some data
 	const templateParagraph = paragraph.templateComponent as TemplateParagraph
 	const documentParagraph = paragraph.documentComponent as DocumentParagraph
