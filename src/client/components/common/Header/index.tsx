@@ -19,38 +19,44 @@ const Header: FC = () => {
 
 	return (
 		<div className="header">
-			<div>
-				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-					<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
-				</a>
-			</div>
-			<div>
-				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-					<img className="header__logo-2 ml-6" alt="Virtual lawyer" src={logo2} />
-				</a>
+			<div className="grid grid-cols-3 gap-4 md:grid-cols-5 w-full">
+				<div>
+					<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+						<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
+					</a>
+				</div>
+				<div className="md:col-span-2 md:ml-48">
+					<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+						<img className="header__logo-2" alt="Virtual lawyer" src={logo2} />
+					</a>
+				</div>
+				<div className="header__breadcrumb md:col-span-2">
+					<NavLink
+						to="/questions"
+						className="header__breadcrumb__text"
+						activeClassName="header__breadcrumb__text-selected"
+						onClick={navigateToTopics}
+					>
+						Key facts
+					</NavLink>
+					<NavLink
+						to="/preview"
+						className="header__breadcrumb__text"
+						activeClassName="header__breadcrumb__text-selected"
+					>
+						Preview your letter
+					</NavLink>
+					<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
+						Help
+					</NavLink>
+					<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
+						Terms of Use
+					</NavLink>
+				</div>
 			</div>
 			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
 				<i className="fas fa-bars"></i>
 			</button>
-			<div className="header__breadcrumb">
-				<NavLink
-					to="/questions"
-					className="header__breadcrumb__text"
-					activeClassName="header__breadcrumb__text-selected"
-					onClick={navigateToTopics}
-				>
-					Key facts
-				</NavLink>
-				<NavLink to="/preview" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					Preview your letter
-				</NavLink>
-				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					Help
-				</NavLink>
-				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					Terms of Use
-				</NavLink>
-			</div>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
 					<ListItem
