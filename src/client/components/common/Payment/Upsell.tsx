@@ -11,15 +11,14 @@ const Upsell: FC = () => {
 		<div className="max-w-xs space-y-5">
 			<img className="w-48" alt="Virtual lawyer" src={logo} />
 
-			<Typography variant="h5">Did you know</Typography>
+			<Typography variant="h5">Your legal letter</Typography>
 
-			<p>We can generate a legal letter based on the answers you just gave us</p>
+			<p>You have created a legal letter template to send to your employer</p>
 			<Typography variant="body2">
 				<ul className="list-disc p-4">
-					<li>Legally accurate letter</li>
-					<li>Formal grievance process</li>
-					<li>Without prejudice procedure</li>
-					<li>Request compensation</li>
+					<li>Created for your type of case</li>
+					<li>You just fill in the gaps</li>
+					<li>They will think you’ve hired lawyers</li>
 				</ul>
 			</Typography>
 

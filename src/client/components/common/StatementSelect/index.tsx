@@ -14,10 +14,16 @@ const StatementSelect: React.FC = () => {
 	const history = useHistory()
 	const dispatch = useDispatch()
 
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
+
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds = selectedTopics.map(t => t.id)
 	if (_.intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
-		history.push('/preview')
+		if (selectedTopicIds.find(topic => topic === '_LET') && isMonetizationEnabled) {
+			history.push('/preview/checkout')
+		} else {
+			history.push('/preview')
+		}
 	}
 
 	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs)
@@ -53,7 +59,11 @@ const StatementSelect: React.FC = () => {
 	}
 
 	const enterLetterPreviewMode = () => {
-		history.push('/preview')
+		if (selectedTopicIds.find(topic => topic === '_LET') && isMonetizationEnabled) {
+			history.push('/preview/checkout')
+		} else {
+			history.push('/preview')
+		}
 	}
 
 	const statements = suggestedParagraphs.map((sessionParagraph, i) => {
