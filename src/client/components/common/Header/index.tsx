@@ -18,20 +18,13 @@ const Header: FC = () => {
 	}
 
 	return (
-		<div className="header w-full">
-			<div>
-				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-					<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
-				</a>
-			</div>
-			<div className="ml-8">
-				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-					<img className="header__logo-2" alt="Virtual lawyer" src={logo2} />
-				</a>
-			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
-				<i className="fas fa-bars"></i>
-			</button>
+		<div className="header">
+			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+				<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
+			</a>
+			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+				<img className="header__logo-2" alt="Virtual lawyer" src={logo2} />
+			</a>
 			<div className="header__breadcrumb">
 				<NavLink
 					to="/questions"
@@ -51,6 +44,9 @@ const Header: FC = () => {
 					Terms of Use
 				</NavLink>
 			</div>
+			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
+				<i className="fas fa-bars"></i>
+			</button>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
 					<ListItem
