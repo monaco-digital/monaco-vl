@@ -18,15 +18,15 @@ const Header: FC = () => {
 	}
 
 	return (
-		<div className="header">
+		<div className="header w-full">
 			<div>
 				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
 					<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
 				</a>
 			</div>
-			<div>
+			<div className="ml-8">
 				<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-					<img className="header__logo-2 ml-6" alt="Virtual lawyer" src={logo2} />
+					<img className="header__logo-2" alt="Virtual lawyer" src={logo2} />
 				</a>
 			</div>
 			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
