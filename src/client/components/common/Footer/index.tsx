@@ -20,7 +20,10 @@ const Footer: React.FC = () => {
 	const dispatch = useDispatch()
 
 	const openCheckoutModal = () => {
-		if (isMonetizationEnabled) {
+		const freeTopicTemplates = ['_RES', '_ADV']
+		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id))
+
+		if (isMonetizationEnabled && !isFree) {
 			history.push('/preview/checkout')
 		} else {
 			history.push('/preview/checkout/email')

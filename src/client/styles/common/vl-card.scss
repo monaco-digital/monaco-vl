@@ -16,6 +16,11 @@
 			}
 		}
 	}
+
+	.vl-card__blur {
+		filter: blur(0.21rem);
+		user-select: none;
+	}
 }
 
 .vl-card--light {

@@ -46,8 +46,6 @@ const Questions: FC = () => {
 	return (
 		<>
 			<div className={classes}>
-				{currentQuestion.id <= 6 && <div className="questions__steps">Step 1 of 2: Your Job Situation</div>}
-				{currentQuestion.id > 6 && <div className="questions__steps">Step 2 of 2: Reasons Given</div>}
 				<Question question={currentQuestion} />
 				<div className="topics__actions">
 					<Button

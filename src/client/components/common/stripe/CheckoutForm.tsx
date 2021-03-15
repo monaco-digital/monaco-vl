@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
-import config from '../../../../config'
+import React, { useState } from 'react'
+import { useHistory, Link } from 'react-router-dom'
+import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
+import { useForm } from 'react-hook-form'
+
 import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
-import { Button, CircularProgress, TextField } from '@material-ui/core'
+import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core'
 import { submitDetails } from '../../../../api/general'
 import { useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
@@ -11,28 +12,29 @@ import { SessionDocument } from '../../../../types/SessionDocument'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import { getDocumentText } from '../../../../utils/renderDocument'
+import StripeInput from './StripeInput'
 
 const makeCallToSubmitDetails = async (input: {
 	name: string
 	recipient: string
 	sessionDocument: any
 	selectedTopics: any
-}) => {
+}): Promise<void> => {
 	const { name, recipient, sessionDocument, selectedTopics } = input
 
 	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
 
-	const getLetterText = () => {
+	const getLetterText = (): string => {
 		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
 		return letterText
 	}
 
-	const getTopicsList = () => {
+	const getTopicsList = (): string => {
 		const topicsList = selectedTopics.map(t => t.text).join(', ')
 		return topicsList
 	}
 
-	const getAdviceText = () => {
+	const getAdviceText = (): string => {
 		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
 		return adviceText
 	}
@@ -43,6 +45,7 @@ const makeCallToSubmitDetails = async (input: {
 		adviceText: getAdviceText(),
 		letterText: getLetterText(),
 		topicsList: getTopicsList(),
+		templateId: 'GE1',
 	}
 	submitDetails(data)
 }
@@ -53,55 +56,29 @@ export const CheckoutForm: React.FC = () => {
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 
-	const [email, setEmail] = useState<string>(null)
-	const [name, setName] = useState<string>(null)
+	const { register, handleSubmit, errors } = useForm()
+
 	const [succeeded, setSucceeded] = useState(false)
 	const [error, setError] = useState(null)
 	const [processing, setProcessing] = useState(false)
-	const [disabled, setDisabled] = useState(true)
 	const stripe = useStripe()
 	const elements = useElements()
 
 	const history = useHistory()
-	const cardStyle = {
-		style: {
-			base: {
-				color: '#32325d',
-				fontFamily: 'Arial, sans-serif',
-				fontSmoothing: 'antialiased',
-				fontSize: '18px',
-				'::placeholder': {
-					color: '#32325d',
-				},
-			},
-			invalid: {
-				color: '#fa755a',
-				iconColor: '#fa755a',
-			},
-		},
-	}
-	const handleChange = async event => {
+	const handleChange = async (event): Promise<void> => {
 		// Listen for changes in the CardElement
 		// and display any errors as the customer types their card details
-		setDisabled(event.empty)
 		setError(event.error ? event.error.message : '')
 	}
 
-	const handleSubmit = async ev => {
-		ev.preventDefault()
-		if (!email) {
-			setError(`Email is required`)
-			return
-		}
-		if (!name) {
-			setError(`Name is required`)
-			return
-		}
+	const onSubmit = async (data): Promise<void> => {
 		setProcessing(true)
-		const clientSecret = await createWPLetterPaymentRequest(email)
+		const clientSecret = await createWPLetterPaymentRequest(data.email)
 		const payload = await stripe.confirmCardPayment(clientSecret, {
+			// justification: 3rd party API library
+			// eslint-disable-next-line @typescript-eslint/camelcase
 			payment_method: {
-				card: elements.getElement(CardElement),
+				card: elements.getElement(CardNumberElement),
 			},
 		})
 		if (payload.error) {
@@ -114,69 +91,132 @@ export const CheckoutForm: React.FC = () => {
 			history.push('/preview/checkout/payment/complete')
 			//make call to submit details
 			await makeCallToSubmitDetails({
-				name,
-				recipient: email,
+				name: data.name,
+				recipient: data.email,
 				sessionDocument,
 				selectedTopics,
 			})
 		}
 	}
 
-	const handleEmailChange = async ev => {
-		const email = ev.target.value
-		if (email) {
-			setEmail(email)
-			setError(null)
-		}
-	}
-
-	const handleNameChange = async ev => {
-		const name = ev.target.value
-		if (name) {
-			setName(name)
-			setError(null)
-		}
-	}
-
 	return (
-		<form id="payment-form" onSubmit={handleSubmit} className="space-y-6">
-			<div className="space-x-4" style={{ width: '100%' }}>
-				<TextField
-					style={{ width: '45%' }}
-					id="standard-basic"
-					label="Email"
-					inputProps={{ style: { fontSize: 18 } }}
-					InputLabelProps={{ style: { fontSize: 18 } }}
-					onChange={handleEmailChange}
-				/>
-				<TextField
-					style={{ width: '45%' }}
-					id="standard-basic"
-					label="Name"
-					inputProps={{ style: { fontSize: 18 } }}
-					InputLabelProps={{ style: { fontSize: 18 } }}
-					onChange={handleNameChange}
-				/>
-			</div>
-			<CardElement options={cardStyle} onChange={handleChange} />
-			<Button
-				disabled={processing || disabled || succeeded}
-				type="submit"
-				variant="contained"
-				size="large"
-				color="secondary"
+		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
+			<Typography className="self-center" variant="h5">
+				Checkout
+			</Typography>
+			<p>You are buying a legal letter template which you can adapt and send to your employer</p>
+			<TextField
+				name="email"
+				label="Email"
+				required
+				inputRef={register({ required: 'Email is required' })}
 				fullWidth
-			>
-				<>
-					{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
-					{!processing && <span>Make Payment for £5.00</span>}
-				</>
-			</Button>
-			{error && (
-				<div className="card-error" role="alert">
-					{error}
-				</div>
+				error={Boolean(errors.email)}
+				helperText={errors.email?.message}
+				variant="filled"
+			/>
+			<TextField
+				name="name"
+				label="Name on card"
+				required
+				inputRef={register({ required: 'Name on card is required' })}
+				error={Boolean(errors.name)}
+				helperText={errors.name?.message}
+				fullWidth
+				variant="filled"
+			/>
+			<TextField
+				label="Credit Card Number"
+				name="ccnumber"
+				required
+				fullWidth
+				InputProps={{
+					inputComponent: StripeInput,
+					inputProps: {
+						component: CardNumberElement,
+					},
+				}}
+				onChange={handleChange}
+				InputLabelProps={{ shrink: true }}
+				variant="filled"
+			/>
+
+			<Grid container spacing={2}>
+				<Grid item xs={6}>
+					<TextField
+						label="Expiration Date"
+						name="ccexp"
+						required
+						fullWidth
+						InputProps={{
+							inputProps: {
+								component: CardExpiryElement,
+							},
+							inputComponent: StripeInput,
+						}}
+						onChange={handleChange}
+						InputLabelProps={{ shrink: true }}
+						variant="filled"
+					/>
+				</Grid>
+				<Grid item xs={6}>
+					<TextField
+						label="CVC"
+						name="cvc"
+						required
+						fullWidth
+						InputProps={{
+							inputProps: {
+								component: CardCvcElement,
+							},
+							inputComponent: StripeInput,
+						}}
+						onChange={handleChange}
+						InputLabelProps={{ shrink: true }}
+						variant="filled"
+					/>
+				</Grid>
+			</Grid>
+			{error && <FormHelperText error={Boolean(error)}>{error}</FormHelperText>}
+			<Grid>
+				<Checkbox
+					name="termsAccepted"
+					color="primary"
+					inputRef={register({ required: 'You must accept the terms and conditions' })}
+				/>
+				<span>
+					Agree to our{' '}
+					<Link to="/terms" className="text-ms-orange" target="_blank">
+						Terms and Conditions
+					</Link>
+				</span>
+			</Grid>
+			{errors.termsAccepted && (
+				<FormHelperText error={Boolean(errors.termsAccepted)}>{errors.termsAccepted?.message}</FormHelperText>
 			)}
+
+			<Grid container dir="row" spacing={2}>
+				<Grid item xs={6}>
+					<Button
+						disabled={processing || succeeded}
+						type="submit"
+						variant="contained"
+						size="large"
+						color="secondary"
+						fullWidth
+					>
+						<>
+							{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
+							{!processing && <span>Buy now</span>}
+						</>
+					</Button>
+				</Grid>
+				<Grid item className="self-end">
+					<Typography variant="h6" className="underline">
+						for just £5
+					</Typography>
+				</Grid>
+			</Grid>
 		</form>
 	)
 }

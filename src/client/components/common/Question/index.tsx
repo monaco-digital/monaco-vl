@@ -9,6 +9,7 @@ import Title from '../../Title'
 import Button from '../../Button'
 import classNames from 'classnames'
 import ReactGA from 'react-ga'
+import PaymentIcon from '@material-ui/icons/Payment'
 
 interface Props {
 	question: QuestionT
@@ -16,11 +17,12 @@ interface Props {
 const Question: React.FC<Props> = ({ question }) => {
 	const dispatch = useDispatch()
 
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
 
-	const defaultLimit = 8
+	const defaultLimit = 14
 
 	const isSingle = question.maxAnswers === 1
 
@@ -48,9 +50,20 @@ const Question: React.FC<Props> = ({ question }) => {
 	}
 
 	const answers = optionsToShow.map((option, i) => {
-		const { text, topicId } = option
+		const { id: questionId } = question
+		let { text } = option
+		const { topicId } = option
+
+		if (isMonetizationEnabled && questionId === 1) {
+			if (topicId === '_LET') {
+				text = text + ' - £5'
+			} else {
+				text = text + ' - £FREE'
+			}
+		}
+
 		return (
-			<div key={`value ${i}`} className="topic">
+			<div key={`value ${i}`} className="topic inline-flex">
 				<input
 					type={answerStyle}
 					id={topicId}
@@ -94,10 +107,21 @@ the prerequisites */
 const filterValidOptions = (options, selectedTopicIds) => {
 	const toShow = options.filter(option => {
 		const prerequisites = option.prerequisites || []
-		const passesPrerequisites = prerequisites.length === 0 || prerequisites.every(prq => selectedTopicIds.includes(prq))
-		return passesPrerequisites
+		return passesPrerequisites(prerequisites, selectedTopicIds)
 	})
 	return toShow
+}
+
+const passesPrerequisites = (prerequisites, selectedTopicIds) => {
+	if (prerequisites.length === 0) return true
+	return prerequisites.every(prerequisite => {
+		// Allow 'negative' prerequisites
+		if (/^\!/.test(prerequisite)) {
+			return !selectedTopicIds.includes(prerequisite.replace(/^\!/, ''))
+		} else {
+			return selectedTopicIds.includes(prerequisite)
+		}
+	})
 }
 
 const recalculateSelectedTopics = (

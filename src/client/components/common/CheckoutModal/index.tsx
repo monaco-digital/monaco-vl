@@ -2,13 +2,12 @@ import React, { FC } from 'react'
 import ReactModal from 'react-modal'
 import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom'
 import EmailModal from '../EmailModal'
-import Button from '../../Button'
 import Upsell from '../Payment/Upsell'
 import PaymentComplete from '../Payment/PaymentComplete'
 import EmailComplete from '../EmailModal/EmailComplete'
 import IconButton from '@material-ui/core/IconButton'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
-import { PaymentForm } from '../Payment/PaymenForm'
+import { PaymentForm } from '../Payment/PaymentForm'
 
 const customStyles = {
 	content: {
