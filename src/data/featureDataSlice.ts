@@ -13,7 +13,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const slice = createSlice({
 	name: 'feature',
 	initialState: {
-		enableMonetization: false,
+		enableMonetization: true,
 	},
 	reducers: {
 		enableMonetization: (state): void => {
