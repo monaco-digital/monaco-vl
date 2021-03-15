@@ -1,15 +1,14 @@
 import React, { FC } from 'react'
 import { Button, Grid, Typography } from '@material-ui/core'
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward'
-import { useHistory, Link } from 'react-router-dom'
-import logo from '../../../assets/img/vl-logo-2.png'
+import { useHistory } from 'react-router-dom'
+import monacoLogo from '../../../assets/img/ms-logo-blue-black.svg'
 
 const Upsell: FC = () => {
 	const history = useHistory()
 
 	return (
 		<div className="max-w-xs space-y-5">
-			<img className="w-48" alt="Virtual lawyer" src={logo} />
+			<img className="w-48" alt="Virtual lawyer" src={monacoLogo} />
 
 			<Typography variant="h5">Your legal letter</Typography>
 
@@ -42,16 +41,6 @@ const Upsell: FC = () => {
 					</Typography>
 				</Grid>
 			</Grid>
-
-			<Link
-				onClick={() => {
-					history.push('/preview/checkout/email')
-				}}
-			>
-				<Typography variant="body2">
-					No thanks I would just like my free advice <ArrowForwardIcon />
-				</Typography>
-			</Link>
 		</div>
 	)
 }
