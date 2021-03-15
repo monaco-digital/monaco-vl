@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react'
-import logo from '../../../assets/img/vl-logo-2.png'
+import logo1 from '../../../assets/img/ms-logo-blue-black.svg'
+import logo2 from '../../../assets/img/vl-powered-by-logo-01.svg'
 import { NavLink, useLocation } from 'react-router-dom'
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
 
@@ -19,7 +20,10 @@ const Header: FC = () => {
 	return (
 		<div className="header">
 			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
-				<img alt="Virtual lawyer" src={logo} />
+				<img className="header__logo-1" alt="Virtual lawyer" src={logo1} />
+			</a>
+			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank">
+				<img className="header__logo-2" alt="Virtual lawyer" src={logo2} />
 			</a>
 			<div className="header__breadcrumb">
 				<NavLink

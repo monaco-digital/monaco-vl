@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import Button from '../components/Button'
-import mainimage from '../assets/img/homepage-image-1.png'
+import mainimage from '../assets/img/vl-labels-illustration.svg'
 
 export const GetStarted: React.FC = () => {
 	const history = useHistory()
@@ -11,26 +11,23 @@ export const GetStarted: React.FC = () => {
 	}
 
 	return (
-		<div className="get-started">
-			<h1>
-				Empower yourself
-				<br /> with Virtual Lawyer
-			</h1>
-
-			<div className="section">
-				<div className="lhs-panel">
-					<p>
-						<b>Discover your rights </b>and build the perfect legal document - either to lodge a formal grievance,
-						negotiate an exit package, or bring a claim at an employment tribunal
-					</p>
-
-					<h3>Find out whether or not you have a case against your employer</h3>
-
+		<div className="get-started space-y-3 w-full">
+			<div className="md:flex md:flex-shrink">
+				<div className="md:flex md:flex-row space-x-20">
 					<div>
-						<Button type="start" text="Get started" rounded fn={goToTopics} />
+						<h1>Empowering employees</h1>
+						<h3>Get free advice and build legal letters when badly treated at work</h3>
+						<div className="get-started__button-desktop">
+							<Button type="start" text="Get started" rounded fn={goToTopics} />
+						</div>
+					</div>
+					<div className="get-started__image">
+						<img className="object-cover" src={mainimage} />
 					</div>
 				</div>
-				<img style={{ height: '400px' }} src={mainimage} />
+				<div className="get-started__button-mobile flex justify-center">
+					<Button type="start" text="Get started" rounded fn={goToTopics} />
+				</div>
 			</div>
 		</div>
 	)

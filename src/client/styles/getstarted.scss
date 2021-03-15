@@ -1,53 +1,79 @@
 .get-started {
-	.get-started__step {
-		@apply .flex .items-center;
+	@apply flex flex-col justify-center;
 
-		.circle__icon {
-			@apply flex-shrink-0 .rounded-full .h-12 .m-4 .w-12 .flex .items-center .justify-center .bg-ms-blue .text-white .font-semibold;
+	@screen md {
+		@apply text-left;
+	}
+
+	.get-started__button-desktop {
+		@apply invisible;
+		@screen md {
+			@apply visible;
+		}
+	}
+
+	.get-started__button-mobile {
+		@screen md {
+			@apply invisible;
+		}
+	}
+
+	.get-started__image {
+		width: 350px;
+		margin: 0 2rem 0 0.8rem;
+		@screen md {
+			padding-top: 50px;
+			width: 700px;
 		}
 	}
 
 	h1 {
-		font-size: 2.5rem;
-		line-height: 1;
+		font-family: Montserrat;
+		margin: 10px 1.5rem 24.3px;
+		font-size: 40px;
+		font-weight: bold;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.16;
+		letter-spacing: -2.7px;
+		text-align: center;
 		color: #383838;
-		font-weight: 800;
-		font-family: 'Montserrat', sans-serif;
-		margin-top: 15px;
-		@screen sm {
-			font-size: 3rem;
-			margin-top: 20px;
-		}
-		@screen lg {
-			font-size: 3.5rem;
-			margin-top: 30px;
+
+		@screen md {
+			width: 560px;
+			height: 143px;
+			font-family: Montserrat;
+			margin: 10px 1.5rem 59.4px 0px;
+			font-size: 60px;
+			font-stretch: normal;
+			line-height: 1.17;
+			letter-spacing: -3.6px;
+			text-align: left;
 		}
 	}
 
-	.section {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
+	h3 {
+		font-family: Montserrat;
+		margin: 24.3px 2rem 18.6px 2.5rem;
+		font-size: 17px;
+		font-weight: 500;
+		font-stretch: normal;
+		font-style: normal;
+		line-height: 1.47;
+		letter-spacing: -0.85px;
+		text-align: center;
+		color: #383838;
 
-		.lhs-panel {
-			margin-top: 20px;
-			padding-right: 2rem;
-			width: 100%;
-			color: #a7abad;
-			@screen sm {
-				width: 50%;
-			}
-		}
-
-		h3 {
-			margin-top: 40px;
-			padding-right: 5rem;
-			font-size: 1.2rem;
-			margin-bottom: 2rem;
-			color: #383838;
-			@screen lg {
-				margin-top: 80px;
-			}
+		@screen md {
+			width: 391px;
+			height: 71.2px;
+			font-family: Montserrat;
+			margin: 59.4px 1.5rem 17.3px 0px;
+			font-size: 21px;
+			font-stretch: normal;
+			line-height: 1.24;
+			letter-spacing: -1.05px;
+			text-align: left;
 		}
 	}
 }
