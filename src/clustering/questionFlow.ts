@@ -4,22 +4,22 @@ const allQuestions: Question[] = [
 	{
 		id: 1,
 		prerequisites: [],
-		text: 'How can we help you',
-		subtext: 'Do any of the following apply to you',
+		text: 'What would you like?',
+		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
 		options: [
 			{
-				text: 'I just want some advice',
+				text: 'Get advice',
 				topicId: '_ADV',
 			},
 			{
-				text: 'My employer has responded to my initial letter',
+				text: 'Respond to a legal letter',
 				topicId: '_RES',
 			},
 			{
-				text: 'I want to write to my employer',
+				text: 'Write a legal letter',
 				topicId: '_LET',
 			},
 		],
