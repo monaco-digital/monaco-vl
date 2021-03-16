@@ -4,7 +4,10 @@ import { Elements } from '@stripe/react-stripe-js'
 import config from '../../../../config'
 const promise = loadStripe(config.STRIPE_PUBLIC_KEY)
 
-export const StripeElement: React.FC = props => {
-	const { children } = props
+interface Props {
+	children: React.ReactNode
+}
+
+export const StripeElement: React.FC<Props> = ({ children }: Props) => {
 	return <Elements stripe={promise}>{children}</Elements>
 }

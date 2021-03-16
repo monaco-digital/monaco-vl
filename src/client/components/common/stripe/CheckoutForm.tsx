@@ -75,8 +75,6 @@ export const CheckoutForm: React.FC = () => {
 		setProcessing(true)
 		const clientSecret = await createWPLetterPaymentRequest(data.email)
 		const payload = await stripe.confirmCardPayment(clientSecret, {
-			// justification: 3rd party API library
-			// eslint-disable-next-line @typescript-eslint/camelcase
 			payment_method: {
 				card: elements.getElement(CardNumberElement),
 			},

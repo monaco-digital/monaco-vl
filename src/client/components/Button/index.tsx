@@ -18,7 +18,7 @@ export const Button: React.FC<Props> = ({
 	fn,
 	extraClasses = '',
 	rounded,
-}) => {
+}: Props) => {
 	const buttonClasses = classNames(`${extraClasses} button`, {
 		'button--has-short-text': shortText,
 		[`button--${type}`]: type,

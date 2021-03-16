@@ -10,7 +10,7 @@ type VLCardProps = {
 	blur?: boolean
 }
 
-const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }) => {
+const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VLCardProps) => {
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
 	})

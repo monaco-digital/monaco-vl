@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useRef, useImperativeHandle } from 'react'
 
 // Copied from https://github.com/angeloron/react-material-ui-stripe-payment-form/

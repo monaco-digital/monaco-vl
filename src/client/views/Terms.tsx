@@ -31,11 +31,11 @@ export const Terms: React.FC = () => {
 			<h2>Other</h2>
 			<p>
 				Our complaints policy is&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				&nbsp;and our fee structures are&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/legal-representation/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/legal-representation/" target="_blank" rel="noopener  noreferrer">
 					here
 				</a>
 				. We always welcome feedback too, please email&nbsp;

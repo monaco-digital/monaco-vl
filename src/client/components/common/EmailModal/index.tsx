@@ -111,7 +111,7 @@ const EmailModal: FC = () => {
 						<br /> TO ME
 					</h1>
 				</div>
-				<div>Enter your name and email address below and we'll send this to you for free</div>
+				<div>Enter your name and email address below and we&apos;ll send this to you for free</div>
 
 				<TextField
 					id="name"

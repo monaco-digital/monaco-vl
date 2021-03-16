@@ -1,14 +1,16 @@
 import { DocumentParagraphBulletPoints, BulletPoints } from '@monaco-digital/vl-types/lib/main'
-import React, { FC, useState } from 'react'
+import React, { FC } from 'react'
 import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice'
 import { useDispatch } from 'react-redux'
 import { nanoid } from 'nanoid'
 import { TextareaAutosize } from '@material-ui/core'
 
-export const PreviewBulletPoints: FC<{
+interface Props {
 	templateBulletPoints: BulletPoints
 	documentBulletPoints: DocumentParagraphBulletPoints
-}> = ({ templateBulletPoints, documentBulletPoints }) => {
+}
+
+export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentBulletPoints }: Props) => {
 	const dispatch = useDispatch()
 
 	const values = {}
