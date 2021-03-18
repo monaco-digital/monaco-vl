@@ -16,6 +16,7 @@ import {
 import _ from 'lodash'
 import { createDocument, createDocumentParagraph } from '../utils/document'
 import { orderSuggestedParagraphs } from '../utils/paragraphOrdering'
+import { UserData } from '../types/UserData'
 
 const _updateSessionParagraph = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -43,6 +44,7 @@ export const slice = createSlice({
 		answeredQuestions: [] as Question[],
 		selectedTemplate: null as Template,
 		sessionDocument: null as SessionDocument,
+		userData: {} as UserData,
 	},
 	reducers: {
 		selectParagraphs: (state, action) => {
@@ -91,6 +93,13 @@ export const slice = createSlice({
 		removeLastAnsweredQuestion: (state, action) => {
 			state.answeredQuestions.pop()
 		},
+		updateUserData: (state, action) => {
+			const updatedUserData = action.payload
+			state.userData = {
+				...state.userData,
+				...updatedUserData,
+			}
+		},
 	},
 })
 
@@ -136,6 +145,7 @@ export const {
 	updateSessionParagraph,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
+	updateUserData,
 } = slice.actions
 
 export default slice.reducer

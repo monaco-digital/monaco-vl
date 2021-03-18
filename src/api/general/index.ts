@@ -1,14 +1,8 @@
 import axios from 'axios'
 import config from '../../config'
+import { UserData } from '../../types/UserData'
 
-export const submitDetails = async (data: {
-	adviceText?: string
-	letterText?: string
-	topicsList?: string
-	name?: string
-	recipient?: string
-	contactMe?: boolean
-}) => {
+export const submitDetails = async (data: UserData) => {
 	const result = await axios({
 		method: 'POST',
 		url: config.LAMBDA_URL,

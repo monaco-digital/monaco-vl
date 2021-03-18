@@ -100,7 +100,7 @@ export const CheckoutForm: React.FC = () => {
 	}
 
 	return (
-		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
+		<form id="payment-form" noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
 			<Typography className="self-center" variant="h5">
 				Checkout
 			</Typography>

@@ -8,6 +8,7 @@ import EmailComplete from '../EmailModal/EmailComplete'
 import IconButton from '@material-ui/core/IconButton'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import { PaymentForm } from '../Payment/PaymentForm'
+import { CDF1 } from '../UserData/CDF1'
 
 const customStyles = {
 	content: {
@@ -42,6 +43,9 @@ const CheckoutModal: FC = () => {
 					</Route>
 					<Route path="/preview/checkout/email">
 						<EmailModal />
+					</Route>
+					<Route path="/preview/checkout/cdf1">
+						<CDF1 />
 					</Route>
 					<Route path="/preview/checkout/payment/complete">
 						<PaymentComplete />

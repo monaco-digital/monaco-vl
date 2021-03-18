@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react'
 import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import AppState from '../../../../data/AppState'
 import { SessionDocument } from '../../../../types/SessionDocument'
@@ -10,6 +10,7 @@ import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import axios from 'axios'
 import downloadIcon from '../../../assets/img/download-icon.png'
 import config from '../../../../config'
+import { updateUserData } from '../../../../data/sessionDataSlice'
 
 interface Data {
 	adviceText: string
@@ -24,6 +25,7 @@ interface Data {
 const EmailModal: FC = () => {
 	const history = useHistory()
 	const lambdaUrl = config.LAMBDA_URL
+	const dispatch = useDispatch()
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -91,6 +93,8 @@ const EmailModal: FC = () => {
 		data.recipient = recipient
 		data.contactMe = contactMe
 
+		dispatch(updateUserData({ name: data.name, recipient: data.recipient, contactMe: data.contactMe }))
+
 		axios({
 			method: 'POST',
 			url: lambdaUrl,
@@ -145,7 +149,11 @@ const EmailModal: FC = () => {
 						color="secondary"
 						onClick={() => {
 							submitDetails()
-							history.push('/preview/checkout/email/complete')
+							if (contactMe) {
+								history.push('/preview/checkout/cdf1')
+							} else {
+								history.push('/preview/checkout/email/complete')
+							}
 						}}
 					>
 						Send now
