@@ -26,15 +26,17 @@ jobs:
           command: |
             CI=false && npm run build
       - run:
-          command: npx eslint ./src --ext .js,.ts,.jsx,.tsx --format junit --output-file reports/eslint.xml
+          command: npx eslint ./src --ext .js,.ts,.jsx,.tsx
           name: ESlint
-      - store_test_results:
-          path: reports
-      - store_artifacts:
-          path: reports
       - run:
           name: 'Run tests'
-          command: npm test -- --collectCoverage=true
+          command: npm test -- --collectCoverage=true --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports/junit
       - store_artifacts:
           path: coverage
 
