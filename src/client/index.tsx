@@ -1,10 +1,10 @@
-import React from 'react'
-import { Helmet, HelmetProvider } from 'react-helmet-async'
-import { Provider } from 'react-redux'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import store from '../data/store'
-import '../client/styles/main.output.css'
-import Main from './views'
+import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import store from '../data/store';
+import './styles/main.output.css';
+import Main from './views';
 
 // For 'reasons' some screens (Payment and Email Modals) are using Material UI while everything else uses Tailwind
 // A change off of tailwind is likely in the future, Material UI is not confirmed though.
@@ -19,17 +19,16 @@ const theme = createMuiTheme({
 			contrastText: '#fff',
 		},
 	},
-})
+});
 
-const MobileApp = () => {
-	return (
-		<Provider store={store}>
-			<ThemeProvider theme={theme}>
-				<HelmetProvider>
-					<Helmet>
-						<title>Virtual Lawyer</title>
-						<script>
-							{`(function(h,o,t,j,a,r){
+const MobileApp = () => (
+	<Provider store={store}>
+		<ThemeProvider theme={theme}>
+			<HelmetProvider>
+				<Helmet>
+					<title>Virtual Lawyer</title>
+					<script>
+						{`(function(h,o,t,j,a,r){
 								h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
 								h._hjSettings={hjid:2131691,hjsv:6};
 								a=o.getElementsByTagName('head')[0];
@@ -37,14 +36,13 @@ const MobileApp = () => {
 								r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
 								a.appendChild(r);
 							})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
-						</script>
-						<script defer src="https://kit.fontawesome.com/5bf6b27f09.js" crossOrigin="anonymous" />
-					</Helmet>
-					<Main />
-				</HelmetProvider>
-			</ThemeProvider>
-		</Provider>
-	)
-}
+					</script>
+					<script defer src="https://kit.fontawesome.com/5bf6b27f09.js" crossOrigin="anonymous" />
+				</Helmet>
+				<Main />
+			</HelmetProvider>
+		</ThemeProvider>
+	</Provider>
+);
 
-export default MobileApp
+export default MobileApp;

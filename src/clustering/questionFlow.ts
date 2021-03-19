@@ -1,4 +1,4 @@
-import { Question } from '../types/Questions'
+import { Question } from '../types/Questions';
 
 const allQuestions: Question[] = [
 	{
@@ -370,31 +370,29 @@ const allQuestions: Question[] = [
 			},
 		],
 	},
-]
+];
 
-export const getFirstQuestion = () => {
-	return allQuestions[0]
-}
+export const getFirstQuestion = () => allQuestions[0];
 
 export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id)
-	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+	const answeredQuestionsIds = answeredQuestions.map(q => q.id);
+	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null;
 
-	if (lastAnsweredQuestion?.isFinal) return null
+	if (lastAnsweredQuestion?.isFinal) return null;
 
-	let index = 0
-	let nextQuestion = null
+	let index = 0;
+	let nextQuestion = null;
 	while (!nextQuestion && index < allQuestions.length) {
-		const prerequisites = allQuestions[index].prerequisites || []
-		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
-		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
+		const prerequisites = allQuestions[index].prerequisites || [];
+		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id));
+		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id);
 
 		if (prerequisitesMet && !answeredAlready) {
-			nextQuestion = allQuestions[index]
+			nextQuestion = allQuestions[index];
 		}
-		index++
+		index++;
 	}
 
-	return nextQuestion
-}
+	return nextQuestion;
+};

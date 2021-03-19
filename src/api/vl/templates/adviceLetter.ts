@@ -1,5 +1,5 @@
-import { Template, TemplateSection, TemplateParagraph, StaticText } from '@monaco-digital/vl-types/lib/main'
-import { nanoid } from 'nanoid'
+import { Template, TemplateSection, TemplateParagraph, StaticText } from '@monaco-digital/vl-types/lib/main';
+import { nanoid } from 'nanoid';
 
 export const adviceLetter: Template = {
 	id: nanoid(),
@@ -65,4 +65,4 @@ export const adviceLetter: Template = {
 			templateComponents: [],
 		} as TemplateSection,
 	],
-} as Template
+} as Template;

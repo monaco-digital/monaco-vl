@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 
 export const Help: React.FC = () => {
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Opened help page',
-		})
-	}, [])
+		});
+	}, []);
 
 	return (
 		<div className="helpsection" style={{ maxWidth: '900px' }}>
@@ -246,7 +246,7 @@ export const Help: React.FC = () => {
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Help
+export default Help;

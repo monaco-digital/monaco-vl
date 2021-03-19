@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import { Button, Grid, Typography } from '@material-ui/core'
-import { useHistory } from 'react-router-dom'
-import monacoLogo from '../../../assets/img/ms-logo-blue-black.svg'
+import React, { FC } from 'react';
+import { Button, Grid, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
+import monacoLogo from '../../../assets/img/ms-logo-blue-black.svg';
 
 const Upsell: FC = () => {
-	const history = useHistory()
+	const history = useHistory();
 
 	return (
 		<div className="max-w-xs space-y-5">
@@ -29,7 +29,7 @@ const Upsell: FC = () => {
 						color="secondary"
 						fullWidth
 						onClick={() => {
-							history.push('/preview/checkout/payment')
+							history.push('/preview/checkout/payment');
 						}}
 					>
 						Buy now
@@ -42,7 +42,7 @@ const Upsell: FC = () => {
 				</Grid>
 			</Grid>
 		</div>
-	)
-}
+	);
+};
 
-export default Upsell
+export default Upsell;

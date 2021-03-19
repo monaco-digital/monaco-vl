@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 const template = gql`
 	fragment FTemplate on Template {
@@ -26,7 +26,7 @@ const template = gql`
 			...FMeta
 		}
 	}
-`
+`;
 
 const templateComponent = gql`
 	fragment FTemplateComponent on TemplateComponent {
@@ -38,20 +38,20 @@ const templateComponent = gql`
 			...FMeta
 		}
 	}
-`
+`;
 
 const templateImage = gql`
 	fragment FTemplateImage on TemplateImage {
 		...FTemplateComponent
 		url
 	}
-`
+`;
 const templateSignature = gql`
 	fragment FTemplateSignature on TemplateSignature {
 		...FTemplateComponent
 		html
 	}
-`
+`;
 
 const templateHeader = gql`
 	fragment FTemplateHeader on TemplateHeader {
@@ -60,7 +60,7 @@ const templateHeader = gql`
 		logo
 		address
 	}
-`
+`;
 
 const templateSection = gql`
 	fragment FTemplateSection on TemplateSection {
@@ -82,7 +82,7 @@ const templateSection = gql`
 			}
 		}
 	}
-`
+`;
 
 const templateParagraph = gql`
 	fragment FTemplateParagraph on TemplateParagraph {
@@ -90,4 +90,4 @@ const templateParagraph = gql`
 		paragraphId
 		paragraph
 	}
-`
+`;

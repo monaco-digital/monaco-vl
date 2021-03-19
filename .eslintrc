@@ -1,25 +1,22 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "parserOptions" : {
+    "project": "./tsconfig.json"
+  },
   "plugins": [
     "@typescript-eslint"
   ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
+    "airbnb-typescript",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/recommended"
   ],
   "rules": {
-    "semi": "off",
-    "@typescript-eslint/semi": "off",
-    "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/explicit-function-return-type": [
-      "warn",
-      {
-        "allowExpressions": true
-      }
-    ]
+    "@typescript-eslint/indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
+    "no-tabs": 0,
+    "react/jsx-indent": [2, "tab"],
+    "react/jsx-indent-props": [2, "tab"],
 
   }
 }

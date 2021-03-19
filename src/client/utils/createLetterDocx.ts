@@ -1,7 +1,7 @@
-import { Document, Packer, Paragraph, HeadingLevel, AlignmentType } from 'docx'
+import { Document, Packer, Paragraph, HeadingLevel, AlignmentType } from 'docx';
 
 const createLetterDocx = async (letter, chosenParagraphs) => {
-	const doc = new Document()
+	const doc = new Document();
 	const title = new Paragraph({
 		text: letter.title,
 		heading: HeadingLevel.TITLE,
@@ -9,7 +9,7 @@ const createLetterDocx = async (letter, chosenParagraphs) => {
 		spacing: {
 			after: 400,
 		},
-	})
+	});
 	const paragraphs = chosenParagraphs.map(
 		({ paragraph }) =>
 			new Paragraph({
@@ -18,19 +18,19 @@ const createLetterDocx = async (letter, chosenParagraphs) => {
 					after: 200,
 				},
 			})
-	)
+	);
 
 	doc.addSection({
 		children: [title, ...paragraphs],
-	})
+	});
 
 	try {
-		const docBlob = await Packer.toBlob(doc)
+		const docBlob = await Packer.toBlob(doc);
 
-		return docBlob
+		return docBlob;
 	} catch (error) {
-		throw Error('Error in generating doc file')
+		throw Error('Error in generating doc file');
 	}
-}
+};
 
-export default createLetterDocx
+export default createLetterDocx;

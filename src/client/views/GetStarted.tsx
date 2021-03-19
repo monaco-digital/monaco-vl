@@ -1,14 +1,14 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
-import Button from '../components/Button'
-import mainimage from '../assets/img/vl-labels-illustration.svg'
+import React from 'react';
+import { useHistory } from 'react-router-dom';
+import Button from '../components/Button';
+import mainimage from '../assets/img/vl-labels-illustration.svg';
 
 export const GetStarted: React.FC = () => {
-	const history = useHistory()
+	const history = useHistory();
 
 	const goToTopics = () => {
-		history.push('/questions')
-	}
+		history.push('/questions');
+	};
 
 	return (
 		<div className="get-started space-y-3 w-full">
@@ -30,7 +30,7 @@ export const GetStarted: React.FC = () => {
 				</div>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default GetStarted
+export default GetStarted;

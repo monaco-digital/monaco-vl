@@ -1,13 +1,13 @@
 export interface Paragraph {
-	id: string
-	paragraph: string
-	summary: string
-	verticalHeight: number
-	topic?: string
-	topicsOneOf: Topic[]
-	topicsAllOf: Topic[]
-	topicsNoneOf: Topic[]
-	bold?: boolean
+	id: string;
+	paragraph: string;
+	summary: string;
+	verticalHeight: number;
+	topic?: string;
+	topicsOneOf: Topic[];
+	topicsAllOf: Topic[];
+	topicsNoneOf: Topic[];
+	bold?: boolean;
 }
 
 export const ParagraphTopics = {
@@ -45,7 +45,7 @@ export const ParagraphTopics = {
 	VEGAN: 'VEGAN',
 	ALL: 'ALL',
 	LESS_THAN_2_YEARS: 'LESS_THAN_2_YEARS',
-}
+};
 
 export type Topic =
 	| 'E'
@@ -108,16 +108,16 @@ export type Topic =
 	| 'RR'
 	| '_UP'
 	| '_UDy'
-	| '_US'
+	| '_US';
 
 export interface CaseTopic {
-	id?: Topic
-	name: string
-	text: string
-	questionText?: string
-	parentTopics?: string[]
-	subtopics?: string[]
-	type: string
+	id?: Topic;
+	name: string;
+	text: string;
+	questionText?: string;
+	parentTopics?: string[];
+	subtopics?: string[];
+	type: string;
 }
 
 export const Topics: CaseTopic[] = [
@@ -583,7 +583,7 @@ export const Topics: CaseTopic[] = [
 		text: 'Poor response to sickness issues',
 		type: 'employment_situation',
 	},
-]
+];
 
 export const ParagraphTopicMapping = {
 	EMPLOYED: 'E',
@@ -620,14 +620,14 @@ export const ParagraphTopicMapping = {
 	VEGAN: 'DV',
 	ALL: 'All',
 	LESS_THAN_2_YEARS: '2y',
-}
+};
 export const TopicAlgebraOperators = {
 	AND: '+',
 	OR: ',',
 	OPEN_ENCLOSURE: '(',
 	CLOSE_ENCLOSURE: ')',
 	NOT: '!',
-}
+};
 
 export const DSubTopics = [
 	ParagraphTopicMapping.PREGNANCY,
@@ -643,23 +643,23 @@ export const DSubTopics = [
 	ParagraphTopicMapping.POLITICAL_PHILOSOPHICAL,
 	ParagraphTopicMapping.MENTAL_HEALTH_DISCRIMINATION,
 	ParagraphTopicMapping.VEGAN,
-]
+];
 
 export interface Question {
-	id: number
-	text: string
-	subtext: string
-	prerequisites?: string[]
-	options: Answer[]
-	answers?: Answer[]
-	minAnswers: number
-	maxAnswers: number
+	id: number;
+	text: string;
+	subtext: string;
+	prerequisites?: string[];
+	options: Answer[];
+	answers?: Answer[];
+	minAnswers: number;
+	maxAnswers: number;
 }
 
 export interface Answer {
-	text: string
-	topicId: string
-	prerequisites?: string[]
+	text: string;
+	topicId: string;
+	prerequisites?: string[];
 }
 
-export type NavView = 'get-started' | 'key-facts' | 'preview-letter' | 'letter-builder' | 'help'
+export type NavView = 'get-started' | 'key-facts' | 'preview-letter' | 'letter-builder' | 'help';

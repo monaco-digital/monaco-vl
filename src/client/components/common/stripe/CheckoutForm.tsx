@@ -1,43 +1,43 @@
-import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
+import { useForm } from 'react-hook-form';
 
-import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
-import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core'
-import { submitDetails } from '../../../../api/general'
-import { useSelector } from 'react-redux'
-import AppState from '../../../../data/AppState'
-import { SessionDocument } from '../../../../types/SessionDocument'
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
-import { getDocumentText } from '../../../../utils/renderDocument'
-import StripeInput from './StripeInput'
+import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe';
+import { submitDetails } from '../../../../api/general';
+import AppState from '../../../../data/AppState';
+import { SessionDocument } from '../../../../types/SessionDocument';
+import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
+import { getDocumentText } from '../../../../utils/renderDocument';
+import StripeInput from './StripeInput';
 
 const makeCallToSubmitDetails = async (input: {
-	name: string
-	recipient: string
-	sessionDocument: any
-	selectedTopics: any
+	name: string;
+	recipient: string;
+	sessionDocument: any;
+	selectedTopics: any;
 }): Promise<void> => {
-	const { name, recipient, sessionDocument, selectedTopics } = input
+	const { name, recipient, sessionDocument, selectedTopics } = input;
 
-	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
+	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics);
 
 	const getLetterText = (): string => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
-		return letterText
-	}
+		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+		return letterText;
+	};
 
 	const getTopicsList = (): string => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ')
-		return topicsList
-	}
+		const topicsList = selectedTopics.map(t => t.text).join(', ');
+		return topicsList;
+	};
 
 	const getAdviceText = (): string => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
-		return adviceText
-	}
+		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
+		return adviceText;
+	};
 
 	const data = {
 		name,
@@ -46,56 +46,56 @@ const makeCallToSubmitDetails = async (input: {
 		letterText: getLetterText(),
 		topicsList: getTopicsList(),
 		templateId: 'GE1',
-	}
-	submitDetails(data)
-}
+	};
+	submitDetails(data);
+};
 
 export const CheckoutForm: React.FC = () => {
-	//todo - take out of here - data for submit details call
+	// todo - take out of here - data for submit details call
 
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 
-	const { register, handleSubmit, errors } = useForm()
+	const { register, handleSubmit, errors } = useForm();
 
-	const [succeeded, setSucceeded] = useState(false)
-	const [error, setError] = useState(null)
-	const [processing, setProcessing] = useState(false)
-	const stripe = useStripe()
-	const elements = useElements()
+	const [succeeded, setSucceeded] = useState(false);
+	const [error, setError] = useState(null);
+	const [processing, setProcessing] = useState(false);
+	const stripe = useStripe();
+	const elements = useElements();
 
-	const history = useHistory()
+	const history = useHistory();
 	const handleChange = async (event): Promise<void> => {
 		// Listen for changes in the CardElement
 		// and display any errors as the customer types their card details
-		setError(event.error ? event.error.message : '')
-	}
+		setError(event.error ? event.error.message : '');
+	};
 
 	const onSubmit = async (data): Promise<void> => {
-		setProcessing(true)
-		const clientSecret = await createWPLetterPaymentRequest(data.email)
+		setProcessing(true);
+		const clientSecret = await createWPLetterPaymentRequest(data.email);
 		const payload = await stripe.confirmCardPayment(clientSecret, {
 			payment_method: {
 				card: elements.getElement(CardNumberElement),
 			},
-		})
+		});
 		if (payload.error) {
-			setError(`Payment failed ${payload.error.message}`)
-			setProcessing(false)
+			setError(`Payment failed ${payload.error.message}`);
+			setProcessing(false);
 		} else {
-			setError(null)
-			setProcessing(false)
-			setSucceeded(true)
-			history.push('/preview/checkout/payment/complete')
-			//make call to submit details
+			setError(null);
+			setProcessing(false);
+			setSucceeded(true);
+			history.push('/preview/checkout/payment/complete');
+			// make call to submit details
 			await makeCallToSubmitDetails({
 				name: data.name,
 				recipient: data.email,
 				sessionDocument,
 				selectedTopics,
-			})
+			});
 		}
-	}
+	};
 
 	return (
 		<form id="payment-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
@@ -216,5 +216,5 @@ export const CheckoutForm: React.FC = () => {
 				</Grid>
 			</Grid>
 		</form>
-	)
-}
+	);
+};

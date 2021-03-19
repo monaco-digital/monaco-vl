@@ -5,8 +5,8 @@ import {
 	TemplateSection,
 	EditableText,
 	BulletPoints,
-} from '@monaco-digital/vl-types/lib/main'
-import { nanoid } from 'nanoid'
+} from '@monaco-digital/vl-types/lib/main';
+import { nanoid } from 'nanoid';
 
 export const notEmployed: Template = {
 	id: nanoid(),
@@ -401,4 +401,4 @@ export const notEmployed: Template = {
 			] as TemplateParagraph[],
 		} as TemplateSection,
 	],
-} as Template
+} as Template;

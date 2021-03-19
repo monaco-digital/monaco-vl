@@ -6,63 +6,48 @@ import {
 	DocumentParagraphBulletPoints,
 	DocumentParagraphStaticText,
 	DocumentParagraphEditableText,
-} from '@monaco-digital/vl-types/lib/main'
+} from '@monaco-digital/vl-types/lib/main';
 
-export const getDocumentParagraphStaticTextText = (documentParagraphStaticText: DocumentParagraphStaticText) => {
-	return documentParagraphStaticText.textFirstPerson
-}
+export const getDocumentParagraphStaticTextText = (documentParagraphStaticText: DocumentParagraphStaticText) =>
+	documentParagraphStaticText.textFirstPerson;
 
 export const getDocumentParagraphBulletPoints = (
 	documentParagraphBulletPoints: DocumentParagraphBulletPoints
 ): string => {
-	const bulletPointsText = documentParagraphBulletPoints.completedBulletPoints
-		.map(bp => {
-			return `- ${bp.value}`
-		})
-		.join('\n')
-	return `\n${bulletPointsText}\n`
-}
+	const bulletPointsText = documentParagraphBulletPoints.completedBulletPoints.map(bp => `- ${bp.value}`).join('\n');
+	return `\n${bulletPointsText}\n`;
+};
 
-export const getDocumentParagraphEditableText = (documentParagraphEditableText: DocumentParagraphEditableText) => {
-	return documentParagraphEditableText.value
-}
+export const getDocumentParagraphEditableText = (documentParagraphEditableText: DocumentParagraphEditableText) =>
+	documentParagraphEditableText.value;
 
-export const getParagraphText = (documentParagraphs: DocumentParagraph): string => {
-	return documentParagraphs.documentParagraphComponents
+export const getParagraphText = (documentParagraphs: DocumentParagraph): string =>
+	documentParagraphs.documentParagraphComponents
 		.map(dpc => {
 			switch (dpc.type) {
 				case 'BulletPoints':
-					return getDocumentParagraphBulletPoints(dpc as DocumentParagraphBulletPoints)
+					return getDocumentParagraphBulletPoints(dpc as DocumentParagraphBulletPoints);
 				case 'StaticText':
-					return getDocumentParagraphStaticTextText(dpc as DocumentParagraphStaticText)
+					return getDocumentParagraphStaticTextText(dpc as DocumentParagraphStaticText);
 				case 'EditableText':
-					return getDocumentParagraphEditableText(dpc as DocumentParagraphEditableText)
+					return getDocumentParagraphEditableText(dpc as DocumentParagraphEditableText);
 				default:
-					return ''
+					return '';
 			}
 		})
-		.join('')
-}
+		.join('');
 
 export const getDocumentComponentText = (documentComponent: DocumentComponent): string => {
-	if (!documentComponent) return ''
+	if (!documentComponent) return '';
 	if (documentComponent.type === 'TemplateContentSection' || documentComponent.type === 'UserContentSection') {
-		const documentSection = documentComponent as DocumentSection
-		return documentSection.documentComponents
-			.map(dc => {
-				return getDocumentComponentText(dc)
-			})
-			.join('\n\n')
-	} else if (documentComponent.type === 'Paragraph') {
-		return getParagraphText(documentComponent as DocumentParagraph)
+		const documentSection = documentComponent as DocumentSection;
+		return documentSection.documentComponents.map(dc => getDocumentComponentText(dc)).join('\n\n');
 	}
-	return ''
-}
+	if (documentComponent.type === 'Paragraph') {
+		return getParagraphText(documentComponent as DocumentParagraph);
+	}
+	return '';
+};
 
-export const getDocumentText = (document: Document): string => {
-	return document.documentComponents
-		.map(documentComponent => {
-			return getDocumentComponentText(documentComponent)
-		})
-		.join('\n\n')
-}
+export const getDocumentText = (document: Document): string =>
+	document.documentComponents.map(documentComponent => getDocumentComponentText(documentComponent)).join('\n\n');

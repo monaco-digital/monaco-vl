@@ -1,19 +1,19 @@
-import React, { FC, ReactNode } from 'react'
-import classNames from 'classnames'
-import expandTextIcon from '../../../assets/img/expand-text-icon.svg'
+import React, { FC, ReactNode } from 'react';
+import classNames from 'classnames';
+import expandTextIcon from '../../../assets/img/expand-text-icon.svg';
 
 type VLCardProps = {
-	children: ReactNode
-	theme?: 'light' | 'dark'
-	heading: string
-	counter?: number
-	blur?: boolean
-}
+	children: ReactNode;
+	theme?: 'light' | 'dark';
+	heading: string;
+	counter?: number;
+	blur?: boolean;
+};
 
 const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VLCardProps) => {
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
-	})
+	});
 
 	return (
 		<div className={VLCardClasses}>
@@ -28,7 +28,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VL
 			</div>
 			<div className={blur ? 'vl-card__blur' : ''}>{children}</div>
 		</div>
-	)
-}
+	);
+};
 
-export default VLcard
+export default VLcard;

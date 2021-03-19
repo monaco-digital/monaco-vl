@@ -1,5 +1,5 @@
-import { gql } from '@apollo/client'
-import { meta } from './misc'
+import { gql } from '@apollo/client';
+import { meta } from './misc';
 
 export const caseTopic = gql`
 	fragment FCaseTopic on CaseTopic {
@@ -16,4 +16,4 @@ export const caseTopic = gql`
 		}
 	}
 	${meta}
-`
+`;

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 /*
 const document = gql`
@@ -14,7 +14,6 @@ const document = gql`
         }
     }
 `
-
 
 const documentComponent = gql`
 
@@ -47,7 +46,6 @@ const documentHeader = gql`
         address
     }
 `
-
 
 const documentParagraphStaticText = gql`
     fragment FDocumentParagraphStaticText on DocumentParagraphStaticText {

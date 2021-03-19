@@ -1,5 +1,5 @@
-import { getLetterText } from '../../utils/document'
-import axios from 'axios'
+import axios from 'axios';
+import { getLetterText } from '../../utils/document';
 
 export const submitFormToPipeDrive = async (fields: any) => {
 	const {
@@ -13,19 +13,19 @@ export const submitFormToPipeDrive = async (fields: any) => {
 		settlementAgreement,
 		selectedTopics,
 		paragraphs,
-	} = fields
+	} = fields;
 
 	const body = {
 		'call-taken-by': 'virtual lawyer',
-		name: name,
-		job: job,
-		email: email,
-		phone: phone,
+		name,
+		job,
+		email,
+		phone,
 		'years-employed': yearsEmployed,
 		'still-employed': stillEmployed ? 'Yes' : 'No',
-		salary: salary,
+		salary,
 		'settlement-agreement': settlementAgreement ? 'Yes' : 'No',
 		description: getLetterText(selectedTopics, paragraphs),
-	}
-	return axios.post('https://40ueg9bxdg.execute-api.eu-west-2.amazonaws.com/prod/create-deal', body)
-}
+	};
+	return axios.post('https://40ueg9bxdg.execute-api.eu-west-2.amazonaws.com/prod/create-deal', body);
+};

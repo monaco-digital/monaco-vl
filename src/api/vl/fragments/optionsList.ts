@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
 
 const optionsList = gql`
 	fragment FOptionsList on OptionsList {
@@ -13,4 +13,4 @@ const optionsList = gql`
 			...FMeta
 		}
 	}
-`
+`;

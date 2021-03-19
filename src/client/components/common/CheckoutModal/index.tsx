@@ -1,13 +1,13 @@
-import React, { FC } from 'react'
-import ReactModal from 'react-modal'
-import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom'
-import EmailModal from '../EmailModal'
-import Upsell from '../Payment/Upsell'
-import PaymentComplete from '../Payment/PaymentComplete'
-import EmailComplete from '../EmailModal/EmailComplete'
-import IconButton from '@material-ui/core/IconButton'
-import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
-import { PaymentForm } from '../Payment/PaymentForm'
+import React, { FC } from 'react';
+import ReactModal from 'react-modal';
+import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
+import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
+import EmailModal from '../EmailModal';
+import Upsell from '../Payment/Upsell';
+import PaymentComplete from '../Payment/PaymentComplete';
+import EmailComplete from '../EmailModal/EmailComplete';
+import { PaymentForm } from '../Payment/PaymentForm';
 
 const customStyles = {
 	content: {
@@ -19,17 +19,17 @@ const customStyles = {
 		marginRight: '-50%',
 		transform: 'translate(-50%, -50%)',
 	},
-}
+};
 
 const CheckoutModal: FC = () => {
-	const history = useHistory()
-	const isCheckout = Boolean(useRouteMatch('/preview/checkout'))
+	const history = useHistory();
+	const isCheckout = Boolean(useRouteMatch('/preview/checkout'));
 	const onClose = () => {
-		history.push('/preview')
-	}
+		history.push('/preview');
+	};
 
 	return (
-		<ReactModal isOpen={isCheckout} shouldCloseOnOverlayClick={true} onRequestClose={onClose} style={customStyles}>
+		<ReactModal isOpen={isCheckout} shouldCloseOnOverlayClick onRequestClose={onClose} style={customStyles}>
 			<div className="checkoutModal">
 				<div className="checkoutModal__close-button">
 					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
@@ -55,7 +55,7 @@ const CheckoutModal: FC = () => {
 				</Switch>
 			</div>
 		</ReactModal>
-	)
-}
+	);
+};
 
-export default CheckoutModal
+export default CheckoutModal;

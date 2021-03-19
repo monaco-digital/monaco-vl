@@ -1,13 +1,14 @@
-import React from 'react'
-import classNames from 'classnames'
+import React from 'react';
+import classNames from 'classnames';
+
 interface Props {
-	type?: string
-	text?: string
-	shortText?: string
-	fn?: any
-	extraClasses?: string
-	rounded?: any
-	disabled?: boolean
+	type?: string;
+	text?: string;
+	shortText?: string;
+	fn?: any;
+	extraClasses?: string;
+	rounded?: any;
+	disabled?: boolean;
 }
 
 export const Button: React.FC<Props> = ({
@@ -23,7 +24,7 @@ export const Button: React.FC<Props> = ({
 		'button--has-short-text': shortText,
 		[`button--${type}`]: type,
 		'button--rounded': rounded,
-	})
+	});
 
 	return (
 		<>
@@ -38,7 +39,7 @@ export const Button: React.FC<Props> = ({
 				<span className="button__text">{text}</span>
 			</button>
 		</>
-	)
-}
+	);
+};
 
-export default Button
+export default Button;

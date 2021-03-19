@@ -1,47 +1,47 @@
-import React, { FC } from 'react'
-import classNames from 'classnames'
-import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import AppState from '../../../../data/AppState'
-import { Question as QuestionT } from '../../../../types/Questions'
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { getNextQuestion } from '../../../../clustering/questionFlow'
-import Question from '../Question'
-import _ from 'lodash'
-import Button from '../../Button'
-import { addAnsweredQuestion } from '../../../../data/sessionDataSlice'
+import React, { FC } from 'react';
+import classNames from 'classnames';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import _ from 'lodash';
+import AppState from '../../../../data/AppState';
+import { Question as QuestionT } from '../../../../types/Questions';
+import { getNextQuestion } from '../../../../clustering/questionFlow';
+import Question from '../Question';
+import Button from '../../Button';
+import { addAnsweredQuestion } from '../../../../data/sessionDataSlice';
 
 const Questions: FC = () => {
-	const history = useHistory()
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
+	const history = useHistory();
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
 
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
 
-	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-	const dispatch = useDispatch()
+	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+	const dispatch = useDispatch();
 
 	if (!currentQuestion) {
-		history.push('/statements')
-		return null
+		history.push('/statements');
+		return null;
 	}
 
 	const optionsSelectedCount = currentQuestion.options.reduce(
 		(acc, curr) => (selectedTopicIds.includes(curr.topicId) ? acc + 1 : acc),
 		0
-	)
-	const enableNext = optionsSelectedCount >= currentQuestion.minAnswers
+	);
+	const enableNext = optionsSelectedCount >= currentQuestion.minAnswers;
 
-	const isMulti = currentQuestion.maxAnswers > 1
-	const type = isMulti ? 'tags' : ''
+	const isMulti = currentQuestion.maxAnswers > 1;
+	const type = isMulti ? 'tags' : '';
 
 	const classes = classNames('questions', {
 		[`questions__${type}`]: type,
-	})
+	});
 
 	const handleGoForward = () => {
-		dispatch(addAnsweredQuestion(currentQuestion))
-	}
+		dispatch(addAnsweredQuestion(currentQuestion));
+	};
 
 	return (
 		<>
@@ -59,7 +59,7 @@ const Questions: FC = () => {
 				</div>
 			</div>
 		</>
-	)
-}
+	);
+};
 
-export default Questions
+export default Questions;

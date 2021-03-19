@@ -1,52 +1,52 @@
-import React from 'react'
-import moreInfoIcon from './../../../assets/img/more-info-icon.svg'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, Route, Switch } from 'react-router-dom'
-import AppState from '../../../../data/AppState'
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { Question as QuestionT } from '../../../../types/Questions'
-import { removeLastAnsweredQuestion, updateSelectedTopics } from '../../../../data/sessionDataSlice'
-import { getNextQuestion } from '../../../../clustering/questionFlow'
-import CheckoutModal from '../CheckoutModal'
-import Button from '../../Button'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, Route, Switch } from 'react-router-dom';
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import AppState from '../../../../data/AppState';
+import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
+import { Question as QuestionT } from '../../../../types/Questions';
+import { removeLastAnsweredQuestion, updateSelectedTopics } from '../../../../data/sessionDataSlice';
+import { getNextQuestion } from '../../../../clustering/questionFlow';
+import CheckoutModal from '../CheckoutModal';
+import Button from '../../Button';
 
 const Footer: React.FC = () => {
-	const history = useHistory()
+	const history = useHistory();
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions)
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization)
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 
 	const openCheckoutModal = () => {
-		const freeTopicTemplates = ['_RES', '_ADV']
-		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id))
+		const freeTopicTemplates = ['_RES', '_ADV'];
+		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
 
 		if (isMonetizationEnabled && !isFree) {
-			history.push('/preview/checkout')
+			history.push('/preview/checkout');
 		} else {
-			history.push('/preview/checkout/email')
+			history.push('/preview/checkout/email');
 		}
-	}
+	};
 
-	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions)
+	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
 
 	const handleGoBackwardsFromStatements = () => {
-		dispatch(removeLastAnsweredQuestion(null))
-		history.push('/questions')
-	}
+		dispatch(removeLastAnsweredQuestion(null));
+		history.push('/questions');
+	};
 
 	const navigateToHelp = () => {
-		history.push('/help')
-	}
+		history.push('/help');
+	};
 
 	const handleGoBackwards = () => {
-		const optionsToDeselect = currentQuestion.options.map(option => option.topicId)
-		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id))
-		dispatch(updateSelectedTopics(updatedSelectedTopics))
-		dispatch(removeLastAnsweredQuestion(null))
-	}
+		const optionsToDeselect = currentQuestion.options.map(option => option.topicId);
+		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
+		dispatch(updateSelectedTopics(updatedSelectedTopics));
+		dispatch(removeLastAnsweredQuestion(null));
+	};
 
 	return (
 		<footer className="footer">
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
 								type="secondary"
 								text="Back"
 								rounded
-								extraClasses={'footer__actions-back-button'}
+								extraClasses="footer__actions-back-button"
 								fn={() => handleGoBackwards()}
 							/>
 						</div>
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
 								type="secondary"
 								text="Back"
 								rounded
-								extraClasses={'footer__actions-back-button'}
+								extraClasses="footer__actions-back-button"
 								fn={handleGoBackwardsFromStatements}
 							/>
 						</div>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
 									type="secondary"
 									text="Back"
 									rounded
-									extraClasses={'footer__actions-back-button'}
+									extraClasses="footer__actions-back-button"
 									fn={() => history.goBack()}
 								/>
 							</div>
@@ -105,15 +105,15 @@ const Footer: React.FC = () => {
 								type="secondary"
 								text="Back"
 								rounded
-								extraClasses={'footer__actions-back-button'}
+								extraClasses="footer__actions-back-button"
 								fn={() => history.goBack()}
 							/>
 						</div>
 					</Route>
 				</Switch>
 			</div>
-			<CheckoutModal></CheckoutModal>
+			<CheckoutModal />
 		</footer>
-	)
-}
-export default Footer
+	);
+};
+export default Footer;
