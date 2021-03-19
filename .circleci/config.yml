@@ -24,7 +24,7 @@ jobs:
       - run:
           name: 'Building React App'
           command: |
-            npm run build
+            CI=false && npm run build
       - run:
           command: npx eslint ./src --ext .js,.ts,.jsx,.tsx --format junit --output-file reports/eslint.xml
           name: ESlint
@@ -58,7 +58,7 @@ jobs:
             amplify --version
       - run: export NPM_TOKEN=${NPM_TOKEN}
       - node/install-packages
-      - run: npm run build
+      - run: CI=false && npm run build
       - run:
           name: 'Initiate << parameters.deploy_env >> Environment'
           command: |
@@ -70,7 +70,7 @@ jobs:
       - run:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
-            amplify publish  -- yes
+            CI=false && amplify publish  -- yes
 
 workflows:
   Deploy:
@@ -102,6 +102,7 @@ workflows:
           deploy_env: prod
           requires:
             - request_production_deploy
+            - build_and_test
           filters:
             branches:
               only:
