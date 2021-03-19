@@ -31,7 +31,7 @@ const orderSuggestedParagraphs = (
 	suggestedParagraphs: SessionParagraph[],
 	selectedTopics: CaseTopic[],
 ): SessionParagraph[] => {
-	const selectedTopicIds = selectedTopics.map((topic) => topic.id);
+	const selectedTopicIds = selectedTopics.map(topic => topic.id);
 
 	if (selectedTopicIds.includes('T')) {
 		/*

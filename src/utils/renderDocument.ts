@@ -14,7 +14,7 @@ export const getDocumentParagraphStaticTextText = (documentParagraphStaticText: 
 export const getDocumentParagraphBulletPoints = (
 	documentParagraphBulletPoints: DocumentParagraphBulletPoints,
 ): string => {
-	const bulletPointsText = documentParagraphBulletPoints.completedBulletPoints.map((bp) => `- ${bp.value}`).join('\n');
+	const bulletPointsText = documentParagraphBulletPoints.completedBulletPoints.map(bp => `- ${bp.value}`).join('\n');
 	return `\n${bulletPointsText}\n`;
 };
 
@@ -24,7 +24,7 @@ export const getDocumentParagraphEditableText = (
 
 export const getParagraphText = (documentParagraphs: DocumentParagraph): string =>
 	documentParagraphs.documentParagraphComponents
-		.map((dpc) => {
+		.map(dpc => {
 			switch (dpc.type) {
 				case 'BulletPoints':
 					return getDocumentParagraphBulletPoints(dpc as DocumentParagraphBulletPoints);
@@ -42,7 +42,7 @@ export const getDocumentComponentText = (documentComponent: DocumentComponent): 
 	if (!documentComponent) return '';
 	if (documentComponent.type === 'TemplateContentSection' || documentComponent.type === 'UserContentSection') {
 		const documentSection = documentComponent as DocumentSection;
-		return documentSection.documentComponents.map((dc) => getDocumentComponentText(dc)).join('\n\n');
+		return documentSection.documentComponents.map(dc => getDocumentComponentText(dc)).join('\n\n');
 	}
 	if (documentComponent.type === 'Paragraph') {
 		return getParagraphText(documentComponent as DocumentParagraph);
@@ -51,4 +51,4 @@ export const getDocumentComponentText = (documentComponent: DocumentComponent): 
 };
 
 export const getDocumentText = (document: Document): string =>
-	document.documentComponents.map((documentComponent) => getDocumentComponentText(documentComponent)).join('\n\n');
+	document.documentComponents.map(documentComponent => getDocumentComponentText(documentComponent)).join('\n\n');

@@ -11,7 +11,7 @@ const StripeInput = ({ component: Component, inputRef, ...other }) => {
 	return (
 		<Component
 			options={{ showIcon: true }}
-			onReady={(element) => {
+			onReady={element => {
 				elementRef.current = element;
 			}}
 			// eslint-disable-next-line react/jsx-props-no-spreading

@@ -37,7 +37,7 @@ export const createDocumentComponent = (sessionDocumentComponent: SessionDocumen
 			version: 1,
 			type: sessionDocumentComponent.type,
 			baseTemplateComponent: section.templateComponent.id,
-			documentComponents: section.sessionDocumentComponents.map((sdc) => createDocumentComponent(sdc)),
+			documentComponents: section.sessionDocumentComponents.map(sdc => createDocumentComponent(sdc)),
 		} as DocumentSection;
 	}
 	if (sessionDocumentComponent.type === 'Paragraph') {
@@ -78,7 +78,7 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 				id: nanoid(),
 				baseTemplateComponent: bulletPointsParagraph.id,
 				type: 'BulletPoints',
-				completedBulletPoints: bulletPointsParagraph.bulletPoints?.map((bulletPoint) => ({
+				completedBulletPoints: bulletPointsParagraph.bulletPoints?.map(bulletPoint => ({
 					id: bulletPoint.id,
 					value: bulletPoint.placeholder,
 				})),
@@ -94,7 +94,7 @@ export const createDocumentParagraph = (
 	paragraphs: SessionParagraph[],
 ): DocumentParagraph => {
 	const matchingSessionParagraph = paragraphs.find(
-		(paragraph) => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id,
+		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id,
 	);
 	const existingDocumentParagraph = matchingSessionParagraph && matchingSessionParagraph.documentComponent;
 	if (existingDocumentParagraph) {
@@ -104,7 +104,7 @@ export const createDocumentParagraph = (
 		id: nanoid(),
 		type: 'Paragraph',
 		baseTemplateComponent: templateParagraph.id,
-		documentParagraphComponents: templateParagraph.paragraph?.paragraphComponents.map((paragraphComponent) =>
+		documentParagraphComponents: templateParagraph.paragraph?.paragraphComponents.map(paragraphComponent =>
 			templateParagraphComponentToDocumentParagraphComponent(paragraphComponent),
 		),
 	} as DocumentParagraph;
@@ -120,7 +120,7 @@ const createDocumentComponentFromTemplateComponent = (
 		case 'Paragraph': {
 			// See if paragraph exists in sessionParagraphs
 			const documentParagraph = paragraphs.find(
-				(paragraph) => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateComponent.id,
+				paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateComponent.id,
 			);
 			if (documentParagraph) {
 				return documentParagraph.documentComponent;
@@ -135,7 +135,7 @@ const createDocumentComponentFromTemplateComponent = (
 				version: 1,
 				type: 'TemplateContentSection',
 				baseTemplateComponent: templateComponent.id,
-				documentComponents: templateComponentSection.templateComponents.map((m) =>
+				documentComponents: templateComponentSection.templateComponents.map(m =>
 					createDocumentComponentFromTemplateComponent(m, paragraphs),
 				),
 			} as DocumentSection;
@@ -146,7 +146,7 @@ const createDocumentComponentFromTemplateComponent = (
 				version: 1,
 				type: 'UserContentSection',
 				baseTemplateComponent: templateComponent.id,
-				documentComponents: paragraphs.map((sessionParagraph) =>
+				documentComponents: paragraphs.map(sessionParagraph =>
 					sessionParagraph.documentComponent
 						? sessionParagraph.documentComponent
 						: createDocumentParagraph(sessionParagraph.templateComponent as TemplateParagraph, paragraphs),
@@ -163,7 +163,7 @@ export const createDocumentFromTemplate = (template: Template, paragraphs: Sessi
 		id: nanoid(),
 		version: 1,
 		baseTemplate: template.id,
-		documentComponents: template.templateComponents.map((tc) =>
+		documentComponents: template.templateComponents.map(tc =>
 			createDocumentComponentFromTemplateComponent(tc, paragraphs),
 		),
 		meta: {
@@ -173,7 +173,7 @@ export const createDocumentFromTemplate = (template: Template, paragraphs: Sessi
 	} as Document);
 
 export const createDocument = (sessionDocument: SessionDocument): Document => {
-	const documentComponents = sessionDocument.sessionDocumentComponents.map((sd) =>
+	const documentComponents = sessionDocument.sessionDocumentComponents.map(sd =>
 		createDocumentComponent(sd),
 	) as DocumentComponent[];
 

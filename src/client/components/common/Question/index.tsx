@@ -12,7 +12,7 @@ import Button from '../../Button';
 
 const passesPrerequisites = (prerequisites, selectedTopicIds) => {
 	if (prerequisites.length === 0) return true;
-	return prerequisites.every((prerequisite) => {
+	return prerequisites.every(prerequisite => {
 		// Allow 'negative' prerequisites
 		if (/^!/.test(prerequisite)) {
 			return !selectedTopicIds.includes(prerequisite.replace(/^!/, ''));
@@ -31,22 +31,22 @@ const recalculateSelectedTopics = (
 	const toDeselect = [];
 
 	// find topic
-	const topic = allTopics.find((t) => t.id === id);
+	const topic = allTopics.find(t => t.id === id);
 
 	// Check if it is already selected
-	const isSelected = selectedTopics.find((t) => t.id === id);
+	const isSelected = selectedTopics.find(t => t.id === id);
 	if (isSelected) {
 		toDeselect.push(id);
 	}
 
 	if (isSingle) {
 		// if single, deselect all other options from the question
-		const optionIds = question.options.map((option) => option.topicId);
+		const optionIds = question.options.map(option => option.topicId);
 		toDeselect.push(...optionIds);
 	}
 
 	// Deselect all unwanted
-	const newSelectedTopics = selectedTopics.filter((t) => !toDeselect.includes(t.id));
+	const newSelectedTopics = selectedTopics.filter(t => !toDeselect.includes(t.id));
 
 	if (!isSelected) {
 		newSelectedTopics.push(topic);
@@ -57,7 +57,7 @@ const recalculateSelectedTopics = (
 /* Filters the list of possible options to limit it to only those that pass
 the prerequisites */
 const filterValidOptions = (options, selectedTopicIds) => {
-	const toShow = options.filter((option) => {
+	const toShow = options.filter(option => {
 		const prerequisites = option.prerequisites || [];
 		return passesPrerequisites(prerequisites, selectedTopicIds);
 	});
@@ -71,10 +71,10 @@ interface Props {
 const Question: React.FC<Props> = ({ question }: Props) => {
 	const dispatch = useDispatch();
 
-	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
-	const allTopics = useSelector<AppState, CaseTopic[]>((state) => state.topics.all);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const selectedTopicIds: string[] = selectedTopics.map((t) => t.id);
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
 
 	const defaultLimit = 14;
 
@@ -92,7 +92,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 	}
 
 	const handleOnClick = (id: string) => {
-		const option = validOptions.find((o) => o.topicId === id);
+		const option = validOptions.find(o => o.topicId === id);
 
 		ReactGA.event({
 			category: 'User',
@@ -103,7 +103,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 	};
 
-	const answers = optionsToShow.map((option) => {
+	const answers = optionsToShow.map(option => {
 		const { id: questionId } = question;
 		let { text } = option;
 		const { topicId } = option;

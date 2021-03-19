@@ -30,12 +30,12 @@ const makeCallToSubmitDetails = async (input: {
 	};
 
 	const getTopicsList = (): string => {
-		const topicsList = selectedTopics.map((t) => t.text).join(', ');
+		const topicsList = selectedTopics.map(t => t.text).join(', ');
 		return topicsList;
 	};
 
 	const getAdviceText = (): string => {
-		const adviceText = adviceParagraphs.map((ap) => ap.text).join('\n\n\n');
+		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
 		return adviceText;
 	};
 
@@ -53,8 +53,8 @@ const makeCallToSubmitDetails = async (input: {
 export const CheckoutForm: React.FC = () => {
 	// todo - take out of here - data for submit details call
 
-	const sessionDocument = useSelector<AppState, SessionDocument>((state) => state.session.sessionDocument);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 
 	const { register, handleSubmit, errors } = useForm();
 

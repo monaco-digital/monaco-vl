@@ -21,6 +21,8 @@
     "react/jsx-indent": [2, "tab"],
     "react/jsx-indent-props": [2, "tab"],
     "import/prefer-default-export" : 0,
-    "prettier/prettier": ["error"]
+    "prettier/prettier": ["error"],
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
   }
 }

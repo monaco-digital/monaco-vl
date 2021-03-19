@@ -20,7 +20,7 @@ export const refreshSessionDocument = (
 	sessionDocument: SessionDocument,
 	paragraphs: SessionParagraph[],
 ): SessionDocument => {
-	sessionDocument.sessionDocumentComponents.forEach((sessionDocumentComponent) => {
+	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
 		if (sessionDocumentComponent.type === 'UserContentSection') {
 			const sessionDocumentSection = sessionDocumentComponent as SessionDocumentSection;
 			sessionDocumentSection.sessionDocumentComponents = paragraphs;
@@ -35,7 +35,7 @@ export const createSessionDocument = (template: Template, paragraphs: SessionPar
 	return {
 		template,
 		document: createDocumentFromTemplate(template, paragraphs),
-		sessionDocumentComponents: template.templateComponents.map((templateComponent) =>
+		sessionDocumentComponents: template.templateComponents.map(templateComponent =>
 			createSessionDocumentComponent(templateComponent, paragraphs),
 		),
 	} as SessionDocument;
@@ -66,7 +66,7 @@ const createSessionDocumentSection = (
 			type: 'UserContentSection',
 			templateComponent: templateSection,
 			documentComponent: null,
-			sessionDocumentComponents: paragraphs.map((paragraph) =>
+			sessionDocumentComponents: paragraphs.map(paragraph =>
 				createSessionDocumentComponent(paragraph.templateComponent, paragraphs),
 			),
 		} as SessionDocumentSection;
@@ -75,7 +75,7 @@ const createSessionDocumentSection = (
 		type: 'TemplateContentSection',
 		templateComponent: templateSection,
 		documentComponent: null,
-		sessionDocumentComponents: templateSection.templateComponents.map((templateComponent) =>
+		sessionDocumentComponents: templateSection.templateComponents.map(templateComponent =>
 			createSessionDocumentComponent(templateComponent, paragraphs),
 		),
 	} as SessionDocumentSection;
@@ -86,7 +86,7 @@ const createSessionDocumentParagraph = (
 	paragraphs: SessionParagraph[],
 ): SessionParagraph => {
 	const matchingSessionParagraph = paragraphs.find(
-		(paragraph) => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id,
+		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id,
 	);
 	const existingDocumentParagraph = matchingSessionParagraph && matchingSessionParagraph.documentComponent;
 

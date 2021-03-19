@@ -24,15 +24,15 @@ import { disableMonetization, enableMonetization } from '../../data/featureDataS
 import Terms from './Terms';
 
 const Main: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const advicePreviewOnly = !!selectedTopics.find((t) => t.id === '_ADV');
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
 
 	const dispatch = useDispatch();
 	const { search } = useLocation();
 	const history = useHistory();
 
 	useEffect(() => {
-		history.listen((location) => {
+		history.listen(location => {
 			ReactGA.pageview(location.pathname);
 		});
 	}, [history]);
@@ -84,7 +84,7 @@ const Main: FC = () => {
 			// const paragraphs = await getData()
 			const caseTopics = await getAllCaseTopics();
 			const sessionParagraphs = paragraphs.map(
-				(paragraph) =>
+				paragraph =>
 					({
 						templateComponent: paragraph,
 						documentComponent: null,

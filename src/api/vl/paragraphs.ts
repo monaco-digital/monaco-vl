@@ -13,7 +13,7 @@ interface Rankable {
 const matchesAllOf = (paragraph: Rankable, selectedTopicIds): boolean => {
 	let matchCount = 0;
 	if (paragraph.topicsAllOf.length === 0) return true;
-	paragraph.topicsAllOf.forEach((topicId) => {
+	paragraph.topicsAllOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount += 1;
 		}
@@ -24,7 +24,7 @@ const matchesAllOf = (paragraph: Rankable, selectedTopicIds): boolean => {
 const matchesOneOf = (paragraph: Rankable, selectedTopicIds): boolean => {
 	let matchCount = 0;
 	if (paragraph.topicsOneOf.length === 0) return true;
-	paragraph.topicsOneOf.forEach((topicId) => {
+	paragraph.topicsOneOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount += 1;
 		}
@@ -34,7 +34,7 @@ const matchesOneOf = (paragraph: Rankable, selectedTopicIds): boolean => {
 
 const matchesNoneOf = (paragraph: Rankable, selectedTopicIds): boolean => {
 	let matchCount = 0;
-	paragraph.topicsNoneOf.forEach((topicId) => {
+	paragraph.topicsNoneOf.forEach(topicId => {
 		if (selectedTopicIds.includes(topicId)) {
 			matchCount += 1;
 		}
@@ -46,9 +46,9 @@ const filterAdviceParagraphs = (allParagraphs: Advice[], selectedTopics: CaseTop
 		return allParagraphs;
 	}
 
-	const selectedTopicIds = selectedTopics.map((topic) => topic.id);
+	const selectedTopicIds = selectedTopics.map(topic => topic.id);
 	const scoredAndFilteredParas = [];
-	allParagraphs.forEach((adviceParagraph) => {
+	allParagraphs.forEach(adviceParagraph => {
 		// score to rank how relevant the paragraph is
 		const allOf = matchesAllOf(adviceParagraph, selectedTopicIds);
 		const oneOf = matchesOneOf(adviceParagraph, selectedTopicIds);
@@ -63,7 +63,7 @@ const filterAdviceParagraphs = (allParagraphs: Advice[], selectedTopics: CaseTop
 		}
 	});
 
-	return scoredAndFilteredParas.map((p) => p.paragraph);
+	return scoredAndFilteredParas.map(p => p.paragraph);
 };
 
 const filterSuggestedParagraphs = (
@@ -74,9 +74,9 @@ const filterSuggestedParagraphs = (
 		return allParagraphs;
 	}
 
-	const selectedTopicIds = selectedTopics.map((topic) => topic.id);
+	const selectedTopicIds = selectedTopics.map(topic => topic.id);
 	const scoredAndFilteredParas = [];
-	allParagraphs.forEach((templateParagraph) => {
+	allParagraphs.forEach(templateParagraph => {
 		// score to rank how relevant the paragraph is
 		const allOf = matchesAllOf(templateParagraph.paragraph, selectedTopicIds);
 		const oneOf = matchesOneOf(templateParagraph.paragraph, selectedTopicIds);
@@ -91,17 +91,17 @@ const filterSuggestedParagraphs = (
 		}
 	});
 
-	return scoredAndFilteredParas.map((p) => p.paragraph);
+	return scoredAndFilteredParas.map(p => p.paragraph);
 };
 
 const includeParentTopics = (selectedTopics: CaseTopic[]) => {
 	const state = store.getState();
 	const allTopics = state.topics.all;
 	const updatedSelectedTopics = [];
-	selectedTopics.forEach((selectedTopic) => {
+	selectedTopics.forEach(selectedTopic => {
 		if (selectedTopic.parentTopics?.length > 0) {
-			selectedTopic.parentTopics.forEach((parentTopic) => {
-				updatedSelectedTopics.push(allTopics.find((topic) => topic.id === parentTopic));
+			selectedTopic.parentTopics.forEach(parentTopic => {
+				updatedSelectedTopics.push(allTopics.find(topic => topic.id === parentTopic));
 			});
 		}
 		updatedSelectedTopics.push(selectedTopic);
@@ -112,13 +112,13 @@ const includeParentTopics = (selectedTopics: CaseTopic[]) => {
 const getSuggestedAdviceParagraphs = async (selectedTopics: CaseTopic[]): Promise<Advice[]> => {
 	const selectedTopicsAndParents = includeParentTopics(selectedTopics);
 	const allAdvice = adviceParagraphs.map(
-		(rap) =>
+		rap =>
 			({
 				id: rap.id,
 				text: rap.text,
-				topicsOneOf: _.compact(rap.topicsOneOf.split(',').map((s) => s.trim())),
-				topicsAllOf: _.compact(rap.topicsAllOf.split(',').map((s) => s.trim())),
-				topicsNoneOf: _.compact(rap.topicsNoneOf.split(',').map((s) => s.trim())),
+				topicsOneOf: _.compact(rap.topicsOneOf.split(',').map(s => s.trim())),
+				topicsAllOf: _.compact(rap.topicsAllOf.split(',').map(s => s.trim())),
+				topicsNoneOf: _.compact(rap.topicsNoneOf.split(',').map(s => s.trim())),
 			} as Advice),
 	);
 	const filtered = filterAdviceParagraphs(allAdvice, selectedTopicsAndParents);

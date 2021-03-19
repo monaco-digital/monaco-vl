@@ -33,7 +33,7 @@ const Button: React.FC<Props> = ({
 				className={buttonClasses}
 				type="button"
 				aria-label={shortText || text}
-				onClick={(params) => fn(params)}
+				onClick={params => fn(params)}
 			>
 				{shortText && <span className="button__short-text">{shortText}</span>}
 				<span className="button__text">{text}</span>

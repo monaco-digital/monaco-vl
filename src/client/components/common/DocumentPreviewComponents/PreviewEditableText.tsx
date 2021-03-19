@@ -35,7 +35,7 @@ export const PreviewEditableText: FC<Props> = ({ templateEditableText, documentE
 				placeholder={templateEditableText.placeholder}
 				maxLength={templateEditableText.maxLength}
 				defaultValue={value}
-				onChange={(e) => setValue(e.target.value)}
+				onChange={e => setValue(e.target.value)}
 				onBlur={() => updateEditableText()}
 			/>
 		);
@@ -48,7 +48,7 @@ export const PreviewEditableText: FC<Props> = ({ templateEditableText, documentE
 				inputStyle={{ padding: '1px', backgroundColor: '#deefff' }}
 				placeholderIsMinWidth
 				placeholder={templateEditableText.placeholder}
-				onChange={(e) => setValue(e.target.value)}
+				onChange={e => setValue(e.target.value)}
 				onBlur={() => updateEditableText()}
 			/>
 		</span>

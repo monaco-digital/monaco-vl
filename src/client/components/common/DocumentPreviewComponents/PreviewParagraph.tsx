@@ -24,9 +24,9 @@ const PreviewParagraph: FC<Props> = ({ paragraph }: Props) => {
 	const documentParagraph = paragraph.documentComponent as DocumentParagraph;
 	return (
 		<div style={{ padding: '5px', margin: '10px' }}>
-			{templateParagraph.paragraph?.paragraphComponents.map((paragraphComponent) => {
+			{templateParagraph.paragraph?.paragraphComponents.map(paragraphComponent => {
 				const matchingDocumentComponent = documentParagraph?.documentParagraphComponents.find(
-					(dpc) => paragraphComponent.id === dpc.baseTemplateComponent,
+					dpc => paragraphComponent.id === dpc.baseTemplateComponent,
 				);
 				switch (paragraphComponent.type) {
 					case 'StaticText':

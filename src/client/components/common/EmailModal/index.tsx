@@ -27,20 +27,20 @@ const getLetterText = (sessionDocument: SessionDocument) => {
 };
 
 const getTopicsList = (selectedTopics: CaseTopic[]) => {
-	const topicsList = selectedTopics.map((t) => t.text).join(', ');
+	const topicsList = selectedTopics.map(t => t.text).join(', ');
 	return topicsList;
 };
 
 const getAdviceText = (adviceParagraphs: Advice[]) => {
-	const adviceText = adviceParagraphs.map((ap) => ap.text).join('\n\n\n');
+	const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
 	return adviceText;
 };
 
 const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization: boolean) => {
-	if (selectedTopics.find((topic) => topic.id === '_LET') && !enabledMonetization) {
+	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
 		return 'LAC';
 	}
-	if (selectedTopics.find((topic) => topic.id === '_RES')) {
+	if (selectedTopics.find(topic => topic.id === '_RES')) {
 		if (enabledMonetization) {
 			return 'GE1';
 		}
@@ -65,9 +65,9 @@ const EmailModal: FC = () => {
 	const [name, setName] = useState('');
 	const [recipient, setRecipient] = useState('');
 
-	const enabledMonetization = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
-	const sessionDocument = useSelector<AppState, SessionDocument>((state) => state.session.sessionDocument);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 
 	useEffect(() => {
@@ -115,7 +115,7 @@ const EmailModal: FC = () => {
 
 				<TextField
 					id="name"
-					onChange={(e) => setName(e.target.value)}
+					onChange={e => setName(e.target.value)}
 					label="First name"
 					autoComplete="name"
 					variant="filled"
@@ -123,7 +123,7 @@ const EmailModal: FC = () => {
 				/>
 				<TextField
 					id="email"
-					onChange={(e) => setRecipient(e.target.value)}
+					onChange={e => setRecipient(e.target.value)}
 					label="Your email"
 					autoComplete="email"
 					variant="filled"

@@ -21,7 +21,7 @@ interface Props {
 
 const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) => {
 	if (!sessionDocumentComponents) return null;
-	const output = sessionDocumentComponents.map((sessionDocumentComponent) => {
+	const output = sessionDocumentComponents.map(sessionDocumentComponent => {
 		const type = sessionDocumentComponent && sessionDocumentComponent.type;
 		switch (type) {
 			case 'UserContentSection': {
@@ -45,12 +45,12 @@ const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) =
 
 const DocumentPreview: FC = () => {
 	const dispatch = useDispatch();
-	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>((state) =>
-		state.session.suggestedParagraphs.filter((suggested) => suggested.isSelected),
+	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
+		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected),
 	);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
-	const selectedTemplate = useSelector<AppState, Template>((state) => state.session.selectedTemplate);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
 
 	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET');
 
@@ -60,7 +60,7 @@ const DocumentPreview: FC = () => {
 		dispatch(updateSelectedTemplate(updatedTemplate));
 	}
 
-	const sessionDocument = useSelector<AppState, SessionDocument>((state) => state.session.sessionDocument);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
 	if (!sessionDocument || isTemplateIdDifferent) {
 		const doc = createSessionDocument(updatedTemplate, selectedParagraphs);
 		dispatch(updateSessionDocument(doc));

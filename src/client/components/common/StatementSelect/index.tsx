@@ -14,25 +14,25 @@ const StatementSelect: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
 
-	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const selectedTopicIds = selectedTopics.map((t) => t.id);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const selectedTopicIds = selectedTopics.map(t => t.id);
 	if (_.intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
-		if (selectedTopicIds.find((topic) => topic === '_LET') && isMonetizationEnabled) {
+		if (selectedTopicIds.find(topic => topic === '_LET') && isMonetizationEnabled) {
 			history.push('/preview/checkout');
 		} else {
 			history.push('/preview');
 		}
 	}
 
-	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>((state) => state.session.suggestedParagraphs);
+	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
 
 	useEffect(() => {
 		const updateParagraphs = async () => {
 			const paragraphs = await getSuggestedParagraphs(selectedTopics);
 			const sessionParagraphs = paragraphs.map(
-				(paragraph) =>
+				paragraph =>
 					({
 						templateComponent: paragraph,
 						documentComponent: null,
@@ -45,7 +45,7 @@ const StatementSelect: React.FC = () => {
 	}, [dispatch, selectedTopics]);
 
 	const handleOnClick = (id: string): void => {
-		const selectedSessionParagraph = suggestedParagraphs.find((paragraph) => paragraph.templateComponent.id === id);
+		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id);
 		if (!selectedSessionParagraph.isSelected) {
 			dispatch(selectParagraphs([id]));
 		} else {
@@ -60,20 +60,20 @@ const StatementSelect: React.FC = () => {
 	};
 
 	const enterLetterPreviewMode = () => {
-		if (selectedTopicIds.find((topic) => topic === '_LET') && isMonetizationEnabled) {
+		if (selectedTopicIds.find(topic => topic === '_LET') && isMonetizationEnabled) {
 			history.push('/preview/checkout');
 		} else {
 			history.push('/preview');
 		}
 	};
 
-	const statements = suggestedParagraphs.map((sessionParagraph) => {
+	const statements = suggestedParagraphs.map(sessionParagraph => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
 		const { id, summary } = templateParagraph.paragraph;
 		const selected = sessionParagraph.isSelected;
 		const hasUserInput = templateParagraph.paragraph.paragraphComponents.find(
-			(pc) => pc.type === 'BulletPoints',
+			pc => pc.type === 'BulletPoints',
 		) as BulletPoints;
 		const displayInput = hasUserInput && documentParagraph;
 

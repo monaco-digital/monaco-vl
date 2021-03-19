@@ -13,7 +13,7 @@ const Header: FC = () => {
 	const dispatch = useDispatch();
 
 	const navigateToTopics = () => {
-		dispatch(removeLastAnsweredQuestion(null));
+		dispatch(removeLastAnsweredQuestion());
 		setMenuIsVisible(false);
 	};
 

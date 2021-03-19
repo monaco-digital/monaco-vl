@@ -22,7 +22,7 @@ const updateSessionParagraphMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
 	sessionParagraphs: SessionParagraph[],
 ): SessionParagraph[] => {
-	sessionParagraphs.forEach((sessionParagraph) => {
+	sessionParagraphs.forEach(sessionParagraph => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
 		sessionParagraph.documentComponent =
 			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs);
@@ -46,7 +46,7 @@ const updateSessionDocumentMapper = (
 			sessionDocumentComponent.type === 'UserContentSection'
 		) {
 			const sectionComponent = sessionDocumentComponent as SessionDocumentSection;
-			sectionComponent.sessionDocumentComponents.forEach((sc) => processSessionDocumentComponent(sc));
+			sectionComponent.sessionDocumentComponents.forEach(sc => processSessionDocumentComponent(sc));
 		} else if (sessionDocumentComponent.type === 'Paragraph') {
 			const sessionParagraph = sessionDocumentComponent as SessionParagraph;
 			const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
@@ -58,7 +58,7 @@ const updateSessionDocumentMapper = (
 		}
 	};
 
-	sessionDocument.sessionDocumentComponents.forEach((sessionDocumentComponent) => {
+	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
 		processSessionDocumentComponent(sessionDocumentComponent);
 	});
 	sessionDocument.document = createDocument(sessionDocument);
@@ -78,7 +78,7 @@ export const slice = createSlice({
 	reducers: {
 		selectParagraphs: (state, action) => {
 			const ids = action.payload;
-			state.suggestedParagraphs.forEach((suggestedParagraph) => {
+			state.suggestedParagraphs.forEach(suggestedParagraph => {
 				if (ids.includes(suggestedParagraph.templateComponent.id)) {
 					suggestedParagraph.isSelected = true;
 				}
@@ -86,7 +86,7 @@ export const slice = createSlice({
 		},
 		deselectParagraphs: (state, action) => {
 			const ids = action.payload;
-			state.suggestedParagraphs.forEach((suggestedParagraph) => {
+			state.suggestedParagraphs.forEach(suggestedParagraph => {
 				if (ids.includes(suggestedParagraph.templateComponent.id)) {
 					suggestedParagraph.isSelected = false;
 				}
@@ -119,7 +119,7 @@ export const slice = createSlice({
 			const latestQuestion = action.payload;
 			state.answeredQuestions.push(latestQuestion);
 		},
-		removeLastAnsweredQuestion: (state) => {
+		removeLastAnsweredQuestion: state => {
 			state.answeredQuestions.pop();
 		},
 	},

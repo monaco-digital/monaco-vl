@@ -12,10 +12,10 @@ import { addAnsweredQuestion } from '../../../../data/sessionDataSlice';
 
 const Questions: FC = () => {
 	const history = useHistory();
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const selectedTopicIds: string[] = selectedTopics.map((t) => t.id);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
 
-	const answeredQuestions = useSelector<AppState, QuestionT[]>((state) => state.session.answeredQuestions);
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
 	const dispatch = useDispatch();

@@ -13,15 +13,15 @@ import Button from '../../Button';
 const Footer: React.FC = () => {
 	const history = useHistory();
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
-	const answeredQuestions = useSelector<AppState, QuestionT[]>((state) => state.session.answeredQuestions);
-	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 
 	const dispatch = useDispatch();
 
 	const openCheckoutModal = () => {
 		const freeTopicTemplates = ['_RES', '_ADV'];
-		const isFree = selectedTopics.some((topic) => freeTopicTemplates.includes(topic.id));
+		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
 
 		if (isMonetizationEnabled && !isFree) {
 			history.push('/preview/checkout');
@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
 
 	const handleGoBackwardsFromStatements = () => {
-		dispatch(removeLastAnsweredQuestion(null));
+		dispatch(removeLastAnsweredQuestion());
 		history.push('/questions');
 	};
 
@@ -42,10 +42,10 @@ const Footer: React.FC = () => {
 	};
 
 	const handleGoBackwards = () => {
-		const optionsToDeselect = currentQuestion.options.map((option) => option.topicId);
-		const updatedSelectedTopics = selectedTopics.filter((topic) => !optionsToDeselect.includes(topic.id));
+		const optionsToDeselect = currentQuestion.options.map(option => option.topicId);
+		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
-		dispatch(removeLastAnsweredQuestion(null));
+		dispatch(removeLastAnsweredQuestion());
 	};
 
 	return (
