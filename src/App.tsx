@@ -22,7 +22,8 @@ function App() {
 	return (
 		<>
 			<Router>
-				<Client /> <ToastContainer />
+				<Client />
+				<ToastContainer />
 			</Router>
 		</>
 	);
