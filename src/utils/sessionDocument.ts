@@ -18,9 +18,9 @@ import { createDocumentFromTemplate, createDocumentParagraph } from './document'
 */
 export const refreshSessionDocument = (
 	sessionDocument: SessionDocument,
-	paragraphs: SessionParagraph[]
+	paragraphs: SessionParagraph[],
 ): SessionDocument => {
-	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
+	sessionDocument.sessionDocumentComponents.forEach((sessionDocumentComponent) => {
 		if (sessionDocumentComponent.type === 'UserContentSection') {
 			const sessionDocumentSection = sessionDocumentComponent as SessionDocumentSection;
 			sessionDocumentSection.sessionDocumentComponents = paragraphs;
@@ -32,19 +32,18 @@ export const refreshSessionDocument = (
 
 export const createSessionDocument = (template: Template, paragraphs: SessionParagraph[]): SessionDocument => {
 	if (!template) return null;
-	console.log('The template being used is: ', template);
 	return {
 		template,
 		document: createDocumentFromTemplate(template, paragraphs),
-		sessionDocumentComponents: template.templateComponents.map(templateComponent =>
-			createSessionDocumentComponent(templateComponent, paragraphs)
+		sessionDocumentComponents: template.templateComponents.map((templateComponent) =>
+			createSessionDocumentComponent(templateComponent, paragraphs),
 		),
 	} as SessionDocument;
 };
 
 export const createSessionDocumentComponent = (
 	templateComponent: TemplateComponent,
-	paragraphs: SessionParagraph[]
+	paragraphs: SessionParagraph[],
 ): SessionDocumentComponent => {
 	switch (templateComponent.type) {
 		case 'UserContentSection':
@@ -60,15 +59,15 @@ export const createSessionDocumentComponent = (
 
 const createSessionDocumentSection = (
 	templateSection: TemplateSection,
-	paragraphs: SessionParagraph[]
+	paragraphs: SessionParagraph[],
 ): SessionDocumentComponent => {
 	if (templateSection.type === 'UserContentSection') {
 		return {
 			type: 'UserContentSection',
 			templateComponent: templateSection,
 			documentComponent: null,
-			sessionDocumentComponents: paragraphs.map(paragraph =>
-				createSessionDocumentComponent(paragraph.templateComponent, paragraphs)
+			sessionDocumentComponents: paragraphs.map((paragraph) =>
+				createSessionDocumentComponent(paragraph.templateComponent, paragraphs),
 			),
 		} as SessionDocumentSection;
 	}
@@ -76,18 +75,18 @@ const createSessionDocumentSection = (
 		type: 'TemplateContentSection',
 		templateComponent: templateSection,
 		documentComponent: null,
-		sessionDocumentComponents: templateSection.templateComponents.map(templateComponent =>
-			createSessionDocumentComponent(templateComponent, paragraphs)
+		sessionDocumentComponents: templateSection.templateComponents.map((templateComponent) =>
+			createSessionDocumentComponent(templateComponent, paragraphs),
 		),
 	} as SessionDocumentSection;
 };
 
 const createSessionDocumentParagraph = (
 	templateParagraph: TemplateParagraph,
-	paragraphs: SessionParagraph[]
+	paragraphs: SessionParagraph[],
 ): SessionParagraph => {
 	const matchingSessionParagraph = paragraphs.find(
-		paragraph => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id
+		(paragraph) => _.get(paragraph, 'documentComponent.baseTemplateComponent') === templateParagraph.id,
 	);
 	const existingDocumentParagraph = matchingSessionParagraph && matchingSessionParagraph.documentComponent;
 

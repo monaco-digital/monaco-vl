@@ -25,6 +25,7 @@ export const getAllCaseTopics = async (): Promise<CaseTopic[]> => {
 		const { getAllCaseTopics: caseTopics } = data;
 		return caseTopics;
 	} catch (e) {
-		console.log('There was an error getting all case topics: ', e);
+		// ignore
 	}
+	return null;
 };

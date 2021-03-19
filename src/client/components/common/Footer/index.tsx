@@ -13,15 +13,15 @@ import Button from '../../Button';
 const Footer: React.FC = () => {
 	const history = useHistory();
 
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const answeredQuestions = useSelector<AppState, QuestionT[]>((state) => state.session.answeredQuestions);
+	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
 
 	const dispatch = useDispatch();
 
 	const openCheckoutModal = () => {
 		const freeTopicTemplates = ['_RES', '_ADV'];
-		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
+		const isFree = selectedTopics.some((topic) => freeTopicTemplates.includes(topic.id));
 
 		if (isMonetizationEnabled && !isFree) {
 			history.push('/preview/checkout');
@@ -42,8 +42,8 @@ const Footer: React.FC = () => {
 	};
 
 	const handleGoBackwards = () => {
-		const optionsToDeselect = currentQuestion.options.map(option => option.topicId);
-		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
+		const optionsToDeselect = currentQuestion.options.map((option) => option.topicId);
+		const updatedSelectedTopics = selectedTopics.filter((topic) => !optionsToDeselect.includes(topic.id));
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 		dispatch(removeLastAnsweredQuestion(null));
 	};
@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
 					<Route path="/questions">
 						<div className="footer__actions__switch__buttons space-x-4">
 							<button className="footer__actions-info" aria-label="More info" type="button" onClick={navigateToHelp}>
-								<img src={moreInfoIcon} />
+								<img src={moreInfoIcon} alt="More Info" />
 							</button>
 							<Button
 								type="secondary"
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
 					<Route path="/statements">
 						<div className="footer__actions__switch__buttons space-x-4">
 							<button className="footer__actions-info" aria-label="More info" type="button" onClick={navigateToHelp}>
-								<img src={moreInfoIcon} />
+								<img src={moreInfoIcon} alt="More Info" />
 							</button>
 							<Button
 								type="secondary"
@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
 						<>
 							<div className="footer__actions__switch__buttons space-x-1 md:space-x-4">
 								<button className="footer__actions-info" aria-label="More info" type="button" onClick={navigateToHelp}>
-									<img src={moreInfoIcon} />
+									<img src={moreInfoIcon} alt="More Info" />
 								</button>
 								<Button
 									type="secondary"

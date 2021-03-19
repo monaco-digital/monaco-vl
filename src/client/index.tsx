@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 	},
 });
 
-const MobileApp = () => (
+const MobileApp: FC = () => (
 	<Provider store={store}>
 		<ThemeProvider theme={theme}>
 			<HelmetProvider>

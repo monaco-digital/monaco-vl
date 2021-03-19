@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
-import _ from 'lodash';
 import AppState from '../../../../data/AppState';
 import { Question as QuestionT } from '../../../../types/Questions';
 import { getNextQuestion } from '../../../../clustering/questionFlow';
@@ -13,10 +12,10 @@ import { addAnsweredQuestion } from '../../../../data/sessionDataSlice';
 
 const Questions: FC = () => {
 	const history = useHistory();
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const selectedTopicIds: string[] = selectedTopics.map((t) => t.id);
 
-	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
+	const answeredQuestions = useSelector<AppState, QuestionT[]>((state) => state.session.answeredQuestions);
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
 	const dispatch = useDispatch();
@@ -28,7 +27,7 @@ const Questions: FC = () => {
 
 	const optionsSelectedCount = currentQuestion.options.reduce(
 		(acc, curr) => (selectedTopicIds.includes(curr.topicId) ? acc + 1 : acc),
-		0
+		0,
 	);
 	const enableNext = optionsSelectedCount >= currentQuestion.minAnswers;
 

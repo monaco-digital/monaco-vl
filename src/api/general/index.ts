@@ -8,8 +8,8 @@ export const submitDetails = async (data: {
 	name?: string;
 	recipient?: string;
 	contactMe?: boolean;
-}) => {
-	const result = await axios({
+}): Promise<void> => {
+	await axios({
 		method: 'POST',
 		url: config.LAMBDA_URL,
 		data,

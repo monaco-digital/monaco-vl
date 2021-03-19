@@ -10,16 +10,71 @@ import AppState from '../../../../data/AppState';
 import Title from '../../Title';
 import Button from '../../Button';
 
+const passesPrerequisites = (prerequisites, selectedTopicIds) => {
+	if (prerequisites.length === 0) return true;
+	return prerequisites.every((prerequisite) => {
+		// Allow 'negative' prerequisites
+		if (/^!/.test(prerequisite)) {
+			return !selectedTopicIds.includes(prerequisite.replace(/^!/, ''));
+		}
+		return selectedTopicIds.includes(prerequisite);
+	});
+};
+
+const recalculateSelectedTopics = (
+	id: string,
+	allTopics: CaseTopic[],
+	selectedTopics: CaseTopic[],
+	question: QuestionT,
+	isSingle: boolean,
+): CaseTopic[] => {
+	const toDeselect = [];
+
+	// find topic
+	const topic = allTopics.find((t) => t.id === id);
+
+	// Check if it is already selected
+	const isSelected = selectedTopics.find((t) => t.id === id);
+	if (isSelected) {
+		toDeselect.push(id);
+	}
+
+	if (isSingle) {
+		// if single, deselect all other options from the question
+		const optionIds = question.options.map((option) => option.topicId);
+		toDeselect.push(...optionIds);
+	}
+
+	// Deselect all unwanted
+	const newSelectedTopics = selectedTopics.filter((t) => !toDeselect.includes(t.id));
+
+	if (!isSelected) {
+		newSelectedTopics.push(topic);
+	}
+	return newSelectedTopics;
+};
+
+/* Filters the list of possible options to limit it to only those that pass
+the prerequisites */
+const filterValidOptions = (options, selectedTopicIds) => {
+	const toShow = options.filter((option) => {
+		const prerequisites = option.prerequisites || [];
+		return passesPrerequisites(prerequisites, selectedTopicIds);
+	});
+	return toShow;
+};
+
 interface Props {
 	question: QuestionT;
 }
+
 const Question: React.FC<Props> = ({ question }: Props) => {
 	const dispatch = useDispatch();
 
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
-	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+	const isMonetizationEnabled = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
+	const allTopics = useSelector<AppState, CaseTopic[]>((state) => state.topics.all);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const selectedTopicIds: string[] = selectedTopics.map((t) => t.id);
 
 	const defaultLimit = 14;
 
@@ -36,8 +91,8 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		optionsToShow = optionsToShow.slice(0, defaultLimit);
 	}
 
-	const handleOnClick = (id, isRadio = false) => {
-		const option = validOptions.find(option => option.topicId === id);
+	const handleOnClick = (id: string) => {
+		const option = validOptions.find((o) => o.topicId === id);
 
 		ReactGA.event({
 			category: 'User',
@@ -48,7 +103,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 	};
 
-	const answers = optionsToShow.map((option, i) => {
+	const answers = optionsToShow.map((option) => {
 		const { id: questionId } = question;
 		let { text } = option;
 		const { topicId } = option;
@@ -62,13 +117,13 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		}
 
 		return (
-			<div key={`value ${i}`} className="topic inline-flex">
+			<div key={topicId} className="topic inline-flex">
 				<input
 					type={answerStyle}
 					id={topicId}
 					name={text}
 					value={text}
-					onChange={() => handleOnClick(topicId, true)}
+					onChange={() => handleOnClick(topicId)}
 					checked={checkTopicInputStatus(selectedTopics, topicId)}
 				/>
 				<label htmlFor={topicId}>
@@ -99,60 +154,6 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 			<br />
 		</>
 	);
-};
-
-/* Filters the list of possible options to limit it to only those that pass
-the prerequisites */
-const filterValidOptions = (options, selectedTopicIds) => {
-	const toShow = options.filter(option => {
-		const prerequisites = option.prerequisites || [];
-		return passesPrerequisites(prerequisites, selectedTopicIds);
-	});
-	return toShow;
-};
-
-const passesPrerequisites = (prerequisites, selectedTopicIds) => {
-	if (prerequisites.length === 0) return true;
-	return prerequisites.every(prerequisite => {
-		// Allow 'negative' prerequisites
-		if (/^!/.test(prerequisite)) {
-			return !selectedTopicIds.includes(prerequisite.replace(/^!/, ''));
-		}
-		return selectedTopicIds.includes(prerequisite);
-	});
-};
-
-const recalculateSelectedTopics = (
-	id: string,
-	allTopics: CaseTopic[],
-	selectedTopics: CaseTopic[],
-	question: QuestionT,
-	isSingle: boolean
-): CaseTopic[] => {
-	const toDeselect = [];
-
-	// find topic
-	const topic = allTopics.find(topic => topic.id === id);
-
-	// Check if it is already selected
-	const isSelected = selectedTopics.find(topic => topic.id === id);
-	if (isSelected) {
-		toDeselect.push(id);
-	}
-
-	if (isSingle) {
-		// if single, deselect all other options from the question
-		const optionIds = question.options.map(option => option.topicId);
-		toDeselect.push(...optionIds);
-	}
-
-	// Deselect all unwanted
-	const newSelectedTopics = selectedTopics.filter(topic => !toDeselect.includes(topic.id));
-
-	if (!isSelected) {
-		newSelectedTopics.push(topic);
-	}
-	return newSelectedTopics;
 };
 
 export default Question;

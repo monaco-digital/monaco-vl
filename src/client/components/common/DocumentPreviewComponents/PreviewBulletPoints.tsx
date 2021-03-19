@@ -15,21 +15,21 @@ export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentB
 
 	const values = {};
 
-	const updateBulletPoints = (values: any) => {
+	const updateBulletPoints = () => {
 		const updatedDocumentParagraphComponent = {
 			id: nanoid(),
 			baseTemplateComponent: templateBulletPoints.id,
 			type: 'BulletPoints',
-			completedBulletPoints: Object.keys(values).map(key => ({ id: key, value: values[key] })),
+			completedBulletPoints: Object.keys(values).map((key) => ({ id: key, value: values[key] })),
 		} as DocumentParagraphBulletPoints;
 		dispatch(updateSessionDocumentComponent(updatedDocumentParagraphComponent));
 	};
 
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
-			{templateBulletPoints.bulletPoints.map((bulletPoint, idx) => {
+			{templateBulletPoints.bulletPoints.map((bulletPoint) => {
 				const matchingDocumentBulletPoint = documentBulletPoints?.completedBulletPoints?.find(
-					cbp => cbp.id === bulletPoint.id
+					(cbp) => cbp.id === bulletPoint.id,
 				);
 				if (matchingDocumentBulletPoint?.value && matchingDocumentBulletPoint.value !== bulletPoint.placeholder) {
 					values[matchingDocumentBulletPoint.id] = matchingDocumentBulletPoint.value;
@@ -43,8 +43,10 @@ export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentB
 								placeholder={bulletPoint.placeholder}
 								maxLength={350}
 								defaultValue={values[bulletPoint.id] || matchingDocumentBulletPoint?.value || bulletPoint.placeholder}
-								onChange={e => (values[e.target.id] = e.target.value)}
-								onBlur={() => updateBulletPoints(values)}
+								onChange={(e) => {
+									values[e.target.id] = e.target.value;
+								}}
+								onBlur={() => updateBulletPoints()}
 							/>
 						</div>
 					);
@@ -58,8 +60,10 @@ export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentB
 							style={{ width: '90%', backgroundColor: '#deefff', margin: '2px' }}
 							placeholder={bulletPoint.placeholder}
 							maxLength={350}
-							onChange={e => (values[e.target.id] = e.target.value)}
-							onBlur={() => updateBulletPoints(values)}
+							onChange={(e) => {
+								values[e.target.id] = e.target.value;
+							}}
+							onBlur={() => updateBulletPoints()}
 						/>
 					</div>
 				);
@@ -67,3 +71,5 @@ export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentB
 		</div>
 	);
 };
+
+export default PreviewBulletPoints;

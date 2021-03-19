@@ -4,7 +4,6 @@ import {
 	StaticText,
 	TemplateSection,
 	EditableText,
-	BulletPoints,
 } from '@monaco-digital/vl-types/lib/main';
 import { nanoid } from 'nanoid';
 

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import Button from '../components/Button';
 import mainimage from '../assets/img/vl-labels-illustration.svg';
 
-export const GetStarted: React.FC = () => {
+const GetStarted: React.FC = () => {
 	const history = useHistory();
 
 	const goToTopics = () => {
@@ -22,7 +22,7 @@ export const GetStarted: React.FC = () => {
 						</div>
 					</div>
 					<div className="get-started__image">
-						<img className="object-cover" src={mainimage} />
+						<img className="object-cover" src={mainimage} alt="" />
 					</div>
 				</div>
 				<div className="get-started__button-mobile flex justify-center">

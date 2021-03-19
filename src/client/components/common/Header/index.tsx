@@ -44,7 +44,7 @@ const Header: FC = () => {
 					Terms of Use
 				</NavLink>
 			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
+			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)} type="button">
 				<i className="fas fa-bars" />
 			</button>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>

@@ -1,4 +1,4 @@
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, Template } from '@monaco-digital/vl-types/lib/main';
 import { grievanceLetter } from './grievanceLetter';
 import { stillEmployed } from './stillEmployed';
 import { notEmployed } from './notEmployed';
@@ -9,29 +9,28 @@ import { responseWantToKeepMe } from './responseWantToKeepMe';
 
 export { adviceLetter } from './adviceLetter';
 
-export const getTemplate = (topics: CaseTopic[]) => {
-	console.log('getTemplate', topics);
+export const getTemplate = (topics: CaseTopic[]): Template => {
 	try {
-		if (topics.find(topic => topic.id === '_GR')) {
+		if (topics.find((topic) => topic.id === '_GR')) {
 			return grievanceLetter;
 		}
-		if (topics.find(topic => topic.id === '_RES_CD')) {
+		if (topics.find((topic) => topic.id === '_RES_CD')) {
 			return responseCompleteDenail;
 		}
-		if (topics.find(topic => topic.id === '_RES_CO')) {
+		if (topics.find((topic) => topic.id === '_RES_CO')) {
 			return responseCounterOffer;
 		}
-		if (topics.find(topic => topic.id === '_RES_I')) {
+		if (topics.find((topic) => topic.id === '_RES_I')) {
 			return responseInvestigating;
 		}
-		if (topics.find(topic => topic.id === '_RES_KM')) {
+		if (topics.find((topic) => topic.id === '_RES_KM')) {
 			return responseWantToKeepMe;
 		}
-		if (topics.find(topic => topic.id === 'E')) {
+		if (topics.find((topic) => topic.id === 'E')) {
 			return stillEmployed;
 		}
-		return notEmployed;
 	} catch (e) {
 		// nothing yet
 	}
+	return notEmployed;
 };

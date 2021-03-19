@@ -21,7 +21,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VL
 				<span className="vl-card__header__title">{heading}</span>
 				{counter !== undefined && (
 					<span className="vl-card__header__counter">
-						<img src={expandTextIcon} />
+						<img src={expandTextIcon} alt="Expand Text" />
 						<span className="vl-card__header__counter-number">{counter}</span>
 					</span>
 				)}
@@ -29,6 +29,12 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VL
 			<div className={blur ? 'vl-card__blur' : ''}>{children}</div>
 		</div>
 	);
+};
+
+VLcard.defaultProps = {
+	theme: 'light',
+	counter: undefined,
+	blur: false,
 };
 
 export default VLcard;

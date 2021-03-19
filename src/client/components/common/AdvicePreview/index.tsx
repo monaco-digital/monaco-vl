@@ -18,7 +18,7 @@ const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => (
 );
 
 const AdvicePreview: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
 	const [adviceParagraphs, setAdviceParagraphs] = useState([]);
 
 	useEffect(() => {
@@ -27,7 +27,7 @@ const AdvicePreview: FC = () => {
 			setAdviceParagraphs(suggestAdviceParagraphs);
 		};
 		updateAdviceParagraphs();
-	}, []);
+	}, [selectedTopics]);
 
 	useEffect(() => {
 		ReactGA.event({
@@ -41,8 +41,8 @@ const AdvicePreview: FC = () => {
 			<div className="letter-preview">
 				<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
 					<div className="letter-preview__body">
-						{adviceParagraphs.map((paragraph, idx) => (
-							<AdviceDocParagraph key={idx} paragraph={paragraph} />
+						{adviceParagraphs.map((paragraph) => (
+							<AdviceDocParagraph key={paragraph.id} paragraph={paragraph} />
 						))}
 					</div>
 				</VLcard>

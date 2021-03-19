@@ -3,6 +3,7 @@ import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
+
 import Footer from '../components/common/Footer';
 import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
@@ -19,21 +20,22 @@ import StatementSelect from '../components/common/StatementSelect';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
 import { disableMonetization, enableMonetization } from '../../data/featureDataSlice';
+
 import Terms from './Terms';
 
 const Main: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
+	const advicePreviewOnly = !!selectedTopics.find((t) => t.id === '_ADV');
 
 	const dispatch = useDispatch();
 	const { search } = useLocation();
 	const history = useHistory();
 
 	useEffect(() => {
-		history.listen(location => {
+		history.listen((location) => {
 			ReactGA.pageview(location.pathname);
 		});
-	}, []);
+	}, [history]);
 
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.
@@ -59,7 +61,11 @@ const Main: FC = () => {
 		}
 
 		if ('enableMonetization' in featureStorage) {
-			featureStorage.enableMonetization ? dispatch(enableMonetization()) : dispatch(disableMonetization());
+			if (featureStorage.enableMonetization) {
+				dispatch(enableMonetization());
+			} else {
+				dispatch(disableMonetization());
+			}
 		}
 
 		try {
@@ -67,7 +73,7 @@ const Main: FC = () => {
 		} catch {
 			/* ignore */
 		}
-	}, [search]);
+	}, [dispatch, search]);
 
 	useEffect(() => {
 		// TODO - fix this
@@ -78,17 +84,17 @@ const Main: FC = () => {
 			// const paragraphs = await getData()
 			const caseTopics = await getAllCaseTopics();
 			const sessionParagraphs = paragraphs.map(
-				paragraph =>
+				(paragraph) =>
 					({
 						templateComponent: paragraph,
 						documentComponent: null,
 						isSelected: false,
-					} as SessionParagraph)
+					} as SessionParagraph),
 			);
 			dispatch(setAllTopics(caseTopics));
 			dispatch(updateSuggestedParagraphs(sessionParagraphs));
 		})();
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<main className="main">

@@ -3,7 +3,7 @@ import { Question } from '../types/Questions';
 import { SessionDocument, SessionParagraph } from '../types/SessionDocument';
 import { ParagraphToggle } from '../types/paragraph';
 
-export type AppState = {
+type AppState = {
 	session: {
 		suggestedParagraphs: SessionParagraph[];
 		selectedTopics: CaseTopic[];
@@ -22,9 +22,6 @@ export type AppState = {
 		selected: CaseTopic[];
 	};
 	questions: {
-		screen: number;
-		mode: string;
-		prevState: any;
 		answeredQuestions: Question[];
 	};
 	features: {

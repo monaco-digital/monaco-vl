@@ -21,6 +21,34 @@ interface Data {
 	templateId: string;
 }
 
+const getLetterText = (sessionDocument: SessionDocument) => {
+	const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+	return letterText;
+};
+
+const getTopicsList = (selectedTopics: CaseTopic[]) => {
+	const topicsList = selectedTopics.map((t) => t.text).join(', ');
+	return topicsList;
+};
+
+const getAdviceText = (adviceParagraphs: Advice[]) => {
+	const adviceText = adviceParagraphs.map((ap) => ap.text).join('\n\n\n');
+	return adviceText;
+};
+
+const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization: boolean) => {
+	if (selectedTopics.find((topic) => topic.id === '_LET') && !enabledMonetization) {
+		return 'LAC';
+	}
+	if (selectedTopics.find((topic) => topic.id === '_RES')) {
+		if (enabledMonetization) {
+			return 'GE1';
+		}
+		return 'LAC';
+	}
+	return 'AD1';
+};
+
 const EmailModal: FC = () => {
 	const history = useHistory();
 	const lambdaUrl = config.LAMBDA_URL;
@@ -37,9 +65,9 @@ const EmailModal: FC = () => {
 	const [name, setName] = useState('');
 	const [recipient, setRecipient] = useState('');
 
-	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const enabledMonetization = useSelector<AppState, boolean>((state) => state.features.enableMonetization);
+	const sessionDocument = useSelector<AppState, SessionDocument>((state) => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>((state) => state.session.selectedTopics);
 	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 
 	useEffect(() => {
@@ -50,41 +78,13 @@ const EmailModal: FC = () => {
 		updateAdviceParagraphs();
 	}, [selectedTopics]);
 
-	const getLetterText = () => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
-		return letterText;
-	};
-
-	const getTopicsList = () => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ');
-		return topicsList;
-	};
-
-	const getAdviceText = () => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
-		return adviceText;
-	};
-
-	const getTemplateId = () => {
-		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-			return 'LAC';
-		}
-		if (selectedTopics.find(topic => topic.id === '_RES')) {
-			if (enabledMonetization) {
-				return 'GE1';
-			}
-			return 'LAC';
-		}
-		return 'AD1';
-	};
-
 	useEffect(() => {
-		data.adviceText = getAdviceText();
-		data.letterText = getLetterText();
-		data.topicsList = getTopicsList();
-		data.templateId = getTemplateId();
+		data.adviceText = getAdviceText(adviceParagraphs);
+		data.letterText = getLetterText(sessionDocument);
+		data.topicsList = getTopicsList(selectedTopics);
+		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
 		setData(data);
-	}, [sessionDocument, selectedTopics, adviceParagraphs]);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
 	const submitDetails = () => {
 		data.name = name;
@@ -105,7 +105,7 @@ const EmailModal: FC = () => {
 		<form className="flex justify-center">
 			<div className="emailModal space-y-5">
 				<div className="emailModal__section-end">
-					<img style={{ width: '80px' }} src={downloadIcon} />
+					<img style={{ width: '80px' }} src={downloadIcon} alt="Download Icon" />
 					<h1 className="emailModal__header">
 						SEND THIS
 						<br /> TO ME
@@ -115,7 +115,7 @@ const EmailModal: FC = () => {
 
 				<TextField
 					id="name"
-					onChange={e => setName(e.target.value)}
+					onChange={(e) => setName(e.target.value)}
 					label="First name"
 					autoComplete="name"
 					variant="filled"
@@ -123,7 +123,7 @@ const EmailModal: FC = () => {
 				/>
 				<TextField
 					id="email"
-					onChange={e => setRecipient(e.target.value)}
+					onChange={(e) => setRecipient(e.target.value)}
 					label="Your email"
 					autoComplete="email"
 					variant="filled"

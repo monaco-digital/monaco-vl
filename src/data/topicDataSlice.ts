@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
 

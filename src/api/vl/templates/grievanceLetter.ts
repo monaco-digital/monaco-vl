@@ -5,10 +5,8 @@ import {
 	TemplateSection,
 	EditableText,
 	BulletPoints,
-	Paragraph,
 } from '@monaco-digital/vl-types/lib/main';
 import { nanoid } from 'nanoid';
-import { allowedNodeEnvironmentFlags } from 'process';
 
 export const grievanceLetter: Template = {
 	id: nanoid(),

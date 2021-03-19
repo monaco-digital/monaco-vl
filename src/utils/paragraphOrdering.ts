@@ -1,15 +1,37 @@
 import { CaseTopic, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
-import _ from 'lodash';
 import { SessionParagraph } from '../types/SessionDocument';
+
+const sortParagraphs = (suggestedParagraphs: SessionParagraph[], sortOrder: string[]): SessionParagraph[] => {
+	const comparisonFunction = (a: SessionParagraph, b: SessionParagraph): number => {
+		const aParagraph = (a.templateComponent as TemplateParagraph).paragraph;
+		const bParagraph = (b.templateComponent as TemplateParagraph).paragraph;
+		const aParagraphPrimaryTopic = aParagraph.topicsAllOf?.[0] || aParagraph.topicsOneOf?.[0];
+		const bParagraphPrimaryTopic = bParagraph.topicsAllOf?.[0] || bParagraph.topicsOneOf?.[0];
+		const aIndex =
+			sortOrder.indexOf(aParagraphPrimaryTopic) > -1 ? sortOrder.indexOf(aParagraphPrimaryTopic) : sortOrder.length;
+		const bIndex =
+			sortOrder.indexOf(bParagraphPrimaryTopic) > -1 ? sortOrder.indexOf(bParagraphPrimaryTopic) : sortOrder.length;
+
+		if (aIndex > bIndex) return 1;
+		if (aIndex < bIndex) return -1;
+		if (aIndex === bIndex) {
+			if (aParagraph.verticalHeight > bParagraph.verticalHeight) return 1;
+			if (aParagraph.verticalHeight < bParagraph.verticalHeight) return -1;
+		}
+		return 0;
+	};
+	// slice(0) to clone the array to avoid mutating it
+	return suggestedParagraphs.slice(0).sort(comparisonFunction);
+};
 
 /*
 	This function should order according to the preferred order of topics, and then by vertical height
 */
 const orderSuggestedParagraphs = (
 	suggestedParagraphs: SessionParagraph[],
-	selectedTopics: CaseTopic[]
+	selectedTopics: CaseTopic[],
 ): SessionParagraph[] => {
-	const selectedTopicIds = selectedTopics.map(topic => topic.id);
+	const selectedTopicIds = selectedTopics.map((topic) => topic.id);
 
 	if (selectedTopicIds.includes('T')) {
 		/*
@@ -56,27 +78,4 @@ const orderSuggestedParagraphs = (
 	return suggestedParagraphs;
 };
 
-const sortParagraphs = (suggestedParagraphs: SessionParagraph[], sortOrder: string[]): SessionParagraph[] => {
-	const comparisonFunction = (a: SessionParagraph, b: SessionParagraph): number => {
-		const aParagraph = (a.templateComponent as TemplateParagraph).paragraph;
-		const bParagraph = (b.templateComponent as TemplateParagraph).paragraph;
-		const aParagraphPrimaryTopic = aParagraph.topicsAllOf?.[0] || aParagraph.topicsOneOf?.[0];
-		const bParagraphPrimaryTopic = bParagraph.topicsAllOf?.[0] || bParagraph.topicsOneOf?.[0];
-		const aIndex =
-			sortOrder.indexOf(aParagraphPrimaryTopic) > -1 ? sortOrder.indexOf(aParagraphPrimaryTopic) : sortOrder.length;
-		const bIndex =
-			sortOrder.indexOf(bParagraphPrimaryTopic) > -1 ? sortOrder.indexOf(bParagraphPrimaryTopic) : sortOrder.length;
-
-		if (aIndex > bIndex) return 1;
-		if (aIndex < bIndex) return -1;
-		if (aIndex === bIndex) {
-			if (aParagraph.verticalHeight > bParagraph.verticalHeight) return 1;
-			if (aParagraph.verticalHeight < bParagraph.verticalHeight) return -1;
-		}
-		return 0;
-	};
-	// slice(0) to clone the array to avoid mutating it
-	return suggestedParagraphs.slice(0).sort(comparisonFunction);
-};
-
-export { orderSuggestedParagraphs };
+export default orderSuggestedParagraphs;

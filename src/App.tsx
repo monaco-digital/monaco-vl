@@ -1,7 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 import './App.css';
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
 import ReactGA from 'react-ga';
 import TagManager from 'react-gtm-module';
 
@@ -11,7 +9,7 @@ import config from './config';
 
 const { GA_PROPERTY_ID } = config;
 
-function App() {
+const App: FC = () => {
 	TagManager.initialize({
 		gtmId: 'GTM-T5XNDHQ',
 	});
@@ -23,10 +21,9 @@ function App() {
 		<>
 			<Router>
 				<Client />
-				<ToastContainer />
 			</Router>
 		</>
 	);
-}
+};
 
 export default App;

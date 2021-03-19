@@ -1,21 +1,23 @@
 import { DocumentParagraphEditableText, EditableText } from '@monaco-digital/vl-types/lib/main';
-import React, { FC, useState, useRef } from 'react';
+import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import AutosizeInput from 'react-input-autosize';
 import { TextareaAutosize } from '@material-ui/core';
 import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice';
 
-export const PreviewEditableText: FC<{
+interface Props {
 	templateEditableText: EditableText;
 	documentEditableText: DocumentParagraphEditableText;
-}> = ({ templateEditableText, documentEditableText }) => {
+}
+
+export const PreviewEditableText: FC<Props> = ({ templateEditableText, documentEditableText }: Props) => {
 	const initialValue =
 		documentEditableText?.value !== templateEditableText.placeholder ? documentEditableText?.value : '';
 	const [value, setValue] = useState(initialValue);
 	const dispatch = useDispatch();
 
-	const updateEditableText = (value: string) => {
+	const updateEditableText = () => {
 		const updatedDocumentParagraphComponent = {
 			id: nanoid(),
 			baseTemplateComponent: templateEditableText.id,
@@ -33,8 +35,8 @@ export const PreviewEditableText: FC<{
 				placeholder={templateEditableText.placeholder}
 				maxLength={templateEditableText.maxLength}
 				defaultValue={value}
-				onChange={e => setValue(e.target.value)}
-				onBlur={e => updateEditableText(value)}
+				onChange={(e) => setValue(e.target.value)}
+				onBlur={() => updateEditableText()}
 			/>
 		);
 	}
@@ -46,8 +48,8 @@ export const PreviewEditableText: FC<{
 				inputStyle={{ padding: '1px', backgroundColor: '#deefff' }}
 				placeholderIsMinWidth
 				placeholder={templateEditableText.placeholder}
-				onChange={e => setValue(e.target.value)}
-				onBlur={e => updateEditableText(value)}
+				onChange={(e) => setValue(e.target.value)}
+				onBlur={() => updateEditableText()}
 			/>
 		</span>
 	);

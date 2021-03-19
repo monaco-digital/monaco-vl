@@ -7,18 +7,18 @@ interface Props {
 	shortText?: string;
 	fn?: any;
 	extraClasses?: string;
-	rounded?: any;
+	rounded?: boolean;
 	disabled?: boolean;
 }
 
-export const Button: React.FC<Props> = ({
+const Button: React.FC<Props> = ({
 	type = 'main',
 	disabled = false,
-	text,
-	shortText,
-	fn,
+	text = '',
+	shortText = '',
+	fn = () => {},
 	extraClasses = '',
-	rounded,
+	rounded = false,
 }: Props) => {
 	const buttonClasses = classNames(`${extraClasses} button`, {
 		'button--has-short-text': shortText,
@@ -33,13 +33,23 @@ export const Button: React.FC<Props> = ({
 				className={buttonClasses}
 				type="button"
 				aria-label={shortText || text}
-				onClick={params => fn(params)}
+				onClick={(params) => fn(params)}
 			>
 				{shortText && <span className="button__short-text">{shortText}</span>}
 				<span className="button__text">{text}</span>
 			</button>
 		</>
 	);
+};
+
+Button.defaultProps = {
+	type: 'main',
+	disabled: false,
+	text: '',
+	shortText: '',
+	fn: () => {},
+	extraClasses: '',
+	rounded: false,
 };
 
 export default Button;

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import ReactGA from 'react-ga';
 
-export const Help: React.FC = () => {
+const Help: React.FC = () => {
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',

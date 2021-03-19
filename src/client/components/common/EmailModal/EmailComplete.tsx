@@ -9,7 +9,7 @@ const EmailComplete: FC = () => {
 	return (
 		<Grid container justify="center" direction="column" alignItems="center" className="space-y-5 max-w-xs">
 			<div>
-				<img src={headerImage} width="80" height="80" />
+				<img src={headerImage} width="80" height="80" alt="" />
 			</div>
 			<Typography variant="h5">Thank You</Typography>
 			<div>Your document has been emailed to you</div>

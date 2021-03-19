@@ -372,11 +372,11 @@ const allQuestions: Question[] = [
 	},
 ];
 
-export const getFirstQuestion = () => allQuestions[0];
+export const getFirstQuestion = (): Question => allQuestions[0];
 
-export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id);
+export const getNextQuestion = (selectedTopics = [], answeredQuestions: Question[]): Question => {
+	const selectedTopicIds: string[] = selectedTopics.map((t) => t.id);
+	const answeredQuestionsIds = answeredQuestions.map((q) => q.id);
 	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null;
 
 	if (lastAnsweredQuestion?.isFinal) return null;
@@ -385,13 +385,13 @@ export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
 	let nextQuestion = null;
 	while (!nextQuestion && index < allQuestions.length) {
 		const prerequisites = allQuestions[index].prerequisites || [];
-		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id));
+		const prerequisitesMet = prerequisites.every((id) => selectedTopicIds.includes(id));
 		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id);
 
 		if (prerequisitesMet && !answeredAlready) {
 			nextQuestion = allQuestions[index];
 		}
-		index++;
+		index += 1;
 	}
 
 	return nextQuestion;

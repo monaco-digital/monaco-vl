@@ -10,6 +10,7 @@ export const createWPLetterPaymentRequest = async (email: string): Promise<strin
 		const { clientSecret } = data;
 		return clientSecret;
 	} catch (e) {
-		console.log('There was an error creating a payment request using stripe: ', e);
+		// ignore
 	}
+	return null;
 };

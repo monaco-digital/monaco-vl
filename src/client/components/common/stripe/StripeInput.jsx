@@ -8,7 +8,16 @@ const StripeInput = ({ component: Component, inputRef, ...other }) => {
 		focus: () => elementRef.current.focus,
 	}));
 
-	return <Component options={{ showIcon: true }} onReady={element => (elementRef.current = element)} {...other} />;
+	return (
+		<Component
+			options={{ showIcon: true }}
+			onReady={(element) => {
+				elementRef.current = element;
+			}}
+			// eslint-disable-next-line react/jsx-props-no-spreading
+			{...other}
+		/>
+	);
 };
 
 export default StripeInput;

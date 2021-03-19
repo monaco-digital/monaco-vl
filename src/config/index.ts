@@ -17,6 +17,7 @@ const vlApiUrl = (): string => {
 	if (stage === 'dev') {
 		return 'https://95b3honng8.execute-api.eu-west-2.amazonaws.com/dev/graphql';
 	}
+	return '';
 };
 
 const vlStripeUrl = (): string => {
@@ -26,6 +27,7 @@ const vlStripeUrl = (): string => {
 	if (stage === 'dev') {
 		return 'https://rl6mqddh4h.execute-api.eu-west-2.amazonaws.com/dev';
 	}
+	return '';
 };
 
 const gaPropertyId = (): string => {
@@ -35,6 +37,7 @@ const gaPropertyId = (): string => {
 	if (stage === 'dev') {
 		return 'UA-66970592-4';
 	}
+	return '';
 };
 
 const lambdaUrl = (): string =>
@@ -42,7 +45,7 @@ const lambdaUrl = (): string =>
 		? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
 		: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer';
 
-export const config = {
+const config = {
 	API_URL: apiUrl(),
 	VL_API_URL: vlApiUrl(),
 	VL_STRIPE_URL: vlStripeUrl(),

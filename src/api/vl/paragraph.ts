@@ -24,13 +24,14 @@ export const getAllParagraphs = async (): Promise<TemplateParagraph[]> => {
 		}
 		const { getAllParagraphs: allParagraphs } = data;
 		/* TODO - Fix the endpoint so that it returns template Paragraphs? */
-		return allParagraphs.map(paragraph => ({
+		return allParagraphs.map((paragraph) => ({
 			id: paragraph.id,
 			type: 'Paragraph',
 			version: 1,
 			paragraph,
 		}));
 	} catch (e) {
-		console.log('There was an error getting all paragraphs: ', e);
+		// ignore
 	}
+	return null;
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Terms: React.FC = () => (
+const Terms: React.FC = () => (
 	<div className="termsSection" style={{ maxWidth: '900px' }}>
 		<h1>Virtual Lawyer terms of use</h1>
 		<p>
@@ -73,6 +73,7 @@ export const Terms: React.FC = () => (
 				}}
 			>
 				<iframe
+					title="SRA Badge"
 					frameBorder="0"
 					scrolling="no"
 					allowTransparency
