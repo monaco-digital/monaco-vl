@@ -34,7 +34,9 @@ jobs:
           path: reports
       - run:
           name: 'Run tests'
-          command: npm test
+          command: npm test -- --collectCoverage=true
+      - store_artifacts:
+          path: coverage
 
   deploy:
     parameters:
