@@ -3,7 +3,7 @@ import { Question } from '../types/Questions'
 
 describe('Question flow', () => {
 	test('First question returned', () => {
-		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help you')
+		expect(getFirstQuestion()).toHaveProperty('text', 'What would you like?')
 	})
 
 	test('Question prerequisite not met', () => {
