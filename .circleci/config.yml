@@ -26,7 +26,7 @@ jobs:
           command: |
             CI=false && npm run build
       - run:
-          command: npx eslint ./src --ext .js,.ts,.jsx,.tsx
+          command: npm run lint
           name: ESlint
       - run:
           name: 'Run tests'
