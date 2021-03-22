@@ -1,5 +1,5 @@
-import { gql } from '@apollo/client'
-import { meta } from './misc'
+import { gql } from '@apollo/client';
+import { meta } from './misc';
 
 export const paragraphComponent = gql`
 	fragment FParagraphComponent on ParagraphComponent {
@@ -10,7 +10,7 @@ export const paragraphComponent = gql`
 			...FMeta
 		}
 	}
-`
+`;
 
 export const staticText = gql`
 	fragment FStaticText on StaticText {
@@ -23,7 +23,7 @@ export const staticText = gql`
 			...FMeta
 		}
 	}
-`
+`;
 
 export const bulletPoint = gql`
 	fragment FBulletPoints on BulletPoints {
@@ -40,7 +40,7 @@ export const bulletPoint = gql`
 			maxLength
 		}
 	}
-`
+`;
 
 export const dropDown = gql`
 	fragment FDropDown on DropDown {
@@ -52,7 +52,7 @@ export const dropDown = gql`
 		}
 		optionsListId
 	}
-`
+`;
 
 export const paragraph = gql`
 	fragment FParagraph on Paragraph {
@@ -81,4 +81,4 @@ export const paragraph = gql`
 	${staticText}
 	${bulletPoint}
 	${meta}
-`
+`;

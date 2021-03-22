@@ -1,29 +1,30 @@
-import React from 'react'
-import classNames from 'classnames'
+import React from 'react';
+import classNames from 'classnames';
+
 interface Props {
-	type?: string
-	text?: string
-	shortText?: string
-	fn?: any
-	extraClasses?: string
-	rounded?: any
-	disabled?: boolean
+	type?: string;
+	text?: string;
+	shortText?: string;
+	fn?: any;
+	extraClasses?: string;
+	rounded?: boolean;
+	disabled?: boolean;
 }
 
-export const Button: React.FC<Props> = ({
+const Button: React.FC<Props> = ({
 	type = 'main',
 	disabled = false,
-	text,
-	shortText,
-	fn,
+	text = '',
+	shortText = '',
+	fn = () => {},
 	extraClasses = '',
-	rounded,
-}) => {
+	rounded = false,
+}: Props) => {
 	const buttonClasses = classNames(`${extraClasses} button`, {
 		'button--has-short-text': shortText,
 		[`button--${type}`]: type,
 		'button--rounded': rounded,
-	})
+	});
 
 	return (
 		<>
@@ -38,7 +39,17 @@ export const Button: React.FC<Props> = ({
 				<span className="button__text">{text}</span>
 			</button>
 		</>
-	)
-}
+	);
+};
 
-export default Button
+Button.defaultProps = {
+	type: 'main',
+	disabled: false,
+	text: '',
+	shortText: '',
+	fn: () => {},
+	extraClasses: '',
+	rounded: false,
+};
+
+export default Button;

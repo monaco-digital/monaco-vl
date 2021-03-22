@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import React, { useEffect } from 'react';
+import ReactGA from 'react-ga';
 
-export const Help: React.FC = () => {
+const Help: React.FC = () => {
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Opened help page',
-		})
-	}, [])
+		});
+	}, []);
 
 	return (
 		<div className="helpsection" style={{ maxWidth: '900px' }}>
@@ -33,7 +33,7 @@ export const Help: React.FC = () => {
 			<br />
 			<p>
 				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
-				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
 					grievance letter
 				</a>
 				, Here are some{' '}
@@ -58,7 +58,11 @@ export const Help: React.FC = () => {
 			<div>
 				<ul>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener">
+						<a
+							href="https://www.monacosolicitors.co.uk/settlement-agreements/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							How much should I get
 						</a>
 					</li>
@@ -66,13 +70,13 @@ export const Help: React.FC = () => {
 						<a
 							href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 							target="_blank"
-							rel="noopener"
+							rel="noopener noreferrer"
 						>
 							Settlement agreement calculator
 						</a>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener">
+						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener noreferrer">
 							Negotiating
 						</a>
 					</li>
@@ -242,7 +246,7 @@ export const Help: React.FC = () => {
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Help
+export default Help;

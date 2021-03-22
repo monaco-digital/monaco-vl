@@ -1,45 +1,45 @@
-import React, { useState } from 'react'
-import { useHistory, Link } from 'react-router-dom'
-import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js'
-import { useForm } from 'react-hook-form'
+import React, { useState } from 'react';
+import { useHistory, Link } from 'react-router-dom';
+import { useElements, useStripe, CardNumberElement, CardExpiryElement, CardCvcElement } from '@stripe/react-stripe-js';
+import { useForm } from 'react-hook-form';
 
-import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
-import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core'
-import { submitDetails } from '../../../../api/general'
-import { useDispatch, useSelector } from 'react-redux'
-import AppState from '../../../../data/AppState'
-import { SessionDocument } from '../../../../types/SessionDocument'
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
-import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
-import { getDocumentText } from '../../../../utils/renderDocument'
-import StripeInput from './StripeInput'
-import { updateUserData } from '../../../../data/sessionDataSlice'
-import { UserData } from '../../../../types/UserData'
+import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe';
+import { submitDetails } from '../../../../api/general';
+import AppState from '../../../../data/AppState';
+import { SessionDocument } from '../../../../types/SessionDocument';
+import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
+import { getDocumentText } from '../../../../utils/renderDocument';
+import StripeInput from './StripeInput';
+import { updateUserData } from '../../../../data/sessionDataSlice';
+import { UserData } from '../../../../types/UserData';
 
 const getSubmissionData = async (input: {
-	name: string
-	recipient: string
-	sessionDocument: any
-	selectedTopics: any
+	name: string;
+	recipient: string;
+	sessionDocument: any;
+	selectedTopics: any;
 }): Promise<UserData> => {
-	const { name, recipient, sessionDocument, selectedTopics } = input
+	const { name, recipient, sessionDocument, selectedTopics } = input;
 
-	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
+	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics);
 
 	const getLetterText = (): string => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
-		return letterText
-	}
+		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+		return letterText;
+	};
 
 	const getTopicsList = (): string => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ')
-		return topicsList
-	}
+		const topicsList = selectedTopics.map(t => t.text).join(', ');
+		return topicsList;
+	};
 
 	const getAdviceText = (): string => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
-		return adviceText
-	}
+		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
+		return adviceText;
+	};
 
 	const data = {
 		name,
@@ -49,63 +49,62 @@ const getSubmissionData = async (input: {
 		letterText: getLetterText(),
 		topicsList: getTopicsList(),
 		templateId: 'GE1',
-	}
-	return data
-}
+	};
+	return data;
+};
 
 export const CheckoutForm: React.FC = () => {
-	//todo - take out of here - data for submit details call
-	const dispatch = useDispatch()
+	// todo - take out of here - data for submit details call
+	const dispatch = useDispatch();
 
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 
-	const { register, handleSubmit, errors } = useForm()
+	const { register, handleSubmit, errors } = useForm();
 
-	const [succeeded, setSucceeded] = useState(false)
-	const [error, setError] = useState(null)
-	const [processing, setProcessing] = useState(false)
-	const stripe = useStripe()
-	const elements = useElements()
+	const [succeeded, setSucceeded] = useState(false);
+	const [error, setError] = useState(null);
+	const [processing, setProcessing] = useState(false);
+	const stripe = useStripe();
+	const elements = useElements();
 
-	const history = useHistory()
+	const history = useHistory();
 	const handleChange = async (event): Promise<void> => {
 		// Listen for changes in the CardElement
 		// and display any errors as the customer types their card details
-		setError(event.error ? event.error.message : '')
-	}
+		setError(event.error ? event.error.message : '');
+	};
 
 	const onSubmit = async (formData): Promise<void> => {
-		setProcessing(true)
-		const clientSecret = await createWPLetterPaymentRequest(formData.email)
+		setProcessing(true);
+		const clientSecret = await createWPLetterPaymentRequest(formData.email);
 		const payload = await stripe.confirmCardPayment(clientSecret, {
 			// justification: 3rd party API library
-			// eslint-disable-next-line @typescript-eslint/camelcase
 			payment_method: {
 				card: elements.getElement(CardNumberElement),
 			},
-		})
+		});
 		if (payload.error) {
-			setError(`Payment failed ${payload.error.message}`)
-			setProcessing(false)
+			setError(`Payment failed ${payload.error.message}`);
+			setProcessing(false);
 		} else {
-			setError(null)
-			setProcessing(false)
-			setSucceeded(true)
+			setError(null);
+			setProcessing(false);
+			setSucceeded(true);
 
-			//make call to submit details
+			// make call to submit details
 			const data = await getSubmissionData({
 				name: formData.name,
 				recipient: formData.email,
 				sessionDocument,
 				selectedTopics,
-			})
-			dispatch(updateUserData(data))
-			history.push('/preview/checkout/payment/complete')
+			});
+			dispatch(updateUserData(data));
+			history.push('/preview/checkout/payment/complete');
 
-			await submitDetails(data)
+			await submitDetails(data);
 		}
-	}
+	};
 
 	return (
 		<form id="payment-form" noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-6 max-w-xs">
@@ -226,5 +225,5 @@ export const CheckoutForm: React.FC = () => {
 				</Grid>
 			</Grid>
 		</form>
-	)
-}
+	);
+};

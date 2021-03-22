@@ -1,31 +1,31 @@
-import React, { FC, useState, useEffect } from 'react'
-import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import AppState from '../../../../data/AppState'
-import { SessionDocument } from '../../../../types/SessionDocument'
-import { getDocumentText } from '../../../../utils/renderDocument'
-import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
-import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
-import axios from 'axios'
-import downloadIcon from '../../../assets/img/download-icon.png'
-import config from '../../../../config'
-import { updateUserData } from '../../../../data/sessionDataSlice'
+import React, { FC, useState, useEffect } from 'react';
+import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main';
+import axios from 'axios';
+import AppState from '../../../../data/AppState';
+import { SessionDocument } from '../../../../types/SessionDocument';
+import { getDocumentText } from '../../../../utils/renderDocument';
+import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
+import downloadIcon from '../../../assets/img/download-icon.png';
+import config from '../../../../config';
+import { updateUserData } from '../../../../data/sessionDataSlice';
 
 interface Data {
-	adviceText: string
-	letterText: string
-	topicsList: string
-	name: string
-	recipient: string
-	contactMe: boolean
-	templateId: string
+	adviceText: string;
+	letterText: string;
+	topicsList: string;
+	name: string;
+	recipient: string;
+	contactMe: boolean;
+	templateId: string;
 }
 
 const EmailModal: FC = () => {
-	const history = useHistory()
-	const lambdaUrl = config.LAMBDA_URL
-	const dispatch = useDispatch()
+	const history = useHistory();
+	const lambdaUrl = config.LAMBDA_URL;
+	const dispatch = useDispatch();
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -34,56 +34,57 @@ const EmailModal: FC = () => {
 		recipient: '',
 		contactMe: false,
 		templateId: '',
-	})
+	});
 
-	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization)
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([])
+	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 
 	useEffect(() => {
 		const updateAdviceParagraphs = async () => {
-			const suggestAdviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
-			setAdviceParagraphs(suggestAdviceParagraphs)
-		}
-		updateAdviceParagraphs()
-	}, [selectedTopics])
+			const suggestAdviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics);
+			setAdviceParagraphs(suggestAdviceParagraphs);
+		};
+		updateAdviceParagraphs();
+	}, [selectedTopics]);
 
 	const getLetterText = () => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
-		return letterText
-	}
+		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+		return letterText;
+	};
 
 	const getTopicsList = () => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ')
-		return topicsList
-	}
+		const topicsList = selectedTopics.map(t => t.text).join(', ');
+		return topicsList;
+	};
 
 	const getAdviceText = () => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
-		return adviceText
-	}
+		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
+		return adviceText;
+	};
 
 	const getTemplateId = () => {
 		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-			return 'LAC'
-		} else if (selectedTopics.find(topic => topic.id === '_RES')) {
-			if (enabledMonetization) {
-				return 'GE1'
-			} else {
-				return 'LAC'
-			}
+			return 'LAC';
 		}
-		return 'AD1'
-	}
-
+		if (selectedTopics.find(topic => topic.id === '_RES')) {
+			if (enabledMonetization) {
+				return 'GE1';
+			}
+			return 'LAC';
+		}
+		return 'AD1';
+	};
+	// eslint-disable-next-line
 	useEffect(() => {
-		data.adviceText = getAdviceText()
-		data.letterText = getLetterText()
-		data.topicsList = getTopicsList()
-		data.templateId = getTemplateId()
-		setData(data)
-	}, [sessionDocument, selectedTopics, adviceParagraphs])
+		data.adviceText = getAdviceText();
+		data.letterText = getLetterText();
+		data.topicsList = getTopicsList();
+		data.templateId = getTemplateId();
+		setData(data);
+		// eslint-disable-next-line
+	}, [sessionDocument, selectedTopics, adviceParagraphs]);
 
 	const submitDetails = () => {
 		axios({
@@ -93,20 +94,20 @@ const EmailModal: FC = () => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		})
-	}
+		});
+	};
 
 	return (
 		<form className="flex justify-center">
 			<div className="emailModal space-y-5">
 				<div className="emailModal__section-end">
-					<img style={{ width: '80px' }} src={downloadIcon} />
+					<img style={{ width: '80px' }} src={downloadIcon} alt="" />
 					<h1 className="emailModal__header">
 						SEND THIS
 						<br /> TO ME
 					</h1>
 				</div>
-				<div>Enter your name and email address below and we'll send this to you for free</div>
+				<div>Enter your name and email address below and we&apos;ll send this to you for free</div>
 
 				<TextField
 					id="name"
@@ -144,12 +145,12 @@ const EmailModal: FC = () => {
 						size="large"
 						color="secondary"
 						onClick={() => {
-							dispatch(updateUserData({ ...data }))
+							dispatch(updateUserData({ ...data }));
 							if (data.contactMe) {
-								history.push('/preview/checkout/cdf1')
+								history.push('/preview/checkout/cdf1');
 							} else {
-								history.push('/preview/checkout/email/complete')
-								submitDetails()
+								history.push('/preview/checkout/email/complete');
+								submitDetails();
 							}
 						}}
 					>
@@ -161,7 +162,7 @@ const EmailModal: FC = () => {
 				<input type="hidden" value={data.adviceText} name="adviceText" />
 			</div>
 		</form>
-	)
-}
+	);
+};
 
-export default EmailModal
+export default EmailModal;

@@ -1,38 +1,33 @@
-//@ts-nocheck
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import {
 	Button,
-	Checkbox,
 	CircularProgress,
 	FormControl,
-	FormControlLabel,
 	Grid,
 	InputLabel,
 	Select,
 	TextField,
 	Typography,
-} from '@material-ui/core'
-import { useForm, Controller } from 'react-hook-form'
-import { useSelector } from 'react-redux'
-import AppState from '../../../../data/AppState'
-import { submitDetails } from '../../../../api/general'
-import { useHistory } from 'react-router-dom'
-import { UserData } from '../../../../types/UserData'
+} from '@material-ui/core';
+import { useForm, Controller } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import AppState from '../../../../data/AppState';
+import { submitDetails } from '../../../../api/general';
+import { UserData } from '../../../../types/UserData';
 
-interface Props {}
-
-export const CDF1: React.FC<Props> = (props: Props) => {
-	const history = useHistory()
-	const userData = useSelector<AppState, UserData>(state => state.session.userData)
-	const { register, handleSubmit, errors, control } = useForm()
-	const [succeeded, setSucceeded] = useState(false)
-	const [error, setError] = useState(null)
-	const [processing, setProcessing] = useState(false)
+export const CDF1: React.FC = () => {
+	const history = useHistory();
+	const userData = useSelector<AppState, UserData>(state => state.session.userData);
+	const { register, handleSubmit, errors, control } = useForm();
+	const [succeeded, setSucceeded] = useState(false);
+	const [error, setError] = useState(null);
+	const [processing, setProcessing] = useState(false);
 
 	const onSubmit = async (data): Promise<void> => {
-		setProcessing(true)
-		const { name, email, description, phone, salary, settlementAgreement, stillEmployed, yearsEmployed } = data
-		const uData: UserData = {
+		setProcessing(true);
+		const { name, email, description, phone, salary, settlementAgreement, stillEmployed, yearsEmployed } = data;
+		const uData = {
 			...userData,
 			description,
 			phone,
@@ -40,15 +35,15 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 			'settlement-agreement': settlementAgreement,
 			'still-employed': stillEmployed,
 			'years-employed': yearsEmployed,
-			name: name ? name : userData.name,
-			recipient: email ? email : userData.recipient,
-		}
+			name: name || userData.name,
+			recipient: email || userData.recipient,
+		};
 
-		await submitDetails(uData)
-		setProcessing(false)
-		setSucceeded(true)
-		history.push('/preview/checkout/email/complete')
-	}
+		await submitDetails(uData);
+		setProcessing(false);
+		setSucceeded(true);
+		history.push('/preview/checkout/email/complete');
+	};
 
 	return (
 		<form id="cdf1-form" noValidate onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-3">
@@ -107,8 +102,8 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 							as={
 								<Select id="years-employed-select" variant="filled" native>
 									<option aria-label="None" value="" />
-									<option value={'Less than 2 years'}>Less than 2 years</option>
-									<option value={'More than 2 years'}>More than 2 years</option>
+									<option value="Less than 2 years">Less than 2 years</option>
+									<option value="More than 2 years">More than 2 years</option>
 								</Select>
 							}
 						/>
@@ -125,8 +120,8 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 							as={
 								<Select id="still-employed-select" ref={register} variant="filled" native>
 									<option aria-label="None" value="" />
-									<option value={'Yes'}>Yes</option>
-									<option value={'No'}>No</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
 								</Select>
 							}
 						/>
@@ -143,10 +138,10 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 							as={
 								<Select id="salary-select" variant="filled" native>
 									<option aria-label="None" value="" />
-									<option value={'£0 - £30,000'}>£0 - £30,000</option>
-									<option value={'£30,000 - £50,000'}>£30,000 - £50,000</option>
-									<option value={'£50,000 - £100,000'}>£50,000 - £100,000</option>
-									<option value={'£100,000+'}>£100,000+</option>
+									<option value="£0 - £30,000">£0 - £30,000</option>
+									<option value="£30,000 - £50,000">£30,000 - £50,000</option>
+									<option value="£50,000 - £100,000">£50,000 - £100,000</option>
+									<option value="£100,000+">£100,000+</option>
 								</Select>
 							}
 						/>
@@ -161,10 +156,10 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 							name="settlementAgreement"
 							control={control}
 							as={
-								<Select id="settlement-agreement-select" variant="filled" natives>
+								<Select id="settlement-agreement-select" variant="filled" native>
 									<option aria-label="None" value="" />
-									<option value={'Yes'}>Yes</option>
-									<option value={'No'}>No</option>
+									<option value="Yes">Yes</option>
+									<option value="No">No</option>
 								</Select>
 							}
 						/>
@@ -187,5 +182,5 @@ export const CDF1: React.FC<Props> = (props: Props) => {
 				</Grid>
 			</Grid>
 		</form>
-	)
-}
+	);
+};

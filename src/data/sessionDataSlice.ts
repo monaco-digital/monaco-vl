@@ -1,40 +1,71 @@
-import { createSlice } from '@reduxjs/toolkit'
-import {
-	SessionDocument,
-	SessionParagraph,
-	SessionDocumentComponent,
-	SessionDocumentSection,
-} from '../types/SessionDocument'
-import { Question } from '../types/Questions'
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 import {
 	CaseTopic,
 	DocumentParagraph,
 	TemplateParagraph,
 	Template,
 	DocumentParagraphComponent,
-} from '@monaco-digital/vl-types/lib/main'
-import _ from 'lodash'
-import { createDocument, createDocumentParagraph } from '../utils/document'
-import { orderSuggestedParagraphs } from '../utils/paragraphOrdering'
-import { UserData } from '../types/UserData'
+} from '@monaco-digital/vl-types/lib/main';
+import _ from 'lodash';
+import { UserData } from '../types/UserData';
+import {
+	SessionDocument,
+	SessionParagraph,
+	SessionDocumentComponent,
+	SessionDocumentSection,
+} from '../types/SessionDocument';
+import { Question } from '../types/Questions';
+import { createDocument, createDocumentParagraph } from '../utils/document';
+import orderSuggestedParagraphs from '../utils/paragraphOrdering';
 
-const _updateSessionParagraph = (
+const updateSessionParagraphMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
-	sessionParagraphs: SessionParagraph[]
+	sessionParagraphs: SessionParagraph[],
 ): SessionParagraph[] => {
 	sessionParagraphs.forEach(sessionParagraph => {
-		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph
+		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
 		sessionParagraph.documentComponent =
-			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs)
-		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
+			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs);
+		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
 		documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
 			if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
-				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
+				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent;
 			}
-		})
-	})
-	return sessionParagraphs
-}
+		});
+	});
+	return sessionParagraphs;
+};
+
+const updateSessionDocumentMapper = (
+	documentParagraphComponent: DocumentParagraphComponent,
+	sessionDocument: SessionDocument,
+): SessionDocument => {
+	const processSessionDocumentComponent = (sessionDocumentComponent: SessionDocumentComponent) => {
+		if (
+			sessionDocumentComponent.type === 'TemplateContentSection' ||
+			sessionDocumentComponent.type === 'UserContentSection'
+		) {
+			const sectionComponent = sessionDocumentComponent as SessionDocumentSection;
+			sectionComponent.sessionDocumentComponents.forEach(sc => processSessionDocumentComponent(sc));
+		} else if (sessionDocumentComponent.type === 'Paragraph') {
+			const sessionParagraph = sessionDocumentComponent as SessionParagraph;
+			const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
+			documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
+				if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
+					documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent;
+				}
+			});
+		}
+	};
+
+	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
+		processSessionDocumentComponent(sessionDocumentComponent);
+	});
+	sessionDocument.document = createDocument(sessionDocument);
+
+	return sessionDocument;
+};
 
 export const slice = createSlice({
 	name: 'session',
@@ -48,90 +79,60 @@ export const slice = createSlice({
 	},
 	reducers: {
 		selectParagraphs: (state, action) => {
-			const ids = action.payload
-			state.suggestedParagraphs.map(suggestedParagraph => {
+			const ids = action.payload;
+			state.suggestedParagraphs.forEach(suggestedParagraph => {
 				if (ids.includes(suggestedParagraph.templateComponent.id)) {
-					suggestedParagraph.isSelected = true
+					suggestedParagraph.isSelected = true;
 				}
-			})
+			});
 		},
 		deselectParagraphs: (state, action) => {
-			const ids = action.payload
-			state.suggestedParagraphs.map(suggestedParagraph => {
+			const ids = action.payload;
+			state.suggestedParagraphs.forEach(suggestedParagraph => {
 				if (ids.includes(suggestedParagraph.templateComponent.id)) {
-					suggestedParagraph.isSelected = false
+					suggestedParagraph.isSelected = false;
 				}
-			})
+			});
 		},
 		updateSessionParagraph: (state, action) => {
-			const documentParagraphComponent = action.payload
-			state.suggestedParagraphs = _updateSessionParagraph(documentParagraphComponent, state.suggestedParagraphs)
+			const documentParagraphComponent = action.payload;
+			state.suggestedParagraphs = updateSessionParagraphMapper(documentParagraphComponent, state.suggestedParagraphs);
 		},
 		updateSessionDocument: (state, action) => {
-			state.sessionDocument = action.payload
+			state.sessionDocument = action.payload;
 		},
 		updateSessionDocumentComponent: (state, action) => {
-			const documentParagraphComponent = action.payload
-			state.sessionDocument = _updateSessionDocument(documentParagraphComponent, state.sessionDocument)
+			const documentParagraphComponent = action.payload;
+			state.sessionDocument = updateSessionDocumentMapper(documentParagraphComponent, state.sessionDocument);
 		},
 		updateSelectedTopics: (state, action) => {
-			state.selectedTopics = _.compact(action.payload)
+			state.selectedTopics = _.compact(action.payload);
 		},
 		updateSuggestedParagraphs: (state, action) => {
-			state.suggestedParagraphs = orderSuggestedParagraphs(action.payload, state.selectedTopics)
+			state.suggestedParagraphs = orderSuggestedParagraphs(action.payload, state.selectedTopics);
 		},
 		updateAnsweredQuestions: (state, action) => {
-			state.answeredQuestions = action.payload
+			state.answeredQuestions = action.payload;
 		},
 		updateSelectedTemplate: (state, action) => {
-			state.selectedTemplate = action.payload
+			state.selectedTemplate = action.payload;
 		},
 		addAnsweredQuestion: (state, action) => {
-			const latestQuestion = action.payload
-			state.answeredQuestions.push(latestQuestion)
+			const latestQuestion = action.payload;
+			state.answeredQuestions.push(latestQuestion);
 		},
-		removeLastAnsweredQuestion: (state, action) => {
-			state.answeredQuestions.pop()
+		removeLastAnsweredQuestion: state => {
+			state.answeredQuestions.pop();
 		},
 		updateUserData: (state, action) => {
-			const updatedUserData = action.payload
+			const updatedUserData = action.payload;
 			state.userData = {
 				...state.userData,
 				...updatedUserData,
-			}
+			};
 		},
 	},
-})
-
-const _updateSessionDocument = (
-	documentParagraphComponent: DocumentParagraphComponent,
-	sessionDocument: SessionDocument
-): SessionDocument => {
-	const processSessionDocumentComponent = (sessionDocumentComponent: SessionDocumentComponent) => {
-		if (
-			sessionDocumentComponent.type === 'TemplateContentSection' ||
-			sessionDocumentComponent.type === 'UserContentSection'
-		) {
-			const sectionComponent = sessionDocumentComponent as SessionDocumentSection
-			sectionComponent.sessionDocumentComponents.forEach(sc => processSessionDocumentComponent(sc))
-		} else if (sessionDocumentComponent.type === 'Paragraph') {
-			const sessionParagraph = sessionDocumentComponent as SessionParagraph
-			const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph
-			documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
-				if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
-					documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent
-				}
-			})
-		}
-	}
-
-	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
-		processSessionDocumentComponent(sessionDocumentComponent)
-	})
-	sessionDocument.document = createDocument(sessionDocument)
-
-	return sessionDocument
-}
+});
 
 export const {
 	updateSuggestedParagraphs,
@@ -146,6 +147,6 @@ export const {
 	updateSessionDocument,
 	updateSessionDocumentComponent,
 	updateUserData,
-} = slice.actions
+} = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;

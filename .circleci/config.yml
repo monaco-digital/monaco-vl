@@ -19,24 +19,26 @@ jobs:
             node -v |
             npm -v
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - run: export NPM_TOKEN=${NPM_TOKEN}
-      - run: npm ci
-      - save_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
-          paths:
-            - ./node_modules
-
+      - node/install-packages
       - run:
           name: 'Building React App'
           command: |
             CI=false && npm run build
       - run:
+          command: npm run lint
+          name: ESlint
+      - run:
           name: 'Run tests'
-          command: |
-            echo TESTS NOT IMPLEMENTED YET
-
+          command: npm test -- --collectCoverage=true --reporters=default --reporters=jest-junit --runInBand
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports/junit
+      - store_artifacts:
+          path: coverage
 
   deploy:
     parameters:
@@ -48,8 +50,6 @@ jobs:
     steps:
       - run: echo "The REACT_APP_STAGE variable is ${REACT_APP_STAGE}"
       - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package-lock.json" }}
       - aws-cli/setup
       - run:
           name: 'Install aws-amplify CLI'
@@ -60,9 +60,8 @@ jobs:
           command: |
             aws --version
             amplify --version
-
       - run: export NPM_TOKEN=${NPM_TOKEN}
-      - run: npm ci
+      - node/install-packages
       - run: CI=false && npm run build
       - run:
           name: 'Initiate << parameters.deploy_env >> Environment'
@@ -107,6 +106,7 @@ workflows:
           deploy_env: prod
           requires:
             - request_production_deploy
+            - build_and_test
           filters:
             branches:
               only:

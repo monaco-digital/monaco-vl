@@ -1,25 +1,5 @@
-import { getFirstQuestion, getNextQuestion } from './questionFlow'
-import { Question } from '../types/Questions'
-
-describe('Question flow', () => {
-	test('First question returned', () => {
-		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help you')
-	})
-
-	test('Question prerequisite not met', () => {
-		const selectedTopics = []
-		const answeredQuestions = allQuestions.slice(0, 1)
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-		expect(nextQuestion.id).toBe(3)
-	})
-
-	test('Question prerequisite met', () => {
-		const selectedTopics = [{ id: '_RES' }]
-		const answeredQuestions = allQuestions.slice(0, 1)
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-		expect(nextQuestion.id).toBe(2)
-	})
-})
+import { getFirstQuestion, getNextQuestion } from './questionFlow';
+import { Question } from '../types/Questions';
 
 const allQuestions: Question[] = [
 	{
@@ -391,4 +371,24 @@ const allQuestions: Question[] = [
 			},
 		],
 	},
-]
+];
+
+describe('Question flow', () => {
+	test('First question returned', () => {
+		expect(getFirstQuestion()).toHaveProperty('text', 'What would you like?');
+	});
+
+	test('Question prerequisite not met', () => {
+		const selectedTopics = [];
+		const answeredQuestions = allQuestions.slice(0, 1);
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		expect(nextQuestion.id).toBe(3);
+	});
+
+	test('Question prerequisite met', () => {
+		const selectedTopics = [{ id: '_RES' }];
+		const answeredQuestions = allQuestions.slice(0, 1);
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		expect(nextQuestion.id).toBe(2);
+	});
+});

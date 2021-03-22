@@ -4,8 +4,8 @@ import {
 	StaticText,
 	TemplateSection,
 	EditableText,
-} from '@monaco-digital/vl-types/lib/main'
-import { nanoid } from 'nanoid'
+} from '@monaco-digital/vl-types/lib/main';
+import { nanoid } from 'nanoid';
 
 export const responseCompleteDenail: Template = {
 	id: nanoid(),
@@ -320,4 +320,4 @@ export const responseCompleteDenail: Template = {
 			] as TemplateParagraph[],
 		} as TemplateSection,
 	],
-} as Template
+} as Template;
