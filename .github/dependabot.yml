@@ -1,0 +1,16 @@
+version: 1
+registries:
+  ruby-github:
+    type: rubygems-server
+    url: https://npm.pkg.github.com/
+    token: ${{secrets.NPM_TOKEN}}
+
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: 'npm'
+    registries: '*'
+    # Look for `package.json` and `lock` files in the `root` directory
+    directory: '/'
+    # Check the npm registry for updates every day (weekdays)
+    schedule:
+      interval: 'daily'
