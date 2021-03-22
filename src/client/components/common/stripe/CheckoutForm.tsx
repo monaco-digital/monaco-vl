@@ -6,20 +6,22 @@ import { useForm } from 'react-hook-form'
 import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe'
 import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core'
 import { submitDetails } from '../../../../api/general'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AppState from '../../../../data/AppState'
 import { SessionDocument } from '../../../../types/SessionDocument'
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main'
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
 import { getDocumentText } from '../../../../utils/renderDocument'
 import StripeInput from './StripeInput'
+import { updateUserData } from '../../../../data/sessionDataSlice'
+import { UserData } from '../../../../types/UserData'
 
-const makeCallToSubmitDetails = async (input: {
+const getSubmissionData = async (input: {
 	name: string
 	recipient: string
 	sessionDocument: any
 	selectedTopics: any
-}): Promise<void> => {
+}): Promise<UserData> => {
 	const { name, recipient, sessionDocument, selectedTopics } = input
 
 	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
@@ -42,16 +44,18 @@ const makeCallToSubmitDetails = async (input: {
 	const data = {
 		name,
 		recipient,
+		contactMe: true,
 		adviceText: getAdviceText(),
 		letterText: getLetterText(),
 		topicsList: getTopicsList(),
 		templateId: 'GE1',
 	}
-	submitDetails(data)
+	return data
 }
 
 export const CheckoutForm: React.FC = () => {
 	//todo - take out of here - data for submit details call
+	const dispatch = useDispatch()
 
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
@@ -71,9 +75,9 @@ export const CheckoutForm: React.FC = () => {
 		setError(event.error ? event.error.message : '')
 	}
 
-	const onSubmit = async (data): Promise<void> => {
+	const onSubmit = async (formData): Promise<void> => {
 		setProcessing(true)
-		const clientSecret = await createWPLetterPaymentRequest(data.email)
+		const clientSecret = await createWPLetterPaymentRequest(formData.email)
 		const payload = await stripe.confirmCardPayment(clientSecret, {
 			// justification: 3rd party API library
 			// eslint-disable-next-line @typescript-eslint/camelcase
@@ -88,14 +92,18 @@ export const CheckoutForm: React.FC = () => {
 			setError(null)
 			setProcessing(false)
 			setSucceeded(true)
-			history.push('/preview/checkout/payment/complete')
+
 			//make call to submit details
-			await makeCallToSubmitDetails({
-				name: data.name,
-				recipient: data.email,
+			const data = await getSubmissionData({
+				name: formData.name,
+				recipient: formData.email,
 				sessionDocument,
 				selectedTopics,
 			})
+			dispatch(updateUserData(data))
+			history.push('/preview/checkout/payment/complete')
+
+			await submitDetails(data)
 		}
 	}
 

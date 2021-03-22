@@ -35,9 +35,6 @@ const EmailModal: FC = () => {
 		contactMe: false,
 		templateId: '',
 	})
-	const [contactMe, setContactMe] = useState(false)
-	const [name, setName] = useState('')
-	const [recipient, setRecipient] = useState('')
 
 	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization)
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
@@ -89,12 +86,6 @@ const EmailModal: FC = () => {
 	}, [sessionDocument, selectedTopics, adviceParagraphs])
 
 	const submitDetails = () => {
-		data.name = name
-		data.recipient = recipient
-		data.contactMe = contactMe
-
-		dispatch(updateUserData({ name: data.name, recipient: data.recipient, contactMe: data.contactMe }))
-
 		axios({
 			method: 'POST',
 			url: lambdaUrl,
@@ -119,7 +110,7 @@ const EmailModal: FC = () => {
 
 				<TextField
 					id="name"
-					onChange={e => setName(e.target.value)}
+					onChange={e => setData({ ...data, name: e.target.value })}
 					label="First name"
 					autoComplete="name"
 					variant="filled"
@@ -127,7 +118,7 @@ const EmailModal: FC = () => {
 				/>
 				<TextField
 					id="email"
-					onChange={e => setRecipient(e.target.value)}
+					onChange={e => setData({ ...data, recipient: e.target.value })}
 					label="Your email"
 					autoComplete="email"
 					variant="filled"
@@ -136,7 +127,12 @@ const EmailModal: FC = () => {
 
 				<FormControlLabel
 					control={
-						<Checkbox checked={contactMe} onChange={() => setContactMe(!contactMe)} name="contactme" color="primary" />
+						<Checkbox
+							checked={data.contactMe}
+							onChange={() => setData({ ...data, contactMe: !data.contactMe })}
+							name="contactme"
+							color="primary"
+						/>
 					}
 					classes={{ label: 'emailModal__checkbox' }}
 					label="Check this box if you want our specialist team to contact you about your case"
@@ -148,15 +144,16 @@ const EmailModal: FC = () => {
 						size="large"
 						color="secondary"
 						onClick={() => {
-							submitDetails()
-							if (contactMe) {
+							dispatch(updateUserData({ ...data }))
+							if (data.contactMe) {
 								history.push('/preview/checkout/cdf1')
 							} else {
 								history.push('/preview/checkout/email/complete')
+								submitDetails()
 							}
 						}}
 					>
-						Send now
+						{data.contactMe ? 'Next' : 'Send now'}
 					</Button>
 				</div>
 

@@ -4,11 +4,12 @@ export interface UserData {
 	topicsList?: string
 	name?: string
 	recipient?: string
-	contactMe?: string
+	contactMe?: boolean
 	description?: string
 	phone?: string
 	salary?: string
 	settlementAgreement?: string
 	stillEmployed?: string
 	yearsEmployed?: string
+	templateId?: string
 }

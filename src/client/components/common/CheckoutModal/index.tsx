@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import ReactModal from 'react-modal'
 import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom'
 import EmailModal from '../EmailModal'
 import Upsell from '../Payment/Upsell'
@@ -9,56 +8,57 @@ import IconButton from '@material-ui/core/IconButton'
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined'
 import { PaymentForm } from '../Payment/PaymentForm'
 import { CDF1 } from '../UserData/CDF1'
-
-const customStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		padding: '50px',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
-}
+import { Dialog, makeStyles, useMediaQuery, useTheme } from '@material-ui/core'
 
 const CheckoutModal: FC = () => {
 	const history = useHistory()
+	const theme = useTheme()
+	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 	const isCheckout = Boolean(useRouteMatch('/preview/checkout'))
 	const onClose = () => {
 		history.push('/preview')
 	}
 
 	return (
-		<ReactModal isOpen={isCheckout} shouldCloseOnOverlayClick={true} onRequestClose={onClose} style={customStyles}>
-			<div className="checkoutModal">
+		<Dialog
+			fullScreen={fullScreen}
+			open={isCheckout}
+			onClose={onClose}
+			aria-labelledby="checkout-modal"
+			maxWidth={'md'}
+		>
+			<div className="checkoutModal p-5">
 				<div className="checkoutModal__close-button">
 					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
 						<CancelOutlinedIcon />
 					</IconButton>
 				</div>
-				<Switch>
-					<Route path="/preview/checkout/email/complete">
-						<EmailComplete />
-					</Route>
-					<Route path="/preview/checkout/email">
-						<EmailModal />
-					</Route>
-					<Route path="/preview/checkout/cdf1">
-						<CDF1 />
-					</Route>
-					<Route path="/preview/checkout/payment/complete">
-						<PaymentComplete />
-					</Route>
-					<Route path="/preview/checkout/payment">
-						<PaymentForm />
-					</Route>
-					<Route path="/preview/checkout">
-						<Upsell />
-					</Route>
-				</Switch>
+				<div>
+					<Switch>
+						<Route path="/preview/checkout/email/complete">
+							<EmailComplete />
+						</Route>
+						<Route path="/preview/checkout/email">
+							<EmailModal />
+						</Route>
+						<Route path="/preview/checkout/cdf1">
+							<div className="flex flex-wrap">
+								<CDF1 />
+							</div>
+						</Route>
+						<Route path="/preview/checkout/payment/complete">
+							<PaymentComplete />
+						</Route>
+						<Route path="/preview/checkout/payment">
+							<PaymentForm />
+						</Route>
+						<Route path="/preview/checkout">
+							<Upsell />
+						</Route>
+					</Switch>
+				</div>
 			</div>
-		</ReactModal>
+		</Dialog>
 	)
 }
 
