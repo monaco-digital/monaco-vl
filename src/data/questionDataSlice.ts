@@ -1,5 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { getFirstQuestion } from '../clustering/questionFlow'
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
+import { getFirstQuestion } from '../clustering/questionFlow';
 
 export const slice = createSlice({
 	name: 'question',
@@ -8,11 +9,11 @@ export const slice = createSlice({
 	},
 	reducers: {
 		setCurrentQuestion: (state, action) => {
-			state.currentQuestion = action.payload
+			state.currentQuestion = action.payload;
 		},
 	},
-})
+});
 
-export const { setCurrentQuestion } = slice.actions
+export const { setCurrentQuestion } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;

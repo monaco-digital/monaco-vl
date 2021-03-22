@@ -1,42 +1,6 @@
-import { SessionParagraph } from '../types/SessionDocument'
-import { CaseTopic, TemplateParagraph } from '@monaco-digital/vl-types/lib/main'
-import _ from 'lodash'
+import { SessionParagraph } from '../types/SessionDocument';
 
-import { orderSuggestedParagraphs } from './paragraphOrdering'
-
-describe('Paragraph ordering', () => {
-	/* Anastasia to provide more scenarios to test */
-
-	// ['T', 'W', 'D', 'V', 'H', 'B', 'P', 'TWE', 'EW', 'M', 'F', 'OBT']
-	test('Order when dismissed', () => {
-		const selectedTopics = [{ id: 'T' }]
-		const suggestedParagraphs = testParagraphs
-		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics)
-		expect(ordered[0]).toEqual(suggestedParagraphs[2])
-		expect(ordered[1]).toEqual(suggestedParagraphs[1])
-		expect(ordered[2]).toEqual(suggestedParagraphs[0])
-		expect(ordered[3]).toEqual(suggestedParagraphs[4])
-		expect(ordered[4]).toEqual(suggestedParagraphs[3])
-		expect(ordered[5]).toEqual(suggestedParagraphs[7])
-		expect(ordered[6]).toEqual(suggestedParagraphs[5])
-		expect(ordered[7]).toEqual(suggestedParagraphs[6])
-	})
-
-	// ['B', 'RR', 'Sn', 'Dy', 'H', 'P', 'S', 'TWE', 'EW', 'W', 'D', 'V', 'M', 'F', 'OBT']
-	test('Order when employed', () => {
-		const selectedTopics = [{ id: 'E' }]
-		const suggestedParagraphs = testParagraphs
-		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics)
-		expect(ordered[0]).toEqual(suggestedParagraphs[4])
-		expect(ordered[1]).toEqual(suggestedParagraphs[3])
-		expect(ordered[2]).toEqual(suggestedParagraphs[7])
-		expect(ordered[3]).toEqual(suggestedParagraphs[5])
-		expect(ordered[4]).toEqual(suggestedParagraphs[6])
-		expect(ordered[5]).toEqual(suggestedParagraphs[2])
-		expect(ordered[6]).toEqual(suggestedParagraphs[1])
-		expect(ordered[7]).toEqual(suggestedParagraphs[0])
-	})
-})
+import orderSuggestedParagraphs from './paragraphOrdering';
 
 /*
 1
@@ -46,11 +10,10 @@ should be
 2,1,0,4,3,7,5,6
 
 2
-B, EW, D 
+B, EW, D
 4,3,7,5,6,2,1,0
 
-
-8 paras: 
+8 paras:
 verticalHeight: 3,
 topic: '() + allOf(D) + !()',
 
@@ -366,4 +329,38 @@ const testParagraphs = ([
 		documentComponent: null,
 		isSelected: false,
 	},
-] as unknown) as SessionParagraph[]
+] as unknown) as SessionParagraph[];
+
+describe('Paragraph ordering', () => {
+	/* Anastasia to provide more scenarios to test */
+
+	// ['T', 'W', 'D', 'V', 'H', 'B', 'P', 'TWE', 'EW', 'M', 'F', 'OBT']
+	test('Order when dismissed', () => {
+		const selectedTopics = [{ id: 'T' }];
+		const suggestedParagraphs = testParagraphs;
+		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics);
+		expect(ordered[0]).toEqual(suggestedParagraphs[2]);
+		expect(ordered[1]).toEqual(suggestedParagraphs[1]);
+		expect(ordered[2]).toEqual(suggestedParagraphs[0]);
+		expect(ordered[3]).toEqual(suggestedParagraphs[4]);
+		expect(ordered[4]).toEqual(suggestedParagraphs[3]);
+		expect(ordered[5]).toEqual(suggestedParagraphs[7]);
+		expect(ordered[6]).toEqual(suggestedParagraphs[5]);
+		expect(ordered[7]).toEqual(suggestedParagraphs[6]);
+	});
+
+	// ['B', 'RR', 'Sn', 'Dy', 'H', 'P', 'S', 'TWE', 'EW', 'W', 'D', 'V', 'M', 'F', 'OBT']
+	test('Order when employed', () => {
+		const selectedTopics = [{ id: 'E' }];
+		const suggestedParagraphs = testParagraphs;
+		const ordered = orderSuggestedParagraphs(suggestedParagraphs, selectedTopics);
+		expect(ordered[0]).toEqual(suggestedParagraphs[4]);
+		expect(ordered[1]).toEqual(suggestedParagraphs[3]);
+		expect(ordered[2]).toEqual(suggestedParagraphs[7]);
+		expect(ordered[3]).toEqual(suggestedParagraphs[5]);
+		expect(ordered[4]).toEqual(suggestedParagraphs[6]);
+		expect(ordered[5]).toEqual(suggestedParagraphs[2]);
+		expect(ordered[6]).toEqual(suggestedParagraphs[1]);
+		expect(ordered[7]).toEqual(suggestedParagraphs[0]);
+	});
+});

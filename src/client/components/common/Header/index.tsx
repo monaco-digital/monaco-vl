@@ -1,21 +1,21 @@
-import React, { FC, useState } from 'react'
-import logo1 from '../../../assets/img/ms-logo-blue-black.svg'
-import logo2 from '../../../assets/img/vl-powered-by-logo-01.svg'
-import { NavLink, useLocation } from 'react-router-dom'
-import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
+import React, { FC, useState } from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 
-import { useDispatch } from 'react-redux'
-import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice'
+import { useDispatch } from 'react-redux';
+import logo2 from '../../../assets/img/vl-powered-by-logo-01.svg';
+import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice';
 
 const Header: FC = () => {
-	const { pathname } = useLocation()
-	const [menuIsVisible, setMenuIsVisible] = useState(false)
-	const dispatch = useDispatch()
+	const { pathname } = useLocation();
+	const [menuIsVisible, setMenuIsVisible] = useState(false);
+	const dispatch = useDispatch();
 
 	const navigateToTopics = () => {
-		dispatch(removeLastAnsweredQuestion(null))
-		setMenuIsVisible(false)
-	}
+		dispatch(removeLastAnsweredQuestion());
+		setMenuIsVisible(false);
+	};
 
 	return (
 		<div className="header">
@@ -44,8 +44,8 @@ const Header: FC = () => {
 					Terms of Use
 				</NavLink>
 			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)}>
-				<i className="fas fa-bars"></i>
+			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)} type="button">
+				<i className="fas fa-bars" />
 			</button>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
@@ -88,7 +88,7 @@ const Header: FC = () => {
 				</List>
 			</Drawer>
 		</div>
-	)
-}
+	);
+};
 
-export default Header
+export default Header;

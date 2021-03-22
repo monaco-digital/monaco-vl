@@ -1,29 +1,57 @@
-import React, { FC, useState, useEffect } from 'react'
-import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core'
-import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
-import AppState from '../../../../data/AppState'
-import { SessionDocument } from '../../../../types/SessionDocument'
-import { getDocumentText } from '../../../../utils/renderDocument'
-import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main'
-import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs'
-import axios from 'axios'
-import downloadIcon from '../../../assets/img/download-icon.png'
-import config from '../../../../config'
+import React, { FC, useState, useEffect } from 'react';
+import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main';
+import axios from 'axios';
+import AppState from '../../../../data/AppState';
+import { SessionDocument } from '../../../../types/SessionDocument';
+import { getDocumentText } from '../../../../utils/renderDocument';
+import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
+import downloadIcon from '../../../assets/img/download-icon.png';
+import config from '../../../../config';
 
 interface Data {
-	adviceText: string
-	letterText: string
-	topicsList: string
-	name: string
-	recipient: string
-	contactMe: boolean
-	templateId: string
+	adviceText: string;
+	letterText: string;
+	topicsList: string;
+	name: string;
+	recipient: string;
+	contactMe: boolean;
+	templateId: string;
 }
 
+const getLetterText = (sessionDocument: SessionDocument) => {
+	const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+	return letterText;
+};
+
+const getTopicsList = (selectedTopics: CaseTopic[]) => {
+	const topicsList = selectedTopics.map(t => t.text).join(', ');
+	return topicsList;
+};
+
+const getAdviceText = (adviceParagraphs: Advice[]) => {
+	const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
+	return adviceText;
+};
+
+const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization: boolean) => {
+	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
+		return 'LAC';
+	}
+	if (selectedTopics.find(topic => topic.id === '_RES')) {
+		if (enabledMonetization) {
+			return 'GE1';
+		}
+		return 'LAC';
+	}
+	return 'AD1';
+};
+
 const EmailModal: FC = () => {
-	const history = useHistory()
-	const lambdaUrl = config.LAMBDA_URL
+	const history = useHistory();
+	const lambdaUrl = config.LAMBDA_URL;
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -32,64 +60,36 @@ const EmailModal: FC = () => {
 		recipient: '',
 		contactMe: false,
 		templateId: '',
-	})
-	const [contactMe, setContactMe] = useState(false)
-	const [name, setName] = useState('')
-	const [recipient, setRecipient] = useState('')
+	});
+	const [contactMe, setContactMe] = useState(false);
+	const [name, setName] = useState('');
+	const [recipient, setRecipient] = useState('');
 
-	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization)
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument)
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics)
-	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([])
+	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 
 	useEffect(() => {
 		const updateAdviceParagraphs = async () => {
-			const suggestAdviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics)
-			setAdviceParagraphs(suggestAdviceParagraphs)
-		}
-		updateAdviceParagraphs()
-	}, [selectedTopics])
-
-	const getLetterText = () => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document)
-		return letterText
-	}
-
-	const getTopicsList = () => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ')
-		return topicsList
-	}
-
-	const getAdviceText = () => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n')
-		return adviceText
-	}
-
-	const getTemplateId = () => {
-		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-			return 'LAC'
-		} else if (selectedTopics.find(topic => topic.id === '_RES')) {
-			if (enabledMonetization) {
-				return 'GE1'
-			} else {
-				return 'LAC'
-			}
-		}
-		return 'AD1'
-	}
+			const suggestAdviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics);
+			setAdviceParagraphs(suggestAdviceParagraphs);
+		};
+		updateAdviceParagraphs();
+	}, [selectedTopics]);
 
 	useEffect(() => {
-		data.adviceText = getAdviceText()
-		data.letterText = getLetterText()
-		data.topicsList = getTopicsList()
-		data.templateId = getTemplateId()
-		setData(data)
-	}, [sessionDocument, selectedTopics, adviceParagraphs])
+		data.adviceText = getAdviceText(adviceParagraphs);
+		data.letterText = getLetterText(sessionDocument);
+		data.topicsList = getTopicsList(selectedTopics);
+		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
+		setData(data);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
 	const submitDetails = () => {
-		data.name = name
-		data.recipient = recipient
-		data.contactMe = contactMe
+		data.name = name;
+		data.recipient = recipient;
+		data.contactMe = contactMe;
 
 		axios({
 			method: 'POST',
@@ -98,14 +98,14 @@ const EmailModal: FC = () => {
 			headers: {
 				'Content-Type': 'application/json',
 			},
-		})
-	}
+		});
+	};
 
 	return (
 		<form className="flex justify-center">
 			<div className="emailModal space-y-5">
 				<div className="emailModal__section-end">
-					<img style={{ width: '80px' }} src={downloadIcon} />
+					<img style={{ width: '80px' }} src={downloadIcon} alt="Download Icon" />
 					<h1 className="emailModal__header">
 						SEND THIS
 						<br /> TO ME
@@ -144,8 +144,8 @@ const EmailModal: FC = () => {
 						size="large"
 						color="secondary"
 						onClick={() => {
-							submitDetails()
-							history.push('/preview/checkout/email/complete')
+							submitDetails();
+							history.push('/preview/checkout/email/complete');
 						}}
 					>
 						Send now
@@ -156,7 +156,7 @@ const EmailModal: FC = () => {
 				<input type="hidden" value={data.adviceText} name="adviceText" />
 			</div>
 		</form>
-	)
-}
+	);
+};
 
-export default EmailModal
+export default EmailModal;
