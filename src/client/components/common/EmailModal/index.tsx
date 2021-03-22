@@ -78,11 +78,17 @@ const EmailModal: FC = () => {
 	};
 	// eslint-disable-next-line
 	useEffect(() => {
-		data.adviceText = getAdviceText();
-		data.letterText = getLetterText();
-		data.topicsList = getTopicsList();
-		data.templateId = getTemplateId();
-		setData(data);
+		const adviceText = getAdviceText();
+		const letterText = getLetterText();
+		const topicsList = getTopicsList();
+		const templateId = getTemplateId();
+		setData({
+			...data,
+			adviceText,
+			letterText,
+			topicsList,
+			templateId,
+		});
 		// eslint-disable-next-line
 	}, [sessionDocument, selectedTopics, adviceParagraphs]);
 
