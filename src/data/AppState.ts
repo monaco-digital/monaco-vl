@@ -2,6 +2,7 @@ import { CaseTopic, Paragraph, Template } from '@monaco-digital/vl-types/lib/mai
 import { Question } from '../types/Questions';
 import { SessionDocument, SessionParagraph } from '../types/SessionDocument';
 import { ParagraphToggle } from '../types/paragraph';
+import { UserData } from '../types/UserData';
 
 type AppState = {
 	session: {
@@ -10,6 +11,7 @@ type AppState = {
 		answeredQuestions: Question[];
 		selectedTemplate: Template;
 		sessionDocument: SessionDocument;
+		userData: UserData;
 	};
 	paragraphs: {
 		all: Paragraph[];
