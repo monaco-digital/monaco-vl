@@ -22,6 +22,34 @@ interface Data {
 	templateId: string;
 }
 
+const getLetterText = (sessionDocument: SessionDocument) => {
+	const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+	return letterText;
+};
+
+const getTopicsList = (selectedTopics: CaseTopic[]) => {
+	const topicsList = selectedTopics.map(t => t.text).join(', ');
+	return topicsList;
+};
+
+const getAdviceText = (adviceParagraphs: Advice[]) => {
+	const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
+	return adviceText;
+};
+
+const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization) => {
+	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
+		return 'LAC';
+	}
+	if (selectedTopics.find(topic => topic.id === '_RES')) {
+		if (enabledMonetization) {
+			return 'GE1';
+		}
+		return 'LAC';
+	}
+	return 'AD1';
+};
+
 const EmailModal: FC = () => {
 	const history = useHistory();
 	const lambdaUrl = config.LAMBDA_URL;
@@ -49,39 +77,11 @@ const EmailModal: FC = () => {
 		updateAdviceParagraphs();
 	}, [selectedTopics]);
 
-	const getLetterText = () => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
-		return letterText;
-	};
-
-	const getTopicsList = () => {
-		const topicsList = selectedTopics.map(t => t.text).join(', ');
-		return topicsList;
-	};
-
-	const getAdviceText = () => {
-		const adviceText = adviceParagraphs.map(ap => ap.text).join('\n\n\n');
-		return adviceText;
-	};
-
-	const getTemplateId = () => {
-		if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-			return 'LAC';
-		}
-		if (selectedTopics.find(topic => topic.id === '_RES')) {
-			if (enabledMonetization) {
-				return 'GE1';
-			}
-			return 'LAC';
-		}
-		return 'AD1';
-	};
-	// eslint-disable-next-line
 	useEffect(() => {
-		const adviceText = getAdviceText();
-		const letterText = getLetterText();
-		const topicsList = getTopicsList();
-		const templateId = getTemplateId();
+		const adviceText = getAdviceText(adviceParagraphs);
+		const letterText = getLetterText(sessionDocument);
+		const topicsList = getTopicsList(selectedTopics);
+		const templateId = getTemplateId(selectedTopics, enabledMonetization);
 		setData({
 			...data,
 			adviceText,
@@ -89,8 +89,7 @@ const EmailModal: FC = () => {
 			topicsList,
 			templateId,
 		});
-		// eslint-disable-next-line
-	}, [sessionDocument, selectedTopics, adviceParagraphs]);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
 	const submitDetails = () => {
 		axios({
