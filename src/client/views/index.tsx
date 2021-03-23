@@ -52,10 +52,10 @@ const Main: FC = () => {
 
 		if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'true') {
 			featureStorage.dsFlow = true;
-			enableDsFlow();
-		} else {
+			dispatch(enableDsFlow());
+		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
 			featureStorage.dsFlow = false;
-			disableDsFlow();
+			dispatch(disableDsFlow());
 		}
 
 		const isMonetizationSet = queryParams.has('enableMonetization');

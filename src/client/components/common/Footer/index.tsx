@@ -101,7 +101,13 @@ const Footer: React.FC = () => {
 								/>
 							</div>
 							<div className="footer__preview__button">
-								<Button type="main" shortText="Email" text="Email" rounded fn={openCheckoutModal} />
+								<Button
+									type="main"
+									shortText={isDsFlow ? 'Download' : 'Email'}
+									text={isDsFlow ? 'Download' : 'Email'}
+									rounded
+									fn={openCheckoutModal}
+								/>
 							</div>
 						</>
 					</Route>
