@@ -8,6 +8,7 @@ import {
 	DocumentParagraphComponent,
 } from '@monaco-digital/vl-types/lib/main';
 import _ from 'lodash';
+import { UserData } from '../types/UserData';
 import {
 	SessionDocument,
 	SessionParagraph,
@@ -74,6 +75,7 @@ export const slice = createSlice({
 		answeredQuestions: [] as Question[],
 		selectedTemplate: null as Template,
 		sessionDocument: null as SessionDocument,
+		userData: {} as UserData,
 	},
 	reducers: {
 		selectParagraphs: (state, action) => {
@@ -122,6 +124,13 @@ export const slice = createSlice({
 		removeLastAnsweredQuestion: state => {
 			state.answeredQuestions.pop();
 		},
+		updateUserData: (state, action) => {
+			const updatedUserData = action.payload;
+			state.userData = {
+				...state.userData,
+				...updatedUserData,
+			};
+		},
 	},
 });
 
@@ -137,6 +146,7 @@ export const {
 	updateSessionParagraph,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
+	updateUserData,
 } = slice.actions;
 
 export default slice.reducer;

@@ -18,10 +18,10 @@ const PaymentComplete: FC = () => {
 				size="large"
 				color="secondary"
 				onClick={() => {
-					history.push('/preview');
+					history.push('/preview/checkout/cdf1');
 				}}
 			>
-				Done
+				Request Callback
 			</Button>
 		</Grid>
 	);

@@ -1,6 +1,6 @@
 import React, { FC, useState, useEffect } from 'react';
 import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main';
 import axios from 'axios';
@@ -10,6 +10,7 @@ import { getDocumentText } from '../../../../utils/renderDocument';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 import downloadIcon from '../../../assets/img/download-icon.png';
 import config from '../../../../config';
+import { updateUserData } from '../../../../data/sessionDataSlice';
 
 interface Data {
 	adviceText: string;
@@ -36,7 +37,7 @@ const getAdviceText = (adviceParagraphs: Advice[]) => {
 	return adviceText;
 };
 
-const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization: boolean) => {
+const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization) => {
 	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
 		return 'LAC';
 	}
@@ -52,6 +53,7 @@ const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization: boolean
 const EmailModal: FC = () => {
 	const history = useHistory();
 	const lambdaUrl = config.LAMBDA_URL;
+	const dispatch = useDispatch();
 	const [data, setData] = useState<Data>({
 		adviceText: '',
 		letterText: '',
@@ -61,9 +63,6 @@ const EmailModal: FC = () => {
 		contactMe: false,
 		templateId: '',
 	});
-	const [contactMe, setContactMe] = useState(false);
-	const [name, setName] = useState('');
-	const [recipient, setRecipient] = useState('');
 
 	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
@@ -79,18 +78,20 @@ const EmailModal: FC = () => {
 	}, [selectedTopics]);
 
 	useEffect(() => {
-		data.adviceText = getAdviceText(adviceParagraphs);
-		data.letterText = getLetterText(sessionDocument);
-		data.topicsList = getTopicsList(selectedTopics);
-		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
-		setData(data);
+		const adviceText = getAdviceText(adviceParagraphs);
+		const letterText = getLetterText(sessionDocument);
+		const topicsList = getTopicsList(selectedTopics);
+		const templateId = getTemplateId(selectedTopics, enabledMonetization);
+		setData({
+			...data,
+			adviceText,
+			letterText,
+			topicsList,
+			templateId,
+		});
 	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
 	const submitDetails = () => {
-		data.name = name;
-		data.recipient = recipient;
-		data.contactMe = contactMe;
-
 		axios({
 			method: 'POST',
 			url: lambdaUrl,
@@ -115,7 +116,7 @@ const EmailModal: FC = () => {
 
 				<TextField
 					id="name"
-					onChange={e => setName(e.target.value)}
+					onChange={e => setData({ ...data, name: e.target.value })}
 					label="First name"
 					autoComplete="name"
 					variant="filled"
@@ -123,7 +124,7 @@ const EmailModal: FC = () => {
 				/>
 				<TextField
 					id="email"
-					onChange={e => setRecipient(e.target.value)}
+					onChange={e => setData({ ...data, recipient: e.target.value })}
 					label="Your email"
 					autoComplete="email"
 					variant="filled"
@@ -132,7 +133,12 @@ const EmailModal: FC = () => {
 
 				<FormControlLabel
 					control={
-						<Checkbox checked={contactMe} onChange={() => setContactMe(!contactMe)} name="contactme" color="primary" />
+						<Checkbox
+							checked={data.contactMe}
+							onChange={() => setData({ ...data, contactMe: !data.contactMe })}
+							name="contactme"
+							color="primary"
+						/>
 					}
 					classes={{ label: 'emailModal__checkbox' }}
 					label="Check this box if you want our specialist team to contact you about your case"
@@ -144,11 +150,16 @@ const EmailModal: FC = () => {
 						size="large"
 						color="secondary"
 						onClick={() => {
-							submitDetails();
-							history.push('/preview/checkout/email/complete');
+							dispatch(updateUserData({ ...data }));
+							if (data.contactMe) {
+								history.push('/preview/checkout/cdf1');
+							} else {
+								history.push('/preview/checkout/email/complete');
+								submitDetails();
+							}
 						}}
 					>
-						Send now
+						{data.contactMe ? 'Next' : 'Send now'}
 					</Button>
 				</div>
 
