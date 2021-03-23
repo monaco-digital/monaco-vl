@@ -83,7 +83,15 @@ export const CDF1: React.FC = () => {
 					</Grid>
 				)}
 				<Grid item xs={12} md={12}>
-					<TextField name="description" label="Description" inputRef={register} fullWidth multiline variant="filled" />
+					<TextField
+						name="description"
+						label="Brief Description"
+						rows={4}
+						inputRef={register}
+						fullWidth
+						multiline
+						variant="filled"
+					/>
 				</Grid>
 				<Grid item xs={12} md={6}>
 					<TextField name="jobTitle" label="Job Title" inputRef={register} fullWidth variant="filled" />
@@ -94,7 +102,7 @@ export const CDF1: React.FC = () => {
 				<Grid item xs={12} md={6}>
 					<FormControl fullWidth>
 						<InputLabel variant="filled" htmlFor="years-employed-select">
-							Select Years Employed
+							Years Employed
 						</InputLabel>
 						<Controller
 							name="yearsEmployed"
@@ -112,7 +120,7 @@ export const CDF1: React.FC = () => {
 				<Grid item xs={12} md={6}>
 					<FormControl fullWidth>
 						<InputLabel variant="filled" htmlFor="still-employed-select">
-							Select if still employed
+							Still employed
 						</InputLabel>
 						<Controller
 							name="stillEmployed"
@@ -130,7 +138,7 @@ export const CDF1: React.FC = () => {
 				<Grid item xs={12} md={6}>
 					<FormControl fullWidth>
 						<InputLabel variant="filled" htmlFor="salary-select">
-							Select your salary range
+							Salary
 						</InputLabel>
 						<Controller
 							control={control}
@@ -176,7 +184,7 @@ export const CDF1: React.FC = () => {
 					>
 						<>
 							{processing && <CircularProgress size={30} thickness={5} style={{ color: 'white' }} />}
-							{!processing && <span>Submit</span>}
+							{!processing && <span>Request Callback</span>}
 						</>
 					</Button>
 				</Grid>

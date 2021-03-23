@@ -107,7 +107,7 @@ const EmailModal: FC = () => {
 		<form className="flex justify-center">
 			<div className="emailModal space-y-5">
 				<div className="emailModal__section-end">
-					<img style={{ width: '80px' }} src={downloadIcon} alt="" />
+					<img style={{ width: '80px' }} src={downloadIcon} alt="Download Icon" />
 					<h1 className="emailModal__header">
 						SEND THIS
 						<br /> TO ME

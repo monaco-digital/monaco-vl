@@ -27,30 +27,26 @@ const CheckoutModal: FC = () => {
 						<CancelOutlinedIcon />
 					</IconButton>
 				</div>
-				<div>
-					<Switch>
-						<Route path="/preview/checkout/email/complete">
-							<EmailComplete />
-						</Route>
-						<Route path="/preview/checkout/email">
-							<EmailModal />
-						</Route>
-						<Route path="/preview/checkout/cdf1">
-							<div className="flex flex-wrap">
-								<CDF1 />
-							</div>
-						</Route>
-						<Route path="/preview/checkout/payment/complete">
-							<PaymentComplete />
-						</Route>
-						<Route path="/preview/checkout/payment">
-							<PaymentForm />
-						</Route>
-						<Route path="/preview/checkout">
-							<Upsell />
-						</Route>
-					</Switch>
-				</div>
+				<Switch>
+					<Route path="/preview/checkout/email/complete">
+						<EmailComplete />
+					</Route>
+					<Route path="/preview/checkout/email">
+						<EmailModal />
+					</Route>
+					<Route path="/preview/checkout/cdf1">
+						<CDF1 />
+					</Route>
+					<Route path="/preview/checkout/payment/complete">
+						<PaymentComplete />
+					</Route>
+					<Route path="/preview/checkout/payment">
+						<PaymentForm />
+					</Route>
+					<Route path="/preview/checkout">
+						<Upsell />
+					</Route>
+				</Switch>
 			</div>
 		</Dialog>
 	);
