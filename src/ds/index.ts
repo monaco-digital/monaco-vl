@@ -1,8 +1,7 @@
-import { Paragraph } from '@monaco-digital/vl-types/lib/main';
+import { Paragraph, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
 import { saveAs } from 'file-saver';
 import store from '../data/store';
 import { SessionParagraph } from '../types/SessionDocument';
-import { TemplateParagraph } from '../../../vl-types/lib/main';
 
 const extractParagraph = (sessionParagraph: SessionParagraph): Paragraph => {
 	const { templateComponent } = sessionParagraph;
