@@ -26,6 +26,7 @@ type AppState = {
 	};
 	features: {
 		enableMonetization: boolean;
+		dsFlow: boolean;
 	};
 };
 
