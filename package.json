@@ -19,6 +19,7 @@
 		"axios": "^0.21.0",
 		"chokidar-cli": "^2.1.0",
 		"classnames": "^2.2.6",
+		"file-saver": "^2.0.5",
 		"graphql": "^15.5.0",
 		"history": "^4.10.1",
 		"lodash": "^4.17.20",
@@ -46,8 +47,8 @@
 	"scripts": {
 		"build:tailwind": "postcss src/client/styles/main.scss -o src/client/styles/main.output.css",
 		"watch:tailwind": "chokidar 'client/src/**/*.css' 'src/**/*.scss' --ignore src/client/styles/main.output.css -c 'npm run build:tailwind'",
-		"start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
 		"start:react": "react-scripts start",
+		"start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
 		"prebuild": "run-s build:tailwind",
 		"build": "react-scripts build",
 		"lint": "eslint ./src --ext .js,.ts,.jsx,.tsx",

@@ -18,7 +18,7 @@ import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
-import { disableMonetization, enableMonetization } from '../../data/featureDataSlice';
+import { disableMonetization, enableMonetization, enableDsFlow, disableDsFlow } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
@@ -50,7 +50,16 @@ const Main: FC = () => {
 			/* ignore */
 		}
 
+		if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'true') {
+			featureStorage.dsFlow = true;
+			dispatch(enableDsFlow());
+		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
+			featureStorage.dsFlow = false;
+			dispatch(disableDsFlow());
+		}
+
 		const isMonetizationSet = queryParams.has('enableMonetization');
+
 		if (isMonetizationSet) {
 			featureStorage.enableMonetization = queryParams.get('enableMonetization') === 'true';
 		}

@@ -16,9 +16,6 @@ interface Data {
 	adviceText: string;
 	letterText: string;
 	topicsList: string;
-	name: string;
-	recipient: string;
-	contactMe: boolean;
 	templateId: string;
 }
 
@@ -58,11 +55,11 @@ const EmailModal: FC = () => {
 		adviceText: '',
 		letterText: '',
 		topicsList: '',
-		name: '',
-		recipient: '',
-		contactMe: false,
 		templateId: '',
 	});
+	const [contactMe, setContactMe] = useState(false);
+	const [name, setName] = useState('');
+	const [recipient, setRecipient] = useState('');
 
 	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
@@ -78,24 +75,24 @@ const EmailModal: FC = () => {
 	}, [selectedTopics]);
 
 	useEffect(() => {
-		const adviceText = getAdviceText(adviceParagraphs);
-		const letterText = getLetterText(sessionDocument);
-		const topicsList = getTopicsList(selectedTopics);
-		const templateId = getTemplateId(selectedTopics, enabledMonetization);
-		setData({
-			...data,
-			adviceText,
-			letterText,
-			topicsList,
-			templateId,
-		});
+		data.adviceText = getAdviceText(adviceParagraphs);
+		data.letterText = getLetterText(sessionDocument);
+		data.topicsList = getTopicsList(selectedTopics);
+		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
+		setData(data);
 	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
 	const submitDetails = () => {
+		const submissionData = {
+			...data,
+			contactMe,
+			name,
+			recipient,
+		};
 		axios({
 			method: 'POST',
 			url: lambdaUrl,
-			data,
+			data: submissionData,
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -116,7 +113,7 @@ const EmailModal: FC = () => {
 
 				<TextField
 					id="name"
-					onChange={e => setData({ ...data, name: e.target.value })}
+					onChange={e => setName(e.target.value)}
 					label="First name"
 					autoComplete="name"
 					variant="filled"
@@ -124,7 +121,7 @@ const EmailModal: FC = () => {
 				/>
 				<TextField
 					id="email"
-					onChange={e => setData({ ...data, recipient: e.target.value })}
+					onChange={e => setRecipient(e.target.value)}
 					label="Your email"
 					autoComplete="email"
 					variant="filled"
@@ -133,12 +130,7 @@ const EmailModal: FC = () => {
 
 				<FormControlLabel
 					control={
-						<Checkbox
-							checked={data.contactMe}
-							onChange={() => setData({ ...data, contactMe: !data.contactMe })}
-							name="contactme"
-							color="primary"
-						/>
+						<Checkbox checked={contactMe} onChange={() => setContactMe(!contactMe)} name="contactme" color="primary" />
 					}
 					classes={{ label: 'emailModal__checkbox' }}
 					label="Check this box if you want our specialist team to contact you about your case"
@@ -150,8 +142,15 @@ const EmailModal: FC = () => {
 						size="large"
 						color="secondary"
 						onClick={() => {
-							dispatch(updateUserData({ ...data }));
-							if (data.contactMe) {
+							dispatch(
+								updateUserData({
+									...data,
+									contactMe,
+									name,
+									recipient,
+								}),
+							);
+							if (contactMe) {
 								history.push('/preview/checkout/cdf1');
 							} else {
 								history.push('/preview/checkout/email/complete');
@@ -159,7 +158,7 @@ const EmailModal: FC = () => {
 							}
 						}}
 					>
-						{data.contactMe ? 'Next' : 'Send now'}
+						{contactMe ? 'Next' : 'Send now'}
 					</Button>
 				</div>
 

@@ -19,6 +19,7 @@ import { createSessionDocument } from '../../../../utils/sessionDocument';
 import VLcard from '../VLcard';
 import { getTemplate } from '../../../../api/vl';
 import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice';
+import { downloadDataForDS } from '../../../../ds';
 
 interface Props {
 	sessionDocumentComponents: SessionDocumentComponent[];
@@ -57,6 +58,7 @@ const DocumentPreview: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
+	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 
 	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET');
 
@@ -127,6 +129,11 @@ const DocumentPreview: FC = () => {
 							<GetApp />
 							&nbsp;Download
 						</Fab>
+						{isDsFlow && (
+							<Fab type="extended" onclick={downloadDataForDS}>
+								Download
+							</Fab>
+						)}
 					</Box>
 				</Box>
 			</div>
