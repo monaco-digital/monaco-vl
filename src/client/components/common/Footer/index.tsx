@@ -9,6 +9,7 @@ import { removeLastAnsweredQuestion, updateSelectedTopics } from '../../../../da
 import { getNextQuestion } from '../../../../clustering/questionFlow';
 import CheckoutModal from '../CheckoutModal';
 import Button from '../../Button';
+import { downloadDataForDS } from '../../../../ds';
 
 const Footer: React.FC = () => {
 	const history = useHistory();
@@ -16,10 +17,11 @@ const Footer: React.FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 
 	const dispatch = useDispatch();
 
-	const openCheckoutModal = () => {
+	const openCheckoutModal = async () => {
 		const freeTopicTemplates = ['_RES', '_ADV'];
 		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
 
@@ -96,6 +98,7 @@ const Footer: React.FC = () => {
 							</div>
 							<div className="footer__preview__button">
 								<Button type="main" shortText="Email" text="Email" rounded fn={openCheckoutModal} />
+								{isDsFlow && <Button type="main" shortText="Download" text="Download" rounded fn={downloadDataForDS} />}
 							</div>
 						</>
 					</Route>

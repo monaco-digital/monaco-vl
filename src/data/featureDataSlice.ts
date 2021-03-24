@@ -15,6 +15,7 @@ export const slice = createSlice({
 	name: 'feature',
 	initialState: {
 		enableMonetization: true,
+		dsFlow: false,
 	},
 	reducers: {
 		enableMonetization: (state): void => {
@@ -23,9 +24,15 @@ export const slice = createSlice({
 		disableMonetization: (state): void => {
 			state.enableMonetization = false;
 		},
+		enableDsFlow: (state): void => {
+			state.dsFlow = true;
+		},
+		disableDsFlow: (state): void => {
+			state.dsFlow = false;
+		},
 	},
 });
 
-export const { enableMonetization, disableMonetization } = slice.actions;
+export const { enableMonetization, disableMonetization, enableDsFlow, disableDsFlow } = slice.actions;
 
 export default slice.reducer;
