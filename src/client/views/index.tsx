@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
 
-import Footer from '../components/common/Footer';
 import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
@@ -22,6 +21,7 @@ import { getAllParagraphs } from '../../api/vl/paragraph';
 import { disableMonetization, enableMonetization } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
+import CheckoutModal from '../components/common/CheckoutModal';
 
 const Main: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
@@ -122,7 +122,8 @@ const Main: FC = () => {
 					</Route>
 				</Switch>
 			</div>
-			<Footer />
+
+			<CheckoutModal />
 		</main>
 	);
 };
