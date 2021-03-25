@@ -130,7 +130,7 @@ const DocumentPreview: FC = () => {
 							&nbsp;Download
 						</Fab>
 						{isDsFlow && (
-							<Fab type="extended" onclick={downloadDataForDS}>
+							<Fab variant="extended" onClick={downloadDataForDS}>
 								Download
 							</Fab>
 						)}

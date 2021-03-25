@@ -23,7 +23,7 @@ describe('Help Page', () => {
 				currentQuestion: {
 					id: 1,
 					prerequisites: [],
-					text: 'What would you like?',
+					text: 'How can we help today?',
 					subtext: 'Choose one:',
 					minAnswers: 1,
 					maxAnswers: 1,
@@ -34,12 +34,12 @@ describe('Help Page', () => {
 							topicId: '_ADV',
 						},
 						{
-							text: 'Respond to a legal letter',
-							topicId: '_RES',
+							text: 'Write a letter to your employer',
+							topicId: '_LET',
 						},
 						{
-							text: 'Write a legal letter',
-							topicId: '_LET',
+							text: 'Respond to your employer',
+							topicId: '_RES',
 						},
 					],
 				},
@@ -85,7 +85,7 @@ describe('Help Page', () => {
 			{
 				__typename: 'CaseTopic',
 				_id: '602d8e7760a2b3f79704893d',
-				id: '_LET',
+				id: '_RES',
 				type: 'case',
 				topic: null,
 				name: 'WRITE_LETTER',
