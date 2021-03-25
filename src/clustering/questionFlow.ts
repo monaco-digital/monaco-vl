@@ -282,20 +282,16 @@ const allQuestions: Question[] = [
 				topicId: 'DS',
 			},
 			{
-				text: 'Physical condition',
-				topicId: 'DD',
-			},
-			{
-				text: 'Mental health',
-				topicId: 'DD',
-			},
-			{
 				text: 'Pregnancy',
 				topicId: 'DP',
 			},
 			{
 				text: 'Maternity',
 				topicId: 'DM',
+			},
+			{
+				text: 'Physical or Mental health condition',
+				topicId: 'DD',
 			},
 			{
 				text: 'Age',
