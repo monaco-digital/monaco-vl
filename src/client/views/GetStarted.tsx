@@ -16,7 +16,7 @@ const GetStarted: React.FC = () => {
 				<div className="md:flex md:flex-row space-x-20">
 					<div>
 						<h1>Empowering employees</h1>
-						<h3>Get free advice and build legal letters when badly treated at work</h3>
+						<h3>Treated unfairly at work? Get free advice & build a bespoke legal letter in less than 10 minutes.</h3>
 						<div className="get-started__button-desktop">
 							<Button type="start" text="Get started" rounded fn={goToTopics} />
 						</div>

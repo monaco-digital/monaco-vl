@@ -112,7 +112,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 			if (topicId === '_LET') {
 				text += ' - £5';
 			} else {
-				text += ' - £FREE';
+				text += ' - (Totally free)';
 			}
 		}
 
