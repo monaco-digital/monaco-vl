@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import ReactGA from 'react-ga';
+import { Box, Fab } from '@material-ui/core';
 
 const Help: React.FC = () => {
+	const history = useHistory();
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',
@@ -10,7 +13,7 @@ const Help: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="helpsection" style={{ maxWidth: '900px' }}>
+		<div className="helpsection" style={{ maxWidth: '904px' }}>
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
@@ -245,6 +248,23 @@ const Help: React.FC = () => {
 				<p>Registered office: Unit 502, Peckham Levels, 95a Rye Lane, London, SE15 4ST</p>
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
 			</div>
+
+			<Box
+				position="fixed"
+				width="90%"
+				maxWidth={904}
+				bottom={16}
+				zIndex={10}
+				display="flex"
+				flexDirection="row"
+				justifyContent="flex-end"
+			>
+				<Box px={1}>
+					<Fab variant="extended" color="inherit" onClick={() => history.goBack()}>
+						Back
+					</Fab>
+				</Box>
+			</Box>
 		</div>
 	);
 };

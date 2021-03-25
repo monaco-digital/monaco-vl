@@ -6,14 +6,18 @@
   },
   "plugins": [
     "@typescript-eslint",
-    "prettier"
+    "prettier",
+    "testing-library",
+    "jest-dom"
   ],
   "extends": [
     "airbnb-typescript",
     "airbnb/hooks",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "prettier",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
   ],
   "rules": {
     "@typescript-eslint/indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
@@ -23,6 +27,7 @@
     "import/prefer-default-export" : 0,
     "prettier/prettier": ["error"],
     "arrow-body-style": "off",
-    "prefer-arrow-callback": "off"
+    "prefer-arrow-callback": "off",
+    "testing-library/prefer-screen-queries" : "warn"
   }
 }
