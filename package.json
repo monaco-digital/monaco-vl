@@ -21,7 +21,6 @@
 		"classnames": "^2.2.6",
 		"file-saver": "^2.0.5",
 		"graphql": "^15.5.0",
-		"history": "^4.10.1",
 		"lodash": "^4.17.20",
 		"nanoid": "^3.1.20",
 		"npm-run-all": "^4.1.5",
@@ -40,7 +39,6 @@
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "^4.0.3",
 		"react-window": "^1.8.5",
-		"redux": "^4.0.5",
 		"tailwindcss": "^1.9.6",
 		"typescript": "^4.0.3"
 	},
@@ -91,7 +89,6 @@
 		"eslint-plugin-react": "^7.23.0",
 		"eslint-plugin-react-hooks": "^4.2.0",
 		"eslint-plugin-testing-library": "^3.10.2",
-		"file-saver": "^2.0.2",
 		"husky": "^5.2.0",
 		"install": "^0.13.0",
 		"jest-junit": "^12.0.0",
