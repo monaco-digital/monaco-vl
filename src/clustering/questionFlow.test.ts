@@ -202,7 +202,7 @@ const allQuestions: Question[] = [
 		id: 9,
 		prerequisites: [],
 		text: 'Employment issues',
-		subtext: 'Choose one or more',
+		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
 		isFinal: false,
