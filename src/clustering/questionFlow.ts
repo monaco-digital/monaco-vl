@@ -282,20 +282,16 @@ const allQuestions: Question[] = [
 				topicId: 'DS',
 			},
 			{
-				text: 'Physical condition',
-				topicId: 'DD',
-			},
-			{
-				text: 'Mental health',
-				topicId: 'DD',
-			},
-			{
 				text: 'Pregnancy',
 				topicId: 'DP',
 			},
 			{
 				text: 'Maternity',
 				topicId: 'DM',
+			},
+			{
+				text: 'Physical or Mental health condition',
+				topicId: 'DD',
 			},
 			{
 				text: 'Age',
@@ -329,9 +325,9 @@ const allQuestions: Question[] = [
 	},
 	{
 		id: 11,
-		prerequisites: ['_PC'],
-		text: 'Did you ever complain to your employer about this discrimination?',
-		subtext: 'Why do you think your employer acted this way? Select all that apply',
+		prerequisites: [],
+		text: 'Did you ever complain to your employer about discrimination, either against yourself or anybody else?',
+		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,

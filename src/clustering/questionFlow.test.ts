@@ -293,12 +293,7 @@ const allQuestions: Question[] = [
 				prerequisites: ['_PC'],
 			},
 			{
-				text: 'Physical condition',
-				topicId: 'DD',
-				prerequisites: ['_PC'],
-			},
-			{
-				text: 'Mental health',
+				text: 'Physical or Mental health condition',
 				topicId: 'DD',
 				prerequisites: ['_PC'],
 			},
