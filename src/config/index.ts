@@ -45,16 +45,6 @@ const lambdaUrl = (): string =>
 		? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
 		: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer';
 
-const vlUrl = (): string => {
-	if (stage === 'dev') {
-		return 'https://dev.dksl15jm1ov24.amplifyapp.com/';
-	}
-	if (stage === 'prod') {
-		return 'https://virtuallawyer.monacosolicitors.co.uk/';
-	}
-	return '';
-};
-
 const config = {
 	API_URL: apiUrl(),
 	VL_API_URL: vlApiUrl(),
@@ -63,7 +53,6 @@ const config = {
 	STRIPE_PUBLIC_KEY:
 		stage === 'prod' ? 'pk_live_6Uq8eJFH8Hx6nXFrAOCkVckm00cI5AF91f' : 'pk_test_hGSeVxDC8lZRMNo8TNE2XSC200i9IRSvSj',
 	GA_PROPERTY_ID: gaPropertyId(),
-	VL_URL: vlUrl(),
 };
 
 export default config;
