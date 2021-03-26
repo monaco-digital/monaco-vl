@@ -71,7 +71,6 @@ interface Props {
 const Question: React.FC<Props> = ({ question }: Props) => {
 	const dispatch = useDispatch();
 
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const allTopics = useSelector<AppState, CaseTopic[]>(state => state.topics.all);
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
@@ -104,17 +103,8 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 	};
 
 	const answers = optionsToShow.map(option => {
-		const { id: questionId } = question;
-		let { text } = option;
+		const { text } = option;
 		const { topicId } = option;
-
-		if (isMonetizationEnabled && questionId === 1) {
-			if (topicId === '_LET') {
-				text += ' - £5';
-			} else {
-				text += ' - (Totally free)';
-			}
-		}
 
 		return (
 			<div key={topicId} className="topic inline-flex">
