@@ -42,8 +42,8 @@ jobs:
           path: coverage
       - slack/notify:
           channel: tech-team
-          template: basic_success_1
-          event: always
+          template: success_tagged_deploy_1
+          event: pass
 
   deploy:
     parameters:
