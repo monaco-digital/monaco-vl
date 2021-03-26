@@ -40,10 +40,6 @@ jobs:
           path: ./reports/junit
       - store_artifacts:
           path: coverage
-      - slack/notify:
-          channel: tech-team
-          template: success_tagged_deploy_1
-          event: pass
 
   deploy:
     parameters:
@@ -80,13 +76,19 @@ jobs:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
             CI=false && amplify publish  -- yes
+      - slack/notify:
+          channel: tech
+          template: success_tagged_deploy_1
+          event: pass
+      - slack/notify:
+          channel: tech
+          template: basic_fail_1
+          event: fail
 
 workflows:
   Deploy:
     jobs:
-      - build_and_test:
-          context:
-            - slack
+      - build_and_test
       - deploy:
           context:
             - aws-cli
