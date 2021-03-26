@@ -3,6 +3,7 @@ version: 2.1
 orbs:
   aws-cli: circleci/aws-cli@1.4.0
   node: circleci/node@4.2.0
+  slack: circleci/slack@4.1
 
 executors:
   node:
@@ -75,6 +76,14 @@ jobs:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
             CI=false && amplify publish  -- yes
+      - slack/notify:
+          channel: virtual-lawyer-notifications
+          template: success_tagged_deploy_1
+          event: pass
+      - slack/notify:
+          channel: virtual-lawyer-notifications
+          template: basic_fail_1
+          event: fail
 
 workflows:
   Deploy:
@@ -84,6 +93,7 @@ workflows:
           context:
             - aws-cli
             - github
+            - slack
           name: DeployDev
           deploy_env: dev
           requires:
@@ -102,6 +112,7 @@ workflows:
           context:
             - aws-cli
             - github
+            - slack
           name: DeployProduction
           deploy_env: prod
           requires:
