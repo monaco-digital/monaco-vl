@@ -89,6 +89,7 @@ workflows:
           context:
             - aws-cli
             - github
+            - slack
           name: DeployDev
           deploy_env: dev
           requires:
