@@ -85,6 +85,8 @@ workflows:
   Deploy:
     jobs:
       - build_and_test
+          context:
+            - slack
       - deploy:
           context:
             - aws-cli
@@ -108,6 +110,7 @@ workflows:
           context:
             - aws-cli
             - github
+            - slack
           name: DeployProduction
           deploy_env: prod
           requires:
