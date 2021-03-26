@@ -1,1 +1,1 @@
-export type ParagraphToggle = 'summary' | 'paragraph'
+export type ParagraphToggle = 'summary' | 'paragraph';

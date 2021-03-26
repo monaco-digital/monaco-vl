@@ -1,41 +1,41 @@
-import { DocumentParagraphBulletPoints, BulletPoints } from '@monaco-digital/vl-types/lib/main'
-import React, { FC, useState } from 'react'
-import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice'
-import { useDispatch } from 'react-redux'
-import { nanoid } from 'nanoid'
-import { TextareaAutosize } from '@material-ui/core'
+import { DocumentParagraphBulletPoints, BulletPoints } from '@monaco-digital/vl-types/lib/main';
+import React, { FC } from 'react';
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { TextareaAutosize } from '@material-ui/core';
+import { updateSessionDocumentComponent } from '../../../../data/sessionDataSlice';
 
-export const PreviewBulletPoints: FC<{
-	templateBulletPoints: BulletPoints
-	documentBulletPoints: DocumentParagraphBulletPoints
-}> = ({ templateBulletPoints, documentBulletPoints }) => {
-	const dispatch = useDispatch()
+interface Props {
+	templateBulletPoints: BulletPoints;
+	documentBulletPoints: DocumentParagraphBulletPoints;
+}
 
-	const values = {}
+export const PreviewBulletPoints: FC<Props> = ({ templateBulletPoints, documentBulletPoints }: Props) => {
+	const dispatch = useDispatch();
 
-	const updateBulletPoints = (values: any) => {
+	const values = {};
+
+	const updateBulletPoints = () => {
 		const updatedDocumentParagraphComponent = {
 			id: nanoid(),
 			baseTemplateComponent: templateBulletPoints.id,
 			type: 'BulletPoints',
-			completedBulletPoints: Object.keys(values).map(key => {
-				return { id: key, value: values[key] }
-			}),
-		} as DocumentParagraphBulletPoints
-		dispatch(updateSessionDocumentComponent(updatedDocumentParagraphComponent))
-	}
+			completedBulletPoints: Object.keys(values).map(key => ({ id: key, value: values[key] })),
+		} as DocumentParagraphBulletPoints;
+		dispatch(updateSessionDocumentComponent(updatedDocumentParagraphComponent));
+	};
 
 	return (
 		<div style={{ display: 'flex', flexDirection: 'column' }}>
-			{templateBulletPoints.bulletPoints.map((bulletPoint, idx) => {
+			{templateBulletPoints.bulletPoints.map(bulletPoint => {
 				const matchingDocumentBulletPoint = documentBulletPoints?.completedBulletPoints?.find(
-					cbp => cbp.id === bulletPoint.id
-				)
+					cbp => cbp.id === bulletPoint.id,
+				);
 				if (matchingDocumentBulletPoint?.value && matchingDocumentBulletPoint.value !== bulletPoint.placeholder) {
-					values[matchingDocumentBulletPoint.id] = matchingDocumentBulletPoint.value
+					values[matchingDocumentBulletPoint.id] = matchingDocumentBulletPoint.value;
 					return (
 						<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
-							<li></li>
+							<li />
 							<TextareaAutosize
 								id={bulletPoint.id}
 								name={bulletPoint.id}
@@ -43,28 +43,33 @@ export const PreviewBulletPoints: FC<{
 								placeholder={bulletPoint.placeholder}
 								maxLength={350}
 								defaultValue={values[bulletPoint.id] || matchingDocumentBulletPoint?.value || bulletPoint.placeholder}
-								onChange={e => (values[e.target.id] = e.target.value)}
-								onBlur={() => updateBulletPoints(values)}
+								onChange={e => {
+									values[e.target.id] = e.target.value;
+								}}
+								onBlur={() => updateBulletPoints()}
 							/>
 						</div>
-					)
-				} else {
-					return (
-						<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
-							<li></li>
-							<TextareaAutosize
-								id={bulletPoint.id}
-								name={bulletPoint.id}
-								style={{ width: '90%', backgroundColor: '#deefff', margin: '2px' }}
-								placeholder={bulletPoint.placeholder}
-								maxLength={350}
-								onChange={e => (values[e.target.id] = e.target.value)}
-								onBlur={() => updateBulletPoints(values)}
-							/>
-						</div>
-					)
+					);
 				}
+				return (
+					<div style={{ display: 'flex', flexDirection: 'row', paddingLeft: '5px' }}>
+						<li />
+						<TextareaAutosize
+							id={bulletPoint.id}
+							name={bulletPoint.id}
+							style={{ width: '90%', backgroundColor: '#deefff', margin: '2px' }}
+							placeholder={bulletPoint.placeholder}
+							maxLength={350}
+							onChange={e => {
+								values[e.target.id] = e.target.value;
+							}}
+							onBlur={() => updateBulletPoints()}
+						/>
+					</div>
+				);
 			})}
 		</div>
-	)
-}
+	);
+};
+
+export default PreviewBulletPoints;

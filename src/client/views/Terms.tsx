@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
+import { Box, Fab } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
-export const Terms: React.FC = () => {
+const Terms: React.FC = () => {
+	const history = useHistory();
+
 	return (
 		<div className="termsSection" style={{ maxWidth: '900px' }}>
 			<h1>Virtual Lawyer terms of use</h1>
@@ -31,11 +35,11 @@ export const Terms: React.FC = () => {
 			<h2>Other</h2>
 			<p>
 				Our complaints policy is&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener noreferrer">
 					here
 				</a>
 				&nbsp;and our fee structures are&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/legal-representation/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/legal-representation/" target="_blank" rel="noopener  noreferrer">
 					here
 				</a>
 				. We always welcome feedback too, please email&nbsp;
@@ -75,9 +79,10 @@ export const Terms: React.FC = () => {
 					}}
 				>
 					<iframe
+						title="SRA Badge"
 						frameBorder="0"
 						scrolling="no"
-						allowTransparency={true}
+						allowTransparency
 						src="https://cdn.yoshki.com/iframe/55845r.html"
 						style={{
 							border: '0px',
@@ -90,12 +95,29 @@ export const Terms: React.FC = () => {
 							height: '100%',
 							position: 'absolute',
 						}}
-					></iframe>
+					/>
 				</div>
 			</div>
 			{/* End of SRA Digital Badge code  */}
-		</div>
-	)
-}
 
-export default Terms
+			<Box
+				position="fixed"
+				width="90%"
+				maxWidth={904}
+				bottom={16}
+				zIndex={10}
+				display="flex"
+				flexDirection="row"
+				justifyContent="flex-end"
+			>
+				<Box px={1}>
+					<Fab variant="extended" color="inherit" onClick={() => history.goBack()}>
+						Back
+					</Fab>
+				</Box>
+			</Box>
+		</div>
+	);
+};
+
+export default Terms;

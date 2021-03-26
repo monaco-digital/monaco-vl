@@ -1,19 +1,19 @@
-import React, { FC, ReactNode } from 'react'
-import classNames from 'classnames'
-import expandTextIcon from '../../../assets/img/expand-text-icon.svg'
+import React, { FC, ReactNode } from 'react';
+import classNames from 'classnames';
+import expandTextIcon from '../../../assets/img/expand-text-icon.svg';
 
 type VLCardProps = {
-	children: ReactNode
-	theme?: 'light' | 'dark'
-	heading: string
-	counter?: number
-	blur?: boolean
-}
+	children: ReactNode;
+	theme?: 'light' | 'dark';
+	heading: string;
+	counter?: number;
+	blur?: boolean;
+};
 
-const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }) => {
+const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VLCardProps) => {
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
-	})
+	});
 
 	return (
 		<div className={VLCardClasses}>
@@ -21,14 +21,20 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }) =>
 				<span className="vl-card__header__title">{heading}</span>
 				{counter !== undefined && (
 					<span className="vl-card__header__counter">
-						<img src={expandTextIcon} />
+						<img src={expandTextIcon} alt="Expand Text" />
 						<span className="vl-card__header__counter-number">{counter}</span>
 					</span>
 				)}
 			</div>
 			<div className={blur ? 'vl-card__blur' : ''}>{children}</div>
 		</div>
-	)
-}
+	);
+};
 
-export default VLcard
+VLcard.defaultProps = {
+	theme: 'light',
+	counter: undefined,
+	blur: false,
+};
+
+export default VLcard;

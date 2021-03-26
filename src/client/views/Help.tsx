@@ -1,16 +1,19 @@
-import React, { useEffect } from 'react'
-import ReactGA from 'react-ga'
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import { Box, Fab } from '@material-ui/core';
 
-export const Help: React.FC = () => {
+const Help: React.FC = () => {
+	const history = useHistory();
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',
 			action: 'Opened help page',
-		})
-	}, [])
+		});
+	}, []);
 
 	return (
-		<div className="helpsection" style={{ maxWidth: '900px' }}>
+		<div className="helpsection" style={{ maxWidth: '904px' }}>
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
@@ -33,7 +36,7 @@ export const Help: React.FC = () => {
 			<br />
 			<p>
 				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
-				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener">
+				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
 					grievance letter
 				</a>
 				, Here are some{' '}
@@ -58,7 +61,11 @@ export const Help: React.FC = () => {
 			<div>
 				<ul>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener">
+						<a
+							href="https://www.monacosolicitors.co.uk/settlement-agreements/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							How much should I get
 						</a>
 					</li>
@@ -66,13 +73,13 @@ export const Help: React.FC = () => {
 						<a
 							href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 							target="_blank"
-							rel="noopener"
+							rel="noopener noreferrer"
 						>
 							Settlement agreement calculator
 						</a>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener">
+						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener noreferrer">
 							Negotiating
 						</a>
 					</li>
@@ -241,8 +248,25 @@ export const Help: React.FC = () => {
 				<p>Registered office: Unit 502, Peckham Levels, 95a Rye Lane, London, SE15 4ST</p>
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
 			</div>
-		</div>
-	)
-}
 
-export default Help
+			<Box
+				position="fixed"
+				width="90%"
+				maxWidth={904}
+				bottom={16}
+				zIndex={10}
+				display="flex"
+				flexDirection="row"
+				justifyContent="flex-end"
+			>
+				<Box px={1}>
+					<Fab variant="extended" color="inherit" onClick={() => history.goBack()}>
+						Back
+					</Fab>
+				</Box>
+			</Box>
+		</div>
+	);
+};
+
+export default Help;

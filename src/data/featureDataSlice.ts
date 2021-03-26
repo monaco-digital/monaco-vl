@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit'
+/* eslint-disable no-param-reassign */
+import { createSlice } from '@reduxjs/toolkit';
 
-/***
+/** *
  * Store for feature switching.
  *
  * Features under development should be initially committed in a disabled state so the code can deploy to prod without breaking anything.
@@ -14,17 +15,24 @@ export const slice = createSlice({
 	name: 'feature',
 	initialState: {
 		enableMonetization: true,
+		dsFlow: false,
 	},
 	reducers: {
 		enableMonetization: (state): void => {
-			state.enableMonetization = true
+			state.enableMonetization = true;
 		},
 		disableMonetization: (state): void => {
-			state.enableMonetization = false
+			state.enableMonetization = false;
+		},
+		enableDsFlow: (state): void => {
+			state.dsFlow = true;
+		},
+		disableDsFlow: (state): void => {
+			state.dsFlow = false;
 		},
 	},
-})
+});
 
-export const { enableMonetization, disableMonetization } = slice.actions
+export const { enableMonetization, disableMonetization, enableDsFlow, disableDsFlow } = slice.actions;
 
-export default slice.reducer
+export default slice.reducer;

@@ -1,47 +1,27 @@
-import { getFirstQuestion, getNextQuestion } from './questionFlow'
-import { Question } from '../types/Questions'
-
-describe('Question flow', () => {
-	test('First question returned', () => {
-		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help you')
-	})
-
-	test('Question prerequisite not met', () => {
-		const selectedTopics = []
-		const answeredQuestions = allQuestions.slice(0, 1)
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-		expect(nextQuestion.id).toBe(3)
-	})
-
-	test('Question prerequisite met', () => {
-		const selectedTopics = [{ id: '_RES' }]
-		const answeredQuestions = allQuestions.slice(0, 1)
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions)
-		expect(nextQuestion.id).toBe(2)
-	})
-})
+import { getFirstQuestion, getNextQuestion } from './questionFlow';
+import { Question } from '../types/Questions';
 
 const allQuestions: Question[] = [
 	{
 		id: 1,
 		prerequisites: [],
-		text: 'How can we help you',
-		subtext: 'Do any of the following apply to you',
+		text: 'How can we help today?',
+		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
 		options: [
 			{
-				text: 'I want to write to my employer',
+				text: 'Get Advice',
+				topicId: '_ADV',
+			},
+			{
+				text: 'Write a letter to your employer',
 				topicId: '_LET',
 			},
 			{
-				text: 'My employer has responded to my initial letter',
+				text: 'Respond to your employer',
 				topicId: '_RES',
-			},
-			{
-				text: 'I just want some advice',
-				topicId: '_ADV',
 			},
 		],
 	},
@@ -75,18 +55,18 @@ const allQuestions: Question[] = [
 	{
 		id: 3,
 		prerequisites: [],
-		text: 'Are you still in your job',
-		subtext: 'Which best describes your current situation',
+		text: 'Are you still employed?',
+		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
 		options: [
 			{
-				text: 'I am still working in my job',
+				text: 'Still employed',
 				topicId: 'E',
 			},
 			{
-				text: 'I have left my job',
+				text: 'No longer employed',
 				topicId: '_NE',
 			},
 		],
@@ -113,8 +93,8 @@ const allQuestions: Question[] = [
 	{
 		id: 5,
 		prerequisites: [],
-		text: 'Are you still in your job',
-		subtext: 'How long were you (have you been) in your job?',
+		text: 'How long have you been in your job',
+		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
@@ -132,8 +112,8 @@ const allQuestions: Question[] = [
 	{
 		id: 6,
 		prerequisites: ['E'],
-		text: 'What would you like to do?',
-		subtext: "What's your preferred course of action?",
+		text: 'What do you want?',
+		subtext: '(What is your ideal outcome?)',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
@@ -221,8 +201,8 @@ const allQuestions: Question[] = [
 	{
 		id: 9,
 		prerequisites: [],
-		text: 'Problems at work',
-		subtext: 'What problem(s) have you faced at work? Select any or all that apply?',
+		text: 'Employment issues',
+		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
 		isFinal: false,
@@ -232,30 +212,30 @@ const allQuestions: Question[] = [
 				topicId: 'B',
 			},
 			{
-				text: 'Risk of redundancy',
+				text: 'Redundancy',
 				topicId: 'RR',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Wrongful suspension',
+				text: 'Suspension',
 				topicId: 'Sn',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Disciplinary proceedings',
+				text: 'Disciplinary',
 				topicId: 'Dy',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Unsafe workplace e.g. Coronavirus',
+				text: 'Unsafe workplace',
 				topicId: 'H',
 			},
 			{
-				text: 'Performance issues',
+				text: 'Performance',
 				topicId: 'P',
 			},
 			{
-				text: 'Sickness issues',
+				text: 'Sickness',
 				topicId: 'S',
 				prerequisites: ['!T'],
 			},
@@ -268,11 +248,11 @@ const allQuestions: Question[] = [
 				topicId: 'EW',
 			},
 			{
-				text: 'Employer owes money',
+				text: 'Money owed',
 				topicId: 'M',
 			},
 			{
-				text: 'No written employment terms',
+				text: 'No contract',
 				topicId: 'F',
 			},
 			{
@@ -313,12 +293,7 @@ const allQuestions: Question[] = [
 				prerequisites: ['_PC'],
 			},
 			{
-				text: 'Physical condition',
-				topicId: 'DD',
-				prerequisites: ['_PC'],
-			},
-			{
-				text: 'Mental health',
+				text: 'Physical or Mental health condition',
 				topicId: 'DD',
 				prerequisites: ['_PC'],
 			},
@@ -391,4 +366,24 @@ const allQuestions: Question[] = [
 			},
 		],
 	},
-]
+];
+
+describe('Question flow', () => {
+	test('First question returned', () => {
+		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help today?');
+	});
+
+	test('Question prerequisite not met', () => {
+		const selectedTopics = [];
+		const answeredQuestions = allQuestions.slice(0, 1);
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		expect(nextQuestion.id).toBe(3);
+	});
+
+	test('Question prerequisite met', () => {
+		const selectedTopics = [{ id: '_RES' }];
+		const answeredQuestions = allQuestions.slice(0, 1);
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		expect(nextQuestion.id).toBe(2);
+	});
+});

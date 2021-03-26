@@ -1,25 +1,33 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
+  "parserOptions" : {
+    "project": "./tsconfig.json"
+  },
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "prettier",
+    "testing-library",
+    "jest-dom"
   ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
+    "airbnb-typescript",
+    "airbnb/hooks",
     "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react"
   ],
   "rules": {
-    "semi": "off",
-    "@typescript-eslint/semi": "off",
-    "@typescript-eslint/member-delimiter-style": "off",
-    "@typescript-eslint/explicit-function-return-type": [
-      "warn",
-      {
-        "allowExpressions": true
-      }
-    ]
-
+    "@typescript-eslint/indent": [2, "tab", { "SwitchCase": 1, "VariableDeclarator": 1 }],
+    "no-tabs": 0,
+    "react/jsx-indent": [2, "tab"],
+    "react/jsx-indent-props": [2, "tab"],
+    "import/prefer-default-export" : 0,
+    "prettier/prettier": ["error"],
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "testing-library/prefer-screen-queries" : "warn"
   }
 }

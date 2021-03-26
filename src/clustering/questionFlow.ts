@@ -1,10 +1,10 @@
-import { Question } from '../types/Questions'
+import { Question } from '../types/Questions';
 
 const allQuestions: Question[] = [
 	{
 		id: 1,
 		prerequisites: [],
-		text: 'What would you like?',
+		text: 'How can we help today?',
 		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
@@ -15,12 +15,12 @@ const allQuestions: Question[] = [
 				topicId: '_ADV',
 			},
 			{
-				text: 'Respond to a legal letter',
-				topicId: '_RES',
+				text: 'Write a letter to your employer',
+				topicId: '_LET',
 			},
 			{
-				text: 'Write a legal letter',
-				topicId: '_LET',
+				text: 'Respond to your employer',
+				topicId: '_RES',
 			},
 		],
 	},
@@ -54,18 +54,18 @@ const allQuestions: Question[] = [
 	{
 		id: 3,
 		prerequisites: [],
-		text: 'Are you still in your job',
-		subtext: 'Which best describes your current situation',
+		text: 'Are you still employed?',
+		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
 		options: [
 			{
-				text: 'I am still working in my job',
+				text: 'Still employed',
 				topicId: 'E',
 			},
 			{
-				text: 'I have left my job',
+				text: 'No longer employed',
 				topicId: '_NE',
 			},
 		],
@@ -92,8 +92,8 @@ const allQuestions: Question[] = [
 	{
 		id: 5,
 		prerequisites: [],
-		text: 'Are you still in your job',
-		subtext: 'How long were you (have you been) in your job?',
+		text: 'How long have you been in your job?',
+		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
@@ -111,8 +111,8 @@ const allQuestions: Question[] = [
 	{
 		id: 6,
 		prerequisites: ['E'],
-		text: 'What would you like to do?',
-		subtext: "What's your preferred course of action?",
+		text: 'What do you want?',
+		subtext: '(What is your ideal outcome?)',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
@@ -200,8 +200,8 @@ const allQuestions: Question[] = [
 	{
 		id: 9,
 		prerequisites: [],
-		text: 'Problems at work',
-		subtext: 'What problem(s) have you faced at work? Select any or all that apply?',
+		text: 'Employment issues',
+		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
 		isFinal: false,
@@ -211,30 +211,30 @@ const allQuestions: Question[] = [
 				topicId: 'B',
 			},
 			{
-				text: 'Risk of redundancy',
+				text: 'Redundancy',
 				topicId: 'RR',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Wrongful suspension',
+				text: 'Suspension',
 				topicId: 'Sn',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Disciplinary proceedings',
+				text: 'Disciplinary',
 				topicId: 'Dy',
 				prerequisites: ['!T'],
 			},
 			{
-				text: 'Unsafe workplace e.g. Coronavirus',
+				text: 'Unsafe workplace',
 				topicId: 'H',
 			},
 			{
-				text: 'Performance issues',
+				text: 'Performance',
 				topicId: 'P',
 			},
 			{
-				text: 'Sickness issues',
+				text: 'Sickness',
 				topicId: 'S',
 				prerequisites: ['!T'],
 			},
@@ -247,11 +247,11 @@ const allQuestions: Question[] = [
 				topicId: 'EW',
 			},
 			{
-				text: 'Employer owes money',
+				text: 'Money owed',
 				topicId: 'M',
 			},
 			{
-				text: 'No written employment terms',
+				text: 'No contract',
 				topicId: 'F',
 			},
 			{
@@ -263,83 +263,59 @@ const allQuestions: Question[] = [
 	{
 		id: 10,
 		prerequisites: [],
-		text: 'Why did this happen?',
-		subtext: 'Why do you think your employer acted this way? Select all that apply',
+		text: 'Other issues',
+		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
 		isFinal: false,
 		options: [
 			{
-				text: 'I am a whistleblower',
+				text: 'Whistleblowing',
 				topicId: 'W',
-			},
-			{
-				text: 'I refused to attend work for health & safety reasons',
-				topicId: 'HD',
-			},
-			{
-				text: 'Discrimination',
-				topicId: '_PC',
 			},
 			{
 				text: 'Race or ethnicity',
 				topicId: 'DR',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Sex/gender',
 				topicId: 'DS',
-				prerequisites: ['_PC'],
-			},
-			{
-				text: 'Physical condition',
-				topicId: 'DD',
-				prerequisites: ['_PC'],
-			},
-			{
-				text: 'Mental health',
-				topicId: 'DD',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Pregnancy',
 				topicId: 'DP',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Maternity',
 				topicId: 'DM',
-				prerequisites: ['_PC'],
+			},
+			{
+				text: 'Physical or Mental health condition',
+				topicId: 'DD',
 			},
 			{
 				text: 'Age',
 				topicId: 'DA',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Religious belief',
 				topicId: 'DRn',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Philosophical belief',
 				topicId: 'DPl',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Sexual orientation',
 				topicId: 'DSy',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Gender reassignment',
 				topicId: 'DG',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Marital or civil partnership status',
 				topicId: 'DMe',
-				prerequisites: ['_PC'],
 			},
 			{
 				text: 'Other',
@@ -349,9 +325,9 @@ const allQuestions: Question[] = [
 	},
 	{
 		id: 11,
-		prerequisites: ['_PC'],
-		text: 'Did you ever complain to your employer about this discrimination?',
-		subtext: 'Why do you think your employer acted this way? Select all that apply',
+		prerequisites: [],
+		text: 'Did you ever complain to your employer about discrimination, either against yourself or anybody else?',
+		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
 		isFinal: false,
@@ -370,31 +346,29 @@ const allQuestions: Question[] = [
 			},
 		],
 	},
-]
+];
 
-export const getFirstQuestion = () => {
-	return allQuestions[0]
-}
+export const getFirstQuestion = (): Question => allQuestions[0];
 
-export const getNextQuestion = (selectedTopics = [], answeredQuestions) => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id)
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id)
-	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null
+export const getNextQuestion = (selectedTopics = [], answeredQuestions: Question[]): Question => {
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+	const answeredQuestionsIds = answeredQuestions.map(q => q.id);
+	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null;
 
-	if (lastAnsweredQuestion?.isFinal) return null
+	if (lastAnsweredQuestion?.isFinal) return null;
 
-	let index = 0
-	let nextQuestion = null
+	let index = 0;
+	let nextQuestion = null;
 	while (!nextQuestion && index < allQuestions.length) {
-		const prerequisites = allQuestions[index].prerequisites || []
-		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id))
-		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id)
+		const prerequisites = allQuestions[index].prerequisites || [];
+		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id));
+		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id);
 
 		if (prerequisitesMet && !answeredAlready) {
-			nextQuestion = allQuestions[index]
+			nextQuestion = allQuestions[index];
 		}
-		index++
+		index += 1;
 	}
 
-	return nextQuestion
-}
+	return nextQuestion;
+};
