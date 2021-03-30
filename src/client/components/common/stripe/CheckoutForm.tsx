@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { Button, CircularProgress, TextField, Typography, Grid, Checkbox, FormHelperText } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic } from 'api/vl/models';
 import { createWPLetterPaymentRequest } from '../../../../api/vl/stripe';
 import { submitDetails } from '../../../../api/general';
 import AppState from '../../../../data/AppState';

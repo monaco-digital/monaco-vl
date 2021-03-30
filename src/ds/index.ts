@@ -1,4 +1,4 @@
-import { Paragraph, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
+import { Paragraph, TemplateParagraph } from 'api/vl/models';
 import { saveAs } from 'file-saver';
 import store from '../data/store';
 import { SessionParagraph } from '../types/SessionDocument';

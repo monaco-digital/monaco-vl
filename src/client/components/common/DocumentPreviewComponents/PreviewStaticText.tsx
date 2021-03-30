@@ -1,4 +1,4 @@
-import { DocumentParagraphStaticText, StaticText } from '@monaco-digital/vl-types/lib/main';
+import { DocumentParagraphStaticText, StaticText } from 'api/vl/models';
 import React, { FC } from 'react';
 
 interface Props {

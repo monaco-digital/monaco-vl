@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import _ from 'lodash';
 import { Box, Fab } from '@material-ui/core';
@@ -37,7 +37,7 @@ const StatementSelect: React.FC = () => {
 					({
 						templateComponent: paragraph,
 						documentComponent: null,
-						isSelected: false,
+						isSelected: paragraph.paragraph?.isAutomaticallyIncluded,
 					} as SessionParagraph),
 			);
 			dispatch(updateSuggestedParagraphs(sessionParagraphs));
@@ -71,6 +71,11 @@ const StatementSelect: React.FC = () => {
 
 	const statements = suggestedParagraphs.map(sessionParagraph => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
+		if (templateParagraph.paragraph?.isAutomaticallyIncluded) {
+			// paragraph is already selected. Do not show.
+			return <></>;
+		}
+
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
 		const { id, summary } = templateParagraph.paragraph;
 		const selected = sessionParagraph.isSelected;

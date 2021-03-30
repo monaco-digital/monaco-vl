@@ -1,4 +1,4 @@
-import { TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
+import { Paragraph, TemplateParagraph } from 'api/vl/models';
 import { gql } from '@apollo/client';
 import { client } from './graphql';
 import { fragments } from './fragments';
@@ -12,9 +12,13 @@ const GET_ALL_PARAGRAPHS = gql`
 	${fragments.paragraph}
 `;
 
+interface ParagraphData {
+	getAllParagraphs: Paragraph[];
+}
+
 export const getAllParagraphs = async (): Promise<TemplateParagraph[]> => {
 	try {
-		const result = await client.query<any, any>({
+		const result = await client.query<ParagraphData, void>({
 			query: GET_ALL_PARAGRAPHS,
 		});
 		const { data, errors } = result;

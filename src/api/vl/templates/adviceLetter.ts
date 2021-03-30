@@ -1,4 +1,4 @@
-import { Template, TemplateSection, TemplateParagraph, StaticText } from '@monaco-digital/vl-types/lib/main';
+import { Template, TemplateSection, TemplateParagraph, StaticText } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const adviceLetter: Template = {

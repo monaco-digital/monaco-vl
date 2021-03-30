@@ -1,4 +1,4 @@
-import { Template, TemplateComponent, Document, DocumentComponent } from '@monaco-digital/vl-types/lib/main';
+import { Template, TemplateComponent, Document, DocumentComponent } from 'api/vl/models';
 
 // made up of both
 export interface SessionDocument {

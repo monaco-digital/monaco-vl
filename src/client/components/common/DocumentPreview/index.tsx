@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CaseTopic, Template } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, Template } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import { useHistory } from 'react-router-dom';
 import { Box, Fab } from '@material-ui/core';
