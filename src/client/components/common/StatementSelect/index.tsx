@@ -73,7 +73,7 @@ const StatementSelect: React.FC = () => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
 		if (templateParagraph.paragraph?.isAutomaticallyIncluded) {
 			// paragraph is already selected. Do not show.
-			return <></>;
+			return null;
 		}
 
 		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
@@ -88,7 +88,14 @@ const StatementSelect: React.FC = () => {
 			// FIXME - sort out accessability on these buttons
 			// eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
 			<div key={id} className="topic" onClick={() => handleOnClick(id)}>
-				<input type="checkbox" id="" name={summary} value={summary} checked={selected} />
+				<input
+					type="checkbox"
+					id=""
+					name={summary}
+					value={summary}
+					checked={selected}
+					onChange={() => handleOnClick(id)}
+				/>
 				<label htmlFor={id}>{summary}</label>
 				{displayInput && documentParagraph.documentParagraphComponents}
 			</div>

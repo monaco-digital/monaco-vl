@@ -14,7 +14,7 @@ jest.mock('../Question', () => () => {
 	return 'Question';
 });
 
-describe('Help Page', () => {
+describe('Questions Page', () => {
 	let initialState;
 
 	beforeEach(() => {
@@ -58,7 +58,7 @@ describe('Help Page', () => {
 		};
 	});
 
-	test('When Loading Help Then Page renders', () => {
+	test('When Loading Questions Then Page renders', () => {
 		renderWithProviders(<Questions />, { initialState });
 	});
 
