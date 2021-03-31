@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic } from 'api/vl/models';
 import { Box, Fab } from '@material-ui/core';
 
 import moreInfoIcon from '../../../assets/img/more-info-icon.svg';

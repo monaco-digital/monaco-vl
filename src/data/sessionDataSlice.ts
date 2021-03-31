@@ -1,12 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import {
-	CaseTopic,
-	DocumentParagraph,
-	TemplateParagraph,
-	Template,
-	DocumentParagraphComponent,
-} from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, DocumentParagraph, Template, DocumentParagraphComponent } from 'api/vl/models';
 import _ from 'lodash';
 import { UserData } from '../types/UserData';
 import {
@@ -16,26 +10,8 @@ import {
 	SessionDocumentSection,
 } from '../types/SessionDocument';
 import { Question } from '../types/Questions';
-import { createDocument, createDocumentParagraph } from '../utils/document';
+import { createDocument } from '../utils/document';
 import orderSuggestedParagraphs from '../utils/paragraphOrdering';
-
-const updateSessionParagraphMapper = (
-	documentParagraphComponent: DocumentParagraphComponent,
-	sessionParagraphs: SessionParagraph[],
-): SessionParagraph[] => {
-	sessionParagraphs.forEach(sessionParagraph => {
-		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
-		sessionParagraph.documentComponent =
-			sessionParagraph.documentComponent || createDocumentParagraph(templateParagraph, sessionParagraphs);
-		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
-		documentParagraph.documentParagraphComponents.forEach((dpc, idx) => {
-			if (dpc.baseTemplateComponent === documentParagraphComponent.baseTemplateComponent) {
-				documentParagraph.documentParagraphComponents[idx] = documentParagraphComponent;
-			}
-		});
-	});
-	return sessionParagraphs;
-};
 
 const updateSessionDocumentMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -94,10 +70,6 @@ export const slice = createSlice({
 				}
 			});
 		},
-		updateSessionParagraph: (state, action) => {
-			const documentParagraphComponent = action.payload;
-			state.suggestedParagraphs = updateSessionParagraphMapper(documentParagraphComponent, state.suggestedParagraphs);
-		},
 		updateSessionDocument: (state, action) => {
 			state.sessionDocument = action.payload;
 		},
@@ -143,7 +115,6 @@ export const {
 	selectParagraphs,
 	deselectParagraphs,
 	updateSelectedTemplate,
-	updateSessionParagraph,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
 	updateUserData,

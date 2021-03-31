@@ -1,4 +1,4 @@
-import { CaseTopic, Template } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, Template } from 'api/vl/models';
 import { grievanceLetter } from './grievanceLetter';
 import { stillEmployed } from './stillEmployed';
 import { notEmployed } from './notEmployed';

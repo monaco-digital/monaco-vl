@@ -7,7 +7,7 @@ import {
 	StaticText,
 	EditableText,
 	BulletPoints,
-} from '@monaco-digital/vl-types/lib/main';
+} from 'api/vl/models';
 import React, { FC } from 'react';
 import { SessionParagraph } from '../../../../types/SessionDocument';
 import { PreviewStaticText } from './PreviewStaticText';

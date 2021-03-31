@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic } from 'api/vl/models';
 import classNames from 'classnames';
 import ReactGA from 'react-ga';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';

@@ -1,4 +1,4 @@
-import { CaseTopic, Paragraph, Template } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, Paragraph, Template } from 'api/vl/models';
 import { Question } from '../types/Questions';
 import { SessionDocument, SessionParagraph } from '../types/SessionDocument';
 import { ParagraphToggle } from '../types/paragraph';

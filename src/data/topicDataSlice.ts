@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic } from 'api/vl/models';
 
 export const slice = createSlice({
 	name: 'topic',

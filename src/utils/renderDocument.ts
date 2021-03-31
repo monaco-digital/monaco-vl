@@ -6,7 +6,7 @@ import {
 	DocumentParagraphBulletPoints,
 	DocumentParagraphStaticText,
 	DocumentParagraphEditableText,
-} from '@monaco-digital/vl-types/lib/main';
+} from 'api/vl/models';
 
 export const getDocumentParagraphStaticTextText = (documentParagraphStaticText: DocumentParagraphStaticText): string =>
 	documentParagraphStaticText.textFirstPerson;

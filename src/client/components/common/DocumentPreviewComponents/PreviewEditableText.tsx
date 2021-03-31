@@ -1,4 +1,4 @@
-import { DocumentParagraphEditableText, EditableText } from '@monaco-digital/vl-types/lib/main';
+import { DocumentParagraphEditableText, EditableText } from 'api/vl/models';
 import React, { FC, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';

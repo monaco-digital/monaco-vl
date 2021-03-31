@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
-import { CaseTopic } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic } from 'api/vl/models';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
 
 import DocumentPreview from '../components/common/DocumentPreview';
@@ -85,19 +85,15 @@ const Main: FC = () => {
 	}, [dispatch, search]);
 
 	useEffect(() => {
-		// TODO - fix this
-		// dispatch(setView(undefined))
-		// eslint-disable-next-line @typescript-eslint/no-extra-semi
 		(async () => {
 			const paragraphs = await getAllParagraphs();
-			// const paragraphs = await getData()
 			const caseTopics = await getAllCaseTopics();
 			const sessionParagraphs = paragraphs.map(
 				paragraph =>
 					({
 						templateComponent: paragraph,
 						documentComponent: null,
-						isSelected: false,
+						isSelected: paragraph.paragraph?.isAutomaticallyIncluded,
 					} as SessionParagraph),
 			);
 			dispatch(setAllTopics(caseTopics));

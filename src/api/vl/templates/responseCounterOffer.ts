@@ -1,10 +1,4 @@
-import {
-	Template,
-	TemplateParagraph,
-	StaticText,
-	TemplateSection,
-	EditableText,
-} from '@monaco-digital/vl-types/lib/main';
+import { Template, TemplateParagraph, StaticText, TemplateSection, EditableText } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const responseCounterOffer: Template = {

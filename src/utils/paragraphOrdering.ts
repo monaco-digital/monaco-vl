@@ -1,4 +1,4 @@
-import { CaseTopic, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, TemplateParagraph } from 'api/vl/models';
 import { SessionParagraph } from '../types/SessionDocument';
 
 const sortParagraphs = (suggestedParagraphs: SessionParagraph[], sortOrder: string[]): SessionParagraph[] => {

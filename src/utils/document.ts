@@ -15,7 +15,7 @@ import {
 	TemplateComponent,
 	TemplateSection,
 	TemplateParagraph,
-} from '@monaco-digital/vl-types/lib/main';
+} from 'api/vl/models';
 
 import _ from 'lodash';
 import { nanoid } from 'nanoid';
