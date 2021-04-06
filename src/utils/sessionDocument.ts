@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* Recursive functions used in this file */
 
-import { Template, TemplateComponent, TemplateSection, TemplateParagraph } from '@monaco-digital/vl-types/lib/main';
+import { Template, TemplateComponent, TemplateSection, TemplateParagraph } from 'api/vl/models';
 import _ from 'lodash';
 import {
 	SessionParagraph,

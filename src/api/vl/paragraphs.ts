@@ -1,4 +1,4 @@
-import { CaseTopic, TemplateParagraph, Advice } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, TemplateParagraph, Advice } from 'api/vl/models';
 import _ from 'lodash';
 import { getAllParagraphs } from './paragraph';
 import store from '../../data/store';

@@ -14,7 +14,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const slice = createSlice({
 	name: 'feature',
 	initialState: {
-		enableMonetization: true,
+		enableMonetization: false,
 		dsFlow: false,
 	},
 	reducers: {

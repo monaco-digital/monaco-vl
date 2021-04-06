@@ -65,6 +65,7 @@ export const paragraph = gql`
 		topicsOneOf
 		topicsAllOf
 		topicsNoneOf
+		isAutomaticallyIncluded
 		paragraphComponents {
 			... on StaticText {
 				...FStaticText

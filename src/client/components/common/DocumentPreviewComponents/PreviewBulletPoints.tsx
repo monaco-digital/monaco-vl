@@ -1,4 +1,4 @@
-import { DocumentParagraphBulletPoints, BulletPoints } from '@monaco-digital/vl-types/lib/main';
+import { DocumentParagraphBulletPoints, BulletPoints } from 'api/vl/models';
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';

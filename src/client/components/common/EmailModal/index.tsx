@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { CaseTopic, Advice } from '@monaco-digital/vl-types/lib/main';
+import { CaseTopic, Advice } from 'api/vl/models';
 import axios from 'axios';
 import AppState from '../../../../data/AppState';
 import { SessionDocument } from '../../../../types/SessionDocument';
