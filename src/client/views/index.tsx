@@ -13,7 +13,6 @@ import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
 import AppState from '../../data/AppState';
-import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
@@ -131,9 +130,6 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/terms">
 						<Terms />
-					</Route>
-					<Route path="/help">
-						<Help />
 					</Route>
 					<Route path="/">
 						<GetStarted />

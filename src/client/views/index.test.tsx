@@ -32,10 +32,6 @@ jest.mock('./Terms', () => () => {
 	return 'Terms';
 });
 
-jest.mock('./Help', () => () => {
-	return 'Help';
-});
-
 jest.mock('./GetStarted', () => () => {
 	return 'GetStarted';
 });
@@ -60,7 +56,6 @@ describe('Main Component', () => {
 
 	test.each`
 		url             | component
-		${'/help'}      | ${'Help'}
 		${'/'}          | ${'GetStarted'}
 		${'/terms'}     | ${'Terms'}
 		${'/questions'} | ${'Questions'}

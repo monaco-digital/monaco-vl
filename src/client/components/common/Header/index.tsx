@@ -37,9 +37,6 @@ const Header: FC = () => {
 				<NavLink to="/preview" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Preview your letter
 				</NavLink>
-				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					Help
-				</NavLink>
 				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Terms of Use
 				</NavLink>
