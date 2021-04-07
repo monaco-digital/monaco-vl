@@ -122,7 +122,7 @@ describe('Main Component', () => {
 		feature
 		${'enableNarrative'}
 		${'enableMonetization'}
-	`('When $feature set in localstorage Then enable $feature is dispatched', ({ feature }) => {
+	`('Given $feature true in localstorage Then enable $feature is dispatched', ({ feature }) => {
 		const local = {};
 		local[feature] = true;
 		(localStorage.getItem as jest.Mock<any, any>).mockReturnValue(JSON.stringify(local));
@@ -138,7 +138,7 @@ describe('Main Component', () => {
 		feature
 		${'enableNarrative'}
 		${'enableMonetization'}
-	`('When $feature set false in localstorage Then disable $feature is dispatched', ({ feature }) => {
+	`('Given $feature false in localstorage Then disable $feature is dispatched', ({ feature }) => {
 		const local = {};
 		local[feature] = false;
 		(localStorage.getItem as jest.Mock<any, any>).mockReturnValue(JSON.stringify(local));
@@ -149,4 +149,23 @@ describe('Main Component', () => {
 
 		expect(actions[0]).toEqual(disableFeature(feature));
 	});
+
+	test.each`
+		feature
+		${'enableNarrative'}
+		${'enableMonetization'}
+	`(
+		'Given $feature false in localstorage and feature true in querystring Then enable $feature is dispatched',
+		({ feature }) => {
+			const local = {};
+			local[feature] = false;
+			(localStorage.getItem as jest.Mock<any, any>).mockReturnValue(JSON.stringify(local));
+
+			const { store } = renderWithProviders(<Main />, { initialState, startPage: `/?${feature}=true` });
+
+			const actions = store.getActions();
+
+			expect(actions[0]).toEqual(enableFeature(feature));
+		},
+	);
 });
