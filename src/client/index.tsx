@@ -18,6 +18,37 @@ const theme = createMuiTheme({
 			main: '#68c170',
 			contrastText: '#fff',
 		},
+		background: {
+			paper: '#fafafa',
+		},
+	},
+	typography: {
+		fontFamily: [
+			'Montserrat',
+			'system-ui',
+			'BlinkMacSystemFont',
+			'-apple-system',
+			'Segoe UI',
+			'Roboto',
+			'Oxygen',
+			'Ubuntu',
+			'Cantarell',
+			'Fira Sans',
+			'Droid Sans',
+			'Helvetica Neue',
+			'sans-serif',
+		].join(','),
+	},
+
+	overrides: {
+		// Our background color and paper color are reversed. This fixes input backgrounds within paper to always be white
+		MuiPaper: {
+			root: {
+				'& .MuiOutlinedInput-root': {
+					backgroundColor: '#fff',
+				},
+			},
+		},
 	},
 });
 
