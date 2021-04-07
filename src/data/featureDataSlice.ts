@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 /** *
  * Store for feature switching.
@@ -16,6 +16,7 @@ export const slice = createSlice({
 	initialState: {
 		enableMonetization: false,
 		dsFlow: false,
+		enableNarrative: false,
 	},
 	reducers: {
 		enableMonetization: (state): void => {
@@ -30,9 +31,22 @@ export const slice = createSlice({
 		disableDsFlow: (state): void => {
 			state.dsFlow = false;
 		},
+		enableFeature: (state, action: PayloadAction<string>): void => {
+			state[action.payload] = true;
+		},
+		disableFeature: (state, action: PayloadAction<string>): void => {
+			state[action.payload] = false;
+		},
 	},
 });
 
-export const { enableMonetization, disableMonetization, enableDsFlow, disableDsFlow } = slice.actions;
+export const {
+	enableMonetization,
+	disableMonetization,
+	enableDsFlow,
+	disableDsFlow,
+	enableFeature,
+	disableFeature,
+} = slice.actions;
 
 export default slice.reducer;

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
 import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
 
+import Narrative from 'client/components/common/Narrative';
 import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
@@ -18,13 +19,20 @@ import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
-import { disableMonetization, enableMonetization, enableDsFlow, disableDsFlow } from '../../data/featureDataSlice';
+import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
 
+// set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
+const featureQueryParams = [
+	{ feature: 'enableMonetization', alias: 'fm' },
+	{ feature: 'enableNarrative', alias: 'fn' },
+];
+
 const Main: FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
 	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
 
 	const dispatch = useDispatch();
@@ -43,39 +51,43 @@ const Main: FC = () => {
 
 		const queryParams = new URLSearchParams(search);
 
-		let featureStorage: any = {};
+		let featureStorage: Record<string, boolean> = {};
+
 		try {
 			featureStorage = JSON.parse(localStorage.getItem('vl-features')) || {};
 		} catch {
 			/* ignore */
 		}
 
+		// dsFlow switch only ever lasts for single session
 		if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'true') {
-			featureStorage.dsFlow = true;
 			dispatch(enableDsFlow());
 		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
-			featureStorage.dsFlow = false;
 			dispatch(disableDsFlow());
 		}
 
-		const isMonetizationSet = queryParams.has('enableMonetization');
+		featureQueryParams.forEach(({ alias, feature }) => {
+			if (queryParams.has(alias)) {
+				featureStorage[feature] = queryParams.get(alias) === 'true';
+			}
 
-		if (isMonetizationSet) {
-			featureStorage.enableMonetization = queryParams.get('enableMonetization') === 'true';
-		}
+			if (queryParams.has(feature)) {
+				featureStorage[feature] = queryParams.get(feature) === 'true';
+			}
+		});
 
 		const isFromLegalAdviceCentre = queryParams.get('source') === 'lac';
 		if (isFromLegalAdviceCentre) {
 			featureStorage.enableMonetization = false;
 		}
 
-		if ('enableMonetization' in featureStorage) {
-			if (featureStorage.enableMonetization) {
-				dispatch(enableMonetization());
+		Object.entries(featureStorage).forEach(([feature, value]) => {
+			if (value) {
+				dispatch(enableFeature(feature));
 			} else {
-				dispatch(disableMonetization());
+				dispatch(disableFeature(feature));
 			}
-		}
+		});
 
 		try {
 			localStorage.setItem('vl-features', JSON.stringify(featureStorage));
@@ -110,7 +122,8 @@ const Main: FC = () => {
 						<Questions />
 					</Route>
 					<Route path="/statements">
-						<StatementSelect />
+						{enableNarrative && <Narrative />}
+						{!enableNarrative && <StatementSelect />}
 					</Route>
 					<Route path="/preview">
 						{advicePreviewOnly && <AdvicePreview />}
