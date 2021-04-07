@@ -18,9 +18,9 @@ const Header: FC = () => {
 
 	return (
 		<div className="header">
-			<NavLink to="/">
+			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
-			</NavLink>
+			</a>
 			<div className="header__breadcrumb">
 				<NavLink
 					to="/questions"
