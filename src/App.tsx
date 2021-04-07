@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import './App.css';
 import ReactGA from 'react-ga';
 import TagManager from 'react-gtm-module';
 
