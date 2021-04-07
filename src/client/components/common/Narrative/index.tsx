@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Fab, Grid, Card, CardContent, Typography, TextField } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
@@ -19,10 +19,9 @@ const Narrative: React.FC = () => {
 		history.push('/questions');
 	};
 
-	console.log('errors', errors);
 	const onSubmit = () => {
-		console.log('submit');
 		// TODO
+
 		history.push('/preview');
 	};
 
@@ -45,11 +44,13 @@ const Narrative: React.FC = () => {
 									error={Boolean(errors.narrative)}
 									helperText={errors.narrative?.message}
 									inputRef={register({
-										required: 'Please Describe your case',
+										required: 'Please add a description of your case',
 										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
 									})}
 								/>
-								<div>{watchNarrative.length}/2000</div>
+								<Grid container justify="flex-end">
+									<Box ml="auto">{watchNarrative.length}/2000</Box>
+								</Grid>
 							</form>
 						</CardContent>
 					</Card>
@@ -67,7 +68,7 @@ const Narrative: React.FC = () => {
 						</Fab>
 					</Box>
 					<Box px={1}>
-						<Fab variant="extended" color="secondary" type="submit" form="narrativeForm">
+						<Fab variant="extended" color="secondary" onClick={handleSubmit(onSubmit)}>
 							Preview Letter
 						</Fab>
 					</Box>
