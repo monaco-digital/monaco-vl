@@ -6,7 +6,6 @@ import ReactGA from 'react-ga';
 import _ from 'lodash';
 import { Box, Fab } from '@material-ui/core';
 
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
 import AppState from '../../../../data/AppState';
 import {
 	updateSuggestedParagraphs,
@@ -108,11 +107,6 @@ const StatementSelect: React.FC = () => {
 				<h1 className="title">Select all the statements that apply to you</h1>
 				<div className="topics">{statements}</div>
 				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box flexGrow={1}>
-						<Fab color="primary" onClick={() => history.push('/help')}>
-							<img src={moreInfoIcon} alt="More Info" />
-						</Fab>
-					</Box>
 
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>

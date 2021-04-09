@@ -61,14 +61,6 @@ describe('Statement Page', () => {
 		expect(await screen.findByText('Provide a summary of your case')).toBeInTheDocument();
 	});
 
-	test('When Clicking Help Then Help Page Loads', () => {
-		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
-
-		userEvent.click(screen.getByAltText('More Info'));
-
-		expect(history.location.pathname).toEqual('/help');
-	});
-
 	test('Given Text When Clicking Help Then Preview page Loads', async () => {
 		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
 
