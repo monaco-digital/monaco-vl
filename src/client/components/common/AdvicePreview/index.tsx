@@ -75,7 +75,6 @@ const AdvicePreview: FC = () => {
 					flexDirection="row"
 					justifyContent="flex-end"
 				>
-
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={history.goBack}>
 							Back
