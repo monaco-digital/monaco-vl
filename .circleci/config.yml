@@ -94,6 +94,7 @@ workflows:
             - aws-cli
             - github
             - slack
+            - vl-ui-dev
           name: DeployDev
           deploy_env: dev
           requires:
@@ -113,6 +114,7 @@ workflows:
             - aws-cli
             - github
             - slack
+            - vl-ui-prod
           name: DeployProduction
           deploy_env: prod
           requires:
