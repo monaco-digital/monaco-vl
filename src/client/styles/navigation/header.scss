@@ -11,7 +11,7 @@
 	}
 
 	.header__breadcrumb {
-		@apply .hidden .justify-center flex-shrink h-8;
+		@apply .hidden .items-center .justify-center flex-shrink h-8;
 
 		@screen md {
 			@apply .flex;

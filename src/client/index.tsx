@@ -49,6 +49,11 @@ const theme = createMuiTheme({
 				},
 			},
 		},
+		MuiButton: {
+			root: {
+				textTransform: 'none',
+			},
+		},
 	},
 });
 
