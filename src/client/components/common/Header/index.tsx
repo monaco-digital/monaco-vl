@@ -93,8 +93,9 @@ const Header: FC = () => {
 					<ListItem
 						button
 						component="a"
-						href="https://www.monacosolicitors.co.uk/contact-us/source=vl"
+						href="https://www.monacosolicitors.co.uk/contact-us/?source=vl"
 						onClick={() => setMenuIsVisible(false)}
+						target="_blank"
 					>
 						<ListItemText primary="Request callback" />
 					</ListItem>
