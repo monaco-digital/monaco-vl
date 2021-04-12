@@ -62,12 +62,6 @@ const Questions: FC = () => {
 				<Question question={currentQuestion} />
 
 				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box flexGrow={1}>
-						<Fab color="primary" onClick={() => history.push('/help')}>
-							<img src={moreInfoIcon} alt="More Info" />
-						</Fab>
-					</Box>
-
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
 							Back
