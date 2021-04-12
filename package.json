@@ -94,7 +94,7 @@
 		"jest-junit": "^12.0.0",
 		"jest-localstorage-mock": "^2.4.8",
 		"lint-staged": "^10.5.4",
-		"npm": "^7.8.0",
+		"npm": "^7.9.0",
 		"postcss": "^8.1.8",
 		"postcss-cli": "^7.1.1",
 		"postcss-comment": "^2.0.0",
