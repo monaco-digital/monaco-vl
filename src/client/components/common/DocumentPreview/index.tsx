@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import { useHistory } from 'react-router-dom';
 import { Box, Fab } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
 
 import AppState from '../../../../data/AppState';
 import {
@@ -113,12 +112,6 @@ const DocumentPreview: FC = () => {
 					flexDirection="row"
 					justifyContent="flex-end"
 				>
-					<Box flexGrow={1}>
-						<Fab color="primary" onClick={() => history.push('/help')}>
-							<img src={moreInfoIcon} alt="More Info" />
-						</Fab>
-					</Box>
-
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={history.goBack}>
 							Back

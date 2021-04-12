@@ -10,17 +10,6 @@
 		}
 	}
 
-	.header__logo-2 {
-		width: 139px;
-		height: 16px;
-		margin-right: 6.5rem;
-		@screen md {
-			margin-right: 0rem;
-			width: 248px;
-			height: 29px;
-		}
-	}
-
 	.header__breadcrumb {
 		@apply .hidden .justify-center flex-shrink h-8;
 

@@ -11,7 +11,6 @@ import { CaseTopic, TemplateParagraph } from 'api/vl/models';
 import { SessionParagraph } from 'types/SessionDocument';
 import { getSuggestedParagraphs } from 'api/vl';
 import { predictParagraphsFromParagraphs } from 'api/ds';
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
 
 const Narrative: React.FC = () => {
 	const history = useHistory();
@@ -100,12 +99,6 @@ const Narrative: React.FC = () => {
 					</Card>
 				</Box>
 				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box flexGrow={1}>
-						<Fab color="primary" onClick={() => history.push('/help')}>
-							<img src={moreInfoIcon} alt="More Info" />
-						</Fab>
-					</Box>
-
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>
 							Back
