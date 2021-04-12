@@ -36,9 +36,7 @@ export const predictParagraphsFromParagraphs = async (
 	paragraphs: Paragraph[],
 ): Promise<string[]> => {
 	// group by primary topic
-	const groups: Record<string, Paragraph[]> = groupBy(paragraphs, (p: Paragraph) =>
-		p?.topicsAllOf ? p?.topicsAllOf[0] : null,
-	);
+	const groups: Record<string, Paragraph[]> = groupBy(paragraphs, (p: Paragraph) => p?.topicsAllOf[0]);
 
 	// fire seperate prediction request for all groups
 	const results = await Promise.all(
