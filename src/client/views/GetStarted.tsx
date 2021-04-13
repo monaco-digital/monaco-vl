@@ -13,18 +13,16 @@ const GetStarted: React.FC = () => {
 		history.push('/questions');
 	};
 
-	const reviewSettings = {
-		store: 'monacosolicitors-co-uk',
-		starsClr: '#f47e27',
-		textClr: '#313131',
-		logoClr: 'black',
-		widgetName: 'text-banner',
-	};
-
 	useEffect(() => {
 		// Load Review.Io widget into div with Id 'text-banner-widget'
-		richSnippetReviewsWidgets('text-banner-widget', reviewSettings);
-	});
+		richSnippetReviewsWidgets('text-banner-widget', {
+			store: 'monacosolicitors-co-uk',
+			starsClr: '#f47e27',
+			textClr: '#313131',
+			logoClr: 'black',
+			widgetName: 'text-banner',
+		});
+	}, []);
 
 	return (
 		<div className="get-started space-y-3 w-full">
