@@ -58,8 +58,9 @@ const DocumentPreview: FC = () => {
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
-
 	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET');
+	const isWriteLetter = selectedTopics.some(topic => topic.id === '_LET');
+	const isGrievance = isWriteLetter && selectedTopics.some(topic => topic.id === '_GR');
 
 	const updatedTemplate = getTemplate(selectedTopics);
 
@@ -80,7 +81,19 @@ const DocumentPreview: FC = () => {
 			category: 'User',
 			action: 'Letter previewed',
 		});
-	}, []);
+
+		if (isGrievance) {
+			ReactGA.event({
+				category: 'User',
+				action: 'Grievance Letter Previewed',
+			});
+		} else if (isWriteLetter) {
+			ReactGA.event({
+				category: 'User',
+				action: 'WP Letter Previewed',
+			});
+		}
+	}, [isGrievance, isWriteLetter]);
 
 	const openCheckoutModal = () => {
 		const freeTopicTemplates = ['_RES', '_ADV'];
