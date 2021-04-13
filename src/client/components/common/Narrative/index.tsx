@@ -86,6 +86,7 @@ const Narrative: React.FC = () => {
 									variant="outlined"
 									error={Boolean(errors.narrative)}
 									helperText={errors.narrative?.message}
+									disabled={isSubmitting}
 									inputRef={register({
 										required: 'Please add a description of your case',
 										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
