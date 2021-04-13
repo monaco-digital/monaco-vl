@@ -104,6 +104,7 @@ export const CDF1: React.FC = () => {
 						fullWidth
 						multiline
 						variant="filled"
+						data-testid="description"
 					/>
 				</Grid>
 				<Grid item xs={12} md={6}>
@@ -117,6 +118,7 @@ export const CDF1: React.FC = () => {
 						disabled={isSubmitting}
 						fullWidth
 						variant="filled"
+						data-testid="jobTitle"
 					/>
 				</Grid>
 				<Grid item xs={12} md={6}>
@@ -130,6 +132,7 @@ export const CDF1: React.FC = () => {
 						disabled={isSubmitting}
 						fullWidth
 						variant="filled"
+						data-testid="phone"
 					/>
 				</Grid>
 				<Grid item xs={12} md={6}>
@@ -139,6 +142,7 @@ export const CDF1: React.FC = () => {
 							name="yearsEmployed"
 							control={control}
 							rules={{ required: 'Years employed is required' }}
+							defaultValue=""
 							as={
 								<Select id="years-employed-select" native required disabled={isSubmitting}>
 									<option aria-label="None" value="" />
@@ -157,6 +161,7 @@ export const CDF1: React.FC = () => {
 							name="stillEmployed"
 							control={control}
 							rules={{ required: 'This is a required field' }}
+							defaultValue=""
 							as={
 								<Select id="still-employed-select" name="stillEmployed" ref={register} native disabled={isSubmitting}>
 									<option aria-label="None" value="" />
@@ -175,6 +180,7 @@ export const CDF1: React.FC = () => {
 							control={control}
 							name="salary"
 							rules={{ required: 'Salary is required' }}
+							defaultValue=""
 							as={
 								<Select id="salary-select" native disabled={isSubmitting}>
 									<option aria-label="None" value="" />
@@ -195,6 +201,7 @@ export const CDF1: React.FC = () => {
 							name="settlementAgreement"
 							control={control}
 							rules={{ required: 'This field is required' }}
+							defaultValue=""
 							as={
 								<Select id="settlement-agreement-select" native disabled={isSubmitting}>
 									<option aria-label="None" value="" />
