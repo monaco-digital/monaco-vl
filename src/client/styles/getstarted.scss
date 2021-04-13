@@ -27,6 +27,19 @@
 		}
 	}
 
+	.get-started__grid-image {
+		width: 350px;
+		margin: 0 2rem 0 0.8rem;
+		@screen md {
+			width: 500px;
+		}
+	}
+
+	.get-started__find-out-more-bullets {
+		margin-bottom: 1.75rem;
+		margin-top: 1.75rem;
+	}
+
 	h1 {
 		font-family: Montserrat;
 		margin: 10px 1.5rem 24.3px;
@@ -52,6 +65,18 @@
 		}
 	}
 
+	h2 {
+		@screen md {
+			font-family: Montserrat;
+			margin: 10px 1.5rem 59.4px 0px;
+			font-size: 40px;
+			font-stretch: normal;
+			line-height: 1.17;
+			letter-spacing: -3.6px;
+			text-align: center;
+		}
+	}
+
 	h3 {
 		font-family: Montserrat;
 		margin: 24.3px 2rem 18.6px 2.5rem;
@@ -74,6 +99,21 @@
 			line-height: 1.24;
 			letter-spacing: -1.05px;
 			text-align: left;
+		}
+	}
+
+	h4 {
+		@screen md {
+			font-family: Montserrat;
+			font-weight: bold;
+			// margin: 10px 1.5rem 59.4px 0px;
+			//margin-bottom: 1rem;
+			font-size: 25px;
+			font-stretch: normal;
+			// line-height: 1.17;
+			// letter-spacing: -3.6px;
+			text-align: center;
+			vertical-align: top;
 		}
 	}
 }
