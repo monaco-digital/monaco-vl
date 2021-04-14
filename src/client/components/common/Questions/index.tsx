@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { CaseTopic } from 'api/vl/models';
 import { Box, Fab } from '@material-ui/core';
 
@@ -25,6 +25,8 @@ const Questions: FC = () => {
 	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
 
 	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+	const { id: currentQuestionId } = currentQuestion || {};
+
 	const dispatch = useDispatch();
 
 	if (!currentQuestion) {
@@ -46,7 +48,10 @@ const Questions: FC = () => {
 	});
 
 	const handleGoForward = () => {
+		const nextQuestion = getNextQuestion(selectedTopics, [...answeredQuestions, currentQuestion]);
+		const { id } = nextQuestion;
 		dispatch(addAnsweredQuestion(currentQuestion));
+		history.push(`/questions/${id}`);
 	};
 
 	const handleGoBackwards = () => {
@@ -54,13 +59,21 @@ const Questions: FC = () => {
 		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 		dispatch(removeLastAnsweredQuestion());
+		const { id } = answeredQuestions[answeredQuestions.length - 1] || {};
+		history.push(`/questions/${id}`);
 	};
 
 	return (
 		<>
 			<div className={classes}>
-				<Question question={currentQuestion} />
-
+				<Switch>
+					<Route exact path="/questions">
+						<Redirect to={`/questions/${currentQuestionId}`} />
+					</Route>
+					<Route path="/questions/:id">
+						<Question question={currentQuestion} />
+					</Route>
+				</Switch>
 				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
