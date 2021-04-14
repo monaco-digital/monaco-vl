@@ -3,6 +3,14 @@ import { useHistory } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Box, Fab } from '@material-ui/core';
 
+function ScrollToTopOnMount() {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
+	return null;
+}
+
 const Help: React.FC = () => {
 	const history = useHistory();
 	useEffect(() => {
@@ -14,6 +22,7 @@ const Help: React.FC = () => {
 
 	return (
 		<div className="helpsection" style={{ maxWidth: '904px' }}>
+			<ScrollToTopOnMount />
 			<h1>Virtual Lawyer help</h1>
 			<h2>Monaco Solicitors</h2>
 			<p>
