@@ -1,16 +1,17 @@
 import React, { FC, useState, useEffect } from 'react';
-import { TextField, FormControlLabel, Checkbox, Button } from '@material-ui/core';
+import { TextField, Button, InputLabel, FormControl, Select, FormHelperText, Box, Typography } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic, Advice } from 'api/vl/models';
 import axios from 'axios';
+import { Controller, useForm } from 'react-hook-form';
 import AppState from '../../../../data/AppState';
 import { SessionDocument } from '../../../../types/SessionDocument';
 import { getDocumentText } from '../../../../utils/renderDocument';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
-import downloadIcon from '../../../assets/img/download-icon.png';
 import config from '../../../../config';
 import { updateUserData } from '../../../../data/sessionDataSlice';
+import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
 interface Data {
 	adviceText: string;
@@ -49,6 +50,16 @@ const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization) => {
 
 const EmailModal: FC = () => {
 	const history = useHistory();
+	const {
+		register,
+		handleSubmit,
+		errors,
+		control,
+		watch,
+		formState: { isSubmitting },
+	} = useForm();
+	const watchContact = watch('contact', '');
+
 	const lambdaUrl = config.LAMBDA_URL;
 	const dispatch = useDispatch();
 	const [data, setData] = useState<Data>({
@@ -57,9 +68,6 @@ const EmailModal: FC = () => {
 		topicsList: '',
 		templateId: '',
 	});
-	const [contactMe, setContactMe] = useState(false);
-	const [name, setName] = useState('');
-	const [recipient, setRecipient] = useState('');
 
 	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
@@ -82,83 +90,100 @@ const EmailModal: FC = () => {
 		setData(data);
 	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
 
-	const submitDetails = () => {
-		const submissionData = {
-			...data,
-			contactMe,
-			name,
-			recipient,
-		};
-		axios({
-			method: 'POST',
-			url: lambdaUrl,
-			data: submissionData,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
+	const onSubmit = ({ name, email, contact }) => {
+		const contactMe = contact === 'true';
+		dispatch(
+			updateUserData({
+				...data,
+				contactMe,
+				name,
+				recipient: email,
+			}),
+		);
+		if (contactMe) {
+			history.push('/preview/checkout/cdf1');
+		} else {
+			history.push('/preview/checkout/email/complete');
+
+			const submissionData = {
+				...data,
+				contactMe,
+				name,
+				recipient: email,
+			};
+			axios({
+				method: 'POST',
+				url: lambdaUrl,
+				data: submissionData,
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			});
+		}
 	};
 
 	return (
-		<form className="flex justify-center">
-			<div className="emailModal space-y-5">
-				<div className="emailModal__section-end">
-					<img style={{ width: '80px' }} src={downloadIcon} alt="Download Icon" />
-					<h1 className="emailModal__header">
-						SEND THIS
-						<br /> TO ME
-					</h1>
-				</div>
-				<div>Enter your name and email address below and we&apos;ll send this to you for free</div>
+		<form className="flex justify-center" onSubmit={handleSubmit(onSubmit)}>
+			<div className="emailModal space-y-5 flex flex-col">
+				<Box alignSelf="center">
+					<img alt="Monaco Solicitors" src={logo1} width="200px" />
+				</Box>
+
+				<Typography className="text-center" variant="h4">
+					Send this to me
+				</Typography>
+				<p className="self-center text-center">
+					Enter your name and email address below and we&apos;ll send this to you for free
+				</p>
 
 				<TextField
 					id="name"
-					onChange={e => setName(e.target.value)}
-					label="First name"
+					name="name"
+					label="Name"
 					autoComplete="name"
 					variant="filled"
 					fullWidth
+					error={Boolean(errors.name)}
+					helperText={errors.name?.message}
+					disabled={isSubmitting}
+					inputRef={register({ required: 'Please enter your name' })}
 				/>
 				<TextField
 					id="email"
-					onChange={e => setRecipient(e.target.value)}
+					name="email"
 					label="Your email"
 					autoComplete="email"
 					variant="filled"
 					fullWidth
+					error={Boolean(errors.email)}
+					helperText={errors.email?.message}
+					disabled={isSubmitting}
+					inputRef={register({ required: 'Please enter your email address' })}
 				/>
 
-				<FormControlLabel
-					control={
-						<Checkbox checked={contactMe} onChange={() => setContactMe(!contactMe)} name="contactme" color="primary" />
-					}
-					classes={{ label: 'emailModal__checkbox' }}
-					label="Check this box if you want our specialist team to contact you about your case"
-				/>
+				<FormControl fullWidth error={Boolean(errors.contact)} variant="filled">
+					<InputLabel variant="filled" htmlFor="contact">
+						Request a callback
+					</InputLabel>
+					<Controller
+						name="contact"
+						control={control}
+						rules={{ required: 'This field is required' }}
+						as={
+							<Select id="contact" native disabled={isSubmitting}>
+								<option aria-label="None" value="" />
+								<option value="true">Yes</option>
+								<option value="false">No</option>
+							</Select>
+						}
+					/>
+
+					{Boolean(errors.contact) && <FormHelperText>{errors.contact?.message}</FormHelperText>}
+				</FormControl>
 
 				<div className="emailModal__section-end">
-					<Button
-						variant="contained"
-						size="large"
-						color="secondary"
-						onClick={() => {
-							dispatch(
-								updateUserData({
-									...data,
-									contactMe,
-									name,
-									recipient,
-								}),
-							);
-							if (contactMe) {
-								history.push('/preview/checkout/cdf1');
-							} else {
-								history.push('/preview/checkout/email/complete');
-								submitDetails();
-							}
-						}}
-					>
-						{contactMe ? 'Next' : 'Send now'}
+					<Button variant="contained" size="large" color="secondary" type="submit" disabled={isSubmitting}>
+						{watchContact === 'true' ? 'Next' : 'Send now'}
 					</Button>
 				</div>
 
