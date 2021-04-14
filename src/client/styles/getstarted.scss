@@ -12,6 +12,22 @@
 		}
 	}
 
+	.get-started__button-find-out-more {
+		border-radius: 25px;
+		font-size: 16px;
+		font-weight: bold;
+	}
+
+	.get-started__find-out-more {
+		margin-bottom: 10rem;
+		margin-top: 2rem;
+
+		@screen md {
+			margin-bottom: 0rem;
+			margin-top: 0rem;
+		}
+	}
+
 	.get-started__button-mobile {
 		@screen md {
 			@apply invisible;
@@ -28,23 +44,74 @@
 	}
 
 	.get-started__grid-image {
-		width: 350px;
+		width: 360px;
 		margin: 0 2rem 0 0.8rem;
 		@screen md {
-			width: 500px;
+			width: 490px;
+		}
+	}
+
+	.get-started__grid-image-right {
+		margin-left: 0rem;
+		@screen md {
+			margin-left: 2rem;
+		}
+	}
+
+	.get-started__grid-image-right-narrow {
+		margin-left: 0rem;
+		@screen md {
+			margin-left: 3rem;
 		}
 	}
 
 	.get-started__grid-row {
-		margin-top: 2rem;
-		margin-bottom: 2rem;
+		margin-bottom: 0rem;
+		@screen md {
+			margin-bottom: 8rem;
+		}
+	}
+
+	.get-start__grid-item {
+		margin: auto;
+		padding: 10px !important;
+
+		@screen md {
+			margin: 0;
+			padding: 40px !important;
+		}
+	}
+
+	.get-started__grid-container {
+		flex-direction: column-reverse;
+
+		@screen md {
+			flex-direction: row;
+		}
+	}
+
+	.get-started__grid-container_alternate {
+		flex-direction: row;
+
+		@screen md {
+			flex-direction: row;
+		}
 	}
 
 	.get-started__find-out-more-bullets {
-		margin-bottom: 1.75rem;
-		margin-top: 1.75rem;
+		line-height: 2;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
 		margin-left: 1.15rem;
-		font-size: 18px;
+		font-size: 14px;
+
+		@screen md {
+			line-height: 2;
+			margin-bottom: 1.75rem;
+			margin-top: 1.75rem;
+			margin-left: 1.15rem;
+			font-size: 18px;
+		}
 	}
 
 	h1 {
@@ -73,11 +140,18 @@
 	}
 
 	h2 {
+		font-family: Montserrat;
+		margin-top: 6rem;
+		margin-bottom: 3rem;
+		font-size: 25px;
+		font-stretch: normal;
+		line-height: 1.17;
+		text-align: center;
+
 		@screen md {
 			font-family: Montserrat;
-			//margin: 10px 1.5rem 59.4px 0px;
-			margin-top: 4rem;
-			margin-bottom: 5rem;
+			margin-top: 6rem;
+			margin-bottom: 7rem;
 			font-size: 40px;
 			font-stretch: normal;
 			line-height: 1.17;
@@ -112,16 +186,19 @@
 	}
 
 	h4 {
+		font-family: Montserrat;
+		font-weight: bold;
+		font-size: 18px;
+		font-stretch: normal;
+		text-align: left;
+		vertical-align: top;
+
 		@screen md {
 			font-family: Montserrat;
 			font-weight: bold;
 			margin-top: 2.5rem;
-			// margin: 10px 1.5rem 59.4px 0px;
-			//margin-bottom: 1rem;
 			font-size: 25px;
 			font-stretch: normal;
-			// line-height: 1.17;
-			// letter-spacing: -3.6px;
 			text-align: left;
 			vertical-align: top;
 		}

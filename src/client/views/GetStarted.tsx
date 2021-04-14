@@ -19,6 +19,18 @@ const GetStarted: React.FC = () => {
 		history.push('/questions');
 	};
 
+	const goToHelp = () => {
+		history.push('/help');
+	};
+
+	const FindOutMoreButton = () => {
+		return (
+			<MUIButton variant="outlined" className="get-started__button-find-out-more" onClick={goToHelp}>
+				Find out more
+			</MUIButton>
+		);
+	};
+
 	useEffect(() => {
 		// Load Review.Io widget into div with Id 'text-banner-widget'
 		richSnippetReviewsWidgets('text-banner-widget', {
@@ -49,13 +61,16 @@ const GetStarted: React.FC = () => {
 					<Button type="start" text="Get started" rounded fn={goToTopics} />
 				</div>
 			</div>
+
 			<div id="text-banner-widget" />
+
 			<div>
 				<h2>How can we help you?</h2>
 			</div>
+
 			<div className="get-started__grid-row">
-				<Grid container direction="row" justify="center" alignItems="flex-start" spacing={10}>
-					<Grid item>
+				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__find-out-more">
 							<h4>Get a free customised advice letter</h4>
 							<div className="get-started__find-out-more-bullets">
@@ -65,25 +80,31 @@ const GetStarted: React.FC = () => {
 									<li>Customised advice letter in less than 5 minutes</li>
 								</ul>
 							</div>
-							<MUIButton variant="outlined">Find out more</MUIButton>
+							<FindOutMoreButton />
 						</div>
 					</Grid>
-					<Grid item>
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__grid-image">
-							<img src={lady_reading_letter_image} alt="" />
+							<img src={lady_reading_letter_image} alt="" className="get-started__grid-image-right" />
 						</div>
 					</Grid>
 				</Grid>
 			</div>
 			<div className="get-started__grid-row">
-				<Grid container direction="row" justify="center" alignItems="flex-start" spacing={10}>
-					<Grid item>
+				<Grid
+					container
+					justify="center"
+					alignItems="flex-start"
+					spacing={10}
+					className="get-started__grid-container_alternate"
+				>
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__grid-image">
 							<img src={lawyer_signing_doc_image} alt="" />
 						</div>
 					</Grid>
-					<Grid item>
-						<div className="get-started__find-out-more">
+					<Grid item className="get-start__grid-item">
+						<div className="get-started__find-out-more" style={{ marginLeft: '1.5rem' }}>
 							<h4>Respond to a legal letter</h4>
 							<div className="get-started__find-out-more-bullets">
 								<ul className="list-disc">
@@ -92,14 +113,14 @@ const GetStarted: React.FC = () => {
 									<li>Legally accurate letter in less than 5 minutes</li>
 								</ul>
 							</div>
-							<MUIButton variant="outlined">Find out more</MUIButton>
+							<FindOutMoreButton />
 						</div>
 					</Grid>
 				</Grid>
 			</div>
 			<div className="get-started__grid-row">
-				<Grid container direction="row" justify="center" alignItems="flex-start" spacing={10}>
-					<Grid item>
+				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__find-out-more">
 							<h4>Build a formal grievance letter</h4>
 							<div className="get-started__find-out-more-bullets">
@@ -109,25 +130,31 @@ const GetStarted: React.FC = () => {
 									<li>Legally accurate letter in less than 5 minutes</li>
 								</ul>
 							</div>
-							<MUIButton variant="outlined">Find out more</MUIButton>
+							<FindOutMoreButton />
 						</div>
 					</Grid>
-					<Grid item>
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__grid-image">
-							<img src={man_with_coffee_and_letter_image} alt="" />
+							<img src={man_with_coffee_and_letter_image} alt="" className="get-started__grid-image-right-narrow" />
 						</div>
 					</Grid>
 				</Grid>
 			</div>
 			<div className="get-started__grid-row">
-				<Grid container direction="row" justify="center" alignItems="flex-start" spacing={10}>
-					<Grid item>
+				<Grid
+					container
+					justify="center"
+					alignItems="flex-start"
+					spacing={10}
+					className="get-started__grid-container_alternate"
+				>
+					<Grid item className="get-start__grid-item">
 						<div className="get-started__grid-image">
 							<img src={black_man_reading_letter_image} alt="" />
 						</div>
 					</Grid>
-					<Grid item>
-						<div className="get-started__find-out-more">
+					<Grid item className="get-start__grid-item">
+						<div className="get-started__find-out-more" style={{ marginLeft: '1.5rem' }}>
 							<h4>
 								Build a &apos;without prejudice&apos; letter <br />
 								negotiating an exit package
@@ -139,7 +166,7 @@ const GetStarted: React.FC = () => {
 									<li>Legally accurate letter in less than 5 minutes</li>
 								</ul>
 							</div>
-							<MUIButton variant="outlined">Find out more</MUIButton>
+							<FindOutMoreButton />
 						</div>
 					</Grid>
 				</Grid>
