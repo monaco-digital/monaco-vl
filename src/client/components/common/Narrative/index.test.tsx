@@ -2,14 +2,17 @@ import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 
-import { removeLastAnsweredQuestion } from 'data/sessionDataSlice';
+import { removeLastAnsweredQuestion, selectParagraphs } from 'data/sessionDataSlice';
+import { predictParagraphsFromParagraphs } from 'api/ds';
 import { renderWithProviders } from '../../../../testing/utils.test';
 import { getSuggestedParagraphs } from '../../../../api/vl';
+
 import Narrative from '.';
 
 jest.mock('../../../../api/vl');
+jest.mock('api/ds');
 
-describe('Statement Page', () => {
+describe('Narrative Page', () => {
 	let initialState;
 
 	beforeEach(() => {
@@ -50,10 +53,11 @@ describe('Statement Page', () => {
 				userData: {},
 			},
 		};
+		const predictMock = predictParagraphsFromParagraphs as jest.Mock<any, any>;
+		predictMock.mockReturnValue([]);
 
-		const mock = getSuggestedParagraphs as jest.Mock<any, any>;
-
-		mock.mockReturnValue([]);
+		const suggestedMock = getSuggestedParagraphs as jest.Mock<any, any>;
+		suggestedMock.mockReturnValue([]);
 	});
 
 	test('When Loading Narrative Page Then Page renders', async () => {
@@ -61,15 +65,7 @@ describe('Statement Page', () => {
 		expect(await screen.findByText('Provide a summary of your case')).toBeInTheDocument();
 	});
 
-	test('When Clicking Help Then Help Page Loads', () => {
-		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
-
-		userEvent.click(screen.getByAltText('More Info'));
-
-		expect(history.location.pathname).toEqual('/help');
-	});
-
-	test('Given Text When Clicking Help Then Preview page Loads', async () => {
+	test('Given Text When Clicking Preview Then Preview page Loads', async () => {
 		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
 
 		userEvent.type(screen.getByRole('textbox'), 'A narrative');
@@ -79,6 +75,22 @@ describe('Statement Page', () => {
 
 		await waitFor(() => {
 			expect(history.location.pathname).toEqual('/preview');
+		});
+	});
+
+	test('Given Text and Predict Results When Clicking Preview Then paragraphs are selected', async () => {
+		const predictMock = predictParagraphsFromParagraphs as jest.Mock<any, any>;
+
+		predictMock.mockReturnValue(['1', '2', '3']);
+
+		const { store } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
+
+		userEvent.type(screen.getByRole('textbox'), 'A narrative');
+		userEvent.click(screen.getByText('Preview Letter'));
+
+		await waitFor(() => {
+			const actions = store.getActions();
+			expect(actions[1]).toEqual(selectParagraphs(['1', '2', '3']));
 		});
 	});
 
