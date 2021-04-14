@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
@@ -23,12 +23,9 @@ const Questions: FC = () => {
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
 
 	const answeredQuestions = useSelector<AppState, QuestionT[]>(state => state.session.answeredQuestions);
-	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
-	const [currentQuestionId, setCurrentQuestionId] = useState(currentQuestion?.id);
 
-	useEffect(() => {
-		setCurrentQuestionId(currentQuestion?.id);
-	}, [currentQuestion]);
+	const currentQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+	const { id: currentQuestionId } = currentQuestion || {};
 
 	const dispatch = useDispatch();
 
@@ -51,8 +48,10 @@ const Questions: FC = () => {
 	});
 
 	const handleGoForward = () => {
+		const nextQuestion = getNextQuestion(selectedTopics, [...answeredQuestions, currentQuestion]);
+		const { id } = nextQuestion;
 		dispatch(addAnsweredQuestion(currentQuestion));
-		history.push(`/questions/${currentQuestionId}`);
+		history.push(`/questions/${id}`);
 	};
 
 	const handleGoBackwards = () => {
@@ -60,14 +59,15 @@ const Questions: FC = () => {
 		const updatedSelectedTopics = selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 		dispatch(removeLastAnsweredQuestion());
-		history.push(`/questions/${currentQuestionId}`);
+		const { id } = answeredQuestions[answeredQuestions.length - 1] || {};
+		history.push(`/questions/${id}`);
 	};
 
 	return (
 		<>
 			<div className={classes}>
 				<Switch>
-					<Route exact strict path="/questions">
+					<Route exact path="/questions">
 						<Redirect to={`/questions/${currentQuestionId}`} />
 					</Route>
 					<Route path="/questions/:id">
