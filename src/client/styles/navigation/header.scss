@@ -2,27 +2,16 @@
 	@apply .relative .py-8 .pl-8 .pr-4 .flex .justify-between .items-center;
 
 	.header__logo-1 {
-		width: 64px;
-		height: 36px;
+		width: 100px;
+		height: auto;
 		@screen md {
 			width: 126px;
 			height: 71.3px;
 		}
 	}
 
-	.header__logo-2 {
-		width: 139px;
-		height: 16px;
-		margin-right: 6.5rem;
-		@screen md {
-			margin-right: 0rem;
-			width: 248px;
-			height: 29px;
-		}
-	}
-
 	.header__breadcrumb {
-		@apply .hidden .justify-center flex-shrink h-8;
+		@apply .hidden .items-center .justify-center flex-shrink h-8;
 
 		@screen md {
 			@apply .flex;

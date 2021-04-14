@@ -5,7 +5,6 @@ import ReactGA from 'react-ga';
 import { useHistory } from 'react-router-dom';
 import { Box, Fab } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
 
 import AppState from '../../../../data/AppState';
 import {
@@ -59,8 +58,8 @@ const DocumentPreview: FC = () => {
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
-
-	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET');
+	const isWriteLetter = selectedTopics.some(topic => topic.id === '_LET');
+	const isGrievance = isWriteLetter && selectedTopics.some(topic => topic.id === '_GR');
 
 	const updatedTemplate = getTemplate(selectedTopics);
 
@@ -81,7 +80,19 @@ const DocumentPreview: FC = () => {
 			category: 'User',
 			action: 'Letter previewed',
 		});
-	}, []);
+
+		if (isGrievance) {
+			ReactGA.event({
+				category: 'User',
+				action: 'Grievance Letter Previewed',
+			});
+		} else if (isWriteLetter) {
+			ReactGA.event({
+				category: 'User',
+				action: 'WP Letter Previewed',
+			});
+		}
+	}, [isGrievance, isWriteLetter]);
 
 	const openCheckoutModal = () => {
 		const freeTopicTemplates = ['_RES', '_ADV'];
@@ -97,7 +108,7 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
-				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length} blur={isBlur}>
+				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 					</div>
@@ -113,12 +124,6 @@ const DocumentPreview: FC = () => {
 					flexDirection="row"
 					justifyContent="flex-end"
 				>
-					<Box flexGrow={1}>
-						<Fab color="primary" onClick={() => history.push('/help')}>
-							<img src={moreInfoIcon} alt="More Info" />
-						</Fab>
-					</Box>
-
 					<Box px={1}>
 						<Fab variant="extended" color="inherit" onClick={history.goBack}>
 							Back

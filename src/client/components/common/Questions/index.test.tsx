@@ -72,14 +72,6 @@ describe('Questions Page', () => {
 		expect(actions[1]).toEqual(removeLastAnsweredQuestion());
 	});
 
-	test('When clicking help Then help page is opened', () => {
-		const { history } = renderWithProviders(<Questions />, { initialState, startPage: '/questions' });
-
-		userEvent.click(screen.getByAltText('More Info'));
-
-		expect(history.location.pathname).toEqual('/help');
-	});
-
 	test('Given Topic is selected When clicking next Then current question is answered', () => {
 		initialState.session.selectedTopics = [
 			{
