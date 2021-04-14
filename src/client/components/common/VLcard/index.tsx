@@ -7,10 +7,9 @@ type VLCardProps = {
 	theme?: 'light' | 'dark';
 	heading: string;
 	counter?: number;
-	blur?: boolean;
 };
 
-const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VLCardProps) => {
+const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme }: VLCardProps) => {
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
 	});
@@ -26,7 +25,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VL
 					</span>
 				)}
 			</div>
-			<div className={blur ? 'vl-card__blur' : ''}>{children}</div>
+			<div>{children}</div>
 		</div>
 	);
 };
@@ -34,7 +33,6 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme, blur }: VL
 VLcard.defaultProps = {
 	theme: 'light',
 	counter: undefined,
-	blur: false,
 };
 
 export default VLcard;

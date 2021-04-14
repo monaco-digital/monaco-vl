@@ -58,7 +58,6 @@ const DocumentPreview: FC = () => {
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
-	const isBlur = isMonetizationEnabled && selectedTopics.some(({ id }) => id === '_LET');
 	const isWriteLetter = selectedTopics.some(topic => topic.id === '_LET');
 	const isGrievance = isWriteLetter && selectedTopics.some(topic => topic.id === '_GR');
 
@@ -109,7 +108,7 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
-				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length} blur={isBlur}>
+				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 					</div>
