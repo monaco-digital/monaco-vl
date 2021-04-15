@@ -2,14 +2,7 @@ import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Box, Fab } from '@material-ui/core';
-
-function ScrollToTopOnMount() {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
-	return null;
-}
+import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Help: React.FC = () => {
 	const history = useHistory();
