@@ -49,7 +49,10 @@ const Questions: FC = () => {
 
 	const handleGoForward = () => {
 		const nextQuestion = getNextQuestion(selectedTopics, [...answeredQuestions, currentQuestion]);
-		const { id } = nextQuestion;
+		const { id } = nextQuestion || {};
+		if (!nextQuestion) {
+			history.push('/statements');
+		}
 		dispatch(addAnsweredQuestion(currentQuestion));
 		history.push(`/questions/${id}`);
 	};
