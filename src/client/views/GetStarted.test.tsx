@@ -9,7 +9,6 @@ import { renderWithProviders } from '../../testing/utils.test';
 declare var richSnippetReviewsWidgets;
 
 describe('Get Started Page', () => {
-	const mockReviewsFunction = jest.fn();
 	beforeEach(() => {
 		Object.defineProperty(global, 'richSnippetReviewsWidgets', { value: jest.fn(), writable: true });
 	});
