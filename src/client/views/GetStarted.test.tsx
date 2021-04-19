@@ -5,18 +5,38 @@ import userEvent from '@testing-library/user-event';
 import GetStarted from './GetStarted';
 import { renderWithProviders } from '../../testing/utils.test';
 
-describe('Help Page', () => {
-	test('When Loading GetStarted Then Page renders', () => {
-		renderWithProviders(<GetStarted />);
+// eslint-disable-next-line
+declare var richSnippetReviewsWidgets;
 
-		expect(screen.getByText('Empowering employees')).toBeInTheDocument();
+describe('Get Started Page', () => {
+	const mockReviewsFunction = jest.fn();
+	beforeEach(() => {
+		Object.defineProperty(global, 'richSnippetReviewsWidgets', { value: jest.fn(), writable: true });
 	});
 
-	test('When clicking find out more Then help page loaded', () => {
+	test('When loading GetStarted Then Page renders', () => {
+		renderWithProviders(<GetStarted />);
+
+		expect(screen.getByText('Automated Legal EXperience')).toBeInTheDocument();
+	});
+
+	test('When clicking get started more Then help page loaded', () => {
 		const { history } = renderWithProviders(<GetStarted />);
 
-		userEvent.click(screen.getByText('Find out more'));
+		userEvent.click(screen.getAllByText('Get Started')[0]);
 
-		expect(window.location.pathname).toEqual('/Help');
+		expect(history.location.pathname).toEqual('/questions');
+	});
+
+	test('Five Get Started buttons render', () => {
+		renderWithProviders(<GetStarted />);
+
+		expect(screen.getAllByText('Get Started').length).toEqual(5);
+	});
+
+	test('When loading the richSnippetReviewsWidgets function is called', () => {
+		const spy = jest.spyOn(global, 'richSnippetReviewsWidgets');
+		renderWithProviders(<GetStarted />);
+		expect(spy).toHaveBeenCalled();
 	});
 });
