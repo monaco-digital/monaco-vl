@@ -15,11 +15,11 @@
 
 	.get-started__caption {
 		margin-top: 1rem;
-		margin-bottom: 2.5rem;
+		margin-bottom: 1rem;
 
 		@screen md {
-			margin-top: 6rem;
-			margin-bottom: 0rem;
+			margin-top: 1rem;
+			margin-bottom: 1.5rem;
 		}
 	}
 
@@ -35,8 +35,10 @@
 
 	.get-started__heading-box {
 		margin-left: 0rem;
+		text-align: center;
 
 		@screen md {
+			text-align: left;
 			margin-left: 6rem;
 			width: 30rem;
 		}
@@ -48,13 +50,25 @@
 		font-weight: bold;
 	}
 
-	.get-started__find-out-more {
+	.get-started__details {
 		margin-bottom: 10rem;
 		margin-top: 2rem;
 
 		@screen md {
 			margin-bottom: 0rem;
-			margin-top: 0rem;
+			margin-top: 3rem;
+		}
+	}
+
+	.get-started__details-alternate {
+		margin-bottom: 10rem;
+		margin-top: 2rem;
+		margin-left: 0rem;
+
+		@screen md {
+			margin-bottom: 0rem;
+			margin-top: 3rem;
+			marginleft: 1.5rem;
 		}
 	}
 
@@ -65,7 +79,7 @@
 		@screen md {
 			@apply visible;
 			margin: 0 2rem 0 0.8rem;
-			padding-top: 50px;
+			//padding-top: 50px;
 			width: 700px;
 		}
 	}
@@ -101,7 +115,8 @@
 
 	.get-start__grid-item {
 		margin: auto;
-		padding: 10px !important;
+		align-items: center;
+		padding: 0px !important;
 
 		@screen md {
 			margin: 0;
@@ -129,15 +144,12 @@
 		line-height: 2;
 		margin-bottom: 1rem;
 		margin-top: 1rem;
-		margin-left: 1.15rem;
-		font-size: 14px;
+		margin-left: 1.5rem;
 
 		@screen md {
 			line-height: 2;
 			margin-bottom: 1.75rem;
 			margin-top: 1.75rem;
-			margin-left: 1.15rem;
-			font-size: 18px;
 		}
 	}
 }
