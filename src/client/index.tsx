@@ -57,6 +57,60 @@ const theme = createMuiTheme({
 	},
 });
 
+theme.typography.h1 = {
+	fontSize: '48px',
+	fontWeight: 'bold',
+	letterSpacing: '-60',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '60px',
+	},
+};
+
+theme.typography.h2 = {
+	fontSize: '38px',
+	fontWeight: 500, // medium
+	letterSpacing: '-50',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '48px',
+	},
+};
+
+theme.typography.h3 = {
+	fontSize: '28px',
+	fontWeight: 'bold',
+	letterSpacing: '-50',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '36px',
+	},
+};
+
+theme.typography.h4 = {
+	fontSize: '19px',
+	fontWeight: 'bold',
+	letterSpacing: '-50',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '24px',
+	},
+};
+
+theme.typography.h5 = {
+	fontSize: '17px',
+	fontWeight: 500, // medium
+	letterSpacing: '-50',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '21px',
+	},
+};
+
+theme.typography.body1 = {
+	fontSize: '13px',
+	fontWeight: 'normal',
+	letterSpacing: '0',
+	[theme.breakpoints.up('md')]: {
+		fontSize: '16px',
+	},
+};
+
 const MobileApp: FC = () => (
 	<Provider store={store}>
 		<ThemeProvider theme={theme}>
