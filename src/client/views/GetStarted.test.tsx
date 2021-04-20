@@ -34,8 +34,8 @@ describe('Get Started Page', () => {
 	});
 
 	test('When loading the richSnippetReviewsWidgets function is called', () => {
-		const spy = jest.spyOn(global, 'richSnippetReviewsWidgets');
 		renderWithProviders(<GetStarted />);
-		expect(spy).toHaveBeenCalled();
+
+		expect(richSnippetReviewsWidgets).toHaveBeenCalled();
 	});
 });
