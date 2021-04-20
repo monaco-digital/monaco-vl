@@ -1,0 +1,12 @@
+.step-2-intro {
+	align-items: center;
+	flex-direction: column;
+
+	.step-2-intro__icon-and-header {
+		display: flex;
+	}
+
+	.step-2-intro__number-icon {
+		margin-right: 0.3rem;
+	}
+}
