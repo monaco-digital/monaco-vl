@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import { mdiNumeric1Circle, mdiNumeric2Circle, mdiNumeric3Circle, mdiNumeric4Circle } from '@mdi/js';
@@ -13,22 +13,18 @@ import black_man_reading_letter_image from '../assets/img/Black man reading lett
 // eslint-disable-next-line
 declare var richSnippetReviewsWidgets;
 
-const GetStarted: React.FC = () => {
-	const history = useHistory();
-
-	const iconColour = '#60ABFF';
-
-	const goToTopics = () => {
-		history.push('/questions');
-	};
-
-	const GetStartedButton = () => {
-		return (
-			<Button variant="contained" className="get-started__get-started-button" color="primary" onClick={goToTopics}>
+const GetStartedButton = () => {
+	return (
+		<Link to="/questions">
+			<Button variant="contained" className="get-started__get-started-button" color="primary">
 				Get Started
 			</Button>
-		);
-	};
+		</Link>
+	);
+};
+
+const GetStarted: React.FC = () => {
+	const iconColour = '#60ABFF';
 
 	useEffect(() => {
 		// Load Review.Io widget into div with Id 'text-banner-widget'
