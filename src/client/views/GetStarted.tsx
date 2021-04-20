@@ -65,7 +65,7 @@ const GetStarted: React.FC = () => {
 
 			<div className="get-started__grid-row">
 				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__details">
 							<div className="get-started__icon-and-header">
 								<Icon
@@ -89,7 +89,7 @@ const GetStarted: React.FC = () => {
 							<GetStartedButton />
 						</div>
 					</Grid>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__grid-image">
 							<img src={lady_reading_letter_image} alt="" className="get-started__grid-image-right" />
 						</div>
@@ -104,12 +104,12 @@ const GetStarted: React.FC = () => {
 					spacing={10}
 					className="get-started__grid-container_alternate"
 				>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__grid-image">
 							<img src={lawyer_signing_doc_image} alt="" />
 						</div>
 					</Grid>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__details-alternate">
 							<div className="get-started__icon-and-header">
 								<Icon
@@ -137,7 +137,7 @@ const GetStarted: React.FC = () => {
 			</div>
 			<div className="get-started__grid-row">
 				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__details">
 							<div className="get-started__icon-and-header">
 								<Icon
@@ -161,7 +161,7 @@ const GetStarted: React.FC = () => {
 							<GetStartedButton />
 						</div>
 					</Grid>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__grid-image">
 							<img src={man_with_coffee_and_letter_image} alt="" className="get-started__grid-image-right-narrow" />
 						</div>
@@ -176,12 +176,12 @@ const GetStarted: React.FC = () => {
 					spacing={10}
 					className="get-started__grid-container_alternate"
 				>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__grid-image">
 							<img src={black_man_reading_letter_image} alt="" />
 						</div>
 					</Grid>
-					<Grid item className="get-start__grid-item">
+					<Grid item className="get-started__grid-item">
 						<div className="get-started__details-alternate">
 							<div className="get-started__icon-and-header">
 								<Icon
