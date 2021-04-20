@@ -5,11 +5,16 @@
 		@apply text-left;
 	}
 
-	.get-started__first-button {
-		text-align: center;
+	.get-started__bullets {
+		line-height: 2;
+		margin-bottom: 1rem;
+		margin-top: 1rem;
+		margin-left: 1.5rem;
 
 		@screen md {
-			text-align: left;
+			line-height: 2;
+			margin-bottom: 1.75rem;
+			margin-top: 1.75rem;
 		}
 	}
 
@@ -21,33 +26,6 @@
 			margin-top: 1rem;
 			margin-bottom: 1.5rem;
 		}
-	}
-
-	.get-started__reviews-widget {
-		margin-top: 3rem;
-		margin-bottom: 4rem;
-
-		@screen md {
-			margin-top: 0rem;
-			margin-bottom: 2rem;
-		}
-	}
-
-	.get-started__heading-box {
-		margin-left: 0rem;
-		text-align: center;
-
-		@screen md {
-			text-align: left;
-			margin-left: 6rem;
-			width: 30rem;
-		}
-	}
-
-	.get-started__get-started-button {
-		border-radius: 25px;
-		font-size: 16px;
-		font-weight: bold;
 	}
 
 	.get-started__details {
@@ -72,15 +50,18 @@
 		}
 	}
 
-	.get-started__image {
-		@apply invisible;
-		margin: 0;
-		width: 0;
+	.get-started__first-button {
+		text-align: center;
+
 		@screen md {
-			@apply visible;
-			margin: 0 2rem 0 0.8rem;
-			width: 700px;
+			text-align: left;
 		}
+	}
+
+	.get-started__get-started-button {
+		border-radius: 25px;
+		font-size: 16px;
+		font-weight: bold;
 	}
 
 	.get-started__grid-image {
@@ -139,16 +120,44 @@
 		}
 	}
 
-	.get-started__bullets {
-		line-height: 2;
-		margin-bottom: 1rem;
-		margin-top: 1rem;
-		margin-left: 1.5rem;
+	.get-started__heading-box {
+		margin-left: 0rem;
+		text-align: center;
 
 		@screen md {
-			line-height: 2;
-			margin-bottom: 1.75rem;
-			margin-top: 1.75rem;
+			text-align: left;
+			margin-left: 6rem;
+			width: 30rem;
+		}
+	}
+
+	.get-started__icon-and-header {
+		display: flex;
+		align-items: center;
+	}
+
+	.get-started__image {
+		@apply invisible;
+		margin: 0;
+		width: 0;
+		@screen md {
+			@apply visible;
+			margin: 0 2rem 0 0.8rem;
+			width: 700px;
+		}
+	}
+
+	.get-started__number-icon {
+		margin-right: 0.3rem;
+	}
+
+	.get-started__reviews-widget {
+		margin-top: 3rem;
+		margin-bottom: 4rem;
+
+		@screen md {
+			margin-top: 0rem;
+			margin-bottom: 2rem;
 		}
 	}
 }

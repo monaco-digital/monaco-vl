@@ -25,6 +25,7 @@ const GetStartedButton = () => {
 
 const GetStarted: React.FC = () => {
 	const iconColour = '#60ABFF';
+	const iconSize = 1.2;
 
 	useEffect(() => {
 		// Load Review.Io widget into div with Id 'text-banner-widget'
@@ -66,13 +67,13 @@ const GetStarted: React.FC = () => {
 				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
 					<Grid item className="get-start__grid-item">
 						<div className="get-started__details">
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric1Circle}
 									title="1 icon"
-									size={1.2}
+									size={iconSize}
 									color={iconColour}
-									style={{ marginRight: '0.3rem' }}
+									className="get-started__number-icon"
 								/>
 								<Typography variant="h4">Get a free customised advice letter</Typography>
 							</div>
@@ -110,13 +111,13 @@ const GetStarted: React.FC = () => {
 					</Grid>
 					<Grid item className="get-start__grid-item">
 						<div className="get-started__details-alternate">
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric2Circle}
 									title="2 icon"
-									size={1.2}
+									size={iconSize}
 									color={iconColour}
-									style={{ marginRight: '0.3rem' }}
+									className="get-started__number-icon"
 								/>
 								<Typography variant="h4">Respond to a legal letter</Typography>
 							</div>
@@ -138,13 +139,13 @@ const GetStarted: React.FC = () => {
 				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
 					<Grid item className="get-start__grid-item">
 						<div className="get-started__details">
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric3Circle}
 									title="3 icon"
-									size={1.2}
+									size={iconSize}
 									color={iconColour}
-									style={{ marginRight: '0.3rem' }}
+									className="get-started__number-icon"
 								/>
 								<Typography variant="h4">Build a formal grievance letter</Typography>
 							</div>
@@ -182,13 +183,13 @@ const GetStarted: React.FC = () => {
 					</Grid>
 					<Grid item className="get-start__grid-item">
 						<div className="get-started__details-alternate">
-							<div style={{ display: 'flex', alignItems: 'center' }}>
+							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric4Circle}
 									title="4 icon"
-									size={1.2}
+									size={iconSize}
 									color={iconColour}
-									style={{ marginRight: '0.3rem' }}
+									className="get-started__number-icon"
 								/>
 								<Typography variant="h4">Reach a settlement</Typography>
 							</div>
