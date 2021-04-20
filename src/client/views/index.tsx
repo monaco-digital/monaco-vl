@@ -17,6 +17,7 @@ import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
+import Step2Intro from '../components/common/Step2Intro';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
 import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
@@ -137,6 +138,9 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/">
 						<GetStarted />
+					</Route>
+					<Route path="/wp">
+						<Step2Intro />
 					</Route>
 				</Switch>
 			</div>
