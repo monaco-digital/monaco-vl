@@ -28,6 +28,7 @@ import CheckoutModal from '../components/common/CheckoutModal';
 const featureQueryParams = [
 	{ feature: 'enableMonetization', alias: 'fm' },
 	{ feature: 'enableNarrative', alias: 'fn' },
+	{ feature: 'enableSelect', alias: 'fs' },
 ];
 
 const Main: FC = () => {
