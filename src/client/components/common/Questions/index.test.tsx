@@ -72,6 +72,14 @@ describe('Questions Page', () => {
 		expect(actions[1]).toEqual(removeLastAnsweredQuestion());
 	});
 
+	test('When clicking back and we are on the first question we go back to the homepage', async () => {
+		const { history } = renderWithProviders(<Questions />, { initialState });
+
+		userEvent.click(screen.getByText('Back'));
+
+		expect(history.location.pathname).toEqual('/');
+	});
+
 	test('Given Topic is selected When clicking next Then current question is answered', () => {
 		initialState.session.selectedTopics = [
 			{
