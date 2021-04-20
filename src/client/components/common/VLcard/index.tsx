@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 import expandTextIcon from '../../../assets/img/expand-text-icon.svg';
+import AppState from '../../../../data/AppState';
 
 type VLCardProps = {
 	children: ReactNode;
@@ -10,6 +12,8 @@ type VLCardProps = {
 };
 
 const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme }: VLCardProps) => {
+	const enableSelect = useSelector<AppState, boolean>(state => state.features.enableSelect);
+
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
 	});
@@ -25,7 +29,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, counter, theme }: VLCardPr
 					</span>
 				)}
 			</div>
-			<div>{children}</div>
+			<div className={enableSelect ? 'vl-card__enable-select' : ''}>{children}</div>
 		</div>
 	);
 };
