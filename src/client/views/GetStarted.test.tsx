@@ -19,7 +19,7 @@ describe('Get Started Page', () => {
 		expect(screen.getByText('Automated Legal EXperience')).toBeInTheDocument();
 	});
 
-	test('When clicking get started more Then help page loaded', () => {
+	test('When clicking get started Then questions page loads', () => {
 		const { history } = renderWithProviders(<GetStarted />);
 
 		userEvent.click(screen.getAllByText('Get Started')[0]);
