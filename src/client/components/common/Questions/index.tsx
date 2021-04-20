@@ -63,7 +63,11 @@ const Questions: FC = () => {
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 		dispatch(removeLastAnsweredQuestion());
 		const { id } = answeredQuestions[answeredQuestions.length - 1] || {};
-		history.push(`/questions/${id}`);
+		if (currentQuestion.id === 1) {
+			history.push(`/`);
+		} else {
+			history.push(`/questions/${id}`);
+		}
 	};
 
 	return (
