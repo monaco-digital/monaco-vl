@@ -21,7 +21,7 @@ const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => (
 	</div>
 );
 
-const AdvicePreview: FC = () => {
+export const AdvicePreview: FC = () => {
 	const history = useHistory();
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);

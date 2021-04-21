@@ -9,24 +9,24 @@ import { responseWantToKeepMe } from './responseWantToKeepMe';
 
 export { adviceLetter } from './adviceLetter';
 
-export const getTemplate = (topics: CaseTopic[]): Template => {
+export const getTemplate = (select: string): Template => {
 	try {
-		if (topics.find(topic => topic.id === '_GR')) {
+		if (select === '_GR') {
 			return grievanceLetter;
 		}
-		if (topics.find(topic => topic.id === '_RES_CD')) {
+		if (select === '_RES_CD') {
 			return responseCompleteDenail;
 		}
-		if (topics.find(topic => topic.id === '_RES_CO')) {
+		if (select === '_RES_CO') {
 			return responseCounterOffer;
 		}
-		if (topics.find(topic => topic.id === '_RES_I')) {
+		if (select === '_RES_I') {
 			return responseInvestigating;
 		}
-		if (topics.find(topic => topic.id === '_RES_KM')) {
+		if (select === '_RES_KM') {
 			return responseWantToKeepMe;
 		}
-		if (topics.find(topic => topic.id === 'E')) {
+		if (select === 'E') {
 			return stillEmployed;
 		}
 	} catch (e) {

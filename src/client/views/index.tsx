@@ -2,11 +2,11 @@ import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
-import DocumentPreview from '../components/common/DocumentPreview';
-import AdvicePreview from '../components/common/AdvicePreview';
+import { DocumentPreview } from '../components/common/DocumentPreview';
+import { AdvicePreview } from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
 import { setAllTopics } from '../../data/topicDataSlice';
@@ -125,7 +125,10 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/preview">
+					<Route exact path="/preview">
+						<Redirect to="/preview/_WP" />
+					</Route>
+					<Route path="/preview/:id">
 						{advicePreviewOnly && <AdvicePreview />}
 						{!advicePreviewOnly && <DocumentPreview />}
 					</Route>
@@ -140,7 +143,6 @@ const Main: FC = () => {
 					</Route>
 				</Switch>
 			</div>
-
 			<CheckoutModal />
 		</main>
 	);

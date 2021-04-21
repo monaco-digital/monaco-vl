@@ -49,7 +49,7 @@ describe('Questions Page', () => {
 				selectedTopics: [],
 				answeredQuestions: [],
 				selectedTemplate: null,
-				sessionDocument: null,
+				sessionDocuments: null,
 				userData: {},
 			},
 			features: {

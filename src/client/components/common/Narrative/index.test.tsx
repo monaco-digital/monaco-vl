@@ -49,7 +49,7 @@ describe('Narrative Page', () => {
 				selectedTopics: [],
 				answeredQuestions: [],
 				selectedTemplate: null,
-				sessionDocument: null,
+				sessionDocuments: null,
 				userData: {},
 			},
 		};
