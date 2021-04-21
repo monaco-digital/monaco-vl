@@ -110,7 +110,7 @@ const triggerGAEvent = id => {
 	}
 };
 
-export const DocumentPreview: FC = () => {
+const DocumentPreview: FC = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { id = '_WP' } = useParams();

@@ -15,6 +15,10 @@ type AppState = {
 			_WP: SessionDocument;
 			_GR: SessionDocument;
 			_ET: SessionDocument;
+			_RES_CD: SessionDocument;
+			_RES_CO: SessionDocument;
+			_RES_I: SessionDocument;
+			_RES_KM: SessionDocument;
 		};
 		userData: UserData;
 	};

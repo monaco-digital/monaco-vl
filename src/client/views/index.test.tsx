@@ -59,11 +59,13 @@ describe('Main Component', () => {
 	});
 
 	test.each`
-		url             | component
-		${'/help'}      | ${'Help'}
-		${'/'}          | ${'GetStarted'}
-		${'/terms'}     | ${'Terms'}
-		${'/questions'} | ${'Questions'}
+		url                | component
+		${'/help'}         | ${'Help'}
+		${'/'}             | ${'GetStarted'}
+		${'/terms'}        | ${'Terms'}
+		${'/questions'}    | ${'Questions'}
+		${'/preview/_ADV'} | ${'AdvicePreview'}
+		${'/preview/_WP'}  | ${'DocumentPreview'}
 	`('When loading $url Then $component is rendered', async ({ url, component }) => {
 		renderWithProviders(<Main />, { initialState, startPage: url });
 
