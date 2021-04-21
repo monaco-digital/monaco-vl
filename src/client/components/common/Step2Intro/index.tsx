@@ -28,18 +28,14 @@ const Step2Intro: React.FC = () => {
 					</Typography>
 				</ul>
 			</div>
-			<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-				<Box px={1}>
-					<Fab variant="extended" color="inherit">
-						Back
-					</Fab>
-				</Box>
-				<Box px={1}>
-					<Fab variant="extended" color="primary">
-						Next
-					</Fab>
-				</Box>
-			</Box>
+			<div className="step-2-intro__buttons">
+				<Fab variant="extended" color="inherit" className="step-2-intro__button">
+					Back
+				</Fab>
+				<Fab variant="extended" color="secondary">
+					Next
+				</Fab>
+			</div>
 		</div>
 	);
 };
