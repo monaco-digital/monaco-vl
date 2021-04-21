@@ -1,7 +1,7 @@
 import React from 'react';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Typography } from '@material-ui/core';
+import { Box, Fab, Typography } from '@material-ui/core';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -19,7 +19,7 @@ const Step2Intro: React.FC = () => {
 				/>
 				<Typography variant="h4">Start legal letter process</Typography>
 			</div>
-			<div>
+			<div className="step-2-intro__bullets">
 				<ul className="list-disc">
 					<Typography variant="body1">
 						<li>Download template letter</li>
@@ -28,6 +28,18 @@ const Step2Intro: React.FC = () => {
 					</Typography>
 				</ul>
 			</div>
+			<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+				<Box px={1}>
+					<Fab variant="extended" color="inherit">
+						Back
+					</Fab>
+				</Box>
+				<Box px={1}>
+					<Fab variant="extended" color="primary">
+						Next
+					</Fab>
+				</Box>
+			</Box>
 		</div>
 	);
 };
