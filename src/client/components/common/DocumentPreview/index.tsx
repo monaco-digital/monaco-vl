@@ -114,10 +114,8 @@ const DocumentPreview: FC = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const { id = '_WP' } = useParams();
-	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
-		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected),
-	);
-	const updatedTemplate = getTemplate(id);
+	const paragraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
+	const selectedParagraphs = paragraphs.filter(suggested => suggested.isSelected);
 
 	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
@@ -127,12 +125,14 @@ const DocumentPreview: FC = () => {
 	triggerGAEvent(id);
 
 	useEffect(() => {
+		const updatedTemplate = getTemplate(id);
+
 		if (!sessionDocument) {
 			const document = createSessionDocument(updatedTemplate, selectedParagraphs);
 			dispatch(updateSessionDocument({ document, type: id }));
 		}
 		dispatch(updateCurrentSessionDocument(id));
-	}, [dispatch, id, selectedParagraphs, sessionDocument, updatedTemplate]);
+	}, [dispatch, id, selectedParagraphs, sessionDocument]);
 
 	const openCheckoutModal = () => {
 		if (isMonetizationEnabled && ['_RES_KM', '_RES_CO', '_RES_CD', '_RES_I'].includes(id)) {
