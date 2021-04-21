@@ -18,7 +18,7 @@ describe('CDF1 Page', () => {
 				selectedTopics: [],
 				answeredQuestions: [],
 				selectedTemplate: null,
-				sessionDocument: null,
+				sessionDocuments: null,
 				userData: {
 					adviceText: 'Advice Text',
 					letterText: 'Letter Text',

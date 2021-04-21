@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
 import DocumentPreview from '../components/common/DocumentPreview';
@@ -32,9 +32,7 @@ const featureQueryParams = [
 ];
 
 const Main: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
-	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
 
 	const dispatch = useDispatch();
 	const { search } = useLocation();
@@ -126,9 +124,16 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/preview">
-						{advicePreviewOnly && <AdvicePreview />}
-						{!advicePreviewOnly && <DocumentPreview />}
+					<Route exact path="/preview">
+						<Redirect to="/preview/_ADV" />
+					</Route>
+					<Route path="/preview/:id">
+						<Switch>
+							<Route path="/preview/_ADV">
+								<AdvicePreview />
+							</Route>
+							<DocumentPreview />
+						</Switch>
 					</Route>
 					<Route path="/terms">
 						<Terms />
@@ -141,7 +146,6 @@ const Main: FC = () => {
 					</Route>
 				</Switch>
 			</div>
-
 			<CheckoutModal />
 		</main>
 	);

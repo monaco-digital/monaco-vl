@@ -1,8 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { CaseTopic, Template } from 'api/vl/models';
 import ReactGA from 'react-ga';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { Box, Fab } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 
@@ -17,7 +16,7 @@ import { PreviewParagraph } from '../DocumentPreviewComponents';
 import { createSessionDocument } from '../../../../utils/sessionDocument';
 import VLcard from '../VLcard';
 import { getTemplate } from '../../../../api/vl';
-import { updateSessionDocument, updateSelectedTemplate } from '../../../../data/sessionDataSlice';
+import { updateSessionDocument, updateCurrentSessionDocument } from '../../../../data/sessionDataSlice';
 import { downloadDataForDS } from '../../../../ds';
 
 interface Props {
@@ -48,57 +47,95 @@ const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) =
 	return <>{output.concat()}</>;
 };
 
-const DocumentPreview: FC = () => {
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
-		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected),
-	);
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
-	const selectedTemplate = useSelector<AppState, Template>(state => state.session.selectedTemplate);
-	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
-	const isWriteLetter = selectedTopics.some(topic => topic.id === '_LET');
-	const isGrievance = isWriteLetter && selectedTopics.some(topic => topic.id === '_GR');
-
-	const updatedTemplate = getTemplate(selectedTopics);
-
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
-	useEffect(() => {
-		const isTemplateIdDifferent = updatedTemplate?.id !== selectedTemplate?.id;
-		if (isTemplateIdDifferent) {
-			dispatch(updateSelectedTemplate(updatedTemplate));
-		}
-		if (!sessionDocument || isTemplateIdDifferent) {
-			const doc = createSessionDocument(updatedTemplate, selectedParagraphs);
-			dispatch(updateSessionDocument(doc));
-		}
-	}, [dispatch, selectedParagraphs, selectedTemplate?.id, sessionDocument, updatedTemplate]);
-
-	useEffect(() => {
-		ReactGA.event({
-			category: 'User',
-			action: 'Letter previewed',
-		});
-
-		if (isGrievance) {
+const triggerGAEvent = id => {
+	switch (id) {
+		case '_LET': {
 			ReactGA.event({
 				category: 'User',
-				action: 'Grievance Letter Previewed',
+				action: 'Letter Previewed',
 			});
-		} else if (isWriteLetter) {
+			break;
+		}
+		case '_WP': {
 			ReactGA.event({
 				category: 'User',
 				action: 'WP Letter Previewed',
 			});
+			break;
 		}
-	}, [isGrievance, isWriteLetter]);
+		case '_ET': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Tribunal Letter Previewed',
+			});
+			break;
+		}
+		case '_GR': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Grievance Letter Previewed',
+			});
+			break;
+		}
+		case '_RES_CD': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Complete Denial Response',
+			});
+			break;
+		}
+		case '_RES_CO': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Counter Offer Response',
+			});
+			break;
+		}
+		case '_RES_I': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Investigating Response',
+			});
+			break;
+		}
+		case '_RES_KM': {
+			ReactGA.event({
+				category: 'User',
+				action: 'Want To Keep Me Response',
+			});
+			break;
+		}
+		default:
+			break;
+	}
+};
+
+const DocumentPreview: FC = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const { id = '_WP' } = useParams();
+	const selectedParagraphs = useSelector<AppState, SessionParagraph[]>(state =>
+		state.session.suggestedParagraphs.filter(suggested => suggested.isSelected),
+	);
+	const updatedTemplate = getTemplate(id);
+
+	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
+	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
+
+	triggerGAEvent('_LET');
+	triggerGAEvent(id);
+
+	useEffect(() => {
+		if (!sessionDocument) {
+			const document = createSessionDocument(updatedTemplate, selectedParagraphs);
+			dispatch(updateSessionDocument({ document, type: id }));
+		}
+		dispatch(updateCurrentSessionDocument(id));
+	}, [dispatch, id, selectedParagraphs, sessionDocument, updatedTemplate]);
 
 	const openCheckoutModal = () => {
-		const freeTopicTemplates = ['_RES', '_ADV'];
-		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
-
-		if (isMonetizationEnabled && !isFree) {
+		if (isMonetizationEnabled && ['_RES_KM', '_RES_CO', '_RES_CD', '_RES_I'].includes(id)) {
 			history.push('/preview/checkout');
 		} else {
 			history.push('/preview/checkout/email');

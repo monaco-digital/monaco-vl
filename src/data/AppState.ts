@@ -10,7 +10,16 @@ type AppState = {
 		selectedTopics: CaseTopic[];
 		answeredQuestions: Question[];
 		selectedTemplate: Template;
-		sessionDocument: SessionDocument;
+		currentSessionDocument: string;
+		sessionDocuments: {
+			_WP: SessionDocument;
+			_GR: SessionDocument;
+			_ET: SessionDocument;
+			_RES_CD: SessionDocument;
+			_RES_CO: SessionDocument;
+			_RES_I: SessionDocument;
+			_RES_KM: SessionDocument;
+		};
 		userData: UserData;
 	};
 	paragraphs: {

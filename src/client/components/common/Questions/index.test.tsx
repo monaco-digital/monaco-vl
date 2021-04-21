@@ -23,23 +23,19 @@ describe('Questions Page', () => {
 				currentQuestion: {
 					id: 1,
 					prerequisites: [],
-					text: 'How can we help today?',
+					text: 'Are you still employed?',
 					subtext: 'Choose one:',
 					minAnswers: 1,
 					maxAnswers: 1,
 					isFinal: false,
 					options: [
 						{
-							text: 'Get advice',
-							topicId: '_ADV',
+							text: 'Still employed',
+							topicId: 'E',
 						},
 						{
-							text: 'Write a letter to your employer',
-							topicId: '_LET',
-						},
-						{
-							text: 'Respond to your employer',
-							topicId: '_RES',
+							text: 'No longer employed',
+							topicId: '_NE',
 						},
 					],
 				},
@@ -49,7 +45,7 @@ describe('Questions Page', () => {
 				selectedTopics: [],
 				answeredQuestions: [],
 				selectedTemplate: null,
-				sessionDocument: null,
+				sessionDocuments: null,
 				userData: {},
 			},
 			features: {
@@ -84,12 +80,12 @@ describe('Questions Page', () => {
 		initialState.session.selectedTopics = [
 			{
 				__typename: 'CaseTopic',
-				_id: '602d8e7760a2b3f79704893d',
-				id: '_RES',
-				type: 'case',
+				_id: '5fd371e905c337242f65f4e1',
+				id: 'E',
+				type: 'employment_situation',
 				topic: null,
-				name: 'WRITE_LETTER',
-				text: 'Write letter',
+				name: 'EMPLOYED',
+				text: 'Employed',
 				parentTopics: null,
 				subTopics: null,
 				meta: null,
