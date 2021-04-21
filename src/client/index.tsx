@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import store from '../data/store';
 import './styles/main.output.css';
 import Main from './views';
+
+const breakpoints = createBreakpoints({}); // For having different styles based on screen size
 
 // For 'reasons' some screens (Payment and Email Modals) are using Material UI while everything else uses Tailwind
 // A change off of tailwind is likely in the future, Material UI is not confirmed though.
@@ -38,6 +41,54 @@ const theme = createMuiTheme({
 			'Helvetica Neue',
 			'sans-serif',
 		].join(','),
+		h1: {
+			fontSize: '48px',
+			fontWeight: 'bold',
+			letterSpacing: '-60',
+			[breakpoints.up('md')]: {
+				fontSize: '60px',
+			},
+		},
+		h2: {
+			fontSize: '38px',
+			fontWeight: 500, // medium
+			letterSpacing: '-50',
+			[breakpoints.up('md')]: {
+				fontSize: '48px',
+			},
+		},
+		h3: {
+			fontSize: '28px',
+			fontWeight: 'bold',
+			letterSpacing: '-50',
+			[breakpoints.up('md')]: {
+				fontSize: '36px',
+			},
+		},
+		h4: {
+			fontSize: '19px',
+			fontWeight: 'bold',
+			letterSpacing: '-50',
+			[breakpoints.up('md')]: {
+				fontSize: '24px',
+			},
+		},
+		h5: {
+			fontSize: '17px',
+			fontWeight: 500, // medium
+			letterSpacing: '-50',
+			[breakpoints.up('md')]: {
+				fontSize: '21px',
+			},
+		},
+		body1: {
+			fontSize: '13px',
+			fontWeight: 'normal',
+			letterSpacing: '0',
+			[breakpoints.up('md')]: {
+				fontSize: '16px',
+			},
+		},
 	},
 
 	overrides: {
