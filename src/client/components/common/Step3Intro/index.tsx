@@ -1,7 +1,7 @@
 import React from 'react';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Box, Fab, Typography } from '@material-ui/core';
+import { Button, Fab, Typography } from '@material-ui/core';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -17,16 +17,19 @@ const Step3Intro: React.FC = () => {
 					color={iconColour}
 					className="step-2-intro__number-icon"
 				/>
-				<Typography variant="h4">Start legal letter process</Typography>
+				<Typography variant="h4">Progress legal case</Typography>
 			</div>
 			<div className="step-2-intro__bullets">
-				<ul className="list-disc">
-					<Typography variant="body1">
-						<li>Download template letter</li>
-						<li>Fill in the gaps</li>
-						<li>Send to your employer</li>
-					</Typography>
-				</ul>
+				<Typography variant="body1">You now have 3 options depending on how your employer reacts</Typography>
+			</div>
+			<div>
+				<Button variant="contained">
+					View template letter for responding to your employer (if your employer has replied to your letter)
+				</Button>
+				<Button variant="contained">View template formal grievance letter (if your employer is ignoring you)</Button>
+				<Button variant="contained">
+					View template employment tribunal document (if your three month time limit is running out)
+				</Button>
 			</div>
 			<div className="step-2-intro__buttons">
 				<Fab variant="extended" color="inherit" className="step-2-intro__button">
