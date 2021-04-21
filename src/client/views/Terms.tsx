@@ -1,12 +1,14 @@
 import React from 'react';
 import { Box, Fab } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Terms: React.FC = () => {
 	const history = useHistory();
 
 	return (
 		<div className="termsSection" style={{ maxWidth: '900px' }}>
+			<ScrollToTopOnMount />
 			<h1>Virtual Lawyer terms of use</h1>
 			<p>
 				Virtual Lawyer is a web app created and run as part of Monaco Solicitors, a solicitors&rsquo; firm regulated by
