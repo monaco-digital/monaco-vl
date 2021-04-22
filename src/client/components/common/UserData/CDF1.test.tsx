@@ -56,8 +56,11 @@ describe('CDF1 Page', () => {
 	test('Given all fields filled out When Clicking Submit Then fields submitted to API', async () => {
 		const { history } = renderWithProviders(<CDF1 />, { initialState });
 
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('description').querySelector('textarea'), 'Description Text');
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('jobTitle').querySelector('input'), 'A job');
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('phone').querySelector('input'), '123456789');
 
 		userEvent.selectOptions(screen.getByLabelText('Still employed *'), 'Yes');
