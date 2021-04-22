@@ -22,7 +22,7 @@ describe('Step 3 Intro Page', () => {
 		renderWithProviders(<Step3Intro />);
 
 		options.forEach(option => {
-			expect(screen.getByText(option['text'])).toBeInTheDocument();
+			expect(screen.getByText(option.text)).toBeInTheDocument();
 		});
 	});
 
@@ -31,13 +31,13 @@ describe('Step 3 Intro Page', () => {
 
 		let ids = [];
 		options.forEach(option => {
-			ids.push(option['optionId']);
+			ids.push(option.optionId);
 		});
 
 		options.forEach(option => {
-			userEvent.click(screen.getByText(option['text']));
+			userEvent.click(screen.getByText(option.text));
 			const currentId = option['optionId'];
-			expect(document.getElementById(option['optionId'])).toBeChecked;
+			expect(document.getElementById(option.optionId)).toBeChecked;
 			// Check that other checkboxes are not checked, as only one can be selected at a time
 			ids.forEach(id => {
 				if (id !== currentId) {
@@ -60,7 +60,7 @@ describe('Step 3 Intro Page', () => {
 		const button = screen.getByText('Next');
 
 		options.forEach(option => {
-			userEvent.click(screen.getByText(option['text']));
+			userEvent.click(screen.getByText(option.text));
 			expect(button).toBeEnabled;
 		});
 	});
