@@ -37,11 +37,11 @@ describe('Step 3 Intro Page', () => {
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
 			const currentId = option.optionId;
-			expect(document.getElementById(option.optionId)).toBeChecked;
+			expect(document.getElementById(option.optionId)).toBeChecked();
 			// Check that other checkboxes are not checked, as only one can be selected at a time
 			ids.forEach(id => {
 				if (id !== currentId) {
-					expect(document.getElementById(id)).not.toBeChecked;
+					expect(document.getElementById(id)).not.toBeChecked();
 				}
 			});
 		});
@@ -52,7 +52,7 @@ describe('Step 3 Intro Page', () => {
 
 		const button = screen.getByText('Next');
 
-		expect(button).toBeDisabled;
+		expect(button).toBeDisabled();
 	});
 
 	test('When selecting an option Then next button is enabled', () => {
@@ -61,7 +61,7 @@ describe('Step 3 Intro Page', () => {
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
-			expect(button).toBeEnabled;
+			expect(button).toBeEnabled();
 		});
 	});
 });
