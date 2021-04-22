@@ -9,6 +9,7 @@ import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
+import Step3Intro from '../components/common/Step3Intro';
 import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
@@ -137,6 +138,9 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/terms">
 						<Terms />
+					</Route>
+					<Route path="/progress-legal-case">
+						<Step3Intro />
 					</Route>
 					<Route path="/help">
 						<Help />
