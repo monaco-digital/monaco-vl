@@ -29,14 +29,14 @@ describe('Step 3 Intro Page', () => {
 	test('When selecting an option Then checkbox is checked', () => {
 		renderWithProviders(<Step3Intro />);
 
-		let ids = [];
+		const ids = [];
 		options.forEach(option => {
 			ids.push(option.optionId);
 		});
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
-			const currentId = option['optionId'];
+			const currentId = option.optionId;
 			expect(document.getElementById(option.optionId)).toBeChecked;
 			// Check that other checkboxes are not checked, as only one can be selected at a time
 			ids.forEach(id => {
