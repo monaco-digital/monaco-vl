@@ -2,10 +2,17 @@ import React from 'react';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Box, Fab, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
+
+	const history = useHistory();
+
+	const handleNext = () => {
+		history.push('/preview/_WP');
+	};
 
 	return (
 		<div className="step-2-intro">
@@ -32,7 +39,7 @@ const Step2Intro: React.FC = () => {
 				<Fab variant="extended" id="backButton" color="inherit" className="step-2-intro__button">
 					Back
 				</Fab>
-				<Fab variant="extended" id="nextButton" color="secondary">
+				<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>
 					Next
 				</Fab>
 			</div>
