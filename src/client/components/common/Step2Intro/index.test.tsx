@@ -22,6 +22,14 @@ describe('Step 2 Intro Page', () => {
 		expect(nextButton).toBeEnabled();
 	});
 
+	test('When clicking back Then advice is generated', () => {
+		const { history } = renderWithProviders(<Step2Intro />);
+
+		userEvent.click(screen.getByText('Back'));
+
+		expect(history.location.pathname).toEqual('/preview/_ADV');
+	});
+
 	test('When clicking next Then WP letter is generated', () => {
 		const { history } = renderWithProviders(<Step2Intro />);
 

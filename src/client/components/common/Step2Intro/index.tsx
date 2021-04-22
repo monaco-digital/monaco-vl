@@ -14,6 +14,10 @@ const Step2Intro: React.FC = () => {
 		history.push('/preview/_WP');
 	};
 
+	const handleBack = () => {
+		history.push('/preview/_ADV');
+	};
+
 	return (
 		<div className="step-2-intro">
 			<div className="step-2-intro__icon-and-header">
@@ -36,7 +40,7 @@ const Step2Intro: React.FC = () => {
 				</ul>
 			</div>
 			<div className="step-2-intro__buttons">
-				<Fab variant="extended" id="backButton" color="inherit" className="step-2-intro__button">
+				<Fab variant="extended" id="backButton" color="inherit" className="step-2-intro__button" onClick={handleBack}>
 					Back
 				</Fab>
 				<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>

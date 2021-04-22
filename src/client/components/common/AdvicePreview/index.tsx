@@ -54,6 +54,10 @@ const AdvicePreview: FC = () => {
 		}
 	};
 
+	const handleNext = () => {
+		history.push('/wp'); // Go to step 2
+	};
+
 	return (
 		<>
 			<div className="letter-preview">
@@ -64,7 +68,6 @@ const AdvicePreview: FC = () => {
 						))}
 					</div>
 				</VLcard>
-
 				<Box
 					position="fixed"
 					width="90%"
@@ -81,9 +84,14 @@ const AdvicePreview: FC = () => {
 						</Fab>
 					</Box>
 					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={openCheckoutModal}>
+						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
 							<GetApp />
 							&nbsp;Download
+						</Fab>
+					</Box>
+					<Box px={1}>
+						<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
+							Next
 						</Fab>
 					</Box>
 				</Box>
