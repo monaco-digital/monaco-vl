@@ -2,13 +2,14 @@ import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
 import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
+import Step3Intro from '../components/common/Step3Intro';
 import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
@@ -33,9 +34,7 @@ const featureQueryParams = [
 ];
 
 const Main: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
-	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
 
 	const dispatch = useDispatch();
 	const { search } = useLocation();
@@ -127,12 +126,22 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/preview">
-						{advicePreviewOnly && <AdvicePreview />}
-						{!advicePreviewOnly && <DocumentPreview />}
+					<Route exact path="/preview">
+						<Redirect to="/preview/_ADV" />
+					</Route>
+					<Route path="/preview/:id">
+						<Switch>
+							<Route path="/preview/_ADV">
+								<AdvicePreview />
+							</Route>
+							<DocumentPreview />
+						</Switch>
 					</Route>
 					<Route path="/terms">
 						<Terms />
+					</Route>
+					<Route path="/progress-legal-case">
+						<Step3Intro />
 					</Route>
 					<Route path="/help">
 						<Help />
@@ -145,7 +154,6 @@ const Main: FC = () => {
 					</Route>
 				</Switch>
 			</div>
-
 			<CheckoutModal />
 		</main>
 	);
