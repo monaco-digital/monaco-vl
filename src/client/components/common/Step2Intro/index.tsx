@@ -29,10 +29,10 @@ const Step2Intro: React.FC = () => {
 				</ul>
 			</div>
 			<div className="step-2-intro__buttons">
-				<Fab variant="extended" color="inherit" className="step-2-intro__button">
+				<Fab variant="extended" id="backButton" color="inherit" className="step-2-intro__button">
 					Back
 				</Fab>
-				<Fab variant="extended" color="secondary">
+				<Fab variant="extended" id="nextButton" color="secondary">
 					Next
 				</Fab>
 			</div>
