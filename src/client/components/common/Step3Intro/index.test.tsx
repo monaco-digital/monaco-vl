@@ -50,14 +50,14 @@ describe('Step 3 Intro Page', () => {
 	test('When loading Step3Intro Then next button is disabled', () => {
 		const component = renderWithProviders(<Step3Intro />);
 
-		const button = screen.getByText('Next');
+		const button = document.getElementById('nextButton');
 
 		expect(button).toBeDisabled();
 	});
 
 	test('When selecting an option Then next button is enabled', () => {
 		renderWithProviders(<Step3Intro />);
-		const button = screen.getByText('Next');
+		const button = document.getElementById('nextButton');
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
