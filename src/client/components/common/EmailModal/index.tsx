@@ -70,7 +70,9 @@ const EmailModal: FC = () => {
 	});
 
 	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => {
+		return state.session.sessionDocuments[state.session.currentSessionDocument];
+	});
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 

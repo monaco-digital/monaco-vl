@@ -57,7 +57,9 @@ export const CheckoutForm: React.FC = () => {
 	// todo - take out of here - data for submit details call
 	const dispatch = useDispatch();
 
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => {
+		return state.session.sessionDocuments[state.session.currentSessionDocument];
+	});
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 
 	const { register, handleSubmit, errors } = useForm();

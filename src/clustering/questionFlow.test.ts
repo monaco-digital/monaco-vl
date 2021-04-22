@@ -5,56 +5,6 @@ const allQuestions: Question[] = [
 	{
 		id: 1,
 		prerequisites: [],
-		text: 'How can we help today?',
-		subtext: 'Choose one:',
-		minAnswers: 1,
-		maxAnswers: 1,
-		isFinal: false,
-		options: [
-			{
-				text: 'Get Advice',
-				topicId: '_ADV',
-			},
-			{
-				text: 'Write a letter to your employer',
-				topicId: '_LET',
-			},
-			{
-				text: 'Respond to your employer',
-				topicId: '_RES',
-			},
-		],
-	},
-	{
-		id: 2,
-		prerequisites: ['_RES'],
-		text: 'Are you still in your job',
-		subtext: 'What type of response did you receive?',
-		minAnswers: 1,
-		maxAnswers: 1,
-		isFinal: true,
-		options: [
-			{
-				text: 'Complete denial',
-				topicId: '_RES_CD',
-			},
-			{
-				text: 'Counter offer',
-				topicId: '_RES_CO',
-			},
-			{
-				text: 'Investigating',
-				topicId: '_RES_I',
-			},
-			{
-				text: 'Want to keep me',
-				topicId: '_RES_KM',
-			},
-		],
-	},
-	{
-		id: 3,
-		prerequisites: [],
 		text: 'Are you still employed?',
 		subtext: 'Choose one:',
 		minAnswers: 1,
@@ -72,7 +22,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 4,
+		id: 2,
 		prerequisites: ['_NE'],
 		text: 'Are you still in your job',
 		subtext: 'How did your employment end',
@@ -91,7 +41,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 5,
+		id: 3,
 		prerequisites: [],
 		text: 'How long have you been in your job',
 		subtext: '',
@@ -110,26 +60,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 6,
-		prerequisites: ['E'],
-		text: 'What do you want?',
-		subtext: '(What is your ideal outcome?)',
-		minAnswers: 1,
-		maxAnswers: 1,
-		isFinal: false,
-		options: [
-			{
-				text: 'Stay employed and submit a grievance',
-				topicId: '_GR',
-			},
-			{
-				text: 'Leave my job and seek an exit package',
-				topicId: '_EX',
-			},
-		],
-	},
-	{
-		id: 7,
+		id: 4,
 		prerequisites: ['T'],
 		text: 'Why were you dismissed',
 		subtext: 'What was the reason given for your dismissal?',
@@ -164,7 +95,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 8,
+		id: 5,
 		prerequisites: ['R'],
 		text: 'Why were you dismissed',
 		subtext: 'Was there a problem with the redundancy?',
@@ -199,7 +130,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 9,
+		id: 6,
 		prerequisites: [],
 		text: 'Employment issues',
 		subtext: 'If any of these apply, choose one or more',
@@ -262,7 +193,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 10,
+		id: 7,
 		prerequisites: [],
 		text: 'Why did this happen?',
 		subtext: 'Why do you think your employer acted this way? Select all that apply',
@@ -344,7 +275,7 @@ const allQuestions: Question[] = [
 		],
 	},
 	{
-		id: 11,
+		id: 8,
 		prerequisites: ['_PC'],
 		text: 'Did you ever complain to your employer about this discrimination?',
 		subtext: 'Why do you think your employer acted this way? Select all that apply',
@@ -370,7 +301,7 @@ const allQuestions: Question[] = [
 
 describe('Question flow', () => {
 	test('First question returned', () => {
-		expect(getFirstQuestion()).toHaveProperty('text', 'How can we help today?');
+		expect(getFirstQuestion()).toHaveProperty('text', 'Are you still employed?');
 	});
 
 	test('Question prerequisite not met', () => {
@@ -381,7 +312,7 @@ describe('Question flow', () => {
 	});
 
 	test('Question prerequisite met', () => {
-		const selectedTopics = [{ id: '_RES' }];
+		const selectedTopics = [{ id: '_NE' }];
 		const answeredQuestions = allQuestions.slice(0, 1);
 		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
 		expect(nextQuestion.id).toBe(2);
