@@ -134,7 +134,7 @@ const Main: FC = () => {
 					<Route path="/terms">
 						<Terms />
 					</Route>
-					<Route path="/progress">
+					<Route path="/progress-legal-case">
 						<Step3Intro />
 					</Route>
 					<Route path="/help">
