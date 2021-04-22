@@ -55,7 +55,7 @@ const AdvicePreview: FC = () => {
 	};
 
 	const handleNext = () => {
-		history.push('/wp'); // Go to step 2
+		history.push('/start-legal-process'); // Go to step 2
 	};
 
 	return (
