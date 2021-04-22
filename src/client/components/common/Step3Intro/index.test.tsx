@@ -12,6 +12,14 @@ describe('Step 3 Intro Page', () => {
 		{ text: 'My 3 month time limit is running out', optionId: '2' },
 	];
 
+	const getIds = () => {
+		const ids = [];
+		options.forEach(option => {
+			ids.push(option.optionId);
+		});
+		return ids;
+	};
+
 	test('When loading Step3IntroPage Then Page renders', () => {
 		renderWithProviders(<Step3Intro />);
 
@@ -29,10 +37,7 @@ describe('Step 3 Intro Page', () => {
 	test('When selecting an option Then checkbox is checked', () => {
 		renderWithProviders(<Step3Intro />);
 
-		const ids = [];
-		options.forEach(option => {
-			ids.push(option.optionId);
-		});
+		const ids = getIds();
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
@@ -63,5 +68,14 @@ describe('Step 3 Intro Page', () => {
 			userEvent.click(screen.getByText(option.text));
 			expect(button).toBeEnabled();
 		});
+	});
+
+	test('When selecting second option Then grievance letter is generated', () => {
+		const { history } = renderWithProviders(<Step3Intro />);
+
+		userEvent.click(screen.getByText(options[1].text)); // Select second option
+		userEvent.click(screen.getByText('Next')); // Click next button
+
+		expect(history.location.pathname).toEqual('/preview/_GR');
 	});
 });
