@@ -1,20 +1,12 @@
 import React, { FC, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Button, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
-import { removeLastAnsweredQuestion } from '../../../../data/sessionDataSlice';
 
 const Header: FC = () => {
 	const { pathname } = useLocation();
 	const [menuIsVisible, setMenuIsVisible] = useState(false);
-	const dispatch = useDispatch();
-
-	const navigateToTopics = () => {
-		dispatch(removeLastAnsweredQuestion());
-		setMenuIsVisible(false);
-	};
 
 	return (
 		<div className="header">
@@ -22,17 +14,6 @@ const Header: FC = () => {
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
 			</a>
 			<div className="header__breadcrumb">
-				<NavLink
-					to="/questions"
-					className="header__breadcrumb__text"
-					activeClassName="header__breadcrumb__text-selected"
-					onClick={navigateToTopics}
-				>
-					Key facts
-				</NavLink>
-				<NavLink to="/preview" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
-					Preview your letter
-				</NavLink>
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Help
 				</NavLink>
@@ -54,24 +35,6 @@ const Header: FC = () => {
 			</button>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
-					<ListItem
-						button
-						component={NavLink}
-						to="/questions"
-						onClick={navigateToTopics}
-						selected={pathname === '/questions'}
-					>
-						<ListItemText primary="Key facts" />
-					</ListItem>
-					<ListItem
-						button
-						component={NavLink}
-						to="/preview"
-						onClick={() => setMenuIsVisible(false)}
-						selected={pathname === '/preview'}
-					>
-						<ListItemText primary="Preview your letter" />
-					</ListItem>
 					<ListItem
 						button
 						component={NavLink}
