@@ -56,7 +56,7 @@ const Step3Intro: React.FC = () => {
 				<Fab variant="extended" color="inherit" className="step-3-intro__button">
 					Back
 				</Fab>
-				<Fab variant="extended" id="nextButton" color="secondary" disabled={selectedOption === ''}>
+				<Fab variant="extended" color="secondary" disabled={selectedOption === ''}>
 					Next
 				</Fab>
 			</div>
