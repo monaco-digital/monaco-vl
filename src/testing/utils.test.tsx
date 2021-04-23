@@ -37,7 +37,7 @@ export const renderWithProviders = (
 
 	const store = mockStore(providerOptions?.initialState);
 
-	const wrapper = render(ui, {
+	const utils = render(ui, {
 		wrapper: ({ children }: { children: ReactNode }) => (
 			<Provider store={store}>
 				<ThemeProvider theme={theme}>
@@ -51,7 +51,7 @@ export const renderWithProviders = (
 	return {
 		history,
 		store,
-		...wrapper,
+		...utils,
 	};
 };
 
