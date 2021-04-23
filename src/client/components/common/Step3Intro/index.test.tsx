@@ -63,4 +63,13 @@ describe('Step 3 Intro Page', () => {
 			expect(button).toBeEnabled();
 		});
 	});
+
+	test('When selecting second option Then grievance letter is generated', () => {
+		const { history } = renderWithProviders(<Step3Intro />);
+
+		userEvent.click(screen.getByText(options[1].text)); // Select second option
+		userEvent.click(screen.getByText('Next')); // Click next button
+
+		expect(history.location.pathname).toEqual('/preview/_GR');
+	});
 });
