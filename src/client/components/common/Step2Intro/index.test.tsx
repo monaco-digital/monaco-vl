@@ -15,8 +15,12 @@ describe('Step 2 Intro Page', () => {
 	test('When loading Step2Intro Then back and next buttons are enabled', () => {
 		renderWithProviders(<Step2Intro />);
 
-		const backButton = document.getElementById('backButton');
-		const nextButton = document.getElementById('nextButton');
+		const backButton = screen.getByRole('button', {
+			name: /back/i,
+		});
+		const nextButton = screen.getByRole('button', {
+			name: /next/i,
+		});
 
 		expect(backButton).toBeEnabled();
 		expect(nextButton).toBeEnabled();
