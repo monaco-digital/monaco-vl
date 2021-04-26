@@ -50,7 +50,7 @@ const AdvicePreview: FC = () => {
 		if (isMonetizationEnabled && !isFree) {
 			history.push('/preview/checkout');
 		} else {
-			history.push('/preview/checkout/email');
+			history.push('/preview/checkout/email/_ADV');
 		}
 	};
 

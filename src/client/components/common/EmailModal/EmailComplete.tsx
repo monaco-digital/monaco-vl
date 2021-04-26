@@ -3,7 +3,11 @@ import { Button, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import headerImage from '../../../assets/img/document.svg';
 
-const EmailComplete: FC = () => {
+interface Props {
+	previewType?: string;
+}
+
+const EmailComplete: FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 
 	return (
@@ -18,13 +22,17 @@ const EmailComplete: FC = () => {
 				size="large"
 				color="secondary"
 				onClick={() => {
-					history.push('/preview');
+					history.push(`/preview/${previewType}`);
 				}}
 			>
 				Done
 			</Button>
 		</Grid>
 	);
+};
+
+EmailComplete.defaultProps = {
+	previewType: 'TEST',
 };
 
 export default EmailComplete;
