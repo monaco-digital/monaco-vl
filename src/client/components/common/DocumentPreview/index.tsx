@@ -145,7 +145,6 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
-				TEST ID: {id}
 				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
