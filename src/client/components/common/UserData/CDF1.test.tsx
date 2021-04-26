@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import { CDF1 } from './CDF1';
 import { renderWithProviders } from '../../../../testing/utils.test';
-import { submitDetails } from '../../../../api/general';
+import { createCDF} from '../../../../api/general';
 
 jest.mock('../../../../api/general');
 
@@ -29,7 +29,7 @@ describe('CDF1 Page', () => {
 			},
 		};
 
-		const mock = submitDetails as jest.Mock<any, any>;
+		const mock = createCDF as jest.Mock<any, any>;
 
 		mock.mockReturnValue(Promise.resolve());
 	});
@@ -71,9 +71,7 @@ describe('CDF1 Page', () => {
 		userEvent.click(screen.getByText('Request Callback'));
 
 		await waitFor(() => {
-			expect(submitDetails).toHaveBeenCalledWith({
-				adviceText: 'Advice Text',
-				letterText: 'Letter Text',
+			expect(createCDF).toHaveBeenCalledWith({
 				topicsList: 'D,RR',
 				name: 'First Last',
 				recipient: 'email@email.com',

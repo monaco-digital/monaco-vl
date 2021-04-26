@@ -28,13 +28,14 @@ export const Settlement: React.FC = () => {
 				<Typography variant="h4">Reach Settlement</Typography>
 			</div>
 			<div className="step-intro__text">
-				<Typography variant="body1">
-					<p>
-						If you complete one of your legal letter templates & send it to us, we can send it to your employer for
-						free.
-					</p>
-					<p>If you are offered a settlement we can represent you at no charge to you</p>
-					<p>Just request a callback and we will talk you through it</p>
+				<Typography variant="body1" paragraph>
+					If you complete one of your legal letter templates & send it to us, we can send it to your employer for free.
+				</Typography>
+				<Typography variant="body1" paragraph>
+					Just request a callback and we will talk you through it
+				</Typography>
+				<Typography variant="body1" paragraph>
+					Just request a callback and we will talk you through it
 				</Typography>
 			</div>
 			<div className="step-intro__buttons">

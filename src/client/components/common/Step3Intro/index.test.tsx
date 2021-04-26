@@ -14,13 +14,11 @@ describe('Step 3 Intro Page', () => {
 
 	test('When loading Step3IntroPage Then Page renders', () => {
 		renderWithProviders(<Step3Intro />);
-
 		expect(screen.getByText('Progress legal case')).toBeInTheDocument();
 	});
 
 	test('When loading Step3IntroPage ensure each option appears', () => {
 		renderWithProviders(<Step3Intro />);
-
 		options.forEach(option => {
 			expect(screen.getByText(option.text)).toBeInTheDocument();
 		});
