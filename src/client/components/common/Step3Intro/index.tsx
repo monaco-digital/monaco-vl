@@ -37,23 +37,23 @@ const Step3Intro: React.FC = () => {
 	});
 
 	return (
-		<div className="step-3-intro">
-			<div className="step-3-intro__icon-and-header">
+		<div className="step-intro">
+			<div className="step-intro__icon-and-header">
 				<Icon
 					path={mdiNumeric3Circle}
 					title="3 icon"
 					size={iconSize}
 					color={iconColour}
-					className="step-3-intro__number-icon"
+					className="step-intro__number-icon"
 				/>
 				<Typography variant="h4">Progress legal case</Typography>
 			</div>
-			<div className="step-3-intro__text">
+			<div className="step-intro__text">
 				<Typography variant="body1">You now have 3 options depending on how your employer reacts:</Typography>
 			</div>
-			<div className="step-3-intro__options">{options}</div>
-			<div className="step-3-intro__buttons">
-				<Fab variant="extended" color="inherit" className="step-3-intro__button">
+			<div className="step-intro__options">{options}</div>
+			<div className="step-intro__buttons">
+				<Fab variant="extended" color="inherit" className="step-intro__button">
 					Back
 				</Fab>
 				<Fab variant="extended" id="nextButton" color="secondary" disabled={selectedOption === ''}>

@@ -24,7 +24,7 @@ import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../.
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
-import Settlement from '../components/common/Settlement';
+import { Settlement } from '../components/common/Settlement';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
