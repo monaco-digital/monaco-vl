@@ -32,7 +32,7 @@ const EmailComplete: FC<Props> = ({ previewType }: Props) => {
 };
 
 EmailComplete.defaultProps = {
-	previewType: 'TEST',
+	previewType: '',
 };
 
 export default EmailComplete;

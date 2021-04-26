@@ -198,7 +198,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 };
 
 EmailModal.defaultProps = {
-	previewType: 'TEST',
+	previewType: '',
 };
 
 export default EmailModal;
