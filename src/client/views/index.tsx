@@ -154,7 +154,9 @@ const Main: FC = () => {
 					</Route>
 				</Switch>
 			</div>
-			<CheckoutModal />
+			<Route path="/preview/:type/checkout">
+				<CheckoutModal />
+			</Route>
 		</main>
 	);
 };
