@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
+
+	const history = useHistory();
 
 	const [selectedOption, setSelectedOption] = useState('');
 
@@ -14,6 +17,16 @@ const Step3Intro: React.FC = () => {
 		{ text: 'My employer is ignoring me', optionId: '1' },
 		{ text: 'My 3 month time limit is running out', optionId: '2' },
 	];
+
+	const handleOnClick = () => {
+		switch (selectedOption) {
+			case '1': // 'My employer is ignoring me'
+				history.push('/preview/_GR');
+				break;
+			default:
+				break;
+		}
+	};
 
 	const options = optionsToShow.map(option => {
 		const { text } = option;
@@ -56,7 +69,7 @@ const Step3Intro: React.FC = () => {
 				<Fab variant="extended" color="inherit" className="step-intro__button">
 					Back
 				</Fab>
-				<Fab variant="extended" id="nextButton" color="secondary" disabled={selectedOption === ''}>
+				<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
 					Next
 				</Fab>
 			</div>

@@ -49,7 +49,9 @@ const GetStarted: React.FC = () => {
 							</Typography>
 						</div>
 						<div className="get-started__caption">
-							<Typography variant="h5">How to win at work in 4 easy steps</Typography>
+							<Typography variant="h5">
+								Advice and representation for negotiating an exit package in 4 easy steps
+							</Typography>
 						</div>
 						<div className="get-started__first-button">
 							<GetStartedButton />
@@ -75,14 +77,14 @@ const GetStarted: React.FC = () => {
 									color={iconColour}
 									className="get-started__number-icon"
 								/>
-								<Typography variant="h4">Get a free customised advice letter</Typography>
+								<Typography variant="h4">Answer quick questions</Typography>
 							</div>
 							<div className="get-started__bullets">
 								<ul className="list-disc">
 									<Typography variant="body1">
-										<li>No need to sign up</li>
-										<li>Get a free customised advice letter</li>
-										<li>Customised advice letter in less than 5 minutes</li>
+										<li>Generate advice letter</li>
+										<li>Receive it by email</li>
+										<li>Understand your case</li>
 									</Typography>
 								</ul>
 							</div>
@@ -119,14 +121,14 @@ const GetStarted: React.FC = () => {
 									color={iconColour}
 									className="get-started__number-icon"
 								/>
-								<Typography variant="h4">Respond to a legal letter</Typography>
+								<Typography variant="h4">Send legal letter</Typography>
 							</div>
 							<div className="get-started__bullets">
 								<ul className="list-disc">
 									<Typography variant="body1">
-										<li>No need to sign up</li>
-										<li>Formal grievance process</li>
-										<li>Legally accurate letter in less than 5 minutes</li>
+										<li>Download template letter</li>
+										<li>Fill in the gaps</li>
+										<li>Send to your employer</li>
 									</Typography>
 								</ul>
 							</div>
@@ -147,14 +149,14 @@ const GetStarted: React.FC = () => {
 									color={iconColour}
 									className="get-started__number-icon"
 								/>
-								<Typography variant="h4">Build a formal grievance letter</Typography>
+								<Typography variant="h4">Finalise legal documents</Typography>
 							</div>
 							<div className="get-started__bullets">
 								<ul className="list-disc">
 									<Typography variant="body1">
-										<li>No need to sign up</li>
-										<li>Formal grievance process</li>
-										<li>Legally accurate letter in less than 5 minutes</li>
+										<li>Get response from employer</li>
+										<li>Build reply to employer</li>
+										<li>Generate court documents if necessary</li>
 									</Typography>
 								</ul>
 							</div>
@@ -191,14 +193,14 @@ const GetStarted: React.FC = () => {
 									color={iconColour}
 									className="get-started__number-icon"
 								/>
-								<Typography variant="h4">Reach a settlement</Typography>
+								<Typography variant="h4">Agree a settlement</Typography>
 							</div>
 							<div className="get-started__bullets">
 								<ul className="list-disc">
 									<Typography variant="body1">
-										<li>Off the record</li>
-										<li>Without prejudice procedure</li>
-										<li>Legally accurate letter in less than 5 minutes</li>
+										<li>Most cases settle out of court</li>
+										<li>Employer offers compensation</li>
+										<li>Monaco can represent you at no charge to you</li>
 									</Typography>
 								</ul>
 							</div>
