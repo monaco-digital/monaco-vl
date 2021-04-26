@@ -106,7 +106,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 		if (contactMe) {
 			history.push('/preview/checkout/cdf1');
 		} else {
-			history.push(`/preview/checkout/email/complete/${previewType}`);
+			history.push(`/preview/${previewType}/checkout/email/complete`);
 
 			const submissionData = {
 				...data,

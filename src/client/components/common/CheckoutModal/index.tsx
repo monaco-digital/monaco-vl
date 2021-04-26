@@ -1,5 +1,5 @@
-import React, { FC, useEffect, useState } from 'react';
-import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom';
+import React, { FC } from 'react';
+import { useHistory, useParams, useRouteMatch, Switch, Route } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { Dialog, useMediaQuery, useTheme } from '@material-ui/core';
@@ -15,12 +15,12 @@ const CheckoutModal: FC = () => {
 	const history = useHistory();
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-	const isCheckout = Boolean(useRouteMatch('/preview/checkout'));
+	const isCheckout = Boolean(useRouteMatch('/preview/:type/checkout'));
 
-	const [previewType, setPreviewType] = useState('');
+	const { type } = useParams();
 
 	const handleClose = () => {
-		history.push(`/preview/${previewType}`);
+		history.push(`/preview/${type}`);
 	};
 
 	return (
@@ -38,24 +38,20 @@ const CheckoutModal: FC = () => {
 					</IconButton>
 				</div>
 				<Switch>
-					<Route path="/preview/checkout/email/complete/_ADV">
-						{setPreviewType('_ADV')}
-						<EmailComplete previewType={previewType} />
+					<Route path="/preview/:type/checkout/email/complete">
+						<EmailComplete previewType={type} />
 					</Route>
-					<Route path="/preview/checkout/email/complete/_WP">
-						{setPreviewType('_WP')}
-						<EmailComplete previewType={previewType} />
+					<Route path="/preview/:type/checkout/email/complete">
+						<EmailComplete previewType={type} />
 					</Route>
 					<Route path="/preview/checkout/email/complete">
 						<EmailComplete />
 					</Route>
-					<Route path="/preview/checkout/email/_ADV">
-						{setPreviewType('_ADV')}
-						<EmailModal previewType={previewType} />
+					<Route path="/preview/:type/checkout/email/">
+						<EmailModal previewType={type} />
 					</Route>
-					<Route path="/preview/checkout/email/_WP">
-						{setPreviewType('_WP')}
-						<EmailModal previewType={previewType} />
+					<Route path="/preview/:type/checkout/email/">
+						<EmailModal previewType={type} />
 					</Route>
 					<Route path="/preview/checkout/email">
 						<EmailModal />

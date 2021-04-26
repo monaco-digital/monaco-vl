@@ -138,7 +138,7 @@ const DocumentPreview: FC = () => {
 		if (isMonetizationEnabled && ['_RES_KM', '_RES_CO', '_RES_CD', '_RES_I'].includes(id)) {
 			history.push('/preview/checkout');
 		} else {
-			history.push(`/preview/checkout/email/${id}`);
+			history.push(`/preview/${id}/checkout/email`);
 		}
 	};
 
