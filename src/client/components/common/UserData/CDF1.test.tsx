@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import { CDF1 } from './CDF1';
 import { renderWithProviders } from '../../../../testing/utils.test';
-import { createCDF} from '../../../../api/general';
+import { createCDF } from '../../../../api/general';
 
 jest.mock('../../../../api/general');
 
