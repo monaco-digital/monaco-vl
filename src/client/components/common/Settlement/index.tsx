@@ -32,10 +32,10 @@ export const Settlement: React.FC = () => {
 					If you complete one of your legal letter templates & send it to us, we can send it to your employer for free.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					Just request a callback and we will talk you through it
+					If you are offered a settlement we can represent you at no charge to you.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					Just request a callback and we will talk you through it
+					Just request a callback and we will talk you through it.
 				</Typography>
 			</div>
 			<div className="step-intro__buttons">
