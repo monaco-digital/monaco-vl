@@ -3,7 +3,11 @@ import { Button, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import headerImage from '../../../assets/img/document.svg';
 
-const CDFComplete: FC = () => {
+interface Props {
+	previewType?: string;
+}
+
+const CDFComplete: FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 
 	return (
@@ -18,13 +22,17 @@ const CDFComplete: FC = () => {
 				size="large"
 				color="secondary"
 				onClick={() => {
-					history.push('/preview');
+					history.push(`/preview/${previewType}`);
 				}}
 			>
 				Done
 			</Button>
 		</Grid>
 	);
+};
+
+CDFComplete.defaultProps = {
+	previewType: '',
 };
 
 export default CDFComplete;

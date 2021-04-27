@@ -19,7 +19,11 @@ import { submitDetails } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
-export const CDF1: React.FC = () => {
+interface Props {
+	previewType?: string;
+}
+
+export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 	const userData = useSelector<AppState, UserData>(state => state.session.userData);
 	const {
@@ -45,7 +49,7 @@ export const CDF1: React.FC = () => {
 		};
 
 		await submitDetails(uData);
-		history.push('/preview/checkout/cdf1/complete');
+		history.push(`/preview/${previewType}/checkout/cdf1/complete`);
 	};
 
 	return (
@@ -234,4 +238,8 @@ export const CDF1: React.FC = () => {
 			</Grid>
 		</form>
 	);
+};
+
+CDF1.defaultProps = {
+	previewType: '',
 };

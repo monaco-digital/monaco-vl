@@ -104,7 +104,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 			}),
 		);
 		if (contactMe) {
-			history.push('/preview/checkout/cdf1');
+			history.push(`/preview/${previewType}/checkout/cdf1`);
 		} else {
 			history.push(`/preview/${previewType}/checkout/email/complete`);
 
