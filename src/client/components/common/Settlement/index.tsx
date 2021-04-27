@@ -13,7 +13,9 @@ export const Settlement: React.FC = () => {
 		history.push('/cdf/form');
 	};
 
-	const handleGoBackward = () => {};
+	const handleGoBackward = () => {
+		history.goBack();
+	};
 
 	return (
 		<div className="step-intro">
