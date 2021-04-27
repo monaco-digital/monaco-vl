@@ -10,7 +10,7 @@ export const Settlement: React.FC = () => {
 	const iconSize = 1.2;
 
 	const handleGoForward = () => {
-		history.push('/preview/checkout/cdf1');
+		history.push('/cdf/form');
 	};
 
 	const handleGoBackward = () => {};

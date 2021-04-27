@@ -26,6 +26,8 @@ import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../.
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
 import { Settlement } from '../components/common/Settlement';
+import { CDF1 } from '../components/common/UserData/CDF1';
+import CDFComplete from '../components/common/UserData/CDFComplete';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
@@ -129,6 +131,18 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/step/settlement">
 						<Settlement />
+					</Route>
+					<Route path="/cdf">
+						<Switch>
+							<Route exact path="/cdf/form">
+								<CDF1 />
+							</Route>
+							<Route exact path="/cdf/complete">
+								<div className="w-full justify-center align-middle">
+									<CDFComplete acknowledge={false} />
+								</div>
+							</Route>
+						</Switch>
 					</Route>
 					<Route exact path="/preview">
 						<Redirect to="/preview/_ADV" />

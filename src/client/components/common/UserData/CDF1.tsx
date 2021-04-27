@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import AppState from '../../../../data/AppState';
 import { createCDF } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
@@ -21,6 +21,7 @@ import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
 export const CDF1: React.FC = () => {
 	const history = useHistory();
+	const matchDefaultFlow = useRouteMatch('/cdf/form');
 	const userData = useSelector<AppState, UserData>(state => state.session.userData);
 	const {
 		register,
@@ -48,7 +49,11 @@ export const CDF1: React.FC = () => {
 		};
 
 		await createCDF(uData);
-		history.push('/preview/checkout/cdf1/complete');
+		if (matchDefaultFlow) {
+			history.push('/cdf/complete');
+		} else {
+			history.push('/preview/checkout/cdf1/complete');
+		}
 	};
 
 	return (
