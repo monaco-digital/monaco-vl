@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useHistory, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { useHistory, useParams, useRouteMatch, Switch, Route } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { Dialog, useMediaQuery, useTheme } from '@material-ui/core';
@@ -15,40 +15,40 @@ const CheckoutModal: FC = () => {
 	const history = useHistory();
 	const theme = useTheme();
 	const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
-	const isCheckout = Boolean(useRouteMatch('/preview/checkout'));
-	const onClose = () => {
-		history.push('/preview');
+	const isCheckout = Boolean(useRouteMatch('/preview/:type/checkout'));
+
+	const { type } = useParams();
+
+	const handleClose = () => {
+		history.push(`/preview/${type}`);
 	};
 
 	return (
-		<Dialog fullScreen={fullScreen} open={isCheckout} onClose={onClose} aria-labelledby="checkout-modal" maxWidth="md">
+		<Dialog
+			fullScreen={fullScreen}
+			open={isCheckout}
+			aria-labelledby="checkout-modal"
+			maxWidth="md"
+			onClose={handleClose}
+		>
 			<div className="checkoutModal p-5">
 				<div className="checkoutModal__close-button">
-					<IconButton aria-label="cancel" onClick={() => history.push('/preview')}>
+					<IconButton aria-label="cancel" onClick={handleClose}>
 						<CancelOutlinedIcon />
 					</IconButton>
 				</div>
 				<Switch>
-					<Route path="/preview/checkout/email/complete">
-						<EmailComplete />
+					<Route path="/preview/:type/checkout/email/complete">
+						<EmailComplete previewType={type} />
 					</Route>
-					<Route path="/preview/checkout/email">
-						<EmailModal />
+					<Route path="/preview/:type/checkout/email/">
+						<EmailModal previewType={type} />
 					</Route>
-					<Route path="/preview/checkout/cdf1/complete">
-						<CDFComplete />
+					<Route path="/preview/:type/checkout/cdf1/complete">
+						<CDFComplete previewType={type} />
 					</Route>
-					<Route path="/preview/checkout/cdf1">
-						<CDF1 />
-					</Route>
-					<Route path="/preview/checkout/payment/complete">
-						<PaymentComplete />
-					</Route>
-					<Route path="/preview/checkout/payment">
-						<PaymentForm />
-					</Route>
-					<Route path="/preview/checkout">
-						<Upsell />
+					<Route path="/preview/:type/checkout/cdf1">
+						<CDF1 previewType={type} />
 					</Route>
 				</Switch>
 			</div>

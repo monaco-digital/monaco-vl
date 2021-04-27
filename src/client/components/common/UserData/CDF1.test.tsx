@@ -54,7 +54,7 @@ describe('CDF1 Page', () => {
 	});
 
 	test('Given all fields filled out When Clicking Submit Then fields submitted to API', async () => {
-		const { history } = renderWithProviders(<CDF1 />, { initialState });
+		const { history } = renderWithProviders(<CDF1 previewType="_ADV" />, { initialState });
 
 		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('description').querySelector('textarea'), 'Description Text');
@@ -83,7 +83,7 @@ describe('CDF1 Page', () => {
 				'years-employed': 'Less than 2 years',
 			});
 
-			expect(history.location.pathname).toEqual('/preview/checkout/cdf1/complete');
+			expect(history.location.pathname).toEqual('/preview/_ADV/checkout/cdf1/complete');
 		});
 	});
 });

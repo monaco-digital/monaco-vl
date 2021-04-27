@@ -4,11 +4,12 @@ import { useHistory } from 'react-router-dom';
 import headerImage from '../../../assets/img/document.svg';
 
 interface Props {
+	previewType?: string;
 	acknowledge?: boolean;
 }
-const CDFComplete: FC<Props> = (props: Props) => {
+
+const CDFComplete: FC<Props> = ({ acknowledge, previewType }: Props) => {
 	const history = useHistory();
-	const { acknowledge = true } = props;
 
 	return (
 		<Grid container justify="center" direction="column" alignItems="center" className="space-y-5">
@@ -23,7 +24,7 @@ const CDFComplete: FC<Props> = (props: Props) => {
 					size="large"
 					color="secondary"
 					onClick={() => {
-						history.push('/preview');
+						history.push(`/preview/${previewType}`);
 					}}
 				>
 					Done
@@ -34,6 +35,7 @@ const CDFComplete: FC<Props> = (props: Props) => {
 };
 
 CDFComplete.defaultProps = {
+	previewType: '',
 	acknowledge: true,
 };
 
