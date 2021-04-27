@@ -13,14 +13,15 @@ import {
 } from '@material-ui/core';
 import { useForm, Controller } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import AppState from '../../../../data/AppState';
-import { submitDetails } from '../../../../api/general';
+import { createCDF } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
 export const CDF1: React.FC = () => {
 	const history = useHistory();
+	const matchDefaultFlow = useRouteMatch('/cdf/form');
 	const userData = useSelector<AppState, UserData>(state => state.session.userData);
 	const {
 		register,
@@ -32,8 +33,11 @@ export const CDF1: React.FC = () => {
 
 	const onSubmit = async (data): Promise<void> => {
 		const { name, email, description, phone, salary, settlementAgreement, stillEmployed, yearsEmployed } = data;
+		const { templateId, topicsList } = userData;
+
 		const uData = {
-			...userData,
+			templateId,
+			topicsList,
 			description,
 			phone,
 			salary,
@@ -44,8 +48,12 @@ export const CDF1: React.FC = () => {
 			recipient: email || userData.recipient,
 		};
 
-		await submitDetails(uData);
-		history.push('/preview/checkout/cdf1/complete');
+		await createCDF(uData);
+		if (matchDefaultFlow) {
+			history.push('/cdf/complete');
+		} else {
+			history.push('/preview/checkout/cdf1/complete');
+		}
 	};
 
 	return (

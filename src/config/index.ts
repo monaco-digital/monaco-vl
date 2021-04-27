@@ -42,8 +42,8 @@ const gaPropertyId = (): string => {
 
 const lambdaUrl = (): string =>
 	stage === 'prod'
-		? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod/process-virtual-lawyer'
-		: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev/process-virtual-lawyer';
+		? 'https://j8em4hk1r5.execute-api.eu-west-2.amazonaws.com/prod'
+		: 'https://41k1wj67k4.execute-api.eu-west-2.amazonaws.com/dev';
 
 const config = {
 	API_URL: apiUrl(),

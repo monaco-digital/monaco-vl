@@ -1,0 +1,38 @@
+.step-intro {
+  justify-content: center;
+  flex-direction: column;
+
+  .step-intro__text {
+    margin: 2rem 0rem 2rem 0rem;
+  }
+
+  .step-intro__buttons {
+    text-align: right;
+    flex-direction: row;
+    align-items: baseline;
+  }
+
+  .step-intro__button {
+    margin-right: 1rem;
+  }
+
+  .step-intro__icon-and-header {
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+  }
+
+  .step-intro__options {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .step-intro__option {
+    margin: 0.3rem 0rem 0.3rem 0rem;
+  }
+
+  .step-intro__number-icon {
+    margin-right: 0.3rem;
+  }
+}
