@@ -3,7 +3,6 @@ import { TextField, Button, InputLabel, FormControl, Select, FormHelperText, Box
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic, Advice } from 'api/vl/models';
-import axios from 'axios';
 import { Controller, useForm } from 'react-hook-form';
 import AppState from '../../../../data/AppState';
 import { SessionDocument } from '../../../../types/SessionDocument';
@@ -12,6 +11,7 @@ import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 import config from '../../../../config';
 import { updateUserData } from '../../../../data/sessionDataSlice';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import { submitDetails } from '../../../../api/general';
 
 interface Data {
 	adviceText: string;
@@ -107,22 +107,14 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 			history.push(`/preview/${previewType}/checkout/cdf1`);
 		} else {
 			history.push(`/preview/${previewType}/checkout/email/complete`);
-
-			const submissionData = {
-				...data,
-				contactMe,
-				name,
-				recipient: email,
-			};
-			axios({
-				method: 'POST',
-				url: lambdaUrl,
-				data: submissionData,
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
 		}
+		const submissionData = {
+			...data,
+			contactMe: false,
+			name,
+			recipient: email,
+		};
+		submitDetails(submissionData);
 	};
 
 	return (
