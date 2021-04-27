@@ -45,7 +45,7 @@ const CheckoutModal: FC = () => {
 						<EmailModal previewType={type} />
 					</Route>
 					<Route path="/preview/:type/checkout/cdf1/complete">
-						<CDFComplete />
+						<CDFComplete previewType={type} />
 					</Route>
 					<Route path="/preview/:type/checkout/cdf1">
 						<CDF1 previewType={type} />
