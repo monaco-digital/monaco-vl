@@ -9,7 +9,6 @@ import DocumentPreview from '../components/common/DocumentPreview';
 import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
-import Step3Intro from '../components/common/Step3Intro';
 import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
@@ -19,6 +18,8 @@ import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
 import Step2Intro from '../components/common/Step2Intro';
+import Step3Intro from '../components/common/Step3Intro';
+import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
 import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
@@ -160,6 +161,9 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/progress-legal-case">
 						<Step3Intro />
+					</Route>
+					<Route path="/respond-to-employer">
+						<RespondToEmployer />
 					</Route>
 					<Route path="/help">
 						<Help />
