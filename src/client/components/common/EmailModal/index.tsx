@@ -20,6 +20,10 @@ interface Data {
 	templateId: string;
 }
 
+interface Props {
+	previewType?: string;
+}
+
 const getLetterText = (sessionDocument: SessionDocument) => {
 	const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
 	return letterText;
@@ -35,20 +39,7 @@ const getAdviceText = (adviceParagraphs: Advice[]) => {
 	return adviceText;
 };
 
-const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization) => {
-	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-		return 'LAC';
-	}
-	if (selectedTopics.find(topic => topic.id === '_RES')) {
-		if (enabledMonetization) {
-			return 'GE1';
-		}
-		return 'LAC';
-	}
-	return 'AD1';
-};
-
-const EmailModal: FC = () => {
+const EmailModal: FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 	const {
 		register,
@@ -88,9 +79,19 @@ const EmailModal: FC = () => {
 		data.adviceText = getAdviceText(adviceParagraphs);
 		data.letterText = getLetterText(sessionDocument);
 		data.topicsList = getTopicsList(selectedTopics);
-		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
+		switch (previewType) {
+			case '_ADV':
+				data.templateId = 'AD1';
+				break;
+			case '_WP':
+				data.templateId = 'LAC';
+				break;
+			default:
+				break;
+		}
+
 		setData(data);
-	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization, previewType]);
 
 	const onSubmit = ({ name, email, contact }) => {
 		const contactMe = contact === 'true';
@@ -103,9 +104,9 @@ const EmailModal: FC = () => {
 			}),
 		);
 		if (contactMe) {
-			history.push('/preview/checkout/cdf1');
+			history.push(`/preview/${previewType}/checkout/cdf1`);
 		} else {
-			history.push('/preview/checkout/email/complete');
+			history.push(`/preview/${previewType}/checkout/email/complete`);
 		}
 		const submissionData = {
 			...data,
@@ -186,6 +187,10 @@ const EmailModal: FC = () => {
 			</div>
 		</form>
 	);
+};
+
+EmailModal.defaultProps = {
+	previewType: '',
 };
 
 export default EmailModal;

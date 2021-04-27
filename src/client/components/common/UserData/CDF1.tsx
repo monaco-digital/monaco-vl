@@ -19,7 +19,11 @@ import { createCDF } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
-export const CDF1: React.FC = () => {
+interface Props {
+	previewType?: string;
+}
+
+export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 	const matchDefaultFlow = useRouteMatch('/cdf/form');
 	const userData = useSelector<AppState, UserData>(state => state.session.userData);
@@ -52,7 +56,7 @@ export const CDF1: React.FC = () => {
 		if (matchDefaultFlow) {
 			history.push('/cdf/complete');
 		} else {
-			history.push('/preview/checkout/cdf1/complete');
+			history.push(`/preview/${previewType}/checkout/cdf1/complete`);
 		}
 	};
 
@@ -61,7 +65,6 @@ export const CDF1: React.FC = () => {
 			<Box alignSelf="center">
 				<img alt="Monaco Solicitors" src={logo1} width="200px" />
 			</Box>
-
 			<Typography className="text-center" variant="h4" style={{ marginTop: '30px' }}>
 				Request a callback about your case
 			</Typography>
@@ -242,4 +245,8 @@ export const CDF1: React.FC = () => {
 			</Grid>
 		</form>
 	);
+};
+
+CDF1.defaultProps = {
+	previewType: '',
 };
