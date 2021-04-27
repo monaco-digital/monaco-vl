@@ -124,6 +124,16 @@ const DocumentPreview: FC = () => {
 	triggerGAEvent('_LET');
 	triggerGAEvent(id);
 
+	const handleNext = () => {
+		switch (id) {
+			case '_WP':
+				history.push('/progress-legal-case'); // Go to step 3
+				break;
+			default:
+				break;
+		}
+	};
+
 	useEffect(() => {
 		const updatedTemplate = getTemplate(id);
 
@@ -166,7 +176,7 @@ const DocumentPreview: FC = () => {
 						</Fab>
 					</Box>
 					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={openCheckoutModal}>
+						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
 							<GetApp />
 							&nbsp;Download
 						</Fab>
@@ -175,6 +185,11 @@ const DocumentPreview: FC = () => {
 								Download
 							</Fab>
 						)}
+					</Box>
+					<Box px={1}>
+						<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
+							Next
+						</Fab>
 					</Box>
 				</Box>
 			</div>
