@@ -29,6 +29,6 @@ describe('Settlement Page', () => {
 	test('When clicking next The CDF Form Opens', () => {
 		const { history } = renderWithProviders(<Settlement />);
 		userEvent.click(screen.getByText('Next'));
-		expect(history.location.pathname).toEqual('/preview/checkout/cdf1');
+		expect(history.location.pathname).toEqual('/cdf/form');
 	});
 });
