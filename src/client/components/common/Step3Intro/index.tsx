@@ -20,7 +20,10 @@ const Step3Intro: React.FC = () => {
 
 	const handleOnClick = () => {
 		switch (selectedOption) {
-			case '1': // 'My employer is ignoring me'
+			case '0':
+				history.push('/respond-to-employer');
+				break;
+			case '1':
 				history.push('/preview/_GR');
 				break;
 			default:
