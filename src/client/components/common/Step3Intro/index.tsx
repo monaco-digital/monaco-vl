@@ -23,6 +23,9 @@ const Step3Intro: React.FC = () => {
 			case '1': // 'My employer is ignoring me'
 				history.push('/preview/_GR');
 				break;
+			case '2':
+				history.push('preview/_ET');
+				break;
 			default:
 				break;
 		}
