@@ -77,6 +77,7 @@ describe('CDF1 Page', () => {
 				recipient: 'email@email.com',
 				description: 'Description Text',
 				phone: '123456789',
+				job: 'A job',
 				salary: '£0 - £30,000',
 				'settlement-agreement': 'Yes',
 				'still-employed': 'Yes',
