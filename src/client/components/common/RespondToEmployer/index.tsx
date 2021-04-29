@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
-import { mdiNumeric3Circle } from '@mdi/js';
-import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
-const Step3Intro: React.FC = () => {
-	const iconColour = '#60ABFF';
-	const iconSize = 1.2;
-
+const RespondToEmployer: React.FC = () => {
 	const history = useHistory();
 
 	const [selectedOption, setSelectedOption] = useState('');
 
 	const optionsToShow = [
-		{ text: 'My employer has replied to my letter', optionId: '0' },
-		{ text: 'My employer is ignoring me', optionId: '1' },
-		{ text: 'My 3 month time limit is running out', optionId: '2' },
+		{ text: '(i) My employer is denying everything', optionId: '_RES_CD' },
+		{ text: '(ii) My employer has made a settlement offer', optionId: '_RES_CO' },
+		{ text: '(iii) My employer says they are investigating', optionId: '_RES_I' },
+		{ text: "(iv) My employer said they don't want me to leave", optionId: '_RES_KM' },
 	];
 
 	const handleOnClick = () => {
 		switch (selectedOption) {
-			case '0':
-				history.push('/respond-to-employer');
+			case '_RES_CD':
+				history.push('/preview/_RES_CD');
 				break;
-			case '1':
-				history.push('/preview/_GR');
+			case '_RES_CO':
+				history.push('/preview/_RES_CO');
+				break;
+			case '_RES_I':
+				history.push('/preview/_RES_I');
+				break;
+			case '_RES_KM':
+				history.push('/preview/_RES_KM');
 				break;
 			default:
 				break;
@@ -54,18 +56,11 @@ const Step3Intro: React.FC = () => {
 
 	return (
 		<div className="step-intro">
-			<div className="step-intro__icon-and-header">
-				<Icon
-					path={mdiNumeric3Circle}
-					title="3 icon"
-					size={iconSize}
-					color={iconColour}
-					className="step-intro__number-icon"
-				/>
-				<Typography variant="h4">Progress legal case</Typography>
-			</div>
+			<Typography variant="h4">Template letters for responding to your employer</Typography>
 			<div className="step-intro__text">
-				<Typography variant="body1">You now have 3 options depending on how your employer reacts:</Typography>
+				<Typography variant="body1">
+					You now have 4 template letters to choose from depending on what they said:
+				</Typography>
 			</div>
 			<div className="step-intro__options">{options}</div>
 			<div className="step-intro__buttons">
@@ -80,4 +75,4 @@ const Step3Intro: React.FC = () => {
 	);
 };
 
-export default Step3Intro;
+export default RespondToEmployer;
