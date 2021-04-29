@@ -1,7 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
-import { CaseTopic } from 'api/vl/models';
 import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';

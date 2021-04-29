@@ -5,7 +5,6 @@ import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
 import { CaseTopic } from 'api/vl/models';
 import { Box, Fab } from '@material-ui/core';
 
-import moreInfoIcon from '../../../assets/img/more-info-icon.svg';
 import AppState from '../../../../data/AppState';
 import { Question as QuestionT } from '../../../../types/Questions';
 import { getNextQuestion } from '../../../../clustering/questionFlow';
