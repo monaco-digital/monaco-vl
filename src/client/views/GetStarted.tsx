@@ -5,6 +5,7 @@ import { Button, Typography } from '@material-ui/core';
 import { mdiNumeric1Circle, mdiNumeric2Circle, mdiNumeric3Circle, mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import mainimage from '../assets/img/vl-labels-illustration.svg';
+import main_image from '../assets/img/operating tablet@2x.png';
 import lady_reading_letter_image from '../assets/img/Lady reading letter@2x.png';
 import lawyer_signing_doc_image from '../assets/img/Lawyer signing doc@2x.png';
 import man_with_coffee_and_letter_image from '../assets/img/Man with coffee and letter@2x.png';
@@ -58,7 +59,7 @@ const GetStarted: React.FC = () => {
 						</div>
 					</div>
 					<div className="get-started__image">
-						<img className="object-cover" src={mainimage} alt="" />
+						<img className="object-cover" src={main_image} alt="" />
 					</div>
 				</div>
 			</div>
