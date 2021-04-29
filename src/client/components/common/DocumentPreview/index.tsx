@@ -129,6 +129,7 @@ const DocumentPreview: FC = () => {
 			case '_WP':
 				history.push('/progress-legal-case'); // Go to step 3
 				break;
+			case '_GR':
 			case '_RES_CD':
 			case '_RES_CO':
 			case '_RES_I':
