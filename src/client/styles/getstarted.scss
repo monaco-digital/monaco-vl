@@ -7,66 +7,72 @@
 
 	.get-started__bullets {
 		line-height: 2;
-		margin-bottom: 1rem;
-		margin-top: 1rem;
-		margin-left: 1.5rem;
+		margin: 1rem 0 1rem 1.5rem;
 
 		@screen md {
 			line-height: 2;
-			margin-bottom: 1.75rem;
-			margin-top: 1.75rem;
+			margin: 1.75rem 0 1.75rem 0;
 		}
 	}
 
 	.get-started__caption {
-		margin-top: 1rem;
-		margin-bottom: 1rem;
+		margin: 1rem 0 1rem 0;
 
 		@screen md {
-			margin-top: 1rem;
-			margin-bottom: 1.5rem;
+			margin: 1rem 0 1.5rem 0;
 		}
 	}
 
 	.get-started__details {
-		margin-bottom: 10rem;
-		margin-top: 2rem;
+		margin: 2rem 0 10rem 0;
 
 		@screen md {
-			margin-bottom: 0rem;
-			margin-top: 3rem;
+			margin: 3rem 0 0 0;
 		}
 	}
 
-	.get-started__details-alternate {
-		margin-bottom: 10rem;
-		margin-top: 2rem;
-		margin-left: 0rem;
+	.get-started__details-second-row {
+		margin: 2rem 0 10rem 0;
 
 		@screen md {
-			margin-bottom: 0rem;
-			margin-top: 3rem;
-			marginleft: 1.5rem;
+			margin: 3rem 14rem 0 1.5rem;
+		}
+	}
+
+	.get-started__details-last-row {
+		margin: 2rem 0 10rem 0;
+
+		@screen md {
+			margin: 3rem 0 0 1.5rem;
 		}
 	}
 
 	.get-started__first-button {
 		text-align: center;
+		flex-direction: column;
 
 		@screen md {
 			text-align: left;
+			flex-direction: row;
 		}
 	}
 
 	.get-started__get-started-button {
 		border-radius: 25px;
-		font-size: 16px;
-		font-weight: bold;
+	}
+
+	.get-started__learn-more-button {
+		margin: 1rem 0 0 0;
+
+		@screen md {
+			margin: 0 0 0 1rem;
+		}
 	}
 
 	.get-started__grid-image {
 		width: 360px;
 		margin: 0 2rem 0 0.8rem;
+
 		@screen md {
 			width: 490px;
 		}
@@ -90,6 +96,13 @@
 		margin-bottom: 0rem;
 		@screen md {
 			margin-bottom: 8rem;
+		}
+	}
+
+	.get-started__grid-row-last {
+		margin-bottom: 0rem;
+		@screen md {
+			margin-bottom: 4rem;
 		}
 	}
 
@@ -126,9 +139,37 @@
 
 		@screen md {
 			text-align: left;
-			margin-left: 6rem;
+			margin-left: 9rem;
 			width: 30rem;
 		}
+	}
+
+	.get-started__main-box {
+		margin-bottom: 3rem;
+	}
+
+	.get-started__heading-desktop {
+		@apply invisible;
+		height: 0;
+
+		@screen md {
+			@apply visible;
+			height: auto;
+			width: 600px;
+		}
+	}
+
+	.get-started__heading-mobile {
+		@apply visible;
+
+		@screen md {
+			@apply invisible;
+			height: 0;
+		}
+	}
+
+	.get-start__heading-row {
+		margin-bottom: 2rem;
 	}
 
 	.get-started__icon-and-header {
@@ -142,22 +183,14 @@
 		width: 0;
 		@screen md {
 			@apply visible;
-			margin: 0 2rem 0 0.8rem;
-			width: 700px;
+			align-items: flex-end;
+			justify-content: flex-end;
+			margin: 0 0 0 3rem;
+			width: 500px;
 		}
 	}
 
 	.get-started__number-icon {
 		margin-right: 0.3rem;
-	}
-
-	.get-started__reviews-widget {
-		margin-top: 3rem;
-		margin-bottom: 4rem;
-
-		@screen md {
-			margin-top: 0rem;
-			margin-bottom: 2rem;
-		}
 	}
 }

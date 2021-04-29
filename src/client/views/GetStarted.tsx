@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography } from '@material-ui/core';
 import { mdiNumeric1Circle, mdiNumeric2Circle, mdiNumeric3Circle, mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import mainimage from '../assets/img/vl-labels-illustration.svg';
 import main_image from '../assets/img/operating tablet@2x.png';
 import lady_reading_letter_image from '../assets/img/Lady reading letter@2x.png';
 import lawyer_signing_doc_image from '../assets/img/Lawyer signing doc@2x.png';
@@ -17,7 +16,7 @@ declare var richSnippetReviewsWidgets;
 const GetStartedButton = () => {
 	return (
 		<Link to="/questions">
-			<Button variant="contained" className="get-started__get-started-button" color="primary">
+			<Button variant="contained" className="get-started__get-started-button" color="primary" size="large">
 				Get Started
 			</Button>
 		</Link>
@@ -27,6 +26,10 @@ const GetStartedButton = () => {
 const GetStarted: React.FC = () => {
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
+
+	const learnMoreRef = useRef(null);
+
+	const executeScroll = () => learnMoreRef.current.scrollIntoView();
 
 	useEffect(() => {
 		// Load Review.Io widget into div with Id 'text-banner-widget'
@@ -40,13 +43,18 @@ const GetStarted: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="get-started space-y-3 w-full">
-			<div className="md:flex md:flex-shrink">
-				<div className="md:flex md:flex-row space-x-20">
+		<div className="get-started space-y-3 w-full get-started__main">
+			<div className="get-start__heading-row md:flex md:flex-shrink">
+				<div className="md:flex md:flex-row space-x-20 get-started__main-box">
 					<div className="get-started__heading-box">
-						<div>
+						<div className="get-started__heading-mobile">
 							<Typography variant="h1">
-								Automated <br /> Legal <br /> EXperience
+								Automated <br /> legal <br /> experience
+							</Typography>
+						</div>
+						<div className="get-started__heading-desktop">
+							<Typography variant="h1">
+								Automated legal <br /> experience
 							</Typography>
 						</div>
 						<div className="get-started__caption">
@@ -54,19 +62,20 @@ const GetStarted: React.FC = () => {
 								Advice and representation for negotiating an exit package in 4 easy steps
 							</Typography>
 						</div>
-						<div className="get-started__first-button">
+						<div className="flex get-started__first-button">
 							<GetStartedButton />
+							<Button className="get-started__learn-more-button" size="large" onClick={executeScroll}>
+								Learn more
+							</Button>
 						</div>
 					</div>
-					<div className="get-started__image">
-						<img className="object-cover" src={main_image} alt="" />
+					<div className="md:flex get-started__image">
+						<img src={main_image} alt="" />
 					</div>
 				</div>
 			</div>
 
-			<div id="text-banner-widget" className="get-started__reviews-widget" />
-
-			<div className="get-started__grid-row">
+			<div className="get-started__grid-row" ref={learnMoreRef}>
 				<Grid container justify="center" alignItems="flex-start" spacing={10} className="get-started__grid-container">
 					<Grid item className="get-started__grid-item">
 						<div className="get-started__details">
@@ -112,8 +121,8 @@ const GetStarted: React.FC = () => {
 							<img src={lawyer_signing_doc_image} alt="" />
 						</div>
 					</Grid>
-					<Grid item className="get-started__grid-item">
-						<div className="get-started__details-alternate">
+					<Grid item className="flex get-started__grid-item">
+						<div className="get-started__details-second-row">
 							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric2Circle}
@@ -171,7 +180,7 @@ const GetStarted: React.FC = () => {
 					</Grid>
 				</Grid>
 			</div>
-			<div className="get-started__grid-row">
+			<div className="get-started__grid-row-last">
 				<Grid
 					container
 					justify="center"
@@ -185,7 +194,7 @@ const GetStarted: React.FC = () => {
 						</div>
 					</Grid>
 					<Grid item className="get-started__grid-item">
-						<div className="get-started__details-alternate">
+						<div className="get-started__details-last-row">
 							<div className="get-started__icon-and-header">
 								<Icon
 									path={mdiNumeric4Circle}
@@ -210,6 +219,7 @@ const GetStarted: React.FC = () => {
 					</Grid>
 				</Grid>
 			</div>
+			<div id="text-banner-widget" className="get-started__reviews-widget" />
 		</div>
 	);
 };
