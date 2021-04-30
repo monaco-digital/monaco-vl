@@ -288,10 +288,130 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
+								textFirstPerson: '(a) [Direct race discrimination (section 13(1), Equality Act 2010).]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(b) [Indirect race discrimination (section 19(1), Equality Act 2010).]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(c) [Harassment related to race (section 26(1), Equality Act 2010).]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(d) [Victimisation (section 27(1), Equality Act 2010).]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(e) [Whistleblowing (section 47B, Employment Rights Act 1996).]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(f) [Unlawful deductions from wages and/or breach of contract.]',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
 								textFirstPerson: 'CLAIMS',
 							} as StaticText,
 						],
 					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'UserContentSection',
+					templateComponents: [],
 				},
 				{
 					id: nanoid(),
