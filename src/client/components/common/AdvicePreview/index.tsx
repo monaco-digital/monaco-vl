@@ -86,7 +86,7 @@ const AdvicePreview: FC = () => {
 					<Box px={1}>
 						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
 							<GetApp />
-							&nbsp;Download
+							&nbsp;Email
 						</Fab>
 					</Box>
 					<Box px={1}>

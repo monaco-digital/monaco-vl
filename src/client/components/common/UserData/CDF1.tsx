@@ -36,11 +36,22 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 	} = useForm();
 
 	const onSubmit = async (data): Promise<void> => {
-		const { name, email, description, phone, salary, settlementAgreement, stillEmployed, yearsEmployed } = data;
+		const {
+			name,
+			email,
+			description,
+			jobTitle: job,
+			phone,
+			salary,
+			settlementAgreement,
+			stillEmployed,
+			yearsEmployed,
+		} = data;
 		const { templateId, topicsList } = userData;
 
 		const uData = {
 			templateId,
+			job,
 			topicsList,
 			description,
 			phone,

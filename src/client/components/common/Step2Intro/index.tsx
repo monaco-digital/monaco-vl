@@ -19,18 +19,18 @@ const Step2Intro: React.FC = () => {
 	};
 
 	return (
-		<div className="step-2-intro">
-			<div className="step-2-intro__icon-and-header">
+		<div className="step-intro">
+			<div className="step-intro__icon-and-header">
 				<Icon
 					path={mdiNumeric2Circle}
 					title="2 icon"
 					size={iconSize}
 					color={iconColour}
-					className="step-2-intro__number-icon"
+					className="step-intro__number-icon"
 				/>
 				<Typography variant="h4">Start legal letter process</Typography>
 			</div>
-			<div className="step-2-intro__bullets">
+			<div className="step-intro__bullets">
 				<ul className="list-disc">
 					<Typography variant="body1">
 						<li>Download template letter</li>
@@ -39,8 +39,8 @@ const Step2Intro: React.FC = () => {
 					</Typography>
 				</ul>
 			</div>
-			<div className="step-2-intro__buttons">
-				<Fab variant="extended" id="backButton" color="inherit" className="step-2-intro__button" onClick={handleBack}>
+			<div className="step-intro__buttons">
+				<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>
 					Back
 				</Fab>
 				<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>
