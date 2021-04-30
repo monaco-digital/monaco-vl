@@ -16,7 +16,7 @@ describe('Get Started Page', () => {
 	test('When loading GetStarted Then Page renders', () => {
 		renderWithProviders(<GetStarted />);
 
-		expect(screen.getByText('Automated Legal EXperience')).toBeInTheDocument();
+		expect(screen.getAllByText('Automated legal experience')[0]).toBeInTheDocument();
 	});
 
 	test('When clicking get started Then questions page loads', () => {
