@@ -1,7 +1,7 @@
 import React from 'react';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Box, Fab, Typography } from '@material-ui/core';
+import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const Step2Intro: React.FC = () => {

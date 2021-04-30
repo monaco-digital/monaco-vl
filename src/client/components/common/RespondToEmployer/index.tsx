@@ -14,6 +14,10 @@ const RespondToEmployer: React.FC = () => {
 		{ text: "(iv) My employer said they don't want me to leave", optionId: '_RES_KM' },
 	];
 
+	const handleBack = () => {
+		history.push('/progress-legal-case');
+	};
+
 	const handleOnClick = () => {
 		switch (selectedOption) {
 			case '_RES_CD':
@@ -64,7 +68,7 @@ const RespondToEmployer: React.FC = () => {
 			</div>
 			<div className="step-intro__options">{options}</div>
 			<div className="step-intro__buttons">
-				<Fab variant="extended" color="inherit" className="step-intro__button">
+				<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
 					Back
 				</Fab>
 				<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>

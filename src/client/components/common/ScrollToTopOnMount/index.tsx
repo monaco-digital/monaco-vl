@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 /**
  * Component to scroll to the top the first time a page is loaded.

@@ -1,4 +1,5 @@
-import { CaseTopic, Template } from 'api/vl/models';
+import { Template } from 'api/vl/models';
+import { employed } from './employed';
 import { grievanceLetter } from './grievanceLetter';
 import { stillEmployed } from './stillEmployed';
 import { notEmployed } from './notEmployed';
@@ -11,6 +12,9 @@ export { adviceLetter } from './adviceLetter';
 
 export const getTemplate = (select: string): Template => {
 	try {
+		if (select === '_ET') {
+			return employed;
+		}
 		if (select === '_GR') {
 			return grievanceLetter;
 		}
