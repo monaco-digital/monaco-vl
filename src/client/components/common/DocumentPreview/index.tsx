@@ -185,7 +185,7 @@ const DocumentPreview: FC = () => {
 					<Box px={1}>
 						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
 							<GetApp />
-							&nbsp;Download
+							&nbsp;Email
 						</Fab>
 						{isDsFlow && (
 							<Fab variant="extended" onClick={downloadDataForDS}>
