@@ -18,6 +18,10 @@ const Step3Intro: React.FC = () => {
 		{ text: 'My 3 month time limit is running out', optionId: '2' },
 	];
 
+	const handleBack = () => {
+		history.push('/preview/_WP');
+	};
+
 	const handleOnClick = () => {
 		switch (selectedOption) {
 			case '0':
@@ -72,7 +76,7 @@ const Step3Intro: React.FC = () => {
 			</div>
 			<div className="step-intro__options">{options}</div>
 			<div className="step-intro__buttons">
-				<Fab variant="extended" color="inherit" className="step-intro__button">
+				<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
 					Back
 				</Fab>
 				<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
