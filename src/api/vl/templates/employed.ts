@@ -148,11 +148,6 @@ export const employed: Template = {
 								type: 'EditableText',
 								placeholder: '[date]',
 							} as EditableText,
-							{
-								id: nanoid(),
-								type: 'StaticText',
-								textFirstPerson: '. I am still working there. ',
-							} as StaticText,
 						],
 					},
 				},
@@ -269,7 +264,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'I bring claims against the Respondent for:',
+								textFirstPerson: 'I bring claims against the Respondent for: [edit as appropriate]',
 							} as StaticText,
 						],
 					},
