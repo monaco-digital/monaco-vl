@@ -24,6 +24,123 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
+								textFirstPerson: 'Claim No:',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'IN THE EMPLOYMENT TRIBUNAL',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'BETWEEN: ',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[Your name]',
+							} as EditableText,
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: ' and ',
+							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: "[Your (ex)-employer's name]",
+							} as EditableText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'INTRODUCTION',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
 								textFirstPerson: 'I started working for the Respondent on ',
 							} as StaticText,
 							{
@@ -133,6 +250,82 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
+								textFirstPerson: 'SUMMARY OF CLAIMS',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'I bring claims against the Respondent for:',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'CLAIMS',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'IMPACT ON ME',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
 								textFirstPerson:
 									'The treatment and actions by the Respondent have had a profound negative effect on me. I experienced ',
 							} as StaticText,
@@ -165,6 +358,178 @@ export const employed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson: '.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'REMEDY',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: 'I seek the following remedies:',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(a) Compensation for financial loss.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(b) Compensation for injury to feelings.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(c) Compensation for personal injury.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(d) Compensation for unfair dismissal.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(e) Notice pay.',
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson:
+									"(f) An uplift of up to 25% to the compensation awarded by the tribunal because of the Respondent's unreasonable failure to comply with the Acas Code of Practice on Disciplinary and Grievance Procedures.",
+							} as StaticText,
+						],
+					},
+				},
+				{
+					id: nanoid(),
+					version: 1,
+					type: 'Paragraph',
+					paragraph: {
+						id: nanoid(),
+						verticalHeight: 0,
+						topicsOneOf: [],
+						topicsAllOf: ['All'],
+						topicsNoneOf: [],
+						paragraphComponents: [
+							{
+								id: nanoid(),
+								type: 'StaticText',
+								textFirstPerson: '(g) Interest at the appropriate rate.',
 							} as StaticText,
 						],
 					},
