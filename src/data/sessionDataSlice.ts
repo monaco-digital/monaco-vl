@@ -53,6 +53,7 @@ export const slice = createSlice({
 		answeredQuestions: [] as Question[],
 		selectedTemplate: null as Template,
 		currentSessionDocument: null as string,
+		currentStep: null as number,
 		sessionDocuments: {
 			_WP: null as SessionDocument,
 			_GR: null as SessionDocument,
@@ -104,6 +105,9 @@ export const slice = createSlice({
 		updateAnsweredQuestions: (state, action) => {
 			state.answeredQuestions = action.payload;
 		},
+		updateCurrentStep: (state, action) => {
+			state.currentStep = action.payload;
+		},
 		updateSelectedTemplate: (state, action) => {
 			state.selectedTemplate = action.payload;
 		},
@@ -134,6 +138,7 @@ export const {
 	deselectParagraphs,
 	updateSelectedTemplate,
 	updateCurrentSessionDocument,
+	updateCurrentStep,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
 	updateUserData,

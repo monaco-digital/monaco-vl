@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Switch, Route, Redirect } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Question from '../Question';
 import {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
+	updateCurrentStep,
 	updateSelectedTopics,
 } from '../../../../data/sessionDataSlice';
 
@@ -27,6 +28,10 @@ const Questions: FC = () => {
 	const { id: currentQuestionId } = currentQuestion || {};
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(updateCurrentStep(0));
+	}, [dispatch]);
 
 	if (!currentQuestion) {
 		history.push('/statements');

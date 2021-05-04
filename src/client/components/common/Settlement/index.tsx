@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+import { updateCurrentStep } from '../../../../data/sessionDataSlice';
+
 export const Settlement: React.FC = () => {
 	const history = useHistory();
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
+
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(updateCurrentStep(3));
+	}, [dispatch]);
 
 	const handleGoForward = () => {
 		history.push('/cdf/form');
@@ -15,6 +24,7 @@ export const Settlement: React.FC = () => {
 
 	const handleGoBackward = () => {
 		history.goBack();
+		dispatch(updateCurrentStep(2));
 	};
 
 	return (

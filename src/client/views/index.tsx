@@ -12,6 +12,7 @@ import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
 import AppState from '../../data/AppState';
+import EndToEndStepper from '../components/common/EndToEndStepper';
 import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
@@ -120,6 +121,7 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
+			<EndToEndStepper />
 			<div className="screen container">
 				<Switch>
 					<Route path="/questions">

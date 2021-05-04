@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { updateCurrentStep } from '../../../../data/sessionDataSlice';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
+
+	const dispatch = useDispatch();
 
 	const history = useHistory();
 
@@ -16,7 +20,12 @@ const Step2Intro: React.FC = () => {
 
 	const handleBack = () => {
 		history.push('/preview/_ADV');
+		dispatch(updateCurrentStep(0));
 	};
+
+	useEffect(() => {
+		dispatch(updateCurrentStep(1));
+	}, [dispatch]);
 
 	return (
 		<div className="step-intro">

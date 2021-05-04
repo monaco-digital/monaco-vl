@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import { updateCurrentStep } from '../../../../data/sessionDataSlice';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
 
+	const dispatch = useDispatch();
+
 	const history = useHistory();
+
+	useEffect(() => {
+		dispatch(updateCurrentStep(2));
+	}, [dispatch]);
 
 	const [selectedOption, setSelectedOption] = useState('');
 
@@ -20,6 +28,7 @@ const Step3Intro: React.FC = () => {
 
 	const handleBack = () => {
 		history.push('/preview/_WP');
+		dispatch(updateCurrentStep(1));
 	};
 
 	const handleOnClick = () => {
