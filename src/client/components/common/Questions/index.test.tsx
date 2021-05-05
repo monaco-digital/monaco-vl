@@ -47,7 +47,7 @@ describe('Questions Page', () => {
 				selectedTemplate: null,
 				sessionDocuments: null,
 				userData: {},
-			}
+			},
 		};
 	});
 
