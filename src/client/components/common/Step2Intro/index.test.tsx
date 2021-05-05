@@ -9,7 +9,7 @@ describe('Step 2 Intro Page', () => {
 	test('When loading Step2IntroPage Then Page renders', () => {
 		renderWithProviders(<Step2Intro />);
 
-		expect(screen.getByText('Start legal letter process')).toBeInTheDocument();
+		expect(screen.getByText('Write letter')).toBeInTheDocument();
 	});
 
 	test('When loading Step2Intro Then back and next buttons are enabled', () => {
@@ -27,8 +27,8 @@ describe('Step 2 Intro Page', () => {
 	});
 
 	test('When clicking back Then advice is generated', () => {
-		const { history } = renderWithProviders(<Step2Intro />);
-
+		const { history } = renderWithProviders(<Step2Intro />, { startPage: '/preview/_ADV' });
+		history.push('/start-legal-process');
 		userEvent.click(screen.getByText('Back'));
 
 		expect(history.location.pathname).toEqual('/preview/_ADV');
