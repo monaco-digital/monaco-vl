@@ -24,7 +24,6 @@ const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => (
 const AdvicePreview: FC = () => {
 	const history = useHistory();
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 
 	const [adviceParagraphs, setAdviceParagraphs] = useState([]);
 
@@ -44,14 +43,7 @@ const AdvicePreview: FC = () => {
 	}, []);
 
 	const openCheckoutModal = () => {
-		const freeTopicTemplates = ['_RES', '_ADV'];
-		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
-
-		if (isMonetizationEnabled && !isFree) {
-			history.push('/preview/checkout');
-		} else {
-			history.push('/preview/_ADV/checkout/email');
-		}
+		history.replace('/preview/_ADV/checkout/email');
 	};
 
 	const handleNext = () => {
