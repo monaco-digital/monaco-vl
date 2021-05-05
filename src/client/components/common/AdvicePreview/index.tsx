@@ -24,7 +24,6 @@ const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => (
 const AdvicePreview: FC = () => {
 	const history = useHistory();
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 
 	const [adviceParagraphs, setAdviceParagraphs] = useState([]);
 
@@ -44,14 +43,11 @@ const AdvicePreview: FC = () => {
 	}, []);
 
 	const openCheckoutModal = () => {
-		const freeTopicTemplates = ['_RES', '_ADV'];
-		const isFree = selectedTopics.some(topic => freeTopicTemplates.includes(topic.id));
+		history.replace('/preview/_ADV/checkout/email');
+	};
 
-		if (isMonetizationEnabled && !isFree) {
-			history.push('/preview/checkout');
-		} else {
-			history.push('/preview/checkout/email');
-		}
+	const handleNext = () => {
+		history.push('/start-legal-process'); // Go to step 2
 	};
 
 	return (
@@ -64,7 +60,6 @@ const AdvicePreview: FC = () => {
 						))}
 					</div>
 				</VLcard>
-
 				<Box
 					position="fixed"
 					width="90%"
@@ -81,9 +76,14 @@ const AdvicePreview: FC = () => {
 						</Fab>
 					</Box>
 					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={openCheckoutModal}>
+						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
 							<GetApp />
-							&nbsp;Download
+							&nbsp;Email
+						</Fab>
+					</Box>
+					<Box px={1}>
+						<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
+							Next
 						</Fab>
 					</Box>
 				</Box>

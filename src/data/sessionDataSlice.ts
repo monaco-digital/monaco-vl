@@ -38,9 +38,11 @@ const updateSessionDocumentMapper = (
 	sessionDocument.sessionDocumentComponents.forEach(sessionDocumentComponent => {
 		processSessionDocumentComponent(sessionDocumentComponent);
 	});
-	sessionDocument.document = createDocument(sessionDocument);
-
-	return sessionDocument;
+	const newSessioonDocument = {
+		...sessionDocument,
+		document: createDocument(sessionDocument),
+	};
+	return newSessioonDocument;
 };
 
 export const slice = createSlice({
@@ -50,7 +52,16 @@ export const slice = createSlice({
 		selectedTopics: [] as CaseTopic[],
 		answeredQuestions: [] as Question[],
 		selectedTemplate: null as Template,
-		sessionDocument: null as SessionDocument,
+		currentSessionDocument: null as string,
+		sessionDocuments: {
+			_WP: null as SessionDocument,
+			_GR: null as SessionDocument,
+			_ET: null as SessionDocument,
+			_RES_CD: null as SessionDocument,
+			_RES_CO: null as SessionDocument,
+			_RES_I: null as SessionDocument,
+			_RES_KM: null as SessionDocument,
+		},
 		userData: {} as UserData,
 	},
 	reducers: {
@@ -70,12 +81,19 @@ export const slice = createSlice({
 				}
 			});
 		},
+		updateCurrentSessionDocument: (state, action) => {
+			state.currentSessionDocument = action.payload;
+		},
 		updateSessionDocument: (state, action) => {
-			state.sessionDocument = action.payload;
+			const { document, type } = action.payload;
+			state.sessionDocuments[type] = document;
 		},
 		updateSessionDocumentComponent: (state, action) => {
-			const documentParagraphComponent = action.payload;
-			state.sessionDocument = updateSessionDocumentMapper(documentParagraphComponent, state.sessionDocument);
+			const { documentParaComponent } = action.payload;
+			state.sessionDocuments[state.currentSessionDocument] = updateSessionDocumentMapper(
+				documentParaComponent,
+				state.sessionDocuments[state.currentSessionDocument],
+			);
 		},
 		updateSelectedTopics: (state, action) => {
 			state.selectedTopics = _.compact(action.payload);
@@ -115,6 +133,7 @@ export const {
 	selectParagraphs,
 	deselectParagraphs,
 	updateSelectedTemplate,
+	updateCurrentSessionDocument,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
 	updateUserData,

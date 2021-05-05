@@ -1,8 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
 import { useSelector, useDispatch } from 'react-redux';
-import { CaseTopic } from 'api/vl/models';
-import { Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
 import DocumentPreview from '../components/common/DocumentPreview';
@@ -17,23 +16,28 @@ import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
+import Step2Intro from '../components/common/Step2Intro';
+import Step3Intro from '../components/common/Step3Intro';
+import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
 import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
+import { Settlement } from '../components/common/Settlement';
+import { CDF1 } from '../components/common/UserData/CDF1';
+import CDFComplete from '../components/common/UserData/CDFComplete';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
 	{ feature: 'enableMonetization', alias: 'fm' },
 	{ feature: 'enableNarrative', alias: 'fn' },
+	{ feature: 'enableSelect', alias: 'fs' },
 ];
 
 const Main: FC = () => {
-	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
-	const advicePreviewOnly = !!selectedTopics.find(t => t.id === '_ADV');
 
 	const dispatch = useDispatch();
 	const { search } = useLocation();
@@ -125,23 +129,55 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/preview">
-						{advicePreviewOnly && <AdvicePreview />}
-						{!advicePreviewOnly && <DocumentPreview />}
+					<Route path="/step/settlement">
+						<Settlement />
+					</Route>
+					<Route path="/cdf">
+						<Switch>
+							<Route exact path="/cdf/form">
+								<CDF1 />
+							</Route>
+							<Route exact path="/cdf/complete">
+								<div className="w-full justify-center align-middle">
+									<CDFComplete acknowledge={false} />
+								</div>
+							</Route>
+						</Switch>
+					</Route>
+					<Route exact path="/preview">
+						<Redirect to="/preview/_ADV" />
+					</Route>
+					<Route path="/preview/:id">
+						<Switch>
+							<Route path="/preview/_ADV">
+								<AdvicePreview />
+							</Route>
+							<DocumentPreview />
+						</Switch>
 					</Route>
 					<Route path="/terms">
 						<Terms />
 					</Route>
+					<Route path="/progress-legal-case">
+						<Step3Intro />
+					</Route>
+					<Route path="/respond-to-employer">
+						<RespondToEmployer />
+					</Route>
 					<Route path="/help">
 						<Help />
+					</Route>
+					<Route path="/start-legal-process">
+						<Step2Intro />
 					</Route>
 					<Route path="/">
 						<GetStarted />
 					</Route>
 				</Switch>
 			</div>
-
-			<CheckoutModal />
+			<Route path="/preview/:type/checkout">
+				<CheckoutModal />
+			</Route>
 		</main>
 	);
 };

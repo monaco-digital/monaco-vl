@@ -3,7 +3,6 @@ import { TextField, Button, InputLabel, FormControl, Select, FormHelperText, Box
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic, Advice } from 'api/vl/models';
-import axios from 'axios';
 import { Controller, useForm } from 'react-hook-form';
 import AppState from '../../../../data/AppState';
 import { SessionDocument } from '../../../../types/SessionDocument';
@@ -12,12 +11,17 @@ import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 import config from '../../../../config';
 import { updateUserData } from '../../../../data/sessionDataSlice';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import { submitDetails } from '../../../../api/general';
 
 interface Data {
 	adviceText: string;
 	letterText: string;
 	topicsList: string;
 	templateId: string;
+}
+
+interface Props {
+	previewType?: string;
 }
 
 const getLetterText = (sessionDocument: SessionDocument) => {
@@ -35,20 +39,7 @@ const getAdviceText = (adviceParagraphs: Advice[]) => {
 	return adviceText;
 };
 
-const getTemplateId = (selectedTopics: CaseTopic[], enabledMonetization) => {
-	if (selectedTopics.find(topic => topic.id === '_LET') && !enabledMonetization) {
-		return 'LAC';
-	}
-	if (selectedTopics.find(topic => topic.id === '_RES')) {
-		if (enabledMonetization) {
-			return 'GE1';
-		}
-		return 'LAC';
-	}
-	return 'AD1';
-};
-
-const EmailModal: FC = () => {
+const EmailModal: FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 	const {
 		register,
@@ -60,7 +51,6 @@ const EmailModal: FC = () => {
 	} = useForm();
 	const watchContact = watch('contact', '');
 
-	const lambdaUrl = config.LAMBDA_URL;
 	const dispatch = useDispatch();
 	const [data, setData] = useState<Data>({
 		adviceText: '',
@@ -69,8 +59,9 @@ const EmailModal: FC = () => {
 		templateId: '',
 	});
 
-	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
-	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocument);
+	const sessionDocument = useSelector<AppState, SessionDocument>(state => {
+		return state.session.sessionDocuments[state.session.currentSessionDocument];
+	});
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const [adviceParagraphs, setAdviceParagraphs] = useState<Advice[]>([]);
 
@@ -86,9 +77,19 @@ const EmailModal: FC = () => {
 		data.adviceText = getAdviceText(adviceParagraphs);
 		data.letterText = getLetterText(sessionDocument);
 		data.topicsList = getTopicsList(selectedTopics);
-		data.templateId = getTemplateId(selectedTopics, enabledMonetization);
+		switch (previewType) {
+			case '_ADV':
+				data.templateId = 'AD1';
+				break;
+			case '_WP':
+				data.templateId = 'LAC';
+				break;
+			default:
+				break;
+		}
+
 		setData(data);
-	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization]);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, previewType]);
 
 	const onSubmit = ({ name, email, contact }) => {
 		const contactMe = contact === 'true';
@@ -101,25 +102,17 @@ const EmailModal: FC = () => {
 			}),
 		);
 		if (contactMe) {
-			history.push('/preview/checkout/cdf1');
+			history.replace(`/preview/${previewType}/checkout/cdf1`);
 		} else {
-			history.push('/preview/checkout/email/complete');
-
-			const submissionData = {
-				...data,
-				contactMe,
-				name,
-				recipient: email,
-			};
-			axios({
-				method: 'POST',
-				url: lambdaUrl,
-				data: submissionData,
-				headers: {
-					'Content-Type': 'application/json',
-				},
-			});
+			history.replace(`/preview/${previewType}/checkout/email/complete`);
 		}
+		const submissionData = {
+			...data,
+			contactMe: false,
+			name,
+			recipient: email,
+		};
+		submitDetails(submissionData);
 	};
 
 	return (
@@ -192,6 +185,10 @@ const EmailModal: FC = () => {
 			</div>
 		</form>
 	);
+};
+
+EmailModal.defaultProps = {
+	previewType: '',
 };
 
 export default EmailModal;

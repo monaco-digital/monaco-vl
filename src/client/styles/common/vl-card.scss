@@ -18,6 +18,10 @@
 			}
 		}
 	}
+
+	.vl-card__enable-select {
+		user-select: text;
+	}
 }
 
 .vl-card--light {

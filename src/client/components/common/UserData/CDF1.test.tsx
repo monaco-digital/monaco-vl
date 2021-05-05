@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 import { CDF1 } from './CDF1';
 import { renderWithProviders } from '../../../../testing/utils.test';
-import { submitDetails } from '../../../../api/general';
+import { createCDF } from '../../../../api/general';
 
 jest.mock('../../../../api/general');
 
@@ -18,7 +18,7 @@ describe('CDF1 Page', () => {
 				selectedTopics: [],
 				answeredQuestions: [],
 				selectedTemplate: null,
-				sessionDocument: null,
+				sessionDocuments: null,
 				userData: {
 					adviceText: 'Advice Text',
 					letterText: 'Letter Text',
@@ -29,7 +29,7 @@ describe('CDF1 Page', () => {
 			},
 		};
 
-		const mock = submitDetails as jest.Mock<any, any>;
+		const mock = createCDF as jest.Mock<any, any>;
 
 		mock.mockReturnValue(Promise.resolve());
 	});
@@ -54,10 +54,13 @@ describe('CDF1 Page', () => {
 	});
 
 	test('Given all fields filled out When Clicking Submit Then fields submitted to API', async () => {
-		const { history } = renderWithProviders(<CDF1 />, { initialState });
+		const { history } = renderWithProviders(<CDF1 previewType="_ADV" />, { initialState });
 
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('description').querySelector('textarea'), 'Description Text');
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('jobTitle').querySelector('input'), 'A job');
+		// eslint-disable-next-line testing-library/no-node-access
 		userEvent.type(screen.getByTestId('phone').querySelector('input'), '123456789');
 
 		userEvent.selectOptions(screen.getByLabelText('Still employed *'), 'Yes');
@@ -68,21 +71,20 @@ describe('CDF1 Page', () => {
 		userEvent.click(screen.getByText('Request Callback'));
 
 		await waitFor(() => {
-			expect(submitDetails).toHaveBeenCalledWith({
-				adviceText: 'Advice Text',
-				letterText: 'Letter Text',
+			expect(createCDF).toHaveBeenCalledWith({
 				topicsList: 'D,RR',
 				name: 'First Last',
 				recipient: 'email@email.com',
 				description: 'Description Text',
 				phone: '123456789',
+				job: 'A job',
 				salary: '£0 - £30,000',
 				'settlement-agreement': 'Yes',
 				'still-employed': 'Yes',
 				'years-employed': 'Less than 2 years',
 			});
 
-			expect(history.location.pathname).toEqual('/preview/checkout/cdf1/complete');
+			expect(history.location.pathname).toEqual('/preview/_ADV/checkout/cdf1/complete');
 		});
 	});
 });
