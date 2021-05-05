@@ -6,21 +6,26 @@ import AppState from '../../../../data/AppState';
 
 const EndToEndStepper: React.FC = () => {
 	const currentStep = useSelector<AppState, number>(state => state.session.currentStep);
+
 	return (
-		<Stepper activeStep={currentStep}>
-			<Step>
-				<StepLabel>Answer legal questions</StepLabel>
-			</Step>
-			<Step>
-				<StepLabel>Send legal letter</StepLabel>
-			</Step>
-			<Step>
-				<StepLabel>Finalise legal documents</StepLabel>
-			</Step>
-			<Step>
-				<StepLabel>Agree a settlement</StepLabel>
-			</Step>
-		</Stepper>
+		<div>
+			{currentStep >= 0 && (
+				<Stepper activeStep={currentStep}>
+					<Step>
+						<StepLabel>Advice</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Legal</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Document</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Settlement</StepLabel>
+					</Step>
+				</Stepper>
+			)}
+		</div>
 	);
 };
 

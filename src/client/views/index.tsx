@@ -9,7 +9,7 @@ import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
 import { setAllTopics } from '../../data/topicDataSlice';
-import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
+import { updateCurrentStep, updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
 import AppState from '../../data/AppState';
 import EndToEndStepper from '../components/common/EndToEndStepper';
@@ -49,6 +49,10 @@ const Main: FC = () => {
 			ReactGA.pageview(location.pathname);
 		});
 	}, [history]);
+
+	useEffect(() => {
+		dispatch(updateCurrentStep(-1));
+	}, [dispatch]);
 
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.
