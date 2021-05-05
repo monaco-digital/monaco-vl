@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Typography } from '@material-ui/core';
+import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const Step3Intro: React.FC = () => {
@@ -19,7 +19,7 @@ const Step3Intro: React.FC = () => {
 	];
 
 	const handleBack = () => {
-		history.push('/preview/_WP');
+		history.goBack();
 	};
 
 	const handleOnClick = () => {
@@ -69,11 +69,49 @@ const Step3Intro: React.FC = () => {
 					color={iconColour}
 					className="step-intro__number-icon"
 				/>
-				<Typography variant="h4">Progress legal case</Typography>
+				<Typography variant="h4">Negotiate</Typography>
 			</div>
-			<div className="step-intro__text">
-				<Typography variant="body1">You now have 3 options depending on how your employer reacts:</Typography>
-			</div>
+			<Typography variant="body1" paragraph>
+				Well done. By now you have generated your advice note and also your initial legal letter. If you have sent your
+				letter (or if we have sent it for you) then your employer should respond.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				Depending on their response, you can generate one of three documents to progress your negotiation.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				If your employer has replied to your letter, you can generate a response letter. The purpose of this is to tie
+				off the negotiation at a suitable level.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				If your employer is ignoring you or the negotiation has stalled, you can generate a formal grievance letter (see
+				your advice note for more info). The purpose of this is to force your employer to respond and set out their side
+				of the story.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				If your{' '}
+				<Link
+					href="https://www.monacosolicitors.co.uk/tribunals/time-limits/"
+					target="_blank"
+					rel="noopener"
+					color="primary"
+				>
+					3 month time limit
+				</Link>{' '}
+				is running out, you can{' '}
+				<Link
+					href="https://www.monacosolicitors.co.uk/tribunals/commencing-the-acas-pre-claim-process-for-employment-tribunals/"
+					target="_blank"
+					rel="noopener"
+					color="primary"
+				>
+					Contact ACAS
+				</Link>{' '}
+				and also start putting together an employment tribunal claim. You may have to issue a claim just to get the
+				employer to negotiate. Most claims settle out of court.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				Choose one of the following options:
+			</Typography>
 			<div className="step-intro__options">{options}</div>
 			<div className="step-intro__buttons">
 				<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>

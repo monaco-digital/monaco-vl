@@ -6,8 +6,8 @@
 		margin: 2rem 0rem 2rem 0rem;
 	}
 
-	.step-intro__bullets {
-		margin: 2rem 0rem 8rem 2rem;
+	ul {
+		margin-left: 2rem;
 	}
 
 	.step-intro__buttons {
@@ -24,6 +24,7 @@
 		align-items: center;
 		flex-direction: row;
 		display: flex;
+		margin-bottom: 1rem;
 	}
 
 	.step-intro__options {
