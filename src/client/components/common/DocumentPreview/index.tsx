@@ -12,6 +12,7 @@ import {
 	SessionParagraph,
 	SessionDocument,
 } from '../../../../types/SessionDocument';
+import EndToEndStepper from '../EndToEndStepper';
 import { PreviewParagraph } from '../DocumentPreviewComponents';
 import { createSessionDocument } from '../../../../utils/sessionDocument';
 import VLcard from '../VLcard';
@@ -162,6 +163,7 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
+				<EndToEndStepper />
 				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />

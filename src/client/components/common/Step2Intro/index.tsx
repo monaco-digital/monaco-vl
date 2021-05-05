@@ -4,6 +4,7 @@ import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
+import EndToEndStepper from '../EndToEndStepper';
 import { updateCurrentStep } from '../../../../data/sessionDataSlice';
 
 const Step2Intro: React.FC = () => {
@@ -29,6 +30,7 @@ const Step2Intro: React.FC = () => {
 
 	return (
 		<div className="step-intro">
+			<EndToEndStepper />
 			<div className="step-intro__icon-and-header">
 				<Icon
 					path={mdiNumeric2Circle}

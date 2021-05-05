@@ -4,9 +4,19 @@ import EndToEndStepper from '.';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
 describe('EndToEndStepper Component', () => {
-	test('When loading EndToEndStepper Then Component renders', () => {
-		renderWithProviders(<EndToEndStepper />);
+	let initialState;
 
-		expect(screen.getByText('Answer legal questions')).toBeInTheDocument();
+	beforeEach(() => {
+		initialState = {
+			session: {
+				currentStep: 1,
+			},
+		};
+	});
+
+	test('When loading EndToEndStepper Then component renders', () => {
+		renderWithProviders(<EndToEndStepper />, { initialState });
+
+		expect(screen.getByTestId('stepper-component')).toBeInTheDocument();
 	});
 });

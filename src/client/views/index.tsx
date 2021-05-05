@@ -125,7 +125,6 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<EndToEndStepper />
 			<div className="screen container">
 				<Switch>
 					<Route path="/questions">

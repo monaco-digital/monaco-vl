@@ -8,6 +8,7 @@ import { Box, Fab } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 
 import AppState from '../../../../data/AppState';
+import EndToEndStepper from '../EndToEndStepper';
 import VLcard from '../VLcard';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 
@@ -61,6 +62,7 @@ const AdvicePreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
+				<EndToEndStepper />
 				<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
 					<div className="letter-preview__body">
 						{adviceParagraphs.map(paragraph => (

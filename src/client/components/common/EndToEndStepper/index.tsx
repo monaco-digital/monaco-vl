@@ -9,22 +9,20 @@ const EndToEndStepper: React.FC = () => {
 
 	return (
 		<div>
-			{currentStep >= 0 && (
-				<Stepper activeStep={currentStep}>
-					<Step>
-						<StepLabel>Advice</StepLabel>
-					</Step>
-					<Step>
-						<StepLabel>Legal</StepLabel>
-					</Step>
-					<Step>
-						<StepLabel>Document</StepLabel>
-					</Step>
-					<Step>
-						<StepLabel>Settlement</StepLabel>
-					</Step>
-				</Stepper>
-			)}
+			<Stepper activeStep={currentStep} data-testid="stepper-component">
+				<Step>
+					<StepLabel>Advice</StepLabel>
+				</Step>
+				<Step>
+					<StepLabel>Legal</StepLabel>
+				</Step>
+				<Step>
+					<StepLabel>Document</StepLabel>
+				</Step>
+				<Step>
+					<StepLabel>Settlement</StepLabel>
+				</Step>
+			</Stepper>
 		</div>
 	);
 };

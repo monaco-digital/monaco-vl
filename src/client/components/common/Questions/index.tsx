@@ -8,6 +8,7 @@ import { Box, Fab } from '@material-ui/core';
 import AppState from '../../../../data/AppState';
 import { Question as QuestionT } from '../../../../types/Questions';
 import { getNextQuestion } from '../../../../clustering/questionFlow';
+import EndToEndStepper from '../EndToEndStepper';
 import Question from '../Question';
 import {
 	addAnsweredQuestion,
@@ -77,6 +78,7 @@ const Questions: FC = () => {
 	return (
 		<>
 			<div className={classes}>
+				<EndToEndStepper />
 				<Switch>
 					<Route exact path="/questions">
 						<Redirect to={`/questions/${currentQuestionId}`} />

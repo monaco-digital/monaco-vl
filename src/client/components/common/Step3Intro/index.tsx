@@ -5,6 +5,7 @@ import Icon from '@mdi/react';
 import { Fab, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { updateCurrentStep } from '../../../../data/sessionDataSlice';
+import EndToEndStepper from '../EndToEndStepper';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -70,6 +71,7 @@ const Step3Intro: React.FC = () => {
 
 	return (
 		<div className="step-intro">
+			<EndToEndStepper />
 			<div className="step-intro__icon-and-header">
 				<Icon
 					path={mdiNumeric3Circle}
