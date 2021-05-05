@@ -51,7 +51,6 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 	} = useForm();
 	const watchContact = watch('contact', '');
 
-	const lambdaUrl = config.LAMBDA_URL;
 	const dispatch = useDispatch();
 	const [data, setData] = useState<Data>({
 		adviceText: '',
@@ -60,7 +59,6 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 		templateId: '',
 	});
 
-	const enabledMonetization = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => {
 		return state.session.sessionDocuments[state.session.currentSessionDocument];
 	});
@@ -91,7 +89,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 		}
 
 		setData(data);
-	}, [sessionDocument, selectedTopics, adviceParagraphs, data, enabledMonetization, previewType]);
+	}, [sessionDocument, selectedTopics, adviceParagraphs, data, previewType]);
 
 	const onSubmit = ({ name, email, contact }) => {
 		const contactMe = contact === 'true';
@@ -104,9 +102,9 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 			}),
 		);
 		if (contactMe) {
-			history.push(`/preview/${previewType}/checkout/cdf1`);
+			history.replace(`/preview/${previewType}/checkout/cdf1`);
 		} else {
-			history.push(`/preview/${previewType}/checkout/email/complete`);
+			history.replace(`/preview/${previewType}/checkout/email/complete`);
 		}
 		const submissionData = {
 			...data,

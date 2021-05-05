@@ -24,7 +24,7 @@ const CDFComplete: FC<Props> = ({ acknowledge, previewType }: Props) => {
 					size="large"
 					color="secondary"
 					onClick={() => {
-						history.push(`/preview/${previewType}`);
+						history.replace(`/preview/${previewType}`);
 					}}
 				>
 					Done

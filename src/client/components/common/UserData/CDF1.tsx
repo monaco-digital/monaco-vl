@@ -67,7 +67,7 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 		if (matchDefaultFlow) {
 			history.push('/cdf/complete');
 		} else {
-			history.push(`/preview/${previewType}/checkout/cdf1/complete`);
+			history.replace(`/preview/${previewType}/checkout/cdf1/complete`);
 		}
 	};
 

@@ -17,7 +17,7 @@ const CheckoutModal: FC = () => {
 	const { type } = useParams();
 
 	const handleClose = () => {
-		history.push(`/preview/${type}`);
+		history.replace(`/preview/${type}`);
 	};
 
 	return (
