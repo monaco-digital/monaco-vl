@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Fab, Typography } from '@material-ui/core';
+import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 const RespondToEmployer: React.FC = () => {
@@ -15,7 +15,7 @@ const RespondToEmployer: React.FC = () => {
 	];
 
 	const handleBack = () => {
-		history.push('/progress-legal-case');
+		history.goBack();
 	};
 
 	const handleOnClick = () => {
@@ -60,12 +60,28 @@ const RespondToEmployer: React.FC = () => {
 
 	return (
 		<div className="step-intro">
-			<Typography variant="h4">Template letters for responding to your employer</Typography>
-			<div className="step-intro__text">
-				<Typography variant="body1">
-					You now have 4 template letters to choose from depending on what they said:
-				</Typography>
-			</div>
+			<Typography variant="body1" paragraph>
+				Ok so your employer has replied to your legal letter and you want to generate a response to send back to them.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				The purpose of this is to progress the negotiation with the aim of finalising it at an acceptable level of
+				compensation.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				Remember to try our{' '}
+				<Link
+					href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
+					target="_blank"
+					rel="noopener"
+					color="primary"
+				>
+					calculator
+				</Link>{' '}
+				to get an idea of how much to ask for.
+			</Typography>
+			<Typography variant="body1" paragraph>
+				You now have 4 template letters to choose from depending on what your employer is saying:
+			</Typography>
 			<div className="step-intro__options">{options}</div>
 			<div className="step-intro__buttons">
 				<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>

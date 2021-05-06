@@ -118,7 +118,6 @@ const DocumentPreview: FC = () => {
 	const paragraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
 	const selectedParagraphs = paragraphs.filter(suggested => suggested.isSelected);
 
-	const isMonetizationEnabled = useSelector<AppState, boolean>(state => state.features.enableMonetization);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
 
@@ -130,6 +129,7 @@ const DocumentPreview: FC = () => {
 			case '_WP':
 				history.push('/progress-legal-case'); // Go to step 3
 				break;
+			case '_ET':
 			case '_GR':
 			case '_RES_CD':
 			case '_RES_CO':
@@ -153,11 +153,7 @@ const DocumentPreview: FC = () => {
 	}, [dispatch, id, selectedParagraphs, sessionDocument]);
 
 	const openCheckoutModal = () => {
-		if (isMonetizationEnabled && ['_RES_KM', '_RES_CO', '_RES_CD', '_RES_I'].includes(id)) {
-			history.push('/preview/checkout');
-		} else {
-			history.push(`/preview/${id}/checkout/email`);
-		}
+		history.replace(`/preview/${id}/checkout/email`);
 	};
 
 	return (

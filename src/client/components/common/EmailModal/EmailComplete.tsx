@@ -22,7 +22,7 @@ const EmailComplete: FC<Props> = ({ previewType }: Props) => {
 				size="large"
 				color="secondary"
 				onClick={() => {
-					history.push(`/preview/${previewType}`);
+					history.replace(`/preview/${previewType}`);
 				}}
 			>
 				Done

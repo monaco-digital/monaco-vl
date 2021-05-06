@@ -2,10 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Typography } from '@material-ui/core';
+import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
-import { updateCurrentStep } from '../../../../data/sessionDataSlice';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -20,13 +19,8 @@ const Step2Intro: React.FC = () => {
 	};
 
 	const handleBack = () => {
-		history.push('/preview/_ADV');
-		dispatch(updateCurrentStep(0));
+		history.goBack();
 	};
-
-	useEffect(() => {
-		dispatch(updateCurrentStep(1));
-	}, [dispatch]);
 
 	return (
 		<div className="step-intro">
@@ -39,17 +33,36 @@ const Step2Intro: React.FC = () => {
 					color={iconColour}
 					className="step-intro__number-icon"
 				/>
-				<Typography variant="h4">Start legal letter process</Typography>
+				<Typography variant="h4">Write letter</Typography>
 			</div>
-			<div className="step-intro__bullets">
+			<Typography variant="body1" paragraph>
+				Well done, you have answered your quick questions and generated your advice note. Hopefully you emailed the
+				advice note to yourself to read later. Now you can discover what a legal letter would look like. Proceed to:
+			</Typography>
+			<Typography variant="body1" paragraph component="div">
 				<ul className="list-disc">
-					<Typography variant="body1">
-						<li>Download template letter</li>
-						<li>Fill in the gaps</li>
-						<li>Send to your employer</li>
-					</Typography>
+					<li>Generate legal letter template and email it to yourself</li>
+					<li>Fill in the gaps using your advice note to help you</li>
+					<li>
+						Use our{' '}
+						<Link
+							href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
+							target="_blank"
+							rel="noopener"
+							color="primary"
+						>
+							calculator
+						</Link>{' '}
+						to see how much money to ask for
+					</li>
 				</ul>
-			</div>
+			</Typography>
+
+			<Typography variant="body1" paragraph>
+				Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. It would
+				look better coming from us! Our fee would be 10% of any settlement achieved. Or you can do it yourself for free.
+				Request a callback to discuss this with our customer service advisers.
+			</Typography>
 			<div className="step-intro__buttons">
 				<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>
 					Back

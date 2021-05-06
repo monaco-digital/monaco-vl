@@ -14,7 +14,7 @@ describe('Step 3 Intro Page', () => {
 
 	test('When loading Step3IntroPage Then Page renders', () => {
 		renderWithProviders(<Step3Intro />);
-		expect(screen.getByText('Progress legal case')).toBeInTheDocument();
+		expect(screen.getByText('Negotiate')).toBeInTheDocument();
 	});
 
 	test('When loading Step3IntroPage ensure each option appears', () => {
@@ -69,5 +69,13 @@ describe('Step 3 Intro Page', () => {
 		userEvent.click(screen.getByText('Next')); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_GR');
+	});
+
+	test('When clicking back Then previous page is loaded', () => {
+		const { history } = renderWithProviders(<Step3Intro />, { startPage: '/preview/_WP' });
+		history.push('/progress-legal-case');
+		userEvent.click(screen.getByText('Back'));
+
+		expect(history.location.pathname).toEqual('/preview/_WP');
 	});
 });

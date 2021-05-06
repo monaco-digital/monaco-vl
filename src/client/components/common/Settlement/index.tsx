@@ -37,19 +37,24 @@ export const Settlement: React.FC = () => {
 					color={iconColour}
 					className="step-intro__number-icon"
 				/>
-				<Typography variant="h4">Reach Settlement</Typography>
+				<Typography variant="h4">Agree settlement</Typography>
 			</div>
-			<div className="step-intro__text">
-				<Typography variant="body1" paragraph>
-					If you complete one of your legal letter templates & send it to us, we can send it to your employer for free.
-				</Typography>
-				<Typography variant="body1" paragraph>
-					If you are offered a settlement we can represent you at no charge to you.
-				</Typography>
-				<Typography variant="body1" paragraph>
-					Just request a callback and we will talk you through it.
-				</Typography>
-			</div>
+			<Typography variant="body1" paragraph>
+				Ok, so now you’ve read your advice note, you’ve generated your legal letter, and you’ve generated a further
+				response to your employer. It’s up to you whether to proceed to negotiate a settlement but bear in mind that:
+			</Typography>
+			<Typography variant="body1" paragraph component="div">
+				<ul className="list-disc">
+					<li>If your employer receives a formal letter they will take you more seriously</li>
+					<li>We can send the letter for you </li>
+					<li>Most cases settle out of court</li>
+				</ul>
+			</Typography>
+			<Typography variant="body1" paragraph>
+				If you do want us to send the letter/s for you, our fee is 10% of any increase in settlement achieved (if you
+				already have an offer our fee won’t apply to that). You can proceed to request a callback to discuss this.
+			</Typography>
+
 			<div className="step-intro__buttons">
 				<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleGoBackward}>
 					Back

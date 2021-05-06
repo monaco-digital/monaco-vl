@@ -15,7 +15,9 @@ describe('Step 3 Intro Page', () => {
 
 	test('When loading RespondToEmployer Then Page renders', () => {
 		renderWithProviders(<RespondToEmployer />);
-		expect(screen.getByText('Template letters for responding to your employer')).toBeInTheDocument();
+		expect(
+			screen.getByText('You now have 4 template letters to choose from depending on what your employer is saying:'),
+		).toBeInTheDocument();
 	});
 
 	test('When loading RespondToEmployer Then each option appears', () => {
@@ -97,5 +99,13 @@ describe('Step 3 Intro Page', () => {
 		userEvent.click(screen.getByText('Next')); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_RES_KM');
+	});
+
+	test('When clicking back Then previous page is loaded', () => {
+		const { history } = renderWithProviders(<RespondToEmployer />, { startPage: '/progress-legal-case' });
+		history.push('/respond-to-employer');
+		userEvent.click(screen.getByText('Back'));
+
+		expect(history.location.pathname).toEqual('/progress-legal-case');
 	});
 });

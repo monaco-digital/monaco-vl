@@ -48,9 +48,6 @@ describe('Questions Page', () => {
 				sessionDocuments: null,
 				userData: {},
 			},
-			features: {
-				enableMonetization: false,
-			},
 		};
 	});
 
