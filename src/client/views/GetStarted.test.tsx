@@ -16,7 +16,7 @@ describe('Get Started Page', () => {
 	test('When loading GetStarted Then Page renders', () => {
 		renderWithProviders(<GetStarted />);
 
-		expect(screen.getAllByText('Automated legal experience')[0]).toBeInTheDocument();
+		expect(screen.getAllByText('Advice to exit package in 4 easy steps')[0]).toBeInTheDocument();
 	});
 
 	test('When clicking get started Then questions page loads', () => {
@@ -30,7 +30,7 @@ describe('Get Started Page', () => {
 	test('Five Get Started buttons render', () => {
 		renderWithProviders(<GetStarted />);
 
-		expect(screen.getAllByText('Get Started').length).toEqual(5);
+		expect(screen.getAllByText('Get Started').length).toEqual(4);
 	});
 
 	test('When loading the richSnippetReviewsWidgets function is called', () => {
