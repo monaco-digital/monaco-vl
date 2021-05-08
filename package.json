@@ -53,7 +53,9 @@
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
 		"deploy:dev": "REACT_APP_STAGE=dev && yarn build && amplify env checkout dev && amplify publish",
-		"deploy:prod": "REACT_APP_STAGE=prod && yarn build && amplify env checkout prod && amplify publish"
+		"deploy:prod": "REACT_APP_STAGE=prod && yarn build && amplify env checkout prod && amplify publish",
+		"postinstall": "husky install",
+		"prepare": "husky install"
 	},
 	"eslintConfig": {
 		"extends": "react-app"
@@ -71,6 +73,8 @@
 		]
 	},
 	"devDependencies": {
+		"@commitlint/cli": "^12.1.1",
+		"@commitlint/config-conventional": "^12.1.1",
 		"@testing-library/jest-dom": "^5.12.0",
 		"@testing-library/react": "^11.2.6",
 		"@testing-library/user-event": "^13.1.8",
@@ -79,6 +83,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.22.1",
 		"autoprefixer": "^9.8.6",
 		"axios-mock-adapter": "^1.19.0",
+		"cz-conventional-changelog": "^3.3.0",
 		"eslint": "^7.25.0",
 		"eslint-config-airbnb": "^18.2.1",
 		"eslint-config-airbnb-typescript": "^12.3.1",
@@ -103,12 +108,31 @@
 		"postcss-import": "^12.0.1",
 		"postcss-nested": "^4.2.3",
 		"prettier": "^2.1.2",
-		"redux-mock-store": "^1.5.4"
+		"redux-mock-store": "^1.5.4",
+		"semantic-release": "^17.4.2"
+	},
+	"release": {
+		"branches": [
+			{
+				"name": "master"
+			},
+			{
+				"name": "dev",
+				"prerelease": true
+			}
+		],
+		"plugins": [
+			"@semantic-release/commit-analyzer",
+			"@semantic-release/release-notes-generator",
+			"@semantic-release/github"
+		]
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
-			"prettier --write"
-		],
-		"*.{js,ts,jsx,tsx}": "eslint --cache --fix"
+		"src/*.{js,ts,jsx,tsx}": "eslint --cache --fix"
 	}
 }
