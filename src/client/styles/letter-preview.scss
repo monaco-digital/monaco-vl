@@ -1,6 +1,10 @@
 .letter-preview {
 	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
 
+	a {
+		color: blue;
+	}
+
 	p {
 		@apply .text-sm .pb-4;
 	}
