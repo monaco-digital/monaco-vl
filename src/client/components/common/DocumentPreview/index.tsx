@@ -5,6 +5,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { Box, Fab } from '@material-ui/core';
 import { GetApp } from '@material-ui/icons';
 
+import { TemplateParagraph } from 'api/vl/models';
 import AppState from '../../../../data/AppState';
 import {
 	SessionDocumentComponent,
@@ -115,7 +116,12 @@ const DocumentPreview: FC = () => {
 	const history = useHistory();
 	const { id = '_WP' } = useParams();
 	const paragraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
-	const selectedParagraphs = paragraphs.filter(suggested => suggested.isSelected);
+	const selectedParagraphs = paragraphs.filter(
+		suggested =>
+			suggested.isSelected &&
+			// Filters out paragraphs not meant to display on this template.
+			(suggested.templateComponent as TemplateParagraph).paragraph.topicsNoneOf.every(t => t !== id),
+	);
 
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
