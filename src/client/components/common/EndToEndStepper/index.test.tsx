@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import React, { screen } from '@testing-library/react';
 
 import EndToEndStepper from '.';
 import { renderWithProviders } from '../../../../testing/utils.test';
