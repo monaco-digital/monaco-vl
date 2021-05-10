@@ -11,7 +11,6 @@ type AppState = {
 		answeredQuestions: Question[];
 		selectedTemplate: Template;
 		currentSessionDocument: string;
-		currentStep: number;
 		sessionDocuments: {
 			_WP: SessionDocument;
 			_GR: SessionDocument;

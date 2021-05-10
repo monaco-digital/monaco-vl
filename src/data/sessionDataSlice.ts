@@ -53,7 +53,6 @@ export const slice = createSlice({
 		answeredQuestions: [] as Question[],
 		selectedTemplate: null as Template,
 		currentSessionDocument: null as string,
-		currentStep: -1 as number,
 		sessionDocuments: {
 			_WP: null as SessionDocument,
 			_GR: null as SessionDocument,

@@ -6,7 +6,6 @@ import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Help: React.FC = () => {
 	const history = useHistory();
-
 	useEffect(() => {
 		ReactGA.event({
 			category: 'User',

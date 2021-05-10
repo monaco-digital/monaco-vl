@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Fab } from '@material-ui/core';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Terms: React.FC = () => {
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	return (
 		<div className="termsSection" style={{ maxWidth: '900px' }}>
