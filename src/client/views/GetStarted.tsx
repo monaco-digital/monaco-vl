@@ -38,141 +38,139 @@ const GetStarted: React.FC = () => {
 
 	return (
 		<div className="get-started">
-			<div className="get-started__main">
-				<div className="get-started__heading-mobile">
-					<Typography variant="h1">Advice to exit package in 4 easy steps</Typography>
-				</div>
+			<div className="get-started__heading-mobile">
+				<Typography variant="h1">Advice to exit package in 4 easy steps</Typography>
+			</div>
 
-				{/* First row */}
-				<Grid container justify="space-between" alignItems="center" spacing={isSmall ? 5 : 8}>
-					<Grid item md={6} xs={12} className="get-started__item-1">
-						<div className="get-started__heading-desktop">
-							<Typography variant="h1">Advice to exit package in 4 easy steps</Typography>
+			{/* First row */}
+			<Grid container justify="space-between" alignItems="center" spacing={isSmall ? 5 : 8}>
+				<Grid item md={6} xs={12} className="get-started__item-1">
+					<div className="get-started__heading-desktop">
+						<Typography variant="h1">Advice to exit package in 4 easy steps</Typography>
+					</div>
+					<div className="get-started__icon-and-header">
+						<Icon
+							path={mdiNumeric1Circle}
+							title="1 icon"
+							size={iconSize}
+							color={iconColour}
+							className="get-started__number-icon"
+						/>
+						<Typography variant="h4">Get advice</Typography>
+					</div>
+					<div className="get-started__bullets">
+						<ul className="list-disc">
+							<Typography variant="body1">
+								<li>Answer quick questions</li>
+								<li>Generate written advice</li>
+								<li>Decide whether to proceed</li>
+							</Typography>
+						</ul>
+					</div>
+					<div className="centered-mobile">
+						<div className={isSmall ? 'flex flex-col' : 'flex flex-row'}>
+							<GetStartedButton />
+							<Button className="get-started__learn-more-button" size="large" onClick={executeScroll}>
+								Learn more
+							</Button>
 						</div>
-						<div className="get-started__icon-and-header">
-							<Icon
-								path={mdiNumeric1Circle}
-								title="1 icon"
-								size={iconSize}
-								color={iconColour}
-								className="get-started__number-icon"
-							/>
-							<Typography variant="h4">Get advice</Typography>
-						</div>
-						<div className="get-started__bullets">
-							<ul className="list-disc">
-								<Typography variant="body1">
-									<li>Answer quick questions</li>
-									<li>Generate written advice</li>
-									<li>Decide whether to proceed</li>
-								</Typography>
-							</ul>
-						</div>
-						<div className="centered-mobile">
-							<div className={isSmall ? 'flex flex-col' : 'flex flex-row'}>
-								<GetStartedButton />
-								<Button className="get-started__learn-more-button" size="large" onClick={executeScroll}>
-									Learn more
-								</Button>
-							</div>
-						</div>
-					</Grid>
-					<Grid item md={6} xs={12} className="get-started__item-2">
-						<img src={main_image} alt="" />
-					</Grid>
-
-					{/* Second Row */}
-					<Grid item md={6} xs={12} className="get-started__item-3" ref={learnMoreRef}>
-						<img src={lawyer_signing_doc_image} alt="" />
-					</Grid>
-					<Grid item md={6} xs={12} className="get-started__item-4">
-						<div className="centered-desktop">
-							<div className="flex-col">
-								<div className="get-started__icon-and-header">
-									<Icon
-										path={mdiNumeric2Circle}
-										title="2 icon"
-										size={iconSize}
-										color={iconColour}
-										className="get-started__number-icon"
-									/>
-									<Typography variant="h4">Write letter</Typography>
-								</div>
-								<div className="get-started__bullets">
-									<ul className="list-disc">
-										<Typography variant="body1">
-											<li>Download letter template</li>
-											<li>Get help filling in the gaps</li>
-											<li>We can send to your employer</li>
-										</Typography>
-									</ul>
-								</div>
-								<GetStartedButton />
-							</div>
-						</div>
-					</Grid>
-
-					{/* Third Row */}
-					<Grid item md={6} xs={12} className="get-started__item-5">
-						<div className="get-started__icon-and-header">
-							<Icon
-								path={mdiNumeric3Circle}
-								title="3 icon"
-								size={iconSize}
-								color={iconColour}
-								className="get-started__number-icon"
-							/>
-							<Typography variant="h4">Negotiate</Typography>
-						</div>
-						<div className="get-started__bullets">
-							<ul className="list-disc">
-								<Typography variant="body1">
-									<li>Get response from employer</li>
-									<li>Build reply to employer</li>
-									<li>Generate court documents if needed</li>
-								</Typography>
-							</ul>
-						</div>
-						<GetStartedButton />
-					</Grid>
-					<Grid item md={6} xs={12} className="get-started__item-6">
-						<img src={man_with_coffee_and_letter_image} alt="" />
-					</Grid>
-
-					{/* Fourth Row */}
-					<Grid item md={6} xs={12} className="get-started__item-7">
-						<img src={black_man_reading_letter_image} alt="" />
-					</Grid>
-					<Grid item md={6} xs={12} className="get-started__item-8">
-						<div className="centered-desktop">
-							<div className="flex-col">
-								<div className="get-started__icon-and-header">
-									<Icon
-										path={mdiNumeric4Circle}
-										title="4 icon"
-										size={iconSize}
-										color={iconColour}
-										className="get-started__number-icon"
-									/>
-									<Typography variant="h4">Agree settlement</Typography>
-								</div>
-								<div className="get-started__bullets">
-									<ul className="list-disc">
-										<Typography variant="body1">
-											<li>Most cases settle out of court</li>
-											<li>We can sign paperwork for you</li>
-											<li>We charge 10% of settlement</li>
-										</Typography>
-									</ul>
-								</div>
-								<GetStartedButton />
-							</div>
-						</div>
-					</Grid>
+					</div>
+				</Grid>
+				<Grid item md={6} xs={12} className="get-started__item-2">
+					<img src={main_image} alt="" />
 				</Grid>
 
-				<div id="text-banner-widget" className="get-started__reviews-widget" />
-			</div>
+				{/* Second Row */}
+				<Grid item md={6} xs={12} className="get-started__item-3" ref={learnMoreRef}>
+					<img src={lawyer_signing_doc_image} alt="" />
+				</Grid>
+				<Grid item md={6} xs={12} className="get-started__item-4">
+					<div className="centered-desktop">
+						<div className="flex-col">
+							<div className="get-started__icon-and-header">
+								<Icon
+									path={mdiNumeric2Circle}
+									title="2 icon"
+									size={iconSize}
+									color={iconColour}
+									className="get-started__number-icon"
+								/>
+								<Typography variant="h4">Write letter</Typography>
+							</div>
+							<div className="get-started__bullets">
+								<ul className="list-disc">
+									<Typography variant="body1">
+										<li>Download letter template</li>
+										<li>Get help filling in the gaps</li>
+										<li>We can send to your employer</li>
+									</Typography>
+								</ul>
+							</div>
+							<GetStartedButton />
+						</div>
+					</div>
+				</Grid>
+
+				{/* Third Row */}
+				<Grid item md={6} xs={12} className="get-started__item-5">
+					<div className="get-started__icon-and-header">
+						<Icon
+							path={mdiNumeric3Circle}
+							title="3 icon"
+							size={iconSize}
+							color={iconColour}
+							className="get-started__number-icon"
+						/>
+						<Typography variant="h4">Negotiate</Typography>
+					</div>
+					<div className="get-started__bullets">
+						<ul className="list-disc">
+							<Typography variant="body1">
+								<li>Get response from employer</li>
+								<li>Build reply to employer</li>
+								<li>Generate court documents if needed</li>
+							</Typography>
+						</ul>
+					</div>
+					<GetStartedButton />
+				</Grid>
+				<Grid item md={6} xs={12} className="get-started__item-6">
+					<img src={man_with_coffee_and_letter_image} alt="" />
+				</Grid>
+
+				{/* Fourth Row */}
+				<Grid item md={6} xs={12} className="get-started__item-7">
+					<img src={black_man_reading_letter_image} alt="" />
+				</Grid>
+				<Grid item md={6} xs={12} className="get-started__item-8">
+					<div className="centered-desktop">
+						<div className="flex-col">
+							<div className="get-started__icon-and-header">
+								<Icon
+									path={mdiNumeric4Circle}
+									title="4 icon"
+									size={iconSize}
+									color={iconColour}
+									className="get-started__number-icon"
+								/>
+								<Typography variant="h4">Agree settlement</Typography>
+							</div>
+							<div className="get-started__bullets">
+								<ul className="list-disc">
+									<Typography variant="body1">
+										<li>Most cases settle out of court</li>
+										<li>We can sign paperwork for you</li>
+										<li>We charge 10% of settlement</li>
+									</Typography>
+								</ul>
+							</div>
+							<GetStartedButton />
+						</div>
+					</div>
+				</Grid>
+			</Grid>
+
+			<div id="text-banner-widget" className="get-started__reviews-widget" />
 		</div>
 	);
 };

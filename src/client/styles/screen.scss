@@ -1,8 +1,12 @@
 .screen {
 	min-height: calc(100vh - 103px);
-	@apply .flex .flex-col .pt-8 .pb-16;
+	@apply .flex .flex-col;
+
+	padding: 0 2rem 1rem 2rem;
 
 	@screen md {
 		@apply .flex-row;
+
+		padding: 0 8rem 2rem 8rem;
 	}
 }

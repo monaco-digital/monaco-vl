@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 import { Box, Fab } from '@material-ui/core';
 import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
-import { updateCurrentStep } from '../../data/sessionDataSlice';
 
 const Help: React.FC = () => {
 	const history = useHistory();
-	const dispatch = useDispatch();
 
 	useEffect(() => {
 		ReactGA.event({
@@ -16,10 +13,6 @@ const Help: React.FC = () => {
 			action: 'Opened help page',
 		});
 	}, []);
-
-	useEffect(() => {
-		dispatch(updateCurrentStep(-1));
-	}, [dispatch]);
 
 	return (
 		<div className="helpsection" style={{ maxWidth: '904px' }}>

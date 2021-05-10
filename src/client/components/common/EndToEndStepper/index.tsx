@@ -1,15 +1,14 @@
 import React from 'react';
 import { Stepper, Step, StepLabel } from '@material-ui/core';
-import { useSelector } from 'react-redux';
 
-import AppState from '../../../../data/AppState';
+interface Props {
+	step: number;
+}
 
-const EndToEndStepper: React.FC = () => {
-	const currentStep = useSelector<AppState, number>(state => state.session.currentStep);
-
+const EndToEndStepper: React.FC<Props> = ({ step }: Props) => {
 	return (
-		<div>
-			<Stepper activeStep={currentStep} data-testid="stepper-component">
+		<div className="end-to-end-stepper">
+			<Stepper activeStep={step} data-testid="stepper-component">
 				<Step>
 					<StepLabel>Advice</StepLabel>
 				</Step>

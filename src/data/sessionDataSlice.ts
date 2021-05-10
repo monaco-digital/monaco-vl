@@ -105,9 +105,6 @@ export const slice = createSlice({
 		updateAnsweredQuestions: (state, action) => {
 			state.answeredQuestions = action.payload;
 		},
-		updateCurrentStep: (state, action) => {
-			state.currentStep = action.payload;
-		},
 		updateSelectedTemplate: (state, action) => {
 			state.selectedTemplate = action.payload;
 		},
@@ -138,7 +135,6 @@ export const {
 	deselectParagraphs,
 	updateSelectedTemplate,
 	updateCurrentSessionDocument,
-	updateCurrentStep,
 	updateSessionDocument,
 	updateSessionDocumentComponent,
 	updateUserData,

@@ -13,7 +13,6 @@ import Question from '../Question';
 import {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
-	updateCurrentStep,
 	updateSelectedTopics,
 } from '../../../../data/sessionDataSlice';
 
@@ -29,10 +28,6 @@ const Questions: FC = () => {
 	const { id: currentQuestionId } = currentQuestion || {};
 
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(updateCurrentStep(0));
-	}, [dispatch]);
 
 	if (!currentQuestion) {
 		history.push('/statements');
@@ -77,28 +72,30 @@ const Questions: FC = () => {
 
 	return (
 		<>
-			<div className={classes}>
-				<EndToEndStepper />
-				<Switch>
-					<Route exact path="/questions">
-						<Redirect to={`/questions/${currentQuestionId}`} />
-					</Route>
-					<Route path="/questions/:id">
-						<Question question={currentQuestion} />
-					</Route>
-				</Switch>
-				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
-							Back
-						</Fab>
+			<div className="flex-col w-full">
+				<EndToEndStepper step={0} />
+				<div className={classes}>
+					<Switch>
+						<Route exact path="/questions">
+							<Redirect to={`/questions/${currentQuestionId}`} />
+						</Route>
+						<Route path="/questions/:id">
+							<Question question={currentQuestion} />
+						</Route>
+					</Switch>
+					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
+								Back
+							</Fab>
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
+								Next
+							</Fab>
+						</Box>
 					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				</div>
 			</div>
 		</>
 	);

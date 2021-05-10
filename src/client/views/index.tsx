@@ -9,10 +9,9 @@ import AdvicePreview from '../components/common/AdvicePreview';
 import Header from '../components/common/Header';
 import Questions from '../components/common/Questions';
 import { setAllTopics } from '../../data/topicDataSlice';
-import { updateCurrentStep, updateSuggestedParagraphs } from '../../data/sessionDataSlice';
+import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
 import AppState from '../../data/AppState';
-import EndToEndStepper from '../components/common/EndToEndStepper';
 import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
@@ -49,10 +48,6 @@ const Main: FC = () => {
 			ReactGA.pageview(location.pathname);
 		});
 	}, [history]);
-
-	useEffect(() => {
-		dispatch(updateCurrentStep(-1));
-	}, [dispatch]);
 
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.
@@ -125,7 +120,7 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<div className="screen container">
+			<div className="screen">
 				<Switch>
 					<Route path="/questions">
 						<Questions />

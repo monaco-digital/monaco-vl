@@ -1,4 +1,10 @@
 .step-intro {
+	@apply .w-full;
+
+	@screen md {
+		@apply .w-1/2;
+	}
+
 	justify-content: center;
 	flex-direction: column;
 

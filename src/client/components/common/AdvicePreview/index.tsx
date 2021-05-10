@@ -53,42 +53,44 @@ const AdvicePreview: FC = () => {
 
 	return (
 		<>
-			<div className="letter-preview">
-				<EndToEndStepper />
-				<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
-					<div className="letter-preview__body">
-						{adviceParagraphs.map(paragraph => (
-							<AdviceDocParagraph key={paragraph.id} paragraph={paragraph} />
-						))}
-					</div>
-				</VLcard>
-				<Box
-					position="fixed"
-					width="90%"
-					maxWidth="48rem"
-					bottom={16}
-					zIndex={10}
-					display="flex"
-					flexDirection="row"
-					justifyContent="flex-end"
-				>
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={history.goBack}>
-							Back
-						</Fab>
+			<div className="flex-col w-full">
+				<EndToEndStepper step={0} />
+				<div className="letter-preview">
+					<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
+						<div className="letter-preview__body">
+							{adviceParagraphs.map(paragraph => (
+								<AdviceDocParagraph key={paragraph.id} paragraph={paragraph} />
+							))}
+						</div>
+					</VLcard>
+					<Box
+						position="fixed"
+						width="90%"
+						maxWidth="48rem"
+						bottom={16}
+						zIndex={10}
+						display="flex"
+						flexDirection="row"
+						justifyContent="flex-end"
+					>
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={history.goBack}>
+								Back
+							</Fab>
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
+								<GetApp />
+								&nbsp;Email
+							</Fab>
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
+								Next
+							</Fab>
+						</Box>
 					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
-							<GetApp />
-							&nbsp;Email
-						</Fab>
-					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				</div>
 			</div>
 		</>
 	);
