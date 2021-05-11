@@ -120,7 +120,7 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<div className="screen container">
+			<div className="screen container mx-auto">
 				<Switch>
 					<Route path="/questions">
 						<Questions />

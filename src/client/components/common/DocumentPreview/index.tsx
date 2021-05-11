@@ -13,6 +13,7 @@ import {
 	SessionParagraph,
 	SessionDocument,
 } from '../../../../types/SessionDocument';
+import EndToEndStepper from '../EndToEndStepper';
 import { PreviewParagraph } from '../DocumentPreviewComponents';
 import { createSessionDocument } from '../../../../utils/sessionDocument';
 import VLcard from '../VLcard';
@@ -163,44 +164,47 @@ const DocumentPreview: FC = () => {
 
 	return (
 		<>
-			<div className="letter-preview">
-				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
-					<div className="letter-preview__body">
-						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
-					</div>
-				</VLcard>
-				<Box
-					position="fixed"
-					width="90%"
-					maxWidth="48rem"
-					bottom={16}
-					zIndex={10}
-					display="flex"
-					flexDirection="row"
-					justifyContent="flex-end"
-				>
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={history.goBack}>
-							Back
-						</Fab>
-					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
-							<GetApp />
-							&nbsp;Email
-						</Fab>
-						{isDsFlow && (
-							<Fab variant="extended" onClick={downloadDataForDS}>
-								Download
+			<div className="flex-col w-full">
+				<EndToEndStepper step={id === '_WP' ? 1 : 2} />
+				<div className="letter-preview">
+					<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
+						<div className="letter-preview__body">
+							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
+						</div>
+					</VLcard>
+					<Box
+						position="fixed"
+						width="90%"
+						maxWidth="48rem"
+						bottom={16}
+						zIndex={10}
+						display="flex"
+						flexDirection="row"
+						justifyContent="flex-end"
+					>
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={history.goBack}>
+								Back
 							</Fab>
-						)}
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
+								<GetApp />
+								&nbsp;Email
+							</Fab>
+							{isDsFlow && (
+								<Fab variant="extended" onClick={downloadDataForDS}>
+									Download
+								</Fab>
+							)}
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
+								Next
+							</Fab>
+						</Box>
 					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				</div>
 			</div>
 		</>
 	);
