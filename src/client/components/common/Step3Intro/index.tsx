@@ -28,10 +28,10 @@ const Step3Intro: React.FC = () => {
 				history.push('/respond-to-employer');
 				break;
 			case '1':
-				history.push('/preview/_GR');
+				history.push('/grievance-explanation');
 				break;
 			case '2':
-				history.push('preview/_ET');
+				history.push('/employment-tribunal-explanation');
 				break;
 			default:
 				break;

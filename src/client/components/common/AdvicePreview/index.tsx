@@ -10,6 +10,7 @@ import { GetApp } from '@material-ui/icons';
 import AppState from '../../../../data/AppState';
 import VLcard from '../VLcard';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
+import PreviewAdviceExplanation from '../PreviewAdviceExplanation/index';
 
 interface Props {
 	paragraph: Advice;
@@ -53,6 +54,7 @@ const AdvicePreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
+				<PreviewAdviceExplanation />
 				<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
 					<div className="letter-preview__body">
 						{adviceParagraphs.map(paragraph => (

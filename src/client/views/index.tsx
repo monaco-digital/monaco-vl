@@ -18,6 +18,8 @@ import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
 import Step2Intro from '../components/common/Step2Intro';
 import Step3Intro from '../components/common/Step3Intro';
+import GrievanceLetterExplanation from '../components/common/GrievanceLetterExplanation';
+import EmploymentTribunalExplanation from '../components/common/EmploymentTribunalExplanation';
 import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
@@ -160,6 +162,12 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/progress-legal-case">
 						<Step3Intro />
+					</Route>
+					<Route path="/grievance-explanation">
+						<GrievanceLetterExplanation />
+					</Route>
+					<Route path="/employment-tribunal-explanation">
+						<EmploymentTribunalExplanation />
 					</Route>
 					<Route path="/respond-to-employer">
 						<RespondToEmployer />
