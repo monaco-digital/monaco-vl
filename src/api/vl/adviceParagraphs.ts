@@ -228,7 +228,7 @@ const adviceParagraphs = [
 	{
 		id: nanoid(),
 		text:
-			'## Risk of redundancy\n\nUnfortunately, your employer doesn’t need to follow particularly rigorous procedures in order to make you redundant, as you’ve been employed for less than two years. That means that you don’t have a claim based on this unless there is an element of **discrimination**,**whistleblowing** or taking action to protect your **health and safety**.\n\n',
+			'## Risk of redundancy\n\nUnfortunately, your employer doesn’t need to follow particularly rigorous procedures in order to make you redundant, as you’ve been employed for less than two years. That means that you don’t have a claim based on this unless there is an element of **discrimination**, **whistleblowing** or taking action to protect your **health and safety**.\n\n',
 		topicsOneOf: '',
 		topicsAllOf: 'RR,E,2y',
 		topicsNoneOf: '',
