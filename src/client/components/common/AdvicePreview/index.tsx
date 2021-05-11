@@ -17,7 +17,7 @@ interface Props {
 
 const AdviceDocParagraph: FC<Props> = ({ paragraph }: Props) => (
 	<div style={{ margin: '10px' }}>
-		<ReactMarkdown>{`## ${paragraph.text}`}</ReactMarkdown>
+		<ReactMarkdown>{paragraph.text}</ReactMarkdown>
 	</div>
 );
 
