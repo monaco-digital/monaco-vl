@@ -10,6 +10,7 @@ import { Question as QuestionT } from '../../../../types/Questions';
 import { getNextQuestion } from '../../../../clustering/questionFlow';
 import EndToEndStepper from '../EndToEndStepper';
 import Question from '../Question';
+import ScrollToTopOnMount from '../ScrollToTopOnMount';
 import {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
@@ -73,6 +74,7 @@ const Questions: FC = () => {
 	return (
 		<>
 			<div className="flex-col w-full">
+				<ScrollToTopOnMount />
 				<EndToEndStepper step={0} />
 				<div className={classes}>
 					<Switch>
