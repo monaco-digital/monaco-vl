@@ -1,3 +1,11 @@
 .end-to-end-stepper {
-	margin: 0 0 2rem 0;
+	@apply invisible;
+	margin: 0 0 0 0;
+	height: 0;
+
+	@screen md {
+		@apply visible;
+		margin: 0 0 2rem 0;
+		height: auto;
+	}
 }
