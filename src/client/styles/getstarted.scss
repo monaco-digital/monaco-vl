@@ -48,6 +48,8 @@
 	}
 	.get-started__item-2 {
 		order: 1;
+		margin-left: 5rem;
+
 		@screen md {
 			order: 2;
 		}
