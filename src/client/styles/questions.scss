@@ -1,8 +1,8 @@
 .questions {
-	@apply .flex .flex-col .mb-0 .mt-auto .pt-8 .items-end .w-full;
+	@apply .flex .flex-col .items-end .w-full;
 
 	@screen md {
-		@apply .w-1/2 .items-start .mt-0;
+		@apply .w-1/2 .items-start;
 	}
 
 	.questions__actions {

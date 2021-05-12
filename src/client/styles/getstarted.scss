@@ -6,54 +6,106 @@
 	}
 
 	.get-started__bullets {
-		line-height: 2;
-		margin: 1rem 0 1rem 1.5rem;
+		line-height: 1.8;
+		margin: 1.5rem 0 1.5rem 1.2rem;
+	}
+
+	.get-started__grid {
+		padding: 0 0 0 0;
 
 		@screen md {
-			line-height: 2;
-			margin: 1.75rem 0 1.75rem 0;
+			padding: 0 4rem 0 4rem;
 		}
 	}
 
-	.get-started__caption {
-		margin: 1rem 0 1rem 0;
+	.centered-desktop {
+		display: flex;
+		justify-content: left;
 
 		@screen md {
-			margin: 1rem 0 1.5rem 0;
+			justify-content: center;
 		}
 	}
 
-	.get-started__details {
-		margin: 2rem 0 10rem 0;
+	.centered-mobile {
+		display: flex;
+		justify-content: center;
 
 		@screen md {
-			margin: 3rem 0 0 0;
+			justify-content: left;
 		}
 	}
 
-	.get-started__details-second-row {
-		margin: 2rem 0 10rem 0;
+	.get-started__item-1 {
+		order: 2;
+		justify-content: center;
+		margin-left: 1rem;
 
 		@screen md {
-			margin: 3rem 14rem 0 1.5rem;
+			order: 1;
+			margin-left: 0;
+		}
+	}
+	.get-started__item-2 {
+		order: 1;
+		margin-left: 5rem;
+
+		@screen md {
+			order: 2;
+			margin-left: 0;
+		}
+	}
+	.get-started__item-3 {
+		order: 3;
+		@screen md {
+			order: 3;
+		}
+	}
+	.get-started__item-4 {
+		order: 4;
+		margin-left: 1rem;
+
+		@screen md {
+			order: 4;
+			margin-left: 0;
+		}
+	}
+	.get-started__item-5 {
+		order: 6;
+		margin-left: 1rem;
+
+		@screen md {
+			order: 5;
+			margin-left: 0;
+		}
+	}
+	.get-started__item-6 {
+		order: 5;
+		@screen md {
+			order: 6;
+		}
+	}
+	.get-started__item-7 {
+		order: 7;
+		@screen md {
+			order: 7;
+		}
+	}
+	.get-started__item-8 {
+		order: 8;
+		margin-left: 1rem;
+
+		@screen md {
+			order: 8;
+			margin-left: 0;
 		}
 	}
 
-	.get-started__details-last-row {
-		margin: 2rem 0 10rem 0;
+	.get-started__reviews-widget {
+		margin: 2rem 0 0 0;
 
 		@screen md {
-			margin: 3rem 0 0 1.5rem;
-		}
-	}
-
-	.get-started__first-button {
-		text-align: center;
-		flex-direction: column;
-
-		@screen md {
-			text-align: left;
-			flex-direction: row;
+			margin: 4rem 0 0 0;
 		}
 	}
 
@@ -69,125 +121,34 @@
 		}
 	}
 
-	.get-started__grid-image {
-		width: 360px;
-		margin: 0 2rem 0 0.8rem;
-
-		@screen md {
-			width: 490px;
-		}
-	}
-
-	.get-started__grid-image-right {
-		margin-left: 0rem;
-		@screen md {
-			margin-left: 2rem;
-		}
-	}
-
-	.get-started__grid-image-right-narrow {
-		margin-left: 0rem;
-		@screen md {
-			margin-left: 3rem;
-		}
-	}
-
-	.get-started__grid-row {
-		margin-bottom: 0rem;
-		@screen md {
-			margin-bottom: 8rem;
-		}
-	}
-
-	.get-started__grid-row-last {
-		margin-bottom: 0rem;
-		@screen md {
-			margin-bottom: 4rem;
-		}
-	}
-
-	.get-started__grid-item.MuiGrid-item {
-		margin: auto;
-		align-items: center;
-		padding: 0px;
-
-		@screen md {
-			margin: 0;
-			padding: 40px;
-		}
-	}
-
-	.get-started__grid-container {
-		flex-direction: column-reverse;
-
-		@screen md {
-			flex-direction: row;
-		}
-	}
-
-	.get-started__grid-container_alternate {
-		flex-direction: row;
-
-		@screen md {
-			flex-direction: row;
-		}
-	}
-
-	.get-started__heading-box {
-		margin-left: 0rem;
-		text-align: center;
-
-		@screen md {
-			text-align: left;
-			margin-left: 9rem;
-			width: 30rem;
-		}
-	}
-
-	.get-started__main-box {
-		margin-bottom: 3rem;
-	}
-
 	.get-started__heading-desktop {
 		@apply invisible;
 		height: 0;
 
 		@screen md {
 			@apply visible;
+			margin: 0 0 2.5rem 0;
 			height: auto;
-			width: 600px;
 		}
 	}
 
 	.get-started__heading-mobile {
 		@apply visible;
+		margin: 0 0 2rem 0;
+		display: flex;
+		justify-content: center;
+		text-align: center;
 
 		@screen md {
 			@apply invisible;
+			margin: 0;
 			height: 0;
 		}
-	}
-
-	.get-start__heading-row {
-		margin-bottom: 2rem;
 	}
 
 	.get-started__icon-and-header {
 		display: flex;
 		align-items: center;
-	}
-
-	.get-started__image {
-		@apply invisible;
-		margin: 0;
-		width: 0;
-		@screen md {
-			@apply visible;
-			align-items: flex-end;
-			justify-content: flex-end;
-			margin: 0 0 0 3rem;
-			width: 500px;
-		}
 	}
 
 	.get-started__number-icon {
