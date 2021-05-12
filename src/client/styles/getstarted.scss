@@ -6,7 +6,16 @@
 	}
 
 	.get-started__bullets {
-		margin: 2rem 0 2rem 1.5rem;
+		line-height: 1.8;
+		margin: 1.5rem 0 1.5rem 1.2rem;
+	}
+
+	.get-started__grid {
+		padding: 0 0 0 0;
+
+		@screen md {
+			padding: 0 4rem 0 4rem;
+		}
 	}
 
 	.centered-desktop {
@@ -30,14 +39,20 @@
 	.get-started__item-1 {
 		order: 2;
 		justify-content: center;
+		margin-left: 1rem;
+
 		@screen md {
 			order: 1;
+			margin-left: 0;
 		}
 	}
 	.get-started__item-2 {
 		order: 1;
+		margin-left: 5rem;
+
 		@screen md {
 			order: 2;
+			margin-left: 0;
 		}
 	}
 	.get-started__item-3 {
@@ -48,14 +63,20 @@
 	}
 	.get-started__item-4 {
 		order: 4;
+		margin-left: 1rem;
+
 		@screen md {
 			order: 4;
+			margin-left: 0;
 		}
 	}
 	.get-started__item-5 {
 		order: 6;
+		margin-left: 1rem;
+
 		@screen md {
 			order: 5;
+			margin-left: 0;
 		}
 	}
 	.get-started__item-6 {
@@ -72,8 +93,11 @@
 	}
 	.get-started__item-8 {
 		order: 8;
+		margin-left: 1rem;
+
 		@screen md {
 			order: 8;
+			margin-left: 0;
 		}
 	}
 
@@ -103,7 +127,7 @@
 
 		@screen md {
 			@apply visible;
-			margin: 0 0 2rem 0;
+			margin: 0 0 2.5rem 0;
 			height: auto;
 		}
 	}
@@ -111,6 +135,9 @@
 	.get-started__heading-mobile {
 		@apply visible;
 		margin: 0 0 2rem 0;
+		display: flex;
+		justify-content: center;
+		text-align: center;
 
 		@screen md {
 			@apply invisible;
