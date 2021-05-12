@@ -37,8 +37,6 @@ const featureQueryParams = [
 ];
 
 const Main: FC = () => {
-	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
-
 	const dispatch = useDispatch();
 	const { search } = useLocation();
 	const history = useHistory();
@@ -126,8 +124,10 @@ const Main: FC = () => {
 						<Questions />
 					</Route>
 					<Route path="/statements">
-						{enableNarrative && <Narrative />}
-						{!enableNarrative && <StatementSelect />}
+						<StatementSelect />
+					</Route>
+					<Route path="/summary">
+						<Narrative />
 					</Route>
 					<Route path="/step/settlement">
 						<Settlement />
