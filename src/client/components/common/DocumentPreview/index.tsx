@@ -18,6 +18,7 @@ import VLcard from '../VLcard';
 import { getTemplate } from '../../../../api/vl';
 import { updateSessionDocument, updateCurrentSessionDocument } from '../../../../data/sessionDataSlice';
 import { downloadDataForDS } from '../../../../ds';
+import PreviewLetterExplanation from '../PreviewLetterExplanation/index';
 
 interface Props {
 	sessionDocumentComponents: SessionDocumentComponent[];
@@ -158,6 +159,7 @@ const DocumentPreview: FC = () => {
 	return (
 		<>
 			<div className="letter-preview">
+				<PreviewLetterExplanation letter={id} />
 				<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 					<div className="letter-preview__body">
 						<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />

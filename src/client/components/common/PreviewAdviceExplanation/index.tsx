@@ -2,7 +2,7 @@ import React from 'react';
 
 const PreviewAdviceExplanation: React.FC = () => {
 	return (
-		<div>
+		<div className="letter-explanation">
 			<p>
 				<i>
 					Well done! You have answered all the questions and you can find your advice note below. You can email this to
