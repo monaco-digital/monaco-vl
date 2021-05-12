@@ -1,6 +1,5 @@
 export type { Advice } from './advice';
 export type { CaseTopic } from './caseTopic';
-export type { Meta } from './meta';
 export type { Paragraph } from './paragraph';
 export type {
 	ParagraphComponent,

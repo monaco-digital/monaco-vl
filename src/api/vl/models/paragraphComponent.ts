@@ -1,16 +1,12 @@
-import { Meta } from './meta';
 import { OptionsList } from './optionsList';
 
 export interface ParagraphComponent {
-	_id?: string;
 	id: string;
 	type: 'StaticText' | 'BulletPoints' | 'Dropdown' | 'EditableText';
-	meta?: Meta;
 }
 
 export interface StaticText extends ParagraphComponent {
 	textFirstPerson?: string;
-	textThirdPerson?: string;
 }
 
 export interface EditableText extends ParagraphComponent {
