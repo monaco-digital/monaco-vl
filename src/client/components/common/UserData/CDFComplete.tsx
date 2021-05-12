@@ -29,7 +29,11 @@ const CDFComplete: FC<Props> = ({ isFinalStep, previewType }: Props) => {
 					<img src={headerImage} width="80" height="80" alt="" />
 				</div>
 				<Typography variant="h5">Thank You</Typography>
-				<div className="max-w-xs">Your document has been emailed to you and we will be in touch about your case.</div>
+				<div className="max-w-xs">
+					{matchDefaultFlow || isFinalStep
+						? 'We will be in touch about your case.'
+						: 'Your document has been emailed to you and we will be in touch about your case.'}
+				</div>
 				{!isFinalStep && (
 					<Button variant="contained" size="large" color="secondary" onClick={handleClick}>
 						Done
