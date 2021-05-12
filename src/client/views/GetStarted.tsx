@@ -68,15 +68,13 @@ const GetStarted: React.FC = () => {
 						/>
 						<Typography variant="h4">Get advice</Typography>
 					</div>
-					<div className="get-started__bullets">
-						<ul className="list-disc">
-							<Typography variant="body1">
-								<li>Answer quick questions</li>
-								<li>Generate written advice</li>
-								<li>Decide whether to proceed</li>
-							</Typography>
-						</ul>
-					</div>
+					<ul className="list-disc">
+						<Typography variant="body1" className="get-started__bullets">
+							<li>Answer quick questions</li>
+							<li>Generate written advice</li>
+							<li>Decide whether to proceed</li>
+						</Typography>
+					</ul>
 					<div className="centered-mobile">
 						<div className={isSmall ? 'flex flex-col' : 'flex flex-row'}>
 							<GetStartedButton />
@@ -107,15 +105,13 @@ const GetStarted: React.FC = () => {
 								/>
 								<Typography variant="h4">Write letter</Typography>
 							</div>
-							<div className="get-started__bullets">
-								<ul className="list-disc">
-									<Typography variant="body1">
-										<li>Download letter template</li>
-										<li>Get help filling in the gaps</li>
-										<li>We can send to your employer</li>
-									</Typography>
-								</ul>
-							</div>
+							<ul className="list-disc">
+								<Typography variant="body1" className="get-started__bullets">
+									<li>Download letter template</li>
+									<li>Get help filling in the gaps</li>
+									<li>We can send to your employer</li>
+								</Typography>
+							</ul>
 							<GetStartedButton />
 						</div>
 					</div>
@@ -133,15 +129,13 @@ const GetStarted: React.FC = () => {
 						/>
 						<Typography variant="h4">Negotiate</Typography>
 					</div>
-					<div className="get-started__bullets">
-						<ul className="list-disc">
-							<Typography variant="body1">
-								<li>Get response from employer</li>
-								<li>Build reply to employer</li>
-								<li>Generate court documents if needed</li>
-							</Typography>
-						</ul>
-					</div>
+					<ul className="list-disc">
+						<Typography variant="body1" className="get-started__bullets">
+							<li>Get response from employer</li>
+							<li>Build reply to employer</li>
+							<li>Generate court documents if needed</li>
+						</Typography>
+					</ul>
 					<GetStartedButton />
 				</Grid>
 				<Grid item md={6} xs={12} className="get-started__item-6">
@@ -165,15 +159,13 @@ const GetStarted: React.FC = () => {
 								/>
 								<Typography variant="h4">Agree settlement</Typography>
 							</div>
-							<div className="get-started__bullets">
-								<ul className="list-disc">
-									<Typography variant="body1">
-										<li>Most cases settle out of court</li>
-										<li>We can sign paperwork for you</li>
-										<li>We charge 10% of settlement</li>
-									</Typography>
-								</ul>
-							</div>
+							<ul className="list-disc">
+								<Typography variant="body1" className="get-started__bullets">
+									<li>Most cases settle out of court</li>
+									<li>We can sign paperwork for you</li>
+									<li>We charge 10% of settlement</li>
+								</Typography>
+							</ul>
 							<GetStartedButton />
 						</div>
 					</div>
