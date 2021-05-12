@@ -42,7 +42,7 @@ const CDFComplete: FC<Props> = ({ isFinalStep, previewType }: Props) => {
 
 CDFComplete.defaultProps = {
 	previewType: '',
-	isFinalStep: true,
+	isFinalStep: false,
 };
 
 export default CDFComplete;

@@ -138,7 +138,7 @@ const Main: FC = () => {
 								<CDF1 />
 							</Route>
 							<Route exact path="/step/cdf/complete">
-								<CDFComplete />
+								<CDFComplete isFinalStep />
 							</Route>
 						</Switch>
 					</Route>
@@ -148,7 +148,7 @@ const Main: FC = () => {
 								<CDF1 />
 							</Route>
 							<Route exact path="/cdf/complete">
-								<CDFComplete isFinalStep={false} />
+								<CDFComplete />
 							</Route>
 						</Switch>
 					</Route>

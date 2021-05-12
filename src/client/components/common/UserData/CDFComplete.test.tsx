@@ -12,13 +12,13 @@ describe('Header Component', () => {
 	});
 
 	test('When isFinalStep is True then Done button does not show', () => {
-		renderWithProviders(<CDFComplete />);
+		renderWithProviders(<CDFComplete isFinalStep />);
 		const doneButton = screen.queryByText('Done');
 		expect(doneButton).not.toBeInTheDocument();
 	});
 
 	test('When isFinalStep is False then Done button shows', () => {
-		renderWithProviders(<CDFComplete isFinalStep={false} />);
+		renderWithProviders(<CDFComplete />);
 		const doneButton = screen.queryByText('Done');
 		expect(doneButton).toBeInTheDocument();
 	});
