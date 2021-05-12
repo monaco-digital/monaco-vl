@@ -129,8 +129,18 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/step/settlement">
-						<Settlement />
+					<Route path="/step">
+						<Switch>
+							<Route exact path="/step/settlement">
+								<Settlement />
+							</Route>
+							<Route exact path="/step/cdf/form">
+								<CDF1 />
+							</Route>
+							<Route exact path="/step/cdf/complete">
+								<CDFComplete />
+							</Route>
+						</Switch>
 					</Route>
 					<Route path="/cdf">
 						<Switch>
@@ -138,9 +148,7 @@ const Main: FC = () => {
 								<CDF1 />
 							</Route>
 							<Route exact path="/cdf/complete">
-								<div className="w-full justify-center align-middle">
-									<CDFComplete acknowledge={false} />
-								</div>
+								<CDFComplete isFinalStep={false} />
 							</Route>
 						</Switch>
 					</Route>

@@ -1,5 +1,4 @@
-import { screen } from '@testing-library/react';
-import React from 'react';
+import React, { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Settlement } from '.';
@@ -35,6 +34,6 @@ describe('Settlement Page', () => {
 	test('When clicking next The CDF Form Opens', () => {
 		const { history } = renderWithProviders(<Settlement />);
 		userEvent.click(screen.getByText('Next'));
-		expect(history.location.pathname).toEqual('/cdf/form');
+		expect(history.location.pathname).toEqual('/step/cdf/form');
 	});
 });
