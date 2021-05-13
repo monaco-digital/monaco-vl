@@ -14,7 +14,6 @@ import {
 	SessionDocument,
 } from '../../../../types/SessionDocument';
 import EndToEndStepper from '../EndToEndStepper';
-import PreviewLetterExplanation from '../PreviewLetterExplanation'
 import { PreviewParagraph } from '../DocumentPreviewComponents';
 import { createSessionDocument } from '../../../../utils/sessionDocument';
 import VLcard from '../VLcard';
@@ -168,7 +167,6 @@ const DocumentPreview: FC = () => {
 			<div className="flex-col w-full">
 				<EndToEndStepper step={id === '_WP' ? 1 : 2} />
 				<div className="letter-preview">
-          <PreviewLetterExplanation letter={id} />
 					<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
 						<div className="letter-preview__body">
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
