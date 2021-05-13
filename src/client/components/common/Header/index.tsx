@@ -52,13 +52,7 @@ const Header: FC = () => {
 					>
 						<ListItemText primary="Terms of Use" />
 					</ListItem>
-					<ListItem
-						button
-						component="a"
-						href="https://www.monacosolicitors.co.uk/contact-us/?source=vl"
-						onClick={() => setMenuIsVisible(false)}
-						target="_blank"
-					>
+					<ListItem button component={NavLink} to="/cdf/form" onClick={() => setMenuIsVisible(false)}>
 						<ListItemText primary="Request callback" />
 					</ListItem>
 				</List>
