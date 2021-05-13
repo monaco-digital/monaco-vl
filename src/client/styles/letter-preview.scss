@@ -1,11 +1,10 @@
 .letter-preview {
 	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
 
-  .letter-explanation {
-    a {
-      @apply .text-ms-blue-dark;
-    }
-  }
+	a {
+		color: blue;
+		text-decoration: underline;
+	}
 
 	p {
 		@apply .text-sm .pb-4;
