@@ -5,8 +5,8 @@ import { renderWithProviders } from '../../../../testing/utils.test';
 
 describe('The right text gets rendered', () => {
 	test('In the _WP template the right text renders', () => {
-	  renderWithProviders(<PreviewLetterExplanation letter='_WP'/>);
+		renderWithProviders(<PreviewLetterExplanation letter="_WP" />);
 
-    expect(screen.getByText('without prejudice')).toBeInTheDocument();
+		expect(screen.getByText('without prejudice')).toBeInTheDocument();
 	});
 });
