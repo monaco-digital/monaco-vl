@@ -8,7 +8,9 @@ import { Box, Fab } from '@material-ui/core';
 import AppState from '../../../../data/AppState';
 import { Question as QuestionT } from '../../../../types/Questions';
 import { getNextQuestion } from '../../../../clustering/questionFlow';
+import EndToEndStepper from '../EndToEndStepper';
 import Question from '../Question';
+import ScrollToTopOnMount from '../ScrollToTopOnMount';
 import {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
@@ -71,27 +73,31 @@ const Questions: FC = () => {
 
 	return (
 		<>
-			<div className={classes}>
-				<Switch>
-					<Route exact path="/questions">
-						<Redirect to={`/questions/${currentQuestionId}`} />
-					</Route>
-					<Route path="/questions/:id">
-						<Question question={currentQuestion} />
-					</Route>
-				</Switch>
-				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
-							Back
-						</Fab>
+			<div className="flex-col w-full">
+				<ScrollToTopOnMount />
+				<EndToEndStepper step={0} />
+				<div className={classes}>
+					<Switch>
+						<Route exact path="/questions">
+							<Redirect to={`/questions/${currentQuestionId}`} />
+						</Route>
+						<Route path="/questions/:id">
+							<Question question={currentQuestion} />
+						</Route>
+					</Switch>
+					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
+								Back
+							</Fab>
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
+								Next
+							</Fab>
+						</Box>
 					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				</div>
 			</div>
 		</>
 	);

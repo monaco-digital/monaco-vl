@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { Button, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
@@ -7,9 +7,14 @@ import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 const Header: FC = () => {
 	const { pathname } = useLocation();
 	const [menuIsVisible, setMenuIsVisible] = useState(false);
+	const history = useHistory();
+
+	const goToCDF = () => {
+		history.push('/cdf/form');
+	};
 
 	return (
-		<div className="header">
+		<div className="header" data-testid="header-component">
 			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
 			</a>
@@ -20,13 +25,7 @@ const Header: FC = () => {
 				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Terms of Use
 				</NavLink>
-				<Button
-					variant="contained"
-					className="header__breadcrumb__text"
-					color="primary"
-					href="https://www.monacosolicitors.co.uk/contact-us/?source=vl"
-					target="_blank"
-				>
+				<Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
 					Request callback
 				</Button>
 			</div>
@@ -53,13 +52,7 @@ const Header: FC = () => {
 					>
 						<ListItemText primary="Terms of Use" />
 					</ListItem>
-					<ListItem
-						button
-						component="a"
-						href="https://www.monacosolicitors.co.uk/contact-us/?source=vl"
-						onClick={() => setMenuIsVisible(false)}
-						target="_blank"
-					>
+					<ListItem button component={NavLink} to="/cdf/form" onClick={() => setMenuIsVisible(false)}>
 						<ListItemText primary="Request callback" />
 					</ListItem>
 				</List>

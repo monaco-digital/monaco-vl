@@ -18,6 +18,8 @@ import { getAllCaseTopics } from '../../api/vl';
 import StatementSelect from '../components/common/StatementSelect';
 import Step2Intro from '../components/common/Step2Intro';
 import Step3Intro from '../components/common/Step3Intro';
+import GrievanceLetterExplanation from '../components/common/GrievanceLetterExplanation';
+import EmploymentTribunalExplanation from '../components/common/EmploymentTribunalExplanation';
 import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
@@ -120,7 +122,7 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<div className="screen container">
+			<div className="screen container mx-auto">
 				<Switch>
 					<Route path="/questions">
 						<Questions />
@@ -129,8 +131,18 @@ const Main: FC = () => {
 						{enableNarrative && <Narrative />}
 						{!enableNarrative && <StatementSelect />}
 					</Route>
-					<Route path="/step/settlement">
-						<Settlement />
+					<Route path="/step">
+						<Switch>
+							<Route exact path="/step/settlement">
+								<Settlement />
+							</Route>
+							<Route exact path="/step/cdf/form">
+								<CDF1 />
+							</Route>
+							<Route exact path="/step/cdf/complete">
+								<CDFComplete isFinalStep />
+							</Route>
+						</Switch>
 					</Route>
 					<Route path="/cdf">
 						<Switch>
@@ -138,9 +150,7 @@ const Main: FC = () => {
 								<CDF1 />
 							</Route>
 							<Route exact path="/cdf/complete">
-								<div className="w-full justify-center align-middle">
-									<CDFComplete acknowledge={false} />
-								</div>
+								<CDFComplete />
 							</Route>
 						</Switch>
 					</Route>
@@ -160,6 +170,12 @@ const Main: FC = () => {
 					</Route>
 					<Route path="/progress-legal-case">
 						<Step3Intro />
+					</Route>
+					<Route path="/grievance-explanation">
+						<GrievanceLetterExplanation />
+					</Route>
+					<Route path="/employment-tribunal-explanation">
+						<EmploymentTribunalExplanation />
 					</Route>
 					<Route path="/respond-to-employer">
 						<RespondToEmployer />

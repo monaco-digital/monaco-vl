@@ -25,7 +25,10 @@ interface Props {
 
 export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
+
 	const matchDefaultFlow = useRouteMatch('/cdf/form');
+	const matchEndToEndFlow = useRouteMatch('/step/cdf/form');
+
 	const userData = useSelector<AppState, UserData>(state => state.session.userData);
 	const {
 		register,
@@ -66,6 +69,8 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 		await createCDF(uData);
 		if (matchDefaultFlow) {
 			history.push('/cdf/complete');
+		} else if (matchEndToEndFlow) {
+			history.push('/step/cdf/complete');
 		} else {
 			history.replace(`/preview/${previewType}/checkout/cdf1/complete`);
 		}

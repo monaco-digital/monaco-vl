@@ -6,6 +6,8 @@ import ReactGA from 'react-ga';
 import _ from 'lodash';
 import { Box, Fab } from '@material-ui/core';
 
+import EndToEndStepper from '../EndToEndStepper';
+
 import AppState from '../../../../data/AppState';
 import {
 	updateSuggestedParagraphs,
@@ -103,21 +105,24 @@ const StatementSelect: React.FC = () => {
 
 	return (
 		<>
-			<div className="questions">
-				<h1 className="title">Select all the statements that apply to you</h1>
-				<div className="topics">{statements}</div>
-				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>
-							Back
-						</Fab>
+			<div className="flex-col w-full">
+				<EndToEndStepper step={0} />
+				<div className="questions">
+					<h1 className="title">Select all the statements that apply to you</h1>
+					<div className="topics">{statements}</div>
+					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>
+								Back
+							</Fab>
+						</Box>
+						<Box px={1}>
+							<Fab variant="extended" color="secondary" onClick={enterLetterPreviewMode}>
+								Preview Letter
+							</Fab>
+						</Box>
 					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={enterLetterPreviewMode}>
-							Preview Letter
-						</Fab>
-					</Box>
-				</Box>
+				</div>
 			</div>
 		</>
 	);
