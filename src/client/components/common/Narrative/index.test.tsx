@@ -31,7 +31,7 @@ describe('Narrative Page', () => {
 	});
 
 	test('Given Text When Clicking Next Then Statements page Loads', async () => {
-		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/summary' });
+		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/narrative' });
 
 		userEvent.type(screen.getByRole('textbox'), 'A narrative');
 		expect(screen.getByText('11/2000')).toBeInTheDocument();

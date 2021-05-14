@@ -5,7 +5,6 @@ import { createMemoryHistory, MemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import configureStore from 'redux-mock-store'; // ES6 modules
-import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import thunk from 'redux-thunk';
 
 const middlewares = [thunk];
@@ -14,7 +13,6 @@ const mockStore = configureStore(middlewares);
 export type ProviderRenderOptions = {
 	startPage?: string;
 	initialState?: unknown;
-	mocks?: ReadonlyArray<MockedResponse>;
 };
 
 export interface ProviderRenderResult extends RenderResult {
@@ -42,13 +40,11 @@ export const renderWithProviders = (
 
 	const utils = render(ui, {
 		wrapper: ({ children }: { children: ReactNode }) => (
-			<MockedProvider mocks={providerOptions?.mocks || []} addTypename>
-				<Provider store={store}>
-					<ThemeProvider theme={theme}>
-						<Router history={history}>{children}</Router>
-					</ThemeProvider>
-				</Provider>
-			</MockedProvider>
+			<Provider store={store}>
+				<ThemeProvider theme={theme}>
+					<Router history={history}>{children}</Router>
+				</ThemeProvider>
+			</Provider>
 		),
 		...options,
 	});

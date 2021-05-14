@@ -66,7 +66,7 @@ describe('Main Component', () => {
 		${'/questions'}    | ${'Questions'}
 		${'/preview/_ADV'} | ${'AdvicePreview'}
 		${'/preview/_WP'}  | ${'DocumentPreview'}
-		${'/summary'}      | ${'Narrative'}
+		${'/narrative'}    | ${'Narrative'}
 		${'/statements'}   | ${'StatementSelect'}
 	`('When loading $url Then $component is rendered', async ({ url, component }) => {
 		renderWithProviders(<Main />, { initialState, startPage: url });

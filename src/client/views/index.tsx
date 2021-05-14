@@ -126,7 +126,7 @@ const Main: FC = () => {
 					<Route path="/statements">
 						<StatementSelect />
 					</Route>
-					<Route path="/summary">
+					<Route path="/narrative">
 						<Narrative />
 					</Route>
 					<Route path="/step/settlement">

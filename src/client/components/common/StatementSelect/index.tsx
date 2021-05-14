@@ -66,7 +66,7 @@ const StatementSelect: React.FC = () => {
 
 	const handleGoBackwardsFromStatements = () => {
 		if (enableNarrative) {
-			history.push('/summary');
+			history.push('/narrative');
 		} else {
 			dispatch(removeLastAnsweredQuestion());
 

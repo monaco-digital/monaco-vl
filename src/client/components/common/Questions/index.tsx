@@ -32,7 +32,7 @@ const Questions: FC = () => {
 
 	if (!currentQuestion) {
 		if (enableNarrative) {
-			history.push('/summary');
+			history.push('/narrative');
 		} else {
 			history.push('/statements');
 		}
@@ -57,7 +57,7 @@ const Questions: FC = () => {
 		const { id } = nextQuestion || {};
 		if (!nextQuestion) {
 			if (enableNarrative) {
-				history.push('/summary');
+				history.push('/narrative');
 			} else {
 				history.push('/statements');
 			}
