@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { CaseTopic, DocumentParagraph, Template, DocumentParagraphComponent } from 'api/vl/models';
+import { CaseTopic, DocumentParagraph, Template, DocumentParagraphComponent, TemplateParagraph } from 'api/vl/models';
 import _ from 'lodash';
 import { UserData } from '../types/UserData';
 import {
@@ -12,6 +12,7 @@ import {
 import { Question } from '../types/Questions';
 import { createDocument } from '../utils/document';
 import orderSuggestedParagraphs from '../utils/paragraphOrdering';
+import { generateParagraphsByTopics } from './sessionDataThunks';
 
 const updateSessionDocumentMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -121,6 +122,23 @@ export const slice = createSlice({
 				...updatedUserData,
 			};
 		},
+	},
+	extraReducers: builder => {
+		builder.addCase(generateParagraphsByTopics.fulfilled, (state, action) => {
+			state.suggestedParagraphs = action.payload.map(
+				paragraph =>
+					({
+						templateComponent: {
+							id: paragraph.id,
+							type: 'Paragraph',
+							version: 1,
+							paragraph,
+						} as TemplateParagraph,
+						documentComponent: null,
+						isSelected: Boolean(paragraph.isAutomaticallyIncluded),
+					} as SessionParagraph),
+			);
+		});
 	},
 });
 

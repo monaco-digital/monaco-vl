@@ -65,8 +65,13 @@ const StatementSelect: React.FC = () => {
 	};
 
 	const handleGoBackwardsFromStatements = () => {
-		dispatch(removeLastAnsweredQuestion());
-		history.push('/questions');
+		if (enableNarrative) {
+			history.push('/summary');
+		} else {
+			dispatch(removeLastAnsweredQuestion());
+
+			history.push('/questions');
+		}
 	};
 
 	const statements = suggestedParagraphs.map(sessionParagraph => {
@@ -117,7 +122,7 @@ const StatementSelect: React.FC = () => {
 						</Box>
 						<Box px={1}>
 							<Fab variant="extended" color="secondary" onClick={enterLetterPreviewMode}>
-								Preview Letter
+								Next
 							</Fab>
 						</Box>
 					</Box>

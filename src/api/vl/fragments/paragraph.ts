@@ -47,7 +47,6 @@ export const paragraph = gql`
 				...FBulletPoints
 			}
 		}
-		paragraphComponentRefs
 	}
 	${staticText}
 	${bulletPoint}

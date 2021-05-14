@@ -3,28 +3,16 @@ import { Box, Fab, Grid, Card, CardContent, Typography, TextField } from '@mater
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { gql, useApolloClient } from '@apollo/client';
 
-import { removeLastAnsweredQuestion, updateSuggestedParagraphs } from 'data/sessionDataSlice';
+import { removeLastAnsweredQuestion } from 'data/sessionDataSlice';
 import AppState from 'data/AppState';
-import { CaseTopic, Paragraph, TemplateParagraph } from 'api/vl/models';
-import { SessionParagraph } from 'types/SessionDocument';
-import { fragments } from 'api/vl/fragments';
+import { CaseTopic } from 'api/vl/models';
+import { generateParagraphsByTopics } from 'data/sessionDataThunks';
 import EndToEndStepper from '../EndToEndStepper';
-
-const GENERATE_PARAGRAPHS = gql`
-	query($topicIds: [String]!, $narrative: String) {
-		generateParagraphsTopics(topicIds: $topicIds, narrative: $narrative) {
-			...FParagraph
-		}
-	}
-	${fragments.paragraph}
-`;
 
 const Narrative: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
-	const client = useApolloClient();
 
 	const {
 		register,
@@ -45,29 +33,8 @@ const Narrative: React.FC = () => {
 
 	const onSubmit = async ({ narrative }) => {
 		const topicIds = selectedTopics.map(t => t.id);
-		const {
-			data: { generateParagraphsTopics },
-		} = await client.query<{ generateParagraphsTopics: Paragraph[] }, { topicIds: string[]; narrative: string }>({
-			query: GENERATE_PARAGRAPHS,
-			variables: {
-				topicIds,
-				narrative,
-			},
-		});
-		const sessionParagraphs = generateParagraphsTopics.map(
-			paragraph =>
-				({
-					templateComponent: {
-						id: paragraph.id,
-						type: 'Paragraph',
-						version: 1,
-						paragraph,
-					} as TemplateParagraph,
-					documentComponent: null,
-					isSelected: paragraph.isAutomaticallyIncluded,
-				} as SessionParagraph),
-		);
-		dispatch(updateSuggestedParagraphs(sessionParagraphs));
+
+		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
 
 		history.push('/statements');
 	};
@@ -112,7 +79,7 @@ const Narrative: React.FC = () => {
 					</Box>
 					<Box px={1}>
 						<Fab variant="extended" color="secondary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
-							Preview Letter
+							Next
 						</Fab>
 					</Box>
 				</Box>
