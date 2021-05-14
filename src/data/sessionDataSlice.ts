@@ -48,6 +48,7 @@ const updateSessionDocumentMapper = (
 export const slice = createSlice({
 	name: 'session',
 	initialState: {
+		narrative: null as string,
 		suggestedParagraphs: [] as SessionParagraph[],
 		selectedTopics: [] as CaseTopic[],
 		answeredQuestions: [] as Question[],
@@ -80,6 +81,9 @@ export const slice = createSlice({
 					suggestedParagraph.isSelected = false;
 				}
 			});
+		},
+		updateNarrative: (state, action) => {
+			state.narrative = action.payload;
 		},
 		updateCurrentSessionDocument: (state, action) => {
 			state.currentSessionDocument = action.payload;
@@ -125,6 +129,7 @@ export const slice = createSlice({
 });
 
 export const {
+	updateNarrative,
 	updateSuggestedParagraphs,
 	updateAnsweredQuestions,
 	updateSelectedTopics,
