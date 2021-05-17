@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { removeLastAnsweredQuestion } from 'data/sessionDataSlice';
+import { removeLastAnsweredQuestion, updateNarrative } from 'data/sessionDataSlice';
 import AppState from 'data/AppState';
 import { CaseTopic } from 'api/vl/models';
 import { generateParagraphsByTopics } from 'data/sessionDataThunks';
@@ -33,9 +33,8 @@ const Narrative: React.FC = () => {
 
 	const onSubmit = async ({ narrative }) => {
 		const topicIds = selectedTopics.map(t => t.id);
-
 		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
-
+		dispatch(updateNarrative(narrative));
 		history.push('/statements');
 	};
 

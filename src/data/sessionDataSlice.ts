@@ -97,7 +97,7 @@ const updateUserDataFromQuestion = (
 					stillEmployed = cdfValues.stillEmployed.YES;
 				}
 				if (selectedTopics.some(({ id }) => id === '_NE')) {
-					stillEmployed = cdfValues.stillEmployed.YES;
+					stillEmployed = cdfValues.stillEmployed.NO;
 				}
 				if (selectedTopics.some(({ id }) => id === 'M2y')) {
 					yearsEmployed = cdfValues.yearsEmployed.MORE_THAN_2;
