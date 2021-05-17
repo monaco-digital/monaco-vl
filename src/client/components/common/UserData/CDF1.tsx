@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
 	Box,
 	Button,
@@ -23,6 +23,23 @@ interface Props {
 	previewType?: string;
 }
 
+export const cdfValues = {
+	salary: {
+		ZERO_TO_THIRTYK: '£0 - £30,000',
+		THIRTYK_TO_FIFTYK: '£30,000 - £50,000',
+		FIFTYK_TO_HUNDREDK: '£50,000 - £100,000',
+		HUNDREDK_PLUS: '£100,000+',
+	},
+	stillEmployed: {
+		YES: 'Yes',
+		NO: 'No',
+	},
+	yearsEmployed: {
+		LESS_THAN_2: 'Less than 2 years',
+		MORE_THAN_2: 'More than 2 years',
+	},
+};
+
 export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 
@@ -35,8 +52,28 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 		handleSubmit,
 		errors,
 		control,
+		setValue,
 		formState: { isSubmitting },
 	} = useForm();
+
+	useEffect(() => {
+		const { name, recipient, stillEmployed, yearsEmployed, description } = userData;
+		if (name) {
+			setValue('name', name, { shouldValidate: true });
+		}
+		if (recipient) {
+			setValue('email', recipient, { shouldValidate: true });
+		}
+		if (stillEmployed) {
+			setValue('stillEmployed', stillEmployed, { shouldValidate: true });
+		}
+		if (yearsEmployed) {
+			setValue('yearsEmployed', yearsEmployed, { shouldValidate: true });
+		}
+		if (description) {
+			setValue('description', description, { shouldValidate: true });
+		}
+	}, [setValue, userData]);
 
 	const onSubmit = async (data): Promise<void> => {
 		const {
@@ -88,36 +125,32 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 				Some optional information about you case that will help us provide a better service
 			</p>
 			<Grid container spacing={2}>
-				{!userData?.recipient && (
-					<Grid item xs={12} md={6}>
-						<TextField
-							name="email"
-							label="Email"
-							required
-							inputRef={register({ required: 'Email is required' })}
-							disabled={isSubmitting}
-							fullWidth
-							error={Boolean(errors.email)}
-							helperText={errors.email?.message}
-							variant="filled"
-						/>
-					</Grid>
-				)}
-				{!userData?.name && (
-					<Grid item xs={12} md={6}>
-						<TextField
-							name="name"
-							label="Name"
-							required
-							inputRef={register({ required: 'Name is required' })}
-							disabled={isSubmitting}
-							error={Boolean(errors.name)}
-							helperText={errors.name?.message}
-							fullWidth
-							variant="filled"
-						/>
-					</Grid>
-				)}
+				<Grid item xs={12} md={6}>
+					<TextField
+						name="email"
+						label="Email"
+						required
+						inputRef={register({ required: 'Email is required' })}
+						disabled={isSubmitting}
+						fullWidth
+						error={Boolean(errors.email)}
+						helperText={errors.email?.message}
+						variant="filled"
+					/>
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<TextField
+						name="name"
+						label="Name"
+						required
+						inputRef={register({ required: 'Name is required' })}
+						disabled={isSubmitting}
+						error={Boolean(errors.name)}
+						helperText={errors.name?.message}
+						fullWidth
+						variant="filled"
+					/>
+				</Grid>
 				<Grid item xs={12} md={12}>
 					<TextField
 						name="description"
@@ -173,8 +206,8 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 							as={
 								<Select id="years-employed-select" native required disabled={isSubmitting}>
 									<option aria-label="None" value="" />
-									<option value="Less than 2 years">Less than 2 years</option>
-									<option value="More than 2 years">More than 2 years</option>
+									<option value={cdfValues.yearsEmployed.LESS_THAN_2}>Less than 2 years</option>
+									<option value={cdfValues.yearsEmployed.MORE_THAN_2}>More than 2 years</option>
 								</Select>
 							}
 						/>
@@ -192,8 +225,8 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 							as={
 								<Select id="still-employed-select" name="stillEmployed" ref={register} native disabled={isSubmitting}>
 									<option aria-label="None" value="" />
-									<option value="Yes">Yes</option>
-									<option value="No">No</option>
+									<option value={cdfValues.stillEmployed.YES}>Yes</option>
+									<option value={cdfValues.stillEmployed.NO}>No</option>
 								</Select>
 							}
 						/>
@@ -211,10 +244,10 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 							as={
 								<Select id="salary-select" native disabled={isSubmitting}>
 									<option aria-label="None" value="" />
-									<option value="£0 - £30,000">£0 - £30,000</option>
-									<option value="£30,000 - £50,000">£30,000 - £50,000</option>
-									<option value="£50,000 - £100,000">£50,000 - £100,000</option>
-									<option value="£100,000+">£100,000+</option>
+									<option value={cdfValues.salary.ZERO_TO_THIRTYK}>£0 - £30,000</option>
+									<option value={cdfValues.salary.THIRTYK_TO_FIFTYK}>£30,000 - £50,000</option>
+									<option value={cdfValues.salary.FIFTYK_TO_HUNDREDK}>£50,000 - £100,000</option>
+									<option value={cdfValues.salary.HUNDREDK_PLUS}>£100,000+</option>
 								</Select>
 							}
 						/>

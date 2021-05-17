@@ -12,6 +12,7 @@ import {
 import { Question } from '../types/Questions';
 import { createDocument } from '../utils/document';
 import orderSuggestedParagraphs from '../utils/paragraphOrdering';
+import { cdfValues } from '../client/components/common/UserData/CDF1';
 
 const updateSessionDocumentMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -43,6 +44,77 @@ const updateSessionDocumentMapper = (
 		document: createDocument(sessionDocument),
 	};
 	return newSessioonDocument;
+};
+
+const updateUserDataFromQuestion = (
+	userData: UserData,
+	selectedTopics: CaseTopic[],
+	payload: any,
+	actionType: string,
+): UserData => {
+	const question = payload as Question;
+	switch (actionType) {
+		case 'addAnsweredQuestion': {
+			if (question?.id === 1) {
+				if (selectedTopics.some(({ id }) => id === 'E')) {
+					const uData = {
+						...userData,
+						stillEmployed: cdfValues.stillEmployed.YES,
+					};
+					return uData;
+				}
+				if (selectedTopics.some(({ id }) => id === '_NE')) {
+					const uData = {
+						...userData,
+						stillEmployed: cdfValues.stillEmployed.NO,
+					};
+					return uData;
+				}
+			} else if (question?.id === 3) {
+				if (selectedTopics.some(({ id }) => id === 'M2y')) {
+					const uData = {
+						...userData,
+						yearsEmployed: cdfValues.yearsEmployed.MORE_THAN_2,
+					};
+					return uData;
+				}
+				if (selectedTopics.some(({ id }) => id === '2y')) {
+					const uData = {
+						...userData,
+						yearsEmployed: cdfValues.yearsEmployed.LESS_THAN_2,
+					};
+					return uData;
+				}
+			}
+			break;
+		}
+		case 'removeLastAnsweredQuestion':
+			{
+				let yearsEmployed: string;
+				let stillEmployed: string;
+				if (selectedTopics.some(({ id }) => id === 'E')) {
+					stillEmployed = cdfValues.stillEmployed.YES;
+				}
+				if (selectedTopics.some(({ id }) => id === '_NE')) {
+					stillEmployed = cdfValues.stillEmployed.YES;
+				}
+				if (selectedTopics.some(({ id }) => id === 'M2y')) {
+					yearsEmployed = cdfValues.yearsEmployed.MORE_THAN_2;
+				}
+				if (selectedTopics.some(({ id }) => id === '2y')) {
+					yearsEmployed = cdfValues.yearsEmployed.LESS_THAN_2;
+				}
+				return {
+					...userData,
+					yearsEmployed,
+					stillEmployed,
+				};
+			}
+			break;
+		default:
+			break;
+	}
+	return userData;
 };
 
 export const slice = createSlice({
@@ -84,6 +156,10 @@ export const slice = createSlice({
 		},
 		updateNarrative: (state, action) => {
 			state.narrative = action.payload;
+			state.userData = {
+				...state.userData,
+				description: action.payload,
+			};
 		},
 		updateCurrentSessionDocument: (state, action) => {
 			state.currentSessionDocument = action.payload;
@@ -114,9 +190,21 @@ export const slice = createSlice({
 		addAnsweredQuestion: (state, action) => {
 			const latestQuestion = action.payload;
 			state.answeredQuestions.push(latestQuestion);
+			state.userData = updateUserDataFromQuestion(
+				state.userData,
+				state.selectedTopics,
+				action.payload,
+				'addAnsweredQuestion',
+			);
 		},
 		removeLastAnsweredQuestion: state => {
 			state.answeredQuestions.pop();
+			state.userData = updateUserDataFromQuestion(
+				state.userData,
+				state.selectedTopics,
+				undefined,
+				'removeLastAnsweredQuestion',
+			);
 		},
 		updateUserData: (state, action) => {
 			const updatedUserData = action.payload;
