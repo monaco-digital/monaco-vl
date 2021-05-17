@@ -39,8 +39,8 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 				>
 					<b>without prejudice</b>
 				</a>{' '}
-				legal letter, below. Email this to yourself with the button below to fill in later. Then proceed to the next
-				stage.
+				legal letter, below. Email this to yourself with the blue button below to fill in later. Then proceed to the
+				next stage.
 			</i>
 		),
 	};
