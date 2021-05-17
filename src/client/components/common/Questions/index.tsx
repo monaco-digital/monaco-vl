@@ -20,6 +20,7 @@ import {
 const Questions: FC = () => {
 	const history = useHistory();
 
+	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
 
@@ -31,7 +32,11 @@ const Questions: FC = () => {
 	const dispatch = useDispatch();
 
 	if (!currentQuestion) {
-		history.push('/statements');
+		if (enableNarrative) {
+			history.push('/narrative');
+		} else {
+			history.push('/statements');
+		}
 		return null;
 	}
 
@@ -52,7 +57,11 @@ const Questions: FC = () => {
 		const nextQuestion = getNextQuestion(selectedTopics, [...answeredQuestions, currentQuestion]);
 		const { id } = nextQuestion || {};
 		if (!nextQuestion) {
-			history.push('/statements');
+			if (enableNarrative) {
+				history.push('/narrative');
+			} else {
+				history.push('/statements');
+			}
 		}
 		dispatch(addAnsweredQuestion(currentQuestion));
 		history.push(`/questions/${id}`);

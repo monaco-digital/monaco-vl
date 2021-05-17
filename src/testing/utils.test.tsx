@@ -5,8 +5,9 @@ import { createMemoryHistory, MemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import configureStore from 'redux-mock-store'; // ES6 modules
+import thunk from 'redux-thunk';
 
-const middlewares = [];
+const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 export type ProviderRenderOptions = {

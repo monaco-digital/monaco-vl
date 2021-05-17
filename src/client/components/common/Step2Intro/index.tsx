@@ -34,8 +34,8 @@ const Step2Intro: React.FC = () => {
 					<Typography variant="h4">Write letter</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Well done, you have answered your quick questions and generated your advice note. Hopefully you emailed the
-					advice note to yourself to read later. Now you can discover what a legal letter would look like. Proceed to:
+					Well done, you answered your quick questions and generated your advice note, which you emailed to yourself to
+					read later. Now you can discover what a legal letter would look like. Proceed to:
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
@@ -57,9 +57,13 @@ const Step2Intro: React.FC = () => {
 				</Typography>
 
 				<Typography variant="body1" paragraph>
-					Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. It would
-					look better coming from us! Our fee would be 10% of any settlement achieved. Or you can do it yourself for
-					free. Request a callback to discuss this with our customer service advisers.
+					Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. If you
+					want us to send the letters in this service for you, our fee for the entire service is 10% of any increase in
+					settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
+					<Link href="/cdf/form" color="primary">
+						Contact us
+					</Link>{' '}
+					for full terms of use.
 				</Typography>
 				<div className="step-intro__buttons">
 					<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>

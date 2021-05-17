@@ -1,17 +1,12 @@
-import { Meta } from './meta';
-
 export interface Document {
-	_id?: string;
 	id: string;
 	version: number;
 	baseTemplate: string;
 	documentComponents: DocumentComponent[];
-	meta: Meta;
 }
 
 // abstract
 export interface DocumentComponent {
-	_id?: string;
 	id: string;
 	version: number;
 	type: 'Image' | 'Signature' | 'Header' | 'TemplateContentSection' | 'UserContentSection' | 'Paragraph';

@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Box, Fab, Grid, Card, CardContent, Typography, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { intersection } from 'lodash';
 
-import { removeLastAnsweredQuestion, selectParagraphs, updateSuggestedParagraphs } from 'data/sessionDataSlice';
+import { removeLastAnsweredQuestion } from 'data/sessionDataSlice';
 import AppState from 'data/AppState';
-import { CaseTopic, TemplateParagraph } from 'api/vl/models';
-import { SessionParagraph } from 'types/SessionDocument';
-import { getSuggestedParagraphs } from 'api/vl';
-import { predictParagraphsFromParagraphs } from 'api/ds';
+import { CaseTopic } from 'api/vl/models';
+import { generateParagraphsByTopics } from 'data/sessionDataThunks';
+import EndToEndStepper from '../EndToEndStepper';
 
 const Narrative: React.FC = () => {
 	const history = useHistory();
 	const dispatch = useDispatch();
+
 	const {
 		register,
 		watch,
@@ -26,28 +25,6 @@ const Narrative: React.FC = () => {
 	const watchNarrative = watch('narrative', '');
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const selectedTopicIds = selectedTopics.map(t => t.id);
-	if (intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
-		history.push('/preview');
-	}
-
-	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
-
-	useEffect(() => {
-		const updateParagraphs = async () => {
-			const paragraphs = await getSuggestedParagraphs(selectedTopics);
-			const sessionParagraphs = paragraphs.map(
-				paragraph =>
-					({
-						templateComponent: paragraph,
-						documentComponent: null,
-						isSelected: paragraph.paragraph?.isAutomaticallyIncluded,
-					} as SessionParagraph),
-			);
-			dispatch(updateSuggestedParagraphs(sessionParagraphs));
-		};
-		updateParagraphs();
-	}, [dispatch, selectedTopics]);
 
 	const handleGoBackwardsFromStatements = () => {
 		dispatch(removeLastAnsweredQuestion());
@@ -55,21 +32,16 @@ const Narrative: React.FC = () => {
 	};
 
 	const onSubmit = async ({ narrative }) => {
-		// filter out isAutoIncluded paras
-		const paras = suggestedParagraphs
-			.map(p => (p.templateComponent as TemplateParagraph).paragraph)
-			.filter(p => p.isAutomaticallyIncluded === false);
+		const topicIds = selectedTopics.map(t => t.id);
 
-		// get list of paragraphs from AI service
-		const predictedParas = await predictParagraphsFromParagraphs(narrative, paras);
+		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
 
-		dispatch(selectParagraphs(predictedParas));
-
-		history.push('/preview');
+		history.push('/statements');
 	};
 
 	return (
-		<Grid container>
+		<div className="w-full">
+			<EndToEndStepper step={0} />
 			<Grid item container md={6} direction="column">
 				<Typography variant="h6">Provide a summary of your case</Typography>
 				<Box py={4}>
@@ -107,12 +79,12 @@ const Narrative: React.FC = () => {
 					</Box>
 					<Box px={1}>
 						<Fab variant="extended" color="secondary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
-							Preview Letter
+							Next
 						</Fab>
 					</Box>
 				</Box>
 			</Grid>
-		</Grid>
+		</div>
 	);
 };
 
