@@ -20,9 +20,6 @@ export const editableText = gql`
 		id
 		type
 		placeholder
-		meta {
-			...FMeta
-		}
 	}
 `;
 
