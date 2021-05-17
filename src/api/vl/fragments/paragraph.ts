@@ -25,6 +25,17 @@ export const staticText = gql`
 	}
 `;
 
+export const editableText = gql`
+	fragment FEditableText on EditableText {
+		id
+		type
+		placeholder
+		meta {
+			...FMeta
+		}
+	}
+`;
+
 export const bulletPoint = gql`
 	fragment FBulletPoints on BulletPoints {
 		_id
@@ -70,6 +81,9 @@ export const paragraph = gql`
 			... on StaticText {
 				...FStaticText
 			}
+			... on EditableText {
+				...FEditableText
+			}
 			... on BulletPoints {
 				...FBulletPoints
 			}
@@ -80,6 +94,7 @@ export const paragraph = gql`
 		}
 	}
 	${staticText}
+	${editableText}
 	${bulletPoint}
 	${meta}
 `;
