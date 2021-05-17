@@ -34,8 +34,8 @@ const Step2Intro: React.FC = () => {
 					<Typography variant="h4">Write letter</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Well done, you have answered your quick questions and generated your advice note. Hopefully you emailed the
-					advice note to yourself to read later. Now you can discover what a legal letter would look like. Proceed to:
+					Well done, you answered your quick questions and generated your advice note, which you emailed to yourself to
+					read later. Now you can discover what a legal letter would look like. Proceed to:
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
