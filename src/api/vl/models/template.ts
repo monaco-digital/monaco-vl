@@ -1,13 +1,10 @@
-import { Meta } from './meta';
 import { Paragraph } from './paragraph';
 
 export interface TemplateComponent {
-	_id?: string;
 	id: string;
 	version: number;
 	type: 'Image' | 'Paragraph' | 'Signature' | 'Header' | 'Section' | 'TemplateContentSection' | 'UserContentSection';
 	alignment?: 'left' | 'right' | 'center' | 'justify';
-	meta?: Meta;
 }
 
 export interface TemplateImage extends TemplateComponent {
@@ -34,15 +31,11 @@ export interface TemplateSection extends TemplateComponent {
 }
 
 export interface TemplateParagraph extends TemplateComponent {
-	paragraphId?: string;
 	paragraph?: Paragraph;
 	type: 'Paragraph';
 }
 export interface Template {
-	_id?: string;
 	id: string;
-	templateComponentIds?: string[];
 	templateComponents?: TemplateComponent[];
-	meta?: Meta;
 	version: number;
 }

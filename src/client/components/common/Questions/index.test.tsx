@@ -48,6 +48,9 @@ describe('Questions Page', () => {
 				sessionDocuments: null,
 				userData: {},
 			},
+			features: {
+				enableNarrative: false,
+			},
 		};
 	});
 

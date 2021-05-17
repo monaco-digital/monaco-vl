@@ -1,8 +1,10 @@
+import { ApolloProvider } from '@apollo/client';
 import React, { FC } from 'react';
 import ReactGA from 'react-ga';
 import TagManager from 'react-gtm-module';
 
 import { BrowserRouter as Router } from 'react-router-dom';
+import { client } from 'api/vl/graphql';
 import Client from './client/index';
 import config from './config';
 
@@ -18,9 +20,11 @@ const App: FC = () => {
 
 	return (
 		<>
-			<Router>
-				<Client />
-			</Router>
+			<ApolloProvider client={client}>
+				<Router>
+					<Client />
+				</Router>
+			</ApolloProvider>
 		</>
 	);
 };
