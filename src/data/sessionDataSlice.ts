@@ -17,8 +17,6 @@ const updateSessionDocumentMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
 	sessionDocument: SessionDocument,
 ): SessionDocument => {
-	console.log(documentParagraphComponent);
-	console.log(sessionDocument);
 	const processSessionDocumentComponent = (sessionDocumentComponent: SessionDocumentComponent) => {
 		if (
 			sessionDocumentComponent.type === 'TemplateContentSection' ||
@@ -91,18 +89,8 @@ export const slice = createSlice({
 			state.sessionDocuments[type] = document;
 		},
 		updateSessionDocumentComponent: (state, action) => {
-			console.log('Action');
-			console.log(action);
-			const { id, type, value, baseTemplateComponent } = action.payload;
-			const updatedEditableText = {
-				id,
-				type,
-				value,
-				baseTemplateComponent,
-			};
-
 			state.sessionDocuments[state.currentSessionDocument] = updateSessionDocumentMapper(
-				updatedEditableText,
+				action.payload,
 				state.sessionDocuments[state.currentSessionDocument],
 			);
 		},
