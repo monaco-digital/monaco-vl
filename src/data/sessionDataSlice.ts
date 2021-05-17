@@ -93,9 +93,8 @@ export const slice = createSlice({
 			state.sessionDocuments[type] = document;
 		},
 		updateSessionDocumentComponent: (state, action) => {
-			const { documentParaComponent } = action.payload;
 			state.sessionDocuments[state.currentSessionDocument] = updateSessionDocumentMapper(
-				documentParaComponent,
+				action.payload,
 				state.sessionDocuments[state.currentSessionDocument],
 			);
 		},
