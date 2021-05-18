@@ -1,18 +1,14 @@
 import React from 'react';
-import { Stepper, Step, StepLabel, useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import { Box, Stepper, Step, StepLabel } from '@material-ui/core';
 
 interface Props {
 	step: number;
 }
 
 const EndToEndStepper: React.FC<Props> = ({ step }: Props) => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
-
 	return (
-		<div className="end-to-end-stepper">
-			{!isSmall && (
+		<Box display={{ xs: 'none', md: 'block' }}>
+			<div className="end-to-end-stepper">
 				<Stepper activeStep={step} data-testid="stepper-component">
 					<Step>
 						<StepLabel>Advice</StepLabel>
@@ -27,8 +23,8 @@ const EndToEndStepper: React.FC<Props> = ({ step }: Props) => {
 						<StepLabel>Settlement</StepLabel>
 					</Step>
 				</Stepper>
-			)}
-		</div>
+			</div>
+		</Box>
 	);
 };
 
