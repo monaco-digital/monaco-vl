@@ -101,9 +101,27 @@ export const slice = createSlice({
 		},
 		updateSelectedTopics: (state, action) => {
 			state.selectedTopics = _.compact(action.payload);
+			state.sessionDocuments = {
+				_WP: null,
+				_GR: null,
+				_ET: null,
+				_RES_CD: null,
+				_RES_CO: null,
+				_RES_I: null,
+				_RES_KM: null,
+			};
 		},
 		updateSuggestedParagraphs: (state, action) => {
 			state.suggestedParagraphs = orderSuggestedParagraphs(action.payload, state.selectedTopics);
+			state.sessionDocuments = {
+				_WP: null,
+				_GR: null,
+				_ET: null,
+				_RES_CD: null,
+				_RES_CO: null,
+				_RES_I: null,
+				_RES_KM: null,
+			};
 		},
 		updateAnsweredQuestions: (state, action) => {
 			state.answeredQuestions = action.payload;
