@@ -1,5 +1,5 @@
-import store from './store';
-import {
+import { configureStore } from '@reduxjs/toolkit';
+import sessionReducer, {
 	addAnsweredQuestion,
 	removeLastAnsweredQuestion,
 	updateNarrative,
@@ -7,8 +7,20 @@ import {
 	updateUserData,
 } from './sessionDataSlice';
 import { cdfValues } from '../client/components/common/UserData/CDF1';
+import topicsReducer from './topicDataSlice';
+import questionsReducer from './questionDataSlice';
+import featureReducer from './featureDataSlice';
 
 describe('Session Data Slice', () => {
+	const store = configureStore({
+		reducer: {
+			topics: topicsReducer,
+			questions: questionsReducer,
+			session: sessionReducer,
+			features: featureReducer,
+		},
+	});
+
 	beforeEach(() => {
 		store.dispatch(updateSelectedTopics([]));
 		store.dispatch(updateUserData({}));
