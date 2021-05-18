@@ -152,8 +152,10 @@ const DocumentPreview: FC = () => {
 	useEffect(() => {
 		const updatedTemplate = getTemplate(id);
 
-		const document = createSessionDocument(updatedTemplate, selectedParagraphs);
-		dispatch(updateSessionDocument({ document, type: id }));
+		if (!sessionDocument) {
+			const document = createSessionDocument(updatedTemplate, selectedParagraphs);
+			dispatch(updateSessionDocument({ document, type: id }));
+		}
 
 		dispatch(updateCurrentSessionDocument(id));
 	}, [dispatch, id, selectedParagraphs, sessionDocument]);
