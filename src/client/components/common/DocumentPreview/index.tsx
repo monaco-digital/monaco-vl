@@ -156,7 +156,6 @@ const DocumentPreview: FC = () => {
 			const document = createSessionDocument(updatedTemplate, selectedParagraphs);
 			dispatch(updateSessionDocument({ document, type: id }));
 		}
-
 		dispatch(updateCurrentSessionDocument(id));
 	}, [dispatch, id, selectedParagraphs, sessionDocument]);
 
