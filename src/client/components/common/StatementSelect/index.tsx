@@ -9,12 +9,7 @@ import { Box, Fab } from '@material-ui/core';
 import EndToEndStepper from '../EndToEndStepper';
 
 import AppState from '../../../../data/AppState';
-import {
-	updateSuggestedParagraphs,
-	selectParagraphs,
-	deselectParagraphs,
-	removeLastAnsweredQuestion,
-} from '../../../../data/sessionDataSlice';
+import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from '../../../../data/sessionDataSlice';
 import { SessionParagraph } from '../../../../types/SessionDocument';
 import { getSuggestedParagraphs } from '../../../../api/vl';
 
@@ -65,13 +60,7 @@ const StatementSelect: React.FC = () => {
 	};
 
 	const handleGoBackwardsFromStatements = () => {
-		if (enableNarrative) {
-			history.push('/narrative');
-		} else {
-			dispatch(removeLastAnsweredQuestion());
-
-			history.push('/questions');
-		}
+		history.goBack();
 	};
 
 	const statements = suggestedParagraphs.map(sessionParagraph => {

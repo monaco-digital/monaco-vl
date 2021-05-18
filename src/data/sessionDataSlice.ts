@@ -112,11 +112,13 @@ export const slice = createSlice({
 			state.selectedTemplate = action.payload;
 		},
 		addAnsweredQuestion: (state, action) => {
-			const latestQuestion = action.payload;
-			state.answeredQuestions.push(latestQuestion);
-		},
-		removeLastAnsweredQuestion: state => {
-			state.answeredQuestions.pop();
+			const latestQuestionId = action.payload;
+
+			// re-answering a question invalidates all later answers
+			const currentQuestionIndex = state.answeredQuestions.indexOf(latestQuestionId);
+			const currentlyAnsweredQuestions =
+				currentQuestionIndex === -1 ? state.answeredQuestions : state.answeredQuestions.slice(0, currentQuestionIndex);
+			state.answeredQuestions = currentlyAnsweredQuestions;
 		},
 		updateUserData: (state, action) => {
 			const updatedUserData = action.payload;
@@ -151,7 +153,6 @@ export const {
 	updateAnsweredQuestions,
 	updateSelectedTopics,
 	addAnsweredQuestion,
-	removeLastAnsweredQuestion,
 	selectParagraphs,
 	deselectParagraphs,
 	updateSelectedTemplate,
