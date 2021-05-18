@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stepper, Step, StepLabel } from '@material-ui/core';
+import { Box, Stepper, Step, StepLabel } from '@material-ui/core';
 
 interface Props {
 	step: number;
@@ -7,22 +7,24 @@ interface Props {
 
 const EndToEndStepper: React.FC<Props> = ({ step }: Props) => {
 	return (
-		<div className="end-to-end-stepper">
-			<Stepper activeStep={step} data-testid="stepper-component">
-				<Step>
-					<StepLabel>Advice</StepLabel>
-				</Step>
-				<Step>
-					<StepLabel>Legal</StepLabel>
-				</Step>
-				<Step>
-					<StepLabel>Document</StepLabel>
-				</Step>
-				<Step>
-					<StepLabel>Settlement</StepLabel>
-				</Step>
-			</Stepper>
-		</div>
+		<Box display={{ xs: 'none', md: 'block' }}>
+			<div className="end-to-end-stepper">
+				<Stepper activeStep={step} data-testid="stepper-component">
+					<Step>
+						<StepLabel>Advice</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Legal</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Document</StepLabel>
+					</Step>
+					<Step>
+						<StepLabel>Settlement</StepLabel>
+					</Step>
+				</Stepper>
+			</div>
+		</Box>
 	);
 };
 
