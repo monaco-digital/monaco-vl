@@ -285,9 +285,10 @@ export const getNextQuestion = (
 	// If the user re-answers a previously answered question, all later answers are made invalid
 	const currentQuestionIndex = answeredQuestionsIds.indexOf(currentQuestionId);
 
-	const answeredQuestions =
+	let answeredQuestions =
 		currentQuestionIndex === -1 ? answeredQuestionsIds : answeredQuestionsIds.slice(0, currentQuestionIndex);
-	answeredQuestions.push(currentQuestionId);
+	answeredQuestions = [...answeredQuestions, currentQuestionId];
+
 	let index = 0;
 	let nextQuestion = null;
 	while (!nextQuestion && index < allQuestions.length) {
