@@ -136,8 +136,9 @@ export const slice = createSlice({
 			const currentQuestionIndex = state.answeredQuestions.indexOf(latestQuestionId);
 			const currentlyAnsweredQuestions =
 				currentQuestionIndex === -1 ? state.answeredQuestions : state.answeredQuestions.slice(0, currentQuestionIndex);
-			state.answeredQuestions = currentlyAnsweredQuestions;
+			state.answeredQuestions = [...currentlyAnsweredQuestions, latestQuestionId];
 		},
+
 		updateUserData: (state, action) => {
 			const updatedUserData = action.payload;
 			state.userData = {

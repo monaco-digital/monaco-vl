@@ -96,6 +96,10 @@ const StatementSelect: React.FC = () => {
 		);
 	});
 
+	if (statements.length === 0) {
+		history.replace('/preview/_ADV');
+	}
+
 	return (
 		<>
 			<div className="flex-col w-full">
