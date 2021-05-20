@@ -17,7 +17,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -36,7 +35,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -47,7 +45,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[Full name of recipient]',
+								placeholder: '[Full name of the person the letter is addressed to]',
 							} as EditableText,
 						],
 					},
@@ -55,7 +53,7 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
+
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -66,7 +64,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[Company name]',
+								placeholder: '[Employer company name]',
 							} as EditableText,
 						],
 					},
@@ -74,7 +72,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -90,7 +87,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[Email]',
+								placeholder: '[email address]',
 							} as EditableText,
 						],
 					},
@@ -98,7 +95,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -117,7 +113,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -128,8 +123,13 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Dear Sir or Madam',
+								textFirstPerson: 'Dear ',
 							} as StaticText,
+							{
+								id: nanoid(),
+								type: 'EditableText',
+								placeholder: '[Name]',
+							} as EditableText,
 						],
 					},
 				},
@@ -137,7 +137,7 @@ export const stillEmployed: Template = {
 					id: nanoid(),
 					version: 1,
 					type: 'Paragraph',
-					paragraphId: '',
+
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -168,7 +168,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -180,7 +179,7 @@ export const stillEmployed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson:
-									'However, I would prefer to remain on amicable terms and avoid the stress and time of litigation. For that reason, I’m suggesting we agree on the following terms: [edit as appropriate]',
+									'However, I would prefer to remain on amicable terms and avoid the stress and time of litigation. For that reason, I suggest we agree on the following terms: [edit as appropriate]',
 							} as StaticText,
 						],
 					},
@@ -188,7 +187,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -212,7 +210,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -231,7 +228,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -260,7 +256,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -284,7 +279,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -295,7 +289,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '- No disparaging remarks from either party',
+								textFirstPerson: '- No negative remarks from either party',
 							} as StaticText,
 						],
 					},
@@ -303,7 +297,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -322,7 +315,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -341,7 +333,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -352,7 +343,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: '- Ex gratia payment of ',
+								textFirstPerson: '- Termination payment of ',
 							} as StaticText,
 							{
 								id: nanoid(),
@@ -370,7 +361,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -390,7 +380,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -409,7 +398,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -428,7 +416,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -439,7 +426,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'StaticText',
-								textFirstPerson: 'Yours faithfully',
+								textFirstPerson: 'Yours sincerely',
 							} as StaticText,
 						],
 					},
@@ -447,7 +434,6 @@ export const stillEmployed: Template = {
 				{
 					id: nanoid(),
 					type: 'Paragraph',
-					paragraphId: '',
 					paragraph: {
 						id: nanoid(),
 						verticalHeight: 0,
@@ -458,7 +444,7 @@ export const stillEmployed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[name]',
+								placeholder: '[your name]',
 							} as EditableText,
 						],
 					},

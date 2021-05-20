@@ -23,28 +23,27 @@ const StatementSelect: React.FC = () => {
 	const dispatch = useDispatch();
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-	const selectedTopicIds = selectedTopics.map(t => t.id);
-	if (_.intersection(selectedTopicIds, ['_RES_CD', '_RES_CO', '_RES_I', '_RES_KM']).length > 0) {
-		history.push('/preview');
-	}
-
 	const suggestedParagraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
+	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
 
 	useEffect(() => {
 		const updateParagraphs = async () => {
-			const paragraphs = await getSuggestedParagraphs(selectedTopics);
-			const sessionParagraphs = paragraphs.map(
-				paragraph =>
-					({
-						templateComponent: paragraph,
-						documentComponent: null,
-						isSelected: paragraph.paragraph?.isAutomaticallyIncluded,
-					} as SessionParagraph),
-			);
-			dispatch(updateSuggestedParagraphs(sessionParagraphs));
+			// Narrative page will populate suggested paragraphs if enabled
+			if (!enableNarrative) {
+				const paragraphs = await getSuggestedParagraphs(selectedTopics);
+				const sessionParagraphs = paragraphs.map(
+					paragraph =>
+						({
+							templateComponent: paragraph,
+							documentComponent: null,
+							isSelected: paragraph.paragraph?.isAutomaticallyIncluded,
+						} as SessionParagraph),
+				);
+				dispatch(updateSuggestedParagraphs(sessionParagraphs));
+			}
 		};
 		updateParagraphs();
-	}, [dispatch, selectedTopics]);
+	}, [dispatch, selectedTopics, enableNarrative]);
 
 	const handleOnClick = (id: string): void => {
 		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id);
@@ -62,12 +61,17 @@ const StatementSelect: React.FC = () => {
 	};
 
 	const enterLetterPreviewMode = () => {
-		history.push('/preview');
+		history.push('/preview/_ADV');
 	};
 
 	const handleGoBackwardsFromStatements = () => {
-		dispatch(removeLastAnsweredQuestion());
-		history.push('/questions');
+		if (enableNarrative) {
+			history.push('/narrative');
+		} else {
+			dispatch(removeLastAnsweredQuestion());
+
+			history.push('/questions');
+		}
 	};
 
 	const statements = suggestedParagraphs.map(sessionParagraph => {
@@ -118,7 +122,7 @@ const StatementSelect: React.FC = () => {
 						</Box>
 						<Box px={1}>
 							<Fab variant="extended" color="secondary" onClick={enterLetterPreviewMode}>
-								Preview Letter
+								Next
 							</Fab>
 						</Box>
 					</Box>

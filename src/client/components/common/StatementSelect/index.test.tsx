@@ -47,6 +47,9 @@ describe('Statement Page', () => {
 				sessionDocuments: null,
 				userData: {},
 			},
+			features: {
+				enableNarrative: false,
+			},
 		};
 
 		const mock = getSuggestedParagraphs as jest.Mock<any, any>;
