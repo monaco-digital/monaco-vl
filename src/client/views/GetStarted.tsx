@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { useRouteMatch } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography, useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -20,6 +21,8 @@ const GetStarted: React.FC = () => {
 
 	const theme = useTheme();
 	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
+
+	const isAB = Boolean(useRouteMatch('/ab'));
 
 	const learnMoreRef = useRef(null);
 
@@ -43,7 +46,6 @@ const GetStarted: React.FC = () => {
 					Advice to exit package <br /> in 4 easy steps
 				</Typography>
 			</div>
-
 			{/* First row */}
 			<Grid
 				container
@@ -112,7 +114,7 @@ const GetStarted: React.FC = () => {
 									<li>We can send to your employer</li>
 								</Typography>
 							</ul>
-							<GetStartedButton />
+							{!isAB && <GetStartedButton />}
 						</div>
 					</div>
 				</Grid>
@@ -136,7 +138,7 @@ const GetStarted: React.FC = () => {
 							<li>Generate court documents if needed</li>
 						</Typography>
 					</ul>
-					<GetStartedButton />
+					{!isAB && <GetStartedButton />}
 				</Grid>
 				<Grid item md={6} xs={12} className="get-started__item-6">
 					<img src={man_with_coffee_and_letter_image} alt="" />
@@ -166,12 +168,23 @@ const GetStarted: React.FC = () => {
 									<li>We charge 10% of settlement</li>
 								</Typography>
 							</ul>
-							<GetStartedButton />
+							{!isAB && <GetStartedButton />}
 						</div>
 					</div>
 				</Grid>
 			</Grid>
-
+			{isAB && (
+				<div className="get-started__call-to-action">
+					<div>
+						<Typography variant="h3">
+							Ready to start the <br /> experience?
+						</Typography>
+					</div>
+					<div style={{ marginTop: '1rem' }}>
+						<GetStartedButton />
+					</div>
+				</div>
+			)}
 			<div id="text-banner-widget" className="get-started__reviews-widget" />
 		</div>
 	);

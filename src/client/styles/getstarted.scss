@@ -10,6 +10,18 @@
 		margin: 1.5rem 0 1.5rem 1.2rem;
 	}
 
+	.get-started__call-to-action {
+		@apply flex-col;
+
+		justify-content: center;
+		text-align: center;
+		margin-top: 1rem;
+
+		@screen md {
+			margin-top: 4rem;
+		}
+	}
+
 	.get-started__grid {
 		padding: 0 0 0 0;
 
