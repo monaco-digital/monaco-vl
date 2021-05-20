@@ -30,34 +30,10 @@ const Help: React.FC = () => {
 				. Alternatively if you complete this app (it only takes 5 minutes) there is a contact form at the end which you
 				can use to send. The following guidance is produced by Monaco Solicitors:
 			</p>
-			<h2>Should I send a grievance letter or without prejudice letter?</h2>
+			<h2>About your ‘without prejudice’ legal letter</h2>
 			<p>
-				If you&rsquo;ve completed this app, you think you may have a case, and you&rsquo;re still wondering about what
-				to do.&nbsp;
-			</p>
-			<br />
-			<p>
-				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
-				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
-					grievance letter
-				</a>
-				, Here are some{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener noreferrer">
-					example grievance letters
-				</a>
-				.&nbsp; Bear in mind that this could make it more difficult for you at work, especially in smaller companies. In
-				bigger companies you may be able to transfer to a different department or team.
-			</p>
-			<br />
-			<p>
-				If you want to leave with a &lsquo;settlement agreement&rsquo; exit package deal, send a &lsquo;without
-				prejudice&rsquo; letter.&nbsp; If that doesn&rsquo;t work you can send a grievance letter.
-			</p>
-			<br />
-			<p>You can purchase bespoke templates for both of these letters at the end of this app.</p>
-			<br />
-			<p>
-				If you do want to leave, and you need help completing your without prejudice letter template, read these
+				If you do want to leave, and you need help completing your ‘without prejudice letter’ template which you created
+				using this service, as well as reading your advice note which you emailed to yourself, you can read these
 				articles:
 			</p>
 			<div>
@@ -115,7 +91,7 @@ const Help: React.FC = () => {
 					</li>
 				</ul>
 			</div>
-			<h2>Assessing your employer&rsquo;s response to your without prejudice letter</h2>
+			<h2>Assessing your employer’s response to your without prejudice letter</h2>
 			<p>Broadly speaking, there are 3 types of response which you might be met with:</p>
 			<br />
 			<h3>Complete denial</h3>
@@ -139,15 +115,35 @@ const Help: React.FC = () => {
 				properly. This is frustrating but you need to chase them. If you&rsquo;ve chased them then it&rsquo;s time to
 				escalate matters, see below.
 			</p>
+			<h2>Should I send a grievance letter or without prejudice letter?</h2>
+			<p>
+				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
+				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
+					grievance letter
+				</a>
+				, Here are some{' '}
+				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener noreferrer">
+					example grievance letters
+				</a>
+				.&nbsp; Bear in mind that this could make it more difficult for you at work, especially in smaller companies. In
+				bigger companies you may be able to transfer to a different department or team.
+			</p>
+			<br />
+			<p>
+				If you want to leave with a ‘settlement agreement’ exit package deal, send a ‘without prejudice’ letter. Then if
+				your employer ignores you, you can send a grievance letter.
+			</p>
+			<br />
 			<h2>Why submit a grievance even if you are leaving your job</h2>
 			<p>
-				If you&rsquo;re still employed, you can submit a formal written grievance under your employer&rsquo;s internal
-				procedure. A grievance is a statement of facts regarding what happened to you in the past.
+				If you’re still employed, you can submit a formal written grievance under your employer’s internal procedure. A
+				grievance is a statement of facts regarding what happened to you in the past.
 			</p>
+			<br />
 			<p>
-				Writing a grievance lets your employer know that you are not planning to give up, so it&rsquo;s another reason
-				for them to offer you a settlement. You can send a without prejudice letter first, and if that doesn&rsquo;t
-				work you can submit a grievance.
+				Writing a grievance lets your employer know that you are not planning to give up, so it’s another reason for
+				them to offer you a settlement. You can send a without prejudice letter first, and if that doesn’t work you can
+				submit a grievance.
 			</p>
 			<h2>Data subject access requests</h2>
 			<p>
@@ -170,6 +166,7 @@ const Help: React.FC = () => {
 				</a>
 				.
 			</p>
+			<br />
 			<p>
 				A DSAR is a request of all the information which your employer holds relating to you, including for example
 				internal emails where they may have been bad mouthing you.
@@ -191,6 +188,7 @@ const Help: React.FC = () => {
 				</a>
 				.
 			</p>
+			<br />
 			<p>
 				Once you have your ACAS certificate, you will have up to a month to issue an Employment Tribunal claim. You can
 				read about how to do that{' '}
@@ -220,20 +218,24 @@ const Help: React.FC = () => {
 				</a>
 				.
 			</p>
+			<br />
 			<p>
 				And once you have received a settlement offer contact Monaco Solicitors for a free consultation and we will be
 				able to represent you, either to increase the amount or to review and sign the settlement agreement document
 				itself.
 			</p>
+			<br />
 			<p>
 				This is because there is always an amount of money for legal fees, set out in the settlement agreement document
 				itself, which is for the legal costs of going through this lengthy document with you. This does not result in
 				any additional cost to you, as your lawyer will invoice the employer separately for this.
 			</p>
+			<br />
 			<p>
 				We would then go through it in detail with you, and discuss whether you should try to negotiate an increased
 				amount. We might be able to do this on a no win no fee basis.
 			</p>
+			<br />
 			<p>
 				Once you are happy with the deal set out in the document, we would countersign it to confirm that all of the
 				legal wording in the document has been explained to you in plain English.&nbsp;
