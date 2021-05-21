@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 const GetStartedButton: React.FC = () => {
 	const history = useHistory();
 
-	const handleClick = () => history.push('/questions');
+	const handleClick = () => history.push('/questions/1');
 
 	return (
 		<Button

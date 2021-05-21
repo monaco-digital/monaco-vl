@@ -58,7 +58,6 @@ const templateParagraphComponentToDocumentParagraphComponent = (
 				baseTemplateComponent: staticTextParagraph.id,
 				type: 'StaticText',
 				textFirstPerson: staticTextParagraph.textFirstPerson,
-				textThirdPerson: staticTextParagraph.textThirdPerson,
 			} as DocumentParagraphStaticText;
 		}
 		case 'EditableText': {

@@ -63,27 +63,15 @@ describe('Main Component', () => {
 		${'/help'}         | ${'Help'}
 		${'/'}             | ${'GetStarted'}
 		${'/terms'}        | ${'Terms'}
-		${'/questions'}    | ${'Questions'}
+		${'/questions/1'}  | ${'Questions'}
 		${'/preview/_ADV'} | ${'AdvicePreview'}
 		${'/preview/_WP'}  | ${'DocumentPreview'}
+		${'/narrative'}    | ${'Narrative'}
+		${'/statements'}   | ${'StatementSelect'}
 	`('When loading $url Then $component is rendered', async ({ url, component }) => {
 		renderWithProviders(<Main />, { initialState, startPage: url });
 
 		expect(await screen.findByText(component)).toBeInTheDocument();
-	});
-
-	test('Given narrative enabled When loading /statements Then Narrative is rendered', async () => {
-		initialState.features.enableNarrative = true;
-		renderWithProviders(<Main />, { initialState, startPage: 'statements' });
-
-		expect(await screen.findByText('Narrative')).toBeInTheDocument();
-	});
-
-	test('Given narrative disabled When loading /statements Then StatementSelect is rendered', async () => {
-		initialState.features.enableNarrative = false;
-		renderWithProviders(<Main />, { initialState, startPage: 'statements' });
-
-		expect(await screen.findByText('StatementSelect')).toBeInTheDocument();
 	});
 
 	test.each`

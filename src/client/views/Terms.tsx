@@ -9,30 +9,38 @@ const Terms: React.FC = () => {
 	return (
 		<div className="termsSection" style={{ maxWidth: '900px' }}>
 			<ScrollToTopOnMount />
-			<h1>Virtual Lawyer terms of use</h1>
+			<h1>Terms of use</h1>
 			<p>
-				Virtual Lawyer is a web app created and run as part of Monaco Solicitors, a solicitors&rsquo; firm regulated by
-				the Solicitors&rsquo; Regulation Authority. Please read these terms of use carefully.
+				This service brought to you by Monaco Solicitors, a solicitors’ firm regulated by the Solicitors’ Regulation
+				Authority. Please read these terms of use carefully.
 			</p>
 			<h2>General advice not specific legal advice</h2>
 			<p>
-				Through Virtual Lawyer you are able to access a number of letters, including an advice letter, a without
-				prejudice letter and a grievance letter. Those letters do not constitute specific legal advice, they only
-				constitute general legal advice. If you need specific legal advice on the facts of your case then you should
-				contact us and arrange to speak to one of our lawyers.
+				Through this service you are able to access a number of letters, including an advice letter, a without prejudice
+				letter and a grievance letter. Those letters do not constitute specific legal advice, they only constitute
+				general legal advice. If you need specific legal advice on the facts of your case then you should contact Monaco
+				Solicitors and arrange to speak to one of our lawyers.
 			</p>
-			<h2>No client / lawyer relationship</h2>
+			<h2>Free service</h2>
 			<p>
-				Whether you paid for a draft letter template or generated a free letter, nothing in Virtual Lawyer&rsquo;s
-				automated services is intended to create a lawyer / client relationship. Where we have not signed a client care
-				letter with you in writing then you are not our client, and you should not hold us out to be your lawyers to
-				third parties.
+				If you have generated a free letter, this is not intended to create a lawyer / client relationship. Where we
+				have not signed a client care letter with you in writing then you are not our client, and you should not hold us
+				out to be your lawyers to third parties.
+			</p>
+			<h2>Paid service</h2>
+			<p>
+				If you want us to send the letters in this service for you, our fee for the entire service is 10% of any
+				increase in settlement achieved (if you already have an offer our fee won’t apply to that).
+				<a href="https://www.monacosolicitors.co.uk/contact-us" target="_blank" rel="noopener noreferrer">
+					Contact us
+				</a>{' '}
+				for our full terms of use.
 			</p>
 			<h2>For personal use only</h2>
 			<p>
-				Virtual Lawyer is for personal use only. If you work at an organisation wishing to use Virtual Lawyer for its
-				own clients, please contact Monaco Solicitors and we will be very happy to hear from you. A non-personal licence
-				may be very affordable, especially if you wish to contribute to the content of Virtual Lawyer.
+				This service is for personal use only. If you work at an organisation wishing to use this service for its own
+				clients, please contact Monaco Solicitors and we will be very happy to hear from you. A non-personal licence may
+				be very affordable, especially if you wish to contribute to the content.
 			</p>
 			<h2>Other</h2>
 			<p>

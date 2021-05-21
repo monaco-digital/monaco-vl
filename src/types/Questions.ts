@@ -7,7 +7,6 @@ export interface Question {
 	answers?: Answer[];
 	minAnswers: number;
 	maxAnswers: number;
-	isFinal: boolean;
 }
 
 export interface Answer {
