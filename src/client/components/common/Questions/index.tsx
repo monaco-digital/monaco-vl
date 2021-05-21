@@ -42,6 +42,7 @@ const Questions: FC = () => {
 	const handleGoForward = () => {
 		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions, currentQuestion.id);
 
+		dispatch(addAnsweredQuestion(currentQuestion.id));
 		if (!nextQuestion) {
 			if (enableNarrative) {
 				history.push('/narrative');
@@ -50,7 +51,6 @@ const Questions: FC = () => {
 			}
 			return;
 		}
-		dispatch(addAnsweredQuestion(currentQuestion.id));
 		const { id } = nextQuestion || {};
 		history.push(`/questions/${id}`);
 	};

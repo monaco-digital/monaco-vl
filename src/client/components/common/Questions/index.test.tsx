@@ -95,7 +95,7 @@ describe('Questions Page', () => {
 		expect(history.location.pathname).toEqual('/questions/3');
 	});
 
-	test('Given Last Question is loaded When clicking next Then statements are loaded', () => {
+	test('Given Last Question is loaded When clicking next Then question is answered and statements are loaded', () => {
 		initialState.session.selectedTopics = [
 			{
 				id: 'E',
@@ -126,7 +126,7 @@ describe('Questions Page', () => {
 			},
 		];
 		initialState.session.answeredQuestions = [1, 3, 6, 7];
-		const { history } = renderWithProviders(
+		const { history, store } = renderWithProviders(
 			<Switch>
 				<Route path="/questions/:id">
 					<Questions />
@@ -140,6 +140,9 @@ describe('Questions Page', () => {
 		});
 
 		userEvent.click(nextButton);
+
+		const actions = store.getActions();
+		expect(actions[0]).toEqual(addAnsweredQuestion(8));
 
 		expect(history.location.pathname).toEqual('/statements');
 	});
