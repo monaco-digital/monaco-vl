@@ -4,7 +4,7 @@ const adviceParagraphs = [
 	{
 		id: nanoid(),
 		text:
-			'## Advice\n\nVirtual Lawyer will advise whether or not you have a potential case against your employer, based on the information you’ve given us. Virtual Lawyer cannot advise on the strength of your case, but it will give you some pointers so that you can make an educated guess.\n\nIf you do have a case, it’s important to gather evidence as your employer will likely want to deny wrongdoing. The stronger your case, the more likely the employer is to settle it with you (although there are no guarantees and different employers act differently). This is why we refer to having a claim throughout the advice - it’s always in the shadow of your negotiations with your employer.',
+			'## Your advice note\n\n You have answered all the questions and you can find your advice note below. You can email this to yourself to read later (see email button below) then press next to proceed to the next stage',
 		topicsOneOf: '',
 		topicsAllOf: '',
 		topicsNoneOf: '',
