@@ -103,7 +103,7 @@ workflows:
           filters:
             branches:
               only:
-                - semanticrelease
+                - dev
       - request_production_deploy:
           type: approval
           filters:
