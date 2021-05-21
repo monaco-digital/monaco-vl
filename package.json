@@ -118,7 +118,7 @@
 				"name": "master"
 			},
 			{
-				"name": "dev",
+				"name": "semanticrelease",
 				"prerelease": true
 			}
 		],
