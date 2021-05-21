@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
@@ -11,7 +11,6 @@ import Questions from '../components/common/Questions';
 import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
-import AppState from '../../data/AppState';
 import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
@@ -122,7 +121,7 @@ const Main: FC = () => {
 			<Header />
 			<div className="screen container mx-auto">
 				<Switch>
-					<Route path="/questions">
+					<Route path="/questions/:id">
 						<Questions />
 					</Route>
 					<Route path="/statements">

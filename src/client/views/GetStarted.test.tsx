@@ -24,7 +24,7 @@ describe('Get Started Page', () => {
 
 		userEvent.click(screen.getAllByText('Get Started')[0]);
 
-		expect(history.location.pathname).toEqual('/questions');
+		expect(history.location.pathname).toEqual('/questions/1');
 	});
 
 	test('Five Get Started buttons render', () => {
