@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import _ from 'lodash';
@@ -97,7 +97,7 @@ const StatementSelect: React.FC = () => {
 	});
 
 	if (!statements.some(s => s)) {
-		history.replace('/preview/_ADV');
+		return <Redirect to="/preview/_ADV" />;
 	}
 
 	return (
