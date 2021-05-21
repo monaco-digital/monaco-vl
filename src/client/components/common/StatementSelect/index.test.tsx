@@ -141,6 +141,14 @@ describe('Statement Page', () => {
 		expect(history.location.pathname).toEqual('/preview/_ADV');
 	});
 
+	test('Given only AutoInclude Paragraph When Loading Statement Page Then automatically redirect to advice', async () => {
+		initialState.session.suggestedParagraphs[0].templateComponent.paragraph.isAutomaticallyIncluded = true;
+
+		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/statements' });
+
+		expect(history.location.pathname).toEqual('/preview/_ADV');
+	});
+
 	test('When Clicking back Then load previous page', async () => {
 		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/questions/1' });
 

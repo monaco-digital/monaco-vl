@@ -96,7 +96,7 @@ const StatementSelect: React.FC = () => {
 		);
 	});
 
-	if (statements.length === 0) {
+	if (!statements.some(s => s)) {
 		history.replace('/preview/_ADV');
 	}
 
