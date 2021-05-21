@@ -86,4 +86,34 @@ describe('Session Data Slice', () => {
 		state = store.getState().session as AppState['session'];
 		expect(state.answeredQuestions).toEqual([1]);
 	});
+
+	test('Given 3 answered questions with selected topics When Reanswering second question Then 3rd question topics are removed', () => {
+		store.dispatch(addAnsweredQuestion(1));
+		store.dispatch(addAnsweredQuestion(2));
+		store.dispatch(addAnsweredQuestion(3));
+		store.dispatch(updateSelectedTopics([{ id: 'E' }, { id: 'Rd' }, { id: 'M2y' }]));
+
+		let state = store.getState().session as AppState['session'];
+		expect(state.selectedTopics).toEqual([{ id: 'E' }, { id: 'Rd' }, { id: 'M2y' }]);
+
+		store.dispatch(addAnsweredQuestion(2));
+
+		state = store.getState().session as AppState['session'];
+		expect(state.selectedTopics).toEqual([{ id: 'E' }, { id: 'Rd' }]);
+	});
+
+	test('Given 3 answered questions with selected topics When Reanswering last question Then no topics are removed', () => {
+		store.dispatch(addAnsweredQuestion(1));
+		store.dispatch(addAnsweredQuestion(2));
+		store.dispatch(addAnsweredQuestion(3));
+		store.dispatch(updateSelectedTopics([{ id: 'E' }, { id: 'Rd' }, { id: 'M2y' }]));
+
+		let state = store.getState().session as AppState['session'];
+
+		store.dispatch(addAnsweredQuestion(3));
+
+		state = store.getState().session as AppState['session'];
+		expect(state.answeredQuestions).toEqual([1, 2, 3]);
+		expect(state.selectedTopics).toEqual([{ id: 'E' }, { id: 'Rd' }, { id: 'M2y' }]);
+	});
 });

@@ -2,6 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { CaseTopic, DocumentParagraph, Template, DocumentParagraphComponent, TemplateParagraph } from 'api/vl/models';
 import _ from 'lodash';
+import { getQuestion } from 'clustering/questionFlow';
 import { UserData } from '../types/UserData';
 import {
 	SessionDocument,
@@ -9,7 +10,6 @@ import {
 	SessionDocumentComponent,
 	SessionDocumentSection,
 } from '../types/SessionDocument';
-import { Question } from '../types/Questions';
 import { createDocument } from '../utils/document';
 import orderSuggestedParagraphs from '../utils/paragraphOrdering';
 import { cdfValues } from '../client/components/common/UserData/CDF1';
@@ -75,7 +75,7 @@ export const slice = createSlice({
 		narrative: null as string,
 		suggestedParagraphs: [] as SessionParagraph[],
 		selectedTopics: [] as CaseTopic[],
-		answeredQuestions: [] as Question[],
+		answeredQuestions: [] as number[],
 		selectedTemplate: null as Template,
 		currentSessionDocument: null as string,
 		sessionDocuments: {
@@ -159,12 +159,26 @@ export const slice = createSlice({
 		addAnsweredQuestion: (state, action) => {
 			const latestQuestionId = action.payload;
 
-			// re-answering a question invalidates all later answers
 			const currentQuestionIndex = state.answeredQuestions.indexOf(latestQuestionId);
-			const currentlyAnsweredQuestions =
-				currentQuestionIndex === -1 ? state.answeredQuestions : state.answeredQuestions.slice(0, currentQuestionIndex);
-			state.answeredQuestions = [...currentlyAnsweredQuestions, latestQuestionId];
+			if (currentQuestionIndex === -1) {
+				state.answeredQuestions = [...state.answeredQuestions, latestQuestionId];
+			} else {
+				// re-answering a question invalidates all later answers
 
+				const remainingAnsweredQuestions = state.answeredQuestions.slice(0, currentQuestionIndex);
+				const poppedQuestions = state.answeredQuestions.slice(currentQuestionIndex + 1);
+
+				poppedQuestions.forEach(questionId => {
+					// unselect all topics selected by the removed questions
+					// FIXME - some topics are in multiple questions (e.g. 'P'), and might get removed when they shouldn't
+
+					const question = getQuestion(questionId);
+					const optionsToDeselect = question.options.map(option => option.topicId);
+					state.selectedTopics = state.selectedTopics.filter(topic => !optionsToDeselect.includes(topic.id));
+				});
+
+				state.answeredQuestions = [...remainingAnsweredQuestions, latestQuestionId];
+			}
 			state.userData = updateUserDataFromTopics(state.userData, state.selectedTopics);
 		},
 		updateUserData: (state, action) => {
