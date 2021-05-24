@@ -7,7 +7,10 @@ import {
 	Accordion,
 	AccordionDetails,
 	AccordionSummary,
+	Box,
 	Checkbox,
+	Fab,
+	Grid,
 	Typography,
 	FormControlLabel,
 } from '@material-ui/core/';
@@ -117,67 +120,35 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 
 		return (
 			<div>
-				<div className="question__accordion">
+				<div className="select-answers__accordion">
 					<Accordion>
-						<AccordionSummary
-							// expandIcon={<ExpandMoreIcon />}
-							// aria-label="Expand"
-							// aria-controls="additional-actions1-content"
-							id={topicId}
-						>
-							<FormControlLabel
-								// aria-label="Acknowledge"
-								checked={checkTopicInputStatus(selectedTopics, topicId)}
-								onClick={event => event.stopPropagation()}
-								onFocus={event => event.stopPropagation()}
-								onChange={() => handleOnClick(topicId)}
-								control={<Checkbox color="primary" />}
-								label={text}
-							/>
+						<AccordionSummary id={topicId}>
+							<Grid container justify="space-between" alignItems="center" spacing={5}>
+								<Grid item xs={10}>
+									{text}
+								</Grid>
+								<Grid item xs={2}>
+									<Checkbox
+										color="primary"
+										checked={checkTopicInputStatus(selectedTopics, topicId)}
+										onChange={() => handleOnClick(topicId)}
+										onClick={event => event.stopPropagation()}
+										onFocus={event => event.stopPropagation()}
+									/>
+								</Grid>
+							</Grid>
 						</AccordionSummary>
-						{/* <AccordionDetails>
-							<Typography color="textSecondary">
-								The click event of the nested action will propagate up and expand the accordion unless you explicitly
-								stop it.
-							</Typography>
-						</AccordionDetails> */}
 					</Accordion>
 				</div>
-				{/* <div key={topicId} className="topic inline-flex">
-					<input
-						type={answerStyle}
-						id={topicId}
-						name={text}
-						value={text}
-						onChange={() => handleOnClick(topicId)}
-						checked={checkTopicInputStatus(selectedTopics, topicId)}
-					/>
-					<label htmlFor={topicId}>
-						<div className="inline-flex items-center content-center">
-							{text}
-							{topicId === '_PC' && (
-								<div className="questions__tags__topic-chevron ml-4">
-									<div
-										className={
-											checkTopicInputStatus(selectedTopics, topicId)
-												? classNames('fas', 'fa-chevron-up')
-												: classNames('fas', 'fa-chevron-down')
-										}
-									/>
-								</div>
-							)}
-						</div>
-					</label>
-				</div> */}
 			</div>
 		);
 	});
 
 	return (
 		<>
-			<div className="question">
+			<div className="select-answers">
 				<div className="questions__title">{question.text && <Title text={question} />}</div>
-				<div className="topics">{answers}</div>
+				{answers}
 				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
 				<br />
 			</div>
