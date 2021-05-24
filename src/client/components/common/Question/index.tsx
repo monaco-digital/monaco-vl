@@ -3,6 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
 import classNames from 'classnames';
 import ReactGA from 'react-ga';
+import {
+	Accordion,
+	AccordionDetails,
+	AccordionSummary,
+	Checkbox,
+	Typography,
+	FormControlLabel,
+} from '@material-ui/core/';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
 import { Question as QuestionT } from '../../../../types/Questions';
@@ -107,41 +116,71 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		const { topicId } = option;
 
 		return (
-			<div key={topicId} className="topic inline-flex">
-				<input
-					type={answerStyle}
-					id={topicId}
-					name={text}
-					value={text}
-					onChange={() => handleOnClick(topicId)}
-					checked={checkTopicInputStatus(selectedTopics, topicId)}
-				/>
-				<label htmlFor={topicId}>
-					<div className="inline-flex items-center content-center">
-						{text}
-						{topicId === '_PC' && (
-							<div className="questions__tags__topic-chevron ml-4">
-								<div
-									className={
-										checkTopicInputStatus(selectedTopics, topicId)
-											? classNames('fas', 'fa-chevron-up')
-											: classNames('fas', 'fa-chevron-down')
-									}
-								/>
-							</div>
-						)}
-					</div>
-				</label>
+			<div>
+				<div className="question__accordion">
+					<Accordion>
+						<AccordionSummary
+							// expandIcon={<ExpandMoreIcon />}
+							// aria-label="Expand"
+							// aria-controls="additional-actions1-content"
+							id={topicId}
+						>
+							<FormControlLabel
+								// aria-label="Acknowledge"
+								checked={checkTopicInputStatus(selectedTopics, topicId)}
+								onClick={event => event.stopPropagation()}
+								onFocus={event => event.stopPropagation()}
+								onChange={() => handleOnClick(topicId)}
+								control={<Checkbox color="primary" />}
+								label={text}
+							/>
+						</AccordionSummary>
+						{/* <AccordionDetails>
+							<Typography color="textSecondary">
+								The click event of the nested action will propagate up and expand the accordion unless you explicitly
+								stop it.
+							</Typography>
+						</AccordionDetails> */}
+					</Accordion>
+				</div>
+				{/* <div key={topicId} className="topic inline-flex">
+					<input
+						type={answerStyle}
+						id={topicId}
+						name={text}
+						value={text}
+						onChange={() => handleOnClick(topicId)}
+						checked={checkTopicInputStatus(selectedTopics, topicId)}
+					/>
+					<label htmlFor={topicId}>
+						<div className="inline-flex items-center content-center">
+							{text}
+							{topicId === '_PC' && (
+								<div className="questions__tags__topic-chevron ml-4">
+									<div
+										className={
+											checkTopicInputStatus(selectedTopics, topicId)
+												? classNames('fas', 'fa-chevron-up')
+												: classNames('fas', 'fa-chevron-down')
+										}
+									/>
+								</div>
+							)}
+						</div>
+					</label>
+				</div> */}
 			</div>
 		);
 	});
 
 	return (
 		<>
-			<div className="questions__title">{question.text && <Title text={question} />}</div>
-			<div className="topics">{answers}</div>
-			{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
-			<br />
+			<div className="question">
+				<div className="questions__title">{question.text && <Title text={question} />}</div>
+				<div className="topics">{answers}</div>
+				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
+				<br />
+			</div>
 		</>
 	);
 };
