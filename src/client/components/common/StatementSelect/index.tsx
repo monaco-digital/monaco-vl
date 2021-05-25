@@ -94,7 +94,7 @@ const StatementSelect: React.FC = () => {
 							<Grid item xs={10}>
 								{summary}
 							</Grid>
-							<Grid item xs={2} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+							<Grid item xs={2}>
 								<Checkbox
 									color="primary"
 									checked={selected}
