@@ -45,7 +45,8 @@ const StatementSelect: React.FC = () => {
 		updateParagraphs();
 	}, [dispatch, selectedTopics, enableNarrative]);
 
-	const handleOnClick = (id: string): void => {
+	const handleOnClick = (event, id: string): void => {
+		event.stopPropagation();
 		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id);
 		if (!selectedSessionParagraph.isSelected) {
 			dispatch(selectParagraphs([id]));
@@ -90,7 +91,13 @@ const StatementSelect: React.FC = () => {
 			<div className="select-answers__accordion">
 				<Accordion>
 					<AccordionSummary id={id}>
-						<Grid container justify="space-between" alignItems="center" spacing={5}>
+						<Grid
+							container
+							justify="space-between"
+							alignItems="center"
+							spacing={5}
+							onClick={event => handleOnClick(event, id)}
+						>
 							<Grid item xs={10}>
 								{summary}
 							</Grid>
@@ -98,7 +105,7 @@ const StatementSelect: React.FC = () => {
 								<Checkbox
 									color="primary"
 									checked={selected}
-									onChange={() => handleOnClick(id)}
+									onChange={event => handleOnClick(event, id)}
 									onClick={event => event.stopPropagation()}
 									onFocus={event => event.stopPropagation()}
 								/>

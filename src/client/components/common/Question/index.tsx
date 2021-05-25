@@ -89,7 +89,8 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		optionsToShow = optionsToShow.slice(0, defaultLimit);
 	}
 
-	const handleOnClick = (id: string) => {
+	const handleOnClick = (event, id: string) => {
+		event.stopPropagation();
 		const option = validOptions.find(o => o.topicId === id);
 
 		ReactGA.event({
@@ -109,7 +110,13 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 			<div className="select-answers__accordion" key={topicId}>
 				<Accordion>
 					<AccordionSummary>
-						<Grid container justify="space-between" alignItems="center" spacing={5}>
+						<Grid
+							container
+							justify="space-between"
+							alignItems="center"
+							spacing={5}
+							onClick={event => handleOnClick(event, topicId)}
+						>
 							<Grid item xs={10}>
 								{text}
 							</Grid>
@@ -118,7 +125,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 									data-testid={topicId}
 									color="primary"
 									checked={checkTopicInputStatus(selectedTopics, topicId)}
-									onChange={() => handleOnClick(topicId)}
+									onChange={event => handleOnClick(event, topicId)}
 									onClick={event => event.stopPropagation()}
 									onFocus={event => event.stopPropagation()}
 								/>
