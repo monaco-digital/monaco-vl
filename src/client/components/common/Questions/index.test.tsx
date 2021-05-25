@@ -14,6 +14,10 @@ jest.mock('../Question', () => () => {
 	return 'Question';
 });
 
+jest.mock('../ScrollToTopOnMount', () => () => {
+	return 'ScrollToTopOnMount';
+});
+
 describe('Questions Page', () => {
 	let initialState;
 

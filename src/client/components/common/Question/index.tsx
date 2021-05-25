@@ -1,20 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
-import classNames from 'classnames';
 import ReactGA from 'react-ga';
-import {
-	Accordion,
-	AccordionDetails,
-	AccordionSummary,
-	Box,
-	Checkbox,
-	Fab,
-	Grid,
-	Typography,
-	FormControlLabel,
-} from '@material-ui/core/';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Accordion, AccordionSummary, Checkbox, Grid } from '@material-ui/core/';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
 import { Question as QuestionT } from '../../../../types/Questions';
@@ -91,7 +79,6 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 
 	const isSingle = question.maxAnswers === 1;
 
-	const answerStyle = isSingle ? 'radio' : 'checkbox';
 	const validOptions = filterValidOptions(question.options, selectedTopicIds);
 	const optionsCount = validOptions.length;
 	const hasMore = optionsCount > defaultLimit;
@@ -119,27 +106,26 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		const { topicId } = option;
 
 		return (
-			<div>
-				<div className="select-answers__accordion">
-					<Accordion>
-						<AccordionSummary id={topicId}>
-							<Grid container justify="space-between" alignItems="center" spacing={5}>
-								<Grid item xs={10}>
-									{text}
-								</Grid>
-								<Grid item xs={2}>
-									<Checkbox
-										color="primary"
-										checked={checkTopicInputStatus(selectedTopics, topicId)}
-										onChange={() => handleOnClick(topicId)}
-										onClick={event => event.stopPropagation()}
-										onFocus={event => event.stopPropagation()}
-									/>
-								</Grid>
+			<div className="select-answers__accordion" key={topicId}>
+				<Accordion>
+					<AccordionSummary>
+						<Grid container justify="space-between" alignItems="center" spacing={5}>
+							<Grid item xs={10}>
+								{text}
 							</Grid>
-						</AccordionSummary>
-					</Accordion>
-				</div>
+							<Grid item xs={2}>
+								<Checkbox
+									data-testid={topicId}
+									color="primary"
+									checked={checkTopicInputStatus(selectedTopics, topicId)}
+									onChange={() => handleOnClick(topicId)}
+									onClick={event => event.stopPropagation()}
+									onFocus={event => event.stopPropagation()}
+								/>
+							</Grid>
+						</Grid>
+					</AccordionSummary>
+				</Accordion>
 			</div>
 		);
 	});
