@@ -7,6 +7,7 @@ import _ from 'lodash';
 import { Accordion, AccordionSummary, Box, Checkbox, Fab, Grid } from '@material-ui/core';
 
 import EndToEndStepper from '../EndToEndStepper';
+import OptionAccordion from '../OptionAccordion';
 
 import AppState from '../../../../data/AppState';
 import {
@@ -45,8 +46,7 @@ const StatementSelect: React.FC = () => {
 		updateParagraphs();
 	}, [dispatch, selectedTopics, enableNarrative]);
 
-	const handleOnClick = (event, id: string): void => {
-		event.stopPropagation();
+	const handleOnClick = (id: string): void => {
 		const selectedSessionParagraph = suggestedParagraphs.find(paragraph => paragraph.templateComponent.id === id);
 		if (!selectedSessionParagraph.isSelected) {
 			dispatch(selectParagraphs([id]));
@@ -86,33 +86,8 @@ const StatementSelect: React.FC = () => {
 		const selected = sessionParagraph.isSelected;
 
 		return (
-			// FIXME - sort out accessability on these buttons
-			// eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
-			<div className="select-answers__accordion">
-				<Accordion>
-					<AccordionSummary id={id}>
-						<Grid
-							container
-							justify="space-between"
-							alignItems="center"
-							spacing={5}
-							onClick={event => handleOnClick(event, id)}
-						>
-							<Grid item xs={10}>
-								{summary}
-							</Grid>
-							<Grid item xs={2}>
-								<Checkbox
-									color="primary"
-									checked={selected}
-									onChange={event => handleOnClick(event, id)}
-									onClick={event => event.stopPropagation()}
-									onFocus={event => event.stopPropagation()}
-								/>
-							</Grid>
-						</Grid>
-					</AccordionSummary>
-				</Accordion>
+			<div className="select-answers__accordion" key={id}>
+				<OptionAccordion labelText={summary} id={id} onClickHandler={handleOnClick} isChecked={selected} />
 			</div>
 		);
 	});

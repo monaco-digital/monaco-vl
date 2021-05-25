@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import Question from './index';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
-describe('Questions Page', () => {
+describe('Question Page', () => {
 	let initialState;
 
 	const currentQuestion = {

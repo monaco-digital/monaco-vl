@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
 import ReactGA from 'react-ga';
-import { Accordion, AccordionSummary, Checkbox, Grid } from '@material-ui/core/';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
 import { Question as QuestionT } from '../../../../types/Questions';
 import AppState from '../../../../data/AppState';
 import Title from '../../Title';
 import Button from '../../Button';
+import OptionAccordion from '../OptionAccordion';
 
 const passesPrerequisites = (prerequisites, selectedTopicIds) => {
 	if (prerequisites.length === 0) return true;
@@ -89,8 +89,7 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		optionsToShow = optionsToShow.slice(0, defaultLimit);
 	}
 
-	const handleOnClick = (event, id: string) => {
-		event.stopPropagation();
+	const handleOnClick = (id: string) => {
 		const option = validOptions.find(o => o.topicId === id);
 
 		ReactGA.event({
@@ -105,34 +104,11 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 	const answers = optionsToShow.map(option => {
 		const { text } = option;
 		const { topicId } = option;
+		const checked = checkTopicInputStatus(selectedTopics, topicId);
 
 		return (
 			<div className="select-answers__accordion" key={topicId}>
-				<Accordion>
-					<AccordionSummary>
-						<Grid
-							container
-							justify="space-between"
-							alignItems="center"
-							spacing={5}
-							onClick={event => handleOnClick(event, topicId)}
-						>
-							<Grid item xs={10}>
-								{text}
-							</Grid>
-							<Grid item xs={2}>
-								<Checkbox
-									data-testid={topicId}
-									color="primary"
-									checked={checkTopicInputStatus(selectedTopics, topicId)}
-									onChange={event => handleOnClick(event, topicId)}
-									onClick={event => event.stopPropagation()}
-									onFocus={event => event.stopPropagation()}
-								/>
-							</Grid>
-						</Grid>
-					</AccordionSummary>
-				</Accordion>
+				<OptionAccordion labelText={text} id={topicId} onClickHandler={handleOnClick} isChecked={checked} />
 			</div>
 		);
 	});
