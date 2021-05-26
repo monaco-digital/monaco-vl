@@ -1,0 +1,12 @@
+.select-answers {
+	width: 100%;
+
+	.select-answers__accordion {
+		margin: 0 0 0.8rem 0;
+	}
+
+	.select-answers__checkbox {
+		display: flex;
+		justify-content: flex-end;
+	}
+}

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
-import classNames from 'classnames';
 import ReactGA from 'react-ga';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
@@ -9,6 +8,7 @@ import { Question as QuestionT } from '../../../../types/Questions';
 import AppState from '../../../../data/AppState';
 import Title from '../../Title';
 import Button from '../../Button';
+import OptionAccordion from '../OptionAccordion';
 
 const passesPrerequisites = (prerequisites, selectedTopicIds) => {
 	if (prerequisites.length === 0) return true;
@@ -79,7 +79,6 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 
 	const isSingle = question.maxAnswers === 1;
 
-	const answerStyle = isSingle ? 'radio' : 'checkbox';
 	const validOptions = filterValidOptions(question.options, selectedTopicIds);
 	const optionsCount = validOptions.length;
 	const hasMore = optionsCount > defaultLimit;
@@ -105,43 +104,23 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 	const answers = optionsToShow.map(option => {
 		const { text } = option;
 		const { topicId } = option;
+		const checked = checkTopicInputStatus(selectedTopics, topicId);
 
 		return (
-			<div key={topicId} className="topic inline-flex">
-				<input
-					type={answerStyle}
-					id={topicId}
-					name={text}
-					value={text}
-					onChange={() => handleOnClick(topicId)}
-					checked={checkTopicInputStatus(selectedTopics, topicId)}
-				/>
-				<label htmlFor={topicId}>
-					<div className="inline-flex items-center content-center">
-						{text}
-						{topicId === '_PC' && (
-							<div className="questions__tags__topic-chevron ml-4">
-								<div
-									className={
-										checkTopicInputStatus(selectedTopics, topicId)
-											? classNames('fas', 'fa-chevron-up')
-											: classNames('fas', 'fa-chevron-down')
-									}
-								/>
-							</div>
-						)}
-					</div>
-				</label>
+			<div className="select-answers__accordion" key={topicId}>
+				<OptionAccordion labelText={text} id={topicId} onClickHandler={handleOnClick} isChecked={checked} />
 			</div>
 		);
 	});
 
 	return (
 		<>
-			<div className="questions__title">{question.text && <Title text={question} />}</div>
-			<div className="topics">{answers}</div>
-			{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
-			<br />
+			<div className="select-answers">
+				<div className="questions__title">{question.text && <Title text={question} />}</div>
+				{answers}
+				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
+				<br />
+			</div>
 		</>
 	);
 };

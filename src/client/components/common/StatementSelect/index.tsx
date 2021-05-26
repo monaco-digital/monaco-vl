@@ -4,9 +4,10 @@ import { useHistory, Redirect } from 'react-router-dom';
 import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import _ from 'lodash';
-import { Box, Fab } from '@material-ui/core';
+import { Accordion, AccordionSummary, Box, Checkbox, Fab, Grid } from '@material-ui/core';
 
 import EndToEndStepper from '../EndToEndStepper';
+import OptionAccordion from '../OptionAccordion';
 
 import AppState from '../../../../data/AppState';
 import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from '../../../../data/sessionDataSlice';
@@ -70,28 +71,12 @@ const StatementSelect: React.FC = () => {
 			return null;
 		}
 
-		const documentParagraph = sessionParagraph.documentComponent as DocumentParagraph;
 		const { id, summary } = templateParagraph.paragraph;
 		const selected = sessionParagraph.isSelected;
-		const hasUserInput = templateParagraph.paragraph.paragraphComponents.find(
-			pc => pc.type === 'BulletPoints',
-		) as BulletPoints;
-		const displayInput = hasUserInput && documentParagraph;
 
 		return (
-			// FIXME - sort out accessability on these buttons
-			// eslint-disable-next-line jsx-a11y/no-static-element-interactions,jsx-a11y/click-events-have-key-events
-			<div key={id} className="topic" onClick={() => handleOnClick(id)}>
-				<input
-					type="checkbox"
-					id=""
-					name={summary}
-					value={summary}
-					checked={selected}
-					onChange={() => handleOnClick(id)}
-				/>
-				<label htmlFor={id}>{summary}</label>
-				{displayInput && documentParagraph.documentParagraphComponents}
+			<div className="select-answers__accordion" key={id}>
+				<OptionAccordion labelText={summary} id={id} onClickHandler={handleOnClick} isChecked={selected} />
 			</div>
 		);
 	});
@@ -102,7 +87,7 @@ const StatementSelect: React.FC = () => {
 
 	return (
 		<>
-			<div className="flex-col w-full">
+			<div className="flex-col w-full select-answers">
 				<EndToEndStepper step={0} />
 				<div className="questions">
 					<h1 className="title">Select all the statements that apply to you</h1>
