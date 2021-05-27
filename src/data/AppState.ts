@@ -1,5 +1,4 @@
 import { CaseTopic, Paragraph, Template } from 'api/vl/models';
-import { Question } from '../types/Questions';
 import { SessionDocument, SessionParagraph } from '../types/SessionDocument';
 import { ParagraphToggle } from '../types/paragraph';
 import { UserData } from '../types/UserData';
@@ -9,7 +8,7 @@ type AppState = {
 		narrative: string;
 		suggestedParagraphs: SessionParagraph[];
 		selectedTopics: CaseTopic[];
-		answeredQuestions: Question[];
+		answeredQuestions: number[];
 		selectedTemplate: Template;
 		currentSessionDocument: string;
 		sessionDocuments: {
@@ -32,9 +31,6 @@ type AppState = {
 	topics: {
 		all: CaseTopic[];
 		selected: CaseTopic[];
-	};
-	questions: {
-		answeredQuestions: Question[];
 	};
 	features: {
 		enableMonetization: boolean;

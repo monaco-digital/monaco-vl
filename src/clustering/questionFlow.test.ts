@@ -9,7 +9,6 @@ const allQuestions: Question[] = [
 		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'Still employed',
@@ -28,7 +27,6 @@ const allQuestions: Question[] = [
 		subtext: 'How did your employment end',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'I resigned',
@@ -47,7 +45,7 @@ const allQuestions: Question[] = [
 		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
+
 		options: [
 			{
 				text: 'More than two years',
@@ -66,7 +64,6 @@ const allQuestions: Question[] = [
 		subtext: 'What was the reason given for your dismissal?',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'Redundancy',
@@ -101,7 +98,7 @@ const allQuestions: Question[] = [
 		subtext: 'Was there a problem with the redundancy?',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
+
 		options: [
 			{
 				text: 'No reduction of work',
@@ -136,7 +133,6 @@ const allQuestions: Question[] = [
 		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'Bullying/harassment',
@@ -199,7 +195,6 @@ const allQuestions: Question[] = [
 		subtext: 'Why do you think your employer acted this way? Select all that apply',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'I am a whistleblower',
@@ -281,7 +276,6 @@ const allQuestions: Question[] = [
 		subtext: 'Why do you think your employer acted this way? Select all that apply',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'No',
@@ -306,15 +300,22 @@ describe('Question flow', () => {
 
 	test('Question prerequisite not met', () => {
 		const selectedTopics = [];
-		const answeredQuestions = allQuestions.slice(0, 1);
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		const answeredQuestions = [];
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions, 1);
 		expect(nextQuestion.id).toBe(3);
 	});
 
 	test('Question prerequisite met', () => {
 		const selectedTopics = [{ id: '_NE' }];
-		const answeredQuestions = allQuestions.slice(0, 1);
-		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions);
+		const answeredQuestions = [];
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions, 1);
 		expect(nextQuestion.id).toBe(2);
+	});
+
+	test('Given 4 answered questions When Question 3 is answered again Then Next question is 6', () => {
+		const selectedTopics = [{ id: 'E' }, { id: 'M2y' }, { id: '_NCE' }];
+		const answeredQuestions = [1, 3, 6, 7];
+		const nextQuestion = getNextQuestion(selectedTopics, answeredQuestions, 3);
+		expect(nextQuestion.id).toBe(6);
 	});
 });

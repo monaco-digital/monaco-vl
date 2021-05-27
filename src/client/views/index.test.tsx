@@ -63,7 +63,7 @@ describe('Main Component', () => {
 		${'/help'}         | ${'Help'}
 		${'/'}             | ${'GetStarted'}
 		${'/terms'}        | ${'Terms'}
-		${'/questions'}    | ${'Questions'}
+		${'/questions/1'}  | ${'Questions'}
 		${'/preview/_ADV'} | ${'AdvicePreview'}
 		${'/preview/_WP'}  | ${'DocumentPreview'}
 		${'/narrative'}    | ${'Narrative'}

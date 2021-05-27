@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { removeLastAnsweredQuestion, updateNarrative } from 'data/sessionDataSlice';
+import { updateNarrative } from 'data/sessionDataSlice';
 import AppState from 'data/AppState';
 import { CaseTopic } from 'api/vl/models';
 import { generateParagraphsByTopics } from 'data/sessionDataThunks';
@@ -27,8 +27,7 @@ const Narrative: React.FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 
 	const handleGoBackwardsFromStatements = () => {
-		dispatch(removeLastAnsweredQuestion());
-		history.push('/questions');
+		history.goBack();
 	};
 
 	const onSubmit = async ({ narrative }) => {

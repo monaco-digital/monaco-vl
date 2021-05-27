@@ -67,15 +67,14 @@ describe('Narrative Page', () => {
 	});
 
 	test('When clicking back Then the URL Changes and the store is updated', async () => {
-		const { store, history } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
+		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/first' });
+
+		history.push('/narrative');
 
 		userEvent.click(screen.getByText('Back'));
 
 		await waitFor(() => {
-			expect(history.location.pathname).toEqual('/questions');
+			expect(history.location.pathname).toEqual('/first');
 		});
-
-		const actions = store.getActions();
-		expect(actions[0]).toEqual(removeLastAnsweredQuestion());
 	});
 });

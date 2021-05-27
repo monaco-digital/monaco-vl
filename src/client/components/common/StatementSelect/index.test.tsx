@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import React from 'react';
+
 import { renderWithProviders } from '../../../../testing/utils.test';
-import {} from '../../../../data/sessionDataSlice';
 import StatementSelect from '.';
 import { getSuggestedParagraphs } from '../../../../api/vl';
 
@@ -130,5 +131,49 @@ describe('Statement Page', () => {
 		renderWithProviders(<StatementSelect />, { initialState });
 
 		expect(screen.queryByText('This is AutoIncluded')).not.toBeInTheDocument();
+	});
+
+	test('Given No statements When Loading Statement Page Then automatically redirect to advice', async () => {
+		initialState.session.suggestedParagraphs = [];
+
+		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/statements' });
+
+		expect(history.location.pathname).toEqual('/preview/_ADV');
+	});
+
+	test('Given only AutoInclude Paragraph When Loading Statement Page Then automatically redirect to advice', async () => {
+		initialState.session.suggestedParagraphs[0].templateComponent.paragraph.isAutomaticallyIncluded = true;
+
+		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/statements' });
+
+		expect(history.location.pathname).toEqual('/preview/_ADV');
+	});
+
+	test('When Clicking back Then load previous page', async () => {
+		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/questions/1' });
+
+		history.push('/statements');
+
+		const backButton = screen.getByRole('button', {
+			name: /back/i,
+		});
+
+		userEvent.click(backButton);
+
+		expect(history.location.pathname).toEqual('/questions/1');
+	});
+
+	test('When Clicking next Then load load advice', async () => {
+		const { history } = renderWithProviders(<StatementSelect />, { initialState, startPage: '/questions/1' });
+
+		history.push('/statements');
+
+		const nextButton = screen.getByRole('button', {
+			name: /next/i,
+		});
+
+		userEvent.click(nextButton);
+
+		expect(history.location.pathname).toEqual('/preview/_ADV');
 	});
 });

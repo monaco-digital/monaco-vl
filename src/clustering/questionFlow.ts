@@ -8,7 +8,6 @@ const allQuestions: Question[] = [
 		subtext: 'Choose one:',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'Still employed',
@@ -27,7 +26,6 @@ const allQuestions: Question[] = [
 		subtext: 'How did your employment end',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'I resigned',
@@ -46,7 +44,6 @@ const allQuestions: Question[] = [
 		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'More than two years',
@@ -65,7 +62,6 @@ const allQuestions: Question[] = [
 		subtext: 'What was the reason given for your dismissal?',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'Redundancy',
@@ -100,7 +96,6 @@ const allQuestions: Question[] = [
 		subtext: 'Was there a problem with the redundancy?',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'No reduction of work',
@@ -135,7 +130,6 @@ const allQuestions: Question[] = [
 		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'Bullying/harassment',
@@ -198,7 +192,6 @@ const allQuestions: Question[] = [
 		subtext: 'If any of these apply, choose one or more',
 		minAnswers: 0,
 		maxAnswers: 100,
-		isFinal: false,
 		options: [
 			{
 				text: 'Whistleblowing',
@@ -261,7 +254,6 @@ const allQuestions: Question[] = [
 		subtext: '',
 		minAnswers: 1,
 		maxAnswers: 1,
-		isFinal: false,
 		options: [
 			{
 				text: 'No',
@@ -281,19 +273,28 @@ const allQuestions: Question[] = [
 
 export const getFirstQuestion = (): Question => allQuestions[0];
 
-export const getNextQuestion = (selectedTopics = [], answeredQuestions: Question[]): Question => {
-	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
-	const answeredQuestionsIds = answeredQuestions.map(q => q.id);
-	const lastAnsweredQuestion = answeredQuestions.length > 1 ? answeredQuestions[answeredQuestions.length - 1] : null;
+export const getQuestion = (id: number): Question => allQuestions.find(q => q.id === id);
 
-	if (lastAnsweredQuestion?.isFinal) return null;
+export const getNextQuestion = (
+	selectedTopics = [],
+	answeredQuestionsIds: number[],
+	currentQuestionId: number,
+): Question => {
+	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+
+	// If the user re-answers a previously answered question, all later answers are made invalid
+	const currentQuestionIndex = answeredQuestionsIds.indexOf(currentQuestionId);
+
+	let answeredQuestions =
+		currentQuestionIndex === -1 ? answeredQuestionsIds : answeredQuestionsIds.slice(0, currentQuestionIndex);
+	answeredQuestions = [...answeredQuestions, currentQuestionId];
 
 	let index = 0;
 	let nextQuestion = null;
 	while (!nextQuestion && index < allQuestions.length) {
 		const prerequisites = allQuestions[index].prerequisites || [];
 		const prerequisitesMet = prerequisites.every(id => selectedTopicIds.includes(id));
-		const answeredAlready = answeredQuestionsIds.includes(allQuestions[index].id);
+		const answeredAlready = answeredQuestions.includes(allQuestions[index].id);
 
 		if (prerequisitesMet && !answeredAlready) {
 			nextQuestion = allQuestions[index];
