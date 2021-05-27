@@ -22,25 +22,17 @@ const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChe
 		<div>
 			<Accordion>
 				<AccordionSummary>
-					<Grid
-						container
-						justify="space-between"
-						alignItems="center"
-						spacing={isSmall ? 2 : 5}
-						onClick={event => handleOnClick(event)}
-					>
+					<Grid container justify="space-between" alignItems="center" onClick={event => handleOnClick(event)}>
 						<Grid item xs={10}>
 							{labelText}
 						</Grid>
-						<Grid item xs={2}>
-							<Checkbox
-								color="primary"
-								checked={isChecked}
-								onChange={event => handleOnClick(event)}
-								onClick={event => event.stopPropagation()}
-								onFocus={event => event.stopPropagation()}
-							/>
-						</Grid>
+						<Checkbox
+							color="primary"
+							checked={isChecked}
+							onChange={event => handleOnClick(event)}
+							onClick={event => event.stopPropagation()}
+							onFocus={event => event.stopPropagation()}
+						/>
 					</Grid>
 				</AccordionSummary>
 			</Accordion>
