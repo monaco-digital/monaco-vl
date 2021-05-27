@@ -3,12 +3,8 @@ import React from 'react';
 const PreviewAdviceExplanation: React.FC = () => {
 	return (
 		<div className="letter-explanation">
-			<p>
-				<i>
-					Well done! You have answered all the questions and you can find your advice note below. You can email this to
-					yourself to read later (see email button below) then press next to proceed to the next stage
-				</i>
-			</p>
+			<h2>Stage 1 complete!</h2>
+			<p>Hit the EMAIL button (below) to send your advice note to yourself, then hit the NEXT button to proceed.</p>
 		</div>
 	);
 };
