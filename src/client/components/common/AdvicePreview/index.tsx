@@ -58,7 +58,7 @@ const AdvicePreview: FC = () => {
 				<EndToEndStepper step={0} />
 				<div className="letter-preview">
 					<PreviewAdviceExplanation />
-					<VLcard heading="Advice for your situation" theme="light" counter={adviceParagraphs.length}>
+					<VLcard heading="Your advice note" theme="light" counter={adviceParagraphs.length}>
 						<div className="letter-preview__body">
 							{adviceParagraphs.map(paragraph => (
 								<AdviceDocParagraph key={paragraph.id} paragraph={paragraph} />
