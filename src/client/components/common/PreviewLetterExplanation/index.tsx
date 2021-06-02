@@ -13,25 +13,28 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 	const lettersExplanationText = {
 		_GR: (
 			<i>
-				Well done! You have generated a grievance letter to send to your employer. Email this to yourself with the
-				button below to fill in later. Then proceed to the next stage.
+				<h2>Stage 3 complete!</h2>
+				You have generated a grievance letter. First, email it to yourself to complete later. Once complete, you can
+				send it to your employer or we can send it for you. Hit the NEXT button to proceed.
 			</i>
 		),
 		_ET: (
-			<i>
-				Well done! You have generated a Grounds of Claim document to send to the tribunal. Email this to yourself with
-				the button below to fill in later. Then proceed to the next stage.
-			</i>
+			<p>
+				<h2>Stage 3 complete!</h2>
+				You have generated a Grounds of Claim document to send to the tribunal. First, email it to yourself to complete
+				later. You will need to send this off yourself when you are ready. Hit the NEXT button to proceed.
+			</p>
 		),
 		_RES: (
-			<i>
-				Well done! You have generated a further letter to send to your employer. Email this to yourself with the button
-				below to fill in later. Then proceed to the next stage.
-			</i>
+			<p>
+				<h2>Stage 3 complete!</h2>
+				You have generated a second letter. First, email it to yourself to complete later. Once complete, you can send
+				it to your employer or we can send it for you. Hit the NEXT button to proceed.
+			</p>
 		),
 		_WP: (
-			<i>
-				Well done! You have completed stage 2 of 4 and generated a{' '}
+			<p>
+				<h2>Stage 2 complete!</h2> You have generated a{' '}
 				<a
 					href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
 					target="_blank"
@@ -39,9 +42,9 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 				>
 					<b>without prejudice</b>
 				</a>{' '}
-				legal letter, below. Hit the email button below to send this to yourself to fill in later. Then proceed to the
-				next stage.
-			</i>
+				letter. First, email it to yourself to complete later. Once complete, you can send it to your employer or we can
+				send it for you. Hit the NEXT button to check out stage 3.
+			</p>
 		),
 	};
 
