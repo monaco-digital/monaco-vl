@@ -8,7 +8,6 @@ import AppState from '../../../../data/AppState';
 import { SessionDocument } from '../../../../types/SessionDocument';
 import { getDocumentText } from '../../../../utils/renderDocument';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
-import config from '../../../../config';
 import { updateUserData } from '../../../../data/sessionDataSlice';
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 import { submitDetails } from '../../../../api/general';

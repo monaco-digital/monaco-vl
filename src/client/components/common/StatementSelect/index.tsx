@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
-import { CaseTopic, BulletPoints, DocumentParagraph, TemplateParagraph } from 'api/vl/models';
+import { CaseTopic, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import _ from 'lodash';
-import { Accordion, AccordionSummary, Box, Checkbox, Fab, Grid } from '@material-ui/core';
+import { Box, Fab } from '@material-ui/core';
 
 import EndToEndStepper from '../EndToEndStepper';
 import OptionAccordion from '../OptionAccordion';

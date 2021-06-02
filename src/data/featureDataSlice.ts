@@ -41,13 +41,7 @@ export const slice = createSlice({
 	},
 });
 
-export const {
-	enableMonetization,
-	disableMonetization,
-	enableDsFlow,
-	disableDsFlow,
-	enableFeature,
-	disableFeature,
-} = slice.actions;
+export const { enableMonetization, disableMonetization, enableDsFlow, disableDsFlow, enableFeature, disableFeature } =
+	slice.actions;
 
 export default slice.reducer;
