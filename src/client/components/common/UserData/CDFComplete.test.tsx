@@ -1,5 +1,4 @@
 import React, { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import CDFComplete from './CDFComplete';
 import { renderWithProviders } from '../../../../testing/utils.test';

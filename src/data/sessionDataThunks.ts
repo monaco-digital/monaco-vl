@@ -6,7 +6,7 @@ import { client } from 'api/vl/graphql';
 import { Paragraph } from 'api/vl/models';
 
 export const GENERATE_PARAGRAPHS = gql`
-	query($topicIds: [String]!, $narrative: String) {
+	query ($topicIds: [String]!, $narrative: String) {
 		generateParagraphsTopics(topicIds: $topicIds, narrative: $narrative) {
 			...FParagraph
 		}

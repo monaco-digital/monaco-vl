@@ -22,8 +22,8 @@ const allQuestions: Question[] = [
 	{
 		id: 2,
 		prerequisites: ['_NE'],
-		text: 'Are you still in your job',
-		subtext: 'How did your employment end',
+		text: 'Are you still in your job?',
+		subtext: 'How did your employment end?',
 		minAnswers: 1,
 		maxAnswers: 1,
 		options: [
@@ -58,7 +58,7 @@ const allQuestions: Question[] = [
 	{
 		id: 4,
 		prerequisites: ['T'],
-		text: 'Why were you dismissed',
+		text: 'Why were you dismissed?',
 		subtext: 'What was the reason given for your dismissal?',
 		minAnswers: 0,
 		maxAnswers: 100,
@@ -92,7 +92,7 @@ const allQuestions: Question[] = [
 	{
 		id: 5,
 		prerequisites: ['R'],
-		text: 'Why were you dismissed',
+		text: 'Why were you dismissed?',
 		subtext: 'Was there a problem with the redundancy?',
 		minAnswers: 0,
 		maxAnswers: 100,
