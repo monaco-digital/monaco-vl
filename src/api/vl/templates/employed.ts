@@ -67,7 +67,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[Your name]',
+								textFirstPerson: '[Your name]',
 							} as EditableText,
 							{
 								id: nanoid(),
@@ -77,7 +77,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: "[Your (ex)-employer's name]",
+								textFirstPerson: "[Your (ex)-employer's name]",
 							} as EditableText,
 						],
 					},
@@ -146,7 +146,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[date]',
+								textFirstPerson: '[date]',
 							} as EditableText,
 						],
 					},
@@ -170,7 +170,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder:
+								textFirstPerson:
 									'[describe the type of organisation (NGO, local authority, small business, large corporation etc)]',
 							} as EditableText,
 							{
@@ -181,7 +181,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[insert job title]',
+								textFirstPerson: '[insert job title]',
 							} as EditableText,
 							{
 								id: nanoid(),
@@ -191,7 +191,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[list your work duties]',
+								textFirstPerson: '[list your work duties]',
 							} as EditableText,
 							{
 								id: nanoid(),
@@ -220,7 +220,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder:
+								textFirstPerson:
 									"[refer to your age, race, sex, religion etc if relevant to that claim, particularly if your claims include discrimination.  E.g. 'I am a 60 year old Chinese woman' if claiming age, race and sex discrimination]",
 							} as EditableText,
 							{
@@ -447,7 +447,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[emotional distress and/or mental health issues]',
+								textFirstPerson: '[emotional distress and/or mental health issues]',
 							} as EditableText,
 							{
 								id: nanoid(),
@@ -457,7 +457,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[add detail]',
+								textFirstPerson: '[add detail]',
 							} as EditableText,
 							{
 								id: nanoid(),
@@ -467,7 +467,7 @@ export const employed: Template = {
 							{
 								id: nanoid(),
 								type: 'EditableText',
-								placeholder: '[add detail]',
+								textFirstPerson: '[add detail]',
 							} as EditableText,
 							{
 								id: nanoid(),
