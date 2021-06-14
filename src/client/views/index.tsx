@@ -14,6 +14,7 @@ import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 import Help from './Help';
 import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
+import Disclaimer from '../components/common/Disclaimer';
 import StatementSelect from '../components/common/StatementSelect';
 import Step2Intro from '../components/common/Step2Intro';
 import Step3Intro from '../components/common/Step3Intro';
@@ -119,76 +120,83 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<div className="screen container mx-auto">
-				<Switch>
-					<Route path="/questions/:id">
-						<Questions />
-					</Route>
-					<Route path="/statements">
-						<StatementSelect />
-					</Route>
-					<Route path="/narrative">
-						<Narrative />
-					</Route>
-					<Route path="/step">
+			<div className="screen container mx-auto flex">
+				<div className="flex-col">
+					<div>
 						<Switch>
-							<Route exact path="/step/settlement">
-								<Settlement />
+							<Route path="/questions/:id">
+								<Questions />
 							</Route>
-							<Route exact path="/step/cdf/form">
-								<CDF1 />
+							<Route path="/statements">
+								<StatementSelect />
 							</Route>
-							<Route exact path="/step/cdf/complete">
-								<CDFComplete isFinalStep />
+							<Route path="/narrative">
+								<Narrative />
+							</Route>
+							<Route path="/step">
+								<Switch>
+									<Route exact path="/step/settlement">
+										<Settlement />
+									</Route>
+									<Route exact path="/step/cdf/form">
+										<CDF1 />
+									</Route>
+									<Route exact path="/step/cdf/complete">
+										<CDFComplete isFinalStep />
+									</Route>
+								</Switch>
+							</Route>
+							<Route path="/cdf">
+								<Switch>
+									<Route exact path="/cdf/form">
+										<CDF1 />
+									</Route>
+									<Route exact path="/cdf/complete">
+										<CDFComplete />
+									</Route>
+								</Switch>
+							</Route>
+							<Route exact path="/preview">
+								<Redirect to="/preview/_ADV" />
+							</Route>
+							<Route path="/preview/:id">
+								<Switch>
+									<Route path="/preview/_ADV">
+										<AdvicePreview />
+									</Route>
+									<DocumentPreview />
+								</Switch>
+							</Route>
+							<Route path="/terms">
+								<Terms />
+							</Route>
+							<Route path="/progress-legal-case">
+								<Step3Intro />
+							</Route>
+							<Route path="/grievance-explanation">
+								<GrievanceLetterExplanation />
+							</Route>
+							<Route path="/employment-tribunal-explanation">
+								<EmploymentTribunalExplanation />
+							</Route>
+							<Route path="/respond-to-employer">
+								<RespondToEmployer />
+							</Route>
+							<Route path="/help">
+								<Help />
+							</Route>
+							<Route path="/start-legal-process">
+								<Step2Intro />
+							</Route>
+							<Route path="/">
+								<GetStarted />
 							</Route>
 						</Switch>
-					</Route>
-					<Route path="/cdf">
-						<Switch>
-							<Route exact path="/cdf/form">
-								<CDF1 />
-							</Route>
-							<Route exact path="/cdf/complete">
-								<CDFComplete />
-							</Route>
-						</Switch>
-					</Route>
-					<Route exact path="/preview">
-						<Redirect to="/preview/_ADV" />
-					</Route>
-					<Route path="/preview/:id">
-						<Switch>
-							<Route path="/preview/_ADV">
-								<AdvicePreview />
-							</Route>
-							<DocumentPreview />
-						</Switch>
-					</Route>
-					<Route path="/terms">
-						<Terms />
-					</Route>
-					<Route path="/progress-legal-case">
-						<Step3Intro />
-					</Route>
-					<Route path="/grievance-explanation">
-						<GrievanceLetterExplanation />
-					</Route>
-					<Route path="/employment-tribunal-explanation">
-						<EmploymentTribunalExplanation />
-					</Route>
-					<Route path="/respond-to-employer">
-						<RespondToEmployer />
-					</Route>
-					<Route path="/help">
-						<Help />
-					</Route>
-					<Route path="/start-legal-process">
-						<Step2Intro />
-					</Route>
-					<Route path="/">
-						<GetStarted />
-					</Route>
-				</Switch>
+					</div>
+					<div>
+						<Disclaimer />
+					</div>
+				</div>
 			</div>
 			<Route path="/preview/:type/checkout">
 				<CheckoutModal />
