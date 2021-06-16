@@ -1,5 +1,5 @@
 .header {
-	@apply .relative .py-8 .pl-8 .pr-4 .flex .justify-between .items-center;
+	@apply .relative .py-4 .pl-8 .pr-4 .flex .justify-between .items-center;
 
 	.header__logo-1 {
 		width: 100px;
@@ -29,9 +29,7 @@
 		}
 	}
 
-	.header__burger-btn {
-		@apply .absolute .top-0 .right-0 .text-xl .flex .items-center .px-6 .bg-ms-gray-lighter .text-ms-gray .rounded-bl-2xl .h-20;
-
+	.header_mobile-buttons {
 		@screen md {
 			@apply .hidden;
 		}
