@@ -9,14 +9,6 @@
 		.vl-card__header__title {
 			@apply .text-lg;
 		}
-
-		.vl-card__header__counter {
-			@apply .flex .rounded-full .px-3 .py-1 .bg-white;
-
-			img {
-				@apply .pr-2;
-			}
-		}
 	}
 
 	.vl-card__enable-select {
@@ -26,10 +18,4 @@
 
 .vl-card--light {
 	@apply .shadow-2xl .bg-white .border-ms-blue  .border-opacity-25;
-
-	.vl-card__header {
-		.vl-card__header__counter {
-			@apply .bg-ms-gray-lighter;
-		}
-	}
 }
