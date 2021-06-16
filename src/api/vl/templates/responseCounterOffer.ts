@@ -1,4 +1,4 @@
-import { Template, TemplateParagraph, StaticText, TemplateSection, EditableText } from 'api/vl/models';
+import { Template, TemplateParagraph, StaticText, TemplateSection } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const responseCounterOffer: Template = {
