@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { Button, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { Button, Drawer, IconButton, List, ListItem, ListItemText } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
@@ -25,13 +27,18 @@ const Header: FC = () => {
 				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Terms of Use
 				</NavLink>
-				<Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
+				<Button variant="contained" className="header__breadcrumb__text" color="primary">
 					Request callback
 				</Button>
 			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)} type="button">
-				<i className="fas fa-bars" />
-			</button>
+			<div className="header_mobile-buttons">
+				<IconButton onClick={goToCDF} color="primary">
+					<PhoneCallbackIcon fontSize="large" />
+				</IconButton>
+				<IconButton onClick={() => setMenuIsVisible(true)}>
+					<MenuIcon fontSize="large" />
+				</IconButton>
+			</div>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
 					<ListItem
