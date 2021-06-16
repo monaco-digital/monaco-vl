@@ -27,7 +27,7 @@ const Header: FC = () => {
 				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Terms of Use
 				</NavLink>
-				<Button variant="contained" className="header__breadcrumb__text" color="primary">
+				<Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
 					Request callback
 				</Button>
 			</div>
