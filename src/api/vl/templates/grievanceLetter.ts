@@ -279,33 +279,6 @@ export const grievanceLetter: Template = {
 								textFirstPerson:
 									'I invite you to take the following action in order to resolve my complaints [provide 3-5 bullet points outlining your desired outcome].:',
 							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'BulletPoints',
-								bulletPoints: [
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-								],
-							} as BulletPoints,
 						],
 					},
 				},
