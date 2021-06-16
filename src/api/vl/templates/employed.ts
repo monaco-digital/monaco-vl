@@ -1,4 +1,4 @@
-import { Template, TemplateSection, TemplateParagraph, StaticText, EditableText } from 'api/vl/models';
+import { Template, TemplateSection, TemplateParagraph, StaticText } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const employed: Template = {
@@ -66,9 +66,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Your name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Your name]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -76,9 +76,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: "[Your (ex)-employer's name]",
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: "[Your (ex)-employer's name]",
+							} as StaticText,
 						],
 					},
 				},
@@ -145,9 +145,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[date]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[date]',
+							} as StaticText,
 						],
 					},
 				},
@@ -169,10 +169,10 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder:
+								type: 'StaticText',
+								textFirstPerson:
 									'[describe the type of organisation (NGO, local authority, small business, large corporation etc)]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -180,9 +180,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[insert job title]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[insert job title]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -190,9 +190,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[list your work duties]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[list your work duties]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -219,10 +219,10 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder:
+								type: 'StaticText',
+								textFirstPerson:
 									"[refer to your age, race, sex, religion etc if relevant to that claim, particularly if your claims include discrimination.  E.g. 'I am a 60 year old Chinese woman' if claiming age, race and sex discrimination]",
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -446,9 +446,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[emotional distress and/or mental health issues]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[emotional distress and/or mental health issues]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -456,9 +456,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[add detail]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[add detail]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -466,9 +466,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[add detail]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[add detail]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',

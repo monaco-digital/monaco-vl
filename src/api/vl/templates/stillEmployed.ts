@@ -44,9 +44,9 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Full name of the person the letter is addressed to]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Full name of the person the letter is addressed to]',
+							} as StaticText,
 						],
 					},
 				},
@@ -63,9 +63,9 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Employer company name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Employer company name]',
+							} as StaticText,
 						],
 					},
 				},
@@ -86,9 +86,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[email address]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[email address]',
+							} as StaticText,
 						],
 					},
 				},
@@ -104,9 +104,9 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Today]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Today]',
+							} as StaticText,
 						],
 					},
 				},
@@ -127,9 +127,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Name]',
+							} as StaticText,
 						],
 					},
 				},
@@ -201,9 +201,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[date]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[date]',
+							} as StaticText,
 						],
 					},
 				},
@@ -242,9 +242,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[x]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[x]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -270,9 +270,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[x]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[x]',
+							} as StaticText,
 						],
 					},
 				},
@@ -347,9 +347,9 @@ export const stillEmployed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[x]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[x]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -443,9 +443,9 @@ export const stillEmployed: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[your name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[your name]',
+							} as StaticText,
 						],
 					},
 				},
