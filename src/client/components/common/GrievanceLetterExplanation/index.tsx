@@ -28,8 +28,8 @@ const GrievanceLetterExplanation: React.FC = () => {
 					them to offer you a settlement. On the next page you can find your grievance letter.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					If you want us to send the letters in this service for you, our fee for the entire service is 10% of any
-					increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
+					If you want us to send the letters in this service for you, our fee for the entire service is £50 up front +
+					10% of any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
 					<Link href="/cdf/form" color="primary">
 						Contact us
 					</Link>{' '}

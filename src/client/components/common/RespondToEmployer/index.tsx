@@ -88,8 +88,8 @@ const RespondToEmployer: React.FC = () => {
 				</Typography>
 				<Typography variant="body1" paragraph>
 					Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. If you
-					want us to send the letters in this service for you, our fee for the entire service is 10% of any increase in
-					settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
+					want us to send the letters in this service for you, our fee for the entire service is £50 up front + 10% of
+					any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
 					<Link href="/cdf/form" color="primary">
 						Contact us
 					</Link>{' '}
