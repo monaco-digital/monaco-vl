@@ -120,8 +120,8 @@ const Main: FC = () => {
 	return (
 		<main className="main">
 			<Header />
-			<div className="screen container mx-auto flex">
-				<div className="flex-col">
+			<div className="screen container mx-auto">
+				<div>
 					<div>
 						<Switch>
 							<Route path="/questions/:id">

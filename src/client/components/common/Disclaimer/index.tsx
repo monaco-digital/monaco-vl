@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Grid, Typography } from '@material-ui/core/';
+import { Grid, Link, Typography } from '@material-ui/core/';
 
 const Disclaimer: FC = () => {
 	const disclaimerText =
@@ -11,9 +11,9 @@ const Disclaimer: FC = () => {
 				<Grid item xs={12} className="disclaimer-text">
 					<Typography variant="body1">
 						{disclaimerText}{' '}
-						<a href="/cdf" target="_blank">
+						<Link href="/cdf" target="_blank">
 							here.
-						</a>
+						</Link>
 					</Typography>
 				</Grid>
 			</Grid>
