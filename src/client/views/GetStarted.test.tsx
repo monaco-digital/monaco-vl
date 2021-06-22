@@ -27,10 +27,10 @@ describe('Get Started Page', () => {
 		expect(history.location.pathname).toEqual('/questions/1');
 	});
 
-	test('Five Get Started buttons render', () => {
+	test('Two Get Started buttons render', () => {
 		renderWithProviders(<GetStarted />);
 
-		expect(screen.getAllByText('Get Started').length).toEqual(4);
+		expect(screen.getAllByText('Get Started').length).toEqual(2);
 	});
 
 	test('When loading the richSnippetReviewsWidgets function is called', () => {

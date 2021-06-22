@@ -46,9 +46,9 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[HR manager]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[HR manager]',
+							} as StaticText,
 						],
 					},
 				},
@@ -65,9 +65,9 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Company name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Company name]',
+							} as StaticText,
 						],
 					},
 				},
@@ -89,9 +89,9 @@ export const grievanceLetter: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Email]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Email]',
+							} as StaticText,
 						],
 					},
 				},
@@ -108,9 +108,9 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Today]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Today]',
+							} as StaticText,
 						],
 					},
 				},
@@ -134,9 +134,9 @@ export const grievanceLetter: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[HR manager]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[HR manager]',
+							} as StaticText,
 						],
 					},
 				},
@@ -198,9 +198,9 @@ export const grievanceLetter: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[date]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[date]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -208,9 +208,9 @@ export const grievanceLetter: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[job title]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[job title]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -218,9 +218,9 @@ export const grievanceLetter: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[company name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[company name]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -279,33 +279,6 @@ export const grievanceLetter: Template = {
 								textFirstPerson:
 									'I invite you to take the following action in order to resolve my complaints [provide 3-5 bullet points outlining your desired outcome].:',
 							} as StaticText,
-							{
-								id: nanoid(),
-								type: 'BulletPoints',
-								bulletPoints: [
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-									{
-										id: nanoid(),
-										placeholder: '<desired outcome>',
-										required: false,
-										minLength: 1,
-										maxLength: 100,
-									},
-								],
-							} as BulletPoints,
 						],
 					},
 				},
@@ -360,9 +333,9 @@ export const grievanceLetter: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[name]',
+							} as StaticText,
 						],
 					},
 				},

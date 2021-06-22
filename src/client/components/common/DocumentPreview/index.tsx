@@ -169,7 +169,7 @@ const DocumentPreview: FC = () => {
 				<EndToEndStepper step={id === '_WP' ? 1 : 2} />
 				<div className="letter-preview">
 					<PreviewLetterExplanation letter={id} />
-					<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
+					<VLcard heading="Draft letter" theme="light">
 						<div className="letter-preview__body">
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 						</div>

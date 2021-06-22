@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { useRouteMatch } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import { Button, Typography, useMediaQuery } from '@material-ui/core';
 import { useTheme } from '@material-ui/core/styles';
@@ -12,8 +11,7 @@ import black_man_reading_letter_image from '../assets/img/Black man reading lett
 
 import GetStartedButton from '../components/common/GetStartedButton';
 
-// eslint-disable-next-line
-declare var richSnippetReviewsWidgets;
+declare let richSnippetReviewsWidgets;
 
 const GetStarted: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -21,8 +19,6 @@ const GetStarted: React.FC = () => {
 
 	const theme = useTheme();
 	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
-
-	const isAB = Boolean(useRouteMatch('/ab'));
 
 	const learnMoreRef = useRef(null);
 
@@ -114,7 +110,6 @@ const GetStarted: React.FC = () => {
 									<li>We can send to your employer</li>
 								</Typography>
 							</ul>
-							{!isAB && <GetStartedButton />}
 						</div>
 					</div>
 				</Grid>
@@ -138,7 +133,6 @@ const GetStarted: React.FC = () => {
 							<li>Generate court documents if needed</li>
 						</Typography>
 					</ul>
-					{!isAB && <GetStartedButton />}
 				</Grid>
 				<Grid item md={6} xs={12} className="get-started__item-6">
 					<img src={man_with_coffee_and_letter_image} alt="" />
@@ -168,23 +162,20 @@ const GetStarted: React.FC = () => {
 									<li>We charge £50 up front + 10% of settlement</li>
 								</Typography>
 							</ul>
-							{!isAB && <GetStartedButton />}
 						</div>
 					</div>
 				</Grid>
 			</Grid>
-			{isAB && (
-				<div className="get-started__call-to-action">
-					<div>
-						<Typography variant="h3">
-							Ready to start the <br /> experience?
-						</Typography>
-					</div>
-					<div style={{ marginTop: '1rem' }}>
-						<GetStartedButton />
-					</div>
+			<div className="get-started__call-to-action">
+				<div>
+					<Typography variant="h3">
+						Ready to start the <br /> experience?
+					</Typography>
 				</div>
-			)}
+				<div style={{ marginTop: '1rem' }}>
+					<GetStartedButton />
+				</div>
+			</div>
 			<div id="text-banner-widget" className="get-started__reviews-widget" />
 		</div>
 	);

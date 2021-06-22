@@ -76,6 +76,7 @@ jobs:
           name: 'Deploy to << parameters.deploy_env >>'
           command: |
             CI=false && amplify publish  -- yes
+      - run: npx semantic-release
       - slack/notify:
           channel: virtual-lawyer-notifications
           template: success_tagged_deploy_1

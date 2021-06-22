@@ -46,9 +46,9 @@ export const responseInvestigating: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Full name of recipient]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Full name of recipient]',
+							} as StaticText,
 						],
 					},
 				},
@@ -65,9 +65,9 @@ export const responseInvestigating: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Company name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Company name]',
+							} as StaticText,
 						],
 					},
 				},
@@ -89,9 +89,9 @@ export const responseInvestigating: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Email]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Email]',
+							} as StaticText,
 						],
 					},
 				},
@@ -108,9 +108,9 @@ export const responseInvestigating: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[Today]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[Today]',
+							} as StaticText,
 						],
 					},
 				},
@@ -134,9 +134,9 @@ export const responseInvestigating: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[name]',
+							} as StaticText,
 						],
 					},
 				},
@@ -179,9 +179,9 @@ export const responseInvestigating: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[date]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[date]',
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -289,9 +289,9 @@ export const responseInvestigating: Template = {
 						paragraphComponents: [
 							{
 								id: nanoid(),
-								type: 'EditableText',
-								placeholder: '[name]',
-							} as EditableText,
+								type: 'StaticText',
+								textFirstPerson: '[name]',
+							} as StaticText,
 						],
 					},
 				},

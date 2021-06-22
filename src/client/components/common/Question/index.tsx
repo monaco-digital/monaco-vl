@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
 import ReactGA from 'react-ga';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
 import { Question as QuestionT } from '../../../../types/Questions';
@@ -117,7 +118,8 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		<>
 			<div className="select-answers">
 				<div className="questions__title">{question.text && <Title text={question} />}</div>
-				{answers}
+				{allTopics.length === 0 && <CircularProgress />}
+				{allTopics.length > 0 && answers}
 				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
 				<br />
 			</div>
