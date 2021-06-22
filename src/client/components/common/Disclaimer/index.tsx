@@ -3,13 +3,18 @@ import { Grid, Typography } from '@material-ui/core/';
 
 const Disclaimer: FC = () => {
 	const disclaimerText =
-		'Monaco Solicitors make every attempt to ensure the factual accuracy of website content at the time of publication. Any guidance or tips given is for information only. Nothing should be construed as being legal advice or relied upon as such or perceived as creating a lawyer-client relationship.';
+		'Monaco Solicitors make every attempt to ensure the factual accuracy of website content at the time of publication. Any guidance or tips given are for information only. Nothing should be taken as legal advice or as forming a lawyer-client relationship. If you require legal representation please get in touch ';
 
 	return (
 		<div className="disclaimer">
 			<Grid container justify="space-between">
 				<Grid item xs={12} className="disclaimer-text">
-					<Typography variant="body1">{disclaimerText}</Typography>
+					<Typography variant="body1">
+						{disclaimerText}{' '}
+						<a href="/cdf" target="_blank">
+							here.
+						</a>
+					</Typography>
 				</Grid>
 			</Grid>
 			<Grid container direction="row" justify="space-between">
