@@ -31,7 +31,7 @@ const Terms: React.FC = () => {
 			<p>
 				If you want us to send the letters in this service for you, our fee for the entire service is £50 up front + 10%
 				of any increase in settlement achieved (if you already have an offer our fee won’t apply to that).
-				<a href="https://www.monacosolicitors.co.uk/contact-us" target="_blank" rel="noopener noreferrer">
+				<a href="https://virtuallawyer.monacosolicitors.co.uk/cdf/form" target="_blank" rel="noopener noreferrer">
 					Contact us
 				</a>{' '}
 				for our full terms of use.

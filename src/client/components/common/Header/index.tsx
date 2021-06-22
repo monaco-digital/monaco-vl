@@ -26,7 +26,7 @@ const Header: FC = () => {
 					Terms of Use
 				</NavLink>
 				<Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
-					Request callback
+					Get representation
 				</Button>
 			</div>
 			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)} type="button">
@@ -53,7 +53,7 @@ const Header: FC = () => {
 						<ListItemText primary="Terms of Use" />
 					</ListItem>
 					<ListItem button component={NavLink} to="/cdf/form" onClick={() => setMenuIsVisible(false)}>
-						<ListItemText primary="Request callback" />
+						<ListItemText primary="Get representation" />
 					</ListItem>
 				</List>
 			</Drawer>
