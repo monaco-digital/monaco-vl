@@ -24,11 +24,8 @@ const Help: React.FC = () => {
 					Monaco Solicitors
 				</a>
 				. If you need Monaco Solicitors to review your case then you can find a contact form{' '}
-				<a href="https://www.monacosolicitors.co.uk/contact-us/" target="_blank" rel="noopener noreferrer">
-					here
-				</a>
-				. Alternatively if you complete this app (it only takes 5 minutes) there is a contact form at the end which you
-				can use to send. The following guidance is produced by Monaco Solicitors:
+				<a href="/cdf/form">here</a>. Alternatively if you complete this app (it only takes 5 minutes) there is a
+				contact form at the end which you can use to send. The following guidance is produced by Monaco Solicitors:
 			</p>
 			<h2>About your ‘without prejudice’ legal letter</h2>
 			<p>
