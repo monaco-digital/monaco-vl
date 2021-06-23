@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Fab } from '@material-ui/core';
+import { Box, Fab, Link } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
@@ -31,7 +31,7 @@ const Terms: React.FC = () => {
 			<p>
 				If you want us to send the letters in this service for you, our fee for the entire service is £50 up front + 10%
 				of any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
-				<a href="/cdf/form">Contact us</a> for our full terms of use.
+				<Link href="/cdf/form">Contact us</Link> for our full terms of use.
 			</p>
 			<h2>For personal use only</h2>
 			<p>
@@ -42,22 +42,26 @@ const Terms: React.FC = () => {
 			<h2>Other</h2>
 			<p>
 				Our complaints policy is&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener noreferrer">
 					here
-				</a>
+				</Link>
 				&nbsp;and our fee structures are&nbsp;
-				<a href="https://www.monacosolicitors.co.uk/legal-representation/" target="_blank" rel="noopener  noreferrer">
+				<Link
+					href="https://www.monacosolicitors.co.uk/legal-representation/"
+					target="_blank"
+					rel="noopener  noreferrer"
+				>
 					here
-				</a>
+				</Link>
 				. We always welcome feedback too, please email&nbsp;
-				<a href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</a> for any
+				<Link href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</Link> for any
 				queries.
 			</p>
 			<div className="italic text-ms-gray text-sm mt-12">
 				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>
-					Email: <a href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</a>
+					Email: <Link href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</Link>
 				</p>
 				<p>
 					Address: Monaco Solicitors, Level 24, The Shard, 32 London Bridge St, London SE1 9SG (meetings by appointment
