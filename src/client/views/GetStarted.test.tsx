@@ -16,7 +16,7 @@ describe('Get Started Page', () => {
 	test('When loading GetStarted Then Page renders', () => {
 		renderWithProviders(<GetStarted />);
 
-		expect(screen.getAllByText('Advice to exit package in 4 easy steps')[0]).toBeInTheDocument();
+		expect(screen.getAllByText('Supported self representation')[0]).toBeInTheDocument();
 	});
 
 	test('When clicking get started Then questions page loads', () => {

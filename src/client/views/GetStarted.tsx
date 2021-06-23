@@ -39,7 +39,7 @@ const GetStarted: React.FC = () => {
 		<div className="get-started">
 			<div className="get-started__heading-mobile">
 				<Typography variant="h3">
-					Advice to exit package <br /> in 4 easy steps
+					Supported self <br /> representation
 				</Typography>
 			</div>
 			{/* First row */}
@@ -53,7 +53,7 @@ const GetStarted: React.FC = () => {
 				<Grid item md={6} xs={12} className="get-started__item-1">
 					<div className="get-started__heading-desktop">
 						<Typography variant="h3">
-							Advice to exit package <br /> in 4 easy steps
+							Supported self <br /> representation
 						</Typography>
 					</div>
 					<div className="get-started__icon-and-header">
@@ -159,7 +159,7 @@ const GetStarted: React.FC = () => {
 								<Typography variant="body1" className="get-started__bullets">
 									<li>Most cases settle out of court</li>
 									<li>We can sign paperwork for you</li>
-									<li>We charge 10% of settlement</li>
+									<li>We charge £50 up front + 10% of settlement</li>
 								</Typography>
 							</ul>
 						</div>
