@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@material-ui/core';
 
 interface Props {
 	letter: string;
@@ -35,13 +36,13 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 		_WP: (
 			<p>
 				<h2>Stage 2 complete!</h2> You have generated a{' '}
-				<a
+				<Link
 					href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
 					target="_blank"
 					rel="nofollow noreferrer"
 				>
 					<b>without prejudice</b>
-				</a>{' '}
+				</Link>{' '}
 				letter. First, email it to yourself to complete later. Once complete, you can send it to your employer or we can
 				send it for you. Hit the NEXT button to check out stage 3.
 			</p>
