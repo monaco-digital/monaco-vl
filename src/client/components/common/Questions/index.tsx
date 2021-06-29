@@ -60,27 +60,25 @@ const Questions: FC = () => {
 	};
 
 	return (
-		<>
-			<div className="flex-col w-full">
-				<ScrollToTopOnMount />
-				<EndToEndStepper step={0} />
-				<div className={classes}>
-					<Question question={currentQuestion} />
-					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-						<Box px={1}>
-							<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
-								Back
-							</Fab>
-						</Box>
-						<Box px={1}>
-							<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
-								Next
-							</Fab>
-						</Box>
+		<div className="flex-col w-full">
+			<ScrollToTopOnMount />
+			<EndToEndStepper step={0} />
+			<div className={classes}>
+				<Question question={currentQuestion} />
+				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+					<Box px={1}>
+						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
+							Back
+						</Fab>
 					</Box>
-				</div>
+					<Box px={1}>
+						<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
+							Next
+						</Fab>
+					</Box>
+				</Box>
 			</div>
-		</>
+		</div>
 	);
 };
 
