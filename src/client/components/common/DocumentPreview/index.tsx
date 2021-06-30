@@ -149,6 +149,21 @@ const DocumentPreview: FC = () => {
 		}
 	};
 
+	const headingText = () => {
+		switch (id) {
+			case '_ET':
+				return 'Employment Tribunal Grounds of Claim';
+			case '_WP':
+			case '_GR':
+			case '_RES_CD':
+			case '_RES_CO':
+			case '_RES_I':
+			case '_RES_KM':
+			default:
+				return 'Draft letter';
+		}
+	};
+
 	useEffect(() => {
 		const updatedTemplate = getTemplate(id);
 
@@ -169,7 +184,7 @@ const DocumentPreview: FC = () => {
 				<EndToEndStepper step={id === '_WP' ? 1 : 2} />
 				<div className="letter-preview">
 					<PreviewLetterExplanation letter={id} />
-					<VLcard heading="Draft letter" theme="light" counter={selectedParagraphs.length}>
+					<VLcard heading={headingText()} theme="light">
 						<div className="letter-preview__body">
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 						</div>

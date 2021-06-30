@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import ReactGA from 'react-ga';
-import { Box, Fab } from '@material-ui/core';
+import { Box, Fab, Link } from '@material-ui/core';
 import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Help: React.FC = () => {
@@ -20,15 +20,12 @@ const Help: React.FC = () => {
 			<h2>Monaco Solicitors</h2>
 			<p>
 				This app is created by{' '}
-				<a href="https://www.monacosolicitors.co.uk/about-us/" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/about-us/" target="_blank" rel="noopener noreferrer">
 					Monaco Solicitors
-				</a>
+				</Link>
 				. If you need Monaco Solicitors to review your case then you can find a contact form{' '}
-				<a href="https://www.monacosolicitors.co.uk/contact-us/" target="_blank" rel="noopener noreferrer">
-					here
-				</a>
-				. Alternatively if you complete this app (it only takes 5 minutes) there is a contact form at the end which you
-				can use to send. The following guidance is produced by Monaco Solicitors:
+				<Link href="/cdf/form">here</Link>. Alternatively if you complete this app (it only takes 5 minutes) there is a
+				contact form at the end which you can use to send. The following guidance is produced by Monaco Solicitors:
 			</p>
 			<h2>About your ‘without prejudice’ legal letter</h2>
 			<p>
@@ -39,55 +36,59 @@ const Help: React.FC = () => {
 			<div>
 				<ul>
 					<li>
-						<a
+						<Link
 							href="https://www.monacosolicitors.co.uk/settlement-agreements/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							How much should I get
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a
+						<Link
 							href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							Settlement agreement calculator
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener noreferrer">
+						<Link href="https://www.monacosolicitors.co.uk/negotiations/" target="_blank" rel="noopener noreferrer">
 							Negotiating
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener noreferrer">
+						<Link href="https://www.monacosolicitors.co.uk/evidence/" target="_blank" rel="noopener noreferrer">
 							Evidence
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a
+						<Link
 							href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							How to use without prejudice letters
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a href="https://www.monacosolicitors.co.uk/without-prejudice/" target="_blank" rel="noopener noreferrer">
+						<Link
+							href="https://www.monacosolicitors.co.uk/without-prejudice/"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
 							How to write without prejudice letters
-						</a>
+						</Link>
 					</li>
 					<li>
-						<a
+						<Link
 							href="https://www.monacosolicitors.co.uk/templates/#negotiations"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
 							Example without prejudice letters
-						</a>
+						</Link>
 					</li>
 				</ul>
 			</div>
@@ -118,13 +119,13 @@ const Help: React.FC = () => {
 			<h2>Should I send a grievance letter or without prejudice letter?</h2>
 			<p>
 				Generally, if you want to keep your job, but you feel strongly enough about having been wronged, then send a{' '}
-				<a href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/grievances/" target="_blank" rel="noopener noreferrer">
 					grievance letter
-				</a>
+				</Link>
 				, Here are some{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/templates/#grievances" target="_blank" rel="noopener noreferrer">
 					example grievance letters
-				</a>
+				</Link>
 				.&nbsp; Bear in mind that this could make it more difficult for you at work, especially in smaller companies. In
 				bigger companies you may be able to transfer to a different department or team.
 			</p>
@@ -149,21 +150,21 @@ const Help: React.FC = () => {
 			<p>
 				Another effective method of encouraging your employer to enter into a settlement agreement with you is to raise
 				a data subject access request, which you can read about{' '}
-				<a
+				<Link
 					href="https://www.monacosolicitors.co.uk/evidence/subject-access-requests/"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					here
-				</a>
+				</Link>
 				. You can also see our example DSAR&rsquo;s{' '}
-				<a
+				<Link
 					href="https://www.monacosolicitors.co.uk/templates/#subject-access-requests"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					here
-				</a>
+				</Link>
 				.
 			</p>
 			<br />
@@ -175,47 +176,55 @@ const Help: React.FC = () => {
 			<p>
 				It is very important that you obtain a certificate from &lsquo;ACAS&rsquo; before your 3 month time limit has
 				expired. You can read about how to do that{' '}
-				<a
+				<Link
 					href="https://www.monacosolicitors.co.uk/tribunals/commencing-the-acas-pre-claim-process-for-employment-tribunals/"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					here
-				</a>{' '}
+				</Link>{' '}
 				and you can read about 3 month time limits{' '}
-				<a href="https://www.monacosolicitors.co.uk/tribunals/time-limits/" target="_blank" rel="noopener noreferrer">
+				<Link
+					href="https://www.monacosolicitors.co.uk/tribunals/time-limits/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					here
-				</a>
+				</Link>
 				.
 			</p>
 			<br />
 			<p>
 				Once you have your ACAS certificate, you will have up to a month to issue an Employment Tribunal claim. You can
 				read about how to do that{' '}
-				<a href="https://www.monacosolicitors.co.uk/tribunals/" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/tribunals/" target="_blank" rel="noopener noreferrer">
 					here
-				</a>{' '}
+				</Link>{' '}
 				and you can see our example Employment Tribunal claim documents{' '}
-				<a href="https://www.monacosolicitors.co.uk/templates/#tribunals" target="_blank" rel="noopener noreferrer">
+				<Link href="https://www.monacosolicitors.co.uk/templates/#tribunals" target="_blank" rel="noopener noreferrer">
 					here
-				</a>
+				</Link>
 				.
 			</p>
 			<h2>Settlement agreement offers</h2>
 			<p>
 				If at any stage you get offered a settlement agreement then try to play it cool. Don&rsquo;t accept the first
 				offer they make. Read our article on how much you should get{' '}
-				<a href="https://www.monacosolicitors.co.uk/settlement-agreements/" target="_blank" rel="noopener noreferrer">
+				<Link
+					href="https://www.monacosolicitors.co.uk/settlement-agreements/"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					here
-				</a>
+				</Link>
 				, and read the guidance on our calculator page{' '}
-				<a
+				<Link
 					href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					here
-				</a>
+				</Link>
 				.
 			</p>
 			<br />

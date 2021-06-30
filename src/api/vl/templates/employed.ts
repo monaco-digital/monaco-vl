@@ -1,4 +1,4 @@
-import { Template, TemplateSection, TemplateParagraph, StaticText, EditableText } from 'api/vl/models';
+import { Template, TemplateSection, TemplateParagraph, StaticText } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const employed: Template = {
@@ -66,9 +66,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[Your name]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -76,9 +76,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: "[Your (ex)-employer's name]",
-							} as EditableText,
+							} as StaticText,
 						],
 					},
 				},
@@ -145,9 +145,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[date]',
-							} as EditableText,
+							} as StaticText,
 						],
 					},
 				},
@@ -169,10 +169,10 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson:
 									'[describe the type of organisation (NGO, local authority, small business, large corporation etc)]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -180,9 +180,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[insert job title]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -190,9 +190,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[list your work duties]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -219,10 +219,10 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson:
 									"[refer to your age, race, sex, religion etc if relevant to that claim, particularly if your claims include discrimination.  E.g. 'I am a 60 year old Chinese woman' if claiming age, race and sex discrimination]",
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -446,9 +446,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[emotional distress and/or mental health issues]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -456,9 +456,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[add detail]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',
@@ -466,9 +466,9 @@ export const employed: Template = {
 							} as StaticText,
 							{
 								id: nanoid(),
-								type: 'EditableText',
+								type: 'StaticText',
 								textFirstPerson: '[add detail]',
-							} as EditableText,
+							} as StaticText,
 							{
 								id: nanoid(),
 								type: 'StaticText',

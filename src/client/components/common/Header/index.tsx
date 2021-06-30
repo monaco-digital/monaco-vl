@@ -1,6 +1,8 @@
 import React, { FC, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { Button, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { Button, Drawer, IconButton, Link, List, ListItem, ListItemText } from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
 import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 
@@ -15,9 +17,9 @@ const Header: FC = () => {
 
 	return (
 		<div className="header" data-testid="header-component">
-			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
+			<Link href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
-			</a>
+			</Link>
 			<div className="header__breadcrumb">
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Help
@@ -29,9 +31,14 @@ const Header: FC = () => {
 					Request callback
 				</Button>
 			</div>
-			<button className="header__burger-btn" onClick={() => setMenuIsVisible(true)} type="button">
-				<i className="fas fa-bars" />
-			</button>
+			<div className="header_mobile-buttons">
+				<IconButton onClick={goToCDF} color="primary">
+					<PhoneCallbackIcon fontSize="large" />
+				</IconButton>
+				<IconButton onClick={() => setMenuIsVisible(true)}>
+					<MenuIcon fontSize="large" />
+				</IconButton>
+			</div>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
 					<ListItem
