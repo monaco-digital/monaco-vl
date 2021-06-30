@@ -29,9 +29,9 @@ const Disclaimer: FC = () => {
 				isStep4
 			) && (
 				<>
-					<Divider variant="middle" />
+					<Divider />
 					<Grid container justify="space-between">
-						<Grid item xs={12} className="disclaimer-text">
+						<Grid item xs={12} className="disclaimer__text">
 							<Typography variant="caption">
 								{disclaimerText}{' '}
 								<Link href="/cdf" target="_blank">
@@ -41,14 +41,15 @@ const Disclaimer: FC = () => {
 						</Grid>
 					</Grid>
 					<Grid container direction="row" justify="space-between">
-						<Grid item xs={6}>
+						<Grid item md={6} xs={12}>
 							<Typography variant="caption">
 								© Monaco Solicitors Ltd, <br />
 								Registered company no. 08487857 <br /> <br />
-								Solicitors Regulation Authority ID no: 621671
+								Solicitors Regulation Authority ID no: 621671 <br />
+								<br />
 							</Typography>
 						</Grid>
-						<Grid item xs={6}>
+						<Grid item md={6} xs={12}>
 							<div className="SRA-main-div">
 								<div className="SRA-sub-div">
 									<iframe
