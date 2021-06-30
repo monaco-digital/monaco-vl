@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
-import { Button, Drawer, IconButton, List, ListItem, ListItemText } from '@material-ui/core';
+import { Button, Drawer, IconButton, Link, List, ListItem, ListItemText } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
@@ -17,9 +17,9 @@ const Header: FC = () => {
 
 	return (
 		<div className="header" data-testid="header-component">
-			<a href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
+			<Link href="https://www.monacosolicitors.co.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
-			</a>
+			</Link>
 			<div className="header__breadcrumb">
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Help

@@ -2,12 +2,26 @@
 	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
 
 	a {
-		color: blue;
+		color: #538cff;
+	}
+
+	a:hover {
 		text-decoration: underline;
 	}
 
 	p {
 		@apply .text-lg .pb-4;
+	}
+
+	.letter-preview__action-buttons {
+		margin-top: 1.5rem;
+		text-align: right;
+		flex-direction: row;
+		align-items: baseline;
+	}
+
+	.letter-preview__action-button {
+		margin-left: 1rem;
 	}
 
 	.letter-preview__intro {

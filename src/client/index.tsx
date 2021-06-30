@@ -89,6 +89,24 @@ const theme = createMuiTheme({
 				fontSize: '16px',
 			},
 		},
+		body2: {
+			fontSize: '11.5px',
+			fontWeight: 'normal',
+			letterSpacing: '0',
+			[breakpoints.up('md')]: {
+				fontSize: '14px',
+				letterSpacing: '0.25',
+			},
+		},
+		caption: {
+			fontSize: '12px',
+			fontWeight: 'normal',
+			letterSpacing: '0.4',
+			[breakpoints.up('md')]: {
+				fontSize: '12px',
+				letterSpacing: '0.4',
+			},
+		},
 	},
 
 	overrides: {
