@@ -2,7 +2,11 @@
 	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
 
 	a {
-		color: #4791db;
+		color: #538cff;
+	}
+
+	a:hover {
+		text-decoration: underline;
 	}
 
 	p {
