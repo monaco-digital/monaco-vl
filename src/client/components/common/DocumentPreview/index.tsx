@@ -189,38 +189,34 @@ const DocumentPreview: FC = () => {
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 						</div>
 					</VLcard>
-					<Box
-						position="fixed"
-						width="90%"
-						maxWidth="48rem"
-						bottom={16}
-						zIndex={10}
-						display="flex"
-						flexDirection="row"
-						justifyContent="flex-end"
-					>
-						<Box px={1}>
-							<Fab variant="extended" color="inherit" onClick={history.goBack}>
-								Back
+					<div className="letter-preview__action-buttons">
+						<Fab variant="extended" color="inherit" onClick={history.goBack} className="letter-preview__action-button">
+							Back
+						</Fab>
+						<Fab
+							variant="extended"
+							color="primary"
+							onClick={openCheckoutModal}
+							className="letter-preview__action-button"
+						>
+							<GetApp />
+							&nbsp;Email
+						</Fab>
+						{isDsFlow && (
+							<Fab variant="extended" onClick={downloadDataForDS} className="letter-preview__action-button">
+								Download
 							</Fab>
-						</Box>
-						<Box px={1}>
-							<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
-								<GetApp />
-								&nbsp;Email
-							</Fab>
-							{isDsFlow && (
-								<Fab variant="extended" onClick={downloadDataForDS}>
-									Download
-								</Fab>
-							)}
-						</Box>
-						<Box px={1}>
-							<Fab variant="extended" color="secondary" id="nextButton" onClick={handleNext}>
-								Next
-							</Fab>
-						</Box>
-					</Box>
+						)}
+						<Fab
+							variant="extended"
+							color="secondary"
+							id="nextButton"
+							onClick={handleNext}
+							className="letter-preview__action-button"
+						>
+							Next
+						</Fab>
+					</div>
 				</div>
 			</div>
 		</>

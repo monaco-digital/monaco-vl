@@ -98,6 +98,15 @@ const theme = createMuiTheme({
 				letterSpacing: '0.25',
 			},
 		},
+		caption: {
+			fontSize: '12px',
+			fontWeight: 'normal',
+			letterSpacing: '0.4',
+			[breakpoints.up('md')]: {
+				fontSize: '12px',
+				letterSpacing: '0.4',
+			},
+		},
 	},
 
 	overrides: {
