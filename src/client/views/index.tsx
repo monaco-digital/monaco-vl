@@ -189,7 +189,7 @@ const Main: FC = () => {
 								<Step2Intro />
 							</Route>
 							<Route path="/">
-								<GetStarted />
+								<Questions />
 							</Route>
 						</Switch>
 					</div>
