@@ -23,7 +23,7 @@ const Questions: FC = () => {
 
 	const answeredQuestions = useSelector<AppState, number[]>(state => state.session.answeredQuestions);
 
-	const currentQuestion = getQuestion(currentQuestionId);
+	const currentQuestion = currentQuestionId ? getQuestion(currentQuestionId) : getQuestion(1);
 
 	const dispatch = useDispatch();
 

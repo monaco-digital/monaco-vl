@@ -61,7 +61,7 @@ describe('Main Component', () => {
 	test.each`
 		url                | component
 		${'/help'}         | ${'Help'}
-		${'/'}             | ${'GetStarted'}
+		${'/'}             | ${'Questions'}
 		${'/terms'}        | ${'Terms'}
 		${'/questions/1'}  | ${'Questions'}
 		${'/preview/_ADV'} | ${'AdvicePreview'}
