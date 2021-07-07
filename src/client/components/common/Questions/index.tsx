@@ -23,7 +23,7 @@ const Questions: FC = () => {
 
 	const answeredQuestions = useSelector<AppState, number[]>(state => state.session.answeredQuestions);
 
-	const currentQuestion = getQuestion(currentQuestionId);
+	const currentQuestion = currentQuestionId ? getQuestion(currentQuestionId) : getQuestion(1);
 
 	const dispatch = useDispatch();
 
@@ -66,11 +66,14 @@ const Questions: FC = () => {
 			<div className={classes}>
 				<Question question={currentQuestion} />
 				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
-							Back
-						</Fab>
-					</Box>
+					{/* Note: Back button is hidden on the first page */}
+					{Boolean(currentQuestionId) && (
+						<Box px={1}>
+							<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
+								Back
+							</Fab>
+						</Box>
+					)}
 					<Box px={1}>
 						<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
 							Next

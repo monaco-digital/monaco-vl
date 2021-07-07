@@ -35,7 +35,8 @@ const Step2Intro: React.FC = () => {
 				</div>
 				<Typography variant="body1" paragraph>
 					Well done, you answered your quick questions and generated your advice note, which you emailed to yourself to
-					read later. Now you can discover what a legal letter would look like. Proceed to:
+					read later. Now you can discover what a legal letter would look like. <br /> <br />
+					Next:
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
@@ -53,13 +54,15 @@ const Step2Intro: React.FC = () => {
 							</Link>{' '}
 							to see how much money to ask for
 						</li>
+						<li>Send the letter to your employer</li>
 					</ul>
 				</Typography>
 
 				<Typography variant="body1" paragraph>
-					Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. If you
-					want us to send the letters in this service for you, our fee for the entire service is £50 up front + 10% of
-					any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
+					Want your letter to have a greater impact? <br />
+					We can check your letters and send them to your employer for you. That includes any follow up letters that you
+					generate from this tool as well. Our fee for this service is £75 + 20% of any increase in settlement achieved
+					(if you already have an offer our fee won’t apply to that).{' '}
 					<Link href="/cdf/form" color="primary">
 						Contact us
 					</Link>{' '}
