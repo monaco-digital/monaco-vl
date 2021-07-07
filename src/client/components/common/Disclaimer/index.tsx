@@ -3,31 +3,19 @@ import { Divider, Grid, Link, Typography } from '@material-ui/core/';
 import { useRouteMatch } from 'react-router-dom';
 
 const Disclaimer: FC = () => {
-	// The following pages take up half the width of the screen, so we hide the disclaimer on these pages
-	const isQuestions = useRouteMatch('/questions');
-	const isStatements = useRouteMatch('/statements');
-	const isStep1 = useRouteMatch('/start-legal-process');
-	const isStep2 = useRouteMatch('/progress-legal-case');
-	const isStep3RespondToEmployer = useRouteMatch('/respond-to-employer');
-	const isStep3Grievance = useRouteMatch('/grievance-explanation');
-	const isStep3Tribunal = useRouteMatch('/employment-tribunal-explanation');
-	const isStep4 = useRouteMatch('/step/settlement');
+	// Some pages take up half the width of the screen, so we only show the disclaimer on the following pages
+	const isPreview = useRouteMatch('/preview');
+	const isHelp = useRouteMatch('/help');
+	const isTerms = useRouteMatch('/terms');
+	const isCDF = useRouteMatch('/cdf');
+	const isStepCDF = useRouteMatch('/step/cdf');
 
 	const disclaimerText =
 		'Monaco Solicitors make every attempt to ensure the factual accuracy of website content at the time of publication. Any guidance or tips given are for information only. Nothing should be taken as legal advice or as forming a lawyer-client relationship. If you require legal representation please get in touch ';
 
 	return (
 		<div className="disclaimer">
-			{!(
-				isQuestions ||
-				isStatements ||
-				isStep1 ||
-				isStep2 ||
-				isStep3RespondToEmployer ||
-				isStep3Grievance ||
-				isStep3Tribunal ||
-				isStep4
-			) && (
+			{(isPreview || isHelp || isTerms || isCDF || isStepCDF) && (
 				<>
 					<Divider />
 					<Grid container justify="space-between">
