@@ -12,6 +12,10 @@ jest.mock('../VLcard', () => () => {
 	return 'VLcard';
 });
 
+jest.mock('../ScrollToTopOnMount', () => () => {
+	return 'ScrollToTopOnMount';
+});
+
 jest.mock('../../../../utils/sessionDocument');
 
 describe('Document Preview', () => {
@@ -153,7 +157,7 @@ describe('Document Preview', () => {
 	test('When clicking back Then page is updated', () => {
 		const { history } = renderWithProviders(<DocumentPreview />, { initialState, startPage: '/statements' });
 		history.push('/preview/_WP');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/statements');
 	});
@@ -169,7 +173,7 @@ describe('Document Preview', () => {
 	test('When clicking Email Then next page is shown', () => {
 		const { history } = renderWithProviders(<DocumentPreview />, { initialState, startPage: '/preview/_WP' });
 
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		expect(history.location.pathname).toEqual('/progress-legal-case');
 	});

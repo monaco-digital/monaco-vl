@@ -13,12 +13,12 @@ describe('Settlement Page', () => {
 	test('When loading Settlement Then back and next buttons are enabled', () => {
 		renderWithProviders(<Settlement />);
 
-		const backButton = screen.getByRole('button', {
+		const backButton = screen.getAllByRole('button', {
 			name: /back/i,
-		});
-		const nextButton = screen.getByRole('button', {
+		})[0];
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 		expect(backButton).toBeEnabled();
 		expect(nextButton).toBeEnabled();
 	});
@@ -26,14 +26,14 @@ describe('Settlement Page', () => {
 	test('When clicking back Then previous page is loaded', () => {
 		const { history } = renderWithProviders(<Settlement />, { startPage: '/preview/_RES_CO' });
 		history.push('/step/settlement');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_RES_CO');
 	});
 
 	test('When clicking next The CDF Form Opens', () => {
 		const { history } = renderWithProviders(<Settlement />);
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 		expect(history.location.pathname).toEqual('/step/cdf/form');
 	});
 });

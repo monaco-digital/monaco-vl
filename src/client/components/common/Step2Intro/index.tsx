@@ -4,6 +4,7 @@ import Icon from '@mdi/react';
 import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
+import MobileEndToEndStepper from '../MobileEndToEndStepper';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -17,6 +18,22 @@ const Step2Intro: React.FC = () => {
 
 	const handleBack = () => {
 		history.goBack();
+	};
+
+	const nextButton = () => {
+		return (
+			<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>
+				Next
+			</Fab>
+		);
+	};
+
+	const backButton = () => {
+		return (
+			<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>
+				Back
+			</Fab>
+		);
 	};
 
 	return (
@@ -68,13 +85,12 @@ const Step2Intro: React.FC = () => {
 					</Link>{' '}
 					for full terms of use.
 				</Typography>
-				<div className="step-intro__buttons">
-					<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>
-						Back
-					</Fab>
-					<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>
-						Next
-					</Fab>
+				<div className="step-intro__buttons navigation-buttons">
+					{backButton()}
+					{nextButton()}
+				</div>
+				<div className="w-full">
+					<MobileEndToEndStepper step={1} nextButton={nextButton()} backButton={backButton()} />
 				</div>
 			</div>
 		</div>

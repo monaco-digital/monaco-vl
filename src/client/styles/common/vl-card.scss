@@ -3,8 +3,20 @@
 
 	user-select: none;
 
+	.vl-card__email_button_text {
+		@apply invisible;
+		width: 0;
+
+		@screen md {
+			@apply visible;
+			width: auto;
+		}
+	}
+
 	.vl-card__header {
-		@apply .flex .font-bold .justify-between .pt-4 .pb-3 .mb-4 .border-b .border-ms-gray .border-opacity-25;
+		@apply .flex .font-bold .justify-between .pt-3 .pb-3 .mb-4 .border-b .border-ms-gray .border-opacity-25;
+
+		align-items: center;
 
 		.vl-card__header__title {
 			@apply .text-lg;

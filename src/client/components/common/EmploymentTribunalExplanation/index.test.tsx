@@ -8,7 +8,7 @@ describe('Grievance Letter Explanation', () => {
 	test('Click back and get in the progress legal case page', () => {
 		const { history } = renderWithProviders(<EmploymentTribuanlExplanation />, { startPage: '/progress-legal-case' });
 		history.push('/employment-tribunal-explanation');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 		expect(history.location.pathname).toEqual('/progress-legal-case');
 	});
 
@@ -16,7 +16,7 @@ describe('Grievance Letter Explanation', () => {
 		const { history } = renderWithProviders(<EmploymentTribuanlExplanation />, {
 			startPage: '/employment-tribunal-explanation',
 		});
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_ET');
 	});

@@ -5,6 +5,7 @@ import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import EndToEndStepper from '../EndToEndStepper';
+import MobileEndToEndStepper from '../MobileEndToEndStepper';
 
 export const Settlement: React.FC = () => {
 	const history = useHistory();
@@ -17,6 +18,22 @@ export const Settlement: React.FC = () => {
 
 	const handleGoBackward = () => {
 		history.goBack();
+	};
+
+	const nextButton = () => {
+		return (
+			<Fab variant="extended" id="nextButton" color="secondary" onClick={handleGoForward}>
+				Next
+			</Fab>
+		);
+	};
+
+	const backButton = () => {
+		return (
+			<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleGoBackward}>
+				Back
+			</Fab>
+		);
 	};
 
 	return (
@@ -54,13 +71,12 @@ export const Settlement: React.FC = () => {
 					for full terms of use.
 				</Typography>
 
-				<div className="step-intro__buttons">
-					<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleGoBackward}>
-						Back
-					</Fab>
-					<Fab variant="extended" id="nextButton" color="secondary" onClick={handleGoForward}>
-						Next
-					</Fab>
+				<div className="step-intro__buttons navigation-buttons">
+					{backButton()}
+					{nextButton()}
+				</div>
+				<div className="w-full">
+					<MobileEndToEndStepper step={3} nextButton={nextButton()} backButton={backButton()} />
 				</div>
 			</div>
 		</div>

@@ -3,6 +3,7 @@ import { Fab, Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import EndToEndStepper from '../EndToEndStepper';
+import MobileEndToEndStepper from '../MobileEndToEndStepper';
 
 const RespondToEmployer: React.FC = () => {
 	const history = useHistory();
@@ -60,6 +61,22 @@ const RespondToEmployer: React.FC = () => {
 		);
 	});
 
+	const nextButton = () => {
+		return (
+			<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
+				Next
+			</Fab>
+		);
+	};
+
+	const backButton = () => {
+		return (
+			<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
+				Back
+			</Fab>
+		);
+	};
+
 	return (
 		<div className="flex-col w-full">
 			<EndToEndStepper step={2} />
@@ -97,13 +114,12 @@ const RespondToEmployer: React.FC = () => {
 					for full terms of use.
 				</Typography>
 				<div className="step-intro__options">{options}</div>
-				<div className="step-intro__buttons">
-					<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
-						Back
-					</Fab>
-					<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
-						Next
-					</Fab>
+				<div className="step-intro__buttons navigation-buttons">
+					{backButton()}
+					{nextButton()}
+				</div>
+				<div className="w-full">
+					<MobileEndToEndStepper step={2} nextButton={nextButton()} backButton={backButton()} />
 				</div>
 			</div>
 		</div>

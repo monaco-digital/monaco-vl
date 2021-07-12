@@ -11,6 +11,7 @@ import EndToEndStepper from '../EndToEndStepper';
 import Question from '../Question';
 import ScrollToTopOnMount from '../ScrollToTopOnMount';
 import { addAnsweredQuestion } from '../../../../data/sessionDataSlice';
+import MobileEndToEndStepper from '../MobileEndToEndStepper';
 
 const Questions: FC = () => {
 	const history = useHistory();
@@ -59,27 +60,42 @@ const Questions: FC = () => {
 		history.goBack();
 	};
 
+	const nextButton = () => {
+		return (
+			<Box px={1}>
+				<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
+					Next
+				</Fab>
+			</Box>
+		);
+	};
+
+	const backButton = () => {
+		return (
+			<Box px={1}>
+				<Fab variant="extended" color="inherit" onClick={handleGoBackwards} disabled={!currentQuestionId}>
+					Back
+				</Fab>
+			</Box>
+		);
+	};
+
 	return (
 		<div className="flex-col w-full">
 			<ScrollToTopOnMount />
 			<EndToEndStepper step={0} />
 			<div className={classes}>
 				<Question question={currentQuestion} />
-				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					{/* Note: Back button is hidden on the first page */}
-					{Boolean(currentQuestionId) && (
-						<Box px={1}>
-							<Fab variant="extended" color="inherit" onClick={handleGoBackwards}>
-								Back
-							</Fab>
-						</Box>
-					)}
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
-							Next
-						</Fab>
+				<div className="navigation-buttons">
+					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
+						{/* Note: Back button is hidden on the first page */}
+						{Boolean(currentQuestionId) && backButton()}
+						{nextButton()}
 					</Box>
-				</Box>
+				</div>
+				<div className="w-full">
+					<MobileEndToEndStepper step={0} nextButton={nextButton()} backButton={backButton()} />
+				</div>
 			</div>
 		</div>
 	);
