@@ -162,14 +162,6 @@ describe('Document Preview', () => {
 		expect(history.location.pathname).toEqual('/statements');
 	});
 
-	test('When clicking Email Then modal is opened', () => {
-		const { history } = renderWithProviders(<DocumentPreview />, { initialState, startPage: '/preview/_WP' });
-
-		userEvent.click(screen.getByText('Email'));
-
-		expect(history.location.pathname).toEqual('/preview/_WP/checkout/email');
-	});
-
 	test('When clicking Email Then next page is shown', () => {
 		const { history } = renderWithProviders(<DocumentPreview />, { initialState, startPage: '/preview/_WP' });
 
