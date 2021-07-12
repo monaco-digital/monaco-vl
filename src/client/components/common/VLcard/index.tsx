@@ -2,7 +2,7 @@ import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
 import { Fab } from '@material-ui/core';
-import { GetApp } from '@material-ui/icons';
+import EmailIcon from '@material-ui/icons/Email';
 import { useHistory, useParams } from 'react-router-dom';
 import AppState from '../../../../data/AppState';
 
@@ -32,7 +32,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, theme }: VLCardProps) => {
 				<span className="vl-card__header__title">{heading}</span>
 				<div className="vl-card__actions">
 					<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
-						<GetApp />
+						<EmailIcon />
 						<div className="vl-card__email_button_text">&nbsp;Email</div>
 					</Fab>
 				</div>
