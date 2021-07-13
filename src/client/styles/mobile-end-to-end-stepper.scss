@@ -1,0 +1,9 @@
+.mobile-end-to-end-stepper {
+	margin: 2rem 0 0 0;
+	height: auto;
+
+	@screen md {
+		margin: 0 0 0 0;
+		height: 0;
+	}
+}

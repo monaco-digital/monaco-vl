@@ -8,7 +8,7 @@ type LambdaUserData =
 	| { 'settlement-agreement': string; 'still-employed': string; 'years-employed': string };
 
 export const submitDetails = async (data: LambdaUserData) => {
-	const result = await axios({
+	await axios({
 		method: 'POST',
 		url: `${config.LAMBDA_URL}/process-virtual-lawyer`,
 		data,
@@ -19,7 +19,7 @@ export const submitDetails = async (data: LambdaUserData) => {
 };
 
 export const createCDF = async (data: CDFData) => {
-	const result = await axios({
+	await axios({
 		method: 'POST',
 		url: `${config.LAMBDA_URL}/create-cdf`,
 		data,

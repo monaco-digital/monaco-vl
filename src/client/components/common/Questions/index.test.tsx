@@ -57,7 +57,7 @@ describe('Questions Page', () => {
 
 		history.push('/questions/1');
 
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/get-started');
 	});
@@ -84,9 +84,9 @@ describe('Questions Page', () => {
 			{ initialState, startPage: '/questions/1' },
 		);
 
-		const nextButton = screen.getByRole('button', {
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		userEvent.click(nextButton);
 
@@ -135,9 +135,9 @@ describe('Questions Page', () => {
 			{ initialState, startPage: '/questions/8' },
 		);
 
-		const nextButton = screen.getByRole('button', {
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		userEvent.click(nextButton);
 
@@ -187,9 +187,9 @@ describe('Questions Page', () => {
 			{ initialState, startPage: '/questions/3' },
 		);
 
-		const nextButton = screen.getByRole('button', {
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		userEvent.click(nextButton);
 		const actions = store.getActions();

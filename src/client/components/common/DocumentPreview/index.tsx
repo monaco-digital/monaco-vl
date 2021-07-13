@@ -2,8 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 import { useHistory, useParams } from 'react-router-dom';
-import { Box, Fab } from '@material-ui/core';
-import { GetApp } from '@material-ui/icons';
+import { Fab } from '@material-ui/core';
 
 import { TemplateParagraph } from 'api/vl/models';
 import AppState from '../../../../data/AppState';
@@ -21,6 +20,8 @@ import VLcard from '../VLcard';
 import { getTemplate } from '../../../../api/vl';
 import { updateSessionDocument, updateCurrentSessionDocument } from '../../../../data/sessionDataSlice';
 import { downloadDataForDS } from '../../../../ds';
+import ScrollToTopOnMount from '../ScrollToTopOnMount';
+import ActionBar from '../ActionBar';
 
 interface Props {
 	sessionDocumentComponents: SessionDocumentComponent[];
@@ -174,14 +175,13 @@ const DocumentPreview: FC = () => {
 		dispatch(updateCurrentSessionDocument(id));
 	}, [dispatch, id, selectedParagraphs, sessionDocument]);
 
-	const openCheckoutModal = () => {
-		history.replace(`/preview/${id}/checkout/email`);
-	};
+	const step = id === '_WP' ? 1 : 2;
 
 	return (
 		<>
 			<div className="flex-col w-full">
-				<EndToEndStepper step={id === '_WP' ? 1 : 2} />
+				<ScrollToTopOnMount />
+				<EndToEndStepper step={step} />
 				<div className="letter-preview">
 					<PreviewLetterExplanation letter={id} />
 					<VLcard heading={headingText()} theme="light">
@@ -189,34 +189,13 @@ const DocumentPreview: FC = () => {
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 						</div>
 					</VLcard>
-					<div className="letter-preview__action-buttons">
-						<Fab variant="extended" color="inherit" onClick={history.goBack} className="letter-preview__action-button">
-							Back
+					{isDsFlow && (
+						<Fab variant="extended" onClick={downloadDataForDS}>
+							Download
 						</Fab>
-						<Fab
-							variant="extended"
-							color="primary"
-							onClick={openCheckoutModal}
-							className="letter-preview__action-button"
-						>
-							<GetApp />
-							&nbsp;Email
-						</Fab>
-						{isDsFlow && (
-							<Fab variant="extended" onClick={downloadDataForDS} className="letter-preview__action-button">
-								Download
-							</Fab>
-						)}
-						<Fab
-							variant="extended"
-							color="secondary"
-							id="nextButton"
-							onClick={handleNext}
-							className="letter-preview__action-button"
-						>
-							Next
-						</Fab>
-					</div>
+					)}
+
+					<ActionBar step={step} nextHandler={handleNext} />
 				</div>
 			</div>
 		</>

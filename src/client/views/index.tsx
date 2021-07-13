@@ -12,7 +12,6 @@ import { setAllTopics } from '../../data/topicDataSlice';
 import { updateSuggestedParagraphs } from '../../data/sessionDataSlice';
 
 import Help from './Help';
-import GetStarted from './GetStarted';
 import { getAllCaseTopics } from '../../api/vl';
 import Disclaimer from '../components/common/Disclaimer';
 import StatementSelect from '../components/common/StatementSelect';

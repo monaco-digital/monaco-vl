@@ -1,9 +1,10 @@
 import React from 'react';
 import { mdiNumeric2Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const Step2Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -13,10 +14,6 @@ const Step2Intro: React.FC = () => {
 
 	const handleNext = () => {
 		history.push('/preview/_WP');
-	};
-
-	const handleBack = () => {
-		history.goBack();
 	};
 
 	return (
@@ -68,14 +65,7 @@ const Step2Intro: React.FC = () => {
 					</Link>{' '}
 					for full terms of use.
 				</Typography>
-				<div className="step-intro__buttons">
-					<Fab variant="extended" id="backButton" color="inherit" className="step-intro__button" onClick={handleBack}>
-						Back
-					</Fab>
-					<Fab variant="extended" id="nextButton" color="secondary" onClick={handleNext}>
-						Next
-					</Fab>
-				</div>
+				<ActionBar step={1} nextHandler={handleNext} />
 			</div>
 		</div>
 	);

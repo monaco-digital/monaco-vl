@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Fab, Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import EndToEndStepper from '../EndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const RespondToEmployer: React.FC = () => {
 	const history = useHistory();
@@ -16,11 +17,7 @@ const RespondToEmployer: React.FC = () => {
 		{ text: "(iv) My employer said they don't want me to leave", optionId: '_RES_KM' },
 	];
 
-	const handleBack = () => {
-		history.goBack();
-	};
-
-	const handleOnClick = () => {
+	const handleNext = () => {
 		switch (selectedOption) {
 			case '_RES_CD':
 				history.push('/preview/_RES_CD');
@@ -97,14 +94,7 @@ const RespondToEmployer: React.FC = () => {
 					for full terms of use.
 				</Typography>
 				<div className="step-intro__options">{options}</div>
-				<div className="step-intro__buttons">
-					<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
-						Back
-					</Fab>
-					<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
-						Next
-					</Fab>
-				</div>
+				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />
 			</div>
 		</div>
 	);

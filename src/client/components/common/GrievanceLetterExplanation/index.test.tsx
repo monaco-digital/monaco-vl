@@ -8,13 +8,13 @@ describe('Grievance Letter Explanation', () => {
 	test('Click back and get in the progress legal case page', () => {
 		const { history } = renderWithProviders(<GrievanceLetterExplanation />, { startPage: '/progress-legal-case' });
 		history.push('/grievance-explanation');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 		expect(history.location.pathname).toEqual('/progress-legal-case');
 	});
 
 	test('Click next and get in preview letter', () => {
 		const { history } = renderWithProviders(<GrievanceLetterExplanation />, { startPage: '/grievance-explanation' });
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_GR');
 	});

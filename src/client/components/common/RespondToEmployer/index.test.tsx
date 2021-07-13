@@ -47,17 +47,17 @@ describe('Step 3 Intro Page', () => {
 
 	test('When loading RespondToEmployer Then next button is disabled', () => {
 		renderWithProviders(<RespondToEmployer />);
-		const button = screen.getByRole('button', {
+		const button = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 		expect(button).toBeDisabled();
 	});
 
 	test('When selecting an option Then next button is enabled', () => {
 		renderWithProviders(<RespondToEmployer />);
-		const button = screen.getByRole('button', {
+		const button = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
@@ -69,7 +69,7 @@ describe('Step 3 Intro Page', () => {
 		const { history } = renderWithProviders(<RespondToEmployer />);
 
 		userEvent.click(screen.getByText(options[0].text)); // Select first option
-		userEvent.click(screen.getByText('Next')); // Click next button
+		userEvent.click(screen.getAllByText('Next')[0]); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_RES_CD');
 	});
@@ -78,7 +78,7 @@ describe('Step 3 Intro Page', () => {
 		const { history } = renderWithProviders(<RespondToEmployer />);
 
 		userEvent.click(screen.getByText(options[1].text)); // Select second option
-		userEvent.click(screen.getByText('Next')); // Click next button
+		userEvent.click(screen.getAllByText('Next')[0]); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_RES_CO');
 	});
@@ -87,7 +87,7 @@ describe('Step 3 Intro Page', () => {
 		const { history } = renderWithProviders(<RespondToEmployer />);
 
 		userEvent.click(screen.getByText(options[2].text)); // Select third option
-		userEvent.click(screen.getByText('Next')); // Click next button
+		userEvent.click(screen.getAllByText('Next')[0]); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_RES_I');
 	});
@@ -96,7 +96,7 @@ describe('Step 3 Intro Page', () => {
 		const { history } = renderWithProviders(<RespondToEmployer />);
 
 		userEvent.click(screen.getByText(options[3].text)); // Select fourth option
-		userEvent.click(screen.getByText('Next')); // Click next button
+		userEvent.click(screen.getAllByText('Next')[0]); // Click next button
 
 		expect(history.location.pathname).toEqual('/preview/_RES_KM');
 	});
@@ -104,7 +104,7 @@ describe('Step 3 Intro Page', () => {
 	test('When clicking back Then previous page is loaded', () => {
 		const { history } = renderWithProviders(<RespondToEmployer />, { startPage: '/progress-legal-case' });
 		history.push('/respond-to-employer');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/progress-legal-case');
 	});

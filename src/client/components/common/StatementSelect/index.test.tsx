@@ -154,9 +154,9 @@ describe('Statement Page', () => {
 
 		history.push('/statements');
 
-		const backButton = screen.getByRole('button', {
+		const backButton = screen.getAllByRole('button', {
 			name: /back/i,
-		});
+		})[0];
 
 		userEvent.click(backButton);
 
@@ -168,9 +168,9 @@ describe('Statement Page', () => {
 
 		history.push('/statements');
 
-		const nextButton = screen.getByRole('button', {
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		userEvent.click(nextButton);
 

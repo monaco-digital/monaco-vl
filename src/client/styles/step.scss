@@ -1,8 +1,8 @@
 .step-intro {
-	@apply .w-full;
+	width: 100%;
 
 	@screen md {
-		@apply .w-1/2;
+		width: 50%;
 	}
 
 	justify-content: center;
@@ -14,16 +14,6 @@
 
 	ul {
 		margin-left: 2rem;
-	}
-
-	.step-intro__buttons {
-		text-align: right;
-		flex-direction: row;
-		align-items: baseline;
-	}
-
-	.step-intro__button {
-		margin-right: 1rem;
 	}
 
 	.step-intro__icon-and-header {

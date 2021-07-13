@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -19,11 +20,7 @@ const Step3Intro: React.FC = () => {
 		{ text: 'My 3 month time limit is running out', optionId: '2' },
 	];
 
-	const handleBack = () => {
-		history.goBack();
-	};
-
-	const handleOnClick = () => {
+	const handleNext = () => {
 		switch (selectedOption) {
 			case '0':
 				history.push('/respond-to-employer');
@@ -116,14 +113,7 @@ const Step3Intro: React.FC = () => {
 					Choose one of the following options:
 				</Typography>
 				<div className="step-intro__options">{options}</div>
-				<div className="step-intro__buttons">
-					<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
-						Back
-					</Fab>
-					<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
-						Next
-					</Fab>
-				</div>
+				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />
 			</div>
 		</div>
 	);

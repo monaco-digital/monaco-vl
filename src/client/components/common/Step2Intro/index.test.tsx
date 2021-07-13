@@ -15,12 +15,12 @@ describe('Step 2 Intro Page', () => {
 	test('When loading Step2Intro Then back and next buttons are enabled', () => {
 		renderWithProviders(<Step2Intro />);
 
-		const backButton = screen.getByRole('button', {
+		const backButton = screen.getAllByRole('button', {
 			name: /back/i,
-		});
-		const nextButton = screen.getByRole('button', {
+		})[0];
+		const nextButton = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		expect(backButton).toBeEnabled();
 		expect(nextButton).toBeEnabled();
@@ -29,7 +29,7 @@ describe('Step 2 Intro Page', () => {
 	test('When clicking back Then advice is generated', () => {
 		const { history } = renderWithProviders(<Step2Intro />, { startPage: '/preview/_ADV' });
 		history.push('/start-legal-process');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_ADV');
 	});
@@ -37,7 +37,7 @@ describe('Step 2 Intro Page', () => {
 	test('When clicking next Then WP letter is generated', () => {
 		const { history } = renderWithProviders(<Step2Intro />);
 
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_WP');
 	});
