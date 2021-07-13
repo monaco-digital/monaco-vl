@@ -4,15 +4,14 @@ import { CaseTopic, Advice } from 'api/vl/models';
 import ReactGA from 'react-ga';
 import ReactMarkdown from 'react-markdown';
 import { useHistory } from 'react-router-dom';
-import { Fab } from '@material-ui/core';
 
 import AppState from '../../../../data/AppState';
 import EndToEndStepper from '../EndToEndStepper';
 import PreviewAdviceExplanation from '../PreviewAdviceExplanation';
 import VLcard from '../VLcard';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
-import MobileEndToEndStepper from '../MobileEndToEndStepper';
 import ScrollToTopOnMount from '../ScrollToTopOnMount';
+import ActionBar from '../ActionBar';
 
 interface Props {
 	paragraph: Advice;
@@ -49,28 +48,6 @@ const AdvicePreview: FC = () => {
 		history.push('/start-legal-process'); // Go to step 2
 	};
 
-	const nextButton = () => {
-		return (
-			<Fab
-				variant="extended"
-				color="secondary"
-				id="nextButton"
-				onClick={handleNext}
-				className="letter-preview__action-button"
-			>
-				Next
-			</Fab>
-		);
-	};
-
-	const backButton = () => {
-		return (
-			<Fab variant="extended" color="inherit" onClick={history.goBack} className="letter-preview__action-button">
-				Back
-			</Fab>
-		);
-	};
-
 	return (
 		<>
 			<div className="flex-col w-full">
@@ -85,23 +62,7 @@ const AdvicePreview: FC = () => {
 							))}
 						</div>
 					</VLcard>
-					<div className="letter-preview__action-buttons navigation-buttons">
-						<Fab variant="extended" color="inherit" onClick={history.goBack} className="letter-preview__action-button">
-							Back
-						</Fab>
-						<Fab
-							variant="extended"
-							color="secondary"
-							id="nextButton"
-							onClick={handleNext}
-							className="letter-preview__action-button"
-						>
-							Next
-						</Fab>
-					</div>
-					<div className="w-full">
-						<MobileEndToEndStepper step={0} nextButton={nextButton()} backButton={backButton()} />
-					</div>
+					<ActionBar step={0} nextHandler={handleNext} />
 				</div>
 			</div>
 		</>

@@ -4,14 +4,6 @@
 	@screen md {
 		@apply .items-start .mt-0;
 	}
-
-	.topics__actions {
-		@apply .flex .flex-row .justify-between .flex-grow;
-	}
-
-	.topics__actions-next {
-		@apply .flex .m-3;
-	}
 }
 
 .topics__tags {

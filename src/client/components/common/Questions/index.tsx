@@ -3,15 +3,13 @@ import classNames from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { CaseTopic } from 'api/vl/models';
-import { Box, Fab } from '@material-ui/core';
-
 import AppState from '../../../../data/AppState';
 import { getNextQuestion, getQuestion } from '../../../../clustering/questionFlow';
 import EndToEndStepper from '../EndToEndStepper';
 import Question from '../Question';
 import ScrollToTopOnMount from '../ScrollToTopOnMount';
 import { addAnsweredQuestion } from '../../../../data/sessionDataSlice';
-import MobileEndToEndStepper from '../MobileEndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const Questions: FC = () => {
 	const history = useHistory();
@@ -56,46 +54,18 @@ const Questions: FC = () => {
 		history.push(`/questions/${id}`);
 	};
 
-	const handleGoBackwards = () => {
-		history.goBack();
-	};
-
-	const nextButton = () => {
-		return (
-			<Box px={1}>
-				<Fab variant="extended" color="secondary" onClick={handleGoForward} disabled={!enableNext}>
-					Next
-				</Fab>
-			</Box>
-		);
-	};
-
-	const backButton = () => {
-		return (
-			<Box px={1}>
-				<Fab variant="extended" color="inherit" onClick={handleGoBackwards} disabled={!currentQuestionId}>
-					Back
-				</Fab>
-			</Box>
-		);
-	};
-
 	return (
 		<div className="flex-col w-full">
 			<ScrollToTopOnMount />
 			<EndToEndStepper step={0} />
 			<div className={classes}>
 				<Question question={currentQuestion} />
-				<div className="navigation-buttons">
-					<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-						{/* Note: Back button is hidden on the first page */}
-						{Boolean(currentQuestionId) && backButton()}
-						{nextButton()}
-					</Box>
-				</div>
-				<div className="w-full">
-					<MobileEndToEndStepper step={0} nextButton={nextButton()} backButton={backButton()} />
-				</div>
+				<ActionBar
+					step={0}
+					nextHandler={handleGoForward}
+					nextDisabled={!enableNext}
+					showBackButton={Boolean(currentQuestionId)}
+				/>
 			</div>
 		</div>
 	);

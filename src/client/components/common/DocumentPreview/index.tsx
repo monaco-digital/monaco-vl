@@ -20,8 +20,8 @@ import VLcard from '../VLcard';
 import { getTemplate } from '../../../../api/vl';
 import { updateSessionDocument, updateCurrentSessionDocument } from '../../../../data/sessionDataSlice';
 import { downloadDataForDS } from '../../../../ds';
-import MobileEndToEndStepper from '../MobileEndToEndStepper';
 import ScrollToTopOnMount from '../ScrollToTopOnMount';
+import ActionBar from '../ActionBar';
 
 interface Props {
 	sessionDocumentComponents: SessionDocumentComponent[];
@@ -177,28 +177,6 @@ const DocumentPreview: FC = () => {
 
 	const step = id === '_WP' ? 1 : 2;
 
-	const nextButton = () => {
-		return (
-			<Fab
-				variant="extended"
-				color="secondary"
-				id="nextButton"
-				onClick={handleNext}
-				className="letter-preview__action-button"
-			>
-				Next
-			</Fab>
-		);
-	};
-
-	const backButton = () => {
-		return (
-			<Fab variant="extended" color="inherit" onClick={history.goBack} className="letter-preview__action-button">
-				Back
-			</Fab>
-		);
-	};
-
 	return (
 		<>
 			<div className="flex-col w-full">
@@ -211,18 +189,13 @@ const DocumentPreview: FC = () => {
 							<SessionDocComponents sessionDocumentComponents={sessionDocument?.sessionDocumentComponents} />
 						</div>
 					</VLcard>
-					<div className="letter-preview__action-buttons navigation-buttons">
-						{backButton()}
-						{isDsFlow && (
-							<Fab variant="extended" onClick={downloadDataForDS} className="letter-preview__action-button">
-								Download
-							</Fab>
-						)}
-						{nextButton()}
-					</div>
-					<div className="w-full">
-						<MobileEndToEndStepper step={step} nextButton={nextButton()} backButton={backButton()} />
-					</div>
+					{isDsFlow && (
+						<Fab variant="extended" onClick={downloadDataForDS}>
+							Download
+						</Fab>
+					)}
+
+					<ActionBar step={step} nextHandler={handleNext} />
 				</div>
 			</div>
 		</>

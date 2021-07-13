@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { CaseTopic, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
-import { Box, Fab } from '@material-ui/core';
 
 import EndToEndStepper from '../EndToEndStepper';
 import OptionAccordion from '../OptionAccordion';
@@ -12,7 +11,7 @@ import AppState from '../../../../data/AppState';
 import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from '../../../../data/sessionDataSlice';
 import { SessionParagraph } from '../../../../types/SessionDocument';
 import { getSuggestedParagraphs } from '../../../../api/vl';
-import MobileEndToEndStepper from '../MobileEndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const StatementSelect: React.FC = () => {
 	const history = useHistory();
@@ -60,10 +59,6 @@ const StatementSelect: React.FC = () => {
 		history.push('/preview/_ADV');
 	};
 
-	const handleGoBackwardsFromStatements = () => {
-		history.goBack();
-	};
-
 	const statements = suggestedParagraphs.map(sessionParagraph => {
 		const templateParagraph = sessionParagraph.templateComponent as TemplateParagraph;
 		if (templateParagraph.paragraph?.isAutomaticallyIncluded) {
@@ -81,26 +76,6 @@ const StatementSelect: React.FC = () => {
 		);
 	});
 
-	const nextButton = () => {
-		return (
-			<Box px={1}>
-				<Fab variant="extended" color="secondary" onClick={enterLetterPreviewMode}>
-					Next
-				</Fab>
-			</Box>
-		);
-	};
-
-	const backButton = () => {
-		return (
-			<Box px={1}>
-				<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>
-					Back
-				</Fab>
-			</Box>
-		);
-	};
-
 	if (!statements.some(s => s)) {
 		return <Redirect to="/preview/_ADV" />;
 	}
@@ -112,15 +87,7 @@ const StatementSelect: React.FC = () => {
 				<div className="questions">
 					<h1 className="title">Select all the statements that apply to you</h1>
 					<div className="topics">{statements}</div>
-					<div className="navigation-buttons">
-						<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-							{backButton()}
-							{nextButton()}
-						</Box>
-					</div>
-					<div className="w-full">
-						<MobileEndToEndStepper step={0} nextButton={nextButton()} backButton={backButton()} />
-					</div>
+					<ActionBar step={0} nextHandler={enterLetterPreviewMode} />
 				</div>
 			</div>
 		</>

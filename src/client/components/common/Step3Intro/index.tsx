@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { mdiNumeric3Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
-import MobileEndToEndStepper from '../MobileEndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const Step3Intro: React.FC = () => {
 	const iconColour = '#60ABFF';
@@ -20,11 +20,7 @@ const Step3Intro: React.FC = () => {
 		{ text: 'My 3 month time limit is running out', optionId: '2' },
 	];
 
-	const handleBack = () => {
-		history.goBack();
-	};
-
-	const handleOnClick = () => {
+	const handleNext = () => {
 		switch (selectedOption) {
 			case '0':
 				history.push('/respond-to-employer');
@@ -60,22 +56,6 @@ const Step3Intro: React.FC = () => {
 			</div>
 		);
 	});
-
-	const nextButton = () => {
-		return (
-			<Fab variant="extended" color="secondary" disabled={selectedOption === ''} onClick={handleOnClick}>
-				Next
-			</Fab>
-		);
-	};
-
-	const backButton = () => {
-		return (
-			<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleBack}>
-				Back
-			</Fab>
-		);
-	};
 
 	return (
 		<div className="flex-col w-full">
@@ -133,13 +113,7 @@ const Step3Intro: React.FC = () => {
 					Choose one of the following options:
 				</Typography>
 				<div className="step-intro__options">{options}</div>
-				<div className="step-intro__buttons navigation-buttons">
-					{backButton()}
-					{nextButton()}
-				</div>
-				<div className="w-full">
-					<MobileEndToEndStepper step={2} nextButton={nextButton()} backButton={backButton()} />
-				</div>
+				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />
 			</div>
 		</div>
 	);
