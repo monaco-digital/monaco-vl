@@ -81,11 +81,6 @@ export const slice = createSlice({
 	initialState: {
 		narrative: null as string,
 		suggestedParagraphs: [] as SessionParagraph[],
-		selectedParagraphs: {
-			_ET: null as SessionParagraph[],
-			_GR: null as SessionParagraph[],
-			_WP: null as SessionParagraph[],
-		},
 		selectedTopics: [] as CaseTopic[],
 		answeredQuestions: [] as number[],
 		selectedTemplate: null as Template,
