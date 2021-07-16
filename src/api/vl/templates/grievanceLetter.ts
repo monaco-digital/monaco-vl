@@ -1,4 +1,4 @@
-import { Template, TemplateParagraph, StaticText, TemplateSection, EditableText, BulletPoints } from 'api/vl/models';
+import { Template, TemplateParagraph, StaticText, TemplateSection } from 'api/vl/models';
 import { nanoid } from 'nanoid';
 
 export const grievanceLetter: Template = {

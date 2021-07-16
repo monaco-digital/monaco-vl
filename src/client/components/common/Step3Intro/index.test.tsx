@@ -44,17 +44,17 @@ describe('Step 3 Intro Page', () => {
 
 	test('When loading Step3Intro Then next button is disabled', () => {
 		renderWithProviders(<Step3Intro />);
-		const button = screen.getByRole('button', {
+		const button = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 		expect(button).toBeDisabled();
 	});
 
 	test('When selecting an option Then next button is enabled', () => {
 		renderWithProviders(<Step3Intro />);
-		const button = screen.getByRole('button', {
+		const button = screen.getAllByRole('button', {
 			name: /next/i,
-		});
+		})[0];
 
 		options.forEach(option => {
 			userEvent.click(screen.getByText(option.text));
@@ -66,7 +66,7 @@ describe('Step 3 Intro Page', () => {
 		const { history } = renderWithProviders(<Step3Intro />);
 
 		userEvent.click(screen.getByText(options[1].text)); // Select second option
-		userEvent.click(screen.getByText('Next')); // Click next button
+		userEvent.click(screen.getAllByText('Next')[0]); // Click next button
 
 		expect(history.location.pathname).toEqual('/grievance-explanation');
 	});
@@ -74,7 +74,7 @@ describe('Step 3 Intro Page', () => {
 	test('When clicking back Then previous page is loaded', () => {
 		const { history } = renderWithProviders(<Step3Intro />, { startPage: '/preview/_WP' });
 		history.push('/progress-legal-case');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/preview/_WP');
 	});

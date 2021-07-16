@@ -16,7 +16,7 @@ describe('Help Page', () => {
 		const { history } = renderWithProviders(<Help />, { startPage: '/oldpage' });
 
 		history.push('/help');
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		expect(history.location.pathname).toEqual('/oldpage');
 	});

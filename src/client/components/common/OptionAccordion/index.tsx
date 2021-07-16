@@ -1,6 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionSummary, Checkbox, Grid, useMediaQuery } from '@material-ui/core/';
-import { useTheme } from '@material-ui/core/styles';
+import { Accordion, AccordionSummary, Checkbox, Grid } from '@material-ui/core/';
 
 interface Props {
 	labelText: string;
@@ -10,9 +9,6 @@ interface Props {
 }
 
 const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChecked }: Props) => {
-	const theme = useTheme();
-	const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
-
 	const handleOnClick = event => {
 		event.stopPropagation();
 		onClickHandler(id);

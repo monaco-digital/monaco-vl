@@ -1,17 +1,14 @@
 import React from 'react';
-import { Fab, Link, Box, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
+import ActionBar from '../ActionBar';
 
 const GrievanceLetterExplanation: React.FC = () => {
 	const history = useHistory();
 
-	const handleClick = () => {
+	const handleNext = () => {
 		history.push('/preview/_GR');
-	};
-
-	const handleGoBack = () => {
-		history.goBack();
 	};
 
 	return (
@@ -36,18 +33,7 @@ const GrievanceLetterExplanation: React.FC = () => {
 					</Link>{' '}
 					for full terms of use.
 				</Typography>
-				<Box mt={3} width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBack}>
-							Back
-						</Fab>
-					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={handleClick}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				<ActionBar step={2} nextHandler={handleNext} />
 			</div>
 		</div>
 	);

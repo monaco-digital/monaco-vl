@@ -36,7 +36,7 @@ describe('Narrative Page', () => {
 		userEvent.type(screen.getByRole('textbox'), 'A narrative');
 		expect(screen.getByText('11/2000')).toBeInTheDocument();
 
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		await waitFor(() => {
 			expect(history.location.pathname).toEqual('/statements');
@@ -47,7 +47,7 @@ describe('Narrative Page', () => {
 		const { store } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
 
 		userEvent.type(screen.getByRole('textbox'), 'A narrative');
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		await waitFor(() => {
 			const actions = store.getActions();
@@ -61,7 +61,7 @@ describe('Narrative Page', () => {
 	test('Given no text When Clicking Next Then Error appears', async () => {
 		renderWithProviders(<Narrative />, { initialState });
 
-		userEvent.click(screen.getByText('Next'));
+		userEvent.click(screen.getAllByText('Next')[0]);
 
 		expect(await screen.findByText('Please add a description of your case')).toBeInTheDocument();
 	});
@@ -71,7 +71,7 @@ describe('Narrative Page', () => {
 
 		history.push('/narrative');
 
-		userEvent.click(screen.getByText('Back'));
+		userEvent.click(screen.getAllByText('Back')[0]);
 
 		await waitFor(() => {
 			expect(history.location.pathname).toEqual('/first');

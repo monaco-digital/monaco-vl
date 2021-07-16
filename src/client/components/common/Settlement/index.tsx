@@ -1,10 +1,11 @@
 import React from 'react';
 import { mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Fab, Link, Typography } from '@material-ui/core';
+import { Link, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import EndToEndStepper from '../EndToEndStepper';
+import ActionBar from '../ActionBar';
 
 export const Settlement: React.FC = () => {
 	const history = useHistory();
@@ -13,10 +14,6 @@ export const Settlement: React.FC = () => {
 
 	const handleGoForward = () => {
 		history.push('/step/cdf/form');
-	};
-
-	const handleGoBackward = () => {
-		history.goBack();
 	};
 
 	return (
@@ -53,15 +50,7 @@ export const Settlement: React.FC = () => {
 					</Link>{' '}
 					for full terms of use.
 				</Typography>
-
-				<div className="step-intro__buttons">
-					<Fab variant="extended" color="inherit" className="step-intro__button" onClick={handleGoBackward}>
-						Back
-					</Fab>
-					<Fab variant="extended" id="nextButton" color="secondary" onClick={handleGoForward}>
-						Next
-					</Fab>
-				</div>
+				<ActionBar step={3} nextHandler={handleGoForward} />
 			</div>
 		</div>
 	);

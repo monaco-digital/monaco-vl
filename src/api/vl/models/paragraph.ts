@@ -10,4 +10,5 @@ export interface Paragraph {
 	isAutomaticallyIncluded?: boolean;
 	group?: string;
 	paragraphComponents?: ParagraphComponent[];
+	types?: string[];
 }
