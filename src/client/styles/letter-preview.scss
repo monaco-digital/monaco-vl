@@ -1,6 +1,14 @@
 .letter-preview {
 	@apply .max-w-3xl .mx-auto .mt-8 .text-left;
 
+	.letter-preview__action-buttons {
+		margin-top: 1rem;
+
+		@screen md {
+			margin-top: 1.5rem;
+		}
+	}
+
 	a {
 		color: #538cff;
 	}

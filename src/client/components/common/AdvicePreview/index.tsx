@@ -62,7 +62,9 @@ const AdvicePreview: FC = () => {
 							))}
 						</div>
 					</VLcard>
-					<ActionBar step={0} nextHandler={handleNext} />
+					<div className="letter-preview__action-buttons">
+						<ActionBar step={0} nextHandler={handleNext} />
+					</div>
 				</div>
 			</div>
 		</>

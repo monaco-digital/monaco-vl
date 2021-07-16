@@ -195,7 +195,9 @@ const DocumentPreview: FC = () => {
 						</Fab>
 					)}
 
-					<ActionBar step={step} nextHandler={handleNext} />
+					<div className="letter-preview__action-buttons">
+						<ActionBar step={step} nextHandler={handleNext} />
+					</div>
 				</div>
 			</div>
 		</>
