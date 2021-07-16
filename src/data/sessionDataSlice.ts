@@ -1,6 +1,13 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { CaseTopic, DocumentParagraph, Template, DocumentParagraphComponent, TemplateParagraph } from 'api/vl/models';
+import {
+	CaseTopic,
+	DocumentParagraph,
+	Template,
+	DocumentParagraphComponent,
+	TemplateParagraph,
+	Paragraph,
+} from 'api/vl/models';
 import _ from 'lodash';
 import { getQuestion } from 'clustering/questionFlow';
 import { UserData } from '../types/UserData';
@@ -74,6 +81,11 @@ export const slice = createSlice({
 	initialState: {
 		narrative: null as string,
 		suggestedParagraphs: [] as SessionParagraph[],
+		selectedParagraphs: {
+			_ET: null as SessionParagraph[],
+			_GR: null as SessionParagraph[],
+			_WP: null as SessionParagraph[],
+		},
 		selectedTopics: [] as CaseTopic[],
 		answeredQuestions: [] as number[],
 		selectedTemplate: null as Template,
@@ -191,7 +203,31 @@ export const slice = createSlice({
 	},
 	extraReducers: builder => {
 		builder.addCase(generateParagraphsByTopics.fulfilled, (state, action) => {
-			state.suggestedParagraphs = action.payload.map(
+			// eslint-disable-next-line @typescript-eslint/naming-convention
+			const { ET_paragraphIds, GR_paragraphIds, WP_paragraphIds } = action.payload;
+
+			let paragraphs: Record<string, Paragraph> = ET_paragraphIds.reduce((hashMap, currentValue) => {
+				hashMap[currentValue.id] = { ...currentValue, types: ['_ET'] };
+				return hashMap;
+			}, {});
+			paragraphs = GR_paragraphIds.reduce((hashMap, currentValue) => {
+				if (hashMap[currentValue.id]) {
+					hashMap[currentValue.id].types.push('_GR');
+				} else {
+					hashMap[currentValue.id] = { ...currentValue, types: ['_GR'] };
+				}
+				return hashMap;
+			}, paragraphs);
+			paragraphs = WP_paragraphIds.reduce((hashMap, currentValue) => {
+				if (hashMap[currentValue.id]) {
+					hashMap[currentValue.id].types.push('_WP');
+				} else {
+					hashMap[currentValue.id] = { ...currentValue, types: ['_WP'] };
+				}
+				return hashMap;
+			}, paragraphs);
+
+			state.suggestedParagraphs = Object.values(paragraphs).map(
 				paragraph =>
 					({
 						templateComponent: {

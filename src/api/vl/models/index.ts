@@ -1,6 +1,7 @@
 export type { Advice } from './advice';
 export type { CaseTopic } from './caseTopic';
 export type { Paragraph } from './paragraph';
+export type { GeneratedParagraphs } from './generatedParagraphs';
 export type {
 	ParagraphComponent,
 	StaticText,
