@@ -52,7 +52,6 @@ export const generateParagraphsByTopics = createAsyncThunk(
 );
 
 export const startSession = createAsyncThunk('session/startSession', async _ => {
-	console.log('the start session call has been made');
 	const {
 		data: { startSession: startTheSession },
 	} = await client.mutate<{ startSession: { id: string } }>({
