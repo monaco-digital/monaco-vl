@@ -77,7 +77,7 @@ describe('Question Page', () => {
 
 		const actions = store.getActions();
 
-		expect(actions[0].type).toEqual('session/updateSelectedTopics');
-		expect(actions[0].payload).toEqual(initialState.topics.all);
+		expect(actions[1].type).toEqual('session/updateSelectedTopics');
+		expect(actions[1].payload).toEqual(initialState.topics.all);
 	});
 });

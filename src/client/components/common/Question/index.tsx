@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CaseTopic } from 'api/vl/models';
 import ReactGA from 'react-ga';
@@ -10,6 +10,7 @@ import AppState from '../../../../data/AppState';
 import Title from '../../Title';
 import Button from '../../Button';
 import OptionAccordion from '../OptionAccordion';
+import { answerQuestion } from '../../../../data/sessionThunks';
 
 const passesPrerequisites = (prerequisites, selectedTopicIds) => {
 	if (prerequisites.length === 0) return true;
@@ -90,15 +91,23 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 		optionsToShow = optionsToShow.slice(0, defaultLimit);
 	}
 
+	useEffect(() => {
+		const updateQuestions = async () => {
+			const filteredTopics = selectedTopics
+				.filter(topic => question.options.map(option => option.topicId).includes(topic.id))
+				.map(topic => topic.id);
+			await dispatch(answerQuestion({ questionId: question.id.toString(10), selectedTopics: filteredTopics }));
+		};
+		updateQuestions();
+	}, [dispatch, question, selectedTopics]);
+
 	const handleOnClick = (id: string) => {
 		const option = validOptions.find(o => o.topicId === id);
-
 		ReactGA.event({
 			category: 'User',
 			action: `Clicked topic: ${option.text}`,
 		});
 		const updatedSelectedTopics = recalculateSelectedTopics(id, allTopics, selectedTopics, question, isSingle);
-
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 	};
 

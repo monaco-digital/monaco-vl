@@ -14,6 +14,14 @@ export const GENERATE_PARAGRAPHS = gql`
 	${fragments.paragraph}
 `;
 
+export const CREATE_SESSION = gql`
+	mutation startSession {
+		startSession {
+			id
+		}
+	}
+`;
+
 export const generateParagraphsByTopics = createAsyncThunk(
 	'session/generateParagraphsByTopics',
 	async ({ topicIds, narrative }: { topicIds: string[]; narrative: string }) => {
@@ -30,3 +38,15 @@ export const generateParagraphsByTopics = createAsyncThunk(
 		return generateParagraphsTopics;
 	},
 );
+
+export const startSession = createAsyncThunk('session/startSession', async _ => {
+	console.log('the start session call has been made');
+	const {
+		data: { startSession: startTheSession },
+	} = await client.mutate<{ startSession: { id: string } }>({
+		mutation: CREATE_SESSION,
+		variables: {},
+	});
+	console.log('The data returned has been: ', startTheSession);
+	return startTheSession;
+});

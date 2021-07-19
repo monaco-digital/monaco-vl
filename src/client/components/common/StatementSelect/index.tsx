@@ -12,6 +12,7 @@ import { updateSuggestedParagraphs, selectParagraphs, deselectParagraphs } from 
 import { SessionParagraph } from '../../../../types/SessionDocument';
 import { getSuggestedParagraphs } from '../../../../api/vl';
 import ActionBar from '../ActionBar';
+import { selectParagraphsCall } from '../../../../data/sessionThunks';
 
 const StatementSelect: React.FC = () => {
 	const history = useHistory();
@@ -55,8 +56,9 @@ const StatementSelect: React.FC = () => {
 		});
 	};
 
-	const enterLetterPreviewMode = () => {
+	const enterLetterPreviewMode = async () => {
 		history.push('/preview/_ADV');
+		await dispatch(selectParagraphsCall());
 	};
 
 	const statements = suggestedParagraphs.map(sessionParagraph => {

@@ -3,7 +3,7 @@ import React, { ReactElement, ReactNode } from 'react';
 import { Router } from 'react-router-dom';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { Provider } from 'react-redux';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import configureStore from 'redux-mock-store'; // ES6 modules
 import thunk from 'redux-thunk';
 
@@ -21,7 +21,7 @@ export interface ProviderRenderResult extends RenderResult {
 	store: any;
 }
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 /**
  * Test util function to setup common providers during a react testing library test.
