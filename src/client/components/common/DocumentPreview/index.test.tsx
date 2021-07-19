@@ -39,6 +39,7 @@ describe('Document Preview', () => {
 								topicsOneOf: [],
 								topicsAllOf: ['M'],
 								topicsNoneOf: [],
+								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
 									{
@@ -67,6 +68,7 @@ describe('Document Preview', () => {
 								topicsOneOf: [],
 								topicsAllOf: ['M'],
 								topicsNoneOf: [],
+								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
 									{
@@ -95,6 +97,7 @@ describe('Document Preview', () => {
 								topicsOneOf: [],
 								topicsAllOf: ['M'],
 								topicsNoneOf: ['_GR', '_ET'],
+								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
 									{
@@ -123,6 +126,7 @@ describe('Document Preview', () => {
 								topicsOneOf: [],
 								topicsAllOf: ['E'],
 								topicsNoneOf: ['_GR', '_ET'],
+								types: ['_WP'],
 								isAutomaticallyIncluded: true,
 								paragraphComponents: [
 									{

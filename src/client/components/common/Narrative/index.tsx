@@ -9,6 +9,7 @@ import { CaseTopic } from 'api/vl/models';
 import { generateParagraphsByTopics } from 'data/sessionDataThunks';
 import EndToEndStepper from '../EndToEndStepper';
 import { updateNarrativeCall } from '../../../../data/sessionThunks';
+import ActionBar from '../ActionBar';
 
 const Narrative: React.FC = () => {
 	const history = useHistory();
@@ -69,18 +70,7 @@ const Narrative: React.FC = () => {
 						</CardContent>
 					</Card>
 				</Box>
-				<Box width="100%" display="flex" flexDirection="row" justifyContent="flex-end">
-					<Box px={1}>
-						<Fab variant="extended" color="inherit" onClick={handleGoBackwardsFromStatements}>
-							Back
-						</Fab>
-					</Box>
-					<Box px={1}>
-						<Fab variant="extended" color="secondary" onClick={handleSubmit(onSubmit)} disabled={isSubmitting}>
-							Next
-						</Fab>
-					</Box>
-				</Box>
+				<ActionBar step={2} nextHandler={handleSubmit(onSubmit)} nextDisabled={isSubmitting} />
 			</Grid>
 		</div>
 	);
