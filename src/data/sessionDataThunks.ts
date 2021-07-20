@@ -58,6 +58,5 @@ export const startSession = createAsyncThunk('session/startSession', async _ => 
 		mutation: CREATE_SESSION,
 		variables: {},
 	});
-	console.log('The data returned has been: ', startTheSession);
 	return startTheSession;
 });

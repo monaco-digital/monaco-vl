@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import Question from './index';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
+jest.mock('../../../../api/vl/graphql');
+
 describe('Question Page', () => {
 	let initialState;
 

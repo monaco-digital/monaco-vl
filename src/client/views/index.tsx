@@ -104,7 +104,7 @@ const Main: FC = () => {
 		(async () => {
 			const paragraphs = await getAllParagraphs();
 			const caseTopics = await getAllCaseTopics();
-			const sessionParagraphs = paragraphs.map(
+			const sessionParagraphs = paragraphs?.map(
 				paragraph =>
 					({
 						templateComponent: paragraph,

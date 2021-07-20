@@ -44,6 +44,8 @@ jest.mock('../components/common/CheckoutModal', () => () => {
 	return 'CheckoutModal';
 });
 
+jest.mock('../../api/vl/graphql');
+
 describe('Main Component', () => {
 	let initialState;
 

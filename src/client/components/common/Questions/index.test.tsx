@@ -15,6 +15,8 @@ jest.mock('../ScrollToTopOnMount', () => () => {
 	return 'ScrollToTopOnMount';
 });
 
+jest.mock('../../../../api/vl/graphql');
+
 describe('Questions Page', () => {
 	let initialState;
 
