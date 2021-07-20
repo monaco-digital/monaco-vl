@@ -20,7 +20,7 @@ import {
 import { createDocument } from '../utils/document';
 import orderSuggestedParagraphs from '../utils/paragraphOrdering';
 import { cdfValues } from '../client/components/common/UserData/CDF1';
-import { generateParagraphsByTopics } from './sessionDataThunks';
+import { generateParagraphsByTopics, startSession } from './sessionDataThunks';
 
 const updateSessionDocumentMapper = (
 	documentParagraphComponent: DocumentParagraphComponent,
@@ -79,6 +79,7 @@ const updateUserDataFromTopics = (userData: UserData, selectedTopics: CaseTopic[
 export const slice = createSlice({
 	name: 'session',
 	initialState: {
+		id: null as string,
 		narrative: null as string,
 		suggestedParagraphs: [] as SessionParagraph[],
 		selectedTopics: [] as CaseTopic[],
@@ -235,6 +236,11 @@ export const slice = createSlice({
 						isSelected: Boolean(paragraph.isAutomaticallyIncluded),
 					} as SessionParagraph),
 			);
+		});
+
+		builder.addCase(startSession.fulfilled, (state, action) => {
+			const { id } = action.payload;
+			state.id = id;
 		});
 	},
 });

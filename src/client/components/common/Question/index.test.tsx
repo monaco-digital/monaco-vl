@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import Question from './index';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
+jest.mock('../../../../api/vl/graphql');
+
 describe('Question Page', () => {
 	let initialState;
 
@@ -77,7 +79,7 @@ describe('Question Page', () => {
 
 		const actions = store.getActions();
 
-		expect(actions[0].type).toEqual('session/updateSelectedTopics');
-		expect(actions[0].payload).toEqual(initialState.topics.all);
+		expect(actions[1].type).toEqual('session/updateSelectedTopics');
+		expect(actions[1].payload).toEqual(initialState.topics.all);
 	});
 });

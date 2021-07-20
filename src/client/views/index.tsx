@@ -29,6 +29,7 @@ import CheckoutModal from '../components/common/CheckoutModal';
 import { Settlement } from '../components/common/Settlement';
 import { CDF1 } from '../components/common/UserData/CDF1';
 import CDFComplete from '../components/common/UserData/CDFComplete';
+import { startSession } from '../../data/sessionDataThunks';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
@@ -103,7 +104,7 @@ const Main: FC = () => {
 		(async () => {
 			const paragraphs = await getAllParagraphs();
 			const caseTopics = await getAllCaseTopics();
-			const sessionParagraphs = paragraphs.map(
+			const sessionParagraphs = paragraphs?.map(
 				paragraph =>
 					({
 						templateComponent: paragraph,
@@ -113,6 +114,7 @@ const Main: FC = () => {
 			);
 			dispatch(setAllTopics(caseTopics));
 			dispatch(updateSuggestedParagraphs(sessionParagraphs));
+			await dispatch(startSession());
 		})();
 	}, [dispatch]);
 
