@@ -42,14 +42,6 @@ export const Settlement: React.FC = () => {
 						<li>Most cases settle out of court</li>
 					</ul>
 				</Typography>
-				<Typography variant="body1" paragraph>
-					If you want us to check and send the letters in this service for you, our fee for the entire service is £75 up
-					front + 20% of any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
-					<Link href="/cdf/form" color="primary">
-						Contact us
-					</Link>{' '}
-					for full terms of use.
-				</Typography>
 				<ActionBar step={3} nextHandler={handleGoForward} />
 			</div>
 		</div>
