@@ -22,7 +22,14 @@ import EmploymentTribunalExplanation from '../components/common/EmploymentTribun
 import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
-import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
+import {
+	enableDsFlow,
+	disableDsFlow,
+	enableInternalFlow,
+	disableInternalFlow,
+	enableFeature,
+	disableFeature,
+} from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
@@ -68,6 +75,12 @@ const Main: FC = () => {
 			dispatch(enableDsFlow());
 		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
 			dispatch(disableDsFlow());
+		}
+
+		if (queryParams.has('intFlow') && queryParams.get('intFlow') === 'true') {
+			dispatch(enableInternalFlow());
+		} else if (queryParams.has('intFlow') && queryParams.get('intFlow') === 'false') {
+			dispatch(disableInternalFlow());
 		}
 
 		featureQueryParams.forEach(({ alias, feature }) => {
