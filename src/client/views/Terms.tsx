@@ -27,12 +27,6 @@ const Terms: React.FC = () => {
 				have not signed a client care letter with you in writing then you are not our client, and you should not hold us
 				out to be your lawyers to third parties.
 			</p>
-			<h2>Paid service</h2>
-			<p>
-				If you want us to check and send the letters in this service for you, our fee for the entire service is £75 up
-				front + 20% of any increase in settlement achieved (if you already have an offer our fee won’t apply to that).{' '}
-				<Link href="/cdf/form">Contact us</Link> for our full terms of use.
-			</p>
 			<h2>For personal use only</h2>
 			<p>
 				This service is for personal use only. If you work at an organisation wishing to use this service for its own

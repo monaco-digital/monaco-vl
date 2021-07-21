@@ -54,17 +54,6 @@ const Step2Intro: React.FC = () => {
 						<li>Send the letter to your employer</li>
 					</ul>
 				</Typography>
-
-				<Typography variant="body1" paragraph>
-					Want your letter to have a greater impact? <br />
-					We can check your letters and send them to your employer for you. That includes any follow up letters that you
-					generate from this tool as well. Our fee for this service is £75 + 20% of any increase in settlement achieved
-					(if you already have an offer our fee won’t apply to that).{' '}
-					<Link href="/cdf/form" color="primary">
-						Contact us
-					</Link>{' '}
-					for full terms of use.
-				</Typography>
 				<ActionBar step={1} nextHandler={handleNext} />
 			</div>
 		</div>

@@ -83,16 +83,6 @@ const RespondToEmployer: React.FC = () => {
 				<Typography variant="body1" paragraph>
 					You now have 4 template letters to choose from depending on what your employer is saying:
 				</Typography>
-				<Typography variant="body1" paragraph>
-					Once you have filled in the gaps, you can send it to us and we can send it to your employer for you. If you
-					want us to check and send the letters in this service for you, our fee for the entire service including any
-					follow up letters from this tool is £75 + 20% of any increase in settlement achieved (if you already have an
-					offer our fee won’t apply to that).{' '}
-					<Link href="/cdf/form" color="primary">
-						Contact us
-					</Link>{' '}
-					for full terms of use.
-				</Typography>
 				<div className="step-intro__options">{options}</div>
 				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />
 			</div>
