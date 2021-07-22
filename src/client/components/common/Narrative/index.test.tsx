@@ -1,13 +1,11 @@
 import { screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-
-import { removeLastAnsweredQuestion } from 'data/sessionDataSlice';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
 import Narrative from '.';
 
-jest.mock('api/vl/graphql');
+jest.mock('../../../../api/vl/graphql');
 
 describe('Narrative Page', () => {
 	let initialState;

@@ -7,6 +7,7 @@ import StatementSelect from '.';
 import { getSuggestedParagraphs } from '../../../../api/vl';
 
 jest.mock('../../../../api/vl');
+jest.mock('../../../../api/vl/graphql');
 
 describe('Statement Page', () => {
 	let initialState;

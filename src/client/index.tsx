@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import store from '../data/store';
 import './styles/main.output.css';
 import Main from './views';
@@ -11,7 +11,7 @@ const breakpoints = createBreakpoints({}); // For having different styles based 
 
 // For 'reasons' some screens (Payment and Email Modals) are using Material UI while everything else uses Tailwind
 // A change off of tailwind is likely in the future, Material UI is not confirmed though.
-const theme = createMuiTheme({
+const theme = createTheme({
 	palette: {
 		primary: {
 			main: '#538cff',

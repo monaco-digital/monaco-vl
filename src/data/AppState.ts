@@ -5,6 +5,7 @@ import { UserData } from '../types/UserData';
 
 type AppState = {
 	session: {
+		id: string;
 		narrative: string;
 		suggestedParagraphs: SessionParagraph[];
 		selectedTopics: CaseTopic[];
