@@ -17,7 +17,6 @@ export const slice = createSlice({
 		enableMonetization: false,
 		dsFlow: false,
 		enableNarrative: true,
-		enableSelect: false,
 	},
 	reducers: {
 		enableMonetization: (state): void => {

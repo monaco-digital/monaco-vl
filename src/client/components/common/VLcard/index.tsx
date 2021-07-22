@@ -1,10 +1,8 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
-import { useSelector } from 'react-redux';
 import { Fab } from '@material-ui/core';
 import EmailIcon from '@material-ui/icons/Email';
 import { useHistory, useParams } from 'react-router-dom';
-import AppState from '../../../../data/AppState';
 
 type VLCardProps = {
 	children: ReactNode;
@@ -13,8 +11,6 @@ type VLCardProps = {
 };
 
 const VLcard: FC<VLCardProps> = ({ children, heading, theme }: VLCardProps) => {
-	const enableSelect = useSelector<AppState, boolean>(state => state.features.enableSelect);
-
 	const VLCardClasses = classNames('vl-card', {
 		[`vl-card--${theme}`]: theme,
 	});
@@ -37,7 +33,7 @@ const VLcard: FC<VLCardProps> = ({ children, heading, theme }: VLCardProps) => {
 					</Fab>
 				</div>
 			</div>
-			<div className={enableSelect ? 'vl-card__enable-select' : ''}>{children}</div>
+			<div>{children}</div>
 		</div>
 	);
 };
