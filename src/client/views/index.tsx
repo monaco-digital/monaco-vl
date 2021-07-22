@@ -25,8 +25,8 @@ import { getAllParagraphs } from '../../api/vl/paragraph';
 import {
 	enableDsFlow,
 	disableDsFlow,
-	enableInternalFlow,
-	disableInternalFlow,
+	enableAcademyFlow,
+	disableAcademyFlow,
 	enableFeature,
 	disableFeature,
 } from '../../data/featureDataSlice';
@@ -77,10 +77,10 @@ const Main: FC = () => {
 			dispatch(disableDsFlow());
 		}
 
-		if (queryParams.has('intFlow') && queryParams.get('intFlow') === 'true') {
-			dispatch(enableInternalFlow());
-		} else if (queryParams.has('intFlow') && queryParams.get('intFlow') === 'false') {
-			dispatch(disableInternalFlow());
+		if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'true') {
+			dispatch(enableAcademyFlow());
+		} else if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'false') {
+			dispatch(disableAcademyFlow());
 		}
 
 		featureQueryParams.forEach(({ alias, feature }) => {
