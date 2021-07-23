@@ -43,7 +43,6 @@ import StatementSelectAcademy from '../components/common/StatementSelectAcademy'
 const featureQueryParams = [
 	{ feature: 'enableMonetization', alias: 'fm' },
 	{ feature: 'enableNarrative', alias: 'fn' },
-	{ feature: 'enableSelect', alias: 'fs' },
 ];
 
 const Main: FC = () => {
