@@ -32,7 +32,7 @@ describe('Questions Page', () => {
 			},
 			features: {
 				enableNarrative: false,
-				academyFlow: false
+				academyFlow: false,
 			},
 		};
 	});
