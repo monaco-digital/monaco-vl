@@ -26,6 +26,7 @@ const Narrative: React.FC = () => {
 	const watchNarrative = watch('narrative', '');
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
+	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
 
 	const handleGoBackwardsFromStatements = () => {
 		history.goBack();
@@ -35,7 +36,11 @@ const Narrative: React.FC = () => {
 		const topicIds = selectedTopics.map(t => t.id);
 		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
 		await dispatch(updateNarrativeCall(narrative));
-		history.push('/statements');
+		if (academyFlow) {
+			history.push('/statementsAcademy');
+		} else {
+			history.push('/statements');
+		}
 	};
 
 	return (

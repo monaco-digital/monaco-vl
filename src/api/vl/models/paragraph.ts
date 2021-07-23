@@ -4,6 +4,7 @@ export interface Paragraph {
 	id: string;
 	summary?: string;
 	verticalHeight?: number;
+	text?: string;
 	topicsOneOf?: string[];
 	topicsAllOf?: string[];
 	topicsNoneOf?: string[];

@@ -37,6 +37,7 @@ import { Settlement } from '../components/common/Settlement';
 import { CDF1 } from '../components/common/UserData/CDF1';
 import CDFComplete from '../components/common/UserData/CDFComplete';
 import { startSession } from '../../data/sessionDataThunks';
+import StatementSelectAcademy from '../components/common/StatementSelectAcademy';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
@@ -143,6 +144,9 @@ const Main: FC = () => {
 							</Route>
 							<Route path="/statements">
 								<StatementSelect />
+							</Route>
+							<Route path="/statementsAcademy">
+								<StatementSelectAcademy />
 							</Route>
 							<Route path="/narrative">
 								<Narrative />
