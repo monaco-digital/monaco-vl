@@ -37,6 +37,8 @@ type AppState = {
 		enableMonetization: boolean;
 		dsFlow: boolean;
 		enableNarrative: boolean;
+		enableSelect: boolean;
+		academyFlow: boolean;
 	};
 };
 

@@ -20,6 +20,9 @@ describe('Narrative Page', () => {
 				sessionDocuments: null,
 				userData: {},
 			},
+			features: {
+				academyFlow: false,
+			},
 		};
 	});
 
