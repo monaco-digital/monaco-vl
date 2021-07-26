@@ -22,14 +22,7 @@ import EmploymentTribunalExplanation from '../components/common/EmploymentTribun
 import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
-import {
-	enableDsFlow,
-	disableDsFlow,
-	enableAcademyFlow,
-	disableAcademyFlow,
-	enableFeature,
-	disableFeature,
-} from '../../data/featureDataSlice';
+import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
@@ -43,6 +36,7 @@ import StatementSelectAcademy from '../components/common/StatementSelectAcademy'
 const featureQueryParams = [
 	{ feature: 'enableMonetization', alias: 'fm' },
 	{ feature: 'enableNarrative', alias: 'fn' },
+	{ feature: 'academyFlow', alias: 'fa' },
 ];
 
 const Main: FC = () => {
@@ -75,12 +69,6 @@ const Main: FC = () => {
 			dispatch(enableDsFlow());
 		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
 			dispatch(disableDsFlow());
-		}
-
-		if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'true') {
-			dispatch(enableAcademyFlow());
-		} else if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'false') {
-			dispatch(disableAcademyFlow());
 		}
 
 		featureQueryParams.forEach(({ alias, feature }) => {
