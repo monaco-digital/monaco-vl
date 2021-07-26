@@ -123,7 +123,8 @@ const DocumentPreview: FC = () => {
 		suggested =>
 			suggested.isSelected &&
 			// Filters out paragraphs not meant to display on this template.
-			(suggested.templateComponent as TemplateParagraph).paragraph.types.some(t => t === id),
+			((suggested.templateComponent as TemplateParagraph).paragraph.types.some(t => t === id) ||
+				(suggested.templateComponent as TemplateParagraph).paragraph.topicsAllOf.some(t => t === id)),
 	);
 
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
