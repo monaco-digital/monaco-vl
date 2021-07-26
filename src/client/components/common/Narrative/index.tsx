@@ -28,10 +28,6 @@ const Narrative: React.FC = () => {
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
 
-	const handleGoBackwardsFromStatements = () => {
-		history.goBack();
-	};
-
 	const onSubmit = async ({ narrative }) => {
 		const topicIds = selectedTopics.map(t => t.id);
 		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
@@ -68,7 +64,7 @@ const Narrative: React.FC = () => {
 										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
 									})}
 								/>
-								<Grid container justify="flex-end">
+								<Grid container justifyContent="flex-end">
 									<Box ml="auto">{watchNarrative.length}/2000</Box>
 								</Grid>
 							</form>

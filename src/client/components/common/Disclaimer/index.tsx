@@ -18,7 +18,7 @@ const Disclaimer: FC = () => {
 			{(isPreview || isHelp || isTerms || isCDF || isStepCDF) && (
 				<>
 					<Divider />
-					<Grid container justify="space-between">
+					<Grid container justifyContent="space-between">
 						<Grid item xs={12} className="disclaimer__text">
 							<Typography variant="caption">
 								{disclaimerText}{' '}
@@ -28,7 +28,7 @@ const Disclaimer: FC = () => {
 							</Typography>
 						</Grid>
 					</Grid>
-					<Grid container direction="row" justify="space-between">
+					<Grid container direction="row" justifyContent="space-between">
 						<Grid item md={6} xs={12}>
 							<Typography variant="caption">
 								© Monaco Solicitors Ltd, <br />

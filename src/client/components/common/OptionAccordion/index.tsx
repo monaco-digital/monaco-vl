@@ -20,7 +20,7 @@ const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChe
 		<div>
 			<Accordion>
 				<AccordionSummary expandIcon={paraText ? <ExpandMoreIcon /> : undefined}>
-					<Grid container justify="space-between" alignItems="center" onClick={event => handleOnClick(event)}>
+					<Grid container justifyContent="space-between" alignItems="center" onClick={event => handleOnClick(event)}>
 						<Grid item xs={10}>
 							{labelText}
 						</Grid>
