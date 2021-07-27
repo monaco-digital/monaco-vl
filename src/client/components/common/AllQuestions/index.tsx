@@ -96,7 +96,7 @@ const AllQuestions: FC = () => {
 			);
 		});
 		return (
-			<div className="all-questions__question">
+			<div className="all-questions__question" key={question.id}>
 				<Title heading={question.text} subheading={question.subtext} />
 				{options}
 			</div>
