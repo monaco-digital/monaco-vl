@@ -42,6 +42,10 @@ export const paragraph = gql`
 		summary
 		verticalHeight
 		topic
+		topics {
+			topicId
+			value
+		}
 		status
 		topicsOneOf
 		topicsAllOf

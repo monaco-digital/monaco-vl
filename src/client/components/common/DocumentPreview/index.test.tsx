@@ -36,9 +36,7 @@ describe('Document Preview', () => {
 								verticalHeight: 2,
 								topic: '() + allOf(M) + !()',
 								status: 'Live',
-								topicsOneOf: [],
-								topicsAllOf: ['M'],
-								topicsNoneOf: [],
+								topics: [{ topicId: '_WP', value: 1 }],
 								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
@@ -65,9 +63,7 @@ describe('Document Preview', () => {
 								verticalHeight: 3,
 								topic: '() + allOf(M) + !()',
 								status: 'Live',
-								topicsOneOf: [],
-								topicsAllOf: ['M'],
-								topicsNoneOf: [],
+								topics: [{ topicId: '_WP', value: 1 }],
 								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
@@ -94,9 +90,7 @@ describe('Document Preview', () => {
 								verticalHeight: 4,
 								topic: '() + allOf(M) + !(_GR, _ET)',
 								status: 'Live',
-								topicsOneOf: [],
-								topicsAllOf: ['M'],
-								topicsNoneOf: ['_GR', '_ET'],
+								topics: [{ topicId: '_WP', value: 1 }],
 								types: ['_WP'],
 								isAutomaticallyIncluded: false,
 								paragraphComponents: [
@@ -123,9 +117,7 @@ describe('Document Preview', () => {
 								verticalHeight: 25,
 								topic: '() + allOf(E) + !(_GR,_ET)',
 								status: 'Live',
-								topicsOneOf: [],
-								topicsAllOf: ['E'],
-								topicsNoneOf: ['_GR', '_ET'],
+								topics: [{ topicId: '_WP', value: 1 }],
 								types: ['_WP'],
 								isAutomaticallyIncluded: true,
 								paragraphComponents: [
