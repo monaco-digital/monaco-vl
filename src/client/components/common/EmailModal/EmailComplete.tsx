@@ -11,7 +11,7 @@ const EmailComplete: FC<Props> = ({ previewType }: Props) => {
 	const history = useHistory();
 
 	return (
-		<Grid container justify="center" direction="column" alignItems="center" className="space-y-5 max-w-xs">
+		<Grid container justifyContent="center" direction="column" alignItems="center" className="space-y-5 max-w-xs">
 			<div>
 				<img src={headerImage} width="80" height="80" alt="" />
 			</div>

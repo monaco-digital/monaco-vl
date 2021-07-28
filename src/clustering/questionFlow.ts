@@ -1,6 +1,6 @@
 import { Question } from '../types/Questions';
 
-const allQuestions: Question[] = [
+export const allQuestions: Question[] = [
 	{
 		id: 1,
 		prerequisites: [],

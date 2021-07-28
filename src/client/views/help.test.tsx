@@ -5,6 +5,10 @@ import userEvent from '@testing-library/user-event';
 import Help from './Help';
 import { renderWithProviders } from '../../testing/utils.test';
 
+jest.mock('../components/common/ScrollToTopOnMount', () => () => {
+	return 'ScrollToTopOnMount';
+});
+
 describe('Help Page', () => {
 	test('When Loading Help Then Page renders', () => {
 		renderWithProviders(<Help />, { startPage: '/help' });

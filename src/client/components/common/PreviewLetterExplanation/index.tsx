@@ -13,28 +13,28 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 
 	const lettersExplanationText = {
 		_GR: (
-			<i>
+			<div>
 				<h2>Stage 3 complete!</h2>
 				You have generated a grievance letter. First, email it to yourself to complete later. Once complete, you can
 				send it to your employer or we can send it for you. Hit the NEXT button to proceed.
-			</i>
+			</div>
 		),
 		_ET: (
-			<p>
+			<div>
 				<h2>Stage 3 complete!</h2>
 				You have generated a Grounds of Claim document to send to the tribunal. First, email it to yourself to complete
 				later. You will need to send this off yourself when you are ready. Hit the NEXT button to proceed.
-			</p>
+			</div>
 		),
 		_RES: (
-			<p>
+			<div>
 				<h2>Stage 3 complete!</h2>
 				You have generated a second letter. First, email it to yourself to complete later. Once complete, you can send
 				it to your employer or we can send it for you. Hit the NEXT button to proceed.
-			</p>
+			</div>
 		),
 		_WP: (
-			<p>
+			<div>
 				<h2>Stage 2 complete!</h2> You have generated a{' '}
 				<Link
 					href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
@@ -45,15 +45,11 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 				</Link>{' '}
 				letter. First, email it to yourself to complete later. Once complete, you can send it to your employer or we can
 				send it for you. Hit the NEXT button to check out stage 3.
-			</p>
+			</div>
 		),
 	};
 
-	return (
-		<div className="letter-explanation">
-			<p>{lettersExplanationText[letterType]}</p>
-		</div>
-	);
+	return <div className="letter-explanation">{lettersExplanationText[letterType]}</div>;
 };
 
 export default PreviewLetterExplanation;
