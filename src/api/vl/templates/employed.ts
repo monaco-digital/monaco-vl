@@ -142,6 +142,7 @@ export const employed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson: 'I started working for the Respondent on ',
+								textThirdPerson: 'Our client started working for the Respondent on ',
 							} as StaticText,
 							{
 								id: nanoid(),
