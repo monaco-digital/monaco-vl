@@ -1,5 +1,5 @@
 import { ParagraphComponent } from './paragraphComponent';
-import {CaseTopic} from '../../../../../vl-backend/src/graphql/models';
+import { CaseTopic } from './caseTopic';
 
 export interface ParagraphTopic {
 	topicId: string;
