@@ -30,7 +30,7 @@ interface Props {
 const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) => {
 	if (!sessionDocumentComponents) return null;
 	const output = sessionDocumentComponents.map(sessionDocumentComponent => {
-		const type = sessionDocumentComponent && sessionDocumentComponent.type;
+		const type = sessionDocumentComponent?.type;
 		switch (type) {
 			case 'UserContentSection': {
 				const userContentSection = sessionDocumentComponent as SessionDocumentSection;

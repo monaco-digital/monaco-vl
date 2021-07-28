@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import EndToEndStepper from '../EndToEndStepper';
 import ActionBar from '../ActionBar';
