@@ -35,9 +35,7 @@ const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChe
 				</AccordionSummary>
 				{paraText && (
 					<AccordionDetails>
-						{paraText.split('\n').map(strVal => (
-							<Typography>{strVal}</Typography>
-						))}
+						<Typography style={{ whiteSpace: 'pre-line' }}>{paraText}</Typography>
 					</AccordionDetails>
 				)}
 			</Accordion>
