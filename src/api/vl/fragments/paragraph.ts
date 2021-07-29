@@ -12,6 +12,7 @@ export const staticText = gql`
 		id
 		type
 		textFirstPerson
+		textThirdPerson
 	}
 `;
 
