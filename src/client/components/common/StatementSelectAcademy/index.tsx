@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
-import { CaseTopic, TemplateParagraph } from 'api/vl/models';
+import { CaseTopic, StaticText, TemplateParagraph } from 'api/vl/models';
 import ReactGA from 'react-ga';
 
 import EndToEndStepper from '../EndToEndStepper';
@@ -68,7 +68,7 @@ const StatementSelectAcademy: React.FC = () => {
 			return null;
 		}
 
-		const { id, summary, text } = templateParagraph.paragraph;
+		const { id, summary, paragraphComponents } = templateParagraph.paragraph;
 		const selected = sessionParagraph.isSelected;
 
 		return (
@@ -78,7 +78,7 @@ const StatementSelectAcademy: React.FC = () => {
 					id={id}
 					onClickHandler={handleOnClick}
 					isChecked={selected}
-					paraText={text}
+					paraText={(paragraphComponents[0] as StaticText).textThirdPerson}
 				/>
 			</div>
 		);
