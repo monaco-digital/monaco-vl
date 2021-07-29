@@ -7,9 +7,18 @@ import {
 	DocumentParagraphStaticText,
 	DocumentParagraphEditableText,
 } from 'api/vl/models';
+import store from 'data/store';
 
-export const getDocumentParagraphStaticTextText = (documentParagraphStaticText: DocumentParagraphStaticText): string =>
-	documentParagraphStaticText.textFirstPerson;
+export const getDocumentParagraphStaticTextText = (
+	documentParagraphStaticText: DocumentParagraphStaticText,
+): string => {
+	const { features } = store.getState();
+	const { academyFlow } = features;
+	if (academyFlow) {
+		return documentParagraphStaticText.textThirdPerson;
+	}
+	return documentParagraphStaticText.textFirstPerson;
+};
 
 export const getDocumentParagraphBulletPoints = (
 	documentParagraphBulletPoints: DocumentParagraphBulletPoints,

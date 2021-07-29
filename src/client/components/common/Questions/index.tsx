@@ -19,6 +19,7 @@ const Questions: FC = () => {
 	const enableNarrative = useSelector<AppState, boolean>(state => state.features.enableNarrative);
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
 	const selectedTopicIds: string[] = selectedTopics.map(t => t.id);
+	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
 
 	const answeredQuestions = useSelector<AppState, number[]>(state => state.session.answeredQuestions);
 
@@ -45,6 +46,8 @@ const Questions: FC = () => {
 		if (!nextQuestion) {
 			if (enableNarrative) {
 				history.push('/narrative');
+			} else if (academyFlow) {
+				history.push('/statementsAcademy');
 			} else {
 				history.push('/statements');
 			}

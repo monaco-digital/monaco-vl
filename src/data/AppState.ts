@@ -38,6 +38,7 @@ type AppState = {
 		dsFlow: boolean;
 		enableNarrative: boolean;
 		enableSelect: boolean;
+		academyFlow: boolean;
 	};
 };
 

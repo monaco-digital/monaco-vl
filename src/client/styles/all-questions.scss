@@ -1,0 +1,14 @@
+.all-questions {
+	.all-questions__option {
+		width: 100%;
+		margin: 0 0 0.5rem 0;
+
+		@screen md {
+			width: 50%;
+		}
+	}
+
+	.all-questions__question {
+		margin: 0 0 2.5rem 0;
+	}
+}

@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import checkTopicInputStatus from '../../../utils/checkTopicInputStatus';
 import { updateSelectedTopics } from '../../../../data/sessionDataSlice';
-import { Question as QuestionT } from '../../../../types/Questions';
+import { Question as QuestionType } from '../../../../types/Questions';
 import AppState from '../../../../data/AppState';
 import Title from '../../Title';
 import Button from '../../Button';
@@ -27,7 +27,7 @@ const recalculateSelectedTopics = (
 	id: string,
 	allTopics: CaseTopic[],
 	selectedTopics: CaseTopic[],
-	question: QuestionT,
+	question: QuestionType,
 	isSingle: boolean,
 ): CaseTopic[] => {
 	const toDeselect = [];
@@ -67,7 +67,7 @@ const filterValidOptions = (options, selectedTopicIds) => {
 };
 
 interface Props {
-	question: QuestionT;
+	question: QuestionType;
 }
 
 const Question: React.FC<Props> = ({ question }: Props) => {
@@ -126,7 +126,9 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 	return (
 		<>
 			<div className="select-answers">
-				<div className="questions__title">{question.text && <Title text={question} />}</div>
+				<div className="questions__title">
+					{question && <Title heading={question.text} subheading={question.subtext} />}
+				</div>
 				{allTopics.length === 0 && <CircularProgress />}
 				{allTopics.length > 0 && answers}
 				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}

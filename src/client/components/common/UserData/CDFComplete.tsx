@@ -24,7 +24,7 @@ const CDFComplete: FC<Props> = ({ isFinalStep, previewType }: Props) => {
 	return (
 		<div className="CDF-complete">
 			<ScrollToTopOnMount />
-			<Grid container justify="center" direction="column" alignItems="center" className="space-y-5">
+			<Grid container justifyContent="center" direction="column" alignItems="center" className="space-y-5">
 				<div>
 					<img src={headerImage} width="80" height="80" alt="" />
 				</div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Fab, Grid, Card, CardContent, Typography, TextField } from '@material-ui/core';
+import { Box, Grid, Card, CardContent, Typography, TextField } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -26,16 +26,17 @@ const Narrative: React.FC = () => {
 	const watchNarrative = watch('narrative', '');
 
 	const selectedTopics = useSelector<AppState, CaseTopic[]>(state => state.session.selectedTopics);
-
-	const handleGoBackwardsFromStatements = () => {
-		history.goBack();
-	};
+	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
 
 	const onSubmit = async ({ narrative }) => {
 		const topicIds = selectedTopics.map(t => t.id);
 		await dispatch(generateParagraphsByTopics({ topicIds, narrative }));
 		await dispatch(updateNarrativeCall(narrative));
-		history.push('/statements');
+		if (academyFlow) {
+			history.push('/statementsAcademy');
+		} else {
+			history.push('/statements');
+		}
 	};
 
 	return (
@@ -63,7 +64,7 @@ const Narrative: React.FC = () => {
 										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
 									})}
 								/>
-								<Grid container justify="flex-end">
+								<Grid container justifyContent="flex-end">
 									<Box ml="auto">{watchNarrative.length}/2000</Box>
 								</Grid>
 							</form>

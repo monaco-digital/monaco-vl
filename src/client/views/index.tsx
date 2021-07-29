@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import ReactGA from 'react-ga';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
 import Narrative from 'client/components/common/Narrative';
@@ -17,19 +17,13 @@ import Disclaimer from '../components/common/Disclaimer';
 import StatementSelect from '../components/common/StatementSelect';
 import Step2Intro from '../components/common/Step2Intro';
 import Step3Intro from '../components/common/Step3Intro';
+import AllQuestions from '../components/common/AllQuestions';
 import GrievanceLetterExplanation from '../components/common/GrievanceLetterExplanation';
 import EmploymentTribunalExplanation from '../components/common/EmploymentTribunalExplanation';
 import RespondToEmployer from '../components/common/RespondToEmployer';
 import { SessionParagraph } from '../../types/SessionDocument';
 import { getAllParagraphs } from '../../api/vl/paragraph';
-import {
-	enableDsFlow,
-	disableDsFlow,
-	enableAcademyFlow,
-	disableAcademyFlow,
-	enableFeature,
-	disableFeature,
-} from '../../data/featureDataSlice';
+import { enableDsFlow, disableDsFlow, enableFeature, disableFeature } from '../../data/featureDataSlice';
 
 import Terms from './Terms';
 import CheckoutModal from '../components/common/CheckoutModal';
@@ -37,12 +31,14 @@ import { Settlement } from '../components/common/Settlement';
 import { CDF1 } from '../components/common/UserData/CDF1';
 import CDFComplete from '../components/common/UserData/CDFComplete';
 import { startSession } from '../../data/sessionDataThunks';
+import StatementSelectAcademy from '../components/common/StatementSelectAcademy';
+import AppState from '../../data/AppState';
 
 // set of feature names and aliases. Aliases allow A/B testing without making it obvious to the user what's going on.
 const featureQueryParams = [
 	{ feature: 'enableMonetization', alias: 'fm' },
 	{ feature: 'enableNarrative', alias: 'fn' },
-	{ feature: 'enableSelect', alias: 'fs' },
+	{ feature: 'academyFlow', alias: 'fa' },
 ];
 
 const Main: FC = () => {
@@ -50,11 +46,13 @@ const Main: FC = () => {
 	const { search } = useLocation();
 	const history = useHistory();
 
+	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
+
 	useEffect(() => {
 		history.listen(location => {
 			ReactGA.pageview(location.pathname);
 		});
-	}, [history]);
+	}, [academyFlow, history]);
 
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.
@@ -75,12 +73,6 @@ const Main: FC = () => {
 			dispatch(enableDsFlow());
 		} else if (queryParams.has('dsFlow') && queryParams.get('dsFlow') === 'false') {
 			dispatch(disableDsFlow());
-		}
-
-		if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'true') {
-			dispatch(enableAcademyFlow());
-		} else if (queryParams.has('academyFlow') && queryParams.get('academyFlow') === 'false') {
-			dispatch(disableAcademyFlow());
 		}
 
 		featureQueryParams.forEach(({ alias, feature }) => {
@@ -144,6 +136,9 @@ const Main: FC = () => {
 							<Route path="/statements">
 								<StatementSelect />
 							</Route>
+							<Route path="/statementsAcademy">
+								<StatementSelectAcademy />
+							</Route>
 							<Route path="/narrative">
 								<Narrative />
 							</Route>
@@ -203,7 +198,8 @@ const Main: FC = () => {
 								<Step2Intro />
 							</Route>
 							<Route path="/">
-								<Questions />
+								{academyFlow && <AllQuestions />}
+								{!academyFlow && <Questions />}
 							</Route>
 						</Switch>
 					</div>

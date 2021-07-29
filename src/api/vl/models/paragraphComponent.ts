@@ -7,6 +7,7 @@ export interface ParagraphComponent {
 
 export interface StaticText extends ParagraphComponent {
 	textFirstPerson?: string;
+	textThirdPerson?: string;
 }
 
 export interface EditableText extends ParagraphComponent {

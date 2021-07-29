@@ -1,14 +1,16 @@
 import React from 'react';
-import { Accordion, AccordionSummary, Checkbox, Grid } from '@material-ui/core/';
+import { Accordion, AccordionDetails, AccordionSummary, Checkbox, Grid, Typography } from '@material-ui/core/';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 interface Props {
 	labelText: string;
 	id: string;
 	onClickHandler: any;
 	isChecked: boolean;
+	paraText?: string;
 }
 
-const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChecked }: Props) => {
+const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChecked, paraText }: Props) => {
 	const handleOnClick = event => {
 		event.stopPropagation();
 		onClickHandler(id);
@@ -17,8 +19,8 @@ const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChe
 	return (
 		<div>
 			<Accordion>
-				<AccordionSummary>
-					<Grid container justify="space-between" alignItems="center" onClick={event => handleOnClick(event)}>
+				<AccordionSummary expandIcon={paraText ? <ExpandMoreIcon /> : undefined}>
+					<Grid container justifyContent="space-between" alignItems="center" onClick={event => handleOnClick(event)}>
 						<Grid item xs={10}>
 							{labelText}
 						</Grid>
@@ -31,9 +33,18 @@ const OptionAccordion: React.FC<Props> = ({ labelText, id, onClickHandler, isChe
 						/>
 					</Grid>
 				</AccordionSummary>
+				{paraText && (
+					<AccordionDetails>
+						<Typography style={{ whiteSpace: 'pre-line' }}>{paraText}</Typography>
+					</AccordionDetails>
+				)}
 			</Accordion>
 		</div>
 	);
+};
+
+OptionAccordion.defaultProps = {
+	paraText: '',
 };
 
 export default OptionAccordion;

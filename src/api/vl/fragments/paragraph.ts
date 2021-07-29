@@ -12,6 +12,7 @@ export const staticText = gql`
 		id
 		type
 		textFirstPerson
+		textThirdPerson
 	}
 `;
 
@@ -42,11 +43,16 @@ export const paragraph = gql`
 		summary
 		verticalHeight
 		topic
+		topics {
+			topicId
+			value
+		}
 		status
 		topicsOneOf
 		topicsAllOf
 		topicsNoneOf
 		isAutomaticallyIncluded
+		text
 		paragraphComponents {
 			... on StaticText {
 				...FStaticText

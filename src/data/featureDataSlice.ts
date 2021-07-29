@@ -18,7 +18,6 @@ export const slice = createSlice({
 		dsFlow: false,
 		academyFlow: false,
 		enableNarrative: true,
-		enableSelect: false,
 	},
 	reducers: {
 		enableMonetization: (state): void => {
@@ -33,12 +32,6 @@ export const slice = createSlice({
 		disableDsFlow: (state): void => {
 			state.dsFlow = false;
 		},
-		enableAcademyFlow: (state): void => {
-			state.academyFlow = true;
-		},
-		disableAcademyFlow: (state): void => {
-			state.academyFlow = false;
-		},
 		enableFeature: (state, action: PayloadAction<string>): void => {
 			state[action.payload] = true;
 		},
@@ -48,15 +41,7 @@ export const slice = createSlice({
 	},
 });
 
-export const {
-	enableMonetization,
-	disableMonetization,
-	enableDsFlow,
-	disableDsFlow,
-	enableAcademyFlow,
-	disableAcademyFlow,
-	enableFeature,
-	disableFeature,
-} = slice.actions;
+export const { enableMonetization, disableMonetization, enableDsFlow, disableDsFlow, enableFeature, disableFeature } =
+	slice.actions;
 
 export default slice.reducer;

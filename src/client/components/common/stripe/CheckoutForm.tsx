@@ -27,7 +27,7 @@ const getSubmissionData = async (input: {
 	const adviceParagraphs = await getSuggestedAdviceParagraphs(selectedTopics);
 
 	const getLetterText = (): string => {
-		const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+		const letterText = sessionDocument?.document && getDocumentText(sessionDocument.document);
 		return letterText;
 	};
 

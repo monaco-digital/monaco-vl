@@ -1,17 +1,15 @@
 import React from 'react';
 
 interface Props {
-	text: any;
+	heading: string;
+	subheading: string;
 }
-const Title: React.FC<Props> = ({ text }: Props) => {
-	const heading = text?.text;
-	const subHeading = text?.subtext;
-
+const Title: React.FC<Props> = ({ heading, subheading }: Props) => {
 	return (
-		<>
-			{heading && <h1 className="title">{heading}</h1>}
-			{heading && <p className="title__subheading">{subHeading}</p>}
-		</>
+		<div className="title">
+			{heading && <h1>{heading}</h1>}
+			{subheading !== '' && <p className="title__subheading">{subheading}</p>}
+		</div>
 	);
 };
 

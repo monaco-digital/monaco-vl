@@ -179,6 +179,8 @@ export const notEmployed: Template = {
 								type: 'StaticText',
 								textFirstPerson:
 									'However, I would prefer to remain on amicable terms and avoid the stress and time of litigation. For that reason, I suggest we agree on the following terms: [edit as appropriate]',
+								textThirdPerson:
+									'However, our client would prefer to remain on amicable terms and avoid the stress and time of litigation.  For that reason, we suggest agreeing on the following terms: [edit as appropriate]',
 							} as StaticText,
 						],
 					},
@@ -328,6 +330,8 @@ export const notEmployed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson: 'If these terms are agreed, I will agree to waive any employment tribunal claims.',
+								textThirdPerson:
+									'If these terms are agreed, our client will agree to waive any employment tribunal claims.',
 							} as StaticText,
 						],
 					},
@@ -347,6 +351,7 @@ export const notEmployed: Template = {
 								id: nanoid(),
 								type: 'StaticText',
 								textFirstPerson: 'I look forward to hearing from you.',
+								textThirdPerson: 'We look forward to hearing from you.',
 							} as StaticText,
 						],
 					},

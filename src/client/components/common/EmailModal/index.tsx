@@ -24,7 +24,7 @@ interface Props {
 }
 
 const getLetterText = (sessionDocument: SessionDocument) => {
-	const letterText = sessionDocument && sessionDocument.document && getDocumentText(sessionDocument.document);
+	const letterText = sessionDocument?.document && getDocumentText(sessionDocument.document);
 	return letterText;
 };
 

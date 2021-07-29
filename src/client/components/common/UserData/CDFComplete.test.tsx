@@ -3,6 +3,10 @@ import React, { screen } from '@testing-library/react';
 import CDFComplete from './CDFComplete';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
+jest.mock('../ScrollToTopOnMount', () => () => {
+	return 'ScrollToTopOnMount';
+});
+
 describe('Header Component', () => {
 	test('When loading Header Then component renders', () => {
 		renderWithProviders(<CDFComplete />);

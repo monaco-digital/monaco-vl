@@ -46,7 +46,7 @@ const GetStarted: React.FC = () => {
 			<Grid
 				container
 				className="get-started__grid"
-				justify="space-between"
+				justifyContent="space-between"
 				alignItems="center"
 				spacing={isSmall ? 5 : 8}
 			>

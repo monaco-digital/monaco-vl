@@ -1,7 +1,8 @@
 .title {
 	@apply .inline-block;
-}
+	margin: 0 0 1rem 0;
 
-.title__subheading {
-	@apply .text-lg .mb-12;
+	.title__subheading {
+		@apply .text-lg;
+	}
 }
