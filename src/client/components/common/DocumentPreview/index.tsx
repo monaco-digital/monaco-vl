@@ -127,7 +127,6 @@ const DocumentPreview: FC = () => {
 				t => t.topicId === id && t.value === 1,
 			),
 	);
-
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
 
@@ -169,13 +168,10 @@ const DocumentPreview: FC = () => {
 
 	useEffect(() => {
 		const updatedTemplate = getTemplate(id);
-
-		if (!sessionDocument) {
-			const document = createSessionDocument(updatedTemplate, selectedParagraphs);
-			dispatch(updateSessionDocument({ document, type: id }));
-		}
+		const document = createSessionDocument(updatedTemplate, selectedParagraphs);
+		dispatch(updateSessionDocument({ document, type: id }));
 		dispatch(updateCurrentSessionDocument(id));
-	}, [dispatch, id, selectedParagraphs, sessionDocument]);
+	}, [dispatch, id, selectedParagraphs]);
 
 	const step = id === '_WP' ? 1 : 2;
 
