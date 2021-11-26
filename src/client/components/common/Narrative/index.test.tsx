@@ -34,8 +34,11 @@ describe('Narrative Page', () => {
 	test('Given Text When Clicking Next Then Statements page Loads', async () => {
 		const { history } = renderWithProviders(<Narrative />, { initialState, startPage: '/narrative' });
 
-		userEvent.type(screen.getByRole('textbox'), 'A narrative');
-		expect(screen.getByText('11/2000')).toBeInTheDocument();
+		userEvent.type(
+			screen.getByRole('textbox'),
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et velit nunc. Nunc id quam purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper velit eu urna tincidunt accumsan. Aenean vestibulum dolor et risus gravida, sit amet auctor lorem pretium. Curabitur quam ligula, ornare sed sapien vel, interdum pellentesque arcu. Donec non ornare ex, sit amet pulvinar magna. Nulla dapibus erat at massa tristique tincidunt. Sed mollis eget nunc sit amet porttitor.',
+		);
+		expect(screen.getByText('486/2000')).toBeInTheDocument();
 
 		userEvent.click(screen.getAllByText('Next')[0]);
 
@@ -47,7 +50,10 @@ describe('Narrative Page', () => {
 	test('Given Text and Predict Results When Clicking Next Then paragraphs are selected', async () => {
 		const { store } = renderWithProviders(<Narrative />, { initialState, startPage: '/statements' });
 
-		userEvent.type(screen.getByRole('textbox'), 'A narrative');
+		userEvent.type(
+			screen.getByRole('textbox'),
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean et velit nunc. Nunc id quam purus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam semper velit eu urna tincidunt accumsan. Aenean vestibulum dolor et risus gravida, sit amet auctor lorem pretium. Curabitur quam ligula, ornare sed sapien vel, interdum pellentesque arcu. Donec non ornare ex, sit amet pulvinar magna. Nulla dapibus erat at massa tristique tincidunt. Sed mollis eget nunc sit amet porttitor.',
+		);
 		userEvent.click(screen.getAllByText('Next')[0]);
 
 		await waitFor(() => {
