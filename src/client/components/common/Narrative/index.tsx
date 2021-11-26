@@ -65,7 +65,7 @@ const Narrative: React.FC = () => {
 										minLength: { value: 100, message: 'Descriptions cannot contain less than 100 characters' },
 									})}
 								/>
-								<Grid container justifyContent="flex-end">
+								<Grid container alignItems="center">
 									<Box ml="auto">{watchNarrative.length}/2000</Box>
 								</Grid>
 							</form>
