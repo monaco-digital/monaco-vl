@@ -62,9 +62,10 @@ const Narrative: React.FC = () => {
 									inputRef={register({
 										required: 'Please add a description of your case',
 										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
+										minLength: { value: 100, message: 'Descriptions cannot contain less than 100 characters' },
 									})}
 								/>
-								<Grid container justifyContent="flex-end">
+								<Grid container alignItems="center">
 									<Box ml="auto">{watchNarrative.length}/2000</Box>
 								</Grid>
 							</form>
