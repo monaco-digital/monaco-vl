@@ -44,7 +44,6 @@ const Disclaimer: FC = () => {
 										title="SRA registration"
 										frameBorder="0"
 										scrolling="no"
-										allowTransparency
 										src="https://cdn.yoshki.com/iframe/55845r.html"
 										className="SRA-iframe"
 									/>
