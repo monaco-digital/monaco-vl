@@ -8,14 +8,14 @@ import { client } from 'api/vl/graphql';
 import Client from './client/index';
 import config from './config';
 
-const { GA_PROPERTY_ID } = config;
+// const { GA_PROPERTY_ID } = config;
 
 const App: FC = () => {
 	TagManager.initialize({
 		gtmId: 'GTM-T5XNDHQ',
 	});
 
-	ReactGA.initialize(GA_PROPERTY_ID);
+	// ReactGA.initialize(GA_PROPERTY_ID);
 	ReactGA.pageview(window.location.pathname + window.location.search);
 
 	return (

@@ -103,10 +103,10 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 
 	const handleOnClick = (id: string) => {
 		const option = validOptions.find(o => o.topicId === id);
-		ReactGA.event({
-			category: 'User',
-			action: `Clicked topic: ${option.text}`,
-		});
+		// ReactGA.event({
+		// 	category: 'User',
+		// 	action: `Clicked topic: ${option.text}`,
+		// });
 		const updatedSelectedTopics = recalculateSelectedTopics(id, allTopics, selectedTopics, question, isSingle);
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 	};

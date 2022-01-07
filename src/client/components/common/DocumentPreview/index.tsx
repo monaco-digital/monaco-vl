@@ -51,68 +51,68 @@ const SessionDocComponents: FC<Props> = ({ sessionDocumentComponents }: Props) =
 	return <>{output.concat()}</>;
 };
 
-const triggerGAEvent = id => {
-	switch (id) {
-		case '_LET': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Letter Previewed',
-			});
-			break;
-		}
-		case '_WP': {
-			ReactGA.event({
-				category: 'User',
-				action: 'WP Letter Previewed',
-			});
-			break;
-		}
-		case '_ET': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Tribunal Letter Previewed',
-			});
-			break;
-		}
-		case '_GR': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Grievance Letter Previewed',
-			});
-			break;
-		}
-		case '_RES_CD': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Complete Denial Response',
-			});
-			break;
-		}
-		case '_RES_CO': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Counter Offer Response',
-			});
-			break;
-		}
-		case '_RES_I': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Investigating Response',
-			});
-			break;
-		}
-		case '_RES_KM': {
-			ReactGA.event({
-				category: 'User',
-				action: 'Want To Keep Me Response',
-			});
-			break;
-		}
-		default:
-			break;
-	}
-};
+// const triggerGAEvent = id => {
+// 	switch (id) {
+// 		case '_LET': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Letter Previewed',
+// 			});
+// 			break;
+// 		}
+// 		case '_WP': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'WP Letter Previewed',
+// 			});
+// 			break;
+// 		}
+// 		case '_ET': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Tribunal Letter Previewed',
+// 			});
+// 			break;
+// 		}
+// 		case '_GR': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Grievance Letter Previewed',
+// 			});
+// 			break;
+// 		}
+// 		case '_RES_CD': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Complete Denial Response',
+// 			});
+// 			break;
+// 		}
+// 		case '_RES_CO': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Counter Offer Response',
+// 			});
+// 			break;
+// 		}
+// 		case '_RES_I': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Investigating Response',
+// 			});
+// 			break;
+// 		}
+// 		case '_RES_KM': {
+// 			ReactGA.event({
+// 				category: 'User',
+// 				action: 'Want To Keep Me Response',
+// 			});
+// 			break;
+// 		}
+// 		default:
+// 			break;
+// 	}
+// };
 
 const DocumentPreview: FC = () => {
 	const dispatch = useDispatch();
