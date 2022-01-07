@@ -69,10 +69,10 @@ const AllQuestions: FC = () => {
 	};
 
 	const handleSelectOption = (option: any, question: QuestionType, isSingle: boolean) => {
-		ReactGA.event({
-			category: 'User',
-			action: `Clicked topic: ${option.text}`,
-		});
+		// ReactGA.event({
+		// 	category: 'User',
+		// 	action: `Clicked topic: ${option.text}`,
+		// });
 		const updatedSelectedTopics = recalculateSelectedTopics(option.topicId, question, isSingle);
 		dispatch(updateSelectedTopics(updatedSelectedTopics));
 	};

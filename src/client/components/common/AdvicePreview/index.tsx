@@ -37,12 +37,12 @@ const AdvicePreview: FC = () => {
 		updateAdviceParagraphs();
 	}, [selectedTopics]);
 
-	useEffect(() => {
-		ReactGA.event({
-			category: 'User',
-			action: 'Advice letter previewed',
-		});
-	}, []);
+	// useEffect(() => {
+	// 	ReactGA.event({
+	// 		category: 'User',
+	// 		action: 'Advice letter previewed',
+	// 	});
+	// }, []);
 
 	const handleNext = () => {
 		history.push('/start-legal-process'); // Go to step 2
