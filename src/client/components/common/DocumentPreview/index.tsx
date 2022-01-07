@@ -130,8 +130,8 @@ const DocumentPreview: FC = () => {
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
 
-	triggerGAEvent('_LET');
-	triggerGAEvent(id);
+	// triggerGAEvent('_LET');
+	// triggerGAEvent(id);
 
 	const handleNext = () => {
 		switch (id) {
