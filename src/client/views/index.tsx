@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, useLocation, useHistory, Redirect } from 'react-router-dom';
 
@@ -48,11 +48,11 @@ const Main: FC = () => {
 
 	const academyFlow = useSelector<AppState, boolean>(state => state.features.academyFlow);
 
-	useEffect(() => {
-		history.listen(location => {
-			ReactGA.pageview(location.pathname);
-		});
-	}, [academyFlow, history]);
+	// useEffect(() => {
+	// 	history.listen(location => {
+	// 		ReactGA.pageview(location.pathname);
+	// 	});
+	// }, [academyFlow, history]);
 
 	useEffect(() => {
 		// Pulls feature switch values from URL or local storage, and passes to redux.

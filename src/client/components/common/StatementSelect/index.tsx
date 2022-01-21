@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect } from 'react-router-dom';
 import { CaseTopic, TemplateParagraph } from 'api/vl/models';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 import EndToEndStepper from '../EndToEndStepper';
 import OptionAccordion from '../OptionAccordion';
@@ -49,11 +49,11 @@ const StatementSelect: React.FC = () => {
 			dispatch(deselectParagraphs([id]));
 		}
 
-		const paragraph = selectedSessionParagraph.templateComponent as TemplateParagraph;
-		ReactGA.event({
-			category: 'User',
-			action: `Selected statement: ${paragraph?.paragraph.summary.substring(0, 30)} - ${id}`,
-		});
+		// const paragraph = selectedSessionParagraph.templateComponent as TemplateParagraph;
+		// ReactGA.event({
+		// 	category: 'User',
+		// 	action: `Selected statement: ${paragraph?.paragraph.summary.substring(0, 30)} - ${id}`,
+		// });
 	};
 
 	const enterLetterPreviewMode = async () => {

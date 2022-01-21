@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import { Box, Fab, Link } from '@material-ui/core';
 import ScrollToTopOnMount from '../components/common/ScrollToTopOnMount';
 
 const Help: React.FC = () => {
 	const history = useHistory();
-	useEffect(() => {
-		ReactGA.event({
-			category: 'User',
-			action: 'Opened help page',
-		});
-	}, []);
+	// useEffect(() => {
+	// 	ReactGA.event({
+	// 		category: 'User',
+	// 		action: 'Opened help page',
+	// 	});
+	// }, []);
 
 	return (
 		<div className="helpsection" style={{ maxWidth: '904px' }}>

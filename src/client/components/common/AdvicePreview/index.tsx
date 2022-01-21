@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { CaseTopic, Advice } from 'api/vl/models';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import ReactMarkdown from 'react-markdown';
 import { useHistory } from 'react-router-dom';
 

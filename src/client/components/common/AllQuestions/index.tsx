@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CaseTopic } from 'api/vl/models';
