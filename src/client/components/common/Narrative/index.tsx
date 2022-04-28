@@ -49,7 +49,7 @@ const Narrative: React.FC = () => {
 						<CardContent>
 							<form onSubmit={handleSubmit(onSubmit)} name="narrativeForm">
 								<Typography variant="subtitle1">Describe your case</Typography>
-								<Typography variant="subtitle2">Minimum 50 characters</Typography>
+								<Typography variant="subtitle2">Please provide a minimum of 50 characters</Typography>
 								<TextField
 									className="narrative-field"
 									name="narrative"
@@ -63,8 +63,6 @@ const Narrative: React.FC = () => {
 									disabled={isSubmitting}
 									inputRef={register({
 										required: 'Please add a description of your case',
-										maxLength: { value: 2000, message: 'Descriptions cannot be longer than 2000 letters.' },
-										minLength: { value: 50, message: 'Descriptions cannot contain less than 50 characters' },
 									})}
 								/>
 								<Grid container alignItems="center">
