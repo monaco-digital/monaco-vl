@@ -14,7 +14,7 @@ export const allQuestions: Question[] = [
 				topicId: 'E',
 			},
 			{
-				text: 'No longer employed',
+				text: 'No',
 				topicId: '_NE',
 			},
 		],
