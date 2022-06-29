@@ -70,7 +70,7 @@ export const Settlement: React.FC = () => {
 					<br />
 					<p>
 						Once you are happy with the deal set out in the settlement agreement document, we would countersign it to
-						confirm that all of the legal wording in the document has been explained to you in plain English.{' '}
+						confirm that all of the legal wording in the document has been explained to you in plain English{' '}
 					</p>
 				</Typography>
 

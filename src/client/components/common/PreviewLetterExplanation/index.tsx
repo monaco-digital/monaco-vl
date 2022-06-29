@@ -64,7 +64,7 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 					<b>without prejudice</b>
 				</Link>{' '}
 				letter before moving on to the next step.
-				<p>Once completed, you can send it to your employer.</p>
+				<p>Once completed, you can send it to your employer</p>
 				<p>
 					Copy us in on the email if you’d like us to advise you on your settlement offer once you have received one.
 				</p>

@@ -33,7 +33,7 @@ const EmploymentTribunalExplanation: React.FC = () => {
 				<Typography variant="body1" paragraph>
 					On the next page you can find a draft Grounds of Claim document. This is part of the ET1 online claim form
 					which asks you to describe what happened to you.
-					<p>You can send your completed ET1 claim form online to the employment tribunal. </p>
+					<p>You can send your completed ET1 claim form online to the employment tribunal.</p>
 				</Typography>
 				<ActionBar step={2} nextHandler={handleNext} />
 			</div>

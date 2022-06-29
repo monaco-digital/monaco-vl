@@ -31,7 +31,8 @@ const Step2Intro: React.FC = () => {
 					<Typography variant="h4">Write letter</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Great, you successfully generated and downloaded your Advice Note, which you will need later on. <br /> <br />
+					Great, you successfully generated and downloaded your Advice Note, which you will need later on.
+					<br /> <br />
 					Now you can:
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
