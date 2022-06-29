@@ -16,22 +16,24 @@ const EmploymentTribunalExplanation: React.FC = () => {
 			<EndToEndStepper step={3} />
 			<div className="step-intro">
 				<Typography variant="body1" paragraph>
-					So, your 3 month time limit is running out. You should{' '}
+					So, your 3 month time limit is running out. As mentioned earlier, if you’re in this situation,{' '}
 					<Link
 						href="https://www.monacosolicitors.co.uk/tribunals/commencing-the-acas-pre-claim-process-for-employment-tribunals/"
 						target="_blank"
 						rel="noopener"
 						color="primary"
 					>
-						Contact ACAS
+						get in touch with ACAS
 					</Link>{' '}
-					and then start putting together an employment tribunal claim. You may have to issue a claim just to get the
-					employer to negotiate. Most claims settle out of court.
+					<p>
+						You should also start putting together an employment tribunal claim (using the official ‘ET1’ online claim
+						form for this purpose).
+					</p>
 				</Typography>
 				<Typography variant="body1" paragraph>
-					On the next page you can find a draft Grounds of Claim document which you can send to the employment tribunal
-					when you submit a claim online. It’s the part of the online form which asks you to describe what happened to
-					you.
+					On the next page you can find a draft Grounds of Claim document. This is part of the ET1 online claim form
+					which asks you to describe what happened to you.
+					<p>You can send your completed ET1 claim form online to the employment tribunal. </p>
 				</Typography>
 				<ActionBar step={2} nextHandler={handleNext} />
 			</div>
