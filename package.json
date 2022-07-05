@@ -18,7 +18,7 @@
 		"@types/react": "^17.0.14",
 		"@types/react-dom": "^17.0.9",
 		"@types/react-redux": "^7.1.18",
-		"axios": "^0.21.0",
+		"axios": "^0.21.2",
 		"chokidar-cli": "^2.1.0",
 		"classnames": "^2.3.1",
 		"file-saver": "^2.0.5",
