@@ -67,7 +67,7 @@ const RespondToEmployer: React.FC = () => {
 				</Typography>
 				<Typography variant="body1" paragraph>
 					The purpose of your response is to progress the negotiation and complete it with an acceptable level of
-					compensation
+					compensation.
 				</Typography>
 				<Typography variant="body1" paragraph>
 					Remember to try our{' '}

@@ -39,8 +39,8 @@ export const Settlement: React.FC = () => {
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
-						<li>You have received a settlement offer</li>
-						<li>You would like a callback about your case</li>
+						<li>You have received a settlement offer.</li>
+						<li>You would like a callback about your case.</li>
 					</ul>
 				</Typography>
 				<b>I have received a settlement offer</b>

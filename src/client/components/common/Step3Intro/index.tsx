@@ -110,7 +110,7 @@ const Step3Intro: React.FC = () => {
 						Contact ACAS
 					</Link>{' '}
 					and also start putting together an employment tribunal claim. You may have to issue a claim just to get the
-					employer to negotiate. Most claims settle out of court
+					employer to negotiate. Most claims settle out of court.
 				</Typography>
 				<Typography variant="body1" paragraph>
 					To proceed with one of the above documents, choose one of the following options:

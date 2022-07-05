@@ -53,7 +53,7 @@ const Step2Intro: React.FC = () => {
 							</Link>{' '}
 							to see how much money to ask for
 						</li>
-						<li>Send the letter to your employer</li>
+						<li>Send the letter to your employer.</li>
 					</ul>
 				</Typography>
 				<ActionBar step={1} nextHandler={handleNext} />

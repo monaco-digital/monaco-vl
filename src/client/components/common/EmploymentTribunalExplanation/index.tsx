@@ -23,7 +23,7 @@ const EmploymentTribunalExplanation: React.FC = () => {
 						rel="noopener"
 						color="primary"
 					>
-						get in touch with ACAS
+						get in touch with ACAS.
 					</Link>{' '}
 					<p>
 						You should also start putting together an employment tribunal claim (using the official ‘ET1’ online claim
