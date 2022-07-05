@@ -31,14 +31,16 @@ const Step2Intro: React.FC = () => {
 					<Typography variant="h4">Write letter</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Well done, you answered your quick questions and generated your advice note, which you emailed to yourself to
-					read later. Now you can discover what a legal letter would look like. <br /> <br />
-					Next:
+					Great, you successfully generated and downloaded your Advice Note, which you will need later on.
+					<br /> <br />
+					Now you can:
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
-						<li>Generate legal letter template and email it to yourself</li>
-						<li>Fill in the gaps using your advice note to help you</li>
+						<li>Generate and download your Without Prejudice legal letter template</li>
+						<li>Fill in the gaps where shown, using the information contained in your Advice Note for guidance</li>
+						<li>Use our calculator to see how much money to ask for</li>
+						<li>Send the letter to your employer</li>
 						<li>
 							Use our{' '}
 							<Link
@@ -51,7 +53,7 @@ const Step2Intro: React.FC = () => {
 							</Link>{' '}
 							to see how much money to ask for
 						</li>
-						<li>Send the letter to your employer</li>
+						<li>Send the letter to your employer.</li>
 					</ul>
 				</Typography>
 				<ActionBar step={1} nextHandler={handleNext} />

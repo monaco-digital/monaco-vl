@@ -6,7 +6,6 @@ import TagManager from 'react-gtm-module';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { client } from 'api/vl/graphql';
 import Client from './client/index';
-import config from './config';
 
 // const { GA_PROPERTY_ID } = config;
 

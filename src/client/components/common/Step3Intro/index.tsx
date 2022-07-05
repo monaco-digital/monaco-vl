@@ -72,23 +72,26 @@ const Step3Intro: React.FC = () => {
 					<Typography variant="h4">Negotiate</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Well done. By now you have generated your advice note and also your initial legal letter. If you have sent
-					your letter (or if we have sent it for you) then your employer should respond.
+					Well done for getting this far. By now you have generated your Advice Note and also your initial Without
+					Prejudice legal letter. If you have sent your letter then your employer should respond shortly.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					Depending on their response, you can generate one of three documents to progress your negotiation.
+					Depending on your employer’s response, you can generate one of three documents to progress your negotiation.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					If your employer has replied to your letter, you can generate a response letter. The purpose of this is to tie
-					off the negotiation at a suitable level.
+					<b>1. Response Letter:</b> If your employer has replied to your letter, you can generate a response letter.
+					purpose of this is to tie off the negotiation at a suitable level.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					If your employer is ignoring you or the negotiation has stalled, you can generate a formal grievance letter
-					(see your advice note for more info). The purpose of this is to force your employer to respond and set out
-					their side of the story.
+					<b>2. Grievance Letter:</b> If your employer is ignoring you or the negotiation has stalled, you can generate
+					formal grievance letter (see your advice note for more information).
+					<p>
+						The purpose of the grievance letter is to force your employer to respond and set out their side of the
+						story.
+					</p>
 				</Typography>
 				<Typography variant="body1" paragraph>
-					If your{' '}
+					<b>3. Employment Tribunal Claim:</b> If your{' '}
 					<Link
 						href="https://www.monacosolicitors.co.uk/tribunals/time-limits/"
 						target="_blank"
@@ -97,7 +100,7 @@ const Step3Intro: React.FC = () => {
 					>
 						3 month time limit
 					</Link>{' '}
-					is running out, you can{' '}
+					is running out, you should{' '}
 					<Link
 						href="https://www.monacosolicitors.co.uk/tribunals/commencing-the-acas-pre-claim-process-for-employment-tribunals/"
 						target="_blank"
@@ -110,7 +113,7 @@ const Step3Intro: React.FC = () => {
 					employer to negotiate. Most claims settle out of court.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					Choose one of the following options:
+					To proceed with one of the above documents, choose one of the following options:
 				</Typography>
 				<div className="step-intro__options">{options}</div>
 				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />
