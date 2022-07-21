@@ -39,8 +39,6 @@ const Step2Intro: React.FC = () => {
 					<ul className="list-disc">
 						<li>Generate and download your Without Prejudice legal letter template</li>
 						<li>Fill in the gaps where shown, using the information contained in your Advice Note for guidance</li>
-						<li>Use our calculator to see how much money to ask for</li>
-						<li>Send the letter to your employer</li>
 						<li>
 							Use our{' '}
 							<Link

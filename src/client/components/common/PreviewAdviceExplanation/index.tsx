@@ -8,7 +8,7 @@ const PreviewAdviceExplanation: React.FC = () => {
 			<p>You also have the option to ask for Monaco Solicitors to call you back at this stage.</p>
 			<p>
 				For example, you might like a one-to-one consultation to find out whether we could negotiate a No Win No Fee
-				enhanced settlement on your behalf and if so, what our terms would be
+				enhanced settlement on your behalf and if so, what our terms would be.
 			</p>
 		</div>
 	);
