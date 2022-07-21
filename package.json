@@ -1,7 +1,6 @@
 {
 	"name": "vl-ui",
 	"version": "0.2.0",
-	"homepage": ".",
 	"private": true,
 	"dependencies": {
 		"@apollo/client": "^3.3.21",
