@@ -25,6 +25,8 @@ const EmploymentTribunalExplanation: React.FC = () => {
 					>
 						get in touch with ACAS.
 					</Link>{' '}
+					<br />
+					<br />
 					<p>
 						You should also start putting together an employment tribunal claim (using the official ‘ET1’ online claim
 						form for this purpose).
@@ -33,6 +35,8 @@ const EmploymentTribunalExplanation: React.FC = () => {
 				<Typography variant="body1" paragraph>
 					On the next page you can find a draft Grounds of Claim document. This is part of the ET1 online claim form
 					which asks you to describe what happened to you.
+					<br />
+					<br />
 					<p>You can send your completed ET1 claim form online to the employment tribunal.</p>
 				</Typography>
 				<ActionBar step={2} nextHandler={handleNext} />

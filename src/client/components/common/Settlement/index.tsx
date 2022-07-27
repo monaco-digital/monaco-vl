@@ -35,6 +35,7 @@ export const Settlement: React.FC = () => {
 						If you’ve taken the previous steps to advance your case, please feel free to use the form on the next page
 						if you’d like a member of our team call you.{' '}
 					</p>
+					<br />
 					<p>For example, you may require our services if:</p>
 				</Typography>
 				<Typography variant="body1" paragraph component="div">
@@ -70,8 +71,10 @@ export const Settlement: React.FC = () => {
 					<br />
 					<p>
 						Once you are happy with the deal set out in the settlement agreement document, we would countersign it to
-						confirm that all of the legal wording in the document has been explained to you in plain English{' '}
+						confirm that all of the legal wording in the document has been explained to you in plain English.{' '}
 					</p>
+					<br />
+					<br />
 				</Typography>
 
 				<ActionBar step={3} nextHandler={handleGoForward} />

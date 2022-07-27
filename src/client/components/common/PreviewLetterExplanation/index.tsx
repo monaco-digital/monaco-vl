@@ -55,15 +55,18 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 		),
 		_WP: (
 			<div>
-				<h2>Without Prejudice letter generated</h2> Download your{' '}
-				<Link
-					href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
-					target="_blank"
-					rel="nofollow noreferrer"
-				>
-					<b>without prejudice</b>
-				</Link>{' '}
-				letter before moving on to the next step.
+				<h2>Without Prejudice letter generated</h2>{' '}
+				<p>
+					Download your{' '}
+					<Link
+						href="https://www.monacosolicitors.co.uk/negotiations/how-to-use-without-prejudice/"
+						target="_blank"
+						rel="nofollow noreferrer"
+					>
+						<b>Without Prejudice</b>
+					</Link>{' '}
+					letter before moving on to the next step.
+				</p>
 				<p>Once completed, you can send it to your employer.</p>
 				<p>
 					Copy us in on the email if you’d like us to advise you on your settlement offer once you have received one.
