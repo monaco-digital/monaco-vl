@@ -4,7 +4,7 @@ import { Button, Drawer, IconButton, Link, List, ListItem, ListItemText } from '
 import MenuIcon from '@material-ui/icons/Menu';
 import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
-import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import logo1 from '../../../assets/img/grapple-logo.svg';
 
 const Header: FC = () => {
 	const { pathname } = useLocation();

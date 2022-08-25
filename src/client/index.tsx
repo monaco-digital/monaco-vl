@@ -131,7 +131,7 @@ const MobileApp: FC = () => (
 		<ThemeProvider theme={theme}>
 			<HelmetProvider>
 				<Helmet>
-					<title>Virtual Lawyer</title>
+					<title>Grapple</title>
 					<script>
 						{`(function(h,o,t,j,a,r){
 								h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
