@@ -17,7 +17,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import AppState from '../../../../data/AppState';
 import { createCDF } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
-import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import logo1 from '../../../assets/img/grapple-logo.svg';
 
 interface Props {
 	previewType?: string;
