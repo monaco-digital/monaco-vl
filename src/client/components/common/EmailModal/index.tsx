@@ -9,7 +9,7 @@ import { SessionDocument } from '../../../../types/SessionDocument';
 import { getDocumentText } from '../../../../utils/renderDocument';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 import { updateUserData } from '../../../../data/sessionDataSlice';
-import logo1 from '../../../assets/img/grapple-logo.svg';
+import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
 import { submitDetails } from '../../../../api/general';
 
 interface Data {
