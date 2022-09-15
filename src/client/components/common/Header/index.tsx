@@ -30,9 +30,9 @@ const Header: FC = () => {
 				<NavLink to="/terms" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
 					Terms of Use
 				</NavLink>
-				<Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
+				{/* <Button variant="contained" className="header__breadcrumb__text" color="primary" onClick={goToCDF}>
 					Request callback
-				</Button>
+				</Button> */}
 			</div>
 			<div className="header_mobile-buttons">
 				<IconButton onClick={goToCDF} color="primary">
@@ -44,6 +44,14 @@ const Header: FC = () => {
 			</div>
 			<Drawer open={menuIsVisible} onClose={() => setMenuIsVisible(false)}>
 				<List component="nav">
+					<a
+						className="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button MuiTypography-body1"
+						target="_blank"
+						href="https://www.grapple.uk/"
+						rel="noreferrer"
+					>
+						Home
+					</a>
 					<ListItem
 						button
 						component={NavLink}
@@ -62,9 +70,9 @@ const Header: FC = () => {
 					>
 						<ListItemText primary="Terms of Use" />
 					</ListItem>
-					<ListItem button component={NavLink} to="/cdf/form" onClick={() => setMenuIsVisible(false)}>
+					{/* <ListItem button component={NavLink} to="/cdf/form" onClick={() => setMenuIsVisible(false)}>
 						<ListItemText primary="Request callback" />
-					</ListItem>
+					</ListItem> */}
 				</List>
 			</Drawer>
 		</div>
