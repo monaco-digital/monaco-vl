@@ -11,11 +11,11 @@ describe('Header Component', () => {
 		expect(screen.getByTestId('header-component')).toBeInTheDocument();
 	});
 
-	test('When clicking Request Callback the CDF form opens', () => {
-		const { history } = renderWithProviders(<Header />);
-		userEvent.click(screen.getByText('Request callback'));
-		expect(history.location.pathname).toEqual('/cdf/form');
-	});
+	// test('When clicking Request Callback the CDF form opens', () => {
+	// 	const { history } = renderWithProviders(<Header />);
+	// 	userEvent.click(screen.getByText('Request callback'));
+	// 	expect(history.location.pathname).toEqual('/cdf/form');
+	// });
 
 	test('When clicking Help the Help page opens', () => {
 		const { history } = renderWithProviders(<Header />);
