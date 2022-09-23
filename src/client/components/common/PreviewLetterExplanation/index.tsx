@@ -69,15 +69,16 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 				</p>
 				<p>Once completed, you can send it to your employer.</p>
 				<p>
-					Copy us in on the email if you’d like us to advise you on your settlement offer once you have received one.
+					Copy in our employment lawyers, Monaco Solicitors in on the email if you’d like advice on your settlement
+					offer once you have received one.
 				</p>
 				<p>
 					You are legally required to take independent advice on your settlement agreement and to have it ‘signed off’
 					by a solicitor or other suitably qualified authority.
 				</p>
 				<p>
-					There is no cost to you for us to advise you on your settlement agreement and to sign it off. The cost is
-					covered by your employer.
+					There is no cost to you for Monaco Solicitors to advise you on your settlement agreement and to sign it off.
+					The cost is covered by your employer.
 				</p>
 			</div>
 		),
