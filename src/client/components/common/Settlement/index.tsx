@@ -34,7 +34,7 @@ export const Settlement: React.FC = () => {
 					<br />
 					<p>
 						If you’ve taken the previous steps to advance your case and you have received a settlement offer, please
-						feel free to contact us using the email link on the next page and a member of our team will contact you to
+						feel free to contact us using the email button on the next page and a member of our team will contact you to
 						arrange a free consultation with our specialist employment lawyers, Monaco Solicitors.
 					</p>
 					<br />
