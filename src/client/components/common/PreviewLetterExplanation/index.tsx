@@ -69,8 +69,8 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 				</p>
 				<p>Once completed, you can send it to your employer.</p>
 				<p>
-					Copy in our employment lawyers, Monaco Solicitors on the email if you’d like advice on your settlement
-					received one.
+					Copy in our employment lawyers, Monaco Solicitors on the email if you’d like advice on your settlement offer
+					once you have received one.
 				</p>
 				<p>
 					You are legally required to take independent advice on your settlement agreement and to have it ‘signed off’
