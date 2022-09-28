@@ -17,21 +17,11 @@ const Help: React.FC = () => {
 		<div className="helpsection" style={{ maxWidth: '904px' }}>
 			<ScrollToTopOnMount />
 			<h1>Grapple help</h1>
-			<h2>Monaco Solicitors</h2>
-			<p>
-				This app is created by{' '}
-				<Link href="https://www.monacosolicitors.co.uk/about-us/" target="_blank" rel="noopener noreferrer">
-					Monaco Solicitors
-				</Link>
-				. If you need Monaco Solicitors to review your case then you can find a contact form{' '}
-				<Link href="/cdf/form">here</Link>. Alternatively if you complete this app (it only takes 5 minutes) there is a
-				contact form at the end which you can use to send. The following guidance is produced by Monaco Solicitors:
-			</p>
 			<h2>About your ‘without prejudice’ legal letter</h2>
 			<p>
 				If you do want to leave, and you need help completing your ‘without prejudice letter’ template which you created
 				using this service, as well as reading your advice note which you emailed to yourself, you can read these
-				articles:
+				articles on the website of our employment lawyers, Monaco Solicitors:
 			</p>
 			<div>
 				<ul>
@@ -209,7 +199,7 @@ const Help: React.FC = () => {
 			<h2>Settlement agreement offers</h2>
 			<p>
 				If at any stage you get offered a settlement agreement then try to play it cool. Don&rsquo;t accept the first
-				offer they make. Read our article on how much you should get{' '}
+				offer they make. Read Monaco Solicitors article on how much you should get{' '}
 				<Link
 					href="https://www.monacosolicitors.co.uk/settlement-agreements/"
 					target="_blank"
@@ -217,7 +207,7 @@ const Help: React.FC = () => {
 				>
 					here
 				</Link>
-				, and read the guidance on our calculator page{' '}
+				, and read the guidance on their calculator page{' '}
 				<Link
 					href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 					target="_blank"
@@ -229,26 +219,17 @@ const Help: React.FC = () => {
 			</p>
 			<br />
 			<p>
-				And once you have received a settlement offer contact Monaco Solicitors for a free consultation and we will be
-				able to represent you, either to increase the amount or to review and sign the settlement agreement document
-				itself.
+				Once you have received a settlement offer, contact us and we will arrange for a free consultation for you with
+				Monaco Solicitors. They will be able to represent you, either to increase the amount (possibly on a No Win No F)
+				or to simply review and sign the settlement agreement document itself.
 			</p>
 			<br />
 			<p>
 				This is because there is always an amount of money for legal fees, set out in the settlement agreement document
 				itself, which is for the legal costs of going through this lengthy document with you. This does not result in
-				any additional cost to you, as your lawyer will invoice the employer separately for this.
+				any additional cost to you, as your solicitor will invoice the employer separately for this.
 			</p>
 			<br />
-			<p>
-				We would then go through it in detail with you, and discuss whether you should try to negotiate an increased
-				amount. We might be able to do this on a no win no fee basis.
-			</p>
-			<br />
-			<p>
-				Once you are happy with the deal set out in the document, we would countersign it to confirm that all of the
-				legal wording in the document has been explained to you in plain English.&nbsp;
-			</p>
 			<div className="italic text-ms-gray text-sm mt-12">
 				<p>Grapple has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
