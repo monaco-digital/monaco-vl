@@ -11,45 +11,60 @@ const Terms: React.FC = () => {
 			<ScrollToTopOnMount />
 			<h1>Terms of use</h1>
 			<p>
-				This service brought to you by Monaco Solicitors, a solicitors’ firm regulated by the Solicitors’ Regulation
-				Authority. Please read these terms of use carefully.
+				This service brought to you by Grapple Tech Ltd Company number: 14339842; address: Unit 6 Queens Yard, White
+				Post Lane, London, United Kingdom, E9 5EN. Please read these terms of use carefully.
 			</p>
 			<h2>General advice not specific legal advice</h2>
 			<p>
 				Through this service you are able to access a number of letters, including an advice letter, a without prejudice
 				letter and a grievance letter. Those letters do not constitute specific legal advice, they only constitute
-				general legal advice. If you need specific legal advice on the facts of your case then you should contact Monaco
-				Solicitors and arrange to speak to one of our lawyers.
+				general legal advice. If you need specific legal advice on the facts of your case then you should contact us and
+				ask to speak to one of our friendly partner law firms.
 			</p>
 			<h2>Free service</h2>
 			<p>
-				If you have generated a free letter, this is not intended to create a lawyer / client relationship. Where we
-				have not signed a client care letter with you in writing then you are not our client, and you should not hold us
-				out to be your lawyers to third parties.
+				If you have used this service and generated a free letter, this is not intended to create any kind of lawyer /
+				client relationship.
 			</p>
 			<h2>For personal use only</h2>
 			<p>
 				This service is for personal use only. If you work at an organisation wishing to use this service for its own
-				clients, please contact Monaco Solicitors and we will be very happy to hear from you. A non-personal licence may
-				be very affordable, especially if you wish to contribute to the content.
+				clients, please contact us and we will be happy to discuss how we can help.
 			</p>
-			<h2>Other</h2>
+			<h2>Data Protection</h2>
 			<p>
-				Our complaints policy is&nbsp;
-				<Link href="https://www.monacosolicitors.co.uk/complaints/" target="_blank" rel="noopener noreferrer">
-					here
-				</Link>
-				&nbsp;and our fee structures are&nbsp;
-				<Link
-					href="https://www.monacosolicitors.co.uk/legal-representation/"
-					target="_blank"
-					rel="noopener  noreferrer"
-				>
-					here
-				</Link>
-				. We always welcome feedback too, please email&nbsp;
-				<Link href="mailto:communications@monacosolicitors.co.uk">communications@monacosolicitors.co.uk</Link> for any
-				queries.
+				We comply with the Data Protection Act and GDPR legislation. Any data collected to enable us to provide our
+				service is fairly and lawfully processed; it is the bare minimum data necessary; it is not kept for longer than
+				necessary, it is secure, and it is not submitted to any other organization without your consent.
+			</p>
+			<h2>Cookie Policy</h2>
+			<p>
+				Cookies are small files of data held in your computer’s browser (eg Google Chrome or Internet Explorer). One
+				example of cookie use is the use of Google Analytics whereby Google measures things like numbers of visitors to
+				the site and amount of time spent on site.
+			</p>
+			<p>
+				We also track back user journeys through our website to see what they do. This is so that we can continuously
+				improve our website. If you wish to opt out of our Cookies policy just email us on
+				enquiries@monacosolicitors.co.uk
+			</p>
+			<h2>Advertising Policy</h2>
+			<p>
+				We do advertise using services such as Google Adwords and Bing which display two kinds of adverts. One is the
+				simple advert at the top of the Google results page which you can click on to get to our website. Another is
+				‘display’ advertising, also known as ‘remarketing’.
+			</p>
+			<p>
+				This means you may see our adverts on other websites which you visit. This is done by the use of a Cookie which
+				your browser collects from our website and then it effectively tells the other website to display one of our
+				adverts to you. Such Cookies are completely anonymous and not hold any personal data about you. If you wish to
+				opt out of our advertising policy just email us.
+			</p>
+			<h2>Newsletters</h2>
+			<p>
+				We like to keep employees posted about negotiation tips and hints, as well as employee rights updates which may
+				affect you. To this end, if you have contacted us and given us your email address then we intend to send you a
+				newsletter every month or so. If you wish to unsubscribe just click the button in the email or email us.
 			</p>
 
 			<Box
