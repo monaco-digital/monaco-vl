@@ -38,19 +38,6 @@ const Disclaimer: FC = () => {
 								<br />
 							</Typography>
 						</Grid>
-						<Grid item md={6} xs={12}>
-							<div className="SRA-main-div">
-								<div className="SRA-sub-div">
-									<iframe
-										title="SRA registration"
-										frameBorder="0"
-										scrolling="no"
-										src="https://cdn.yoshki.com/iframe/55845r.html"
-										className="SRA-iframe"
-									/>
-								</div>
-							</div>
-						</Grid>
 					</Grid>
 				</>
 			)}
