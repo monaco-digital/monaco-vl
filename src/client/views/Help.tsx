@@ -220,8 +220,8 @@ const Help: React.FC = () => {
 			<br />
 			<p>
 				Once you have received a settlement offer, contact us and we will arrange for a free consultation for you with
-				Monaco Solicitors. They will be able to represent you, either to increase the amount (possibly on a No Win No F)
-				or to simply review and sign the settlement agreement document itself.
+				Monaco Solicitors. They will be able to represent you, either to increase the amount (possibly on a No Win No
+				Fee) or to simply review and sign the settlement agreement document itself.
 			</p>
 			<br />
 			<p>
@@ -230,7 +230,7 @@ const Help: React.FC = () => {
 				any additional cost to you, as your solicitor will invoice the employer separately for this.
 			</p>
 			<br />
-			<div className="italic text-ms-gray text-sm mt-12">
+			{/* <div className="italic text-ms-gray text-sm mt-12">
 				<p>Grapple has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>Email: communications@monacosolicitors.co.uk</p>
@@ -241,7 +241,7 @@ const Help: React.FC = () => {
 				<p>Registered company no: 08487857</p>
 				<p>Registered office: Unit 502, Peckham Levels, 95a Rye Lane, London, SE15 4ST</p>
 				<p>Regulated by Solicitors Regulation Authority ID no: 621671</p>
-			</div>
+			</div> */}
 
 			<Box
 				position="fixed"
