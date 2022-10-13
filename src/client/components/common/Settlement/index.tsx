@@ -35,7 +35,7 @@ export const Settlement: React.FC = () => {
 					<p>
 						Did you like our free service? If so please share it with friends and colleagues who could benefit too. We
 						would also really appreciate it if you could spend a couple of minutes completing our survey
-						<Link href="https://grapple.involve.me/grapple-survey" target="_blank" rel="nofollow noreferrer">
+						<Link href="https://grapple.involve.me/grapple-user-survey" target="_blank" rel="nofollow noreferrer">
 							<b> here</b>
 						</Link>{' '}
 					</p>
