@@ -40,7 +40,7 @@ const Step2Intro: React.FC = () => {
 						<li>Generate and download your Without Prejudice legal letter template</li>
 						<li>Fill in the gaps where shown, using the information contained in your Advice Note for guidance</li>
 						<li>
-							Use our{' '}
+							Use this{' '}
 							<Link
 								href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 								target="_blank"

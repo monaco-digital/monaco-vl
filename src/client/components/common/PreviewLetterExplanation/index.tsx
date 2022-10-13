@@ -47,10 +47,6 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 					You have generated a second letter. Download your letter before moving on to the next step. Once you have
 					completed the letter by filling in any gaps, you can send it to your employer.
 				</p>
-				<p>
-					When you are ready, you can move on to the next step to ask for help with any settlement offer that you have
-					received.
-				</p>
 			</div>
 		),
 		_WP: (
@@ -66,19 +62,6 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 						<b>Without Prejudice</b>
 					</Link>{' '}
 					letter before moving on to the next step.
-				</p>
-				<p>Once completed, you can send it to your employer.</p>
-				<p>
-					Copy in our employment lawyers, Monaco Solicitors on the email if you’d like advice on your settlement offer
-					once you have received one.
-				</p>
-				<p>
-					You are legally required to take independent advice on your settlement agreement and to have it ‘signed off’
-					by a solicitor or other suitably qualified authority.
-				</p>
-				<p>
-					There is no cost to you for Monaco Solicitors to advise you on your settlement agreement and to sign it off.
-					The cost is covered by your employer.
 				</p>
 			</div>
 		),
