@@ -28,7 +28,7 @@ export const Settlement: React.FC = () => {
 						color={iconColour}
 						className="step-intro__number-icon"
 					/>
-					<Typography variant="h4">Please tell us what you think.</Typography>
+					<Typography variant="h4">Please tell us what you think</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
 					<br />
