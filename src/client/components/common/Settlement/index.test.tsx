@@ -10,18 +10,18 @@ describe('Settlement Page', () => {
 		expect(screen.getByText('Agree settlement')).toBeInTheDocument();
 	});
 
-	test('When loading Settlement Then back and next buttons are enabled', () => {
-		renderWithProviders(<Settlement />);
+	// test('When loading Settlement Then back and next buttons are enabled', () => {
+	// 	renderWithProviders(<Settlement />);
 
-		// const backButton = screen.getAllByRole('button', {
-		// 	name: /back/i,
-		// })[0];
-		const nextButton = screen.getAllByRole('button', {
-			name: /next/i,
-		})[0];
-		// expect(backButton).toBeEnabled();
-		expect(nextButton).toBeEnabled();
-	});
+	// 	const backButton = screen.getAllByRole('button', {
+	// 		name: /back/i,
+	// 	})[0];
+	// 	const nextButton = screen.getAllByRole('button', {
+	// 		name: /next/i,
+	// 	})[0];
+	// 	expect(backButton).toBeEnabled();
+	// 	expect(nextButton).toBeEnabled();
+	// });
 
 	// test('When clicking back Then previous page is loaded', () => {
 	// 	const { history } = renderWithProviders(<Settlement />, { startPage: '/preview/_RES_CO' });
