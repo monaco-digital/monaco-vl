@@ -30,10 +30,4 @@ describe('Settlement Page', () => {
 
 		expect(history.location.pathname).toEqual('/preview/_RES_CO');
 	});
-
-	test('When clicking next The CDF Form Opens', () => {
-		const { history } = renderWithProviders(<Settlement />);
-		userEvent.click(screen.getAllByText('Next')[0]);
-		expect(history.location.pathname).toEqual('/step/cdf/form');
-	});
 });
