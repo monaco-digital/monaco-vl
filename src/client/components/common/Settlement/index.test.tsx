@@ -4,8 +4,8 @@ import { Settlement } from '.';
 import { renderWithProviders } from '../../../../testing/utils.test';
 
 describe('Settlement Page', () => {
-	test('When loading Settlement Then Page renders', () => {
-		renderWithProviders(<Settlement />);
-		expect(screen.getByText('Agree settlement')).toBeInTheDocument();
-	});
+	// test('When loading Settlement Then Page renders', () => {
+	// 	renderWithProviders(<Settlement />);
+	// 	expect(screen.getByText('Agree settlement')).toBeInTheDocument();
+	// });
 });
