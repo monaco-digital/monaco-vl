@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import ReactGA from 'react-ga';
 import { useHistory, useParams } from 'react-router-dom';
@@ -119,13 +119,17 @@ const DocumentPreview: FC = () => {
 	const history = useHistory();
 	const { id = '_WP' } = useParams();
 	const paragraphs = useSelector<AppState, SessionParagraph[]>(state => state.session.suggestedParagraphs);
-	const selectedParagraphs = paragraphs.filter(
-		suggested =>
-			suggested.isSelected &&
-			// Filters out paragraphs not meant to display on this template.
-			(suggested.templateComponent as TemplateParagraph).paragraph?.topics?.some(
-				t => t.topicId === id && t.value === 1,
+	const selectedParagraphs = useMemo(
+		() =>
+			paragraphs.filter(
+				suggested =>
+					suggested.isSelected &&
+					// Filters out paragraphs not meant to display on this template.
+					(suggested.templateComponent as TemplateParagraph).paragraph?.topics?.some(
+						t => t.topicId === id && t.value === 1,
+					),
 			),
+		[id, paragraphs],
 	);
 	const isDsFlow = useSelector<AppState, boolean>(state => state.features.dsFlow);
 	const sessionDocument = useSelector<AppState, SessionDocument>(state => state.session.sessionDocuments[id]);
