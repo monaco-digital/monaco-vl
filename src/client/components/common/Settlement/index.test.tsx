@@ -23,11 +23,11 @@ describe('Settlement Page', () => {
 		expect(nextButton).toBeEnabled();
 	});
 
-	test('When clicking back Then previous page is loaded', () => {
-		const { history } = renderWithProviders(<Settlement />, { startPage: '/preview/_RES_CO' });
-		history.push('/step/settlement');
-		userEvent.click(screen.getAllByText('Back')[0]);
+	// test('When clicking back Then previous page is loaded', () => {
+	// 	const { history } = renderWithProviders(<Settlement />, { startPage: '/preview/_RES_CO' });
+	// 	history.push('/step/settlement');
+	// 	userEvent.click(screen.getAllByText('Back')[0]);
 
-		expect(history.location.pathname).toEqual('/preview/_RES_CO');
-	});
+	// 	expect(history.location.pathname).toEqual('/preview/_RES_CO');
+	// });
 });
