@@ -2,19 +2,12 @@ import React from 'react';
 import { mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
 import { Link, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
 
 import EndToEndStepper from '../EndToEndStepper';
-import ActionBar from '../ActionBar';
 
 export const Settlement: React.FC = () => {
-	const history = useHistory();
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
-
-	const handleGoForward = () => {
-		history.push('/step/cdf/form');
-	};
 
 	return (
 		<div className="flex-col w-full">
