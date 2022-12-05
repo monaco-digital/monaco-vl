@@ -29,8 +29,14 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 		_RES: (
 			<div>
 				<h2>Stage 3 complete!</h2>
-				You have generated a second letter. First, email it to yourself to complete later. Once complete, you can send
-				it to your employer or we can send it for you. Hit the NEXT button to proceed.
+				<p>
+					You have generated a second letter. First, email it to yourself to complete later. Once complete, you can send
+					it to your employer or we can send it for you. Hit the NEXT button to proceed.
+				</p>
+				<p>
+					When you are ready, you can move on to the next step to ask for help with any settlement offer that you have
+					received.
+				</p>
 			</div>
 		),
 		_WP: (

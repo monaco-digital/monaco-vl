@@ -31,16 +31,41 @@ export const Settlement: React.FC = () => {
 					<Typography variant="h4">Agree settlement</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Ok, so now you’ve read your advice note, you’ve generated your ‘without prejudice’ letter, and you’ve
-					generated a further response to your employer, whether that is another ‘without prejudice letter, a grievance
-					or a ‘Grounds of Claim’ tribunal document. If you want to leave your job and negotiate an exit package:
+					If you’ve taken the previous steps to advance your case, please feel free to use the form on the on the next
+					page if you’d like a member of our team call you.
 				</Typography>
+				<p>For example, you may require our services if:</p>
 				<Typography variant="body1" paragraph component="div">
 					<ul className="list-disc">
-						<li>If your employer receives a formal letter they will take you more seriously</li>
-						<li>We can send the letter for you </li>
-						<li>Most cases settle out of court</li>
+						<li>You have received a settlement offer</li>
+						<li>You would like a callback about your case</li>
 					</ul>
+				</Typography>
+				<Typography variant="h5" paragraph>
+					<strong>I have received a settlement offer</strong>
+				</Typography>
+				<Typography variant="body1" paragraph>
+					<p>
+						Contact Monaco Solicitors for a free consultation and we will be able to represent you, either to increase
+						the amount or to review and sign the settlement agreement document itself.
+					</p>
+					<br />
+					<p>
+						There is always an amount of money for legal fees, set out in the settlement agreement document itself. This
+						sum is to cover the legal costs of going through the lengthy settlement agreement document with you.{' '}
+					</p>
+					<br />
+					<p>
+						Reviewing and advising you on your settlement agreement does not cost you anything. Your lawyer would
+						invoice your employer separately for this.
+					</p>
+					<br />
+					<p>
+						We would then go through the settlement agreement in detail with you and discuss whether you should try to
+						negotiate an increased amount.
+					</p>
+					<br />
+					<p>We might be able to do this on your behalf on a no win no fee basis.</p>
 				</Typography>
 				<ActionBar step={3} nextHandler={handleGoForward} />
 			</div>
