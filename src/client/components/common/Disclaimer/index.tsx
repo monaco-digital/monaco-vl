@@ -22,7 +22,7 @@ const Disclaimer: FC = () => {
 						<Grid item xs={12} className="disclaimer__text">
 							<Typography variant="caption">
 								{disclaimerText}{' '}
-								<Link href="/cdf" target="_blank">
+								<Link href="https://www.monacosolicitors.co.uk/contact-us" target="_blank">
 									here.
 								</Link>
 							</Typography>
@@ -36,19 +36,6 @@ const Disclaimer: FC = () => {
 								Solicitors Regulation Authority ID no: 621671 <br />
 								<br />
 							</Typography>
-						</Grid>
-						<Grid item md={6} xs={12}>
-							<div className="SRA-main-div">
-								<div className="SRA-sub-div">
-									<iframe
-										title="SRA registration"
-										frameBorder="0"
-										scrolling="no"
-										src="https://cdn.yoshki.com/iframe/55845r.html"
-										className="SRA-iframe"
-									/>
-								</div>
-							</div>
 						</Grid>
 					</Grid>
 				</>
