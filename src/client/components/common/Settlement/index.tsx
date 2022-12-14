@@ -1,20 +1,13 @@
 import React from 'react';
 import { mdiNumeric4Circle } from '@mdi/js';
 import Icon from '@mdi/react';
-import { Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Link, Typography } from '@material-ui/core';
 
 import EndToEndStepper from '../EndToEndStepper';
-import ActionBar from '../ActionBar';
 
 export const Settlement: React.FC = () => {
-	const history = useHistory();
 	const iconColour = '#60ABFF';
 	const iconSize = 1.2;
-
-	const handleGoForward = () => {
-		history.push('/step/cdf/form');
-	};
 
 	return (
 		<div className="flex-col w-full">
@@ -28,21 +21,19 @@ export const Settlement: React.FC = () => {
 						color={iconColour}
 						className="step-intro__number-icon"
 					/>
-					<Typography variant="h4">Agree settlement</Typography>
+					<Typography variant="h4">Please tell us what you think</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
-					Ok, so now you’ve read your advice note, you’ve generated your ‘without prejudice’ letter, and you’ve
-					generated a further response to your employer, whether that is another ‘without prejudice letter, a grievance
-					or a ‘Grounds of Claim’ tribunal document. If you want to leave your job and negotiate an exit package:
+					<br />
+					<p>
+						Did you like our free service? If so please share it with friends and colleagues who could benefit too. We
+						would also really appreciate it if you could spend a couple of minutes completing our survey
+						<Link href="https://grapple.involve.me/grapple-user-survey" target="_blank" rel="nofollow noreferrer">
+							<b> here</b>
+						</Link>{' '}
+					</p>
+					<br />
 				</Typography>
-				<Typography variant="body1" paragraph component="div">
-					<ul className="list-disc">
-						<li>If your employer receives a formal letter they will take you more seriously</li>
-						<li>We can send the letter for you </li>
-						<li>Most cases settle out of court</li>
-					</ul>
-				</Typography>
-				<ActionBar step={3} nextHandler={handleGoForward} />
 			</div>
 		</div>
 	);

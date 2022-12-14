@@ -11,7 +11,7 @@ const Disclaimer: FC = () => {
 	const isStepCDF = useRouteMatch('/step/cdf');
 
 	const disclaimerText =
-		'Monaco Solicitors make every attempt to ensure the factual accuracy of website content at the time of publication. Any guidance or tips given are for information only. Nothing should be taken as legal advice or as forming a lawyer-client relationship. If you require legal representation please get in touch ';
+		'Grapple makes every attempt to ensure the factual accuracy of website content at the time of publication. Any guidance or tips given are for information only. Nothing should be taken as legal advice or as forming a lawyer-client relationship. If you require legal representation please get in touch and we will refer you to one of our friendly law firm partners. ';
 
 	return (
 		<div className="disclaimer">
@@ -31,24 +31,12 @@ const Disclaimer: FC = () => {
 					<Grid container direction="row" justifyContent="space-between">
 						<Grid item md={6} xs={12}>
 							<Typography variant="caption">
-								© Monaco Solicitors Ltd, <br />
-								Registered company no. 08487857 <br /> <br />
-								Solicitors Regulation Authority ID no: 621671 <br />
+								© Grapple Tech Ltd, <br />
+								Registered company no. 14339842 <br /> <br />
+								Registered office address: Unit 6 Queens Yard, White Post Lane, London, <br />
+								United Kingdom, E9 5EN
 								<br />
 							</Typography>
-						</Grid>
-						<Grid item md={6} xs={12}>
-							<div className="SRA-main-div">
-								<div className="SRA-sub-div">
-									<iframe
-										title="SRA registration"
-										frameBorder="0"
-										scrolling="no"
-										src="https://cdn.yoshki.com/iframe/55845r.html"
-										className="SRA-iframe"
-									/>
-								</div>
-							</div>
 						</Grid>
 					</Grid>
 				</>

@@ -129,8 +129,8 @@ const Question: React.FC<Props> = ({ question }: Props) => {
 				<div className="questions__title">
 					{question && <Title heading={question.text} subheading={question.subtext} />}
 				</div>
-				{allTopics.length === 0 && <CircularProgress />}
-				{allTopics.length > 0 && answers}
+				{allTopics?.length === 0 && <CircularProgress />}
+				{allTopics?.length > 0 && answers}
 				{hasMore && !showMore && <Button type="small" text="show more +" rounded fn={() => setShowMore(true)} />}
 				<br />
 			</div>

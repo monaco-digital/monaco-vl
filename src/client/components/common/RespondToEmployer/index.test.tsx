@@ -16,7 +16,7 @@ describe('Step 3 Intro Page', () => {
 	test('When loading RespondToEmployer Then Page renders', () => {
 		renderWithProviders(<RespondToEmployer />);
 		expect(
-			screen.getByText('You now have 4 template letters to choose from depending on what your employer is saying:'),
+			screen.getByText('You now have 4 template letters to choose from depending on your employer actions:'),
 		).toBeInTheDocument();
 	});
 

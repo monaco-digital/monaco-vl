@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react';
 import classNames from 'classnames';
 import { Fab } from '@material-ui/core';
-import EmailIcon from '@material-ui/icons/Email';
+import DownloadIcon from '@material-ui/icons/ArrowDownward';
 import { useHistory, useParams } from 'react-router-dom';
 
 type VLCardProps = {
@@ -28,8 +28,8 @@ const VLcard: FC<VLCardProps> = ({ children, heading, theme }: VLCardProps) => {
 				<span className="vl-card__header__title">{heading}</span>
 				<div className="vl-card__actions">
 					<Fab variant="extended" color="primary" onClick={openCheckoutModal}>
-						<EmailIcon />
-						<div className="vl-card__email_button_text">&nbsp;Email</div>
+						<DownloadIcon />
+						<div className="vl-card__email_button_text">&nbsp;Download</div>
 					</Fab>
 				</div>
 			</div>

@@ -16,7 +16,7 @@ const GrievanceLetterExplanation: React.FC = () => {
 			<EndToEndStepper step={3} />
 			<div className="step-intro">
 				<Typography variant="body1" paragraph>
-					So, your employer is ignoring your ‘without prejudice’ letter. If you’re still employed, you can submit a
+					So, your employer is ignoring your ‘Without Prejudice’ letter. If you’re still employed, you can submit a
 					formal written grievance under your employer’s internal procedure. A grievance is a statement of facts
 					regarding what happened to you in the past.
 				</Typography>
