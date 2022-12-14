@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import monacoLogo from '../../../assets/img/ms-logo-blue-black.svg';
+import grappleLogo from '../../../assets/img/grapple-logo.svg';
 
 const Upsell: FC = () => {
 	const history = useHistory();
 
 	return (
 		<div className="max-w-xs space-y-5">
-			<img className="w-48" alt="Virtual lawyer" src={monacoLogo} />
+			<img className="w-48" alt="grapple" src={grappleLogo} />
 
 			<Typography variant="h5">Congratulations!</Typography>
 

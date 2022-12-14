@@ -62,10 +62,11 @@ const RespondToEmployer: React.FC = () => {
 			<EndToEndStepper step={2} />
 			<div className="step-intro">
 				<Typography variant="body1" paragraph>
-					Ok so your employer has replied to your legal letter and you want to generate a response to send back to them.
+					Ok so your employer has replied to your Without Prejudice legal letter and you want to generate a response to
+					send back to them.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					The purpose of this is to progress the negotiation with the aim of finalising it at an acceptable level of
+					The purpose of your response is to progress the negotiation and complete it with an acceptable level of
 					compensation.
 				</Typography>
 				<Typography variant="body1" paragraph>
@@ -81,7 +82,7 @@ const RespondToEmployer: React.FC = () => {
 					to get an idea of how much to ask for.
 				</Typography>
 				<Typography variant="body1" paragraph>
-					You now have 4 template letters to choose from depending on what your employer is saying:
+					You now have 4 template letters to choose from depending on your employer actions:
 				</Typography>
 				<div className="step-intro__options">{options}</div>
 				<ActionBar step={2} nextHandler={handleNext} nextDisabled={selectedOption === ''} />

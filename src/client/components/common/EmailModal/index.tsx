@@ -9,7 +9,7 @@ import { SessionDocument } from '../../../../types/SessionDocument';
 import { getDocumentText } from '../../../../utils/renderDocument';
 import { getSuggestedAdviceParagraphs } from '../../../../api/vl/paragraphs';
 import { updateUserData } from '../../../../data/sessionDataSlice';
-import logo1 from '../../../assets/img/ms-logo-blue-black.svg';
+import logo1 from '../../../assets/img/grapple-logo.svg';
 import { submitDetails } from '../../../../api/general';
 
 interface Data {
@@ -153,7 +153,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 					inputRef={register({ required: 'Please enter your email address' })}
 				/>
 
-				<FormControl fullWidth error={Boolean(errors.contact)} variant="filled">
+				{/* <FormControl fullWidth error={Boolean(errors.contact)} variant="filled">
 					<InputLabel variant="filled" htmlFor="contact">
 						Request a callback
 					</InputLabel>
@@ -171,7 +171,7 @@ const EmailModal: FC<Props> = ({ previewType }: Props) => {
 					/>
 
 					{Boolean(errors.contact) && <FormHelperText>{errors.contact?.message}</FormHelperText>}
-				</FormControl>
+				</FormControl> */}
 
 				<div className="emailModal__section-end">
 					<Button variant="contained" size="large" color="secondary" type="submit" disabled={isSubmitting}>

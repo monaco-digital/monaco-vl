@@ -155,16 +155,6 @@ const Main: FC = () => {
 									</Route>
 								</Switch>
 							</Route>
-							<Route path="/cdf">
-								<Switch>
-									<Route exact path="/cdf/form">
-										<CDF1 />
-									</Route>
-									<Route exact path="/cdf/complete">
-										<CDFComplete />
-									</Route>
-								</Switch>
-							</Route>
 							<Route exact path="/preview">
 								<Redirect to="/preview/_ADV" />
 							</Route>
