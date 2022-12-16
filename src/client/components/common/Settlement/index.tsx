@@ -21,16 +21,48 @@ export const Settlement: React.FC = () => {
 						color={iconColour}
 						className="step-intro__number-icon"
 					/>
-					<Typography variant="h4">Please tell us what you think</Typography>
+					<Typography variant="h4">Agree settlement</Typography>
 				</div>
 				<Typography variant="body1" paragraph>
 					<br />
 					<p>
-						Did you like our free service? If so please share it with friends and colleagues who could benefit too. We
-						would also really appreciate it if you could spend a couple of minutes completing our survey
-						<Link href="https://grapple.involve.me/grapple-user-survey" target="_blank" rel="nofollow noreferrer">
-							<b> here</b>
-						</Link>{' '}
+						If you’ve taken the previous steps to advance your case, please feel free to use the form on the on the next
+						page if you’d like a member of our team call you.
+					</p>
+					<br />
+					<p>For example, you may require our services if:</p>
+					<Typography variant="body1" paragraph component="div">
+						<ul className="list-disc">
+							<li>You have received a settlement offer</li>
+							<li>You would like a callback about your case</li>
+						</ul>
+					</Typography>
+					<h2>I have received a settlement offer</h2>
+					<p>
+						Contact Monaco Solicitors for a free consultation and we will be able to represent you, either to increase
+						the amount or to review and sign the settlement agreement document itself.
+					</p>
+					<br />
+					<p>
+						There is always an amount of money for legal fees, set out in the settlement agreement document itself. This
+						sum is to cover the legal costs of going through the lengthy settlement agreement document with you.
+					</p>
+					<br />
+					<p>
+						Reviewing and advising you on your settlement agreement does not cost you anything. Your lawyer would
+						invoice your employer separately for this.
+					</p>
+					<br />
+					<p>
+						We would then go through the settlement agreement in detail with you and discuss whether you should try to
+						negotiate an increased amount.
+					</p>
+					<br />
+					<p>We might be able to do this on your behalf on a no win no fee basis.</p>
+					<br />
+					<p>
+						Once you are happy with the deal set out in the settlement agreement document, we would countersign it to
+						confirm that all of the legal wording in the document has been explained to you in plain English.{' '}
 					</p>
 					<br />
 				</Typography>

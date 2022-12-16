@@ -47,6 +47,10 @@ const PreviewLetterExplanation: React.FC<Props> = ({ letter }: Props) => {
 					You have generated a second letter. Download your letter before moving on to the next step. Once you have
 					completed the letter by filling in any gaps, you can send it to your employer.
 				</p>
+				<p>
+					When you are ready, you can move on to the next step to ask for help with any settlement offer that you have
+					received.
+				</p>
 			</div>
 		),
 		_WP: (
