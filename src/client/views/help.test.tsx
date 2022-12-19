@@ -13,7 +13,7 @@ describe('Help Page', () => {
 	test('When Loading Help Then Page renders', () => {
 		renderWithProviders(<Help />, { startPage: '/help' });
 
-		expect(screen.getByText('Grapple help')).toBeInTheDocument();
+		expect(screen.getByText('Virtual Lawyer help')).toBeInTheDocument();
 	});
 
 	test('When clicking back Then previous page loaded', () => {
