@@ -16,7 +16,7 @@ const Help: React.FC = () => {
 	return (
 		<div className="helpsection" style={{ maxWidth: '904px' }}>
 			<ScrollToTopOnMount />
-			<h1>Grapple help</h1>
+			<h1>Virtual Lawyer help</h1>
 			<h2>About your ‘without prejudice’ legal letter</h2>
 			<p>
 				If you do want to leave, and you need help completing your ‘without prejudice letter’ template which you created
@@ -231,7 +231,7 @@ const Help: React.FC = () => {
 			</p>
 			<br />
 			{/* <div className="italic text-ms-gray text-sm mt-12">
-				<p>Grapple has been created by Monaco Solicitors, Contact details</p>
+				<p>Virtual Lawyer has been created by Monaco Solicitors, Contact details</p>
 				<p>Tel: 020 7717 5259</p>
 				<p>Email: communications@monacosolicitors.co.uk</p>
 				<p>

@@ -11,8 +11,8 @@ const Terms: React.FC = () => {
 			<ScrollToTopOnMount />
 			<h1>Terms of use</h1>
 			<p>
-				This service brought to you by Grapple Tech Ltd Company number: 14339842; address: Unit 6 Queens Yard, White
-				Post Lane, London, United Kingdom, E9 5EN. Please read these terms of use carefully.
+				This service brought to you by Virtual Lawyer Tech Ltd Company number: 08487857; Please read these terms of use
+				carefully.
 			</p>
 			<h2>General advice not specific legal advice</h2>
 			<p>
