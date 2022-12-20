@@ -21,7 +21,7 @@ const Help: React.FC = () => {
 			<p>
 				If you do want to leave, and you need help completing your ‘without prejudice letter’ template which you created
 				using this service, as well as reading your advice note which you emailed to yourself, you can read these
-				articles on the website of our employment lawyers, Monaco Solicitors:
+				articles:
 			</p>
 			<div>
 				<ul>
@@ -199,7 +199,7 @@ const Help: React.FC = () => {
 			<h2>Settlement agreement offers</h2>
 			<p>
 				If at any stage you get offered a settlement agreement then try to play it cool. Don&rsquo;t accept the first
-				offer they make. Read Monaco Solicitors article on how much you should get{' '}
+				offer they make. Read our article on how much you should get{' '}
 				<Link
 					href="https://www.monacosolicitors.co.uk/settlement-agreements/"
 					target="_blank"
@@ -207,7 +207,7 @@ const Help: React.FC = () => {
 				>
 					here
 				</Link>
-				, and read the guidance on their calculator page{' '}
+				, and read the guidance on our calculator page{' '}
 				<Link
 					href="https://www.monacosolicitors.co.uk/free-settlement-agreement-calculator/"
 					target="_blank"
@@ -220,7 +220,7 @@ const Help: React.FC = () => {
 			<br />
 			<p>
 				Once you have received a settlement offer, contact us and we will arrange for a free consultation for you with
-				Monaco Solicitors. They will be able to represent you, either to increase the amount (possibly on a No Win No
+				one of our lawyers. We will be able to represent you, either to increase the amount (possibly on a No Win No
 				Fee) or to simply review and sign the settlement agreement document itself.
 			</p>
 			<br />

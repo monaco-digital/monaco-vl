@@ -10,10 +10,7 @@ const Terms: React.FC = () => {
 		<div className="termsSection" style={{ maxWidth: '900px' }}>
 			<ScrollToTopOnMount />
 			<h1>Terms of use</h1>
-			<p>
-				This service brought to you by Virtual Lawyer Tech Ltd Company number: 08487857; Please read these terms of use
-				carefully.
-			</p>
+			<p>This service is brought to you by Monaco Solicitors. Please read these terms of use carefully.</p>
 			<h2>General advice not specific legal advice</h2>
 			<p>
 				Through this service you are able to access a number of letters, including an advice letter, a without prejudice
