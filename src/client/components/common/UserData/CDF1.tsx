@@ -17,7 +17,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import AppState from '../../../../data/AppState';
 import { createCDF } from '../../../../api/general';
 import { UserData } from '../../../../types/UserData';
-import logo1 from '../../../assets/img/grapple-logo.svg';
+import logo1 from '../../../assets/img/vl-logo.svg';
 
 interface Props {
 	previewType?: string;

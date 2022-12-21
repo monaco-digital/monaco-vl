@@ -16,7 +16,7 @@ const Terms: React.FC = () => {
 				Through this service you are able to access a number of letters, including an advice letter, a without prejudice
 				letter and a grievance letter. Those letters do not constitute specific legal advice, they only constitute
 				general legal advice. If you need specific legal advice on the facts of your case then you should contact us and
-				ask to speak to one of our friendly partner law firms.
+				ask to speak to one of our lawyers.
 			</p>
 			<h2>Free service</h2>
 			<p>
