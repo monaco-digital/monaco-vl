@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { Button, Grid, Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
-import grappleLogo from '../../../assets/img/grapple-logo.svg';
+import grappleLogo from '../../../assets/img/vl-logo.svg';
 
 const Upsell: FC = () => {
 	const history = useHistory();
