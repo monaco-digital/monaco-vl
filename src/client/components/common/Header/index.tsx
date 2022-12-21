@@ -17,11 +17,16 @@ const Header: FC = () => {
 
 	return (
 		<div className="header" data-testid="header-component">
-			<Link href="https://www.grapple.uk/?from=vl-ui&source=mobile" target="_blank" rel="noreferrer">
+			<Link href="https://virtuallawyer.monacosolicitors.co.uk/" target="_blank" rel="noreferrer">
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
 			</Link>
 			<div className="header__breadcrumb">
-				<a className="header__breadcrumb__text" target="_blank" href="https://www.grapple.uk/" rel="noreferrer">
+				<a
+					className="header__breadcrumb__text"
+					target="_blank"
+					href="https://virtuallawyer.monacosolicitors.co.uk/"
+					rel="noreferrer"
+				>
 					Home
 				</a>
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
@@ -47,7 +52,7 @@ const Header: FC = () => {
 					<a
 						className="MuiButtonBase-root MuiListItem-root MuiListItem-gutters MuiListItem-button MuiTypography-body1"
 						target="_blank"
-						href="https://www.grapple.uk/"
+						href="https://virtuallawyer.monacosolicitors.co.uk/"
 						rel="noreferrer"
 					>
 						Home
