@@ -4,7 +4,7 @@ import { Button, Drawer, IconButton, Link, List, ListItem, ListItemText } from '
 import MenuIcon from '@material-ui/icons/Menu';
 import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
-import logo1 from '../../../assets/img/grapple-logo.svg';
+import logo1 from '../../../assets/img/vl-logo.svg';
 
 const Header: FC = () => {
 	const { pathname } = useLocation();
@@ -21,12 +21,7 @@ const Header: FC = () => {
 				<img className="header__logo-1" alt="Monaco Solicitors" src={logo1} />
 			</Link>
 			<div className="header__breadcrumb">
-				<a
-					className="header__breadcrumb__text"
-					target="_blank"
-					href="https://virtuallawyer.monacosolicitors.co.uk/"
-					rel="noreferrer"
-				>
+				<a className="header__breadcrumb__text" href="https://virtuallawyer.monacosolicitors.co.uk/" rel="noreferrer">
 					Home
 				</a>
 				<NavLink to="/help" className="header__breadcrumb__text" activeClassName="header__breadcrumb__text-selected">
