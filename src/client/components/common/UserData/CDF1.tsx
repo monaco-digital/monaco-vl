@@ -128,7 +128,7 @@ export const CDF1: React.FC<Props> = ({ previewType }: Props) => {
 					className="button button--secondary button--rounded text-sm inline-block"
 					style={{ marginTop: '30px', width: 'max-content' }}
 					target="_blank"
-					href="mailto:contact@grapple.uk"
+					href="mailto:virtual.lawyer@monacosolicitors.co.uk"
 					rel="noreferrer"
 				>
 					Email Us
